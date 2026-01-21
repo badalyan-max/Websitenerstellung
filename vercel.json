@@ -1,6 +1,7 @@
 {
-  "buildCommand": "cd shinytouch && npm run build",
-  "installCommand": "cd shinytouch && npm install",
-  "framework": "nextjs",
-  "outputDirectory": "shinytouch/.next"
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "projectSettings": {
+    "rootDirectory": "shinytouch"
+  }
 }
