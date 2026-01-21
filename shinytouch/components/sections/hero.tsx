@@ -7,12 +7,12 @@ import { CITIES_COUNT } from '@/lib/cities'
 export function Hero() {
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-secondary-50 via-white to-primary-50">
-      {/* Animated Background Elements */}
+      {/* Animated Background Elements - Animationen nur auf Desktop (GPU-intensiv auf Mobile) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Gradient Orbs */}
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-200/40 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute top-1/2 -left-20 w-60 h-60 bg-primary-300/30 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute bottom-20 right-1/4 w-40 h-40 bg-secondary-200/40 rounded-full blur-2xl animate-pulse delay-500" />
+        {/* Gradient Orbs - hidden on mobile, animated on desktop */}
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-200/40 rounded-full blur-3xl hidden sm:block sm:animate-pulse" />
+        <div className="absolute top-1/2 -left-20 w-60 h-60 bg-primary-300/30 rounded-full blur-3xl hidden sm:block sm:animate-pulse delay-1000" />
+        <div className="absolute bottom-20 right-1/4 w-40 h-40 bg-secondary-200/40 rounded-full blur-2xl hidden sm:block sm:animate-pulse delay-500" />
 
         {/* Grid Pattern */}
         <div
@@ -22,10 +22,10 @@ export function Hero() {
           }}
         />
 
-        {/* Floating Sparkles */}
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary-400 rounded-full animate-ping opacity-60" />
-        <div className="absolute top-1/3 right-1/3 w-1.5 h-1.5 bg-primary-500 rounded-full animate-ping delay-700 opacity-50" />
-        <div className="absolute bottom-1/3 left-1/3 w-2 h-2 bg-primary-300 rounded-full animate-ping delay-1000 opacity-40" />
+        {/* Floating Sparkles - hidden on mobile */}
+        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary-400 rounded-full hidden sm:block sm:animate-ping opacity-60" />
+        <div className="absolute top-1/3 right-1/3 w-1.5 h-1.5 bg-primary-500 rounded-full hidden sm:block sm:animate-ping delay-700 opacity-50" />
+        <div className="absolute bottom-1/3 left-1/3 w-2 h-2 bg-primary-300 rounded-full hidden sm:block sm:animate-ping delay-1000 opacity-40" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
