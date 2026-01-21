@@ -8,40 +8,48 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // ShinyTouch Brand Colors - Blue Theme (matching current website)
+        // ShinyTouch Brand Colors - Fresh Blue Theme
+        // Design System: Soft UI Evolution - Trust, Cleanliness, Professionalism
         primary: {
-          50: '#eef2ff',
-          100: '#e0e7ff',
-          200: '#c7d2fe',
-          300: '#a5b4fc',
-          400: '#818cf8',
-          500: '#5869fc', // Main blue from shinytouchgebaeudereinigung.de
-          600: '#4f46e5',
-          700: '#4338ca',
-          800: '#3730a3',
-          900: '#312e81',
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#3b82f6', // Fresh blue - cleanliness & trust
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+          900: '#1e3a8a',
         },
         secondary: {
-          50: '#f6f7f9', // Light gray from website
+          50: '#f8fafc',
           100: '#f1f5f9',
           200: '#e2e8f0',
           300: '#cbd5e1',
           400: '#94a3b8',
           500: '#64748b',
           600: '#475569',
-          700: '#3b3b3b', // Dark gray from website
+          700: '#334155',
           800: '#1e293b',
-          900: '#010528', // Dark navy from website
+          900: '#0f172a',
         },
+        // CTA Orange - High visibility for conversions
+        cta: {
+          DEFAULT: '#f97316',
+          light: '#fdba74',
+          dark: '#ea580c',
+        },
+        // Accent Green - Eco-friendly, freshness
         accent: {
-          DEFAULT: '#fae084', // Gold highlight from website
-          light: '#fef3c7',
-          dark: '#f59e0b',
+          DEFAULT: '#22c55e',
+          light: '#86efac',
+          dark: '#16a34a',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Lexend', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['Lexend', 'Inter', 'system-ui', 'sans-serif'],
       },
     },
   },

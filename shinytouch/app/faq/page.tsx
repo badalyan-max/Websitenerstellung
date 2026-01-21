@@ -23,7 +23,7 @@ const faqCategories = [
       },
       {
         question: 'In welchen Städten ist ShinyTouch tätig?',
-        answer: 'ShinyTouch ist deutschlandweit in 32 Städten tätig, mit Hauptsitz in Bamberg. Zu unseren Standorten gehören unter anderem München, Nürnberg, Berlin, Hamburg, Frankfurt, Köln, Stuttgart und viele weitere. Auch wenn Ihre Stadt nicht aufgelistet ist, kontaktieren Sie uns – wir erweitern ständig unser Einzugsgebiet.',
+        answer: 'ShinyTouch ist deutschlandweit in 32 Städten tätig, mit Hauptsitz in Bamberg. Zu unseren Einsatzorten gehören unter anderem München, Nürnberg, Berlin, Hamburg, Frankfurt, Köln, Stuttgart und viele weitere. Auch wenn Ihre Stadt nicht aufgelistet ist, kontaktieren Sie uns – wir erweitern ständig unser Einzugsgebiet.',
       },
       {
         question: 'Wie kann ich ein Angebot anfordern?',

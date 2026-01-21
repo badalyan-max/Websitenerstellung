@@ -5,7 +5,7 @@ import { SERVICES } from '@/lib/services'
 const quickLinks = [
   { name: 'Über uns', href: '/about' },
   { name: 'Leistungen', href: '/service' },
-  { name: 'Standorte', href: '/standorte' },
+  { name: 'Einsatzorte', href: '/einsatzorte' },
   { name: 'Kontakt', href: '/contact' },
   { name: 'FAQ', href: '/faq' },
   { name: 'Karriere', href: '/karriere' },
@@ -33,7 +33,7 @@ export function Footer() {
       {/* Decorative top accent */}
       <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-12 lg:pt-16 pb-6 sm:pb-8">
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Column 1: Company Info & Contact */}
@@ -189,12 +189,12 @@ export function Footer() {
             <h3 className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">
               Leistungen
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="space-y-1">
               {SERVICES.map((service) => (
                 <li key={service.slug}>
                   <Link
                     href={`/service/${service.slug}`}
-                    className="text-sm text-secondary-400 hover:text-primary-400 transition-colors inline-flex items-center gap-1.5 group"
+                    className="text-sm text-secondary-400 hover:text-primary-400 transition-colors inline-flex items-center gap-1.5 group py-1.5 -my-0.5"
                   >
                     <span className="w-1 h-1 rounded-full bg-primary-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                     {service.name}
@@ -209,12 +209,12 @@ export function Footer() {
             <h3 className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">
               Navigation
             </h3>
-            <ul className="space-y-2.5 mb-8">
+            <ul className="space-y-1 mb-8">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-secondary-400 hover:text-primary-400 transition-colors inline-flex items-center gap-1.5 group"
+                    className="text-sm text-secondary-400 hover:text-primary-400 transition-colors inline-flex items-center gap-1.5 group py-1.5 -my-0.5"
                   >
                     <span className="w-1 h-1 rounded-full bg-primary-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                     {link.name}
@@ -224,14 +224,14 @@ export function Footer() {
             </ul>
 
             <h3 className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">
-              Top Standorte
+              Top Einsatzorte
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="space-y-1">
               {topCities.map((city) => (
                 <li key={city.href}>
                   <Link
                     href={city.href}
-                    className="text-sm text-secondary-400 hover:text-primary-400 transition-colors inline-flex items-center gap-1.5 group"
+                    className="text-sm text-secondary-400 hover:text-primary-400 transition-colors inline-flex items-center gap-1.5 group py-1.5 -my-0.5"
                   >
                     <span className="w-1 h-1 rounded-full bg-primary-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                     Gebäudereinigung {city.name}
@@ -264,7 +264,7 @@ export function Footer() {
                 </span>
               </div>
               <p className="text-sm text-secondary-400 mb-2">
-                Basierend auf {COMPANY_DATA.rating.count} Bewertungen
+                5 von 5 Sternen
               </p>
               <a
                 href={COMPANY_DATA.social.provenExpert}
@@ -317,7 +317,7 @@ export function Footer() {
                 href={COMPANY_DATA.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 bg-secondary-800 hover:bg-secondary-700 rounded-lg transition-colors group"
+                className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center bg-secondary-800 hover:bg-secondary-700 rounded-lg transition-colors group"
                 aria-label="LinkedIn"
               >
                 <svg
@@ -333,7 +333,7 @@ export function Footer() {
                 href={COMPANY_DATA.social.google}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 bg-secondary-800 hover:bg-secondary-700 rounded-lg transition-colors group"
+                className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center bg-secondary-800 hover:bg-secondary-700 rounded-lg transition-colors group"
                 aria-label="Google Maps"
               >
                 <svg
@@ -355,12 +355,12 @@ export function Footer() {
             <p className="text-sm text-secondary-500">
               © {currentYear} {COMPANY_DATA.name}. Alle Rechte vorbehalten.
             </p>
-            <div className="flex items-center gap-6">
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6">
               {legalLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm text-secondary-500 hover:text-secondary-300 transition-colors"
+                  className="text-sm text-secondary-500 hover:text-secondary-300 transition-colors py-1"
                 >
                   {link.name}
                 </Link>

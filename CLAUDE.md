@@ -38,16 +38,16 @@ Diese Regeln werden **AUTOMATISCH** ausgeführt, ohne dass der Benutzer sie erw�
 
 | WENN der Benutzer fragt nach... | DANN automatisch ausführen... |
 |--------------------------------|-------------------------------|
-| UI-Komponente erstellen | 1. `/frontend-design` → 2. `/ui` (nur Inspiration) → 3. Code schreiben |
-| Seite/Page erstellen | 1. `/frontend-design` → 2. `/ui` (Inspiration) → 3. Context7 (Next.js) → 4. SEO-Schema |
-| Button, Card, Modal, Form, etc. | 1. `/frontend-design` → 2. `/ui` (Inspiration) → 3. Code finalisieren |
-| Hero Section, Header, Footer | 1. `/frontend-design` → 2. `/ui` (Inspiration) → 3. Schema prüfen |
-| Landingpage erstellen | 1. `/frontend-design` → 2. `/ui` (Inspiration) → 3. SEO-Optimierung |
-| Frontend-Bug fixen | 1. `/frontend-design` → 2. `/ui` für Inspiration zu Patterns |
-| Styling-Problem | 1. `/frontend-design` → 2. `/ui` (Inspiration) |
-| Layout-Problem | 1. `/frontend-design` → 2. `/ui` (Inspiration) |
-| Responsive machen | 1. `/frontend-design` → 2. `/ui` (Inspiration) |
-| Animation hinzufügen | 1. `/frontend-design` → 2. `/ui` (Inspiration) |
+| UI-Komponente erstellen | 1. `/frontend-design` → 2. `ui-ux-pro-max` → 3. `/ui` (Inspiration) → 4. Code schreiben |
+| Seite/Page erstellen | 1. `/frontend-design` → 2. `ui-ux-pro-max` → 3. `/ui` → 4. Context7 → 5. SEO-Schema |
+| Button, Card, Modal, Form, etc. | 1. `/frontend-design` → 2. `ui-ux-pro-max` → 3. `/ui` → 4. Code finalisieren |
+| Hero Section, Header, Footer | 1. `/frontend-design` → 2. `ui-ux-pro-max` → 3. `/ui` → 4. Schema prüfen |
+| Landingpage erstellen | 1. `/frontend-design` → 2. `ui-ux-pro-max --design-system` → 3. `/ui` → 4. SEO |
+| Frontend-Bug fixen | 1. `/frontend-design` → 2. `ui-ux-pro-max --domain ux` → 3. `/ui` |
+| Styling-Problem | 1. `/frontend-design` → 2. `ui-ux-pro-max` → 3. `/ui` |
+| Layout-Problem | 1. `/frontend-design` → 2. `ui-ux-pro-max` → 3. `/ui` |
+| Responsive machen | 1. `/frontend-design` → 2. `ui-ux-pro-max --domain ux` → 3. `/ui` |
+| Animation hinzufügen | 1. `/frontend-design` → 2. `ui-ux-pro-max --domain ux` → 3. `/ui` |
 | React/Next.js Code schreiben | 1. Context7 (aktuelle Docs holen) → 2. Code schreiben |
 | Tailwind verwenden | 1. Context7 (Tailwind Docs) → 2. Code schreiben |
 | Neue Abhängigkeit nutzen | 1. Context7 (Library Docs) → 2. Code schreiben |
@@ -55,32 +55,61 @@ Diese Regeln werden **AUTOMATISCH** ausgeführt, ohne dass der Benutzer sie erw�
 | Neue Website starten | 1. DataForSEO Keyword-Recherche → 2. Content-Plan → 3. `/frontend-design` → 4. `/ui` |
 | Logo einfügen | 1. `logo_search` Tool |
 
-## Automatische Kette: Frontend-Arbeit
+## Automatische Kette: Frontend-Arbeit (Design-Kaskade)
 
 ```
 ┌────────────────────────────────────────────────────────────────┐
-│ JEDE Frontend-Anfrage löst diese Kette aus:                   │
+│ JEDE Frontend-Anfrage löst diese 5-Schritt-Kaskade aus:       │
 │                                                                │
 │ 1. /frontend-design aufrufen (PFLICHT)                        │
-│    └── Generiert hochwertigen, kreativen Code                 │
-│    └── Dies ist das HAUPT-Tool für Code-Generierung           │
+│    └── Aesthetic Direction und Design-Philosophie festlegen   │
+│    └── Tone wählen: minimal, brutalist, elegant, playful      │
 │                                                                │
-│ 2. /ui oder /21 aufrufen (NUR INSPIRATION)                    │
-│    └── Holt Inspiration/Referenz von 21st.dev                 │
-│    └── NUR `21st_magic_component_inspiration` verwenden       │
-│    └── NICHT die Builder/Refiner Tools nutzen!                │
-│    └── Code kann als Referenz dienen                          │
+│ 2. ui-ux-pro-max Design-System generieren (PFLICHT)           │
+│    └── Befehl ausführen:                                      │
+│    py -3.12 -X utf8 c:/Projekte/ai-agent-tools/skills/        │
+│       ui-ux-pro-max/scripts/search.py "<branche> <keywords>"  │
+│       --design-system -p "Projektname"                        │
+│    └── Output liefert: Color Palette, Font Pairing, UI Style  │
+│    └── Anti-Patterns beachten und vermeiden!                  │
 │                                                                │
-│ 3. Context7 für Framework-spezifische Docs                    │
+│ 3. /ui oder /21 aufrufen (INSPIRATION)                        │
+│    └── `21st_magic_component_inspiration` für Referenzen      │
+│    └── NICHT builder/refiner Tools verwenden!                 │
+│                                                                │
+│ 4. Context7 für Framework-spezifische Docs                    │
 │    └── Bei Unsicherheit über API/Syntax                       │
 │                                                                │
-│ 4. SEO-Check                                                   │
+│ 5. SEO-Check                                                   │
 │    └── Semantic HTML, Schema-Markup, Accessibility            │
 └────────────────────────────────────────────────────────────────┘
 ```
 
+**ui-ux-pro-max Beispiele nach Branche:**
+| Branche | Befehl |
+|---------|--------|
+| Beauty/Spa | `"beauty spa wellness elegant"` |
+| SaaS | `"saas dashboard modern professional"` |
+| E-Commerce | `"ecommerce shop retail trust"` |
+| Portfolio | `"portfolio creative minimal"` |
+| Fintech | `"fintech banking secure modern"` |
+| Healthcare | `"healthcare medical trust clean"` |
+
+**Domain-Suchen bei Bedarf:**
+```bash
+# Mehr Style-Optionen
+py -3.12 c:/Projekte/ai-agent-tools/skills/ui-ux-pro-max/scripts/search.py "glassmorphism" --domain style
+
+# Spezifische Farbpalette
+py -3.12 c:/Projekte/ai-agent-tools/skills/ui-ux-pro-max/scripts/search.py "beauty" --domain color
+
+# Font Pairings
+py -3.12 c:/Projekte/ai-agent-tools/skills/ui-ux-pro-max/scripts/search.py "elegant luxury" --domain typography
+```
+
 **WICHTIG**:
 - `/frontend-design` ist das Haupt-Tool für Code-Generierung
+- `ui-ux-pro-max` liefert strukturierte Design-Daten (50+ Styles, 97 Paletten, 57 Fonts)
 - 21st.dev nur für Inspiration (`21st_magic_component_inspiration`)
 - NICHT `21st_magic_component_builder` oder `_refiner` verwenden!
 

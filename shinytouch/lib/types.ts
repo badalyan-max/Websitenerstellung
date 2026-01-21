@@ -5,8 +5,10 @@
 export interface City {
   slug: string
   name: string
-  region: string
+  plz: string // Postleitzahl für Suche
+  region: string // Bundesland
   priority: 1 | 2 | 3
+  population?: number // Einwohnerzahl für Content-Variation
   intro?: string
   highlights?: string[]
   faqs?: FAQ[]

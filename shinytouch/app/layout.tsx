@@ -1,16 +1,24 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import type { Metadata, Viewport } from 'next'
+import { Lexend } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import { JsonLd } from '@/components/seo/json-ld'
 import { generateOrganizationSchema, generateLocalBusinessSchema } from '@/lib/schema'
 
-const inter = Inter({
+const lexend = Lexend({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-lexend',
 })
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: '#3b82f6',
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.shinytouchgebaeudereinigung.de'),
@@ -75,7 +83,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="de" className={inter.variable}>
+    <html lang="de" className={lexend.variable}>
       <head>
         {/* Organization Schema */}
         <JsonLd data={generateOrganizationSchema()} />

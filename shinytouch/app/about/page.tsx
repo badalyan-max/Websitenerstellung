@@ -65,7 +65,7 @@ const milestones = [
 const stats = [
   { value: '500+', label: 'Zufriedene Kunden' },
   { value: '5.0', label: 'Sterne Bewertung' },
-  { value: '32', label: 'Standorte' },
+  { value: '32', label: 'Einsatzorte' },
   { value: '100%', label: 'Zufriedenheitsgarantie' },
 ]
 

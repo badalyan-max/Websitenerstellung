@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Hero } from '@/components/sections/hero'
 import { COMPANY_DATA } from '@/lib/company'
 import { SERVICES } from '@/lib/services'
-import { CITIES, getCitiesByPriority } from '@/lib/cities'
+import { CITIES, CITIES_COUNT, getCitiesByPriority } from '@/lib/cities'
 import {
   SERVICE_ICONS,
   ShieldCheckIcon,
@@ -30,7 +30,7 @@ export default function HomePage() {
       <Hero />
 
       {/* Services Section */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-12 sm:py-16 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -117,7 +117,7 @@ export default function HomePage() {
       </section>
 
       {/* Trust Section */}
-      <section className="py-20 lg:py-28 bg-gradient-to-br from-secondary-50 via-white to-primary-50">
+      <section className="py-12 sm:py-16 lg:py-28 bg-gradient-to-br from-secondary-50 via-white to-primary-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Content */}
@@ -183,7 +183,7 @@ export default function HomePage() {
                     ))}
                   </div>
                   <div className="text-4xl font-bold text-secondary-900 mb-1">5.0/5</div>
-                  <div className="text-secondary-500">basierend auf {COMPANY_DATA.rating.count} Bewertungen</div>
+                  <div className="text-secondary-500">5 von 5 Sternen</div>
                 </div>
 
                 {/* Divider */}
@@ -196,11 +196,11 @@ export default function HomePage() {
                     <div className="text-sm text-secondary-500">Zufriedene Kunden</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-primary-600 mb-1">32</div>
-                    <div className="text-sm text-secondary-500">Standorte</div>
+                    <div className="text-3xl font-bold text-primary-600 mb-1">{CITIES_COUNT}+</div>
+                    <div className="text-sm text-secondary-500">Einsatzorte</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-primary-600 mb-1">10+</div>
+                    <div className="text-3xl font-bold text-primary-600 mb-1">3+</div>
                     <div className="text-sm text-secondary-500">Jahre Erfahrung</div>
                   </div>
                   <div className="text-center">
@@ -233,19 +233,19 @@ export default function HomePage() {
       </section>
 
       {/* Cities Section */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-12 sm:py-16 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="inline-block px-4 py-1.5 bg-primary-100 text-primary-700 text-sm font-semibold rounded-full mb-4">
-              Unsere Standorte
+              Unsere Einsatzorte
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary-900 mb-6">
               Gebäudereinigung in Ihrer Nähe
             </h2>
             <p className="text-lg text-secondary-600 leading-relaxed">
               Von unserem Hauptsitz in Bamberg aus betreuen wir Kunden in ganz Deutschland.
-              Wir sind in 32 Städten für Sie vor Ort.
+              Wir sind in über {CITIES_COUNT} Städten für Sie vor Ort.
             </p>
           </div>
 
@@ -272,10 +272,10 @@ export default function HomePage() {
           {/* View All Cities */}
           <div className="text-center">
             <Link
-              href="/standorte"
+              href="/einsatzorte"
               className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold rounded-xl shadow-lg shadow-primary-500/25 hover:shadow-xl hover:from-primary-600 hover:to-primary-700 transition-all"
             >
-              Alle {CITIES.length} Standorte ansehen
+              Alle {CITIES.length} Einsatzorte ansehen
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
@@ -285,7 +285,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-28 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 relative overflow-hidden">
+      <section className="py-12 sm:py-16 lg:py-28 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div

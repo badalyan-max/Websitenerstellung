@@ -1,50 +1,66 @@
 @import "tailwindcss";
 
-/* ShinyTouch Brand Colors - Blue Theme */
+/* ShinyTouch Brand Colors - Fresh Blue Theme */
+/* Design System: Soft UI Evolution - Trust, Cleanliness, Professionalism */
 @theme {
-  /* Primary Blue (matching shinytouchgebaeudereinigung.de) */
-  --color-primary-50: #eef2ff;
-  --color-primary-100: #e0e7ff;
-  --color-primary-200: #c7d2fe;
-  --color-primary-300: #a5b4fc;
-  --color-primary-400: #818cf8;
-  --color-primary-500: #5869fc;
-  --color-primary-600: #4f46e5;
-  --color-primary-700: #4338ca;
-  --color-primary-800: #3730a3;
-  --color-primary-900: #312e81;
+  /* Primary Blue - Fresh & Clean (cooler tone = cleanliness) */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
 
-  /* Secondary Grays */
-  --color-secondary-50: #f6f7f9;
+  /* Secondary - Slate (professional, neutral) */
+  --color-secondary-50: #f8fafc;
   --color-secondary-100: #f1f5f9;
   --color-secondary-200: #e2e8f0;
   --color-secondary-300: #cbd5e1;
   --color-secondary-400: #94a3b8;
   --color-secondary-500: #64748b;
   --color-secondary-600: #475569;
-  --color-secondary-700: #3b3b3b;
+  --color-secondary-700: #334155;
   --color-secondary-800: #1e293b;
-  --color-secondary-900: #010528;
+  --color-secondary-900: #0f172a;
 
-  /* Accent Gold */
-  --color-accent: #fae084;
-  --color-accent-light: #fef3c7;
-  --color-accent-dark: #f59e0b;
+  /* CTA Orange - High visibility action color */
+  --color-cta: #f97316;
+  --color-cta-light: #fdba74;
+  --color-cta-dark: #ea580c;
 
-  /* Fonts */
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-display: 'Inter', system-ui, sans-serif;
+  /* Accent - Fresh Green (eco-friendly, cleanliness) */
+  --color-accent: #22c55e;
+  --color-accent-light: #86efac;
+  --color-accent-dark: #16a34a;
+
+  /* Fonts - Lexend for better readability */
+  --font-sans: 'Lexend', 'Inter', system-ui, sans-serif;
+  --font-display: 'Lexend', 'Inter', system-ui, sans-serif;
 }
 
 /* Base Styles */
 html {
   scroll-behavior: smooth;
+  /* Erzwinge Light Mode - ignoriere System Dark Mode Präferenz */
+  color-scheme: light only;
 }
 
 body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Explizit helle Hintergrund- und Textfarben */
+  background-color: white;
+  color: var(--color-secondary-900);
+}
+
+/* Verhindere Dark Mode Übernahme durch Browser */
+:root {
+  color-scheme: light only;
 }
 
 /* Focus Styles for Accessibility */
@@ -86,4 +102,38 @@ body {
 
 .animate-bounce-slow {
   animation: bounce-slow 3s ease-in-out infinite;
+}
+
+/* Safe Area für iPhones mit Notch/Dynamic Island */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Accessibility: Reduzierte Bewegung respektieren */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-pulse,
+  .animate-ping,
+  .animate-bounce,
+  .animate-bounce-slow,
+  .animate-fade-in {
+    animation: none !important;
+  }
+}
+
+/* Touch-Device spezifische Styles */
+@media (hover: none) and (pointer: coarse) {
+  /* Minimale Touch-Target Größe sicherstellen */
+  a,
+  button {
+    min-height: 44px;
+  }
 }

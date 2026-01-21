@@ -17,7 +17,7 @@ const services = [
 
 const navItems = [
   { name: 'Leistungen', href: '/service', hasDropdown: true },
-  { name: 'Standorte', href: '/standorte' },
+  { name: 'Einsatzorte', href: '/einsatzorte' },
   { name: 'Über uns', href: '/about' },
   { name: 'Karriere', href: '/karriere' },
   { name: 'Kontakt', href: '/contact' },
@@ -64,6 +64,7 @@ export function Header() {
               alt="ShinyTouch Gebäudereinigung Logo"
               width={220}
               height={55}
+              sizes="(max-width: 640px) 180px, 220px"
               className="h-12 sm:h-14 w-auto group-hover:scale-105 transition-transform duration-300"
               priority
             />
@@ -186,7 +187,7 @@ export function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-secondary-700 hover:text-secondary-900 hover:bg-secondary-100 rounded-xl transition-colors"
+              className="lg:hidden p-3 min-w-[44px] min-h-[44px] flex items-center justify-center text-secondary-700 hover:text-secondary-900 hover:bg-secondary-100 rounded-xl transition-colors"
               aria-label={isMobileMenuOpen ? 'Menü schließen' : 'Menü öffnen'}
               aria-expanded={isMobileMenuOpen}
             >
@@ -280,6 +281,27 @@ export function Header() {
           </div>
         </div>
       </nav>
+
+      {/* Mobile Sticky CTA Bar - nur auf kleinen Screens */}
+      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-secondary-200 px-4 py-3 z-40 safe-area-bottom">
+        <div className="flex gap-3">
+          <a
+            href={`tel:${COMPANY_DATA.contact.phone}`}
+            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-secondary-200 rounded-xl text-secondary-700 font-medium min-h-[44px] active:bg-secondary-50 transition-colors"
+          >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            Anrufen
+          </a>
+          <Link
+            href="/contact"
+            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold rounded-xl shadow-lg shadow-primary-500/25 min-h-[44px] active:from-primary-600 active:to-primary-700 transition-all"
+          >
+            Anfragen
+          </Link>
+        </div>
+      </div>
     </header>
   )
 }
