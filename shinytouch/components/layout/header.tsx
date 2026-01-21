@@ -281,27 +281,31 @@ export function Header() {
           </div>
         </div>
       </nav>
-
-      {/* Mobile Sticky CTA Bar - nur auf kleinen Screens */}
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-secondary-200 px-4 py-3 z-40 safe-area-bottom">
-        <div className="flex gap-3">
-          <a
-            href={`tel:${COMPANY_DATA.contact.phone}`}
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-secondary-200 rounded-xl text-secondary-700 font-medium min-h-[44px] active:bg-secondary-50 transition-colors"
-          >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-            </svg>
-            Anrufen
-          </a>
-          <Link
-            href="/contact"
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold rounded-xl shadow-lg shadow-primary-500/25 min-h-[44px] active:from-primary-600 active:to-primary-700 transition-all"
-          >
-            Anfragen
-          </Link>
-        </div>
-      </div>
     </header>
+  )
+}
+
+// Separate Mobile CTA Bar Komponente - muss außerhalb des Headers gerendert werden
+export function MobileCtaBar() {
+  return (
+    <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-secondary-200 px-4 py-3 z-50 safe-area-bottom">
+      <div className="flex gap-3">
+        <a
+          href={`tel:${COMPANY_DATA.contact.phone}`}
+          className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-secondary-200 rounded-xl text-secondary-700 font-medium min-h-[44px] active:bg-secondary-50 transition-colors cursor-pointer"
+        >
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          Anrufen
+        </a>
+        <a
+          href="/contact"
+          className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold rounded-xl shadow-lg shadow-primary-500/25 min-h-[44px] active:from-primary-600 active:to-primary-700 transition-all cursor-pointer"
+        >
+          Anfragen
+        </a>
+      </div>
+    </div>
   )
 }

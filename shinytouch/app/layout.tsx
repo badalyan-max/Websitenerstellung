@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Lexend } from 'next/font/google'
 import './globals.css'
-import { Header } from '@/components/layout/header'
+import { Header, MobileCtaBar } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import { JsonLd } from '@/components/seo/json-ld'
 import { generateOrganizationSchema, generateLocalBusinessSchema } from '@/lib/schema'
@@ -90,12 +90,13 @@ export default function RootLayout({
         {/* LocalBusiness Schema */}
         <JsonLd data={generateLocalBusinessSchema()} />
       </head>
-      <body className="min-h-screen flex flex-col bg-white text-secondary-900">
+      <body className="min-h-screen flex flex-col bg-white text-secondary-900 pb-[72px] sm:pb-0">
         <Header />
         <main className="flex-grow">
           {children}
         </main>
         <Footer />
+        <MobileCtaBar />
       </body>
     </html>
   )
