@@ -2,9 +2,13 @@
   "name": "shinytouch",
   "version": "1.0.0",
   "description": "ShinyTouch Gebäudereinigung - SEO-optimierte Website",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "vercel-build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
