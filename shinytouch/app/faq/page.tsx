@@ -26,8 +26,12 @@ const faqCategories = [
         answer: 'ShinyTouch ist deutschlandweit in 32 Städten tätig, mit Hauptsitz in Bamberg. Zu unseren Einsatzorten gehören unter anderem München, Nürnberg, Berlin, Hamburg, Frankfurt, Köln, Stuttgart und viele weitere. Auch wenn Ihre Stadt nicht aufgelistet ist, kontaktieren Sie uns – wir erweitern ständig unser Einzugsgebiet.',
       },
       {
-        question: 'Wie kann ich ein Angebot anfordern?',
-        answer: 'Sie können ein kostenloses Angebot über unser Kontaktformular, per E-Mail an info@shinytouchgebaeudereinigung.de oder telefonisch unter 0951 97433700 anfordern. Wir melden uns innerhalb von 24 Stunden bei Ihnen.',
+        question: 'Wie ist der Prozess, um ein Angebot zu erhalten?',
+        answer: 'Um ein Angebot zu erhalten, können Sie uns telefonisch oder per E-Mail kontaktieren. Optimalerweise füllen Sie schnell und einfach unser Kontaktformular auf unserer Website aus. Wir vereinbaren dann einen Termin vor Ort, um uns einen Eindruck von Ihren Räumlichkeiten zu verschaffen und Ihnen ein individuelles Angebot zu erstellen.',
+      },
+      {
+        question: 'Wann können Sie mit der Reinigung beginnen?',
+        answer: 'Wir sind flexibel und passen uns gerne Ihren Terminwünschen an. Kontaktieren Sie uns einfach und wir finden gemeinsam einen passenden Termin für die Reinigung Ihrer Räumlichkeiten. Samstags sind wir von 08:00 bis 16:00 Uhr erreichbar.',
       },
       {
         question: 'Bietet ShinyTouch auch Reinigung am Wochenende an?',
@@ -67,7 +71,11 @@ const faqCategories = [
       },
       {
         question: 'Wie wird die Qualität der Reinigung sichergestellt?',
-        answer: 'Wir setzen auf geschulte Mitarbeiter, regelmäßige Qualitätskontrollen und klare Checklisten für jeden Auftrag. Zusätzlich holen wir aktiv Feedback von unseren Kunden ein und reagieren sofort auf Verbesserungswünsche.',
+        answer: 'Um eine gleichbleibend hohe Qualität zu gewährleisten, setzen wir modernste Reinigungsgeräte und -methoden ein. Außerdem führen wir regelmäßige Qualitätskontrollen durch, um sicherzustellen, dass unsere Arbeit stets den höchsten Standards entspricht.',
+      },
+      {
+        question: 'Bieten Sie eine Garantie auf Ihre Reinigungsdienste?',
+        answer: 'Ja, sollten Sie mit der Leistung unserer Reinigungskräfte nicht zufrieden sein, bieten wir Ihnen eine kostenlose Nachreinigung. Dies wird auch alles vertraglich geregelt.',
       },
       {
         question: 'Sind die Mitarbeiter von ShinyTouch versichert?',
@@ -98,6 +106,20 @@ const faqCategories = [
       {
         question: 'Gibt es Rabatte für regelmäßige Reinigung?',
         answer: 'Ja, bei regelmäßigen Reinigungsaufträgen (wöchentlich oder öfter) bieten wir attraktive Rabatte. Je häufiger und langfristiger die Zusammenarbeit, desto günstiger wird der Stundensatz. Fragen Sie nach unseren Paketpreisen.',
+      },
+    ],
+  },
+  {
+    name: 'Team & Mitarbeiter',
+    icon: '👥',
+    faqs: [
+      {
+        question: 'Werden wir immer das selbe Reinigungsteam bekommen?',
+        answer: 'Ja, Sie werden immer das gleiche Reinigungsteam bekommen. Wir legen großen Wert auf Konsistenz und Vertrauen, daher stellen wir sicher, dass Ihnen stets das gleiche Team zur Verfügung steht. So können Sie sich darauf verlassen, dass Ihre spezifischen Anforderungen und Wünsche genau berücksichtigt werden.',
+      },
+      {
+        question: 'Wer wird die Reinigung durchführen?',
+        answer: 'Unsere Reinigungsteams bestehen aus erfahrenen und geschulten Reinigungskräften, die ihr Handwerk verstehen und sich um eine gründliche Reinigung Ihrer Räumlichkeiten kümmern. Bei jedem Objekt ist zudem ein Objektleiter dabei, um alles zu organisieren und die Qualität aufrechtzuerhalten. Wenn Sie besondere Anforderungen haben, lassen Sie es uns bitte wissen.',
       },
     ],
   },

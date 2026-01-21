@@ -4,9 +4,9 @@
  */
 
 export const COMPANY_DATA = {
-  name: 'ShinyTouch Gebäudereinigung e.K.',
+  name: 'ShinyTouch Gebäudereinigung',
   shortName: 'ShinyTouch',
-  legalForm: 'e.K.',
+  legalForm: '',
 
   url: 'https://www.shinytouchgebaeudereinigung.de',
 

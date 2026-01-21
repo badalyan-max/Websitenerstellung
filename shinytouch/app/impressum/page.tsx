@@ -77,36 +77,15 @@ export default function ImpressumPage() {
             <div className="mb-8">
               <h2 className="text-xl font-bold text-secondary-900 mb-4">Vertreten durch</h2>
               <p className="text-secondary-700">
-                Inhaber: [Name des Inhabers]
+                Inhaber: Edgar Badalyan
               </p>
             </div>
 
-            {/* Registereintrag */}
+            {/* Bildnachweise */}
             <div className="mb-8">
-              <h2 className="text-xl font-bold text-secondary-900 mb-4">Registereintrag</h2>
+              <h2 className="text-xl font-bold text-secondary-900 mb-4">Bildnachweise</h2>
               <p className="text-secondary-700">
-                Eintragung im Handelsregister<br />
-                Registergericht: Amtsgericht Bamberg<br />
-                Registernummer: [HRA XXXXX]
-              </p>
-            </div>
-
-            {/* Umsatzsteuer-ID */}
-            <div className="mb-8">
-              <h2 className="text-xl font-bold text-secondary-900 mb-4">Umsatzsteuer-ID</h2>
-              <p className="text-secondary-700">
-                Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br />
-                DE [XXXXXXXXX]
-              </p>
-            </div>
-
-            {/* Berufsbezeichnung */}
-            <div className="mb-8">
-              <h2 className="text-xl font-bold text-secondary-900 mb-4">Berufsbezeichnung und berufsrechtliche Regelungen</h2>
-              <p className="text-secondary-700">
-                Berufsbezeichnung: Gebäudereiniger<br />
-                Zuständige Kammer: Handwerkskammer für Oberfranken<br />
-                Verliehen in: Deutschland
+                Fotos: Eigene, Pixabay, Istockphoto, Midjourney
               </p>
             </div>
 

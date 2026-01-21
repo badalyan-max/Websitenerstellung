@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Lexend } from 'next/font/google'
 import './globals.css'
+import { Analytics } from '@vercel/analytics/next'
 import { Header, MobileCtaBar } from '@/components/layout/header'
 import { Footer } from '@/components/layout/footer'
 import { JsonLd } from '@/components/seo/json-ld'
@@ -97,6 +98,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <MobileCtaBar />
+        <Analytics />
       </body>
     </html>
   )

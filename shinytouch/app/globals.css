@@ -44,7 +44,6 @@
 
 /* Base Styles */
 html {
-  scroll-behavior: smooth;
   /* Erzwinge Light Mode - ignoriere System Dark Mode Präferenz */
   color-scheme: light only;
 }
@@ -129,11 +128,4 @@ body {
   }
 }
 
-/* Touch-Device spezifische Styles */
-@media (hover: none) and (pointer: coarse) {
-  /* Minimale Touch-Target Größe sicherstellen */
-  a,
-  button {
-    min-height: 44px;
-  }
-}
+/* Touch-Device: Touch-Targets werden explizit per Klasse gesetzt, nicht global */
