@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { BLOG_POSTS, getAllTags } from '@/lib/blog'
+import { BLOG_POSTS, getMainCategories } from '@/lib/blog'
 import { BlogCard } from '@/components/blog/BlogCard'
 import { COMPANY_DATA } from '@/lib/company'
 
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 }
 
 export default function BlogPage() {
-  const allTags = getAllTags()
+  const mainCategories = getMainCategories()
   const featuredPost = BLOG_POSTS[0]
   const otherPosts = BLOG_POSTS.slice(1)
 
@@ -59,17 +59,17 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Tags Filter */}
+      {/* Category Filter - 6 Hauptkategorien */}
       <section className="py-6 bg-white border-b border-secondary-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-sm font-medium text-secondary-500">Themen:</span>
-            {allTags.map(tag => (
+            {mainCategories.map(category => (
               <span
-                key={tag}
+                key={category.tag}
                 className="px-4 py-1.5 bg-secondary-100 hover:bg-primary-100 text-sm text-secondary-700 hover:text-primary-700 rounded-full cursor-pointer transition-colors"
               >
-                {tag}
+                {category.name}
               </span>
             ))}
           </div>

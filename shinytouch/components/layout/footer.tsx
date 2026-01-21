@@ -8,6 +8,7 @@ const quickLinks = [
   { name: 'Leistungen', href: '/service' },
   { name: 'Einsatzorte', href: '/einsatzorte' },
   { name: 'Kontakt', href: '/contact' },
+  { name: 'Blog', href: '/blog' },
   { name: 'FAQ', href: '/faq' },
   { name: 'Karriere', href: '/karriere' },
 ]

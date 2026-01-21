@@ -69,6 +69,8 @@ export interface BlogPost {
   author?: string
   tags?: string[]
   image?: string
+  imageAlt?: string
+  imageTitle?: string
 }
 
 export interface Testimonial {
