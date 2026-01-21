@@ -12,7 +12,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'Unsere Leistungen | ShinyTouch Gebäudereinigung',
-  description: 'Professionelle Gebäudereinigung: Büroreinigung, Glasreinigung, Grundreinigung, Unterhaltsreinigung, Baureinigung und Hochdruckreinigung. ✓ 30-Tage-Garantie',
+  description: 'Professionelle Gebäudereinigung: Büroreinigung, Glasreinigung, Grundreinigung, Unterhaltsreinigung, Baureinigung und Hochdruckreinigung. ✓ 30 Tage risikofrei testen',
   alternates: {
     canonical: 'https://www.shinytouchgebaeudereinigung.de/service',
   },
@@ -55,7 +55,7 @@ export default function ServicesPage() {
             <p className="text-lg text-secondary-600 leading-relaxed mb-8">
               Von der regelmäßigen Büroreinigung bis zur intensiven Grundreinigung –
               wir bieten Ihnen das komplette Spektrum professioneller Gebäudereinigung.
-              Immer mit unserer 30-Tage-Zufriedenheitsgarantie.
+              30 Tage risikofrei & preisermäßigt testen – jederzeit kündbar.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
@@ -75,7 +75,7 @@ export default function ServicesPage() {
                 <svg className="w-5 h-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span>30-Tage-Garantie</span>
+                <span>30 Tage risikofrei</span>
               </div>
             </div>
           </div>
@@ -156,8 +156,8 @@ export default function ServicesPage() {
             {[
               {
                 Icon: ShieldCheckIcon,
-                title: '30-Tage-Garantie',
-                description: 'Nicht zufrieden? Geld zurück oder kostenlose Nachbesserung.',
+                title: '30 Tage risikofrei',
+                description: 'Testen Sie uns preisermäßigt. Jederzeit kündbar, kostenlose Nachreinigung.',
               },
               {
                 Icon: CurrencyEuroIcon,

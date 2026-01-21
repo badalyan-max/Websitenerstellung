@@ -6,7 +6,7 @@ import { generateFAQSchema } from '@/lib/schema'
 
 export const metadata: Metadata = {
   title: 'Häufige Fragen (FAQ) | ShinyTouch Gebäudereinigung',
-  description: 'Antworten auf häufige Fragen zur Gebäudereinigung: Kosten, Ablauf, Garantie und mehr. ✓ Transparente Preise ✓ 30-Tage-Garantie',
+  description: 'Antworten auf häufige Fragen zur Gebäudereinigung: Kosten, Ablauf, Garantie und mehr. ✓ Transparente Preise ✓ 30 Tage risikofrei testen',
   alternates: {
     canonical: 'https://www.shinytouchgebaeudereinigung.de/faq',
   },
@@ -22,8 +22,8 @@ const faqCategories = [
         answer: 'Die Kosten für professionelle Gebäudereinigung liegen zwischen 15-35€ pro Stunde, abhängig von Objektgröße, Reinigungsintervall und Art der Reinigung. Für ein genaues Angebot erstellen wir Ihnen kostenlos ein individuelles Angebot nach einer Besichtigung oder anhand Ihrer Objektdaten.',
       },
       {
-        question: 'In welchen Städten ist ShinyTouch tätig?',
-        answer: 'ShinyTouch ist deutschlandweit in 32 Städten tätig, mit Hauptsitz in Bamberg. Zu unseren Einsatzorten gehören unter anderem München, Nürnberg, Berlin, Hamburg, Frankfurt, Köln, Stuttgart und viele weitere. Auch wenn Ihre Stadt nicht aufgelistet ist, kontaktieren Sie uns – wir erweitern ständig unser Einzugsgebiet.',
+        question: 'An welchen Orten ist ShinyTouch tätig?',
+        answer: 'ShinyTouch ist deutschlandweit an über 600 Orten tätig, mit Hauptsitz in Bamberg. Zu unseren Einsatzorten gehören unter anderem München, Nürnberg, Berlin, Hamburg, Frankfurt, Köln, Stuttgart und viele weitere. Auch wenn Ihr Ort nicht aufgelistet ist, kontaktieren Sie uns – wir erweitern ständig unser Einzugsgebiet.',
       },
       {
         question: 'Wie ist der Prozess, um ein Angebot zu erhalten?',
@@ -66,8 +66,8 @@ const faqCategories = [
     icon: '🛡️',
     faqs: [
       {
-        question: 'Was beinhaltet die 30-Tage-Zufriedenheitsgarantie?',
-        answer: 'Unsere 30-Tage-Garantie bedeutet: Sind Sie innerhalb von 30 Tagen nicht zufrieden, kommen wir kostenlos zurück und bessern nach. Sind Sie dann immer noch nicht zufrieden, erhalten Sie Ihr Geld zurück – ohne Wenn und Aber. Das ist unser Versprechen.',
+        question: 'Was bedeutet "30 Tage risikofrei testen"?',
+        answer: '30 Tage lang können Sie unseren Service risikofrei und mit einer Preisermäßigung testen. Sollten Sie nicht zufrieden sein, können Sie jederzeit innerhalb der 30 Tage kündigen und eine kostenfreie Nachreinigung verlangen. Sind Sie dann immer noch nicht zufrieden, erhalten Sie Ihr Geld zurück – ohne Wenn und Aber.',
       },
       {
         question: 'Wie wird die Qualität der Reinigung sichergestellt?',

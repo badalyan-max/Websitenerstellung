@@ -189,9 +189,135 @@ export async function runOnPageAudit(url: string) {
  */
 export async function testConnection(): Promise<boolean> {
   try {
-    const response = await callDataForSEO<any>('/v3/appendix/user_data', [])
-    return response.status_code === 20000
+    if (!DATAFORSEO_LOGIN || !DATAFORSEO_PASSWORD) {
+      return false
+    }
+
+    // Use GET endpoint for user data (doesn't cost money)
+    const response = await fetch('https://api.dataforseo.com/v3/appendix/user_data', {
+      method: 'GET',
+      headers: {
+        Authorization: `Basic ${DATAFORSEO_AUTH}`,
+        'Content-Type': 'application/json',
+      },
+    })
+
+    if (!response.ok) {
+      return false
+    }
+
+    const data = await response.json()
+    return data.status_code === 20000
   } catch {
     return false
   }
+}
+
+/**
+ * AI Overview Visibility Check
+ * Prüft ob ein Keyword in Google AI Overviews erscheint
+ * Wichtig für GEO (Generative Engine Optimization) 2026
+ */
+export async function checkAIOverview(keyword: string) {
+  const response = await callDataForSEO<any>(
+    '/v3/serp/google/organic/live/advanced',
+    [
+      {
+        keyword,
+        location_code: 2276, // Deutschland
+        language_code: 'de',
+        load_async_ai_overview: true,
+      },
+    ]
+  )
+
+  const items = response.tasks?.[0]?.result?.[0]?.items || []
+  const aiOverview = items.find((item: any) => item.type === 'ai_overview')
+
+  return {
+    hasAIOverview: !!aiOverview,
+    aiOverview: aiOverview || null,
+    featuredSnippet: items.find((item: any) => item.type === 'featured_snippet'),
+    totalResults: response.tasks?.[0]?.result?.[0]?.se_results_count || 0,
+  }
+}
+
+/**
+ * LLM Mentions Tracking
+ * Überwacht Markenerwähnungen in KI-Systemen (ChatGPT, Claude, etc.)
+ * Wichtig für Reputation Management in der KI-Ära
+ */
+export async function trackLLMMentions(brand: string, prompts?: string[]) {
+  const defaultPrompts = [
+    `Was sind die Vor- und Nachteile von ${brand}?`,
+    `Ist ${brand} vertrauenswürdig?`,
+    `${brand} Erfahrungen und Bewertungen`,
+    `Gebäudereinigung ${brand} empfehlenswert?`,
+  ]
+
+  const promptsToUse = prompts || defaultPrompts
+
+  return callDataForSEO<any>('/v3/ai_optimization/llm_mentions/search/live', [
+    {
+      target: brand,
+      prompts: promptsToUse,
+    },
+  ])
+}
+
+/**
+ * Batch SERP Check für mehrere Keywords
+ * Nützlich für das Tracking von Stadt-Keywords
+ */
+export async function batchCheckSERP(keywords: string[], domain: string) {
+  const results = await Promise.all(
+    keywords.map(async (keyword) => {
+      try {
+        const result = await checkSERPPosition(keyword, domain)
+        return { keyword, ...result }
+      } catch (error) {
+        return { keyword, found: false, position: null, error: String(error) }
+      }
+    })
+  )
+
+  return results
+}
+
+/**
+ * Content Gap Analyse
+ * Findet Keywords die Wettbewerber ranken, aber wir nicht
+ */
+export async function analyzeContentGap(ourDomain: string, competitorDomains: string[]) {
+  return callDataForSEO<any>(
+    '/v3/dataforseo_labs/google/domain_intersection/live',
+    [
+      {
+        target1: ourDomain,
+        target2: competitorDomains[0],
+        target3: competitorDomains[1] || null,
+        language_code: 'de',
+        location_code: 2276,
+        intersections: false, // Keywords die nur Wettbewerber haben
+        limit: 100,
+      },
+    ]
+  )
+}
+
+/**
+ * Keyword Intent Analyse
+ * Kategorisiert Keywords nach Nutzerintention
+ */
+export async function analyzeKeywordIntent(keywords: string[]) {
+  return callDataForSEO<any>(
+    '/v3/dataforseo_labs/google/bulk_keyword_difficulty/live',
+    [
+      {
+        keywords,
+        language_code: 'de',
+        location_code: 2276,
+      },
+    ]
+  )
 }

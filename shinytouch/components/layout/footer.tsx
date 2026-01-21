@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { COMPANY_DATA } from '@/lib/company'
 import { SERVICES } from '@/lib/services'
 
@@ -39,27 +40,14 @@ export function Footer() {
           {/* Column 1: Company Info & Contact */}
           <div className="lg:col-span-1">
             {/* Logo */}
-            <Link href="/" className="inline-flex items-center gap-2 group mb-6">
-              <div className="relative w-9 h-9 flex items-center justify-center">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-primary-600 rounded-lg rotate-3 group-hover:rotate-6 transition-transform duration-300" />
-                <div className="absolute inset-0.5 bg-secondary-900 rounded-[6px] rotate-3 group-hover:rotate-6 transition-transform duration-300" />
-                <svg
-                  className="relative w-5 h-5 text-primary-400 transform rotate-3"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
-                </svg>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg font-bold text-white">
-                  Shiny<span className="text-primary-400">Touch</span>
-                </span>
-                <span className="text-[9px] font-medium text-secondary-400 tracking-widest uppercase -mt-0.5">
-                  Gebäudereinigung
-                </span>
-              </div>
+            <Link href="/" className="inline-block mb-6 group">
+              <Image
+                src="/logo_original.png"
+                alt={`${COMPANY_DATA.name} Logo`}
+                width={180}
+                height={50}
+                className="h-auto w-auto max-w-[180px] group-hover:opacity-90 transition-opacity"
+              />
             </Link>
 
             {/* Address - Schema-friendly */}
@@ -169,12 +157,28 @@ export function Footer() {
               </h3>
               <ul className="text-sm text-secondary-400 space-y-1">
                 <li className="flex justify-between">
-                  <span>Mo - Fr</span>
-                  <span className="text-secondary-300">08:00 - 18:00</span>
+                  <span>Montag</span>
+                  <span className="text-secondary-300">08:00–18:00</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Dienstag</span>
+                  <span className="text-secondary-300">08:00–18:00</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Mittwoch</span>
+                  <span className="text-secondary-300">08:00–18:00</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Donnerstag</span>
+                  <span className="text-secondary-300">08:00–18:00</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Freitag</span>
+                  <span className="text-secondary-300">08:00–18:00</span>
                 </li>
                 <li className="flex justify-between">
                   <span>Samstag</span>
-                  <span className="text-secondary-300">08:00 - 16:00</span>
+                  <span className="text-secondary-300">08:00–16:00</span>
                 </li>
                 <li className="flex justify-between">
                   <span>Sonntag</span>
@@ -311,41 +315,6 @@ export function Footer() {
               </svg>
             </Link>
 
-            {/* Social Links */}
-            <div className="mt-6 flex items-center gap-3">
-              <a
-                href={COMPANY_DATA.social.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center bg-secondary-800 hover:bg-secondary-700 rounded-lg transition-colors group"
-                aria-label="LinkedIn"
-              >
-                <svg
-                  className="w-5 h-5 text-secondary-400 group-hover:text-primary-400 transition-colors"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                </svg>
-              </a>
-              <a
-                href={COMPANY_DATA.social.google}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center bg-secondary-800 hover:bg-secondary-700 rounded-lg transition-colors group"
-                aria-label="Google Maps"
-              >
-                <svg
-                  className="w-5 h-5 text-secondary-400 group-hover:text-primary-400 transition-colors"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path d="M12 0C7.31 0 3.07 3.05 1.17 7.41L5.42 10.87C6.47 7.81 9.01 5.5 12 5.5c1.62 0 3.06.55 4.21 1.48l3.75-3.63C17.77 1.39 15.06 0 12 0zM1.17 7.41C.42 9.12 0 11.01 0 13c0 1.99.42 3.88 1.17 5.59l4.25-3.46C4.93 14.11 4.5 13.09 4.5 12c0-1.09.43-2.11.92-3.13L1.17 7.41zM12 18.5c-2.99 0-5.53-2.31-6.58-5.37L1.17 16.59C3.07 20.95 7.31 24 12 24c2.93 0 5.65-1.25 7.68-3.29l-4.11-3.19c-1.05.63-2.28 1.02-3.57 1.02v-.04zM23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58l4.11 3.19c2.33-2.14 3.81-5.31 3.81-8.86-.05-.05-.05-.1-.05-.15h-.45z" />
-                </svg>
-              </a>
-            </div>
           </div>
         </div>
 

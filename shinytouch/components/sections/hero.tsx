@@ -58,8 +58,8 @@ export function Hero() {
             {/* Subheadline */}
             <p className="text-lg sm:text-xl text-secondary-600 max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
               Wir sorgen für makellose Sauberkeit in Ihrem Unternehmen.
-              Mit unserer <span className="font-semibold text-primary-600">30-Tage-Zufriedenheitsgarantie</span> gehen
-              Sie kein Risiko ein.
+              <span className="font-semibold text-primary-600">30 Tage risikofrei & preisermäßigt testen</span> –
+              jederzeit kündbar, kostenlose Nachreinigung bei Unzufriedenheit.
             </p>
 
             {/* Trust Indicators */}
@@ -147,18 +147,14 @@ export function Hero() {
               </div>
 
               {/* Stats */}
-              <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-4 sm:pt-6 border-t border-secondary-100">
+              <div className="grid grid-cols-2 gap-2 sm:gap-4 pt-4 sm:pt-6 border-t border-secondary-100">
                 <div className="text-center">
                   <div className="text-xl sm:text-2xl font-bold text-primary-600">500+</div>
                   <div className="text-[10px] sm:text-xs text-secondary-500">Zufriedene Kunden</div>
                 </div>
-                <div className="text-center border-x border-secondary-100">
+                <div className="text-center border-l border-secondary-100">
                   <div className="text-xl sm:text-2xl font-bold text-primary-600">{CITIES_COUNT}+</div>
                   <div className="text-[10px] sm:text-xs text-secondary-500">Einsatzorte</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl sm:text-2xl font-bold text-primary-600">24/7</div>
-                  <div className="text-[10px] sm:text-xs text-secondary-500">Erreichbar</div>
                 </div>
               </div>
 
@@ -167,7 +163,7 @@ export function Hero() {
                 <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
-                <span className="text-xs sm:text-sm font-semibold whitespace-nowrap">30-Tage-Garantie</span>
+                <span className="text-xs sm:text-sm font-semibold whitespace-nowrap">30 Tage risikofrei</span>
               </div>
             </div>
 

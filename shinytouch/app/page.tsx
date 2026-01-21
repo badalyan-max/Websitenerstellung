@@ -12,10 +12,11 @@ import {
   BoltIcon,
   MapPinIcon
 } from '@/components/icons'
+import { GermanyMap } from '@/components/map'
 
 export const metadata: Metadata = {
   title: 'ShinyTouch Gebäudereinigung Bamberg | Professionelle Reinigung',
-  description: 'Professionelle Gebäudereinigung in Bamberg und ganz Deutschland. Büroreinigung, Glasreinigung, Grundreinigung mit 30-Tage-Zufriedenheitsgarantie. ✓ 5.0/5 Bewertungen',
+  description: 'Professionelle Gebäudereinigung in Bamberg und ganz Deutschland. Büroreinigung, Glasreinigung, Grundreinigung – 30 Tage risikofrei testen. ✓ 5.0/5 Bewertungen',
   alternates: {
     canonical: 'https://www.shinytouchgebaeudereinigung.de',
   },
@@ -138,8 +139,8 @@ export default function HomePage() {
                 {[
                   {
                     Icon: ShieldCheckIcon,
-                    title: '30-Tage-Zufriedenheitsgarantie',
-                    description: 'Nicht zufrieden? Wir reinigen kostenlos nach oder Sie erhalten Ihr Geld zurück.'
+                    title: '30 Tage risikofrei testen',
+                    description: 'Testen Sie uns mit Preisermäßigung. Jederzeit kündbar, kostenlose Nachreinigung bei Unzufriedenheit.'
                   },
                   {
                     Icon: CurrencyEuroIcon,
@@ -232,11 +233,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Cities Section */}
+      {/* Cities Section with Interactive Map */}
       <section className="py-12 sm:py-16 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
             <span className="inline-block px-4 py-1.5 bg-primary-100 text-primary-700 text-sm font-semibold rounded-full mb-4">
               Unsere Einsatzorte
             </span>
@@ -245,39 +246,72 @@ export default function HomePage() {
             </h2>
             <p className="text-lg text-secondary-600 leading-relaxed">
               Von unserem Hauptsitz in Bamberg aus betreuen wir Kunden in ganz Deutschland.
-              Wir sind in über {CITIES_COUNT} Städten für Sie vor Ort.
+              Wir sind in über {CITIES_COUNT} Orten für Sie vor Ort.
             </p>
           </div>
 
-          {/* Cities Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6 mb-12">
-            {topCities.map((city) => (
-              <Link
-                key={city.slug}
-                href={`/${city.slug}`}
-                className="group relative bg-gradient-to-br from-white to-secondary-50 rounded-xl p-5 border border-secondary-100 hover:border-primary-300 hover:shadow-lg transition-all duration-300 text-center"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-xl" />
-                <div className="relative">
-                  <MapPinIcon className="w-7 h-7 mx-auto mb-2 text-primary-500" />
-                  <h3 className="font-semibold text-secondary-900 group-hover:text-primary-600 transition-colors">
-                    {city.name}
-                  </h3>
-                  <p className="text-xs text-secondary-500 mt-1">{city.region}</p>
-                </div>
-              </Link>
-            ))}
+          {/* Map + Cities Grid */}
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12">
+            {/* Interactive Map */}
+            <div className="order-2 lg:order-1">
+              <GermanyMap variant="compact" />
+            </div>
+
+            {/* Top Cities Grid */}
+            <div className="order-1 lg:order-2">
+              <h3 className="text-lg font-semibold text-secondary-900 mb-4 text-center lg:text-left">
+                Unsere Top-Einsatzorte
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-3">
+                {topCities.slice(0, 6).map((city) => (
+                  <Link
+                    key={city.slug}
+                    href={`/${city.slug}`}
+                    className="group relative bg-gradient-to-br from-white to-secondary-50 rounded-xl p-4 border border-secondary-100 hover:border-primary-300 hover:shadow-lg transition-all duration-300"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-xl" />
+                    <div className="relative flex items-center gap-3">
+                      <MapPinIcon className="w-5 h-5 text-primary-500 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold text-secondary-900 group-hover:text-primary-600 transition-colors text-sm">
+                          {city.name}
+                        </h4>
+                        <p className="text-xs text-secondary-500">{city.region}</p>
+                      </div>
+                    </div>
+                    {city.slug === 'bamberg' && (
+                      <span className="absolute top-2 right-2 px-1.5 py-0.5 bg-primary-500 text-white text-[10px] font-semibold rounded-full">
+                        HQ
+                      </span>
+                    )}
+                  </Link>
+                ))}
+              </div>
+
+              {/* View All Link */}
+              <div className="mt-6 text-center lg:text-left">
+                <Link
+                  href="/einsatzorte"
+                  className="inline-flex items-center gap-2 text-primary-600 font-semibold hover:text-primary-700 transition-colors"
+                >
+                  Alle {CITIES.length} Einsatzorte ansehen
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
           </div>
 
-          {/* View All Cities */}
+          {/* CTA Button */}
           <div className="text-center">
             <Link
               href="/einsatzorte"
               className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold rounded-xl shadow-lg shadow-primary-500/25 hover:shadow-xl hover:from-primary-600 hover:to-primary-700 transition-all"
             >
-              Alle {CITIES.length} Einsatzorte ansehen
+              Interaktive Karte erkunden
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
               </svg>
             </Link>
           </div>
@@ -342,7 +376,7 @@ export default function HomePage() {
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span>30-Tage-Garantie</span>
+              <span>30 Tage risikofrei</span>
             </div>
             <div className="flex items-center gap-2">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

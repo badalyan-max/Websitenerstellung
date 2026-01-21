@@ -1,30 +1,30 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { SERVICES, getServiceBySlug, getAllServiceSlugs } from '@/lib/services'
+import { OBJEKTARTEN, getObjektartBySlug, getAllObjektartSlugs } from '@/lib/objektarten'
+import { getServiceBySlug } from '@/lib/services'
 import { COMPANY_DATA } from '@/lib/company'
 import { JsonLd } from '@/components/seo/json-ld'
-import { generateServiceSchema, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/schema'
-import { SERVICE_ICONS } from '@/components/icons'
+import { generateBreadcrumbSchema, generateFAQSchema } from '@/lib/schema'
 
-interface ServicePageProps {
+interface ObjektartPageProps {
   params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
-  return getAllServiceSlugs().map((slug) => ({ slug }))
+  return getAllObjektartSlugs().map((slug) => ({ slug }))
 }
 
-export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: ObjektartPageProps): Promise<Metadata> {
   const { slug } = await params
-  const service = getServiceBySlug(slug)
+  const objektart = getObjektartBySlug(slug)
 
-  if (!service) {
-    return { title: 'Service nicht gefunden' }
+  if (!objektart) {
+    return { title: 'Objektart nicht gefunden' }
   }
 
-  const title = `${service.name} | ShinyTouch Gebäudereinigung`
-  const description = `${service.description} ✓ 30 Tage risikofrei testen ✓ Festpreise ✓ Kostenlose Beratung`
+  const title = `${objektart.name}-Reinigung | ShinyTouch Gebäudereinigung`
+  const description = `${objektart.description} Jetzt kostenloses Angebot anfordern!`
 
   return {
     title,
@@ -36,35 +36,41 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
       locale: 'de_DE',
     },
     alternates: {
-      canonical: `https://www.shinytouchgebaeudereinigung.de/service/${service.slug}`,
+      canonical: `https://www.shinytouchgebaeudereinigung.de/objektart/${objektart.slug}`,
     },
   }
 }
 
-export default async function ServicePage({ params }: ServicePageProps) {
+export default async function ObjektartPage({ params }: ObjektartPageProps) {
   const { slug } = await params
-  const service = getServiceBySlug(slug)
+  const objektart = getObjektartBySlug(slug)
 
-  if (!service) {
+  if (!objektart) {
     notFound()
   }
 
   const breadcrumbs = [
     { name: 'Home', url: '/' },
-    { name: 'Leistungen', url: '/service' },
-    { name: service.name, url: `/service/${service.slug}` },
+    { name: 'Objektarten', url: '/objektarten' },
+    { name: objektart.name, url: `/objektart/${objektart.slug}` },
   ]
 
-  // Get related services (excluding current)
-  const relatedServices = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 3)
+  // Get related object types (same category, excluding current)
+  const relatedObjektarten = OBJEKTARTEN
+    .filter((o) => o.category === objektart.category && o.slug !== objektart.slug)
+    .slice(0, 3)
+
+  // Get service details for linked services
+  const linkedServices = objektart.services
+    .map((slug) => getServiceBySlug(slug))
+    .filter(Boolean)
 
   return (
     <>
       {/* Schema Markup */}
-      <JsonLd data={generateServiceSchema(service)} />
       <JsonLd data={generateBreadcrumbSchema(breadcrumbs)} />
-      {service.faqs && service.faqs.length > 0 && (
-        <JsonLd data={generateFAQSchema(service.faqs)} />
+      {objektart.faqs && objektart.faqs.length > 0 && (
+        <JsonLd data={generateFAQSchema(objektart.faqs)} />
       )}
 
       {/* Hero Section */}
@@ -83,30 +89,32 @@ export default async function ServicePage({ params }: ServicePageProps) {
               </li>
               <li>/</li>
               <li>
-                <Link href="/service" className="hover:text-primary-600 transition-colors">Leistungen</Link>
+                <Link href="/objektarten" className="hover:text-primary-600 transition-colors">Objektarten</Link>
               </li>
               <li>/</li>
-              <li className="text-secondary-900 font-medium">{service.name}</li>
+              <li className="text-secondary-900 font-medium">{objektart.name}</li>
             </ol>
           </nav>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Content */}
             <div>
+              {/* Category Badge */}
+              <span className="inline-flex items-center px-4 py-1.5 bg-primary-100 text-primary-700 text-sm font-medium rounded-full mb-4">
+                {objektart.categoryName}
+              </span>
+
               {/* Icon Badge */}
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary-400 to-primary-600 rounded-2xl text-white mb-6 shadow-xl shadow-primary-500/30">
-                {(() => {
-                  const IconComponent = SERVICE_ICONS[service.slug as keyof typeof SERVICE_ICONS]
-                  return IconComponent ? <IconComponent className="w-10 h-10" /> : null
-                })()}
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary-400 to-primary-600 rounded-2xl text-white mb-6 shadow-xl shadow-primary-500/30 text-4xl">
+                {objektart.icon}
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-secondary-900 mb-6">
-                {service.name}
+                {objektart.name}-Reinigung
               </h1>
 
-              <p className="text-lg text-secondary-600 mb-8 leading-relaxed">
-                {service.longDescription || service.description}
+              <p className="text-lg text-secondary-600 mb-8 leading-relaxed whitespace-pre-line">
+                {objektart.longDescription}
               </p>
 
               {/* Trust Badges */}
@@ -127,7 +135,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                   <svg className="w-5 h-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span>5.0/5 Bewertung</span>
+                  <span>Kostenlose Beratung</span>
                 </div>
               </div>
 
@@ -155,20 +163,20 @@ export default async function ServicePage({ params }: ServicePageProps) {
               </div>
             </div>
 
-            {/* Features Card */}
+            {/* Challenges Card */}
             <div className="relative">
               <div className="bg-white rounded-3xl shadow-2xl shadow-secondary-900/10 p-8 border border-secondary-100">
-                <h2 className="text-xl font-bold text-secondary-900 mb-6">Was wir bieten</h2>
+                <h2 className="text-xl font-bold text-secondary-900 mb-6">Typische Herausforderungen</h2>
 
                 <ul className="space-y-4">
-                  {service.features.map((feature, idx) => (
+                  {objektart.challenges.map((challenge, idx) => (
                     <li key={idx} className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <svg className="w-4 h-4 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      <div className="w-6 h-6 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <svg className="w-4 h-4 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                         </svg>
                       </div>
-                      <span className="text-secondary-700">{feature}</span>
+                      <span className="text-secondary-700">{challenge}</span>
                     </li>
                   ))}
                 </ul>
@@ -181,24 +189,58 @@ export default async function ServicePage({ params }: ServicePageProps) {
         </div>
       </section>
 
-      {/* Benefits Section */}
-      {service.benefits && service.benefits.length > 0 && (
+      {/* Services Section */}
+      {linkedServices.length > 0 && (
         <section className="py-20 lg:py-28 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <h2 className="text-3xl sm:text-4xl font-bold text-secondary-900 mb-6">
-                Ihre Vorteile bei {service.name}
+                Unsere Leistungen f&uuml;r {objektart.name}
               </h2>
               <p className="text-lg text-secondary-600">
-                Profitieren Sie von unserer langjährigen Erfahrung und unserem Qualitätsanspruch.
+                Diese Services bieten wir speziell f&uuml;r Ihre {objektart.name} an.
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {service.benefits.map((benefit, idx) => (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {linkedServices.map((service) => service && (
+                <Link
+                  key={service.slug}
+                  href={`/service/${service.slug}`}
+                  className="group bg-white rounded-2xl p-6 border border-secondary-100 hover:border-primary-200 shadow-sm hover:shadow-xl transition-all"
+                >
+                  <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-lg font-bold text-secondary-900 mb-2 group-hover:text-primary-600 transition-colors">
+                    {service.name}
+                  </h3>
+                  <p className="text-secondary-600 text-sm">{service.shortDescription}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Benefits Section */}
+      {objektart.benefits && objektart.benefits.length > 0 && (
+        <section className="py-20 lg:py-28 bg-secondary-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold text-secondary-900 mb-6">
+                Warum ShinyTouch f&uuml;r Ihre {objektart.name}?
+              </h2>
+              <p className="text-lg text-secondary-600">
+                Profitieren Sie von unserer Erfahrung und unserem Qualit&auml;tsanspruch.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {objektart.benefits.map((benefit, idx) => (
                 <div
                   key={idx}
-                  className="bg-gradient-to-br from-white to-secondary-50 rounded-2xl p-6 border border-secondary-100 text-center hover:shadow-lg transition-shadow"
+                  className="bg-white rounded-2xl p-6 border border-secondary-100 text-center hover:shadow-lg transition-shadow"
                 >
                   <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                     <svg className="w-6 h-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -214,20 +256,20 @@ export default async function ServicePage({ params }: ServicePageProps) {
       )}
 
       {/* FAQ Section */}
-      {service.faqs && service.faqs.length > 0 && (
-        <section className="py-20 lg:py-28 bg-secondary-50">
+      {objektart.faqs && objektart.faqs.length > 0 && (
+        <section className="py-20 lg:py-28 bg-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl sm:text-4xl font-bold text-secondary-900 mb-6">
-                Häufige Fragen zu {service.name}
+                H&auml;ufige Fragen zur {objektart.name}-Reinigung
               </h2>
             </div>
 
             <div className="space-y-4">
-              {service.faqs.map((faq, idx) => (
+              {objektart.faqs.map((faq, idx) => (
                 <details
                   key={idx}
-                  className="group bg-white rounded-2xl border border-secondary-100 overflow-hidden"
+                  className="group bg-secondary-50 rounded-2xl border border-secondary-100 overflow-hidden"
                 >
                   <summary className="flex items-center justify-between p-6 cursor-pointer list-none">
                     <h3 className="font-semibold text-secondary-900 pr-4">{faq.question}</h3>
@@ -248,59 +290,58 @@ export default async function ServicePage({ params }: ServicePageProps) {
         </section>
       )}
 
-      {/* Related Services */}
-      <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-secondary-900">
-              Weitere Leistungen
-            </h2>
-          </div>
+      {/* Related Objektarten */}
+      {relatedObjektarten.length > 0 && (
+        <section className="py-20 lg:py-28 bg-secondary-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-2xl sm:text-3xl font-bold text-secondary-900">
+                Weitere Objektarten in {objektart.categoryName}
+              </h2>
+            </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {relatedServices.map((relatedService) => {
-              const IconComponent = SERVICE_ICONS[relatedService.slug as keyof typeof SERVICE_ICONS]
-              return (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {relatedObjektarten.map((related) => (
                 <Link
-                  key={relatedService.slug}
-                  href={`/service/${relatedService.slug}`}
+                  key={related.slug}
+                  href={`/objektart/${related.slug}`}
                   className="group bg-white rounded-2xl p-6 border border-secondary-100 hover:border-primary-200 shadow-sm hover:shadow-xl transition-all"
                 >
-                  <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center text-primary-600 mb-4 group-hover:scale-110 transition-transform">
-                    {IconComponent && <IconComponent className="w-6 h-6" />}
+                  <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                    {related.icon}
                   </div>
                   <h3 className="text-lg font-bold text-secondary-900 mb-2 group-hover:text-primary-600 transition-colors">
-                    {relatedService.name}
+                    {related.name}
                   </h3>
-                  <p className="text-secondary-600 text-sm">{relatedService.shortDescription}</p>
+                  <p className="text-secondary-600 text-sm">{related.shortDescription}</p>
                 </Link>
-              )
-            })}
-          </div>
+              ))}
+            </div>
 
-          <div className="text-center mt-10">
-            <Link
-              href="/service"
-              className="inline-flex items-center gap-2 text-primary-600 font-semibold hover:gap-3 transition-all"
-            >
-              Alle Leistungen ansehen
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
+            <div className="text-center mt-10">
+              <Link
+                href="/objektarten"
+                className="inline-flex items-center gap-2 text-primary-600 font-semibold hover:gap-3 transition-all"
+              >
+                Alle Objektarten ansehen
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* CTA Section */}
       <section className="py-20 lg:py-28 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-            Jetzt {service.name} anfragen
+            Jetzt Angebot f&uuml;r Ihre {objektart.name} anfordern
           </h2>
           <p className="text-xl text-primary-100 mb-10">
-            Erhalten Sie Ihr kostenloses und unverbindliches Angebot für {service.name}.
-            Wir melden uns innerhalb von 24 Stunden bei Ihnen.
+            Erhalten Sie Ihr kostenloses und unverbindliches Angebot f&uuml;r die professionelle
+            Reinigung Ihrer {objektart.name}. Wir melden uns innerhalb von 24 Stunden bei Ihnen.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

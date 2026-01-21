@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import { CITIES } from '@/lib/cities'
 import { SERVICES } from '@/lib/services'
+import { BLOG_POSTS } from '@/lib/blog'
 
 const BASE_URL = 'https://www.shinytouchgebaeudereinigung.de'
 
@@ -81,5 +82,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: city.priority === 1 ? 0.9 : city.priority === 2 ? 0.7 : 0.6,
   }))
 
-  return [...mainPages, ...servicePages, ...cityPages]
+  // Blog pages
+  const blogPages: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
+    url: `${BASE_URL}/blog/${post.slug}`,
+    lastModified: post.updatedAt || post.publishedAt,
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }))
+
+  // Blog overview page
+  const blogOverview: MetadataRoute.Sitemap = [
+    {
+      url: `${BASE_URL}/blog`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    },
+  ]
+
+  return [...mainPages, ...servicePages, ...cityPages, ...blogOverview, ...blogPages]
 }

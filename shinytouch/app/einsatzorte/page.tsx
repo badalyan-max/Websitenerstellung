@@ -5,10 +5,11 @@ import { COMPANY_DATA } from '@/lib/company'
 import { MapPinIcon } from '@/components/icons'
 import { CitySearch } from '@/components/search/CitySearch'
 import { RegionAccordion } from './RegionAccordion'
+import { GermanyMap } from '@/components/map'
 
 export const metadata: Metadata = {
-  title: `Einsatzorte | ShinyTouch Gebäudereinigung in ${CITIES_COUNT}+ Städten`,
-  description: `ShinyTouch Gebäudereinigung ist in über ${CITIES_COUNT} Städten deutschlandweit für Sie da. Von Bamberg bis Berlin – professionelle Reinigung vor Ort. Finden Sie Ihren Standort.`,
+  title: `Einsatzorte | ShinyTouch Gebäudereinigung in ${CITIES_COUNT}+ Orten`,
+  description: `ShinyTouch Gebäudereinigung ist in über ${CITIES_COUNT} Orten deutschlandweit für Sie da. Von Bamberg bis Berlin – professionelle Reinigung vor Ort. Finden Sie Ihren Standort.`,
   alternates: {
     canonical: 'https://www.shinytouchgebaeudereinigung.de/einsatzorte',
   },
@@ -49,7 +50,7 @@ export default function EinsatzortePage() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-secondary-900 mb-6">
               Gebäudereinigung in
               <span className="block bg-gradient-to-r from-primary-500 to-primary-600 bg-clip-text text-transparent">
-                {CITIES_COUNT}+ Städten
+                {CITIES_COUNT}+ Orten
               </span>
             </h1>
 
@@ -59,20 +60,36 @@ export default function EinsatzortePage() {
             </p>
 
             {/* Search Component */}
-            <CitySearch cities={CITIES} placeholder="Stadt oder PLZ suchen..." />
+            <CitySearch cities={CITIES} placeholder="Ort oder PLZ suchen..." />
           </div>
         </div>
       </section>
 
+      {/* Interactive Map Section */}
+      <section className="py-12 lg:py-16 bg-white border-b border-secondary-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-secondary-900 mb-4">
+              Deutschlandweite Abdeckung
+            </h2>
+            <p className="text-secondary-600 max-w-2xl mx-auto">
+              Klicken Sie auf ein Bundesland, um alle Orte in dieser Region zu sehen
+            </p>
+          </div>
+
+          <GermanyMap variant="full" />
+        </div>
+      </section>
+
       {/* Main Cities */}
-      <section className="py-16 lg:py-24 bg-white">
+      <section className="py-16 lg:py-24 bg-gradient-to-b from-white to-secondary-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-secondary-900 mb-4">
               Unsere Haupt-Einsatzorte
             </h2>
             <p className="text-secondary-600">
-              In diesen Städten sind wir besonders stark vertreten
+              In diesen Orten sind wir besonders stark vertreten
             </p>
           </div>
 
@@ -129,7 +146,7 @@ export default function EinsatzortePage() {
               Alle Einsatzorte nach Bundesland
             </h2>
             <p className="text-secondary-600">
-              Klicken Sie auf ein Bundesland, um alle Städte zu sehen
+              Klicken Sie auf ein Bundesland, um alle Orte zu sehen
             </p>
           </div>
 
@@ -140,7 +157,7 @@ export default function EinsatzortePage() {
       {/* Stats Section */}
       <section className="py-12 bg-white border-y border-secondary-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-3 gap-8">
             <div className="text-center">
               <div className="text-3xl sm:text-4xl font-bold text-primary-600 mb-2">
                 {CITIES_COUNT}+
@@ -150,10 +167,6 @@ export default function EinsatzortePage() {
             <div className="text-center">
               <div className="text-3xl sm:text-4xl font-bold text-primary-600 mb-2">16</div>
               <div className="text-sm text-secondary-600">Bundesländer</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-primary-600 mb-2">24/7</div>
-              <div className="text-sm text-secondary-600">Erreichbarkeit</div>
             </div>
             <div className="text-center">
               <div className="text-3xl sm:text-4xl font-bold text-primary-600 mb-2">100%</div>
@@ -167,7 +180,7 @@ export default function EinsatzortePage() {
       <section className="py-16 lg:py-24 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-            Ihre Stadt ist nicht dabei?
+            Ihr Ort ist nicht dabei?
           </h2>
           <p className="text-xl text-primary-100 mb-10">
             Kein Problem! Wir erweitern ständig unser Einzugsgebiet. Kontaktieren Sie uns für eine

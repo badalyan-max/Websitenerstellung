@@ -5,7 +5,7 @@ import { JsonLd } from '@/components/seo/json-ld'
 
 export const metadata: Metadata = {
   title: 'Über uns | ShinyTouch Gebäudereinigung',
-  description: 'ShinyTouch Gebäudereinigung aus Bamberg - Ihr Partner für professionelle Reinigung. ✓ 5.0/5 Bewertung ✓ 500+ Kunden ✓ 30-Tage-Garantie',
+  description: 'ShinyTouch Gebäudereinigung - Ihr Familienbetrieb für professionelle Reinigung. ✓ 5.0/5 Bewertung ✓ 600+ Einsatzorte ✓ Digitalisierung & Innovation',
   alternates: {
     canonical: 'https://www.shinytouchgebaeudereinigung.de/about',
   },
@@ -13,59 +13,54 @@ export const metadata: Metadata = {
 
 const values = [
   {
-    icon: '🎯',
-    title: 'Qualität',
-    description: 'Wir setzen auf höchste Reinigungsstandards. Jeder Auftrag wird mit Sorgfalt und Präzision ausgeführt.',
-  },
-  {
-    icon: '🤝',
-    title: 'Zuverlässigkeit',
-    description: 'Pünktlichkeit und Verlässlichkeit sind für uns selbstverständlich. Unsere Kunden können sich auf uns verlassen.',
-  },
-  {
-    icon: '🌿',
-    title: 'Nachhaltigkeit',
-    description: 'Wir verwenden umweltfreundliche Reinigungsmittel und arbeiten ressourcenschonend.',
+    icon: '⭐',
+    title: 'Kundenzufriedenheit',
+    description: 'Unser Ziel ist es, die Erwartungen unserer Kunden zu übertreffen und langfristige Beziehungen aufzubauen.',
   },
   {
     icon: '💡',
     title: 'Innovation',
-    description: 'Moderne Reinigungstechniken und kontinuierliche Weiterbildung unserer Mitarbeiter.',
+    description: 'Durch den Einsatz modernster Technologien und innovativer Reinigungssysteme streben wir danach, stets die besten Ergebnisse zu erzielen.',
+  },
+  {
+    icon: '🔍',
+    title: 'Transparenz',
+    description: 'Wir legen großen Wert darauf, unseren Kunden stets klare und verständliche Informationen zu unseren Dienstleistungen und Prozessen zu bieten.',
+  },
+  {
+    icon: '🤝',
+    title: 'Zuverlässigkeit',
+    description: 'Wir sind ein verlässlicher Partner, der seine Versprechen hält und stets pünktlich und effizient arbeitet.',
   },
 ]
 
 const milestones = [
   {
-    year: '2020',
-    title: 'Gründung',
-    description: 'ShinyTouch wird in Bamberg gegründet mit der Vision, professionelle Gebäudereinigung neu zu definieren.',
-  },
-  {
-    year: '2021',
-    title: 'Expansion',
-    description: 'Erweiterung des Einzugsgebiets auf ganz Oberfranken und erste Großkunden.',
-  },
-  {
-    year: '2022',
-    title: '100 Kunden',
-    description: 'Meilenstein von 100 zufriedenen Stammkunden erreicht.',
-  },
-  {
     year: '2023',
-    title: 'Deutschlandweit',
-    description: 'Ausweitung des Serviceangebots auf 32 Städte in ganz Deutschland.',
+    title: 'Gründung',
+    description: 'ShinyTouch wird als Familienbetrieb in Bamberg gegründet mit dem Ziel, regional Vorreiter in Sachen Reinigung und Hygiene zu werden.',
   },
   {
     year: '2024',
-    title: '500+ Kunden',
-    description: 'Über 500 zufriedene Kunden vertrauen auf ShinyTouch.',
+    title: 'Erste Expansion',
+    description: 'Aufbau einer treuen Stammkundschaft und Erweiterung des Serviceangebots auf ganz Oberfranken.',
+  },
+  {
+    year: '2025',
+    title: 'Deutschlandweites Wachstum',
+    description: 'Ausweitung auf über 600 Einsatzorte in ganz Deutschland durch innovative Reinigungslösungen.',
+  },
+  {
+    year: '2026',
+    title: 'Heute',
+    description: 'Fokus auf absolute Kundenzufriedenheit, langfristige Kundenbindung und modernste Reinigungssysteme.',
   },
 ]
 
 const stats = [
   { value: '500+', label: 'Zufriedene Kunden' },
   { value: '5.0', label: 'Sterne Bewertung' },
-  { value: '32', label: 'Einsatzorte' },
+  { value: '600+', label: 'Einsatzorte' },
   { value: '100%', label: 'Zufriedenheitsgarantie' },
 ]
 
@@ -77,8 +72,8 @@ export default function AboutPage() {
     "name": COMPANY_DATA.name,
     "url": "https://www.shinytouchgebaeudereinigung.de",
     "logo": "https://www.shinytouchgebaeudereinigung.de/logo.png",
-    "description": "Professionelle Gebäudereinigung in Bamberg und 32 weiteren Städten deutschlandweit.",
-    "foundingDate": "2020",
+    "description": "Professionelle Gebäudereinigung in Bamberg und über 600 Einsatzorten deutschlandweit. Familienbetrieb mit Fokus auf Kundenzufriedenheit.",
+    "foundingDate": "2023",
     "foundingLocation": {
       "@type": "Place",
       "address": {
@@ -137,16 +132,16 @@ export default function AboutPage() {
               </span>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-secondary-900 mb-6">
-                Ihr Partner für
+                Willkommen bei
                 <span className="block bg-gradient-to-r from-primary-500 to-primary-600 bg-clip-text text-transparent">
-                  strahlende Sauberkeit
+                  ShinyTouch Gebäudereinigung
                 </span>
               </h1>
 
               <p className="text-lg text-secondary-600 leading-relaxed mb-8">
-                ShinyTouch Gebäudereinigung wurde 2020 in Bamberg gegründet mit einer klaren Mission:
-                Professionelle Reinigung, die den Unterschied macht. Heute betreuen wir über 500
-                zufriedene Kunden in 32 Städten deutschlandweit.
+                Ihrem zuverlässigen Partner für professionelle Gebäudereinigung. Mit jahrelanger Erfahrung
+                bieten wir erstklassige Reinigungsdienste für sowohl private Haushalte als auch gewerbliche
+                Kunden an. Unser Ziel ist es, Ihre Räume strahlend sauber und hygienisch zu halten.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -187,16 +182,42 @@ export default function AboutPage() {
       {/* Mission Section */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold text-secondary-900 mb-6">
-              Unsere Mission
-            </h2>
-            <p className="text-xl text-secondary-600 leading-relaxed">
-              Wir glauben, dass ein sauberes Umfeld mehr ist als nur Ästhetik – es fördert
-              Produktivität, Wohlbefinden und hinterlässt einen bleibenden Eindruck.
-              Deshalb setzen wir auf höchste Qualitätsstandards, geschulte Mitarbeiter und
-              umweltfreundliche Reinigungsmittel.
-            </p>
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-bold text-secondary-900 mb-6">
+                Unser Team & Unsere Arbeitsweise
+              </h2>
+              <p className="text-xl text-secondary-600 leading-relaxed">
+                Unser Team besteht aus qualifizierten und geschulten Reinigungskräften. Wir verwenden
+                umweltfreundliche Reinigungsmittel und verfügen über die neueste Ausrüstung, um
+                optimale Ergebnisse zu gewährleisten.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 mt-12">
+              <div className="bg-secondary-50 rounded-2xl p-8">
+                <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center text-2xl mb-4">
+                  💻
+                </div>
+                <h3 className="text-xl font-bold text-secondary-900 mb-3">Digitalisierung & Innovation</h3>
+                <p className="text-secondary-600">
+                  Wir sind große Befürworter der Digitalisierung und innovativer Reinigungssysteme.
+                  Unser Ziel ist es, für unsere Kunden so transparent und einfach wie möglich zu sein.
+                </p>
+              </div>
+
+              <div className="bg-secondary-50 rounded-2xl p-8">
+                <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center text-2xl mb-4">
+                  👨‍👩‍👧‍👦
+                </div>
+                <h3 className="text-xl font-bold text-secondary-900 mb-3">Familienbetrieb mit Herz</h3>
+                <p className="text-secondary-600">
+                  Wir sind ein Familienbetrieb, der nach absoluter Zufriedenheit unserer Kunden strebt.
+                  Seit 2023 arbeiten wir hart daran, uns regional einen Namen zu machen und der Vorreiter
+                  in Sachen Reinigung und Hygiene zu sein.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -272,11 +293,11 @@ export default function AboutPage() {
           <div className="bg-gradient-to-br from-primary-500 to-primary-700 rounded-3xl p-8 md:p-12 text-center text-white">
             <div className="text-6xl mb-6">🛡️</div>
             <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-              Unsere 30-Tage-Zufriedenheitsgarantie
+              30 Tage risikofrei testen – unsere Garantie
             </h2>
             <p className="text-xl text-primary-100 max-w-2xl mx-auto mb-8">
-              Nicht zufrieden? Wir kommen kostenlos zurück und bessern nach.
-              Immer noch nicht zufrieden? Geld zurück – ohne Wenn und Aber.
+              Testen Sie uns mit Preisermäßigung. Jederzeit kündbar innerhalb der 30 Tage.
+              Nicht zufrieden? Kostenlose Nachreinigung oder Geld zurück.
             </p>
             <div className="flex flex-wrap justify-center gap-6">
               <div className="flex items-center gap-2">

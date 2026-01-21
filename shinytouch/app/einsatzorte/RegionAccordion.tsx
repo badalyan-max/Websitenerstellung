@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import type { City } from '@/lib/types'
 
@@ -8,9 +8,57 @@ interface RegionAccordionProps {
   citiesByRegion: Record<string, City[]>
 }
 
+// Helper to normalize region names for URL hashes
+function normalizeRegionForHash(region: string): string {
+  return region
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/ü/g, 'ue')
+    .replace(/ö/g, 'oe')
+    .replace(/ä/g, 'ae')
+}
+
+// Helper to find region from hash
+function findRegionFromHash(hash: string, regions: string[]): string | null {
+  const normalizedHash = hash.replace('#', '').toLowerCase()
+  return regions.find(region => normalizeRegionForHash(region) === normalizedHash) || null
+}
+
 export function RegionAccordion({ citiesByRegion }: RegionAccordionProps) {
   // Bayern standardmäßig geöffnet (Heimatregion)
   const [openRegions, setOpenRegions] = useState<Set<string>>(new Set(['Bayern']))
+  const regionRefs = useRef<Record<string, HTMLDivElement | null>>({})
+
+  // Handle URL hash on mount and hash changes
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash
+      if (hash) {
+        const regions = Object.keys(citiesByRegion)
+        const matchedRegion = findRegionFromHash(hash, regions)
+
+        if (matchedRegion) {
+          // Open the region
+          setOpenRegions(prev => new Set([...prev, matchedRegion]))
+
+          // Scroll to the region after a brief delay
+          setTimeout(() => {
+            const element = regionRefs.current[matchedRegion]
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+            }
+          }, 100)
+        }
+      }
+    }
+
+    // Handle initial hash
+    handleHashChange()
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [citiesByRegion])
 
   const toggleRegion = (region: string) => {
     setOpenRegions((prev) => {
@@ -41,6 +89,8 @@ export function RegionAccordion({ citiesByRegion }: RegionAccordionProps) {
         return (
           <div
             key={region}
+            id={`region-accordion-${normalizeRegionForHash(region)}`}
+            ref={(el) => { regionRefs.current[region] = el }}
             className="bg-white rounded-2xl border border-secondary-100 shadow-sm overflow-hidden"
           >
             {/* Accordion Header */}
@@ -83,7 +133,7 @@ export function RegionAccordion({ citiesByRegion }: RegionAccordionProps) {
                     {region === 'NRW' ? 'Nordrhein-Westfalen' : region}
                   </h3>
                   <p className="text-sm text-secondary-500">
-                    {cityCount} {cityCount === 1 ? 'Stadt' : 'Städte'}
+                    {cityCount} {cityCount === 1 ? 'Ort' : 'Orte'}
                   </p>
                 </div>
               </div>

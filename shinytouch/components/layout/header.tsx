@@ -13,10 +13,13 @@ const services = [
   { name: 'Unterhaltsreinigung', href: '/service/unterhaltsreinigung' },
   { name: 'Baureinigung', href: '/service/baureinigung' },
   { name: 'Hochdruckreinigung', href: '/service/hochdruckreinigung' },
+  { name: 'Winterdienst', href: '/service/winterdienst' },
+  { name: 'Grünanlagenpflege', href: '/service/gruenanlagenpflege' },
 ]
 
 const navItems = [
   { name: 'Leistungen', href: '/service', hasDropdown: true },
+  { name: 'Objektarten', href: '/objektarten' },
   { name: 'Einsatzorte', href: '/einsatzorte' },
   { name: 'Über uns', href: '/about' },
   { name: 'Karriere', href: '/karriere' },

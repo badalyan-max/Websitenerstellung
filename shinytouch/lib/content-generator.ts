@@ -1,6 +1,6 @@
 /**
- * Content-Generator für SEO-optimierte Stadtseiten
- * Generiert einzigartigen Content basierend auf Region, Stadtgröße und Synonymen
+ * Content-Generator für SEO-optimierte Ortsseiten
+ * Generiert einzigartigen Content basierend auf Region, Ortsgröße und Synonymen
  */
 
 import type { City, FAQ } from './types'
@@ -94,7 +94,7 @@ const REGIONAL_INTROS: Record<Bundesland, string[]> = {
 }
 
 // ============================================================================
-// Layer 2: Stadtgröße-Templates
+// Layer 2: Ortsgröße-Templates
 // ============================================================================
 
 type CitySize = 'gross' | 'mittel' | 'klein'
@@ -177,6 +177,81 @@ const FAQ_TEMPLATES: Array<{ question: string; answer: string }> = [
     answer:
       'Wir setzen verstärkt auf nachhaltige und umweltschonende Reinigungsmittel. Auf Wunsch reinigen wir Ihr Objekt in {city} auch komplett mit Öko-Produkten.',
   },
+  // ========== NEU: People Also Ask Fragen (DataForSEO Research 2026-01) ==========
+  // Kosten-Fragen
+  {
+    question: 'Wie viel verlangen Reinigungsfirmen pro Stunde?',
+    answer:
+      'Reinigungsfirmen in {city} verlangen 20-35€/Stunde für Standardreinigung. Grundreinigung kostet 35-50€/Stunde. Preise variieren nach Region, Objektgröße und Aufwand.',
+  },
+  {
+    question: 'Was kostet 100 qm putzen?',
+    answer:
+      'Für 100 qm Bürofläche in {city} rechnen Sie mit 50-150€ pro Reinigung, je nach Verschmutzungsgrad und Frequenz. Monatliche Pauschalen ab 200€ möglich.',
+  },
+  {
+    question: 'Wie kalkuliert man in der Gebäudereinigung?',
+    answer:
+      'Kalkulation basiert auf: Quadratmeterzahl, Reinigungsart, Frequenz und Anfahrt. Wir erstellen individuelle Angebote nach kostenloser Objektbesichtigung in {city}.',
+  },
+  // Treppenhausreinigung
+  {
+    question: 'Was kostet eine Treppenhausreinigung?',
+    answer:
+      'Treppenhausreinigung in {city} kostet 30-80€ pro Reinigung, abhängig von Stockwerken und Größe. Monatliche Pauschalen für regelmäßige Reinigung ab 60€.',
+  },
+  {
+    question: 'Wie oft muss das Treppenhaus gereinigt werden?',
+    answer:
+      'Empfohlen: 1-2x wöchentlich bei Mehrfamilienhäusern. Bei hohem Publikumsverkehr täglich. Wir erstellen individuelle Reinigungspläne für Objekte in {city}.',
+  },
+  {
+    question: 'Was nimmt man für eine Treppenhausreinigung?',
+    answer:
+      'Professionelle Treppenhausreinigung umfasst: Fegen, Wischen, Handläufe, Geländer, Fensterbänke, Briefkästen. Wir nutzen materialschonende Reinigungsmittel.',
+  },
+  // Baureinigung
+  {
+    question: 'Wer muss die Reinigung nach Bauarbeiten bezahlen?',
+    answer:
+      'Bauherr oder Auftraggeber trägt die Kosten. Oft ist Baureinigung im Bauvertrag geregelt. Wir bieten transparente Festpreise für Baureinigung in {city}.',
+  },
+  {
+    question: 'Was ist eine Baureinigung?',
+    answer:
+      'Baureinigung ist die professionelle Reinigung nach Bau- oder Renovierungsarbeiten: Entfernung von Staub, Mörtelresten, Kleberückständen und Schutzfolien.',
+  },
+  {
+    question: 'Wie sauber muss ein Handwerker die Baustelle verlassen?',
+    answer:
+      'Handwerker müssen groben Schmutz entfernen. Feinreinigung ist meist nicht im Handwerkerauftrag enthalten. Professionelle Baureinigung übernehmen wir in {city}.',
+  },
+  {
+    question: 'Wie hoch sind die Kosten für die Bauendreinigung?',
+    answer:
+      'Bauendreinigung kostet 3-8€/m² in {city}, je nach Verschmutzungsgrad. Für 100m² rechnen Sie mit 300-800€. Kostenlose Besichtigung und Festpreisangebot.',
+  },
+  // Glasreinigung
+  {
+    question: 'Was kostet eine professionelle Glasreinigung?',
+    answer:
+      'Professionelle Glasreinigung in {city} kostet 2-5€ pro Fenster (beidseitig) oder 25-40€/Stunde. Rahmenreinigung und schwer zugängliche Fenster kosten mehr.',
+  },
+  {
+    question: 'Wie viel kostet es, 10 Fenster zu putzen?',
+    answer:
+      '10 Standardfenster (beidseitig) kosten in {city} ca. 20-50€. Mit Rahmen und Falzen 40-80€. Wir bieten transparente Festpreise nach Besichtigung.',
+  },
+  {
+    question: 'Wie berechnet man den Preis für die Glasreinigung?',
+    answer:
+      'Glasreinigung wird pro Fenster, pro m² Glasfläche oder nach Stundensatz berechnet. Faktoren: Fenstergröße, Zugänglichkeit, Verschmutzung. Angebot in {city} anfordern.',
+  },
+  {
+    question: 'Was verwenden Profis zum Fensterputzen?',
+    answer:
+      'Profis nutzen: Einwascher, Abzieher, Mikrofasertücher, destilliertes Wasser und spezielle Glasreiniger. Für Hochhäuser: Teleskopstangen oder Hebebühnen.',
+  },
 ]
 
 // ============================================================================
@@ -205,7 +280,7 @@ function selectFromArray<T>(arr: T[], seed: string, offset = 0): T {
 }
 
 /**
- * Ermittelt die Stadtgröße basierend auf Einwohnerzahl
+ * Ermittelt die Ortsgröße basierend auf Einwohnerzahl
  */
 function getCitySize(population?: number): CitySize {
   if (!population) return 'klein'
@@ -233,7 +308,7 @@ function replacePlaceholders(
 // ============================================================================
 
 /**
- * Generiert einen einzigartigen Intro-Text für eine Stadt
+ * Generiert einen einzigartigen Intro-Text für einen Ort
  */
 export function generateCityIntro(city: City): string {
   // Wenn Custom-Intro existiert, dieses verwenden
@@ -247,7 +322,7 @@ export function generateCityIntro(city: City): string {
   const regionalIntros = REGIONAL_INTROS[region] || REGIONAL_INTROS.Bayern
   const regionalIntro = selectFromArray(regionalIntros, city.slug, 0)
 
-  // Layer 2: Stadtgröße-Ergänzung
+  // Layer 2: Ortsgröße-Ergänzung
   const sizeTemplates = CITY_SIZE_TEMPLATES[citySize]
   const sizeText = selectFromArray(sizeTemplates, city.slug, 1)
 
@@ -266,7 +341,7 @@ export function generateCityIntro(city: City): string {
 }
 
 /**
- * Generiert Highlights für eine Stadt
+ * Generiert Highlights für einen Ort
  */
 export function generateCityHighlights(city: City): string[] {
   // Wenn Custom-Highlights existieren, diese verwenden
@@ -283,10 +358,9 @@ export function generateCityHighlights(city: City): string[] {
     `Persönlicher Ansprechpartner für Ihr Objekt`,
   ]
 
-  // Stadtgrößen-spezifische Highlights
+  // Ortsgrößen-spezifische Highlights
   if (citySize === 'gross') {
     baseHighlights.push(`Erfahrung mit Großprojekten in ${regionName}`)
-    baseHighlights.push(`24/7 Notfall-Service verfügbar`)
   } else if (citySize === 'mittel') {
     baseHighlights.push(`Kurze Reaktionszeiten in ${city.name}`)
     baseHighlights.push(`Regelmäßige Qualitätskontrollen`)
@@ -308,7 +382,7 @@ export function generateCityHighlights(city: City): string[] {
 }
 
 /**
- * Generiert FAQs für eine Stadt
+ * Generiert FAQs für einen Ort
  */
 export function generateCityFAQs(city: City): FAQ[] {
   // Wenn Custom-FAQs existieren, diese verwenden
@@ -335,7 +409,7 @@ export function generateCityFAQs(city: City): FAQ[] {
 }
 
 /**
- * Generiert eine Meta-Description für eine Stadt
+ * Generiert eine Meta-Description für einen Ort
  */
 export function generateCityMetaDescription(city: City): string {
   const region = city.region as Bundesland
@@ -352,7 +426,7 @@ export function generateCityMetaDescription(city: City): string {
 }
 
 /**
- * Prüft ob eine Stadt Custom-Content hat
+ * Prüft ob ein Ort Custom-Content hat
  */
 export function hasCustomContent(city: City): boolean {
   return !!(
@@ -360,4 +434,128 @@ export function hasCustomContent(city: City): boolean {
     (city.highlights && city.highlights.length > 0) ||
     (city.faqs && city.faqs.length > 0)
   )
+}
+
+// ============================================================================
+// AI Overview Optimierung (300-Zeichen-Regel)
+// ============================================================================
+
+/**
+ * AI-Optimierte Kurzantworten für Fan-out Optimierung
+ * Max 300 Zeichen, faktisch, direkt
+ */
+const AI_OPTIMIZED_ANSWERS: Record<string, (city: City) => string> = {
+  kosten: (city) =>
+    `Gebäudereinigung in ${city.name} kostet 15-35€/Stunde oder 0,50-3,00€/m². Monatliche Festpreise ab 150€ für regelmäßige Unterhaltsreinigung. Kostenloses Angebot erhalten.`,
+
+  frequenz: (city) =>
+    `Empfohlen: 2-3x wöchentlich für Büros in ${city.name}. Bei hohem Publikumsverkehr täglich. Individuelle Beratung kostenlos. Wir erstellen einen Plan nach Ihrem Bedarf.`,
+
+  start: (city) =>
+    `Start innerhalb von 3-5 Werktagen nach Auftragserteilung in ${city.name}. Bei Dringlichkeit Express-Service möglich. Persönliche Objektbesichtigung inklusive.`,
+
+  versicherung: () =>
+    `Ja, alle Mitarbeiter sind vollständig haftpflicht- und unfallversichert. Betriebshaftpflicht bis 5 Mio. Euro. Wir arbeiten nur mit festangestelltem Personal.`,
+
+  leistungen: (city) =>
+    `In ${city.name}: Büroreinigung, Glasreinigung, Grundreinigung, Unterhaltsreinigung, Baureinigung, Winterdienst. Alle Services aus einer Hand, ein Ansprechpartner.`,
+
+  zeiten: () =>
+    `Flexibel nach Ihren Wünschen: Früh ab 5 Uhr, spät bis 22 Uhr, Wochenende möglich. Wir reinigen außerhalb Ihrer Geschäftszeiten. Keine Störung im Arbeitsalltag.`,
+
+  qualitaet: () =>
+    `30 Tage risikofrei testen. Regelmäßige Qualitätskontrollen. Fester Ansprechpartner. Bei Unzufriedenheit kostenlose Nachreinigung innerhalb von 24 Stunden.`,
+
+  umwelt: () =>
+    `Wir setzen auf umweltschonende Reinigungsmittel und ressourcensparende Methoden. Auf Wunsch 100% Öko-Reinigung verfügbar. Zertifizierte Produkte.`,
+
+  // NEU: People Also Ask Themen (DataForSEO Research 2026-01)
+  stundenpreis: (city) =>
+    `Reinigungsfirmen in ${city.name} verlangen 20-35€/Stunde für Standardreinigung, 35-50€ für Grundreinigung. Preise variieren nach Region und Aufwand. Festpreise möglich.`,
+
+  treppenhausreinigung: (city) =>
+    `Treppenhausreinigung in ${city.name}: 30-80€ pro Reinigung oder ab 60€/Monat. Inkl. Fegen, Wischen, Handläufe, Geländer. 1-2x wöchentlich empfohlen.`,
+
+  baureinigung: (city) =>
+    `Baureinigung in ${city.name} kostet 3-8€/m². Für 100m² ca. 300-800€. Entfernung von Baustaub, Mörtel, Kleberesten. Kostenlose Besichtigung und Festpreis.`,
+
+  glasreinigung: (city) =>
+    `Glasreinigung in ${city.name}: 2-5€ pro Fenster (beidseitig) oder 25-40€/Stunde. 10 Fenster ca. 20-50€. Rahmenreinigung auf Wunsch inklusive.`,
+
+  quadratmeterpreis: (city) =>
+    `Gebäudereinigung in ${city.name}: 0,50-3,00€/m² für Unterhaltsreinigung. 100m² Büro = 50-150€ pro Reinigung. Monatspauschalen ab 200€ verfügbar.`,
+}
+
+type AnswerType = keyof typeof AI_OPTIMIZED_ANSWERS
+
+/**
+ * Generiert eine AI-optimierte Kurzantwort (max 300 Zeichen)
+ * Für die 300-Zeichen-Regel direkt nach H2-Überschriften
+ *
+ * @param type - Art der Frage (kosten, frequenz, start, etc.)
+ * @param city - Ort-Objekt
+ * @returns Kurze, faktische Antwort für AI Overview Optimierung
+ */
+export function generateAIOptimizedAnswer(type: string, city: City): string {
+  const answerFn = AI_OPTIMIZED_ANSWERS[type as AnswerType]
+  if (!answerFn) {
+    return `Professionelle Gebäudereinigung in ${city.name}: Kontaktieren Sie uns für individuelle Beratung und ein kostenloses Angebot.`
+  }
+  return answerFn(city)
+}
+
+/**
+ * Alle verfügbaren Antwort-Typen
+ */
+export function getAvailableAnswerTypes(): string[] {
+  return Object.keys(AI_OPTIMIZED_ANSWERS)
+}
+
+/**
+ * Generiert eine FAQ mit AI-optimierter Kurzantwort
+ * Format: Kurze Antwort (300 Zeichen) + Ausführliche Antwort
+ */
+export function generateAIOptimizedFAQ(
+  type: string,
+  city: City
+): { question: string; shortAnswer: string; longAnswer: string } {
+  const questions: Record<string, string> = {
+    kosten: `Was kostet Gebäudereinigung in ${city.name}?`,
+    frequenz: `Wie oft sollte mein Büro in ${city.name} gereinigt werden?`,
+    start: `Wie schnell können Sie in ${city.name} starten?`,
+    versicherung: `Sind Ihre Reinigungskräfte versichert?`,
+    leistungen: `Welche Reinigungsleistungen bieten Sie in ${city.name}?`,
+    zeiten: `Wann wird bei uns gereinigt?`,
+    qualitaet: `Wie garantieren Sie die Reinigungsqualität?`,
+    umwelt: `Nutzen Sie umweltfreundliche Reinigungsmittel?`,
+    // NEU: People Also Ask (2026-01)
+    stundenpreis: `Wie viel verlangen Reinigungsfirmen pro Stunde in ${city.name}?`,
+    treppenhausreinigung: `Was kostet Treppenhausreinigung in ${city.name}?`,
+    baureinigung: `Was kostet Baureinigung in ${city.name}?`,
+    glasreinigung: `Was kostet professionelle Glasreinigung in ${city.name}?`,
+    quadratmeterpreis: `Was kostet Gebäudereinigung pro m² in ${city.name}?`,
+  }
+
+  const longAnswers: Record<string, string> = {
+    kosten: `Die genauen Kosten hängen von mehreren Faktoren ab: Objektgröße, Reinigungsfrequenz, gewünschte Leistungen und Erreichbarkeit. Für ein 100m² Büro mit wöchentlicher Reinigung liegen die monatlichen Kosten typischerweise zwischen 200-400€. Wir erstellen Ihnen gerne ein individuelles Angebot nach einer kostenlosen Objektbesichtigung.`,
+    frequenz: `Die optimale Reinigungsfrequenz richtet sich nach der Nutzungsintensität, Mitarbeiterzahl und Art des Geschäfts. Büros mit normalem Publikumsverkehr profitieren von 2-3 Reinigungen pro Woche. Praxen und Einzelhandel oft täglich. Wir beraten Sie gerne und erstellen einen maßgeschneiderten Reinigungsplan.`,
+    start: `Nach Ihrer Anfrage erfolgt innerhalb von 24 Stunden ein Rückruf. Die Objektbesichtigung vereinbaren wir kurzfristig. Nach Auftragserteilung starten unsere Teams in der Regel binnen 3-5 Werktagen. Bei dringendem Bedarf ist auch ein schnellerer Start möglich.`,
+    versicherung: `Alle unsere Reinigungskräfte sind über unsere Betriebshaftpflichtversicherung (Deckungssumme 5 Mio. Euro) und Unfallversicherung abgesichert. Wir arbeiten ausschließlich mit festangestelltem Personal und verzichten bewusst auf Subunternehmer. So garantieren wir Qualität und Verlässlichkeit.`,
+    leistungen: `Unser Leistungsspektrum umfasst: regelmäßige Unterhaltsreinigung, intensive Grundreinigung, professionelle Glasreinigung, Baureinigung nach Renovierung, Hochdruckreinigung für Außenbereiche, Winterdienst sowie Grünanlagenpflege. Alle Services erhalten Sie aus einer Hand mit einem festen Ansprechpartner.`,
+    zeiten: `Wir passen uns Ihren Betriebszeiten an: Reinigung früh morgens ab 5 Uhr, nach Feierabend bis 22 Uhr oder am Wochenende. So stören wir Ihren Arbeitsalltag nicht. Die Zeiten werden individuell vereinbart und können flexibel angepasst werden.`,
+    qualitaet: `Qualität sichern wir durch: 30 Tage Testphase ohne Risiko, regelmäßige Qualitätskontrollen durch unsere Objektleiter, feste Reinigungsteams für Ihr Objekt, dokumentierte Leistungsnachweise. Bei Beanstandungen erfolgt kostenlose Nachreinigung innerhalb von 24 Stunden.`,
+    umwelt: `Nachhaltigkeit ist uns wichtig. Wir verwenden überwiegend biologisch abbaubare Reinigungsmittel, dosieren sparsam und setzen auf Mikrofasertechnologie. Auf Wunsch bieten wir komplett ökologische Reinigung mit zertifizierten Produkten. Auch bei der Mülltrennung unterstützen wir Sie.`,
+    // NEU: People Also Ask (2026-01)
+    stundenpreis: `Die Stundenpreise für Gebäudereinigung 2026 variieren je nach Region, Reinigungsart und Anbieter. Standardreinigung (Unterhaltsreinigung) kostet 20-35€/Stunde, Grundreinigung 35-50€/Stunde. In Großstädten sind die Preise höher als in ländlichen Gebieten. Wir bieten transparente Festpreise nach kostenloser Objektbesichtigung.`,
+    treppenhausreinigung: `Treppenhausreinigung umfasst: Kehren und Wischen aller Stufen, Reinigung von Handläufen und Geländern, Fensterbänke, Briefkästen und Eingangsbereiche. Bei Mehrfamilienhäusern empfehlen wir 1-2x wöchentliche Reinigung. Die Kosten richten sich nach Stockwerken, Fläche und Verschmutzungsgrad. Monatliche Pauschalen sind möglich.`,
+    baureinigung: `Baureinigung (auch Bauendreinigung) erfolgt nach Abschluss von Bau- oder Renovierungsarbeiten. Wir entfernen: Baustaub, Mörtel- und Putzreste, Kleberückstände, Schutzfolien, Farbspritzer. Die Kosten betragen 3-8€/m² je nach Verschmutzungsgrad. Die Bauendreinigung ist üblicherweise vom Bauherrn zu zahlen und oft nicht im Handwerkerauftrag enthalten.`,
+    glasreinigung: `Professionelle Glasreinigung 2026 wird pro Fenster (2-5€ beidseitig), pro m² Glasfläche oder nach Stundensatz (25-40€) berechnet. Faktoren: Fenstergröße, Zugänglichkeit (Erdgeschoss vs. Hochhaus), Verschmutzungsgrad, Rahmenreinigung. Wir nutzen professionelle Werkzeuge: Einwascher, Abzieher, Mikrofasertücher, für Hochhäuser Teleskopstangen oder Hebebühnen.`,
+    quadratmeterpreis: `Gebäudereinigung nach Quadratmeter: Unterhaltsreinigung 0,50-3,00€/m², Grundreinigung 3-8€/m². Ein 100m² Büro kostet bei wöchentlicher Reinigung ca. 200-400€ monatlich. Der m²-Preis sinkt bei größeren Flächen und regelmäßiger Reinigung. Faktoren: Raumaufteilung, Bodenbelag, Möblierung, Sanitäranlagen.`,
+  }
+
+  return {
+    question: questions[type] || `Frage zu ${type}`,
+    shortAnswer: generateAIOptimizedAnswer(type, city),
+    longAnswer: longAnswers[type] || '',
+  }
 }

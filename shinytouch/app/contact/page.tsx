@@ -252,10 +252,10 @@ export default function ContactPage() {
 
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { value: '30', label: 'Tage Zufriedenheitsgarantie' },
+                  { value: '30', label: 'Tage risikofrei testen' },
                   { value: '24h', label: 'Antwortzeit auf Anfragen' },
                   { value: '100%', label: 'Preistransparenz' },
-                  { value: '32+', label: 'Städte bundesweit' },
+                  { value: '600+', label: 'Orte bundesweit' },
                 ].map((stat, idx) => (
                   <div key={idx} className="bg-white rounded-xl p-4 text-center shadow-md">
                     <p className="text-2xl font-bold text-primary-600 mb-0.5">{stat.value}</p>

@@ -7,7 +7,7 @@ export interface City {
   name: string
   plz: string // Postleitzahl für Suche
   region: string // Bundesland
-  priority: 1 | 2 | 3
+  priority: 1 | 2 | 3 | 4 | 5 | 6
   population?: number // Einwohnerzahl für Content-Variation
   intro?: string
   highlights?: string[]
@@ -30,6 +30,33 @@ export interface Service {
 export interface FAQ {
   question: string
   answer: string
+}
+
+export type ObjectCategory =
+  | 'wohnen'
+  | 'buero'
+  | 'handel'
+  | 'gastronomie'
+  | 'beherbergung'
+  | 'gesundheit'
+  | 'bildung'
+  | 'sport'
+  | 'oeffentlich'
+  | 'sonstige'
+
+export interface ObjectType {
+  slug: string
+  name: string
+  category: ObjectCategory
+  categoryName: string // Display name für Kategorie
+  icon: string
+  description: string // Kurze SEO-Beschreibung (~155 Zeichen)
+  shortDescription: string // Sehr kurze Beschreibung für Cards
+  longDescription: string // Ausführlicher SEO-Text (300+ Wörter)
+  challenges: string[] // Spezifische Herausforderungen bei diesem Objekttyp
+  services: string[] // Slugs der relevanten Services
+  benefits: string[] // Vorteile von ShinyTouch für diesen Objekttyp
+  faqs: FAQ[]
 }
 
 export interface BlogPost {

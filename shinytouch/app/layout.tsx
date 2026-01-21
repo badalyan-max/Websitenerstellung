@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     default: 'ShinyTouch Gebäudereinigung Bamberg | Professionelle Reinigung',
     template: '%s | ShinyTouch Gebäudereinigung',
   },
-  description: 'Professionelle Gebäudereinigung in Bamberg und ganz Deutschland. Büroreinigung, Glasreinigung, Grundreinigung mit 30-Tage-Zufriedenheitsgarantie. ✓ 5.0/5 Bewertungen',
+  description: 'Professionelle Gebäudereinigung in Bamberg und ganz Deutschland. Büroreinigung, Glasreinigung, Grundreinigung – 30 Tage risikofrei testen. ✓ 5.0/5 Bewertungen',
   keywords: ['Gebäudereinigung', 'Büroreinigung', 'Reinigung Bamberg', 'Glasreinigung', 'Unterhaltsreinigung', 'Professionelle Reinigung'],
   authors: [{ name: 'ShinyTouch Gebäudereinigung e.K.' }],
   creator: 'ShinyTouch Gebäudereinigung e.K.',
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     url: 'https://www.shinytouchgebaeudereinigung.de',
     siteName: 'ShinyTouch Gebäudereinigung',
     title: 'ShinyTouch Gebäudereinigung Bamberg | Professionelle Reinigung',
-    description: 'Professionelle Gebäudereinigung in Bamberg und ganz Deutschland. 30-Tage-Zufriedenheitsgarantie.',
+    description: 'Professionelle Gebäudereinigung in Bamberg und ganz Deutschland. 30 Tage risikofrei testen.',
     images: [
       {
         url: '/images/og-image.jpg',

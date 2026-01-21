@@ -54,7 +54,7 @@ export const COMPANY_DATA = {
 
   // USPs für Marketing
   usps: [
-    '30-Tage-Zufriedenheitsgarantie',
+    '30 Tage risikofrei testen',
     'Deutschlandweiter Service',
     'Feste Ansprechpartner',
     'Modernste Reinigungstechnik',

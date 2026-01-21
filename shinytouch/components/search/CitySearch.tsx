@@ -12,12 +12,13 @@ interface CitySearchProps {
 
 export function CitySearch({
   cities,
-  placeholder = 'Stadt oder PLZ eingeben...',
+  placeholder = 'Ort oder PLZ eingeben...',
   className = '',
 }: CitySearchProps) {
   const [query, setQuery] = useState('')
   const [isOpen, setIsOpen] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(-1)
+  const containerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const listRef = useRef<HTMLUListElement>(null)
 
@@ -72,10 +73,10 @@ export function CitySearch({
     }
   }, [selectedIndex])
 
-  // Close dropdown when clicking outside
+  // Close dropdown when clicking outside the entire container
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (inputRef.current && !inputRef.current.contains(e.target as Node)) {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
         setIsOpen(false)
       }
     }
@@ -95,7 +96,7 @@ export function CitySearch({
   }, [filteredCities.length])
 
   return (
-    <div className={`relative w-full max-w-xl mx-auto ${className}`}>
+    <div ref={containerRef} className={`relative w-full max-w-xl mx-auto ${className}`}>
       {/* Search Input */}
       <div className="relative">
         <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
@@ -122,7 +123,7 @@ export function CitySearch({
           onFocus={() => filteredCities.length > 0 && setIsOpen(true)}
           placeholder={placeholder}
           className="w-full pl-12 pr-4 py-4 text-lg bg-white border-2 border-secondary-200 rounded-2xl shadow-sm focus:outline-none focus:border-primary-400 focus:ring-4 focus:ring-primary-100 transition-all duration-200"
-          aria-label="Stadt oder PLZ suchen"
+          aria-label="Ort oder PLZ suchen"
           aria-expanded={isOpen}
           aria-controls="city-search-results"
           aria-autocomplete="list"
@@ -156,7 +157,7 @@ export function CitySearch({
           ref={listRef}
           id="city-search-results"
           role="listbox"
-          className="absolute z-50 w-full mt-2 bg-white border border-secondary-200 rounded-xl shadow-xl overflow-hidden max-h-96 overflow-y-auto"
+          className="absolute z-[100] w-full mt-2 bg-white border border-secondary-200 rounded-xl shadow-xl overflow-hidden max-h-96 overflow-y-auto"
         >
           {filteredCities.map((city, index) => (
             <li key={city.slug} role="option" aria-selected={index === selectedIndex}>
@@ -168,6 +169,10 @@ export function CitySearch({
                     : 'hover:bg-secondary-50'
                 }`}
                 onMouseEnter={() => setSelectedIndex(index)}
+                onClick={() => {
+                  setIsOpen(false)
+                  setQuery('')
+                }}
               >
                 <div className="flex items-center gap-3">
                   <div
@@ -224,7 +229,7 @@ export function CitySearch({
               />
             </svg>
           </div>
-          <p className="text-secondary-600 font-medium">Keine Stadt gefunden</p>
+          <p className="text-secondary-600 font-medium">Kein Ort gefunden</p>
           <p className="text-sm text-secondary-400 mt-1">
             Probieren Sie einen anderen Suchbegriff oder eine PLZ
           </p>

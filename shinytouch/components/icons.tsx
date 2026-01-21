@@ -57,6 +57,23 @@ export function BeakerIcon(props: IconProps) {
   )
 }
 
+export function SnowflakeIcon(props: IconProps) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" {...props}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v18m0-18l-3 3m3-3l3 3m-3 15l-3-3m3 3l3-3M3 12h18M3 12l3-3m-3 3l3 3m15-3l-3-3m3 3l-3 3M5.636 5.636l12.728 12.728m-12.728 0l2.121-2.121m-2.121 2.121l2.121 2.121m8.486-14.97l2.121 2.121m-2.121-2.121l2.121-2.121m-12.728 0L8.879 8.879m-3.243-3.243L3.515 3.515m14.849 14.849l2.121 2.121" />
+    </svg>
+  )
+}
+
+export function PlantIcon(props: IconProps) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" {...props}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M12 12.75c-2.485 0-4.5-2.015-4.5-4.5 0-2.485 2.015-4.5 4.5-4.5s4.5 2.015 4.5 4.5c0 2.485-2.015 4.5-4.5 4.5z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3.75c1.5 1.5 2.25 3.75 2.25 5.25M12 3.75c-1.5 1.5-2.25 3.75-2.25 5.25M7.5 6.75c1.5 0 3 .75 4.5 2.25M16.5 6.75c-1.5 0-3 .75-4.5 2.25" />
+    </svg>
+  )
+}
+
 // Benefit Icons
 export function ShieldCheckIcon(props: IconProps) {
   return (
@@ -125,6 +142,8 @@ export const SERVICE_ICONS = {
   unterhaltsreinigung: ArrowPathIcon,
   baureinigung: WrenchScrewdriverIcon,
   hochdruckreinigung: BeakerIcon,
+  winterdienst: SnowflakeIcon,
+  gruenanlagenpflege: PlantIcon,
 } as const
 
 // Benefit Icon Mapping

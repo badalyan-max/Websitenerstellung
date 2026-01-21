@@ -59,6 +59,16 @@ export const SERVICES: Service[] = [
       'Professionelles Erscheinungsbild',
       'Werterhalt der Glasflächen',
     ],
+    faqs: [
+      {
+        question: 'Wie oft sollten Fenster professionell gereinigt werden?',
+        answer: 'Für Bürogebäude empfehlen wir eine Glasreinigung alle 4-8 Wochen. Bei Schaufenstern im Einzelhandel oft wöchentlich. Wir erstellen einen individuellen Reinigungsplan.',
+      },
+      {
+        question: 'Werden auch schwer erreichbare Fenster gereinigt?',
+        answer: 'Ja, mit professioneller Ausrüstung reinigen wir auch Oberlichter, Wintergärten und Glasfassaden in großer Höhe. Sicherheit und Qualität sind dabei gewährleistet.',
+      },
+    ],
   },
   {
     slug: 'grundreinigung',
@@ -81,6 +91,16 @@ export const SERVICES: Service[] = [
       'Basis für regelmäßige Unterhaltsreinigung',
       'Wertsteigerung der Immobilie',
       'Hygienischer Neustart',
+    ],
+    faqs: [
+      {
+        question: 'Wann ist eine Grundreinigung sinnvoll?',
+        answer: 'Eine Grundreinigung empfehlen wir nach Renovierungen, bei Mieterwechsel, vor wichtigen Events oder wenn die letzte Intensivreinigung länger als 12 Monate zurückliegt.',
+      },
+      {
+        question: 'Wie lange dauert eine Grundreinigung?',
+        answer: 'Die Dauer hängt von Fläche und Verschmutzungsgrad ab. Für ein 100m² Büro rechnen Sie mit 4-6 Stunden. Wir nennen Ihnen den genauen Zeitrahmen nach Besichtigung.',
+      },
     ],
   },
   {
@@ -105,6 +125,16 @@ export const SERVICES: Service[] = [
       'Fester Ansprechpartner',
       'Flexible Intervalle',
     ],
+    faqs: [
+      {
+        question: 'Was ist der Unterschied zwischen Unterhalts- und Grundreinigung?',
+        answer: 'Die Unterhaltsreinigung ist die regelmäßige Pflege (täglich bis wöchentlich). Die Grundreinigung ist eine intensive Tiefenreinigung, die 1-2x jährlich ergänzend durchgeführt wird.',
+      },
+      {
+        question: 'Können wir die Reinigungsintervalle anpassen?',
+        answer: 'Selbstverständlich. Wir passen die Intervalle flexibel an Ihren Bedarf an – ob täglich, 2x wöchentlich oder nach individuellem Plan. Änderungen sind jederzeit möglich.',
+      },
+    ],
   },
   {
     slug: 'baureinigung',
@@ -128,6 +158,16 @@ export const SERVICES: Service[] = [
       'Schnelle Durchführung',
       'Einzugstermin wird eingehalten',
     ],
+    faqs: [
+      {
+        question: 'Wann sollte die Baureinigung stattfinden?',
+        answer: 'Idealerweise nach Abschluss aller Bauarbeiten und vor Einzug oder Möblierung. Wir empfehlen 2-3 Tage Vorlauf für eine gründliche Feinreinigung einzuplanen.',
+      },
+      {
+        question: 'Entfernen Sie auch Klebereste und Farbspritzer?',
+        answer: 'Ja, wir entfernen fachgerecht Klebereste, Farbspritzer, Zementreste und andere bautypische Verschmutzungen – schonend für alle Oberflächen.',
+      },
+    ],
   },
   {
     slug: 'hochdruckreinigung',
@@ -150,6 +190,82 @@ export const SERVICES: Service[] = [
       'Umweltfreundlich ohne Chemie möglich',
       'Werterhalt der Außenanlagen',
       'Unfallverhütung durch rutschfreie Böden',
+    ],
+    faqs: [
+      {
+        question: 'Kann Hochdruckreinigung Oberflächen beschädigen?',
+        answer: 'Wir passen den Druck und die Düse an jede Oberfläche an. Empfindliche Materialien wie weiches Holz reinigen wir mit reduziertem Druck oder alternativen Methoden.',
+      },
+      {
+        question: 'Wie oft sollte die Fassade gereinigt werden?',
+        answer: 'Je nach Lage und Verschmutzung empfehlen wir eine Fassadenreinigung alle 2-5 Jahre. Bei starkem Algen- oder Moosbefall auch häufiger.',
+      },
+    ],
+  },
+  {
+    slug: 'winterdienst',
+    name: 'Winterdienst',
+    shortName: 'Winter',
+    icon: '❄️',
+    description: 'Professioneller Winterdienst für sichere Wege und Zufahrten. Schneeräumung und Streudienst – zuverlässig und pünktlich.',
+    shortDescription: 'Sichere Wege im Winter. Schneeräumung und Streudienst für Ihre Verkehrssicherungspflicht.',
+    longDescription: 'Mit unserem professionellen Winterdienst erfüllen Sie Ihre Verkehrssicherungspflicht zuverlässig. Wir räumen Schnee und Eis von Gehwegen, Zufahrten, Parkplätzen und Eingangsbereichen – pünktlich vor Geschäftsbeginn oder nach Ihren Vorgaben. Unser Bereitschaftsdienst ist bei Schneefall und Glätte für Sie im Einsatz.',
+    features: [
+      'Schneeräumung von Gehwegen und Zufahrten',
+      'Streudienst mit abstumpfenden Mitteln',
+      'Parkplatzräumung',
+      'Dachlawinen-Warnschilder',
+      'Bereitschaftsdienst bei Schneefall',
+      'Dokumentation aller Einsätze',
+    ],
+    benefits: [
+      'Verkehrssicherungspflicht erfüllt',
+      'Haftungsrisiko minimiert',
+      'Zuverlässiger Bereitschaftsdienst',
+      'Dokumentierte Nachweise',
+    ],
+    faqs: [
+      {
+        question: 'Wann beginnt der Winterdienst?',
+        answer: 'Der Winterdienst beginnt bei Schneefall oder Glätte. Gehwege müssen werktags ab 7 Uhr, sonn- und feiertags ab 8 Uhr geräumt sein. Wir beginnen entsprechend früher.',
+      },
+      {
+        question: 'Was passiert bei nächtlichem Schneefall?',
+        answer: 'Unser Bereitschaftsdienst überwacht die Wetterlage. Bei Schneefall in der Nacht räumen wir rechtzeitig vor Ihren Öffnungszeiten.',
+      },
+    ],
+  },
+  {
+    slug: 'gruenanlagenpflege',
+    name: 'Grünanlagenpflege',
+    shortName: 'Grün',
+    icon: '🌿',
+    description: 'Professionelle Grünanlagenpflege für gepflegte Außenbereiche. Rasenpflege, Heckenschnitt und Beetpflege aus einer Hand.',
+    shortDescription: 'Gepflegte Grünanlagen das ganze Jahr. Rasenmähen, Heckenschnitt und Beetpflege.',
+    longDescription: 'Gepflegte Grünanlagen sind die Visitenkarte Ihrer Immobilie. Unsere Gartenpflege-Teams sorgen das ganze Jahr über für ansprechende Außenbereiche. Von regelmäßiger Rasenpflege über Heckenschnitt bis zur saisonalen Beetbepflanzung – wir übernehmen alle Arbeiten rund um Ihre Grünanlagen.',
+    features: [
+      'Rasenmähen und Rasenpflege',
+      'Heckenschnitt und Formschnitt',
+      'Unkrautentfernung',
+      'Laubbeseitigung im Herbst',
+      'Beetpflege und Bepflanzung',
+      'Bewässerung bei Trockenheit',
+    ],
+    benefits: [
+      'Gepflegtes Erscheinungsbild',
+      'Wertsteigerung der Immobilie',
+      'Zeitersparnis für Eigentümer',
+      'Professionelle Ausrüstung',
+    ],
+    faqs: [
+      {
+        question: 'Wie oft sollte der Rasen gemäht werden?',
+        answer: 'In der Wachstumsphase (April bis Oktober) empfehlen wir wöchentliches Mähen. Im Frühjahr und Herbst kann ein 2-wöchiger Rhythmus ausreichen.',
+      },
+      {
+        question: 'Entsorgen Sie auch das Schnittgut?',
+        answer: 'Ja, wir entsorgen Rasenschnitt, Heckenschnitt und Laub fachgerecht. Die Entsorgungskosten sind im Angebot enthalten.',
+      },
     ],
   },
 ]

@@ -5,7 +5,7 @@ import { getCityBySlug, getAllCitySlugs } from '@/lib/cities'
 import { SERVICES } from '@/lib/services'
 import { COMPANY_DATA } from '@/lib/company'
 import { JsonLd } from '@/components/seo/json-ld'
-import { generateLocalBusinessSchema, generateBreadcrumbSchema } from '@/lib/schema'
+import { generateLocalBusinessSchema, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/schema'
 import { MapPinIcon, SERVICE_ICONS } from '@/components/icons'
 import {
   generateCityIntro,
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: CityPageProps): Promise<Metad
   const city = getCityBySlug(citySlug)
 
   if (!city) {
-    return { title: 'Stadt nicht gefunden' }
+    return { title: 'Ort nicht gefunden' }
   }
 
   const title = `Gebäudereinigung ${city.name} | ShinyTouch`
@@ -72,6 +72,7 @@ export default async function CityPage({ params }: CityPageProps) {
       {/* Schema Markup */}
       <JsonLd data={generateLocalBusinessSchema(city)} />
       <JsonLd data={generateBreadcrumbSchema(breadcrumbs)} />
+      <JsonLd data={generateFAQSchema(faqs)} />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-gradient-to-br from-secondary-50 via-white to-primary-50 overflow-hidden">
@@ -154,7 +155,7 @@ export default async function CityPage({ params }: CityPageProps) {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  <span>30-Tage-Garantie</span>
+                  <span>30 Tage risikofrei</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-secondary-600">
                   <svg
