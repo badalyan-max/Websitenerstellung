@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import type { BlogPost } from '@/lib/types'
 import { formatBlogDate } from '@/lib/blog'
@@ -10,31 +11,44 @@ interface BlogCardProps {
 export function BlogCard({ post, featured = false }: BlogCardProps) {
   return (
     <article
-      className={`group bg-white rounded-2xl overflow-hidden border border-secondary-100 hover:border-primary-200 hover:shadow-xl transition-all duration-300 ${
-        featured ? 'md:col-span-2 md:grid md:grid-cols-2' : ''
-      }`}
-    >
-      {/* Image Placeholder */}
-      <div
-        className={`relative bg-gradient-to-br from-primary-100 to-primary-50 ${
-          featured ? 'h-64 md:h-full' : 'h-48'
+      className={`group bg-white rounded-2xl overflow-hidden border border-secondary-100 hover:border-primary-200 hover:shadow-xl transition-all duration-300 ${featured ? 'md:col-span-2 md:grid md:grid-cols-2' : ''
         }`}
+    >
+      {/* Image Section */}
+      <div
+        className={`relative overflow-hidden ${featured ? 'h-64 md:h-full' : 'h-48'
+          }`}
       >
-        <div className="absolute inset-0 flex items-center justify-center">
-          <svg
-            className="w-16 h-16 text-primary-300"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={1}
-              d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+        {post.image ? (
+          <>
+            <Image
+              src={post.image}
+              alt={post.imageAlt || post.title}
+              title={post.imageTitle || post.title}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes={featured ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"}
             />
-          </svg>
-        </div>
+            {/* Overlay for better text readability if needed, but not on card */}
+            <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors duration-300" />
+          </>
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-100 to-primary-50 flex items-center justify-center">
+            <svg
+              className="w-16 h-16 text-primary-300"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1}
+                d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+              />
+            </svg>
+          </div>
+        )}
 
         {/* Tags */}
         {post.tags && post.tags.length > 0 && (
@@ -63,9 +77,8 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
 
         {/* Title */}
         <h2
-          className={`font-bold text-secondary-900 group-hover:text-primary-600 transition-colors mb-3 ${
-            featured ? 'text-2xl lg:text-3xl' : 'text-xl'
-          }`}
+          className={`font-bold text-secondary-900 group-hover:text-primary-600 transition-colors mb-3 ${featured ? 'text-2xl lg:text-3xl' : 'text-xl'
+            }`}
         >
           <Link href={`/blog/${post.slug}`} className="hover:underline">
             {post.title}
@@ -74,9 +87,8 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
 
         {/* Description */}
         <p
-          className={`text-secondary-600 mb-4 ${
-            featured ? 'text-base' : 'text-sm line-clamp-2'
-          }`}
+          className={`text-secondary-600 mb-4 ${featured ? 'text-base' : 'text-sm line-clamp-2'
+            }`}
         >
           {post.description}
         </p>
