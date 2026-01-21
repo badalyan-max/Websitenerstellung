@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd shinytouch && npm run build",
+  "installCommand": "cd shinytouch && npm install",
+  "framework": "nextjs",
+  "outputDirectory": "shinytouch/.next"
+}
