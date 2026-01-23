@@ -7534,7 +7534,9 @@ Keine Lust selbst zu reinigen? ShinyTouch Gebäudereinigung übernimmt die Arbei
     `.trim(),
     publishedAt: '2026-01-21',
     tags: ['Tipps', 'Hochdruck', 'Geräte', 'Anleitung'],
-    image: '/images/blog/hochdruckreiniger-richtig-nutzen.jpg',
+    image: '/images/blog/hochdruckreiniger-richtig-nutzen.webp',
+    imageAlt: 'Mann reinigt Terrasse mit Hochdruckreiniger, deutlicher Unterschied sichtbar, sommerliches Licht',
+    imageTitle: 'Hochdruckreiniger richtig nutzen - Tipps für Terrasse und Wege',
   },
   // ========================================
   // SAISONALE & TREND-THEMEN: Evergreen + Traffic-Peaks
@@ -7648,7 +7650,9 @@ Wir bieten zuverlässigen Winterdienst für Privat- und Gewerbekunden – mit do
 `,
     publishedAt: '2026-01-21',
     tags: ['Saisonal', 'Winter', 'Recht', 'Winterdienst'],
-    image: '/images/blog/winterdienst-pflichten-eigentuemer.jpg',
+    image: '/images/blog/winterdienst-pflichten-eigentuemer.webp',
+    imageAlt: 'Schneeschaufel auf geräumtem Gehweg im Winter, gestreuter Weg, Schnee an den Seiten',
+    imageTitle: 'Winterdienst Pflichten und Räumpflicht für Eigentümer',
   },
   {
     slug: 'allergikerfreundlich-reinigen',
@@ -7777,7 +7781,9 @@ Wir reinigen Ihr Zuhause oder Büro allergiker-gerecht – für ein beschwerdefr
 `,
     publishedAt: '2026-01-21',
     tags: ['Gesundheit', 'Allergie', 'Tipps', 'Pollenzeit'],
-    image: '/images/blog/allergikerfreundlich-reinigen.jpg',
+    image: '/images/blog/allergikerfreundlich-reinigen.webp',
+    imageAlt: 'Helles Schlafzimmer mit Luftreiniger und HEPA-Filter Staubsauger, staubfreie Atmosphäre',
+    imageTitle: 'Allergikerfreundlich reinigen - Tipps gegen Pollen und Milben',
   },
   {
     slug: 'desinfektion-vs-reinigung',
@@ -7932,7 +7938,9 @@ Wir beraten Sie, welche Hygienemaßnahmen für Ihren Betrieb sinnvoll und wirtsc
 `,
     publishedAt: '2026-01-21',
     tags: ['Hygiene', 'Desinfektion', 'Wissen', 'Gesundheit'],
-    image: '/images/blog/desinfektion-vs-reinigung.jpg',
+    image: '/images/blog/desinfektion-vs-reinigung.webp',
+    imageAlt: 'Vergleichskonzept: Reinigungstuch vs. Desinfektionsspray, Symbol für hygienische Sauberkeit',
+    imageTitle: 'Desinfektion vs Reinigung - Der Unterschied erklärt',
   },
   {
     slug: 'smart-home-reinigung-saugroboter',
@@ -8092,7 +8100,9 @@ Wir ergänzen Ihre Smart-Home-Reinigung perfekt – für die Aufgaben, die kein 
 `,
     publishedAt: '2026-01-21',
     tags: ['Technik', 'Saugroboter', 'Smart Home', 'Trends'],
-    image: '/images/blog/smart-home-reinigung-saugroboter.jpg',
+    image: '/images/blog/smart-home-reinigung-saugroboter.webp',
+    imageAlt: 'Saugroboter reinigt unter modernem Sofa im Wohnzimmer, Smart Home Konzept',
+    imageTitle: 'Smart Home Reinigung mit Saugroboter - Vorteile und Grenzen',
   },
   {
     slug: 'nachhaltig-putzen-oekologisch',
@@ -8252,7 +8262,9 @@ Wir reinigen gründlich UND umweltbewusst – fragen Sie nach unserem Öko-Reini
 `,
     publishedAt: '2026-01-21',
     tags: ['Nachhaltigkeit', 'Umwelt', 'Tipps', 'Hausmittel'],
-    image: '/images/blog/nachhaltig-putzen-oekologisch.jpg',
+    image: '/images/blog/nachhaltig-putzen-oekologisch.webp',
+    imageAlt: 'Ökologische Reinigungsmittel: Zitrone, Essig, Natron und Holzbürste auf grünem Hintergrund',
+    imageTitle: 'Nachhaltig putzen mit Hausmitteln - Umweltfreundlich und effektiv',
   },
   {
     slug: 'hygiene-buero-standards',
@@ -8408,7 +8420,9 @@ Wir entwickeln ein maßgeschneidertes Hygienekonzept für Ihr Büro – fordern 
 `,
     publishedAt: '2026-01-21',
     tags: ['B2B', 'Hygiene', 'Büro', 'Corona'],
-    image: '/images/blog/hygiene-buero-standards.jpg',
+    image: '/images/blog/hygiene-buero-standards.webp',
+    imageAlt: 'Modernes Büro mit Hygienespender im Vordergrund, saubere Arbeitsplätze',
+    imageTitle: 'Büro-Hygiene Standards nach Corona - Sicher arbeiten',
   },
   {
     slug: 'entruempelung-messie-wohnung',
@@ -8566,7 +8580,9 @@ Wir helfen diskret und professionell – auch in schwierigen Situationen.
 `,
     publishedAt: '2026-01-21',
     tags: ['Spezial', 'Entrümpelung', 'Sonder', 'Messie'],
-    image: '/images/blog/entruempelung-messie-wohnung.jpg',
+    image: '/images/blog/entruempelung-messie-wohnung.webp',
+    imageAlt: 'Vorher-Nachher Konzept einer entrümpelten Wohnung, Stapel Kartons vs. sauberer Raum',
+    imageTitle: 'Entrümpelung Messie-Wohnung - Ablauf und professionelle Hilfe',
   },
   {
     slug: 'tatortreinigung-spezialreiniger',
@@ -8736,7 +8752,9 @@ Wir übernehmen diese schwere Aufgabe für Sie – professionell und respektvoll
 `,
     publishedAt: '2026-01-21',
     tags: ['Spezial', 'Tatort', 'Sonder', 'Desinfektion'],
-    image: '/images/blog/tatortreinigung-spezialreiniger.jpg',
+    image: '/images/blog/tatortreinigung-spezialreiniger.webp',
+    imageAlt: 'Professioneller Tatortreiniger in Schutzkleidung und Maske reinigt kontaminierten Bereich',
+    imageTitle: 'Tatortreinigung - Spezialreinigung nach Leichenfund oder Unfall',
   },
   {
     slug: 'geruchsbeseitigung-professionell',
@@ -8894,7 +8912,9 @@ Wir beseitigen jeden Geruch – dauerhaft und gründlich.
 `,
     publishedAt: '2026-01-21',
     tags: ['Spezial', 'Geruch', 'Sonder', 'Desinfektion'],
-    image: '/images/blog/geruchsbeseitigung-professionell.jpg',
+    image: '/images/blog/geruchsbeseitigung-professionell.webp',
+    imageAlt: 'Ozongenerator in leerem Raum, visualisierte Luftreinigung, entfernt Gerüche',
+    imageTitle: 'Geruchsbeseitigung professionell - Ozonbehandlung gegen Rauch und Tiergeruch',
   },
   // ========================================
   // BESTEHENDE ARTIKEL
@@ -8949,7 +8969,9 @@ Nein, wir arbeiten mit transparenten Festpreisen ohne Überraschungen.
     publishedAt: '2026-01-15',
     updatedAt: '2026-01-20',
     tags: ['Preise', 'Kosten', 'Gebäudereinigung'],
-    image: '/images/blog/kosten-gebaeudereinigung.jpg',
+    image: '/images/blog/kosten-gebaeudereinigung.webp',
+    imageAlt: 'Taschenrechner, Geldscheine und Reinigungsplan auf Schreibtisch, Kalkulation',
+    imageTitle: 'Was kostet Gebäudereinigung? Preise und Kostenfaktoren',
   },
   {
     slug: 'bueroreinigung-wie-oft',
@@ -9008,7 +9030,9 @@ Die optimale Frequenz ist individuell. Lassen Sie sich beraten – wir analysier
     `.trim(),
     publishedAt: '2026-01-10',
     tags: ['Büroreinigung', 'Hygiene', 'Tipps'],
-    image: '/images/blog/bueroreinigung-frequenz.jpg',
+    image: '/images/blog/bueroreinigung-frequenz.webp',
+    imageAlt: 'Wanduhr in modernem Büro, Symbol für Zeitmanagement und Reinigungsplan',
+    imageTitle: 'Büroreinigung wie oft? Intervalle und Empfehlungen',
   },
   {
     slug: 'fruejahrsputz-checkliste-unternehmen',

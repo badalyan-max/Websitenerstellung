@@ -4,47 +4,64 @@
 All blog post images have been successfully generated and updated in `/public/images/blog/`:
 
 ### Appliances & Cleaning Basics
-1.  **Küche**: `kueche-gruendlich-reinigen-checkliste.webp`
-2.  **Bad**: `bad-putzen-reihenfolge.webp`
-3.  **Kalk**: `kalk-entfernen-hausmittel.webp`
-4.  **Schimmel**: `schimmel-entfernen-sicher.webp`
-5.  **Edelstahl**: `edelstahl-reinigen-pflegen.webp`
-6.  **Backofen**: `backofen-reinigen-anleitung.webp`
-7.  **Waschmaschine**: `waschmaschine-reinigen-geruch.webp`
-8.  **Spülmaschine**: `spuelmaschine-reinigen-anleitung.webp`
+*   `kueche-gruendlich-reinigen-checkliste.webp`
+*   `bad-putzen-reihenfolge.webp`
+*   `kalk-entfernen-hausmittel.webp`
+*   `schimmel-entfernen-sicher.webp`
+*   `edelstahl-reinigen-pflegen.webp`
+*   `backofen-reinigen-anleitung.webp`
+*   `waschmaschine-reinigen-geruch.webp`
+*   `spuelmaschine-reinigen-anleitung.webp`
 
 ### B2B & Commercial
-9.  **Praxis**: `praxisreinigung-arztpraxis.webp`
-10. **Hotel**: `hotelreinigung-standards.webp`
-11. **Schule**: `schulreinigung-hygiene.webp`
-12. **Kita**: `kindergarten-reinigung-sicherheit.webp`
-13. **Restaurant**: `restaurantreinigung-haccp.webp`
-14. **Fitness**: `fitnessstudio-reinigung-hygiene.webp`
-15. **Einzelhandel**: `einzelhandel-reinigung-verkauf.webp`
-16. **Autohaus**: `autohaus-reinigung-showroom.webp`
-17. **Bankfiliale**: `bankfiliale-reinigung-sicherheit.webp`
-18. **Apotheke**: `apotheke-reinigung-pharma.webp`
-19. **Reinigungsfirma (Hiring)**: `reinigungsfirma-beauftragen-tipps.webp`
+*   `praxisreinigung-arztpraxis.webp`
+*   `hotelreinigung-standards.webp`
+*   `schulreinigung-hygiene.webp`
+*   `kindergarten-reinigung-sicherheit.webp`
+*   `restaurantreinigung-haccp.webp`
+*   `fitnessstudio-reinigung-hygiene.webp`
+*   `einzelhandel-reinigung-verkauf.webp`
+*   `autohaus-reinigung-showroom.webp`
+*   `bankfiliale-reinigung-sicherheit.webp`
+*   `apotheke-reinigung-pharma.webp`
+*   `reinigungsfirma-beauftragen-tipps.webp`
+*   **[NEW]** `hygiene-buero-standards.webp`
+*   **[NEW]** `bueroreinigung-frequenz.webp`
+*   **[NEW]** `kosten-gebaeudereinigung.webp`
 
 ### Checklists & Guides
-20. **Putzplan**: `putzplan-vorlage-erstellen.webp`
-21. **Reinigungskraft einstellen**: `reinigungskraft-einstellen-ratgeber.webp`
-22. **Umzugsreinigung**: `umzugsreinigung-checkliste.webp`
-23. **Endreinigung (Vermieter)**: `endreinigung-wohnung-vermieter.webp`
-24. **Büro Reinigungsplan**: `reinigungsplan-buero-vorlage.webp`
-25. **Hygieneplan**: `hygieneplan-erstellen-vorlage.webp`
-26. **Herbstputz**: `herbstputz-checkliste-haus.webp`
+*   `putzplan-vorlage-erstellen.webp`
+*   `reinigungskraft-einstellen-ratgeber.webp`
+*   `umzugsreinigung-checkliste.webp`
+*   `endreinigung-wohnung-vermieter.webp`
+*   `reinigungsplan-buero-vorlage.webp`
+*   `hygieneplan-erstellen-vorlage.webp`
+*   `herbstputz-checkliste-haus.webp`
+*   **[NEW]** `hochdruckreiniger-richtig-nutzen.webp`
+*   **[NEW]** `winterdienst-pflichten-eigentuemer.webp`
+*   **[NEW]** `allergikerfreundlich-reinigen.webp`
+*   **[NEW]** `desinfektion-vs-reinigung.webp`
+*   **[NEW]** `smart-home-reinigung-saugroboter.webp`
+*   **[NEW]** `nachhaltig-putzen-oekologisch.webp`
+*   **[NEW]** `entruempelung-messie-wohnung.webp`
 
 ### Special Cleaning Topics
-27. **Teppichreinigung**: `teppichreinigung-professionell.webp`
-28. **Polsterreinigung**: `polsterreinigung-professionell.webp`
-29. **Fassadenreinigung**: `fassadenreinigung-methoden-kosten.webp`
-30. **Dachrinnen**: `dachrinnenreinigung-hausbesitzer.webp`
-31. **Graffiti**: `graffiti-entfernen-methoden.webp`
-32. **Steinreinigung**: `steinreinigung-pflaster-terrasse.webp`
-33. **Markise**: `markise-reinigen-pflegen.webp`
-34. **Jalousien**: `jalousien-reinigen-anleitung.webp`
-35. **Solaranlagen**: `solaranlage-reinigen-ertrag.webp`
+*   `teppichreinigung-professionell.webp`
+*   `polsterreinigung-professionell.webp`
+*   `fassadenreinigung-methoden-kosten.webp`
+*   `dachrinnenreinigung-hausbesitzer.webp`
+*   `graffiti-entfernen-methoden.webp`
+*   `steinreinigung-pflaster-terrasse.webp`
+*   `markise-reinigen-pflegen.webp`
+*   `jalousien-reinigen-anleitung.webp`
+*   `solaranlage-reinigen-ertrag.webp`
+*   **[NEW]** `tatortreinigung-spezialreiniger.webp`
+*   **[NEW]** `geruchsbeseitigung-professionell.webp`
 
-## 2. Missing Images (To Be Generated)
-*None. All images are complete.*
+## 2. Missing Images (Pending Generation)
+The following posts are pending generation (Quota Limit Reached):
+
+*   **Frühjahrsputz Checkliste**: `fruejahrsputz-checkliste-unternehmen.jpg`
+    *   *Prompt*: clipboard with spring cleaning checklist on a clean surface. Tulip or spring flower nearby. 16:9 aspect ratio. WebP format.
+*   **Nachhaltige Reinigungsmittel**: `nachhaltige-reinigungsmittel-vorteile.jpg`
+    *   *Prompt*: Group of eco-friendly cleaning product bottles with green leaves symbol. Professional yet green image. 16:9 aspect ratio. WebP format.
