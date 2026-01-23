@@ -9099,7 +9099,7 @@ Fordern Sie jetzt Ihr kostenloses Angebot an!
     `.trim(),
     publishedAt: '2026-01-05',
     tags: ['Frühjahrsputz', 'Checkliste', 'Grundreinigung'],
-    image: '/images/blog/fruejahrsputz-checkliste.jpg',
+    image: '/images/blog/fruejahrsputz-checkliste.webp',
   },
   {
     slug: 'nachhaltige-reinigungsmittel-vorteile',
@@ -9154,7 +9154,7 @@ Sprechen Sie uns an – wir beraten Sie gerne zur nachhaltigen Gebäudereinigung
     `.trim(),
     publishedAt: '2025-12-20',
     tags: ['Nachhaltigkeit', 'Umwelt', 'Reinigungsmittel'],
-    image: '/images/blog/nachhaltige-reinigung.jpg',
+    image: '/images/blog/nachhaltige-reinigung.webp',
   },
 ]
 
