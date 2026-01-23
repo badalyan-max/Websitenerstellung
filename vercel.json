@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd shinytouch && npm run vercel-build",
+  "outputDirectory": "shinytouch/.next",
+  "installCommand": "cd shinytouch && npm install",
+  "framework": "nextjs"
+}
