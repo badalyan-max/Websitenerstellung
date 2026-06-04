@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+/* ============================================================
+   CraftOS Design System — "Engineered Blueprint / Betriebssystem"
+   Brand 1:1 aus der App: Indigo #6366f1 + Cyan #22d3ee (Node)
+   ============================================================ */
+@theme {
+  /* Primary — Indigo (Marke) */
+  --color-primary-50: #eef2ff;
+  --color-primary-100: #e0e7ff;
+  --color-primary-200: #c7d2fe;
+  --color-primary-300: #a5b4fc;
+  --color-primary-400: #818cf8;
+  --color-primary-500: #6366f1;
+  --color-primary-600: #4f46e5;
+  --color-primary-700: #4338ca;
+  --color-primary-800: #3730a3;
+  --color-primary-900: #312e81;
+  --color-primary-950: #1e1b4b;
+
+  /* Node — Cyan (das aktive/digitale Element im Logo) */
+  --color-node-300: #67e8f9;
+  --color-node-400: #22d3ee;
+  --color-node-500: #06b6d4;
+  --color-node-600: #0891b2;
+
+  /* CTA — Amber (Handwerk-Wärme, hohe Sichtbarkeit) */
+  --color-cta: #f97316;
+  --color-cta-light: #fb923c;
+  --color-cta-dark: #ea580c;
+
+  /* Ink / Slate (Text & dunkle Flächen) */
+  --color-ink-50: #f8fafc;
+  --color-ink-100: #f1f5f9;
+  --color-ink-200: #e2e8f0;
+  --color-ink-300: #cbd5e1;
+  --color-ink-400: #94a3b8;
+  --color-ink-500: #64748b;
+  --color-ink-600: #475569;
+  --color-ink-700: #334155;
+  --color-ink-800: #1e293b;
+  --color-ink-900: #0f172a;
+  --color-ink-950: #020617;
+
+  /* Status */
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+
+  /* Fonts */
+  --font-display: var(--font-bricolage), 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-sans: var(--font-plex-sans), 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+/* ---------- Base ---------- */
+html {
+  color-scheme: light only;
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-ink-50);
+  color: var(--color-ink-900);
+}
+
+:root { color-scheme: light only; }
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background-color: var(--color-primary-200);
+  color: var(--color-primary-950);
+}
+
+/* ---------- Utility: Mono Eyebrow / Spec-Label ---------- */
+.spec-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ---------- Blueprint grid background ---------- */
+.bg-blueprint {
+  background-image:
+    linear-gradient(to right, rgba(99, 102, 241, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(99, 102, 241, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.bg-blueprint-dark {
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.10) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.10) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Radial fade mask helper for grids */
+.mask-fade {
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 100%);
+}
+
+/* ---------- Animations ---------- */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes node-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.55; transform: scale(0.82); }
+}
+@keyframes glow-pan {
+  0%   { transform: translateX(-30%); }
+  100% { transform: translateX(130%); }
+}
+
+.animate-fade-up {
+  opacity: 0;
+  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.animate-node-pulse { animation: node-pulse 2.4s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up { animation: none; opacity: 1; transform: none; }
+  .animate-node-pulse { animation: none; }
+}
+
+/* Staggered reveal delays */
+.delay-1 { animation-delay: 0.08s; }
+.delay-2 { animation-delay: 0.16s; }
+.delay-3 { animation-delay: 0.24s; }
+.delay-4 { animation-delay: 0.32s; }
+.delay-5 { animation-delay: 0.40s; }
+.delay-6 { animation-delay: 0.48s; }
+
+/* ---------- Components ---------- */
+.btn-cta {
+  background-color: var(--color-cta);
+  color: white;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.10), 0 8px 24px -8px rgba(249, 115, 22, 0.55);
+  transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease;
+}
+.btn-cta:hover {
+  background-color: var(--color-cta-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12), 0 14px 32px -8px rgba(249, 115, 22, 0.65);
+}
+
+.card-hover {
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px -24px rgba(15, 23, 42, 0.28);
+  border-color: var(--color-primary-300);
+}
