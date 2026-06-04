@@ -16,40 +16,23 @@ export default function ImpressumPage() {
 
       <LegalSection heading="Anbieter">
         <DataBlock
-          lines={['[Firmenname]', '[Straße und Hausnummer]', '[PLZ] [Ort]', 'Deutschland']}
+          lines={['Edgar Badalyan', 'Paul-Keller-Ring 41', '96052 Bamberg', 'Deutschland']}
         />
+        <p className="text-sm text-ink-500">Einzelunternehmer · CraftOS</p>
       </LegalSection>
 
       <LegalSection heading="Kontakt">
         <DataBlock
-          lines={['Telefon: [Telefonnummer]', `E-Mail: ${site.email}`, `Website: ${site.url}`]}
-        />
-      </LegalSection>
-
-      <LegalSection heading="Vertreten durch">
-        <p>[Name des Geschäftsführers / Inhabers]</p>
-      </LegalSection>
-
-      <LegalSection heading="Registereintrag">
-        <DataBlock
           lines={[
-            'Eintragung im Handelsregister',
-            'Registergericht: [Amtsgericht]',
-            'Registernummer: [HRB-Nummer]',
+            'Telefon: +49 151 55631914',
+            `E-Mail: ${site.email}`,
+            `Website: ${site.url}`,
           ]}
         />
       </LegalSection>
 
-      <LegalSection heading="Umsatzsteuer-ID">
-        <p>
-          Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:
-          <br />
-          <span className="font-semibold text-ink-900">[DE123456789]</span>
-        </p>
-      </LegalSection>
-
       <LegalSection heading="Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV">
-        <DataBlock lines={['[Name]', '[Straße und Hausnummer]', '[PLZ] [Ort]']} />
+        <DataBlock lines={['Edgar Badalyan', 'Paul-Keller-Ring 41', '96052 Bamberg']} />
       </LegalSection>
 
       <LegalSection heading="Haftung für Inhalte">

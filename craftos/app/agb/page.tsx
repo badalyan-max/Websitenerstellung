@@ -14,8 +14,9 @@ export default function AgbPage() {
       <LegalSection heading="§ 1 Geltungsbereich">
         <p>
           Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für die Nutzung der Software
-          „CraftOS" sowie aller damit verbundenen Leistungen, die [Firmenname] (nachfolgend
-          „Anbieter") gegenüber Unternehmern im Sinne des § 14 BGB erbringt.
+          „CraftOS" sowie aller damit verbundenen Leistungen, die Edgar Badalyan – CraftOS,
+          Paul-Keller-Ring 41, 96052 Bamberg (nachfolgend „Anbieter") gegenüber Unternehmern
+          im Sinne des § 14 BGB erbringt.
         </p>
       </LegalSection>
 

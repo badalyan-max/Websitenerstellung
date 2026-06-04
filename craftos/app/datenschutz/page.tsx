@@ -20,7 +20,12 @@ export default function DatenschutzPage() {
 
       <LegalSection heading="Verantwortlicher">
         <DataBlock
-          lines={['[Firmenname]', '[Straße und Hausnummer]', '[PLZ] [Ort]', `E-Mail: ${site.email}`]}
+          lines={[
+            'Edgar Badalyan',
+            'Paul-Keller-Ring 41',
+            '96052 Bamberg',
+            `E-Mail: ${site.email}`,
+          ]}
         />
       </LegalSection>
 

@@ -1,17 +1,19 @@
 export function LegalShell({
   title,
   updated,
+  eyebrow = 'Rechtliches',
   children,
 }: {
   title: string
   updated?: string
+  eyebrow?: string
   children: React.ReactNode
 }) {
   return (
     <section className="bg-white">
       <div className="border-b border-ink-200 bg-ink-50">
         <div className="mx-auto max-w-3xl px-5 py-14 sm:px-8">
-          <p className="spec-label text-primary-600">Rechtliches</p>
+          <p className="spec-label text-primary-600">{eyebrow}</p>
           <h1 className="mt-3 font-display text-4xl font-extrabold text-ink-900">{title}</h1>
           {updated && <p className="mt-2 font-mono text-xs text-ink-400">Stand: {updated}</p>}
         </div>

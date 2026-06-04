@@ -23,6 +23,7 @@ const cols = [
   {
     title: 'Rechtliches',
     links: [
+      { label: 'Support & Hilfe', href: '/support' },
       { label: 'Impressum', href: '/impressum' },
       { label: 'Datenschutz', href: '/datenschutz' },
       { label: 'AGB', href: '/agb' },
