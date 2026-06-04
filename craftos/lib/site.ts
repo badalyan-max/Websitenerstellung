@@ -10,7 +10,7 @@ export const site = {
   // Login/Registrierung läuft über die App-Subdomain
   ctaUrl: 'https://app.craftos.eu',
   demoUrl: 'https://app.craftos.eu/demo',
-  email: 'kontakt@craftos.eu',
+  email: 'support@craftos.eu',
   locale: 'de_DE',
 } as const
 
