@@ -14,6 +14,8 @@ import { LagerDemo } from '@/components/demos/LagerDemo'
 import { breadcrumbSchema, faqSchema } from '@/lib/schema'
 import { funktionen, getFunktion } from '@/lib/funktionen'
 import { site } from '@/lib/site'
+import { funktionBilder } from '@/lib/images'
+import { BildBanner } from '@/components/ui/BildBanner'
 
 const DEMOS = {
   angebot: AngebotDemo,
@@ -106,6 +108,8 @@ export default async function FunktionDetailPage({
           </div>
         </div>
       </section>
+
+      {funktionBilder[f.slug] && <BildBanner bild={funktionBilder[f.slug]} className="mb-16" />}
 
       {/* FAQ */}
       <section className="pb-16 lg:pb-20">

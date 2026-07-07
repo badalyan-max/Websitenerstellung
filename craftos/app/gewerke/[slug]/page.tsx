@@ -10,6 +10,8 @@ import { breadcrumbSchema, faqSchema } from '@/lib/schema'
 import { gewerke, getGewerk } from '@/lib/gewerke'
 import { getFunktion } from '@/lib/funktionen'
 import { site } from '@/lib/site'
+import { gewerkBilder } from '@/lib/images'
+import { BildBanner } from '@/components/ui/BildBanner'
 
 export function generateStaticParams() {
   return gewerke.map((g) => ({ slug: g.slug }))
@@ -55,6 +57,8 @@ export default async function GewerkDetailPage({
       <JsonLd data={faqSchema(g.faq)} />
 
       <PageHero eyebrow={`CraftOS für ${g.kurz}`} title={g.heroTitle} intro={g.heroIntro} />
+
+      {gewerkBilder[g.slug] && <BildBanner bild={gewerkBilder[g.slug]} priority />}
 
       {/* Pain-Points → Lösungen */}
       <section className="py-16 lg:py-20">

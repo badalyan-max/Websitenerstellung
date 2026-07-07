@@ -1,7 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 import { CtaButton, GhostButton, Eyebrow } from '@/components/ui/primitives'
+import { heroWerkbank } from '@/lib/images'
 
 /**
  * Hammer-Hero v2: Ein massiver Hammer schlägt von oben auf „Papierkram." —
@@ -76,13 +78,21 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden bg-ink-950 text-ink-900">
-      <div className="bg-werkbank mask-fade absolute inset-0" aria-hidden="true" />
-      {/* Werkstatt-Licht */}
-      <div
-        className="absolute -top-44 left-1/2 h-[30rem] w-[46rem] -translate-x-1/2 rounded-full opacity-25 blur-[130px]"
-        style={{ background: 'radial-gradient(circle, #f2af38 0%, transparent 70%)' }}
+      {/* Werkstatt-Foto als Bühne (dekorativ) */}
+      <Image
+        src={heroWerkbank.src}
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center opacity-55"
         aria-hidden="true"
       />
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-ink-950/85 via-ink-950/60 to-ink-950"
+        aria-hidden="true"
+      />
+      <div className="bg-werkbank mask-fade absolute inset-0 opacity-50" aria-hidden="true" />
 
       <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-16 sm:px-8 lg:pb-28 lg:pt-24">
         <div className="mx-auto max-w-4xl text-center">

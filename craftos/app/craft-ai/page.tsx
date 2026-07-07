@@ -26,6 +26,8 @@ import {
 import { KiChatDemo } from '@/components/demos/KiChatDemo'
 import { breadcrumbSchema, faqSchema } from '@/lib/schema'
 import { site, creditPakete } from '@/lib/site'
+import { craftAiFunken } from '@/lib/images'
+import { BildBanner } from '@/components/ui/BildBanner'
 
 export const metadata: Metadata = {
   title: 'Craft AI – KI für Handwerksbetriebe',
@@ -140,6 +142,8 @@ export default function CraftAiPage() {
         }
         intro="Craft AI arbeitet mit Ihren echten Betriebsdaten: Belege auslesen, Baustellen analysieren, Fragen beantworten. Der Mensch behält das letzte Wort – die KI rechnet nie final."
       />
+
+      <BildBanner bild={craftAiFunken} priority />
 
       {/* Demo + Draft-First-Prinzip */}
       <section className="py-16 lg:py-20">

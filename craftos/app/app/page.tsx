@@ -23,6 +23,8 @@ import {
 import { ZeitenDemo } from '@/components/demos/ZeitenDemo'
 import { breadcrumbSchema, faqSchema } from '@/lib/schema'
 import { site } from '@/lib/site'
+import { appBaustelle } from '@/lib/images'
+import { BildBanner } from '@/components/ui/BildBanner'
 
 export const metadata: Metadata = {
   title: 'Mobile-App – Die Baustelle in der Tasche (iOS & Android)',
@@ -120,6 +122,8 @@ export default function AppPage() {
         }
         intro="Zeiten, Fotos, Berichte, Aufmaß, Mängel und Abnahmen – direkt vor Ort erfasst statt abends abgetippt. Offline-fähig, mit Face ID und Push."
       />
+
+      <BildBanner bild={appBaustelle} priority />
 
       {/* Demo + GPS-Hinweis */}
       <section className="py-16 lg:py-20">
