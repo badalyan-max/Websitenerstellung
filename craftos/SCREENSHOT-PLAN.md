@@ -1,11 +1,12 @@
 # Screenshot-Plan — benötigte App-Screenshots für craftos.eu
 
-> **Stand 08.07.2026:** 17 von 18 Slots sind mit echten App-Screenshots befüllt
-> (aufgenommen per Playwright aus Web-App + Mobile-App, Demo-Account mit Beispieldaten).
-> Offen: `kundenportal-freigabe` (Kundenportal-Login ließ sich nicht sauber
-> reproduzieren — Platzhalter bleibt). `lager-scan` zeigt statt Barcode-Scan
-> (existiert nicht in der App) ehrlich den Wareneingang-Dialog mit KI-Belegscan
-> und ist auf die Variante `fragment` umgestellt.
+> **Stand 08.07.2026:** Alle 17 verbliebenen Slots sind mit echten App-Screenshots
+> befüllt (aufgenommen per Playwright aus Web-App + Mobile-App, Demo-Account mit
+> Beispieldaten). `kundenportal-freigabe` wurde ersatzlos **entfernt** (Entscheidung
+> 08.07.: kein sinnvolles Motiv; die Kundenportal-Seite zeigt keine Einblick-Sektion
+> mehr, Gewerke-Blöcke nutzen stattdessen `rechnung-dokument`). `lager-scan` zeigt
+> statt Barcode-Scan (existiert nicht in der App) ehrlich den Wareneingang-Dialog
+> mit KI-Belegscan und ist auf die Variante `fragment` umgestellt.
 
 Die Website hat jetzt **definierte Screenshot-Plätze** (Komponente `ScreenshotFrame`).
 Solange eine Datei fehlt, zeigt die Seite einen sauberen Werkbank-Platzhalter mit dem
@@ -38,7 +39,7 @@ Motiv-Namen — es bricht also nichts. Sobald ein Screenshot vorliegt:
 | 13 | `baudoku-bericht` | Phone | Bautagesbericht: Fotos + Wetter + Unterschriftenfeld |
 | 14 | `baudoku-akte` | Desktop 16:10 | Digitale Projektakte mit Ordnern, Fotos, Berichten |
 | 15 | `team-rollen` | Desktop 16:10 | Team-/Rollenverwaltung (Admin, Büro, Monteur, Nachunternehmer) |
-| 16 | `kundenportal-freigabe` | Desktop 16:10 | Kundenportal aus Kundensicht: Angebot mit „Annehmen"-Button |
+| 16 | ~~`kundenportal-freigabe`~~ | — | Entfernt (08.07.2026): kein sinnvolles Motiv fürs Kundenportal |
 | 17 | `nachkalkulation-dashboard` | Desktop 16:10 | Soll/Ist eines Projekts: Zeiten, Material, Marge |
 | 18 | `craft-ai-chat` | Desktop 16:10 | Craft-AI-Chat mit einer Frage + Antwort inkl. Draft-Karte |
 

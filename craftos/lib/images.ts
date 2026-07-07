@@ -87,7 +87,6 @@ export const screenshotSlots: Record<string, ScreenshotSlot> = {
   'baudoku-bericht': { label: 'Bautagesbericht mobil', variant: 'phone' },
   'baudoku-akte': { label: 'Digitale Projektakte', variant: 'fragment' },
   'team-rollen': { label: 'Rollen & Rechte', variant: 'fragment' },
-  'kundenportal-freigabe': { label: 'Kundenportal — Angebotsfreigabe', variant: 'fragment' },
   'nachkalkulation-dashboard': { label: 'Nachkalkulation — Soll/Ist', variant: 'fragment' },
   'craft-ai-chat': { label: 'Craft AI — Chat-Agent', variant: 'fragment' },
 }
@@ -131,7 +130,8 @@ export const funktionScreenshot: Record<string, string> = {
   baudokumentation: 'baudoku-bericht',
   team: 'team-rollen',
   nachkalkulation: 'nachkalkulation-dashboard',
-  kundenportal: 'kundenportal-freigabe',
+  // Kundenportal hat keinen eigenen Screenshot — das Dokument ist das, was der Kunde sieht
+  kundenportal: 'rechnung-dokument',
 }
 
 export const funktionBilder: Record<string, Bild> = {

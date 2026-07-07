@@ -37,7 +37,6 @@ const SHOWCASE: Record<string, string[]> = {
   baudokumentation: ['baudoku-akte', 'baudoku-bericht'],
   team: ['team-rollen'],
   nachkalkulation: ['nachkalkulation-dashboard'],
-  kundenportal: ['kundenportal-freigabe'],
 }
 
 export function generateStaticParams() {
