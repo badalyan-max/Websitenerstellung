@@ -1,169 +1,221 @@
-import { ArrowUpRight, ShieldCheck, Sparkles } from 'lucide-react'
-import { site } from '@/lib/site'
-import { Eyebrow } from '@/components/ui/primitives'
+'use client'
 
-const stats = [
-  { value: '9', label: 'Dokumenttypen' },
-  { value: '6', label: 'KI-Funktionen' },
-  { value: '1', label: 'System statt 5 Tools' },
+import { useEffect, useState } from 'react'
+import { CtaButton, GhostButton, Eyebrow } from '@/components/ui/primitives'
+
+/**
+ * Hammer-Hero: Ein Amber-Linework-Hammer schlägt auf das Wort „Papierkram" —
+ * die Buchstaben zerspringen, Funken sprühen, der Claim erscheint.
+ * prefers-reduced-motion: statische Version mit Amber-Bruchlinie.
+ */
+
+const WORD = 'Papierkram'
+
+// Deterministische Streuung pro Buchstabe (kein Math.random → SSR-stabil)
+const SCATTER = [
+  { x: -38, y: 62, r: -42 },
+  { x: -22, y: 88, r: 28 },
+  { x: -10, y: 54, r: -18 },
+  { x: 6, y: 96, r: 38 },
+  { x: 14, y: 70, r: -30 },
+  { x: 26, y: 104, r: 18 },
+  { x: 34, y: 58, r: -44 },
+  { x: 44, y: 92, r: 32 },
+  { x: 54, y: 66, r: -22 },
+  { x: 66, y: 100, r: 46 },
+]
+
+const SPARKS = [
+  { x: -46, y: -34, s: 5, d: 0 },
+  { x: 38, y: -48, s: 4, d: 40 },
+  { x: -18, y: -56, s: 3, d: 20 },
+  { x: 58, y: -18, s: 5, d: 60 },
+  { x: -60, y: -10, s: 3, d: 80 },
+  { x: 22, y: -30, s: 6, d: 10 },
+  { x: -34, y: -46, s: 4, d: 50 },
+  { x: 48, y: -40, s: 3, d: 30 },
 ]
 
 export function Hero() {
+  // 'idle' → Hammer holt aus · 'smash' → Einschlag · 'settled' → Ruhe
+  const [phase, setPhase] = useState<'idle' | 'smash' | 'settled'>('idle')
+  const [reduced, setReduced] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    if (mq.matches) {
+      setReduced(true)
+      setPhase('settled')
+      return
+    }
+    const t1 = setTimeout(() => setPhase('smash'), 650)
+    const t2 = setTimeout(() => setPhase('settled'), 1400)
+    return () => {
+      clearTimeout(t1)
+      clearTimeout(t2)
+    }
+  }, [])
+
+  const smashed = phase === 'smash' || phase === 'settled'
+
   return (
-    <section className="relative overflow-hidden bg-ink-950 text-white">
-      {/* Blueprint-Raster */}
-      <div className="bg-blueprint-dark mask-fade absolute inset-0" aria-hidden="true" />
-      {/* Indigo-Glow */}
+    <section className="relative overflow-hidden bg-ink-950 text-ink-900">
+      <div className="bg-werkbank mask-fade absolute inset-0" aria-hidden="true" />
+      {/* Werkstatt-Licht */}
       <div
-        className="absolute -top-40 left-1/2 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full opacity-40 blur-[120px]"
-        style={{ background: 'radial-gradient(circle, #4f46e5 0%, transparent 70%)' }}
-        aria-hidden="true"
-      />
-      {/* Cyan-Node-Akzent */}
-      <div
-        className="absolute right-[12%] top-1/3 h-72 w-72 rounded-full opacity-30 blur-[100px]"
-        style={{ background: 'radial-gradient(circle, #22d3ee 0%, transparent 70%)' }}
+        className="absolute -top-44 left-1/2 h-[30rem] w-[46rem] -translate-x-1/2 rounded-full opacity-25 blur-[130px]"
+        style={{ background: 'radial-gradient(circle, #f2af38 0%, transparent 70%)' }}
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto max-w-7xl px-5 pb-24 pt-16 sm:px-8 sm:pt-24 lg:pb-32">
-        <div className="grid items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
-          {/* Linke Spalte */}
-          <div>
-            <div className="animate-fade-up">
-              <Eyebrow tone="light">Handwerkersoftware · Made in Germany</Eyebrow>
-            </div>
+      <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-16 sm:px-8 lg:pb-28 lg:pt-24">
+        <div className="mx-auto max-w-4xl text-center">
+          <div className="animate-fade-up flex justify-center">
+            <Eyebrow tone="light">Handwerkersoftware · Made in Germany</Eyebrow>
+          </div>
 
-            <h1 className="animate-fade-up delay-1 mt-6 font-display text-[2.6rem] font-extrabold leading-[1.05] tracking-tight sm:text-6xl lg:text-[4.2rem]">
-              Das Betriebssystem
-              <br />
-              für{' '}
-              <span className="relative whitespace-nowrap text-node-400">
-                Handwerks&shy;betriebe
-                <svg
-                  className="absolute -bottom-2 left-0 h-3 w-full text-node-400/60"
-                  viewBox="0 0 300 12"
-                  fill="none"
-                  preserveAspectRatio="none"
+          {/* Headline mit Hammer-Moment */}
+          <h1 className="mt-7 font-display text-[2.6rem] font-bold leading-[1.05] tracking-tight text-ink-900 sm:text-6xl lg:text-7xl">
+            <span className="block">Schluss mit</span>
+            <span className="sr-only">{WORD}</span>
+            <span className="relative mt-1 inline-block" aria-hidden="true">
+              {/* Das Wort — Buchstabe für Buchstabe */}
+              {WORD.split('').map((ch, i) => (
+                <span
+                  key={i}
+                  aria-hidden="true"
+                  className="inline-block will-change-transform"
+                  style={
+                    smashed
+                      ? {
+                          transform: `translate(${SCATTER[i].x * 0.7}px, ${SCATTER[i].y * 0.38}px) rotate(${SCATTER[i].r}deg) scale(0.92)`,
+                          opacity: 0.3,
+                          transition: reduced
+                            ? 'none'
+                            : `transform 0.55s cubic-bezier(0.3, 0.9, 0.4, 1) ${i * 18}ms, opacity 0.5s ease ${i * 18}ms, filter 0.5s ease`,
+                        }
+                      : undefined
+                  }
+                >
+                  {ch}
+                </span>
+              ))}
+
+              {/* Amber-Bruchlinie über dem zerschlagenen Wort */}
+              <svg
+                className="pointer-events-none absolute left-0 top-1/2 w-full"
+                viewBox="0 0 400 40"
+                fill="none"
+                aria-hidden="true"
+                style={{
+                  opacity: smashed ? 1 : 0,
+                  transition: reduced ? 'none' : 'opacity 0.3s ease 0.15s',
+                }}
+              >
+                <path
+                  d="M0 22 L60 18 L95 26 L140 14 L180 24 L225 12 L265 25 L310 16 L355 23 L400 18"
+                  stroke="#f2af38"
+                  strokeWidth="3.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+
+              {/* Funken beim Einschlag */}
+              {!reduced && (
+                <span
+                  className="pointer-events-none absolute left-1/2 top-1/2"
                   aria-hidden="true"
                 >
+                  {SPARKS.map((s, i) => (
+                    <span
+                      key={i}
+                      className="absolute rounded-full"
+                      style={{
+                        width: s.s,
+                        height: s.s,
+                        background: '#ffc438',
+                        boxShadow: '0 0 8px 2px rgba(255,196,56,0.5)',
+                        transform: smashed
+                          ? `translate(${s.x * 1.6}px, ${s.y * 1.6}px) scale(0.2)`
+                          : 'translate(0,0) scale(1)',
+                        opacity: smashed ? 0 : phase === 'idle' ? 0 : 1,
+                        transition: `transform 0.7s cubic-bezier(0.2,0.8,0.3,1) ${s.d}ms, opacity 0.65s ease ${s.d + 120}ms`,
+                      }}
+                    />
+                  ))}
+                </span>
+              )}
+
+              {/* Der Hammer (Amber-Linework), Drehpunkt am Stielende rechts oben */}
+              {!reduced && phase !== 'settled' && (
+                <svg
+                  className="pointer-events-none absolute -right-8 -top-16 h-24 w-24 sm:-right-14 sm:-top-24 sm:h-36 sm:w-36"
+                  viewBox="0 0 100 100"
+                  fill="none"
+                  aria-hidden="true"
+                  style={{
+                    transformOrigin: '88% 12%',
+                    transform: phase === 'smash' ? 'rotate(52deg)' : 'rotate(-38deg)',
+                    transition:
+                      phase === 'smash'
+                        ? 'transform 0.16s cubic-bezier(0.6, 0, 1, 0.4)'
+                        : 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)',
+                  }}
+                >
+                  {/* Stiel */}
+                  <path d="M84 16 L38 62" stroke="#f2af38" strokeWidth="5" strokeLinecap="round" />
+                  {/* Kopf */}
                   <path
-                    d="M2 9C75 3 225 3 298 9"
-                    stroke="currentColor"
-                    strokeWidth="3"
-                    strokeLinecap="round"
+                    d="M22 46 L44 68 L36 76 Q30 82 24 76 L14 66 Q8 60 14 54 Z"
+                    fill="#f2af38"
+                    stroke="#ffc438"
+                    strokeWidth="2"
+                    strokeLinejoin="round"
                   />
                 </svg>
-              </span>
-            </h1>
+              )}
+            </span>
+          </h1>
 
-            <p className="animate-fade-up delay-2 mt-7 max-w-xl text-lg leading-relaxed text-ink-300 sm:text-xl">
-              Projekte, Kunden, Angebote &amp; Rechnungen, Zeiterfassung und Plantafel –
-              alles in einem System. Mit Craft AI, die aus Fotos, PDFs und Sprache fertige
-              Angebote macht.
-            </p>
+          {/* CSS-Animation statt JS-State: bleibt auch ohne JavaScript sichtbar */}
+          <p
+            className="animate-fade-up mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-ink-500 sm:text-xl"
+            style={{ animationDelay: '1.4s' }}
+          >
+            CraftOS ist das Betriebssystem für Handwerksbetriebe: Angebot, Rechnung,
+            Plantafel, Zeiterfassung, Lager und KI — ein System statt sieben Insellösungen.
+          </p>
 
-            <div className="animate-fade-up delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={site.ctaUrl}
-                className="btn-cta inline-flex items-center justify-center gap-1.5 rounded-xl px-7 py-4 text-base font-semibold"
-              >
-                Kostenlos testen
-                <ArrowUpRight className="h-5 w-5" strokeWidth={2.5} />
-              </a>
-              <a
-                href={site.demoUrl}
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-ink-700 bg-ink-900/60 px-7 py-4 text-base font-semibold text-ink-100 backdrop-blur transition-colors hover:border-ink-500 hover:bg-ink-800"
-              >
-                Live-Demo ansehen
-              </a>
-            </div>
-
-            <div className="animate-fade-up delay-4 mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-400">
-              <span className="inline-flex items-center gap-2">
-                <ShieldCheck className="h-4 w-4 text-success" /> DSGVO-konform, EU-Hosting
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-node-400" /> Keine Einrichtungsgebühr
-              </span>
-            </div>
+          <div
+            className="animate-fade-up mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
+            style={{ animationDelay: '1.55s' }}
+          >
+            <CtaButton className="w-full sm:w-auto">14 Tage kostenlos testen</CtaButton>
+            <GhostButton href="/funktionen" className="w-full sm:w-auto">
+              Funktionen entdecken
+            </GhostButton>
           </div>
 
-          {/* Rechte Spalte – "OS"-Panel */}
-          <div className="animate-fade-up delay-3 relative">
-            <OsPanel />
+          <div
+            className="animate-fade-up mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2"
+            style={{ animationDelay: '1.7s' }}
+          >
+            {[
+              'DSGVO-konform · EU-Hosting',
+              'E-Rechnung (XRechnung)',
+              'iOS & Android App',
+              'DATEV-Export',
+            ].map((t) => (
+              <span key={t} className="spec-label text-[0.62rem] text-ink-400">
+                {t}
+              </span>
+            ))}
           </div>
         </div>
-
-        {/* Statistik-Leiste */}
-        <dl className="animate-fade-up delay-5 mt-20 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-ink-800 bg-ink-800/40">
-          {stats.map((s) => (
-            <div key={s.label} className="bg-ink-950/60 px-5 py-6 text-center sm:px-8">
-              <dt className="font-display text-3xl font-extrabold text-white sm:text-4xl">
-                {s.value}
-              </dt>
-              <dd className="mt-1 text-sm text-ink-400">{s.label}</dd>
-            </div>
-          ))}
-        </dl>
       </div>
+
+      <div className="anriss anriss-amber relative" aria-hidden="true" />
     </section>
-  )
-}
-
-/** Stilisiertes Produkt-Panel im "Datenblatt"-Look */
-function OsPanel() {
-  const modules = [
-    { name: 'Projekte', status: 'aktiv', accent: 'node' },
-    { name: 'Angebot → Rechnung', status: 'live', accent: 'primary' },
-    { name: 'Zeiterfassung', status: 'läuft', accent: 'node' },
-    { name: 'Plantafel', status: 'geplant', accent: 'primary' },
-  ]
-  return (
-    <div className="relative rounded-2xl border border-ink-700/80 bg-gradient-to-b from-ink-900 to-ink-950 p-2 shadow-2xl">
-      {/* Fensterleiste */}
-      <div className="flex items-center gap-1.5 px-3 py-2.5">
-        <span className="h-2.5 w-2.5 rounded-full bg-ink-600" />
-        <span className="h-2.5 w-2.5 rounded-full bg-ink-600" />
-        <span className="h-2.5 w-2.5 rounded-full bg-ink-600" />
-        <span className="ml-3 font-mono text-[11px] text-ink-500">app.craftos.eu</span>
-      </div>
-
-      <div className="rounded-xl border border-ink-800 bg-ink-950/80 p-5">
-        <p className="spec-label text-node-400">// System-Übersicht</p>
-        <div className="mt-4 space-y-2.5">
-          {modules.map((m, i) => (
-            <div
-              key={m.name}
-              className="flex items-center justify-between rounded-lg border border-ink-800 bg-ink-900/60 px-4 py-3"
-            >
-              <span className="flex items-center gap-3 text-sm font-medium text-ink-100">
-                <span
-                  className={
-                    m.accent === 'node'
-                      ? 'h-2 w-2 rotate-45 bg-node-400'
-                      : 'h-2 w-2 rotate-45 bg-primary-400'
-                  }
-                />
-                {m.name}
-              </span>
-              <span className="font-mono text-[11px] uppercase tracking-wider text-ink-500">
-                {m.status}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* KI-Zeile */}
-        <div className="mt-4 rounded-lg border border-node-500/30 bg-node-500/10 px-4 py-3.5">
-          <p className="flex items-center gap-2 text-sm font-semibold text-node-300">
-            <Sparkles className="h-4 w-4" /> Craft AI
-          </p>
-          <p className="mt-1 font-mono text-[11px] leading-relaxed text-ink-400">
-            Foto erkannt → Aufmaß erstellt → Angebot generiert (6 Credits)
-          </p>
-        </div>
-      </div>
-    </div>
   )
 }

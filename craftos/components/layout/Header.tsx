@@ -30,7 +30,7 @@ export function Header() {
       className={cn(
         'sticky top-0 z-50 transition-all duration-300',
         scrolled
-          ? 'bg-white/85 backdrop-blur-md border-b border-ink-200/70 shadow-[0_1px_0_rgba(15,23,42,0.04)]'
+          ? 'bg-ink-50/85 backdrop-blur-md border-b border-ink-200/70 shadow-[0_1px_0_rgba(0,0,0,0.3)]'
           : 'bg-transparent border-b border-transparent',
       )}
     >
@@ -45,7 +45,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-lg px-3.5 py-2 text-sm font-medium text-ink-700 transition-colors hover:bg-ink-100 hover:text-ink-900"
+              className="rounded-lg px-3.5 py-2 text-sm font-medium text-ink-600 transition-colors hover:bg-ink-150 hover:text-ink-900"
             >
               {item.label}
             </Link>
@@ -55,7 +55,7 @@ export function Header() {
         <div className="hidden items-center gap-2.5 lg:flex">
           <a
             href={site.appUrl}
-            className="rounded-lg px-4 py-2 text-sm font-semibold text-ink-700 transition-colors hover:text-primary-600"
+            className="rounded-lg px-4 py-2 text-sm font-semibold text-ink-600 transition-colors hover:text-primary-400"
           >
             Anmelden
           </a>
@@ -72,7 +72,7 @@ export function Header() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-ink-800 hover:bg-ink-100 lg:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-ink-800 hover:bg-ink-150 lg:hidden"
           aria-label={open ? 'Menü schließen' : 'Menü öffnen'}
           aria-expanded={open}
         >
@@ -82,14 +82,14 @@ export function Header() {
 
       {/* Mobile-Menü */}
       {open && (
-        <div className="fixed inset-x-0 top-16 bottom-0 z-40 bg-white px-5 py-6 lg:hidden">
+        <div className="fixed inset-x-0 top-16 bottom-0 z-40 overflow-y-auto bg-ink-50 px-5 py-6 lg:hidden">
           <nav className="flex flex-col gap-1">
             {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="rounded-xl px-4 py-3.5 text-lg font-semibold text-ink-800 hover:bg-ink-100"
+                className="rounded-xl px-4 py-3.5 text-lg font-semibold text-ink-800 hover:bg-ink-150"
               >
                 {item.label}
               </Link>

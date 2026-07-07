@@ -12,7 +12,7 @@ export interface FaqItem {
 export function Faq({ items }: { items: FaqItem[] }) {
   const [open, setOpen] = useState<number | null>(0)
   return (
-    <div className="divide-y divide-ink-200 overflow-hidden rounded-2xl border border-ink-200 bg-white">
+    <div className="divide-y divide-ink-200 overflow-hidden rounded-2xl border border-ink-200 bg-ink-100">
       {items.map((item, i) => {
         const isOpen = open === i
         return (
@@ -20,10 +20,10 @@ export function Faq({ items }: { items: FaqItem[] }) {
             <button
               type="button"
               onClick={() => setOpen(isOpen ? null : i)}
-              className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-ink-50"
+              className="flex w-full cursor-pointer items-center justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-ink-150"
               aria-expanded={isOpen}
             >
-              <span className="font-display text-lg font-bold text-ink-900">{item.q}</span>
+              <span className="font-display text-lg font-semibold text-ink-900">{item.q}</span>
               <Plus
                 className={cn(
                   'h-5 w-5 flex-shrink-0 text-primary-500 transition-transform duration-300',

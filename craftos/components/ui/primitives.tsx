@@ -3,7 +3,7 @@ import type { LucideIcon } from 'lucide-react'
 import { ArrowUpRight } from 'lucide-react'
 import { site } from '@/lib/site'
 
-/** Mono Spec-Label (Eyebrow) – Datenblatt-Optik */
+/** Mono Spec-Label (Eyebrow) – Anriss-Strich in Amber, Werkstatt-Datenblatt */
 export function Eyebrow({
   children,
   className,
@@ -11,16 +11,17 @@ export function Eyebrow({
 }: {
   children: React.ReactNode
   className?: string
-  tone?: 'primary' | 'node' | 'light'
+  tone?: 'primary' | 'node' | 'light' | 'muted'
 }) {
   const colors = {
-    primary: 'text-primary-600',
-    node: 'text-node-500',
-    light: 'text-node-300',
+    primary: 'text-primary-500',
+    node: 'text-primary-500',
+    light: 'text-primary-400',
+    muted: 'text-ink-400',
   }
   return (
-    <span className={cn('spec-label inline-flex items-center gap-2', colors[tone], className)}>
-      <span className="inline-block h-1.5 w-1.5 rotate-45 bg-current" aria-hidden="true" />
+    <span className={cn('spec-label inline-flex items-center gap-2.5', colors[tone], className)}>
+      <span className="inline-block h-px w-6 bg-current" aria-hidden="true" />
       {children}
     </span>
   )
@@ -50,33 +51,19 @@ export function SectionHeading({
       )}
     >
       {eyebrow && (
-        <Eyebrow tone={tone === 'light' ? 'light' : 'primary'} className="mb-4">
+        <Eyebrow tone="primary" className="mb-4">
           {eyebrow}
         </Eyebrow>
       )}
-      <h2
-        className={cn(
-          'font-display text-3xl font-extrabold leading-[1.1] sm:text-4xl md:text-[2.75rem]',
-          tone === 'light' ? 'text-white' : 'text-ink-900',
-        )}
-      >
+      <h2 className="font-display text-3xl font-bold leading-[1.08] text-ink-900 sm:text-4xl md:text-[2.75rem]">
         {title}
       </h2>
-      {intro && (
-        <p
-          className={cn(
-            'mt-5 text-lg leading-relaxed',
-            tone === 'light' ? 'text-ink-300' : 'text-ink-600',
-          )}
-        >
-          {intro}
-        </p>
-      )}
+      {intro && <p className="mt-5 text-lg leading-relaxed text-ink-500">{intro}</p>}
     </div>
   )
 }
 
-/** Hexagon-gerahmtes Icon – greift das Logo-Motiv auf */
+/** Hexagon-gerahmtes Icon – greift das C-im-Hexagon-Logo auf */
 export function HexIcon({
   icon: Icon,
   className,
@@ -84,20 +71,17 @@ export function HexIcon({
 }: {
   icon: LucideIcon
   className?: string
-  tone?: 'primary' | 'node' | 'cta'
+  tone?: 'primary' | 'node' | 'cta' | 'muted'
 }) {
   const tones = {
-    primary: 'text-primary-600 bg-primary-50 ring-primary-100',
-    node: 'text-node-600 bg-node-300/15 ring-node-300/30',
-    cta: 'text-cta bg-cta/10 ring-cta/20',
+    primary: 'text-primary-400 bg-primary-500/10',
+    node: 'text-primary-400 bg-primary-500/10',
+    cta: 'text-primary-400 bg-primary-500/15',
+    muted: 'text-ink-500 bg-ink-200/40',
   }
   return (
     <span
-      className={cn(
-        'inline-flex h-12 w-12 items-center justify-center ring-1',
-        tones[tone],
-        className,
-      )}
+      className={cn('inline-flex h-12 w-12 items-center justify-center', tones[tone], className)}
       style={{ clipPath: 'polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)' }}
       aria-hidden="true"
     >
@@ -106,7 +90,7 @@ export function HexIcon({
   )
 }
 
-/** Primärer CTA-Button (Link) */
+/** Primärer CTA-Button (Link) – Amber-Gradient, dunkler Text */
 export function CtaButton({
   href = site.ctaUrl,
   children = 'Kostenlos testen',
@@ -130,7 +114,7 @@ export function CtaButton({
   )
 }
 
-/** Sekundärer Button (Link) */
+/** Sekundärer Button (Link) – dünner Border auf dunkler Fläche */
 export function GhostButton({
   href,
   children,
@@ -146,14 +130,31 @@ export function GhostButton({
     <a
       href={href}
       className={cn(
-        'inline-flex items-center justify-center gap-1.5 rounded-xl border px-6 py-3.5 text-base font-semibold transition-colors',
-        tone === 'light'
-          ? 'border-ink-700 text-ink-100 hover:bg-ink-800'
-          : 'border-ink-300 text-ink-800 hover:border-ink-400 hover:bg-white',
+        'inline-flex items-center justify-center gap-1.5 rounded-xl border border-ink-200 px-6 py-3.5 text-base font-semibold text-ink-800 transition-colors hover:border-primary-500/50 hover:text-ink-900',
         className,
       )}
     >
       {children}
     </a>
+  )
+}
+
+/** Status-Badge für Feature-Tiers: heute / launch / vision */
+export function TierBadge({ tier }: { tier: 'heute' | 'launch' | 'vision' }) {
+  const map = {
+    heute: { label: 'Schon heute', cls: 'bg-success/10 text-success border-success/25' },
+    launch: { label: 'Kommt zum Launch', cls: 'bg-primary-500/10 text-primary-400 border-primary-500/25' },
+    vision: { label: 'Vision', cls: 'bg-ink-200/40 text-ink-500 border-ink-300/50' },
+  }
+  const { label, cls } = map[tier]
+  return (
+    <span
+      className={cn(
+        'inline-flex items-center rounded-full border px-2.5 py-0.5 font-mono text-[0.65rem] font-medium uppercase tracking-wider',
+        cls,
+      )}
+    >
+      {label}
+    </span>
   )
 }

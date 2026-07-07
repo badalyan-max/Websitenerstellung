@@ -1,61 +1,82 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* ============================================================
-   CraftOS Design System — "Engineered Blueprint / Betriebssystem"
-   Brand 1:1 aus der App: Indigo #6366f1 + Cyan #22d3ee (Node)
+   CraftOS Design System — "Werkbank"
+   1:1 aus der App: dark-first, near-black Flächen (#101014),
+   EINE Akzentfarbe: warmes Amber (#f2af38),
+   Logo-Gradient #ffc438 → #ffb21d → #f19800.
+   Tiefe durch gestaffelte Surfaces + dünne Borders, kein Glas.
+   Hinweis: Die ink-Skala ist semantisch (50=Seite … 900=Text) —
+   die Werte sind für Dark-Mode invertiert, damit bestehende
+   Klassen (bg-ink-50, text-ink-900, border-ink-200) weiter gelten.
    ============================================================ */
 @theme {
-  /* Primary — Indigo (Marke) */
-  --color-primary-50: #eef2ff;
-  --color-primary-100: #e0e7ff;
-  --color-primary-200: #c7d2fe;
-  --color-primary-300: #a5b4fc;
-  --color-primary-400: #818cf8;
-  --color-primary-500: #6366f1;
-  --color-primary-600: #4f46e5;
-  --color-primary-700: #4338ca;
-  --color-primary-800: #3730a3;
-  --color-primary-900: #312e81;
-  --color-primary-950: #1e1b4b;
+  /* Primary — Amber (die einzige Akzentfarbe) */
+  --color-primary-50: #fff8e6;
+  --color-primary-100: #ffefc2;
+  --color-primary-200: #ffe08a;
+  --color-primary-300: #ffd058;
+  --color-primary-400: #ffc438;
+  --color-primary-500: #f2af38;
+  --color-primary-600: #eb9a15;
+  --color-primary-700: #c47d0e;
+  --color-primary-800: #9c630f;
+  --color-primary-900: #7c4f10;
+  --color-primary-950: #4a2d08;
 
-  /* Node — Cyan (das aktive/digitale Element im Logo) */
-  --color-node-300: #67e8f9;
-  --color-node-400: #22d3ee;
-  --color-node-500: #06b6d4;
-  --color-node-600: #0891b2;
+  /* node-Aliase (Altbestand) → Amber, damit nichts bricht */
+  --color-node-300: #ffd058;
+  --color-node-400: #ffc438;
+  --color-node-500: #f2af38;
+  --color-node-600: #eb9a15;
 
-  /* CTA — Amber (Handwerk-Wärme, hohe Sichtbarkeit) */
-  --color-cta: #f97316;
-  --color-cta-light: #fb923c;
-  --color-cta-dark: #ea580c;
+  /* CTA — Amber (Text darauf ist dunkel!) */
+  --color-cta: #f2af38;
+  --color-cta-light: #ffc438;
+  --color-cta-dark: #e09a1f;
 
-  /* Ink / Slate (Text & dunkle Flächen) */
-  --color-ink-50: #f8fafc;
-  --color-ink-100: #f1f5f9;
-  --color-ink-200: #e2e8f0;
-  --color-ink-300: #cbd5e1;
-  --color-ink-400: #94a3b8;
-  --color-ink-500: #64748b;
-  --color-ink-600: #475569;
-  --color-ink-700: #334155;
-  --color-ink-800: #1e293b;
-  --color-ink-900: #0f172a;
-  --color-ink-950: #020617;
+  /* Ink — semantische Slots, Werte dark-first
+     50 Seite · 100 Card · 150 Raised · 200 Border · 400 Muted · 900 Text */
+  --color-ink-50: #101014;
+  --color-ink-100: #17171a;
+  --color-ink-150: #1d1d21;
+  --color-ink-200: #2a2a2f;
+  --color-ink-300: #3c3c42;
+  --color-ink-400: #8b8b94;
+  --color-ink-500: #a1a1aa;
+  --color-ink-600: #bababf;
+  --color-ink-700: #d0d0d5;
+  --color-ink-800: #e4e4e7;
+  --color-ink-900: #f4f4f5;
+  --color-ink-950: #0a0a0d;
 
-  /* Status */
-  --color-success: #22c55e;
-  --color-warning: #f59e0b;
+  /* Status (aus der App) */
+  --color-success: #46b979;
+  --color-warning: #ecb23e;
+  --color-destructive: #d1453b;
 
-  /* Fonts */
-  --font-display: var(--font-bricolage), 'Bricolage Grotesque', system-ui, sans-serif;
-  --font-sans: var(--font-plex-sans), 'IBM Plex Sans', system-ui, sans-serif;
+  /* Fonts — Clash Display + General Sans (self-hosted, wie die App) */
+  --font-display: var(--font-clash), 'Clash Display', system-ui, sans-serif;
+  --font-sans: var(--font-general), 'General Sans', system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Radius-Basis 10px (App: --radius 0.625rem) */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+
+  /* Signature Motion (App-Easing) */
+  --ease-werkbank: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 /* ---------- Base ---------- */
 html {
-  color-scheme: light only;
+  color-scheme: dark;
   scroll-behavior: smooth;
+  background-color: var(--color-ink-50);
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -67,13 +88,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--color-ink-50);
   color: var(--color-ink-900);
+  font-feature-settings: "cv01", "ss01";
 }
-
-:root { color-scheme: light only; }
 
 h1, h2, h3, h4, h5 {
   font-family: var(--font-display);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 :focus-visible {
@@ -83,9 +103,15 @@ h1, h2, h3, h4, h5 {
 }
 
 ::selection {
-  background-color: var(--color-primary-200);
-  color: var(--color-primary-950);
+  background-color: rgba(242, 175, 56, 0.25);
+  color: var(--color-ink-900);
 }
+
+/* Dünne, amber-neutrale Scrollbar wie in der App */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-ink-200); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-ink-300); }
 
 /* ---------- Utility: Mono Eyebrow / Spec-Label ---------- */
 .spec-label {
@@ -96,24 +122,66 @@ h1, h2, h3, h4, h5 {
   text-transform: uppercase;
 }
 
-/* ---------- Blueprint grid background ---------- */
-.bg-blueprint {
-  background-image:
-    linear-gradient(to right, rgba(99, 102, 241, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(99, 102, 241, 0.06) 1px, transparent 1px);
-  background-size: 48px 48px;
+/* ---------- Werkbank-Flächen ---------- */
+.surface-1 { background-color: var(--color-ink-100); border: 1px solid var(--color-ink-200); }
+.surface-2 { background-color: var(--color-ink-150); border: 1px solid var(--color-ink-200); }
+
+/* ---------- Signature: Anriss-Linien (Messmarken auf Metall) ----------
+   Horizontale Linie mit feinen Tick-Strichen — als Sektions-Trenner. */
+.anriss {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-ink-200) 15%, var(--color-ink-200) 85%, transparent);
 }
-.bg-blueprint-dark {
-  background-image:
-    linear-gradient(to right, rgba(148, 163, 184, 0.10) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(148, 163, 184, 0.10) 1px, transparent 1px);
-  background-size: 48px 48px;
+.anriss::before {
+  content: '';
+  position: absolute;
+  inset: -3px 0;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0 46px,
+    var(--color-ink-300) 46px 47px,
+    transparent 47px 48px
+  );
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 20%, black 80%, transparent);
+  mask-image: linear-gradient(90deg, transparent, black 20%, black 80%, transparent);
+}
+.anriss-amber::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -3px;
+  width: 56px;
+  height: 7px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, var(--color-primary-500), transparent);
+  opacity: 0.9;
 }
 
-/* Radial fade mask helper for grids */
+/* Feines Hairline-Raster, extrem dezent (ersetzt Blueprint-Grid) */
+.bg-werkbank {
+  background-image:
+    linear-gradient(to right, rgba(244, 244, 245, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(244, 244, 245, 0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+/* Altbestand-Aliase — gleiche dezente Dark-Optik */
+.bg-blueprint, .bg-blueprint-dark {
+  background-image:
+    linear-gradient(to right, rgba(244, 244, 245, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(244, 244, 245, 0.03) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Radial fade mask helper */
 .mask-fade {
   -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 100%);
   mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 100%);
+}
+
+/* Warmer Amber-Schein (Werkstatt-Licht) */
+.glow-amber {
+  background: radial-gradient(ellipse 60% 45% at 50% 0%, rgba(242, 175, 56, 0.10), transparent 70%);
 }
 
 /* ---------- Animations ---------- */
@@ -121,24 +189,22 @@ h1, h2, h3, h4, h5 {
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-@keyframes node-pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%      { opacity: 0.55; transform: scale(0.82); }
-}
-@keyframes glow-pan {
-  0%   { transform: translateX(-30%); }
-  100% { transform: translateX(130%); }
+@keyframes ember-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.55; }
 }
 
 .animate-fade-up {
   opacity: 0;
-  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: fade-up 0.6s var(--ease-werkbank) forwards;
 }
-.animate-node-pulse { animation: node-pulse 2.4s ease-in-out infinite; }
+.animate-ember { animation: ember-pulse 2.4s ease-in-out infinite; }
+/* Alias Altbestand */
+.animate-node-pulse { animation: ember-pulse 2.4s ease-in-out infinite; }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up { animation: none; opacity: 1; transform: none; }
-  .animate-node-pulse { animation: none; }
+  .animate-ember, .animate-node-pulse { animation: none; }
 }
 
 /* Staggered reveal delays */
@@ -150,23 +216,66 @@ h1, h2, h3, h4, h5 {
 .delay-6 { animation-delay: 0.48s; }
 
 /* ---------- Components ---------- */
+/* Amber-CTA: Logo-Gradient, dunkler Text, warmer Glow */
 .btn-cta {
-  background-color: var(--color-cta);
-  color: white;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.10), 0 8px 24px -8px rgba(249, 115, 22, 0.55);
-  transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease;
+  background: linear-gradient(135deg, #ffc438 0%, #ffb21d 55%, #f19800 100%);
+  color: #1c1507;
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px -8px rgba(242, 175, 56, 0.45);
+  transition: transform 0.2s var(--ease-werkbank), box-shadow 0.2s var(--ease-werkbank), filter 0.2s var(--ease-werkbank);
 }
 .btn-cta:hover {
-  background-color: var(--color-cta-dark);
+  filter: brightness(1.06);
   transform: translateY(-2px);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.12), 0 14px 32px -8px rgba(249, 115, 22, 0.65);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35), 0 14px 36px -8px rgba(242, 175, 56, 0.55);
 }
+.btn-cta:active { transform: scale(0.98); }
 
 .card-hover {
-  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  transition: transform 0.22s var(--ease-werkbank), box-shadow 0.22s var(--ease-werkbank), border-color 0.22s var(--ease-werkbank);
 }
 .card-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 24px 48px -24px rgba(15, 23, 42, 0.28);
-  border-color: var(--color-primary-300);
+  box-shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.6);
+  border-color: rgba(242, 175, 56, 0.4);
+}
+
+/* ---------- Blog Prose (dark Werkbank-Typografie) ---------- */
+.prose-craftos {
+  --tw-prose-body: var(--color-ink-700);
+  --tw-prose-headings: var(--color-ink-900);
+  --tw-prose-links: var(--color-primary-500);
+  --tw-prose-bold: var(--color-ink-900);
+  --tw-prose-quotes: var(--color-ink-700);
+  --tw-prose-quote-borders: var(--color-primary-700);
+  --tw-prose-code: var(--color-primary-400);
+  --tw-prose-hr: var(--color-ink-200);
+  --tw-prose-th-borders: var(--color-ink-300);
+  --tw-prose-td-borders: var(--color-ink-200);
+  --tw-prose-counters: var(--color-ink-400);
+  --tw-prose-bullets: var(--color-primary-600);
+}
+.prose-craftos h2 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+  scroll-margin-top: 6rem;
+}
+.prose-craftos h3 {
+  font-family: var(--font-display);
+  scroll-margin-top: 6rem;
+}
+.prose-craftos a {
+  text-decoration-color: rgba(242, 175, 56, 0.4);
+  text-underline-offset: 3px;
+  transition: color 0.15s ease;
+}
+.prose-craftos a:hover { color: var(--color-primary-400); }
+.prose-craftos table { font-size: 0.9rem; }
+.prose-craftos thead th {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-400);
 }

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
-import { Bricolage_Grotesque, IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google'
+import localFont from 'next/font/local'
+import { IBM_Plex_Mono } from 'next/font/google'
 import './globals.css'
 import { Analytics } from '@vercel/analytics/next'
 import { Header } from '@/components/layout/Header'
@@ -8,17 +9,24 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { organizationSchema, softwareApplicationSchema } from '@/lib/schema'
 import { site } from '@/lib/site'
 
-const bricolage = Bricolage_Grotesque({
-  subsets: ['latin'],
+// Brand-Fonts 1:1 aus der App (self-hosted)
+const clash = localFont({
+  src: [
+    { path: '../public/fonts/clash-display-500.woff2', weight: '500', style: 'normal' },
+    { path: '../public/fonts/clash-display-600.woff2', weight: '600', style: 'normal' },
+    { path: '../public/fonts/clash-display-700.woff2', weight: '700', style: 'normal' },
+  ],
   display: 'swap',
-  variable: '--font-bricolage',
-  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-clash',
 })
-const plexSans = IBM_Plex_Sans({
-  subsets: ['latin'],
+const general = localFont({
+  src: [
+    { path: '../public/fonts/general-sans-400.woff2', weight: '400', style: 'normal' },
+    { path: '../public/fonts/general-sans-500.woff2', weight: '500', style: 'normal' },
+    { path: '../public/fonts/general-sans-600.woff2', weight: '600', style: 'normal' },
+  ],
   display: 'swap',
-  variable: '--font-plex-sans',
-  weight: ['400', '500', '600', '700'],
+  variable: '--font-general',
 })
 const plexMono = IBM_Plex_Mono({
   subsets: ['latin'],
@@ -30,7 +38,7 @@ const plexMono = IBM_Plex_Mono({
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#6366f1',
+  themeColor: '#101014',
 }
 
 export const metadata: Metadata = {
@@ -91,7 +99,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="de"
-      className={`${bricolage.variable} ${plexSans.variable} ${plexMono.variable}`}
+      className={`${clash.variable} ${general.variable} ${plexMono.variable}`}
     >
       <head>
         <JsonLd data={organizationSchema()} />

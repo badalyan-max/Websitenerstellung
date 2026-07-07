@@ -6,38 +6,58 @@ import { PricingTable } from '@/components/preise/PricingTable'
 import { Faq } from '@/components/ui/Faq'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { breadcrumbSchema, faqSchema } from '@/lib/schema'
-import { site } from '@/lib/site'
+import { site, creditPakete } from '@/lib/site'
 
 export const metadata: Metadata = {
-  title: 'Preise – CraftOS Lizenzen ab 14 € pro Monat',
+  title: 'Preise – CraftOS Lizenzen ab 9,95 € pro Monat',
   description:
-    'Transparente Preise für CraftOS: App 14 €, Büro 32 €, Admin 44 € pro Nutzer und Monat. Im Jahresabo ~17 % sparen. SEPA oder Kreditkarte, monatlich kündbar.',
+    'Transparente Preise für CraftOS: App 9,95 €, Büro 29,95 €, Admin 29,95 € pro Nutzer und Monat. Im Jahresabo ≈ 17 % sparen. 50-GB-Speicherpool, SEPA oder Kreditkarte.',
   alternates: { canonical: `${site.url}/preise` },
 }
 
 const details = [
-  { icon: Landmark, title: 'SEPA-Lastschrift', desc: 'Empfohlen – nur 0,35 % Gebühr pro Abbuchung.' },
-  { icon: CreditCard, title: 'Kreditkarte', desc: '1,5 % + 0,25 € pro Zahlung, sofort aktiv.' },
-  { icon: HardDrive, title: 'Extra-Speicher', desc: '1,95 €/Monat je 50-GB-Block, jederzeit erweiterbar.' },
-  { icon: Coins, title: 'AI-Credit-Pakete', desc: 'Ab 10 € mit Bonus – nur zahlen, was Sie nutzen.' },
+  {
+    icon: Landmark,
+    title: 'SEPA-Lastschrift',
+    desc: 'Empfohlen – nur 0,35 % Gebühr pro Abbuchung.',
+  },
+  {
+    icon: CreditCard,
+    title: 'Kreditkarte',
+    desc: '1,5 % + 0,25 € pro Zahlung (Visa/Mastercard), sofort aktiv.',
+  },
+  {
+    icon: HardDrive,
+    title: '50-GB-Speicherpool',
+    desc: 'Ein Pool für den ganzen Betrieb – unabhängig von der Lizenzanzahl, erweiterbar.',
+  },
+  {
+    icon: Coins,
+    title: 'KI-Credits (Pay-as-you-go)',
+    desc: `150 Credits Startguthaben inklusive. Pakete ab ${creditPakete[0].preis} € – mit bis zu ${creditPakete[creditPakete.length - 1].bonus} % Bonus.`,
+  },
 ]
 
 const faqItems = [
   {
     q: 'Brauche ich für jeden Mitarbeiter eine Lizenz?',
-    a: 'Ja, lizenziert wird pro Nutzer. Jeder Betrieb braucht mindestens eine Admin-Lizenz. Monteure erhalten meist die günstige App-Lizenz, das Büro die Büro-Lizenz.',
+    a: 'Ja, lizenziert wird pro Nutzer. Jeder Betrieb braucht genau eine Admin-Lizenz (29,95 €). Das Büro nutzt Büro-Lizenzen (29,95 €), Monteure die günstige App-Lizenz (9,95 €).',
   },
   {
     q: 'Was ist der Unterschied zwischen monatlich und jährlich?',
-    a: 'Im Jahresabo sparen Sie rund 17 % (etwa zwei Monate gratis) und erhalten zusätzlich 25 GB Speicher pro Lizenz. Monatliche Abos sind jederzeit kündbar.',
+    a: 'Im Jahresabo zahlen Sie den Preis von etwa 10 Monaten – rund 17 % Ersparnis. Monatliche Abos sind jederzeit monatlich kündbar.',
   },
   {
-    q: 'Fallen Einrichtungsgebühren an?',
-    a: 'Nein. Es gibt keine Einrichtungsgebühr. Sie können kostenlos testen und im Demo-Modus mit Beispieldaten starten.',
+    q: 'Wie viel Speicher ist enthalten?',
+    a: 'Jeder Betrieb erhält einen gemeinsamen 50-GB-Speicherpool – unabhängig davon, wie viele Lizenzen Sie haben. Zusätzlicher Speicher ist in Blöcken zubuchbar.',
   },
   {
     q: 'Wie funktioniert die Abrechnung der KI-Credits?',
-    a: 'Mit der Admin-Lizenz sind 150 Credits pro Monat inklusive (1 Credit = 1 Cent). Brauchen Sie mehr, kaufen Sie Credit-Pakete mit Bonus. Pro Mitarbeiter lässt sich ein Budget festlegen.',
+    a: 'Craft AI rechnet nach Verbrauch ab: 1 Credit = 1 Cent. Zum Start sind 150 Credits Guthaben inklusive. Danach kaufen Sie Pakete (10–100 €) mit bis zu 20 % Bonus – kein Abo-Zwang.',
+  },
+  {
+    q: 'Fallen Einrichtungsgebühren an?',
+    a: 'Nein. Keine Einrichtungsgebühr, keine Mindestlaufzeit im Monatsabo. Sie testen 14 Tage kostenlos mit vollem Funktionsumfang.',
   },
   {
     q: 'Kann ich jederzeit kündigen?',
@@ -59,25 +79,25 @@ export default function PreisePage() {
       <PageHero
         eyebrow="Preise"
         title="Faire Lizenzen, pro Nutzer"
-        intro="Drei Rollen für drei Aufgaben im Betrieb. Keine versteckten Kosten, keine Einrichtungsgebühr, monatlich kündbar."
+        intro="Drei Rollen für drei Aufgaben im Betrieb. Keine versteckten Kosten, keine Einrichtungsgebühr, monatlich kündbar – und 14 Tage kostenlos testen."
       />
 
-      <section className="bg-white">
+      <section>
         <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:py-20">
           <PricingTable />
         </div>
       </section>
 
       {/* Zahlung & Extras */}
-      <section className="border-y border-ink-200 bg-ink-50">
+      <section className="border-y border-ink-200 bg-ink-950/60">
         <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
           <SectionHeading align="center" eyebrow="Abrechnung" title="Flexibel & transparent" />
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {details.map((d) => (
-              <div key={d.title} className="rounded-2xl border border-ink-200 bg-white p-6">
+              <div key={d.title} className="rounded-2xl border border-ink-200 bg-ink-100 p-6">
                 <HexIcon icon={d.icon} />
-                <h3 className="mt-4 font-display text-lg font-bold text-ink-900">{d.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-ink-600">{d.desc}</p>
+                <h3 className="mt-4 font-display text-lg font-semibold text-ink-900">{d.title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-ink-500">{d.desc}</p>
               </div>
             ))}
           </div>
@@ -85,15 +105,18 @@ export default function PreisePage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-white">
+      <section>
         <div className="mx-auto max-w-3xl px-5 py-20 sm:px-8">
           <SectionHeading align="center" eyebrow="FAQ" title="Fragen zu den Preisen" />
           <div className="mt-12">
             <Faq items={faqItems} />
           </div>
-          <p className="mt-10 text-center text-ink-600">
+          <p className="mt-10 text-center text-ink-500">
             Noch Fragen?{' '}
-            <a href={`mailto:${site.email}`} className="font-semibold text-primary-600 hover:text-primary-700">
+            <a
+              href={`mailto:${site.email}`}
+              className="font-semibold text-primary-400 hover:text-primary-300"
+            >
               {site.email}
             </a>
           </p>

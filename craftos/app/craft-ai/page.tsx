@@ -1,79 +1,120 @@
 import type { Metadata } from 'next'
 import {
+  ScanLine,
   Camera,
-  FileSearch,
-  Mic,
-  Keyboard,
-  FileSignature,
   Video,
+  Mic,
+  FileSearch,
+  TrendingUp,
+  MessageSquareText,
+  BrainCircuit,
+  PhoneCall,
+  Plug,
+  ShieldCheck,
   Coins,
-  ArrowRight,
 } from 'lucide-react'
 import { PageHero } from '@/components/ui/PageHero'
-import { HexIcon, CtaButton, SectionHeading } from '@/components/ui/primitives'
 import { Faq } from '@/components/ui/Faq'
 import { JsonLd } from '@/components/seo/JsonLd'
+import {
+  CtaButton,
+  GhostButton,
+  HexIcon,
+  SectionHeading,
+  TierBadge,
+} from '@/components/ui/primitives'
+import { KiChatDemo } from '@/components/demos/KiChatDemo'
 import { breadcrumbSchema, faqSchema } from '@/lib/schema'
-import { site } from '@/lib/site'
+import { site, creditPakete } from '@/lib/site'
 
 export const metadata: Metadata = {
-  title: 'Craft AI – KI für das Handwerk: Foto, PDF, Sprache & Angebote',
+  title: 'Craft AI – KI für Handwerksbetriebe',
   description:
-    'Craft AI analysiert Fotos und PDFs, transkribiert Sprache, erstellt Angebotsentwürfe und vermisst Räume per Video. Optimiert für deutsche Handwerksbegriffe – 150 Credits/Monat inklusive.',
+    'Belegscan, Foto-/Video-Analyse, Sprachdiktat, KI-Chat-Agent und Vorhersagen: Craft AI arbeitet mit Ihren echten Betriebsdaten – DSGVO-konform, Pay-as-you-go.',
   alternates: { canonical: `${site.url}/craft-ai` },
 }
 
-const abilities = [
+// Live-KI (im Code verifiziert)
+const heute = [
   {
-    icon: FileSearch,
-    title: 'PDF-Analyse',
-    credits: '1 Credit',
-    desc: 'Leistungsverzeichnisse, Verträge und Baupläne einlesen und die wichtigen Daten automatisch extrahieren.',
+    icon: MessageSquareText,
+    title: 'KI-Chat-Agent',
+    desc: 'Fragen zu Projekten, Rechnungen und Zeiten stellen – der Agent liest Ihre Betriebsdaten und antwortet belegt. Rollen- und rechtssicher.',
+  },
+  {
+    icon: ScanLine,
+    title: 'Belegscan (OCR)',
+    desc: 'Eingangsrechnung fotografieren – Lieferant, Beträge und Positionen werden automatisch erkannt und verbucht.',
   },
   {
     icon: Camera,
     title: 'Foto-Analyse',
-    credits: '2 Credits',
-    desc: 'Baustellenfotos analysieren – Flächen, Öffnungen und Objekte erkennen für Doku und Aufmaß.',
-  },
-  {
-    icon: Mic,
-    title: 'Sprach-Transkription',
-    credits: '1 Credit/Min.',
-    desc: 'Sprachnotizen werden zu Text – mit Whisper, optimiert für deutsche Handwerksbegriffe.',
-  },
-  {
-    icon: Keyboard,
-    title: 'Spracheingabe',
-    credits: '1 Credit',
-    desc: 'In jedes Feld diktieren statt tippen. Ideal mit Handschuhen oder unterwegs.',
-  },
-  {
-    icon: FileSignature,
-    title: 'KI-Angebotserstellung',
-    credits: '6 Credits',
-    desc: 'Aus Projektbeschreibung und Aufnahmen entsteht ein fertiger Angebotsentwurf zur Freigabe.',
+    desc: 'Baustellenfoto hochladen – Craft AI erkennt Materialien, Mengen und Maße für Ihre Kalkulation.',
   },
   {
     icon: Video,
-    title: 'Video-Raumanalyse',
-    credits: '10 Credits',
-    desc: 'Raum per Video aufnehmen – Craft AI unterstützt bei Vermessung und Dokumentation.',
+    title: 'Video- & Raumanalyse',
+    desc: 'Besichtigungsvideo aufnehmen – die KI wertet Räume strukturiert aus und liefert die Basis fürs Angebot.',
+  },
+  {
+    icon: FileSearch,
+    title: 'PDF- & LV-Analyse',
+    desc: 'Leistungsverzeichnisse und Baudokumente automatisch auslesen statt abtippen.',
+  },
+  {
+    icon: Mic,
+    title: 'Sprachdiktat (Deutsch)',
+    desc: 'Zeiten, Notizen und Berichte diktieren – präzise deutsche Transkription, ideal mit Handschuhen.',
+  },
+  {
+    icon: TrendingUp,
+    title: 'Vorhersagen',
+    desc: 'Cashflow, Fertigstellungstermin, Preis-Plausibilität und Saisonspitzen – deterministisch berechnet.',
+  },
+]
+
+const launch = [
+  {
+    icon: BrainCircuit,
+    title: 'KI-Firmengedächtnis',
+    desc: '„Was war das Problem in der Xstraße?" – semantische Suche über alle Projekte, Dokumente und sogar Besichtigungsvideos, mit Quellenangabe.',
+  },
+  {
+    icon: MessageSquareText,
+    title: 'Schreibende Agent-Aktionen',
+    desc: 'Der Agent bereitet Aktionen als Entwurf vor: Zeiten buchen, Angebote anlegen, Einsätze planen – Sie bestätigen mit einem Klick.',
+  },
+]
+
+const visionItems = [
+  {
+    icon: PhoneCall,
+    title: 'Telefon-Agent',
+    desc: 'Eine KI nimmt Anrufe an, erfasst das Anliegen, erkennt Bestandskunden und legt Aufgaben an – Ihr Front-Office schläft nie.',
+  },
+  {
+    icon: Plug,
+    title: 'Offener MCP-Server',
+    desc: 'Ihre eigene KI (ChatGPT, Claude & Co.) sicher an CraftOS andocken – mit denselben Rechten und Grenzen wie der eingebaute Agent.',
   },
 ]
 
 const faqItems = [
   {
-    q: 'Wie funktioniert das Credit-System?',
-    a: 'Jede KI-Funktion kostet eine bestimmte Anzahl Credits (1 Credit = 1 Cent). Mit der Admin-Lizenz sind 150 Credits pro Monat gratis enthalten. Zusätzliche Credits gibt es als Paket (10, 25, 50 oder 100 €) mit Bonus.',
+    q: 'Was kostet Craft AI?',
+    a: 'Craft AI rechnet Pay-as-you-go ab: 1 Credit = 1 Cent, 150 Credits Startguthaben inklusive. Credit-Pakete gibt es von 10 € bis 100 € mit bis zu 20 % Bonus – kein KI-Abo nötig.',
   },
   {
-    q: 'Ist Craft AI auf Deutsch optimiert?',
-    a: 'Ja. Die Spracherkennung und Analyse sind auf deutsche Handwerksbegriffe und Gewerke abgestimmt – von Leistungsverzeichnis bis Aufmaß.',
+    q: 'Halluziniert die KI meine Zahlen?',
+    a: 'Nein. Preise, Löhne und Steuern berechnet immer die deterministische Kalkulations-Engine – die KI liefert Vorschläge und liest Daten, rechnet aber nie final.',
   },
   {
-    q: 'Kann ich das Budget pro Mitarbeiter begrenzen?',
-    a: 'Ja. Pro Teammitglied lässt sich ein KI-Budget festlegen (z. B. 5–50 € oder unbegrenzt), damit die Kosten planbar bleiben.',
+    q: 'Kann die KI Dinge ohne mein Wissen ändern?',
+    a: 'Nein. Craft AI arbeitet nach dem Draft-First-Prinzip: Die KI bereitet vor, der Mensch bestätigt. Jeder Agent-Zugriff wird protokolliert und respektiert Ihre Rollen und Rechte.',
+  },
+  {
+    q: 'Sind meine Daten sicher?',
+    a: 'Ja. Der Agent sieht nur, was die jeweilige Rolle sehen darf (RLS-gesichert), alle Zugriffe werden auditiert, und die Verarbeitung ist DSGVO-konform.',
   },
 ]
 
@@ -90,105 +131,171 @@ export default function CraftAiPage() {
 
       <PageHero
         eyebrow="Craft AI"
-        title="KI, die Ihr Handwerk versteht"
-        intro="Foto, PDF oder Sprache rein – Aufmaß, Doku oder fertiges Angebot raus. Craft AI nimmt Ihnen die Schreibtischarbeit ab, damit Sie arbeiten können."
+        title={
+          <>
+            KI, die anpackt.
+            <br />
+            <span className="text-primary-400">Nicht nur plaudert.</span>
+          </>
+        }
+        intro="Craft AI arbeitet mit Ihren echten Betriebsdaten: Belege auslesen, Baustellen analysieren, Fragen beantworten. Der Mensch behält das letzte Wort – die KI rechnet nie final."
       />
 
-      {/* Beispiel-Flow */}
-      <section className="bg-white">
-        <div className="mx-auto max-w-5xl px-5 py-16 sm:px-8">
-          <div className="rounded-3xl border border-node-300/40 bg-gradient-to-br from-node-300/10 via-primary-50 to-white p-8 sm:p-10">
-            <p className="spec-label text-node-500">// So läuft es ab</p>
-            <div className="mt-6 grid items-center gap-4 sm:grid-cols-[1fr_auto_1fr_auto_1fr]">
-              <FlowCard label="01 · Eingang" text="Baustellenfoto + Sprachnotiz hochladen" />
-              <ArrowRight className="mx-auto hidden h-6 w-6 text-primary-400 sm:block" />
-              <FlowCard label="02 · Craft AI" text="Flächen erkannt, Leistungen zugeordnet" highlight />
-              <ArrowRight className="mx-auto hidden h-6 w-6 text-primary-400 sm:block" />
-              <FlowCard label="03 · Ergebnis" text="Angebotsentwurf bereit zur Freigabe" />
+      {/* Demo + Draft-First-Prinzip */}
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="grid items-start gap-10 lg:grid-cols-2">
+            <div>
+              <SectionHeading
+                eyebrow="Der Assistent"
+                title="Fragen Sie Ihren Betrieb"
+                intro="Der KI-Chat-Agent kennt Projekte, Kunden, Zeiten und Dokumente – und antwortet in Sekunden, mit Beleg. Probieren Sie es aus:"
+              />
+              <div className="mt-8 space-y-4">
+                {[
+                  {
+                    icon: ShieldCheck,
+                    t: 'Draft-First',
+                    d: 'Die KI bereitet vor, Sie bestätigen. Nichts passiert ohne Ihr OK.',
+                  },
+                  {
+                    icon: ShieldCheck,
+                    t: 'Rollen- & rechtssicher',
+                    d: 'Der Agent sieht nur, was die Rolle sehen darf – jeder Zugriff wird protokolliert.',
+                  },
+                  {
+                    icon: ShieldCheck,
+                    t: 'KI rechnet nie final',
+                    d: 'Löhne, Material und Steuern bleiben in der deterministischen Engine – kein Halluzinationsrisiko in den Zahlen.',
+                  },
+                ].map((p) => (
+                  <div key={p.t} className="flex items-start gap-3">
+                    <p.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-400" />
+                    <div>
+                      <p className="font-display text-base font-semibold text-ink-800">{p.t}</p>
+                      <p className="text-sm leading-relaxed text-ink-500">{p.d}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
+            <KiChatDemo />
           </div>
         </div>
       </section>
 
-      {/* Fähigkeiten */}
-      <section className="bg-white">
-        <div className="mx-auto max-w-7xl px-5 pb-20 sm:px-8 lg:pb-24">
-          <SectionHeading
-            align="center"
-            eyebrow="6 KI-Funktionen"
-            title="Was Craft AI für Sie erledigt"
-          />
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {abilities.map((a) => (
-              <article key={a.title} className="card-hover rounded-2xl border border-ink-200 bg-white p-7">
-                <div className="flex items-center justify-between">
-                  <HexIcon icon={a.icon} tone="node" />
-                  <span className="rounded-full bg-node-300/15 px-3 py-1 font-mono text-[11px] font-semibold text-node-600">
-                    {a.credits}
-                  </span>
+      <div className="anriss anriss-amber mx-auto max-w-7xl" aria-hidden="true" />
+
+      {/* Live-Fähigkeiten */}
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="flex flex-wrap items-center gap-3">
+            <SectionHeading eyebrow="Fähigkeiten" title="Was Craft AI heute schon kann" />
+          </div>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {heute.map((f) => (
+              <div key={f.title} className="rounded-2xl border border-ink-200 bg-ink-100 p-6">
+                <div className="flex items-start justify-between gap-3">
+                  <HexIcon icon={f.icon} />
+                  <TierBadge tier="heute" />
                 </div>
-                <h3 className="mt-5 font-display text-lg font-bold text-ink-900">{a.title}</h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-ink-600">{a.desc}</p>
-              </article>
+                <h3 className="mt-4 font-display text-lg font-semibold text-ink-900">{f.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-500">{f.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Launch & Vision */}
+          <div className="mt-12 grid gap-5 sm:grid-cols-2">
+            {launch.map((f) => (
+              <div
+                key={f.title}
+                className="rounded-2xl border border-primary-500/25 bg-primary-500/[0.04] p-6"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <HexIcon icon={f.icon} />
+                  <TierBadge tier="launch" />
+                </div>
+                <h3 className="mt-4 font-display text-lg font-semibold text-ink-900">{f.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-500">{f.desc}</p>
+              </div>
+            ))}
+            {visionItems.map((f) => (
+              <div key={f.title} className="rounded-2xl border border-ink-200 bg-ink-100 p-6">
+                <div className="flex items-start justify-between gap-3">
+                  <HexIcon icon={f.icon} tone="muted" />
+                  <TierBadge tier="vision" />
+                </div>
+                <h3 className="mt-4 font-display text-lg font-semibold text-ink-900">{f.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-500">{f.desc}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Credits */}
-      <section className="border-y border-ink-200 bg-ink-50">
-        <div className="mx-auto max-w-5xl px-5 py-16 sm:px-8">
-          <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
-            <HexIcon icon={Coins} tone="cta" className="h-14 w-14" />
-            <div className="flex-1">
-              <h2 className="font-display text-2xl font-extrabold text-ink-900">
-                150 KI-Credits pro Monat inklusive
-              </h2>
-              <p className="mt-2 text-ink-600">
-                Mit der Admin-Lizenz starten Sie jeden Monat mit 150 Gratis-Credits (1 Credit =
-                1 Cent). Mehr Bedarf? Credit-Pakete mit Bonus gibt es ab 10 €. Budgets pro
-                Mitarbeiter halten die Kosten im Griff.
-              </p>
-            </div>
+      <section className="relative overflow-hidden bg-ink-950 py-16 lg:py-20">
+        <div className="bg-werkbank absolute inset-0 opacity-50" aria-hidden="true" />
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+          <SectionHeading
+            eyebrow="Abrechnung"
+            title="Pay-as-you-go statt KI-Abo"
+            intro="1 Credit = 1 Cent. 150 Credits Startguthaben sind inklusive – danach zahlen Sie nur, was Sie wirklich nutzen."
+            align="center"
+          />
+          <div className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4">
+            {creditPakete.map((p) => (
+              <div
+                key={p.preis}
+                className="rounded-2xl border border-ink-200 bg-ink-100 p-5 text-center"
+              >
+                <p className="font-display text-2xl font-bold tabular-nums text-ink-900">
+                  {p.preis} €
+                </p>
+                <p className="mt-1 font-mono text-xs text-ink-400">
+                  {p.bonus > 0 ? (
+                    <>
+                      <span className="text-success">+{p.bonus} % Bonus</span> → {p.guthaben.toLocaleString('de-DE')} €
+                    </>
+                  ) : (
+                    'Einstieg'
+                  )}
+                </p>
+              </div>
+            ))}
           </div>
+          <p className="mt-6 flex items-center justify-center gap-2 text-center font-mono text-xs text-ink-400">
+            <Coins className="h-3.5 w-3.5 text-primary-500" />
+            Budget pro Mitarbeiter festlegbar · volle Kostenkontrolle
+          </p>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="bg-white">
-        <div className="mx-auto max-w-3xl px-5 py-20 sm:px-8">
-          <SectionHeading align="center" eyebrow="FAQ" title="Fragen zu Craft AI" />
-          <div className="mt-12">
-            <Faq items={faqItems} />
-          </div>
-          <div className="mt-12 text-center">
-            <CtaButton />
+      <section className="py-16 lg:py-20">
+        <div className="mx-auto max-w-3xl px-5 sm:px-8">
+          <SectionHeading eyebrow="FAQ" title="Fragen zu Craft AI" align="center" className="mb-10" />
+          <Faq items={faqItems} />
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="relative overflow-hidden bg-ink-950 py-16 lg:py-20">
+        <div className="bg-werkbank mask-fade absolute inset-0" aria-hidden="true" />
+        <div className="relative mx-auto max-w-3xl px-5 text-center sm:px-8">
+          <h2 className="font-display text-3xl font-bold text-ink-900 sm:text-4xl">
+            KI, die für Ihr Handwerk arbeitet
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-lg text-ink-500">
+            14 Tage kostenlos testen – inklusive KI-Startguthaben.
+          </p>
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <CtaButton>Jetzt kostenlos testen</CtaButton>
+            <GhostButton href="/preise">Preise ansehen</GhostButton>
           </div>
         </div>
       </section>
     </>
-  )
-}
-
-function FlowCard({
-  label,
-  text,
-  highlight,
-}: {
-  label: string
-  text: string
-  highlight?: boolean
-}) {
-  return (
-    <div
-      className={
-        highlight
-          ? 'rounded-xl border-2 border-primary-300 bg-white px-5 py-4 shadow-sm'
-          : 'rounded-xl border border-ink-200 bg-white px-5 py-4'
-      }
-    >
-      <p className="font-mono text-[11px] uppercase tracking-wider text-ink-400">{label}</p>
-      <p className="mt-1.5 text-sm font-semibold text-ink-800">{text}</p>
-    </div>
   )
 }

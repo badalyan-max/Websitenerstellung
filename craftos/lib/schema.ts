@@ -54,6 +54,36 @@ export function faqSchema(items: { q: string; a: string }[]) {
   }
 }
 
+export function articleSchema(article: {
+  title: string
+  description: string
+  slug: string
+  date: string
+  updated?: string
+  image?: string
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.description,
+    inLanguage: 'de-DE',
+    author: { '@type': 'Organization', name: site.name, url: site.url },
+    publisher: {
+      '@type': 'Organization',
+      name: site.name,
+      logo: { '@type': 'ImageObject', url: `${site.url}/icons/icon-512x512.png` },
+    },
+    datePublished: article.date,
+    dateModified: article.updated || article.date,
+    ...(article.image ? { image: `${site.url}${article.image}` } : {}),
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${site.url}/blog/${article.slug}`,
+    },
+  }
+}
+
 export function breadcrumbSchema(items: { name: string; path: string }[]) {
   return {
     '@context': 'https://schema.org',

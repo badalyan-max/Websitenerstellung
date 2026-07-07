@@ -4,6 +4,7 @@ export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 export const alt = 'CraftOS – Das Betriebssystem für Handwerksbetriebe'
 
+// Werkbank-Look: near-black #101014, Amber-Gradient (Logo), Hairline-Raster
 export default function OgImage() {
   return new ImageResponse(
     (
@@ -14,31 +15,33 @@ export default function OgImage() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          background: '#020617',
+          background: '#101014',
           backgroundImage:
-            'linear-gradient(rgba(99,102,241,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.12) 1px, transparent 1px)',
+            'linear-gradient(rgba(244,244,245,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(244,244,245,0.04) 1px, transparent 1px)',
           backgroundSize: '56px 56px',
           padding: '72px',
           fontFamily: 'sans-serif',
         }}
       >
-        {/* Logo-Zeile */}
+        {/* Logo-Zeile: Amber-Hexagon-Tile + Wortmarke */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-          <svg width="56" height="56" viewBox="0 0 40 40" fill="none">
-            <path
-              d="M20 4L7 11.5V28.5L20 36L33 28.5V11.5L20 4Z"
-              stroke="#6366f1"
-              strokeWidth="2.5"
-              strokeOpacity="0.3"
-            />
-            <path
-              d="M7 11.5L20 19M20 19L33 11.5M20 19V36"
-              stroke="#818cf8"
-              strokeWidth="2.5"
-            />
-            <circle cx="20" cy="19" r="4" fill="#22d3ee" />
-          </svg>
-          <span style={{ color: 'white', fontSize: 40, fontWeight: 800, letterSpacing: '-0.02em' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: 64,
+              height: 64,
+              borderRadius: 14,
+              background: 'linear-gradient(135deg, #ffc438 0%, #ffb21d 55%, #f19800 100%)',
+              color: '#1c1507',
+              fontSize: 40,
+              fontWeight: 800,
+            }}
+          >
+            C
+          </div>
+          <span style={{ color: '#f4f4f5', fontSize: 40, fontWeight: 800, letterSpacing: '-0.02em' }}>
             CraftOS
           </span>
         </div>
@@ -47,7 +50,7 @@ export default function OgImage() {
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div
             style={{
-              color: '#22d3ee',
+              color: '#f2af38',
               fontSize: 22,
               fontWeight: 600,
               letterSpacing: '0.18em',
@@ -62,7 +65,7 @@ export default function OgImage() {
               display: 'flex',
               flexWrap: 'wrap',
               alignItems: 'baseline',
-              color: 'white',
+              color: '#f4f4f5',
               fontSize: 76,
               fontWeight: 800,
               lineHeight: 1.1,
@@ -71,21 +74,29 @@ export default function OgImage() {
             }}
           >
             <span style={{ marginRight: 20 }}>Das Betriebssystem für</span>
-            <span style={{ color: '#818cf8' }}>Handwerksbetriebe</span>
+            <span
+              style={{
+                backgroundImage: 'linear-gradient(135deg, #ffc438, #f19800)',
+                backgroundClip: 'text',
+                color: 'transparent',
+              }}
+            >
+              Handwerksbetriebe
+            </span>
           </div>
         </div>
 
         {/* Footer-Zeile */}
         <div style={{ display: 'flex', gap: '16px' }}>
-          {['Projekte', 'Angebot → Rechnung', 'Zeiterfassung', 'Craft AI'].map((t) => (
+          {['Angebot → Rechnung', 'Plantafel', 'Zeiterfassung', 'Lager', 'Craft AI'].map((t) => (
             <div
               key={t}
               style={{
-                color: '#cbd5e1',
+                color: '#d0d0d5',
                 fontSize: 22,
                 fontWeight: 500,
-                background: 'rgba(99,102,241,0.12)',
-                border: '1px solid rgba(99,102,241,0.3)',
+                background: 'rgba(242,175,56,0.08)',
+                border: '1px solid rgba(242,175,56,0.35)',
                 borderRadius: 12,
                 padding: '10px 22px',
               }}
