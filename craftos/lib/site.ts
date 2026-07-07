@@ -26,10 +26,12 @@ export const nav = [
 // Speicher: 50-GB-Pool pro Organisation (lizenzunabhängig), erweiterbar.
 export const speicherPool = '50 GB Speicher-Pool pro Betrieb'
 
+// Zwei Lizenzmodelle: App-Lizenz (Monteure) und Voll-Lizenz (Büro ODER Admin —
+// welche Rolle eine Voll-Lizenz bekommt, wird in CraftOS eingestellt).
 export const tarife = [
   {
     id: 'app',
-    name: 'App',
+    name: 'App-Lizenz',
     monat: 9.95,
     jahr: 99.5,
     badge: null,
@@ -43,33 +45,18 @@ export const tarife = [
     ],
   },
   {
-    id: 'buero',
-    name: 'Büro',
+    id: 'voll',
+    name: 'Voll-Lizenz',
     monat: 29.95,
     jahr: 299.5,
-    badge: 'Beliebt',
-    fuer: 'Disposition, Büro & Bauleitung',
+    badge: 'Büro & Admin',
+    fuer: 'Büro, Bauleitung & Geschäftsführung – die Rolle legen Sie in CraftOS fest',
     highlights: [
-      'Web-App + Mobile-App',
-      'Projekte, Kunden & Dokumente',
+      'Web-App + Mobile-App, voller Funktionsumfang',
       'Angebote, Rechnungen & E-Rechnung',
-      'Plantafel & Zeiterfassung',
-      'Lager & Materialwirtschaft',
-    ],
-  },
-  {
-    id: 'admin',
-    name: 'Admin',
-    monat: 29.95,
-    jahr: 299.5,
-    badge: 'Voller Funktionsumfang',
-    fuer: 'Inhaber & Geschäftsführung (1× pro Betrieb)',
-    highlights: [
-      'Alle Funktionen ohne Limit',
-      'Craft AI inkl. 150 Credits Startguthaben',
-      'Team-, Rechte- & Nachunternehmer-Verwaltung',
-      'DATEV-Export, Buchungsjournal & Steuer-Cockpit',
-      'Abo-, Lizenz- & Speicherverwaltung',
+      'Plantafel, Zeiterfassung, Lager & Baudoku',
+      'Als Admin-Rolle: Team, Rechte, DATEV & Craft AI',
+      '150 Credits KI-Startguthaben pro Betrieb',
     ],
   },
 ] as const

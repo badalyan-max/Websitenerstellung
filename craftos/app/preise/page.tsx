@@ -11,7 +11,7 @@ import { site, creditPakete } from '@/lib/site'
 export const metadata: Metadata = {
   title: 'Preise – CraftOS Lizenzen ab 9,95 € pro Monat',
   description:
-    'Transparente Preise für CraftOS: App 9,95 €, Büro 29,95 €, Admin 29,95 € pro Nutzer und Monat. Im Jahresabo ≈ 17 % sparen. 50-GB-Speicherpool, SEPA oder Kreditkarte.',
+    'Transparente Preise für CraftOS: App-Lizenz 9,95 €, Voll-Lizenz (Büro/Admin) 29,95 € pro Nutzer und Monat. Im Jahresabo ≈ 17 % sparen. 50-GB-Speicherpool, SEPA oder Kreditkarte.',
   alternates: { canonical: `${site.url}/preise` },
 }
 
@@ -41,7 +41,7 @@ const details = [
 const faqItems = [
   {
     q: 'Brauche ich für jeden Mitarbeiter eine Lizenz?',
-    a: 'Ja, lizenziert wird pro Nutzer. Jeder Betrieb braucht genau eine Admin-Lizenz (29,95 €). Das Büro nutzt Büro-Lizenzen (29,95 €), Monteure die günstige App-Lizenz (9,95 €).',
+    a: 'Ja, lizenziert wird pro Nutzer. Es gibt zwei Modelle: die Voll-Lizenz (29,95 €) für Büro und Geschäftsführung sowie die App-Lizenz (9,95 €) für Monteure. Ob eine Voll-Lizenz als Büro- oder Admin-Rolle läuft, stellen Sie in CraftOS ein.',
   },
   {
     q: 'Was ist der Unterschied zwischen monatlich und jährlich?',
@@ -78,8 +78,8 @@ export default function PreisePage() {
 
       <PageHero
         eyebrow="Preise"
-        title="Faire Lizenzen, pro Nutzer"
-        intro="Drei Rollen für drei Aufgaben im Betrieb. Keine versteckten Kosten, keine Einrichtungsgebühr, monatlich kündbar – und 14 Tage kostenlos testen."
+        title="Zwei Lizenzen. Fertig."
+        intro="Voll-Lizenz für Büro und Geschäftsführung, App-Lizenz für die Baustelle. Keine versteckten Kosten, keine Einrichtungsgebühr, monatlich kündbar – und 14 Tage kostenlos testen."
       />
 
       <section>

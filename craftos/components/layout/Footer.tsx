@@ -42,9 +42,9 @@ export function Footer() {
             <CraftOSLogo size="md" />
             <p className="mt-5 text-sm leading-relaxed text-ink-400">
               {site.tagline}. Angebote, Rechnungen, Plantafel, Lager, Zeiterfassung und KI –
-              entwickelt für das deutsche Handwerk, gehostet auf EU-Servern.
+              entwickelt für das deutsche Handwerk. Ihre Daten liegen in Frankfurt am Main.
             </p>
-            <p className="spec-label mt-6 text-primary-500">100 % DSGVO-konform · EU-Hosting</p>
+            <p className="spec-label mt-6 text-primary-500">100 % DSGVO-konform · Daten in Deutschland</p>
           </div>
 
           {cols.map((col) => (

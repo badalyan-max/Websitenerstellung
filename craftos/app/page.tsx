@@ -6,11 +6,11 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import {
   Eyebrow,
   SectionHeading,
-  HexIcon,
   CtaButton,
   GhostButton,
   TierBadge,
 } from '@/components/ui/primitives'
+import { GewerkIcon } from '@/components/ui/GewerkIcon'
 import { AngebotDemo } from '@/components/demos/AngebotDemo'
 import { KiChatDemo } from '@/components/demos/KiChatDemo'
 import { site, tarife, zahlung } from '@/lib/site'
@@ -29,11 +29,11 @@ const faqItems = [
   },
   {
     q: 'Was kostet CraftOS?',
-    a: 'Die Admin-Lizenz kostet 29,95 €/Monat (Pflicht, 1× pro Betrieb), weitere Büro-Lizenzen 29,95 €, App-Lizenzen für Monteure 9,95 €. Im Jahresabo sparen Sie rund 17 %. 14 Tage kostenlos testen.',
+    a: 'Es gibt zwei Lizenzen: die Voll-Lizenz für Büro und Geschäftsführung (29,95 €/Monat) und die App-Lizenz für Monteure (9,95 €/Monat). Im Jahresabo sparen Sie rund 17 %. 14 Tage kostenlos testen.',
   },
   {
     q: 'Sind meine Daten sicher?',
-    a: 'Ja. CraftOS wird auf EU-Servern gehostet, ist DSGVO-konform und trennt Betriebe strikt voneinander. Nachunternehmer und Kunden sehen nur, was Sie freigeben.',
+    a: 'Ja. Ihre Daten liegen in Frankfurt am Main (Deutschland), CraftOS ist DSGVO-konform und trennt Betriebe strikt voneinander. Nachunternehmer und Kunden sehen nur, was Sie freigeben.',
   },
   {
     q: 'Funktioniert CraftOS auch offline auf der Baustelle?',
@@ -41,12 +41,21 @@ const faqItems = [
   },
 ]
 
-// Die 6 stärksten Funktionen für die Startseite
-const topFunktionen = funktionen.filter((f) =>
-  ['angebote', 'rechnungen', 'plantafel', 'zeiterfassung', 'lager', 'baudokumentation'].includes(
-    f.slug,
-  ),
-)
+// Der echte Ablauf eines Auftrags — vom Angebot bis zum Geld auf dem Konto.
+// Reihenfolge und Stations-Label sind Teil des Designs (Bauablauf-Rail).
+const ablauf = [
+  { slug: 'angebote', station: 'Auftrag' },
+  { slug: 'plantafel', station: 'Planung' },
+  { slug: 'zeiterfassung', station: 'Baustelle' },
+  { slug: 'baudokumentation', station: 'Nachweis' },
+  { slug: 'lager', station: 'Material' },
+  { slug: 'rechnungen', station: 'Geld' },
+]
+  .map((a) => {
+    const f = funktionen.find((f) => f.slug === a.slug)
+    return f ? { ...a, f } : null
+  })
+  .filter((a): a is NonNullable<typeof a> => a !== null)
 
 export default function HomePage() {
   return (
@@ -62,23 +71,34 @@ export default function HomePage() {
             title="Gemacht für Ihr Handwerk"
             intro="Ob Elektro, SHK oder Holzbau: CraftOS spricht die Sprache Ihres Gewerks – mit fertigen Leistungsvorlagen für den schnellen Start."
           />
-          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+          {/* Werkzeugwand: geprägte Marken statt Kachel-Raster */}
+          <div className="mt-12 flex flex-wrap justify-center gap-3">
             {gewerke.map((g) => (
               <Link
                 key={g.slug}
                 href={`/gewerke/${g.slug}`}
-                className="card-hover group flex min-h-[5.5rem] flex-col justify-between rounded-xl border border-ink-200 bg-ink-100 p-4"
+                className="group flex items-center gap-2.5 rounded-xl border border-ink-200 bg-ink-100 py-3 pl-4 pr-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary-500/60 hover:shadow-[0_10px_30px_-12px_rgba(242,175,56,0.3)]"
               >
-                <span className="font-display text-sm font-semibold text-ink-800 group-hover:text-ink-900">
+                <GewerkIcon
+                  slug={g.slug}
+                  className="h-5.5 w-5.5 flex-shrink-0 text-ink-400 transition-colors duration-200 group-hover:text-primary-400"
+                />
+                <span className="font-display text-[0.95rem] font-semibold text-ink-700 transition-colors group-hover:text-ink-900">
                   {g.kurz}
                 </span>
-                <span className="mt-2 flex items-center gap-1 text-xs text-ink-400 transition-colors group-hover:text-primary-400">
-                  Mehr
-                  <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-                </span>
+                {g.hatVorlagen && (
+                  <span
+                    className="h-1.5 w-1.5 rounded-full bg-primary-500"
+                    title="Fertige Leistungsvorlagen"
+                  />
+                )}
               </Link>
             ))}
           </div>
+          <p className="mt-6 text-center font-mono text-[0.65rem] uppercase tracking-wider text-ink-400">
+            <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-primary-500 align-middle" />
+            Mit fertigen Leistungsvorlagen ab Tag 1
+          </p>
         </div>
       </section>
 
@@ -89,27 +109,58 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading
             eyebrow="Das System"
-            title="Ein System statt sieben Insellösungen"
-            intro="Vom ersten Angebot bis zum DATEV-Export: Jedes Modul greift ins nächste – ohne Doppel-Eingabe, ohne Excel-Brücken."
+            title="Ein Auftrag, ein System"
+            intro="So läuft ein Auftrag durch CraftOS – vom Angebot bis zum Geld auf dem Konto. Jedes Modul greift ins nächste, ohne Doppel-Eingabe, ohne Excel-Brücken."
           />
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {topFunktionen.map((f) => (
-              <Link
-                key={f.slug}
-                href={`/funktionen/${f.slug}`}
-                className="card-hover group rounded-2xl border border-ink-200 bg-ink-100 p-6"
-              >
-                <HexIcon icon={f.icon} />
-                <h3 className="mt-4 font-display text-lg font-semibold text-ink-900">{f.name}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-500">{f.kurz}</p>
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary-400">
-                  Im Detail
-                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                </span>
-              </Link>
-            ))}
+
+          {/* Bauablauf-Rail: die Stationen eines echten Auftrags */}
+          <div className="relative mx-auto mt-14 max-w-3xl">
+            {/* Maßband-Schiene mit Messmarken */}
+            <div
+              className="absolute bottom-3 left-[7px] top-3 w-px bg-gradient-to-b from-ink-300 via-primary-500/60 to-primary-500"
+              aria-hidden="true"
+            />
+            <div
+              className="absolute bottom-3 left-[4px] top-3 w-[7px]"
+              aria-hidden="true"
+              style={{
+                backgroundImage:
+                  'repeating-linear-gradient(to bottom, transparent 0 26px, rgba(242,175,56,0.45) 26px 27px)',
+              }}
+            />
+            <ol className="space-y-10">
+              {ablauf.map(({ f, station }) => (
+                <li key={f.slug} className="relative pl-12">
+                  {/* Stations-Marke auf der Schiene */}
+                  <span
+                    className="absolute left-[3px] top-1.5 h-2.5 w-2.5 rotate-45 border border-primary-400 bg-ink-950"
+                    aria-hidden="true"
+                  />
+                  <Link href={`/funktionen/${f.slug}`} className="group block">
+                    <span className="font-mono text-[0.62rem] font-medium uppercase tracking-[0.18em] text-primary-500">
+                      {station}
+                    </span>
+                    <h3 className="mt-1 font-display text-xl font-semibold text-ink-900 transition-colors group-hover:text-primary-300 sm:text-2xl">
+                      {f.name}
+                    </h3>
+                    <p className="mt-1.5 max-w-xl text-sm leading-relaxed text-ink-500 sm:text-[15px]">
+                      {f.kurz}
+                    </p>
+                    <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary-400 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                      Im Detail
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ol>
+            {/* Endpunkt der Schiene */}
+            <p className="mt-8 pl-12 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-ink-400">
+              → DATEV-Export an den Steuerberater
+            </p>
           </div>
-          <div className="mt-8 text-center">
+
+          <div className="mt-12 text-center">
             <GhostButton href="/funktionen">Alle Funktionen ansehen</GhostButton>
           </div>
         </div>
@@ -286,12 +337,12 @@ export default function HomePage() {
             intro={`${zahlung.trial}.`}
             align="center"
           />
-          <div className="mt-12 grid gap-5 sm:grid-cols-3">
+          <div className="mx-auto mt-12 grid max-w-3xl gap-5 sm:grid-cols-2">
             {tarife.map((t) => (
               <div
                 key={t.id}
                 className={
-                  t.badge === 'Beliebt'
+                  t.id === 'voll'
                     ? 'card-hover rounded-2xl border border-primary-500/50 bg-ink-100 p-6'
                     : 'card-hover rounded-2xl border border-ink-200 bg-ink-100 p-6'
                 }

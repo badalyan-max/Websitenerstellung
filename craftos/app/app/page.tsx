@@ -94,7 +94,7 @@ const faqItems = [
   },
   {
     q: 'Kostet die App extra?',
-    a: 'Die App ist Teil jeder Lizenz. Reine App-Nutzer (Monteure) zahlen nur 9,95 € pro Monat – Büro- und Admin-Lizenzen enthalten Web und App.',
+    a: 'Die App ist Teil jeder Lizenz. Reine App-Nutzer (Monteure) zahlen nur 9,95 € pro Monat – die Voll-Lizenz enthält Web und App.',
   },
 ]
 

@@ -432,7 +432,7 @@ export const gewerke: Gewerk[] = [
     faq: [
       {
         q: 'Lohnt sich CraftOS auch für Einzelkämpfer?',
-        a: 'Ja. Mit der Admin-Lizenz (1× pro Betrieb) haben Solo-Handwerker den vollen Funktionsumfang – vom Angebot bis zur Steuer.',
+        a: 'Ja. Mit einer einzigen Voll-Lizenz haben Solo-Handwerker den vollen Funktionsumfang – vom Angebot bis zur Steuer.',
       },
     ],
     seoTitle: 'Hausmeister & Allround-Handwerker Software',

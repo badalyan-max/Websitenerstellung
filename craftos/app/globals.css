@@ -193,12 +193,27 @@ h1, h2, h3, h4, h5 {
   0%, 100% { opacity: 1; }
   50%      { opacity: 0.55; }
 }
+/* Hammer-Einschlag: kurzes Erzittern der Headline */
+@keyframes impact-shake {
+  0%   { transform: translate(0, 0); }
+  12%  { transform: translate(-6px, 4px) rotate(-0.4deg); }
+  24%  { transform: translate(7px, -3px) rotate(0.35deg); }
+  38%  { transform: translate(-5px, 2px) rotate(-0.25deg); }
+  52%  { transform: translate(4px, -2px); }
+  70%  { transform: translate(-2px, 1px); }
+  100% { transform: translate(0, 0); }
+}
+@keyframes impact-flash {
+  0%   { opacity: 0.95; }
+  100% { opacity: 0; }
+}
 
 .animate-fade-up {
   opacity: 0;
   animation: fade-up 0.6s var(--ease-werkbank) forwards;
 }
 .animate-ember { animation: ember-pulse 2.4s ease-in-out infinite; }
+.animate-impact-shake { animation: impact-shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97); }
 /* Alias Altbestand */
 .animate-node-pulse { animation: ember-pulse 2.4s ease-in-out infinite; }
 

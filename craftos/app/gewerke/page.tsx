@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ArrowRight, Layers } from 'lucide-react'
 import { PageHero } from '@/components/ui/PageHero'
 import { CtaButton, SectionHeading } from '@/components/ui/primitives'
+import { GewerkIcon } from '@/components/ui/GewerkIcon'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { breadcrumbSchema } from '@/lib/schema'
 import { gewerke } from '@/lib/gewerke'
@@ -44,7 +45,13 @@ export default function GewerkePage() {
                 className="card-hover group flex flex-col rounded-2xl border border-ink-200 bg-ink-100 p-6"
               >
                 <div className="flex items-start justify-between gap-3">
-                  <h2 className="font-display text-lg font-semibold text-ink-900">{g.name}</h2>
+                  <span className="flex items-center gap-3">
+                    <GewerkIcon
+                      slug={g.slug}
+                      className="h-6 w-6 flex-shrink-0 text-primary-400"
+                    />
+                    <h2 className="font-display text-lg font-semibold text-ink-900">{g.name}</h2>
+                  </span>
                   {g.hatVorlagen && (
                     <span className="inline-flex flex-shrink-0 items-center gap-1 rounded-full bg-primary-500/10 px-2 py-0.5 font-mono text-[0.6rem] font-medium uppercase tracking-wider text-primary-400">
                       <Layers className="h-3 w-3" />
