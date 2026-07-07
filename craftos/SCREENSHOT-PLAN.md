@@ -1,5 +1,12 @@
 # Screenshot-Plan — benötigte App-Screenshots für craftos.eu
 
+> **Stand 08.07.2026:** 17 von 18 Slots sind mit echten App-Screenshots befüllt
+> (aufgenommen per Playwright aus Web-App + Mobile-App, Demo-Account mit Beispieldaten).
+> Offen: `kundenportal-freigabe` (Kundenportal-Login ließ sich nicht sauber
+> reproduzieren — Platzhalter bleibt). `lager-scan` zeigt statt Barcode-Scan
+> (existiert nicht in der App) ehrlich den Wareneingang-Dialog mit KI-Belegscan
+> und ist auf die Variante `fragment` umgestellt.
+
 Die Website hat jetzt **definierte Screenshot-Plätze** (Komponente `ScreenshotFrame`).
 Solange eine Datei fehlt, zeigt die Seite einen sauberen Werkbank-Platzhalter mit dem
 Motiv-Namen — es bricht also nichts. Sobald ein Screenshot vorliegt:
@@ -27,7 +34,7 @@ Motiv-Namen — es bricht also nichts. Sobald ein Screenshot vorliegt:
 | 9 | `zeiterfassung-app` | Phone | Laufender Timer + Tagesliste der gebuchten Zeiten |
 | 10 | `zeiterfassung-konto` | Desktop 16:10 | Arbeitszeitkonto/Urlaubsübersicht im Büro |
 | 11 | `lager-bestand` | Desktop 16:10 | Lagerübersicht: Bestände über Hauptlager + Montagebus |
-| 12 | `lager-scan` | Phone | Material per Barcode buchen (Scan-Ansicht) |
+| 12 | `lager-scan` | Desktop 16:10 | Wareneingang-Dialog mit KI-Belegscan (Barcode-Scan existiert in der App nicht) |
 | 13 | `baudoku-bericht` | Phone | Bautagesbericht: Fotos + Wetter + Unterschriftenfeld |
 | 14 | `baudoku-akte` | Desktop 16:10 | Digitale Projektakte mit Ordnern, Fotos, Berichten |
 | 15 | `team-rollen` | Desktop 16:10 | Team-/Rollenverwaltung (Admin, Büro, Monteur, Nachunternehmer) |

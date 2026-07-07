@@ -107,7 +107,7 @@ export function LagerDemo({ className }: { className?: string }) {
         {scanning ? (
           <>
             <ScanBarcode className="h-4 w-4 animate-ember text-primary-400" />
-            Scanne Barcode …
+            Scanne Lieferschein …
           </>
         ) : (
           <>

@@ -162,12 +162,12 @@ export const funktionen: Funktion[] = [
     kurz: 'Bestände über Lager, Lagerplätze und Fahrzeuge führen – Entnahmen speisen die Nachkalkulation.',
     heroTitle: 'Wissen, wo Ihr Material ist – und was es kostet',
     heroIntro:
-      'CraftOS führt Bestände über mehrere Lager, Lagerplätze und Fahrzeuge. Wareneingang, Warenausgang, Umlagerung und Rückbuchung – jeder Ausgang ist auftragsgebunden und speist die Nachkalkulation in Echtzeit. Mit Seriennummern und mobiler Erfassung.',
+      'CraftOS führt Bestände über mehrere Lager, Lagerplätze und Fahrzeuge. Wareneingang, Warenausgang, Umlagerung und Rückbuchung – jeder Ausgang ist auftragsgebunden und speist die Nachkalkulation in Echtzeit. Mit Seriennummern und KI-Belegscan für den Wareneingang.',
     demo: 'lager',
     bullets: [
       { titel: 'Mehrere Lager & Fahrzeuge', text: 'Hauptlager, Container, Montagebus – jedes Lager mit eigenen Plätzen und Beständen.' },
       { titel: 'Auftragsgenaue Entnahme', text: 'Warenausgänge brauchen Kunde + Auftrag – so stimmt die Nachkalkulation immer.' },
-      { titel: 'Seriennummern & Barcode', text: 'Geräte mit Seriennummer verfolgen, Material mobil per Barcode erfassen.' },
+      { titel: 'Seriennummern & Beleg-Scan', text: 'Geräte mit Seriennummer verfolgen, Wareneingänge per Lieferschein-Scan mit KI erfassen.' },
       { titel: 'Rückbuchung vom Auftrag', text: 'Nicht verbautes Material zurückbuchen – die Projektkosten korrigieren sich automatisch.' },
       { titel: 'Mindestbestand & Inventur', text: 'Warnungen bei Meldebestand und geführter Inventur-Workflow.', tier: 'launch' },
     ],
