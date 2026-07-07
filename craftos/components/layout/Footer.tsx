@@ -11,13 +11,13 @@ const cols = [
       { label: 'Craft AI', href: '/craft-ai' },
       { label: 'Mobile-App', href: '/app' },
       { label: 'Preise', href: '/preise' },
+      { label: 'Fakten über CraftOS', href: '/fakten-ueber-craftos' },
     ],
   },
   {
     title: 'Loslegen',
     links: [
       { label: 'Kostenlos testen', href: site.ctaUrl, external: true },
-      { label: 'Demo ansehen', href: site.demoUrl, external: true },
       { label: 'Anmelden', href: site.appUrl, external: true },
     ],
   },

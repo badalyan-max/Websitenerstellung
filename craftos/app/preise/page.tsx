@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { CreditCard, Landmark, HardDrive, Coins } from 'lucide-react'
+import { CreditCard, Landmark, HardDrive, Coins, Check } from 'lucide-react'
 import { PageHero } from '@/components/ui/PageHero'
 import { HexIcon, SectionHeading } from '@/components/ui/primitives'
 import { PricingTable } from '@/components/preise/PricingTable'
@@ -60,6 +60,14 @@ const faqItems = [
     a: 'Nein. Keine Einrichtungsgebühr, keine Mindestlaufzeit im Monatsabo. Sie testen 14 Tage kostenlos mit vollem Funktionsumfang.',
   },
   {
+    q: 'Was passiert nach der kostenlosen Testphase?',
+    a: 'Die Testphase endet automatisch – es entsteht kein Abo und es wird nichts abgebucht. Keine Abofalle: Sie entscheiden danach aktiv, ob Sie mit einer Lizenz weitermachen.',
+  },
+  {
+    q: 'Sind Plantafel und Lager wirklich ohne Aufpreis dabei?',
+    a: 'Ja. Plantafel, Lager & Materialwirtschaft, DATEV-Export und E-Rechnung sind Bestandteil der Voll-Lizenz – bei CraftOS gibt es keine kostenpflichtigen Zusatzmodule.',
+  },
+  {
     q: 'Kann ich jederzeit kündigen?',
     a: 'Ja. Monatliche Lizenzen sind monatlich kündbar, Jahreslizenzen zum Ende der Laufzeit. Ihre Daten können Sie jederzeit exportieren.',
   },
@@ -85,6 +93,30 @@ export default function PreisePage() {
       <section>
         <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:py-20">
           <PricingTable />
+
+          {/* Bei CraftOS inklusive — anderswo Zusatzmodul oder gar nicht vorhanden */}
+          <div className="mx-auto mt-14 max-w-4xl rounded-2xl border border-primary-500/25 bg-primary-500/[0.06] p-7 sm:p-8">
+            <p className="spec-label text-[0.62rem] text-primary-400">Bei CraftOS inklusive</p>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-500">
+              Vieles, was anderswo als Zusatzmodul berechnet wird oder ganz fehlt, ist in der
+              Voll-Lizenz einfach drin:
+            </p>
+            <ul className="mt-5 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+              {[
+                'Plantafel & Einsatzplanung – kein kostenpflichtiges Zusatzmodul',
+                'Lager & Materialwirtschaft – inklusive Fahrzeuglager',
+                'DATEV-Export, Steuer-Cockpit & automatisches Mahnwesen',
+                'E-Rechnung (XRechnung) erstellen und empfangen',
+                'Kundenportal mit Online-Angebotsfreigabe',
+                'Alle Updates & neue Funktionen ohne Aufpreis',
+              ].map((t) => (
+                <li key={t} className="flex items-start gap-2.5 text-sm text-ink-600">
+                  <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary-400" strokeWidth={2.5} />
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 

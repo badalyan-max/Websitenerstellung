@@ -6,6 +6,7 @@ import { PageHero } from '@/components/ui/PageHero'
 import { Faq } from '@/components/ui/Faq'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { CtaButton, GhostButton, SectionHeading, TierBadge } from '@/components/ui/primitives'
+import { ScreenshotFrame } from '@/components/ui/ScreenshotFrame'
 import { AngebotDemo } from '@/components/demos/AngebotDemo'
 import { PlantafelDemo } from '@/components/demos/PlantafelDemo'
 import { ZeitenDemo } from '@/components/demos/ZeitenDemo'
@@ -24,6 +25,20 @@ const DEMOS = {
   kichat: KiChatDemo,
   lager: LagerDemo,
 } as const
+
+// Definierte Screenshot-Plätze je Modul (Slots aus lib/images.ts)
+const SHOWCASE: Record<string, string[]> = {
+  angebote: ['angebot-maske', 'angebot-aufmass'],
+  rechnungen: ['rechnung-dokument', 'rechnung-mahnwesen'],
+  buchhaltung: ['beleg-scan', 'datev-export'],
+  plantafel: ['plantafel-woche', 'plantafel-app'],
+  zeiterfassung: ['zeiterfassung-konto', 'zeiterfassung-app'],
+  lager: ['lager-bestand', 'lager-scan'],
+  baudokumentation: ['baudoku-akte', 'baudoku-bericht'],
+  team: ['team-rollen'],
+  nachkalkulation: ['nachkalkulation-dashboard'],
+  kundenportal: ['kundenportal-freigabe'],
+}
 
 export function generateStaticParams() {
   return funktionen.map((f) => ({ slug: f.slug }))
@@ -109,15 +124,36 @@ export default async function FunktionDetailPage({
         </div>
       </section>
 
-      {funktionBilder[f.slug] && <BildBanner bild={funktionBilder[f.slug]} className="mb-16" />}
+      {/* Einblick ins Modul: definierte Screenshot-Plätze */}
+      {SHOWCASE[f.slug] && (
+        <section className="pb-16 lg:pb-20">
+          <div className="mx-auto max-w-7xl px-5 sm:px-8">
+            <SectionHeading eyebrow="Einblick" title={`So sieht ${f.name} in CraftOS aus`} />
+            <div
+              className={
+                SHOWCASE[f.slug].length > 1
+                  ? 'mt-10 grid items-center gap-8 sm:grid-cols-[1.4fr_1fr]'
+                  : 'mt-10 mx-auto max-w-2xl'
+              }
+            >
+              {SHOWCASE[f.slug].map((slot) => (
+                <ScreenshotFrame key={slot} slot={slot} />
+              ))}
+            </div>
+            <p className="mt-8">
+              <a
+                href={site.ctaUrl}
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-400 transition-colors hover:text-primary-300"
+              >
+                Kostenlos testen
+                <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+              </a>
+            </p>
+          </div>
+        </section>
+      )}
 
-      {/* FAQ */}
-      <section className="pb-16 lg:pb-20">
-        <div className="mx-auto max-w-3xl px-5 sm:px-8">
-          <SectionHeading eyebrow="FAQ" title="Häufige Fragen" align="center" className="mb-10" />
-          <Faq items={[...f.faq]} />
-        </div>
-      </section>
+      {funktionBilder[f.slug] && <BildBanner bild={funktionBilder[f.slug]} className="mb-16" />}
 
       <div className="anriss mx-auto max-w-7xl" aria-hidden="true" />
 
@@ -141,6 +177,14 @@ export default async function FunktionDetailPage({
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* FAQ — Einwandbehandlung direkt vor der Conversion */}
+      <section className="pb-16 lg:pb-20">
+        <div className="mx-auto max-w-3xl px-5 sm:px-8">
+          <SectionHeading eyebrow="FAQ" title="Häufige Fragen" align="center" className="mb-10" />
+          <Faq items={[...f.faq]} />
         </div>
       </section>
 

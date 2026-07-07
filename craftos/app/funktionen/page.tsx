@@ -124,7 +124,7 @@ export default function FunktionenPage() {
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <CtaButton>Jetzt kostenlos testen</CtaButton>
-            <GhostButton href={site.demoUrl}>Demo ansehen</GhostButton>
+            <GhostButton href="/preise">Preise ansehen</GhostButton>
           </div>
         </div>
       </section>

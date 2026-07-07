@@ -56,6 +56,59 @@ export const gewerkBilder: Record<string, Bild> = {
   },
 }
 
+// ---------- App-Screenshots (Slots) ----------
+// Jeder Slot ist ein definierter Platz für einen echten App-Screenshot.
+// Solange die Datei fehlt, rendert <ScreenshotFrame> einen Werkbank-Platzhalter.
+// Benötigte Motive + Zielpfade: siehe craftos/SCREENSHOT-PLAN.md
+// Sobald ein Screenshot vorliegt: Datei unter public/images/screenshots/<key>.webp
+// ablegen und hier im screenshots-Objekt eintragen — fertig.
+
+export type ScreenshotVariant = 'fragment' | 'tilt-stack' | 'phone'
+
+export interface ScreenshotSlot {
+  /** Modul-/Motivname, erscheint im Platzhalter */
+  label: string
+  variant: ScreenshotVariant
+}
+
+export const screenshotSlots: Record<string, ScreenshotSlot> = {
+  'angebot-maske': { label: 'Angebot & Kalkulation', variant: 'fragment' },
+  'angebot-aufmass': { label: 'Aufmaß in der App', variant: 'phone' },
+  'rechnung-dokument': { label: 'Rechnung mit GiroCode', variant: 'tilt-stack' },
+  'rechnung-mahnwesen': { label: 'Offene Posten & Mahnwesen', variant: 'fragment' },
+  'beleg-scan': { label: 'Belegscan mit KI', variant: 'phone' },
+  'datev-export': { label: 'Steuer-Cockpit & DATEV', variant: 'fragment' },
+  'plantafel-woche': { label: 'Plantafel — Wochenansicht', variant: 'fragment' },
+  'plantafel-app': { label: 'Einsatz-Änderung als Push', variant: 'phone' },
+  'zeiterfassung-app': { label: 'Zeiterfassung mobil', variant: 'phone' },
+  'zeiterfassung-konto': { label: 'Arbeitszeitkonto & Urlaub', variant: 'fragment' },
+  'lager-bestand': { label: 'Lager & Bestände', variant: 'fragment' },
+  'lager-scan': { label: 'Material per Barcode buchen', variant: 'phone' },
+  'baudoku-bericht': { label: 'Bautagesbericht mobil', variant: 'phone' },
+  'baudoku-akte': { label: 'Digitale Projektakte', variant: 'fragment' },
+  'team-rollen': { label: 'Rollen & Rechte', variant: 'fragment' },
+  'kundenportal-freigabe': { label: 'Kundenportal — Angebotsfreigabe', variant: 'fragment' },
+  'nachkalkulation-dashboard': { label: 'Nachkalkulation — Soll/Ist', variant: 'fragment' },
+  'craft-ai-chat': { label: 'Craft AI — Chat-Agent', variant: 'fragment' },
+}
+
+/** Echte Screenshot-Dateien — Eintrag ergänzen, sobald das Bild vorliegt. */
+export const screenshots: Record<string, Bild> = {}
+
+/** Standard-Screenshot-Slot je Funktions-Slug (für Gewerke-Seiten u. a.) */
+export const funktionScreenshot: Record<string, string> = {
+  angebote: 'angebot-maske',
+  rechnungen: 'rechnung-dokument',
+  buchhaltung: 'beleg-scan',
+  plantafel: 'plantafel-woche',
+  zeiterfassung: 'zeiterfassung-app',
+  lager: 'lager-bestand',
+  baudokumentation: 'baudoku-bericht',
+  team: 'team-rollen',
+  nachkalkulation: 'nachkalkulation-dashboard',
+  kundenportal: 'kundenportal-freigabe',
+}
+
 export const funktionBilder: Record<string, Bild> = {
   lager: {
     src: '/images/funktion-lager.jpg',

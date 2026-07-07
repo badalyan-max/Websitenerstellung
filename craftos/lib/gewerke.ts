@@ -10,6 +10,10 @@ export interface Gewerk {
   hatVorlagen: boolean
   heroTitle: string
   heroIntro: string
+  /** 3 Kernnutzen als Haken-Liste im Hero */
+  heroBullets: string[]
+  /** Schwebende UI-Kärtchen über dem Gewerke-Foto (gewerkspezifischer Inhalt) */
+  heroKarten: { titel: string; sub: string }[]
   painPoints: { titel: string; text: string }[]
   /** Welche Funktions-Slugs für dieses Gewerk besonders relevant sind */
   funktionen: string[]
@@ -27,6 +31,15 @@ export const gewerke: Gewerk[] = [
     heroTitle: 'Handwerkersoftware für Elektriker',
     heroIntro:
       'Vom Zählerschrank bis zur Wallbox: Angebote mit fertigen Elektro-Vorlagen kalkulieren, Einsätze planen, Stunden mobil erfassen und Rechnungen inklusive E-Rechnung stellen – alles in CraftOS.',
+    heroBullets: [
+      'Angebote mit fertigen Elektro-Vorlagen',
+      'Plantafel mit Push aufs Monteur-Handy',
+      'Material auftragsgenau – auch im Montagebus',
+    ],
+    heroKarten: [
+      { titel: 'Zählerschrank erneuern', sub: 'Einsatz heute · 07:30–15:00' },
+      { titel: 'Angebot · Wallbox 11 kW', sub: '12 Positionen · kalkuliert' },
+    ],
     painPoints: [
       {
         titel: 'Angebote dauern Abende',
@@ -64,6 +77,15 @@ export const gewerke: Gewerk[] = [
     heroTitle: 'Handwerkersoftware für SHK-Betriebe',
     heroIntro:
       'Heizungstausch, Badsanierung, Wartung: CraftOS bündelt Angebote, Abschlagsrechnungen, Einsatzplanung und Materialwirtschaft für Sanitär-, Heizungs- und Klimabetriebe.',
+    heroBullets: [
+      'Abschlagsrechnungen mit automatischer Verrechnung',
+      'Notdienst per Drag & Drop umplanen',
+      'Nachkalkulation zeigt die Marge live',
+    ],
+    heroKarten: [
+      { titel: 'Badsanierung Weber', sub: '3. Abschlag · freigegeben' },
+      { titel: 'Notdienst · Heizungsausfall', sub: 'Umgeplant · Push ans Team' },
+    ],
     painPoints: [
       {
         titel: 'Badsanierung = 12 Abschläge',
@@ -101,6 +123,15 @@ export const gewerke: Gewerk[] = [
     heroTitle: 'Handwerkersoftware für Maler & Lackierer',
     heroIntro:
       'Aufmaß vor Ort, Angebot mit Maler-Vorlagen, Baustellenfotos in der digitalen Bauakte: CraftOS macht aus Flächen Zahlen – und aus Zahlen bezahlte Rechnungen.',
+    heroBullets: [
+      'Aufmaß mit Abzügen direkt in der App',
+      'Fotos mit Datum & GPS in der Bauakte',
+      'Vom Angebot zur Rechnung ohne Doppel-Eingabe',
+    ],
+    heroKarten: [
+      { titel: 'Aufmaß · Treppenhaus', sub: '184,6 m² · 12 Abzüge' },
+      { titel: 'Vorher-Foto gespeichert', sub: 'Bauakte · mit GPS & Datum' },
+    ],
     painPoints: [
       {
         titel: 'Flächen-Aufmaß auf Papier',
@@ -138,6 +169,15 @@ export const gewerke: Gewerk[] = [
     heroTitle: 'Handwerkersoftware für Tischler & Schreiner',
     heroIntro:
       'Maßarbeit verdient präzise Kalkulation: Materialkosten, Lohnanteile und Maschinenzeiten sauber kalkulieren, Projekte dokumentieren und pünktlich abrechnen – mit CraftOS.',
+    heroBullets: [
+      'Tiefenkalkulation mit Material, Lohn & Maschinenzeit',
+      'Reverse-Pricing vom Zielpreis rückwärts',
+      'Werkstatt & Montage in einer Plantafel',
+    ],
+    heroKarten: [
+      { titel: 'Einbauschrank Eiche', sub: 'Kalkuliert · Marge im Blick' },
+      { titel: 'Montage KW 29', sub: 'Werkstatt fertig · Team eingeteilt' },
+    ],
     painPoints: [
       {
         titel: 'Kalkulation nach Bauchgefühl',
@@ -175,6 +215,15 @@ export const gewerke: Gewerk[] = [
     heroTitle: 'Handwerkersoftware für Dachdecker',
     heroIntro:
       'Wetterfenster nutzen, Kolonnen planen, Baufortschritt dokumentieren: CraftOS bringt Angebot, Plantafel, Baustellenfotos und Abrechnung für Dachdeckerbetriebe zusammen.',
+    heroBullets: [
+      'Einsätze bei Wetterumschwung sofort umplanen',
+      'Bautagesberichte mit Foto & Unterschrift',
+      'Abschläge je Bauabschnitt',
+    ],
+    heroKarten: [
+      { titel: 'Dachstuhl Lindenstraße', sub: 'Kolonne 2 · verschoben auf Do' },
+      { titel: 'Bautagesbericht #14', sub: '8 Fotos · unterschrieben' },
+    ],
     painPoints: [
       {
         titel: 'Wetter wirft die Planung um',
@@ -212,6 +261,15 @@ export const gewerke: Gewerk[] = [
     heroTitle: 'Handwerkersoftware für Fliesenleger',
     heroIntro:
       'Quadratmeter sauber aufmessen, Material kalkulieren, Bäder dokumentieren: CraftOS digitalisiert den Weg vom Aufmaß bis zur bezahlten Rechnung.',
+    heroBullets: [
+      'Flächen-Aufmaß mit Abzügen in der App',
+      'Materialverbrauch auftragsgenau gebucht',
+      'GiroCode auf der Rechnung: scannen, zahlen, fertig',
+    ],
+    heroKarten: [
+      { titel: 'Bad · Fam. Yilmaz', sub: 'Aufmaß 42,8 m² · erfasst' },
+      { titel: 'Rechnung bezahlt', sub: 'GiroCode · 2 Tage nach Versand' },
+    ],
     painPoints: [
       {
         titel: 'Aufmaß mit Zettel und Zollstock',
@@ -245,6 +303,15 @@ export const gewerke: Gewerk[] = [
     heroTitle: 'Handwerkersoftware für Zimmerer & Holzbau',
     heroIntro:
       'Abbund, Aufrichtung, Ausbau: CraftOS plant Kolonnen und Krantermine, dokumentiert den Baufortschritt und rechnet Bauvorhaben mit Abschlägen sauber ab.',
+    heroBullets: [
+      'Digitale Bauakte für Großprojekte',
+      'Nachunternehmer mit eigenen Zugängen',
+      'Cashflow-Vorhersage für lange Projekte',
+    ],
+    heroKarten: [
+      { titel: 'Aufrichtung Halle 3', sub: 'Krantermin Di 06:00 · geplant' },
+      { titel: 'Abschlag nach Bautenstand', sub: 'Rechnung 3 von 5 · versendet' },
+    ],
     painPoints: [
       {
         titel: 'Großprojekte, viele Beteiligte',
@@ -278,6 +345,15 @@ export const gewerke: Gewerk[] = [
     heroTitle: 'Software für Garten- & Landschaftsbau',
     heroIntro:
       'Saisongeschäft, Kolonnen, Maschinen: CraftOS plant Ihre Trupps, erfasst Zeiten und Material auf der Fläche und rechnet Projekte wie Pflegeverträge zuverlässig ab.',
+    heroBullets: [
+      'Kolonnen & Maschinen in einer Plantafel',
+      'Stunden per Sprache direkt vom Grundstück',
+      'Nachkalkulation pro Projekt und Pflegevertrag',
+    ],
+    heroKarten: [
+      { titel: 'Kolonne Süd · 3 Baustellen', sub: 'Woche 28 · eingeplant' },
+      { titel: '„4 Stunden Pflasterarbeiten"', sub: 'Per Sprache gebucht · Projekt Ahorn' },
+    ],
     painPoints: [
       {
         titel: 'Saison-Spitzen planen',
@@ -311,6 +387,15 @@ export const gewerke: Gewerk[] = [
     heroTitle: 'Handwerkersoftware für Trockenbau & Innenausbau',
     heroIntro:
       'Viele Gewerke, enge Taktung: CraftOS hält Aufmaß, Kolonnenplanung, Materialfluss und Abrechnung zusammen – vom Ständerwerk bis zur Spachtelung Q3.',
+    heroBullets: [
+      'Aufmaß ohne Doppel-Eingabe in die Abrechnung',
+      'Takt mit anderen Gewerken in der Plantafel',
+      'Platten & Profile im Bestand',
+    ],
+    heroKarten: [
+      { titel: 'BA 2 · Ständerwerk', sub: 'Takt bestätigt · Team informiert' },
+      { titel: 'Q3-Spachtelung', sub: 'Aufmaß 312 m² · übernommen' },
+    ],
     painPoints: [
       {
         titel: 'Flächen über Flächen',
@@ -344,6 +429,15 @@ export const gewerke: Gewerk[] = [
     heroTitle: 'Handwerkersoftware für Metallbau & Schlosserei',
     heroIntro:
       'Fertigung in der Werkstatt, Montage beim Kunden: CraftOS kalkuliert Material und Lohn, plant beide Welten in einer Plantafel und rechnet inklusive E-Rechnung ab.',
+    heroBullets: [
+      'Kalkulation mit aktuellen Artikelpreisen',
+      'Fertigung & Montage in einer Plantafel',
+      'XRechnung auf Knopfdruck',
+    ],
+    heroKarten: [
+      { titel: 'Stahltreppe · Fertigung', sub: 'Werkstatt KW 27 · Montage KW 28' },
+      { titel: 'XRechnung erstellt', sub: 'Gewerbekunde · normkonform' },
+    ],
     painPoints: [
       {
         titel: 'Stahlpreise in der Kalkulation',
@@ -377,6 +471,15 @@ export const gewerke: Gewerk[] = [
     heroTitle: 'Software für Bauunternehmen',
     heroIntro:
       'Mehrere Baustellen, Kolonnen und Nachunternehmer: CraftOS gibt Bauunternehmen die Übersicht – von der Kalkulation über Bautagesberichte bis zu §48b und DATEV.',
+    heroBullets: [
+      'Alle Baustellen & Kosten in einem System',
+      'Bautagesberichte & §48b prüfbereit',
+      'Belegscan-KI und DATEV-Export',
+    ],
+    heroKarten: [
+      { titel: '7 Baustellen aktiv', sub: 'Termine & Liquidität im Blick' },
+      { titel: 'Beleg erkannt · kontiert', sub: 'SKR03-Vorschlag · an DATEV' },
+    ],
     painPoints: [
       {
         titel: 'Viele Baustellen, wenig Überblick',
@@ -414,6 +517,15 @@ export const gewerke: Gewerk[] = [
     heroTitle: 'Software für Hausmeisterservice & Allround-Handwerker',
     heroIntro:
       'Viele kleine Aufträge, jeden Tag woanders: CraftOS macht aus Zurufen saubere Aufträge – mit schnellen Angeboten, mobiler Zeiterfassung und Rechnung noch am selben Tag.',
+    heroBullets: [
+      'Vom Zuruf zum Auftrag mit Status',
+      'Rechnung noch am selben Tag',
+      'Allround-Leistungsvorlagen ab Tag 1',
+    ],
+    heroKarten: [
+      { titel: '5 Aufträge heute', sub: 'Alle mit Status · nichts vergessen' },
+      { titel: 'Rechnung · Fam. Krause', sub: 'Erstellt vor Ort · 17:42' },
+    ],
     painPoints: [
       {
         titel: 'Kleinaufträge rutschen durch',

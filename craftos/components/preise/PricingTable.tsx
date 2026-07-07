@@ -91,13 +91,20 @@ export function PricingTable() {
               )}
               <h3 className="font-display text-2xl font-bold text-ink-900">{t.name}</h3>
               <p className="mt-1 text-sm text-ink-400">{t.fuer}</p>
-              <p className="mt-6 font-display text-5xl font-bold tabular-nums text-ink-900">
-                {eur(preis)} €
-                <span className="text-base font-medium text-ink-400"> /Monat</span>
+              <p className="mt-6 flex items-baseline gap-2.5">
+                {jaehrlich && (
+                  <span className="font-mono text-lg tabular-nums text-ink-400 line-through decoration-ink-300">
+                    {eur(t.monat)} €
+                  </span>
+                )}
+                <span className="font-display text-5xl font-bold tabular-nums text-ink-900">
+                  {eur(preis)} €
+                </span>
+                <span className="text-base font-medium text-ink-400">/Monat</span>
               </p>
               <p className="mt-1.5 font-mono text-xs text-ink-400">
                 {jaehrlich
-                  ? `${eur(t.jahr)} €/Jahr · pro Nutzer`
+                  ? `${eur(t.jahr)} €/Jahr · pro Nutzer · 2 Monate geschenkt`
                   : 'pro Nutzer · monatlich kündbar'}
               </p>
 
@@ -142,7 +149,11 @@ export function PricingTable() {
               {tarife.map((t) => (
                 <th
                   key={t.id}
-                  className="px-5 py-4 text-center font-display text-base font-bold text-ink-900"
+                  className={cn(
+                    'px-5 py-4 text-center font-display text-base font-bold text-ink-900',
+                    t.id === 'voll' &&
+                      'border-t-2 border-primary-500 bg-primary-500/[0.08] text-primary-300',
+                  )}
                 >
                   {t.name}
                 </th>
@@ -154,7 +165,10 @@ export function PricingTable() {
               <tr key={row.label} className={i % 2 ? 'bg-ink-150/50' : 'bg-ink-100'}>
                 <td className="px-5 py-3.5 font-medium text-ink-600">{row.label}</td>
                 {row.values.map((v, j) => (
-                  <td key={j} className="px-5 py-3.5 text-center">
+                  <td
+                    key={j}
+                    className={cn('px-5 py-3.5 text-center', j === 1 && 'bg-primary-500/[0.06]')}
+                  >
                     {v === 'admin' ? (
                       <span className="rounded bg-primary-500/12 px-1.5 py-0.5 font-mono text-[0.62rem] font-semibold uppercase tracking-wider text-primary-400">
                         Admin-Rolle

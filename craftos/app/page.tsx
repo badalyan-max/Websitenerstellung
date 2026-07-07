@@ -1,6 +1,8 @@
 import Link from 'next/link'
-import { ArrowRight, Sparkles, Smartphone, Check } from 'lucide-react'
+import { ArrowRight, Sparkles, Smartphone, Check, Mail } from 'lucide-react'
 import { Hero } from '@/components/home/Hero'
+import { Reveal } from '@/components/ui/Reveal'
+import { ScreenshotFrame } from '@/components/ui/ScreenshotFrame'
 import { Faq } from '@/components/ui/Faq'
 import { JsonLd } from '@/components/seo/JsonLd'
 import {
@@ -39,6 +41,32 @@ const faqItems = [
     q: 'Funktioniert CraftOS auch offline auf der Baustelle?',
     a: 'Ja. Die Mobile-App arbeitet offline weiter – Zeiten, Fotos und Berichte synchronisieren automatisch, sobald wieder Verbindung besteht.',
   },
+  {
+    q: 'Was passiert nach der kostenlosen Testphase?',
+    a: 'Die 14-tägige Testphase endet automatisch – es entsteht kein Abo und es wird nichts abgebucht. Sie entscheiden danach aktiv, ob Sie mit einer Lizenz weitermachen.',
+  },
+]
+
+// Größen-Weiche: Handwerker ordnen sich nach Betriebsgröße ein
+const betriebsgroessen = [
+  {
+    zahl: '1',
+    label: 'Solo-Handwerker',
+    titel: 'Eine Lizenz, alles drin',
+    text: 'Angebot, Rechnung, Zeiten, Steuer – Sie machen alles selbst. Eine Voll-Lizenz gibt Ihnen den kompletten Werkzeugkasten, vom Aufmaß bis zum DATEV-Export.',
+  },
+  {
+    zahl: '2–9',
+    label: 'Betrieb mit Team',
+    titel: 'Büro plant, Team arbeitet',
+    text: 'Voll-Lizenz fürs Büro, günstige App-Lizenzen für alle im Einsatz. Plantafel, Zeiterfassung und Push-Benachrichtigungen halten alle synchron.',
+  },
+  {
+    zahl: '10+',
+    label: 'Wachsender Betrieb',
+    titel: 'Struktur, die mitwächst',
+    text: 'Rollen & Rechte, Nachunternehmer-Zugänge, Lager, Nachkalkulation und Vorhersagen – Überblick über jede Baustelle und jeden Euro.',
+  },
 ]
 
 // Der echte Ablauf eines Auftrags — vom Angebot bis zum Geld auf dem Konto.
@@ -63,46 +91,63 @@ export default function HomePage() {
       <JsonLd data={faqSchema(faqItems)} />
       <Hero />
 
-      {/* ---------- Gewerke ---------- */}
-      <section className="relative py-20 lg:py-24">
+      {/* ---------- Trust-Leiste (nur verifizierte Signale) ---------- */}
+      <div className="border-y border-ink-200/60 bg-ink-100/40">
+        <ul className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-5 py-4 sm:px-8">
+          {[
+            'DSGVO-konform',
+            'Daten in Frankfurt am Main',
+            '14 Tage kostenlos testen',
+            'Endet automatisch – keine Abofalle',
+          ].map((t) => (
+            <li
+              key={t}
+              className="flex items-center gap-2 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-ink-500"
+            >
+              <Check className="h-3.5 w-3.5 text-primary-400" strokeWidth={2.5} />
+              {t}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* ---------- Größen-Weiche ---------- */}
+      <section className="py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading
-            eyebrow="Gewerke"
-            title="Gemacht für Ihr Handwerk"
-            intro="Ob Elektro, SHK oder Holzbau: CraftOS spricht die Sprache Ihres Gewerks – mit fertigen Leistungsvorlagen für den schnellen Start."
+            eyebrow="Für Ihren Betrieb"
+            title="Wie groß ist Ihre Mannschaft?"
+            intro="CraftOS passt sich der Betriebsgröße an – nicht umgekehrt. Zwei Lizenzen, klare Rollen, keine Modul-Aufpreise."
           />
-          {/* Werkzeugwand: geprägte Marken statt Kachel-Raster */}
-          <div className="mt-12 flex flex-wrap justify-center gap-3">
-            {gewerke.map((g) => (
-              <Link
-                key={g.slug}
-                href={`/gewerke/${g.slug}`}
-                className="group flex items-center gap-2.5 rounded-xl border border-ink-200 bg-ink-100 py-3 pl-4 pr-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary-500/60 hover:shadow-[0_10px_30px_-12px_rgba(242,175,56,0.3)]"
-              >
-                <GewerkIcon
-                  slug={g.slug}
-                  className="h-5.5 w-5.5 flex-shrink-0 text-ink-400 transition-colors duration-200 group-hover:text-primary-400"
-                />
-                <span className="font-display text-[0.95rem] font-semibold text-ink-700 transition-colors group-hover:text-ink-900">
-                  {g.kurz}
-                </span>
-                {g.hatVorlagen && (
-                  <span
-                    className="h-1.5 w-1.5 rounded-full bg-primary-500"
-                    title="Fertige Leistungsvorlagen"
-                  />
-                )}
-              </Link>
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {betriebsgroessen.map((b, i) => (
+              <Reveal key={b.zahl} delay={i * 0.08}>
+                <Link
+                  href="/preise"
+                  className="card-hover group flex h-full flex-col rounded-2xl border border-ink-200 bg-ink-100 p-7"
+                >
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-display text-4xl font-bold tabular-nums text-primary-400">
+                      {b.zahl}
+                    </span>
+                    <span className="spec-label text-[0.6rem] text-ink-400">{b.label}</span>
+                  </div>
+                  <h3 className="mt-5 font-display text-xl font-semibold text-ink-900">
+                    {b.titel}
+                  </h3>
+                  <p className="mt-2.5 flex-1 text-sm leading-relaxed text-ink-500">{b.text}</p>
+                  <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary-400">
+                    Zu den Lizenzen
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                </Link>
+              </Reveal>
             ))}
           </div>
-          <p className="mt-6 text-center font-mono text-[0.65rem] uppercase tracking-wider text-ink-400">
-            <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-primary-500 align-middle" />
-            Mit fertigen Leistungsvorlagen ab Tag 1
-          </p>
         </div>
       </section>
 
-      <div className="anriss mx-auto max-w-7xl" aria-hidden="true" />
+      <div className="anriss anriss-amber mx-auto max-w-7xl" aria-hidden="true" />
 
       {/* ---------- Funktionen ---------- */}
       <section className="py-20 lg:py-24">
@@ -114,7 +159,8 @@ export default function HomePage() {
           />
 
           {/* Bauablauf-Rail: die Stationen eines echten Auftrags */}
-          <div className="relative mx-auto mt-14 max-w-3xl">
+          <div className="mt-14 grid items-start gap-14 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-20">
+            <div className="relative max-w-3xl">
             {/* Maßband-Schiene mit Messmarken */}
             <div
               className="absolute bottom-3 left-[7px] top-3 w-px bg-gradient-to-b from-ink-300 via-primary-500/60 to-primary-500"
@@ -158,11 +204,60 @@ export default function HomePage() {
             <p className="mt-8 pl-12 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-ink-400">
               → DATEV-Export an den Steuerberater
             </p>
+            </div>
+
+            {/* Screenshot-Dock: Blicke in die Stationen (Desktop) */}
+            <div className="hidden lg:flex lg:flex-col lg:gap-12 lg:pt-4">
+              <ScreenshotFrame slot="plantafel-woche" />
+              <ScreenshotFrame slot="zeiterfassung-app" />
+              <ScreenshotFrame slot="rechnung-dokument" />
+            </div>
           </div>
 
           <div className="mt-12 text-center">
             <GhostButton href="/funktionen">Alle Funktionen ansehen</GhostButton>
           </div>
+        </div>
+      </section>
+
+      <div className="anriss mx-auto max-w-7xl" aria-hidden="true" />
+
+      {/* ---------- Gewerke ---------- */}
+      <section className="relative py-20 lg:py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <SectionHeading
+            eyebrow="Gewerke"
+            title="Gemacht für Ihr Handwerk"
+            intro="Ob Elektro, SHK oder Holzbau: CraftOS spricht die Sprache Ihres Gewerks – mit fertigen Leistungsvorlagen für den schnellen Start."
+          />
+          {/* Werkzeugwand: geprägte Marken statt Kachel-Raster */}
+          <div className="mt-12 flex flex-wrap justify-center gap-3">
+            {gewerke.map((g) => (
+              <Link
+                key={g.slug}
+                href={`/gewerke/${g.slug}`}
+                className="group flex items-center gap-2.5 rounded-xl border border-ink-200 bg-ink-100 py-3 pl-4 pr-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary-500/60 hover:shadow-[0_10px_30px_-12px_rgba(242,175,56,0.3)]"
+              >
+                <GewerkIcon
+                  slug={g.slug}
+                  className="h-5.5 w-5.5 flex-shrink-0 text-ink-400 transition-colors duration-200 group-hover:text-primary-400"
+                />
+                <span className="font-display text-[0.95rem] font-semibold text-ink-700 transition-colors group-hover:text-ink-900">
+                  {g.kurz}
+                </span>
+                {g.hatVorlagen && (
+                  <span
+                    className="h-1.5 w-1.5 rounded-full bg-primary-500"
+                    title="Fertige Leistungsvorlagen"
+                  />
+                )}
+              </Link>
+            ))}
+          </div>
+          <p className="mt-6 text-center font-mono text-[0.65rem] uppercase tracking-wider text-ink-400">
+            <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-primary-500 align-middle" />
+            Mit fertigen Leistungsvorlagen ab Tag 1
+          </p>
         </div>
       </section>
 
@@ -307,8 +402,8 @@ export default function HomePage() {
                 {[
                   'Offline arbeiten – synchronisiert automatisch',
                   'Bautagesberichte mit Foto, GPS & Unterschrift',
-                  'Aufmaß vor Ort – fließt direkt ins Angebot',
-                  'Face ID / Touch ID & Push-Benachrichtigungen',
+                  'Zeiten & Aufmaß per Sprache – ideal mit Handschuhen',
+                  'Das Büro läuft im Browser – auch auf iPad & Mac, nichts zu installieren',
                 ].map((t) => (
                   <li key={t} className="flex items-start gap-2.5 text-ink-600">
                     <Check className="mt-0.5 h-4.5 w-4.5 flex-shrink-0 text-primary-400" strokeWidth={2.5} />
@@ -366,6 +461,23 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+          {/* Bei CraftOS inklusive — bei anderen Zusatzmodul oder Aufpreis */}
+          <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-primary-500/25 bg-primary-500/[0.06] p-6">
+            <p className="spec-label text-[0.62rem] text-primary-400">Bei CraftOS inklusive</p>
+            <ul className="mt-4 grid gap-x-6 gap-y-2.5 sm:grid-cols-2">
+              {[
+                'Plantafel & Einsatzplanung – kein Zusatzmodul',
+                'Lager & Materialwirtschaft – eingebaut',
+                'DATEV-Export & E-Rechnung (XRechnung)',
+                'Alle Updates & neue Funktionen',
+              ].map((t) => (
+                <li key={t} className="flex items-start gap-2 text-sm text-ink-600">
+                  <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary-400" strokeWidth={2.5} />
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </div>
           <div className="mt-8 text-center">
             <CtaButton href="/preise">Alle Preise & Leistungen</CtaButton>
           </div>
@@ -414,8 +526,19 @@ export default function HomePage() {
           </p>
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <CtaButton>14 Tage kostenlos testen</CtaButton>
-            <GhostButton href={site.demoUrl}>Demo ansehen</GhostButton>
+            <GhostButton href="/preise">Lizenzen ansehen</GhostButton>
           </div>
+          {/* Kontakt: E-Mail heute, Telefon-Slot folgt sobald die Nummer vorliegt */}
+          <p className="mt-8 flex items-center justify-center gap-2 text-sm text-ink-500">
+            Fragen vorab?
+            <a
+              href={`mailto:${site.email}`}
+              className="inline-flex items-center gap-1.5 font-semibold text-ink-700 transition-colors hover:text-primary-400"
+            >
+              <Mail className="h-4 w-4" />
+              {site.email}
+            </a>
+          </p>
         </div>
       </section>
     </>

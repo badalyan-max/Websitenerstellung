@@ -1,16 +1,17 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowRight, Check, Layers } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Check, Layers } from 'lucide-react'
 import { PageHero } from '@/components/ui/PageHero'
 import { Faq } from '@/components/ui/Faq'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { CtaButton, GhostButton, HexIcon, SectionHeading } from '@/components/ui/primitives'
+import { ScreenshotFrame } from '@/components/ui/ScreenshotFrame'
 import { breadcrumbSchema, faqSchema } from '@/lib/schema'
 import { gewerke, getGewerk } from '@/lib/gewerke'
 import { getFunktion } from '@/lib/funktionen'
 import { site } from '@/lib/site'
-import { gewerkBilder } from '@/lib/images'
+import { gewerkBilder, funktionScreenshot } from '@/lib/images'
 import { BildBanner } from '@/components/ui/BildBanner'
 
 export function generateStaticParams() {
@@ -32,6 +33,22 @@ export async function generateMetadata({
   }
 }
 
+/** Amber-Textlink als Micro-CTA am Ende jedes Erklärblocks */
+function MicroCta() {
+  return (
+    <a
+      href={site.ctaUrl}
+      className="group mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-400 transition-colors hover:text-primary-300"
+    >
+      Kostenlos testen
+      <ArrowUpRight
+        className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+        strokeWidth={2.5}
+      />
+    </a>
+  )
+}
+
 export default async function GewerkDetailPage({
   params,
 }: {
@@ -44,6 +61,7 @@ export default async function GewerkDetailPage({
   const feats = g.funktionen
     .map((s) => getFunktion(s))
     .filter((f): f is NonNullable<typeof f> => Boolean(f))
+  const bild = gewerkBilder[g.slug]
 
   return (
     <>
@@ -58,24 +76,83 @@ export default async function GewerkDetailPage({
 
       <PageHero eyebrow={`CraftOS für ${g.kurz}`} title={g.heroTitle} intro={g.heroIntro} />
 
-      {gewerkBilder[g.slug] && <BildBanner bild={gewerkBilder[g.slug]} priority />}
+      {/* Kernnutzen als Haken-Liste direkt unterm Hero */}
+      <div className="mx-auto -mt-6 max-w-7xl px-5 pb-10 sm:px-8">
+        <ul className="flex flex-wrap items-center gap-x-7 gap-y-2.5">
+          {g.heroBullets.map((b) => (
+            <li key={b} className="flex items-center gap-2 text-sm text-ink-600 sm:text-[15px]">
+              <Check className="h-4.5 w-4.5 flex-shrink-0 text-primary-400" strokeWidth={2.5} />
+              {b}
+            </li>
+          ))}
+        </ul>
+      </div>
 
-      {/* Pain-Points → Lösungen */}
+      {/* Gewerke-Foto mit schwebenden UI-Kärtchen */}
+      {bild && (
+        <div className="relative">
+          <BildBanner bild={bild} priority />
+          <div
+            className="pointer-events-none absolute inset-0 mx-auto hidden max-w-7xl sm:block"
+            aria-hidden="true"
+          >
+            {g.heroKarten[0] && (
+              <div className="absolute left-10 top-8 max-w-[240px] rounded-xl border border-ink-200/80 bg-ink-100/85 p-3.5 shadow-[0_16px_40px_-16px_rgba(0,0,0,0.7)] backdrop-blur-md lg:left-16 lg:top-12">
+                <p className="text-sm font-semibold text-ink-900">{g.heroKarten[0].titel}</p>
+                <p className="mt-1 flex items-center gap-1.5 font-mono text-[0.65rem] text-ink-400">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary-500" />
+                  {g.heroKarten[0].sub}
+                </p>
+              </div>
+            )}
+            {g.heroKarten[1] && (
+              <div className="absolute bottom-10 right-10 max-w-[240px] rounded-xl border border-ink-200/80 bg-ink-100/85 p-3.5 shadow-[0_16px_40px_-16px_rgba(0,0,0,0.7)] backdrop-blur-md lg:bottom-14 lg:right-16">
+                <p className="text-sm font-semibold text-ink-900">{g.heroKarten[1].titel}</p>
+                <p className="mt-1 flex items-center gap-1.5 font-mono text-[0.65rem] text-ink-400">
+                  <span className="h-1.5 w-1.5 rounded-full bg-success" />
+                  {g.heroKarten[1].sub}
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Erklärblöcke im Z-Pattern: Problem → Lösung + Screenshot-Platz */}
       <section className="py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           {g.hatVorlagen && (
-            <p className="mb-10 inline-flex items-center gap-2 rounded-full border border-primary-500/30 bg-primary-500/10 px-4 py-1.5 text-sm font-medium text-primary-400">
+            <p className="mb-12 inline-flex items-center gap-2 rounded-full border border-primary-500/30 bg-primary-500/10 px-4 py-1.5 text-sm font-medium text-primary-400">
               <Layers className="h-4 w-4" />
               Fertige Leistungsvorlagen für {g.kurz} sind enthalten
             </p>
           )}
-          <div className="grid gap-5 md:grid-cols-3">
-            {g.painPoints.map((p) => (
-              <div key={p.titel} className="rounded-2xl border border-ink-200 bg-ink-100 p-6">
-                <h2 className="font-display text-lg font-semibold text-ink-900">{p.titel}</h2>
-                <p className="mt-2.5 text-sm leading-relaxed text-ink-500">{p.text}</p>
-              </div>
-            ))}
+          <div className="space-y-16 lg:space-y-24">
+            {g.painPoints.map((p, i) => {
+              const slot =
+                funktionScreenshot[g.funktionen[i] ?? g.funktionen[0]] ?? 'angebot-maske'
+              const reversed = i % 2 === 1
+              return (
+                <div
+                  key={p.titel}
+                  className="grid items-center gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-16"
+                >
+                  <div className={reversed ? 'lg:order-2' : undefined}>
+                    <span className="spec-label text-[0.6rem] text-ink-400">
+                      {String(i + 1).padStart(2, '0')} — Gelöst
+                    </span>
+                    <h2 className="mt-3 font-display text-2xl font-bold leading-tight text-ink-900 sm:text-3xl">
+                      {p.titel}
+                    </h2>
+                    <p className="mt-4 max-w-lg leading-relaxed text-ink-500">{p.text}</p>
+                    <MicroCta />
+                  </div>
+                  <div className={reversed ? 'lg:order-1' : undefined}>
+                    <ScreenshotFrame slot={slot} />
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -113,7 +190,7 @@ export default async function GewerkDetailPage({
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* FAQ — Einwandbehandlung direkt vor der Conversion */}
       <section className="py-16 lg:py-20">
         <div className="mx-auto max-w-3xl px-5 sm:px-8">
           <SectionHeading eyebrow="FAQ" title="Häufige Fragen" align="center" className="mb-10" />
@@ -129,12 +206,14 @@ export default async function GewerkDetailPage({
             Bereit, {g.kurz} digital zu machen?
           </h2>
           <ul className="mx-auto mt-6 flex max-w-xl flex-wrap items-center justify-center gap-x-6 gap-y-2">
-            {['14 Tage kostenlos', 'Keine Kreditkarte nötig', 'DSGVO-konform'].map((t) => (
-              <li key={t} className="flex items-center gap-1.5 text-sm text-ink-500">
-                <Check className="h-4 w-4 text-primary-400" strokeWidth={2.5} />
-                {t}
-              </li>
-            ))}
+            {['14 Tage kostenlos', 'Keine Kreditkarte nötig', 'Endet automatisch – keine Abofalle'].map(
+              (t) => (
+                <li key={t} className="flex items-center gap-1.5 text-sm text-ink-500">
+                  <Check className="h-4 w-4 text-primary-400" strokeWidth={2.5} />
+                  {t}
+                </li>
+              ),
+            )}
           </ul>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <CtaButton>Jetzt kostenlos testen</CtaButton>
