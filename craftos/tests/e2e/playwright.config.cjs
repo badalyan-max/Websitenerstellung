@@ -4,7 +4,7 @@ const path = require('node:path')
 
 module.exports = defineConfig({
   testDir: __dirname,
-  testMatch: ['browser-functional.pw.cjs', 'mobile-step-flow.pw.cjs', 'demo-planning.pw.cjs'],
+  testMatch: ['browser-functional.pw.cjs', 'feature-snippets.pw.cjs', 'navigation.pw.cjs'],
   timeout: 45_000,
   expect: { timeout: 8_000 },
   retries: 0,
@@ -21,7 +21,7 @@ module.exports = defineConfig({
     actionTimeout: 10_000,
   },
   projects: ['chromium', 'webkit'].flatMap((browserName) => [
-    { name: `${browserName}-1440`, testIgnore: 'mobile-step-flow.pw.cjs', use: { browserName, viewport: { width: 1440, height: 1000 }, hasTouch: false } },
+    { name: `${browserName}-1440`, use: { browserName, viewport: { width: 1440, height: 1000 }, hasTouch: false } },
     { name: `${browserName}-390-touch`, use: { browserName, viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true } },
   ]),
 })

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { MessageSquare, FilePenLine, CheckCircle2 } from "lucide-react";
 import { PageHero } from "@/components/ui/PageHero";
 import { TrialCta } from "@/components/ui/TrialCta";
-import { ProductDemo } from "@/components/product-demo/ProductDemo";
+import { FeatureSnippet } from "@/components/feature-snippet/FeatureSnippet";
 import { upcomingFeatures } from "@/lib/funktionen";
 import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata(
@@ -26,34 +26,40 @@ export default function Page() {
       />
       <section className="section-space">
         <div className="site-container">
-          <ProductDemo initialScene="ki" />
-          <div className="grid md:grid-cols-3 gap-10 mt-12">
-            {[
-              [
-                MessageSquare,
-                "Fragen stellen",
-                "Betriebsdaten per Text oder Sprache abfragen. Die verfügbaren Informationen richten sich nach Ihrem Zugriff.",
-              ],
-              [
-                FilePenLine,
-                "Entwürfe vorbereiten",
-                "Unterstützte Angebots-, Zeit-, Einsatz- oder Berichtsentwürfe als Ausgangspunkt erhalten.",
-              ],
-              [
-                CheckCircle2,
-                "Bewusst übernehmen",
-                "Inhalt und Zuordnung kontrollieren. Erst Ihre Bestätigung übernimmt den unterstützten Entwurf.",
-              ],
-            ].map(([Icon, t, p]) => {
-              const I = Icon as typeof MessageSquare;
-              return (
-                <div className="border-t border-ink-200 pt-6" key={t as string}>
-                  <I size={28} />
-                  <h2 className="text-2xl font-semibold mt-5">{t as string}</h2>
-                  <p className="text-ink-600 mt-4">{p as string}</p>
-                </div>
-              );
-            })}
+          <div className="grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14 lg:items-center">
+            <div className="min-w-0 space-y-7">
+              {[
+                [
+                  MessageSquare,
+                  "Fragen stellen",
+                  "Betriebsdaten per Text oder Sprache abfragen. Die verfügbaren Informationen richten sich nach Ihrem Zugriff.",
+                ],
+                [
+                  FilePenLine,
+                  "Entwürfe vorbereiten",
+                  "Unterstützte Angebots-, Zeit-, Einsatz- oder Berichtsentwürfe als Ausgangspunkt erhalten.",
+                ],
+                [
+                  CheckCircle2,
+                  "Bewusst übernehmen",
+                  "Inhalt und Zuordnung kontrollieren. Erst Ihre Bestätigung übernimmt den unterstützten Entwurf.",
+                ],
+              ].map(([Icon, t, p]) => {
+                const I = Icon as typeof MessageSquare;
+                return (
+                  <div className="border-t border-ink-200 pt-5" key={t as string}>
+                    <h2 className="flex items-start gap-3 text-xl font-semibold">
+                      <I size={22} className="shrink-0 text-primary-800 mt-1" />
+                      {t as string}
+                    </h2>
+                    <p className="text-ink-600 mt-3 leading-relaxed">{p as string}</p>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="w-full min-w-0 max-w-[640px] justify-self-center">
+              <FeatureSnippet variant="ki" />
+            </div>
           </div>
           <div className="notice mt-12">
             <h2 className="text-2xl font-semibold">

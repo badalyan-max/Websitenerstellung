@@ -10,7 +10,7 @@ import {
 import { PageHero } from "@/components/ui/PageHero";
 import { TrialCta } from "@/components/ui/TrialCta";
 import { pageMetadata } from "@/lib/metadata";
-import { ProductDemo } from "@/components/product-demo/ProductDemo";
+import { FeatureSnippet } from "@/components/feature-snippet/FeatureSnippet";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { faqSchema } from "@/lib/schema";
 export const metadata = pageMetadata(
@@ -91,14 +91,26 @@ export default function Page() {
         </div>
       </section>
       <section className="section-space bg-ink-100">
-        <div className="site-container">
-          <p className="eyebrow">Vom Entwurf zum festen Stand</p>
-          <h2 className="section-title mb-9">
-            Erst prüfen.
-            <br />
-            Dann fertigstellen.
-          </h2>
-          <ProductDemo initialScene="rechnung" />
+        <div className="site-container grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14 lg:items-center">
+          <div className="min-w-0">
+            <p className="eyebrow">Vom Entwurf zum festen Stand</p>
+            <h2 className="section-title">
+              Erst prüfen.
+              <br />
+              Dann fertigstellen.
+            </h2>
+            <p className="section-intro">
+              Das kleine Beispiel zeigt den Unterschied: Ein Entwurf lässt sich
+              bearbeiten. Nach dem Fertigstellen stehen Dokumentnummer und
+              Rechnungsinhalt fest.
+            </p>
+            <Link href="/hilfe/rechnung-fertigstellen" className="text-link mt-6">
+              Rechnung Schritt für Schritt fertigstellen <ArrowUpRight size={17} />
+            </Link>
+          </div>
+          <div className="w-full min-w-0 max-w-[640px] justify-self-center">
+            <FeatureSnippet variant="rechnung" />
+          </div>
         </div>
       </section>
       <section className="section-space">

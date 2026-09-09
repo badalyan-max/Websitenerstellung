@@ -1,3 +1,4 @@
+// Archive: Retired universal product demo; retained as behavioral reference and excluded from the public website suite.
 /* eslint-disable @typescript-eslint/no-require-imports -- Supports a Playwright installation in another worktree. */
 const { test, expect } = require(process.env.CRAFTOS_PLAYWRIGHT_PATH || '@playwright/test')
 

@@ -4,7 +4,7 @@ import { gewerke, getGewerk } from "@/lib/gewerke";
 import { getFunktion } from "@/lib/funktionen";
 import { GewerkIcon } from "@/components/ui/GewerkIcon";
 import { PageHero } from "@/components/ui/PageHero";
-import { ProductDemo } from "@/components/product-demo/ProductDemo";
+import { FeatureSnippet } from "@/components/feature-snippet/FeatureSnippet";
 import { TrialCta } from "@/components/ui/TrialCta";
 import { Faq } from "@/components/ui/Faq";
 import { pageMetadata } from "@/lib/metadata";
@@ -40,8 +40,8 @@ export default async function Page({
         intro={g.heroIntro}
       />
       <section className="section-space">
-        <div className="site-container split-section items-start">
-          <div>
+        <div className="site-container grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14 lg:items-center">
+          <div className="min-w-0">
             <GewerkIcon slug={g.slug} className="w-20 h-20 mb-7" />
             <p className="eyebrow">Ein Beispiel aus Ihrem Alltag</p>
             <h2 className="section-title">{g.exampleTitle}</h2>
@@ -52,7 +52,19 @@ export default async function Page({
                 : "Ihre eigenen Artikel und Leistungsvorlagen bilden die Grundlage. Ein spezieller vollständiger Branchenkatalog ist nicht vorausgesetzt."}
             </p>
           </div>
-          <div>
+          <div className="w-full min-w-0 max-w-[640px] justify-self-center">
+            <FeatureSnippet
+              variant={
+                ["maler", "fliesenleger", "trockenbau"].includes(slug)
+                  ? "angebot"
+                  : "planung"
+              }
+            />
+          </div>
+        </div>
+        <div className="site-container mt-12">
+          <h2 className="text-2xl font-semibold">Diese Funktionen passen dazu.</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 mt-6">
             {g.funktionen.map((s) => {
               const f = getFunktion(s);
               return f ? (
@@ -70,21 +82,6 @@ export default async function Page({
         </div>
       </section>
       <section className="section-space bg-ink-100">
-        <div className="site-container">
-          <p className="eyebrow">Den Ablauf selbst ausprobieren</p>
-          <h2 className="section-title mb-10">
-            So kommt Ordnung in den Auftrag.
-          </h2>
-          <ProductDemo
-            initialScene={
-              ["maler", "fliesenleger", "trockenbau"].includes(slug)
-                ? "angebot"
-                : "planung"
-            }
-          />
-        </div>
-      </section>
-      <section className="section-space">
         <div className="site-container max-w-4xl">
           <h2 className="section-title mb-9">Fragen aus Ihrem Gewerk.</h2>
           <Faq items={g.faq} />

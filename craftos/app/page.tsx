@@ -149,8 +149,11 @@ export default function Home() {
               className="rounded-2xl object-cover aspect-[4/5]"
             />
             <figcaption className="text-xs text-ink-500 mt-3">
-              Illustratives Nutzungsmotiv · Produktoberflächen finden Sie in den
-              Demos.
+              Illustratives Nutzungsmotiv. Echte App-Ansichten finden Sie in der{" "}
+              <Link href="/app#app-ansichten" className="underline underline-offset-4">
+                Mobile-App-Galerie
+              </Link>
+              .
             </figcaption>
           </figure>
         </div>

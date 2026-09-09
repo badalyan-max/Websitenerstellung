@@ -1,5 +1,7 @@
 # Verständliche Beispieldemos und Anbieterlogos
 
+Historischer Prüfstand der großen Demo in Commit `eb70f4d`. Die anschließende Umstellung auf kleine kontextbezogene Beispiele ist in [SNIPPET-DESIGN.md](SNIPPET-DESIGN.md) beschrieben; die große Demo wird auf den öffentlichen Seiten nicht mehr eingebunden. Die unten genannten Produktbelege bleiben als Grundlage erhalten.
+
 ## Ziel und Produktgrundlage
 
 Die Website erklärt ausgewählte Produktabläufe als interaktive Beispiele. Sie darf nicht den Eindruck erwecken, eine authentische Produktoberfläche oder eine vollständige Testinstanz zu zeigen. Der dauerhaft sichtbare Einstieg benennt deshalb ausdrücklich die fiktiven Daten, die vereinfachte Oberfläche und den eingeschränkten Bedienumfang. Ein direkter Link führt zu den Originalansichten der Mobile-App; innerhalb der Arbeitsfläche steht zusätzlich „Vereinfachte Demo“.

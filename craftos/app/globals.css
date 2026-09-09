@@ -110,7 +110,7 @@ img {
   background: #101014;
   color: #f4f4f5;
 }
-.dark-section p:not([data-product-demo] p) {
+.dark-section p:not([data-product-demo] p):not([data-feature-snippet] p) {
   color: #bcbcc6;
 }
 .eyebrow,

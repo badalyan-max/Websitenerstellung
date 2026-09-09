@@ -4,7 +4,7 @@ import { Check, ArrowUpRight, Monitor, Smartphone } from "lucide-react";
 import { getFunktion, funktionen } from "@/lib/funktionen";
 import { pageMetadata } from "@/lib/metadata";
 import { PageHero } from "@/components/ui/PageHero";
-import { ProductDemo } from "@/components/product-demo/ProductDemo";
+import { FeatureSnippet } from "@/components/feature-snippet/FeatureSnippet";
 import { Faq } from "@/components/ui/Faq";
 import { TrialCta } from "@/components/ui/TrialCta";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -31,10 +31,20 @@ export default async function Page({
   const { slug } = await params,
     f = getFunktion(slug);
   if (!f) notFound();
+  const snippetVariant =
+    slug === "zeiterfassung"
+      ? "zeit"
+      : slug === "lager"
+        ? "lager"
+        : slug === "aufmass"
+          ? "aufmass"
+          : slug === "nachkalkulation"
+            ? "dashboard"
+            : f.demo;
   return (
     <>
       <PageHero eyebrow={f.name} title={f.heroTitle} intro={f.heroIntro} />
-      <section className="section-space">
+      <section className="py-12 md:py-16">
         <div className="site-container">
           <div className="flex flex-wrap gap-5 mb-8">
             {f.platforms.map((p) => (
@@ -52,15 +62,29 @@ export default async function Page({
               </span>
             )}
           </div>
-          {f.demo && <ProductDemo key={slug} initialScene={f.demo} />}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-            {f.bullets.map((b) => (
-              <div key={b.titel} className="border-t border-ink-200 pt-6">
-                <Check size={22} className="text-primary-800" />
-                <h2 className="text-2xl mt-5 font-semibold">{b.titel}</h2>
-                <p className="text-ink-600 mt-4">{b.text}</p>
+          <div
+            className={
+              snippetVariant
+                ? "grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14 lg:items-center"
+                : "grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            }
+          >
+            <div className={snippetVariant ? "min-w-0 space-y-7 order-last lg:order-first" : "contents"}>
+              {f.bullets.map((b) => (
+                <div key={b.titel} className="border-t border-ink-200 pt-5">
+                  <h2 className="flex gap-3 items-start text-xl font-semibold">
+                    <Check size={21} className="text-primary-800 shrink-0 mt-1" />
+                    {b.titel}
+                  </h2>
+                  <p className="text-ink-600 mt-3 leading-relaxed">{b.text}</p>
+                </div>
+              ))}
+            </div>
+            {snippetVariant && (
+              <div className="w-full min-w-0 max-w-[640px] justify-self-center">
+                <FeatureSnippet key={slug} variant={snippetVariant} />
               </div>
-            ))}
+            )}
           </div>
         </div>
       </section>

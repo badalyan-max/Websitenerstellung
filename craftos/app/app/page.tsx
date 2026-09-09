@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 import { StoreLinks } from "@/components/ui/StoreLinks";
 import { MobileAppGallery } from "@/components/ui/MobileAppGallery";
 import { pageMetadata } from "@/lib/metadata";
-import { ProductDemo } from "@/components/product-demo/ProductDemo";
+import { FeatureSnippet } from "@/components/feature-snippet/FeatureSnippet";
 import { TrialCta } from "@/components/ui/TrialCta";
 export const metadata = pageMetadata(
   "Mobile-App für Handwerker – in der Voll-Lizenz inklusive",
@@ -129,10 +129,21 @@ export default function Page() {
         </div>
       </section>
       <section className="section-space bg-ink-100">
-        <div className="site-container">
-          <p className="eyebrow">Büro und Baustelle im selben Ablauf</p>
-          <h2 className="section-title mb-10">Geplant. Erfasst. Zugeordnet.</h2>
-          <ProductDemo initialScene="planung" />
+        <div className="site-container grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14 lg:items-center">
+          <div className="min-w-0">
+            <p className="eyebrow">Zeit direkt beim Projekt</p>
+            <h2 className="section-title">Ein Handgriff. Die Zeit ist erfasst.</h2>
+            <p className="section-intro">
+              Projekt wählen, Timer starten, Eintrag prüfen: Probieren Sie das
+              Prinzip der mobilen Zeiterfassung in einem kleinen Beispiel aus.
+            </p>
+            <Link href="/hilfe/mobilen-timer-bedienen" className="text-link mt-6">
+              Den Timer in der App bedienen
+            </Link>
+          </div>
+          <div className="w-full min-w-0 max-w-[640px] justify-self-center">
+            <FeatureSnippet variant="zeit" />
+          </div>
         </div>
       </section>
       <section className="section-space">
