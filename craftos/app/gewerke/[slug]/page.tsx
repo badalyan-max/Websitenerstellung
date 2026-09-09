@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { gewerke, getGewerk } from "@/lib/gewerke";
+import { tradeSnippetExamples } from "@/lib/trade-snippet-examples";
 import { getFunktion } from "@/lib/funktionen";
 import { GewerkIcon } from "@/components/ui/GewerkIcon";
 import { PageHero } from "@/components/ui/PageHero";
@@ -32,6 +33,8 @@ export default async function Page({
   const { slug } = await params,
     g = getGewerk(slug);
   if (!g) notFound();
+  const example = tradeSnippetExamples[slug];
+  if (!example) throw new Error(`Missing trade snippet example: ${slug}`);
   return (
     <>
       <PageHero
@@ -54,11 +57,8 @@ export default async function Page({
           </div>
           <div className="w-full min-w-0 max-w-[640px] justify-self-center">
             <FeatureSnippet
-              variant={
-                ["maler", "fliesenleger", "trockenbau"].includes(slug)
-                  ? "angebot"
-                  : "planung"
-              }
+              variant={example.variant}
+              example={example}
             />
           </div>
         </div>

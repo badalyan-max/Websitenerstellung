@@ -1,17 +1,30 @@
-# Kleine Funktionsbeispiele
+# Animierte Funktionsbeispiele
 
-Stand: 9. September 2026. Ersetzt auf Wunsch des Nutzers die große, universelle Produktdemo durch kleine Step-Pads neben dem jeweiligen Funktionstext.
+Stand: 9. September 2026. Die aktuelle Nutzerentscheidung ersetzt die bedienbaren Step-Pads durch automatisch wiederholte Funktionsillustrationen mit sichtbarem Cursor. Auf den Seiten wird keine Testinstanz angeboten.
 
-Als Referenz dient die frühere Website in Commit `142ab82`: ein Ausschnitt, unmittelbare Reaktion, keine Appnavigation. Die bisherigen Produktprüfungen gelten weiterhin; dargestellt wird bewusst nur ein Teil des jeweiligen Ablaufs.
+## Gestaltung und Ablauf
 
-- Bestehende Farben: Ink `#101014`, Weiß `#ffffff`, Flächen `#f4f4f5`, Amber `#f2af38`, lesbares dunkles Amber `#784b10`, Erfolg `#24764d`.
-- Bestehende Schriftfamilien: Clash Display für Überschriften, General Sans für Bedienung und Daten.
-- Links Nutzen und Erklärung, rechts ein höchstens 640 Pixel breites Beispiel; auf kleinen Bildschirmen untereinander. Keine Sidebar, keine globale Szenenauswahl, keine verschachtelte Tour.
-- Drei lokale Schritte, eine kurze explizit gestartete Animation mit Pause und Reset. Direkte Aktionen und Vorführung verändern denselben lokalen Zustand. Nutzeraktionen stoppen die Automatik; außerhalb des sichtbaren Bereichs pausiert sie. Reduzierte Bewegung behält die manuelle Bedienung und entfernt Übergänge.
-- Die Plantafel zeigt nur das Verschieben eines Einsatzes derselben Person auf andere Tage. Es gibt keine vermeintlich vollständige Ressourcenplanung; die reale Copy-Regel bei Personenwechsel wird durch diesen Ausschnitt nicht ersetzt.
-- Alle Beispiele nennen ihre fiktiven Daten und die vereinfachte Darstellung. Originale Mobile-App-Aufnahmen bleiben separat erreichbar. Keine echte KI, Buchung oder Nachrichtenübermittlung.
+Die bestehende CraftOS-Gestaltung bleibt erhalten: Ink #101014, Weiß #ffffff, Flächen #f4f4f5, Amber #f2af38, dunkles Amber #784b10, Erfolg #24764d; Clash Display für Überschriften und General Sans für die Darstellung der Daten. Als visuelle Referenz wurden die grafischen Funktionsausschnitte auf https://plancraft.com/de-de im Browser angesehen; Layout, Code, Texte und Inhalte entstehen eigenständig für CraftOS.
 
-Abnahme: kontextbezogene Zuordnung, konsistente Rechenwerte, wiederholbarer Reset, Pointer-Abbruch, Tastatur und Touch, geringe Höhe, keine Überläufe bei 360 bis 1440 Pixeln sowie Chromium/WebKit; bestehende Rechner- und Preistests bleiben erhalten.
+Neben der jeweiligen Funktion steht ein kompaktes Beispiel ohne Appnavigation, Schrittmenü oder Eingabefelder. Ein sichtbarer Cursor fährt zu den tatsächlichen Elementen der Illustration, führt drei vorbereitete Handlungen vor und lässt das Ergebnis kurz stehen. Nach ungefähr neun Sekunden beginnt der Ablauf erneut. Die Cursorposition folgt den tatsächlichen Elementpositionen, auch wenn die mobile Darstellung anders angeordnet ist.
+
+Die einzige Bedienung ist eine zugängliche Pausefunktion. Oberflächen dürfen auf Berührung oder Hover dezent reagieren, verändern aber keine Geschäftsdaten und bieten keine bearbeitbare Demo an. Die Animation läuft nur im sichtbaren Bereich und bei sichtbarem Browser-Tab. Reduzierte Bewegung zeigt das vollständige statische Ergebnis ohne Cursor; eine dauerhafte Textzusammenfassung erklärt den gesamten Vorgang auch im ausgelieferten HTML.
+
+Die Planung verbindet den Web-Ausschnitt mit einer stilisierten Handyansicht. Dieselben Projekt- und Zeitangaben bleiben nachvollziehbar. Die Darstellung behauptet weder eine identische Produktoberfläche noch Pushbenachrichtigungen oder eine Offlineübertragung.
+
+Der lokale Produktabgleich erfolgte gegen Web main 179cef5 und Mobile master 9e6260d einschließlich des vorhandenen Arbeitsstands. Mobile bietet „Einsätze“ mit „Ab heute“ und Tagesgruppen (AssignmentsListScreen.tsx), Projektname und Uhrzeitspanne (DispatchAssignmentCard.tsx); useAssignments.ts liest dieselbe Einsatzzeile, useRealtime.ts invalidiert sie bei Änderungen. Web usePlantafelDragDrop.ts verschiebt das Datum dieser Zeile und erhält die Start-/Endzeit. Die Handyillustration zeigt deshalb 09:00 bis 12:30 und kein zusätzliches Feld für die geplante Dauer; „Dauer“ im echten Einsatzdetail bezieht sich auf die Fahrzeit. Der Abgleich war rein lesend, die App-Repositories wurden nicht verändert.
+
+## Beispiele je Gewerk
+
+Alle zwölf Gewerke erhalten eigene fiktive Projekte und Tätigkeiten aus dem jeweils beschriebenen Auftrag. Die Zuordnung steht serverseitig in lib/trade-snippet-examples.ts; nur das benötigte Beispiel wird an die Client-Komponente übergeben. Ein fehlendes Beispiel verhindert den Build der Gewerke-Seite.
+
+Maler, Fliesenleger und Trockenbauer zeigen jeweils drei Angebotspositionen. Menge und Einzelpreis erzeugen sowohl die Beschreibung als auch den Positionsbetrag; Summen verwenden ganze Cent. Beim Fliesenleger ergeben 12 m² Wandfliesen verlegen, 6 m² Abdichtung im Duschbereich und 12 m² Fliesen verfugen 816,00 € netto beziehungsweise 971,04 € inklusive 19 % Umsatzsteuer. Dies sind fiktive Ausschnitte, keine vollständigen Angebote oder empfohlenen Preise.
+
+Die übrigen neun Gewerke zeigen passende Planungstätigkeiten, etwa Zählerschrank montieren, Dachziegel verlegen oder Geländer montieren. Projekt, Arbeit und geplante Dauer bleiben beim Tageswechsel erhalten. Funktionsseiten behalten ihre allgemeinen Beispiele; ein Wechsel des Beispiels setzt die Animation zurück.
+
+## Prüfung
+
+Die aktuelle Browserprüfung kontrolliert wiederholte Abläufe, Cursorziele, Pause und Fortsetzung, Ausblenden außerhalb des sichtbaren Bereichs, reduzierte Bewegung, unveränderliche Illustrationen, Gewerkezuordnung und Rechenwerte sowie Darstellungen bei 360, 390, 768, 1024 und 1440 Pixeln in Chromium und WebKit. Rechner-, Preis- und Navigationstests bleiben erhalten. Historische Tests der vorherigen bedienbaren Snippets sind als Archiv von der aktuellen Testauswahl ausgeschlossen.
 
 ## Ergänzende Navigationskorrektur
 

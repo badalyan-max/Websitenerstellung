@@ -20,10 +20,10 @@ export function Analytics() {
     };
     const click = (event: MouseEvent) => {
       if (!(event.target instanceof Element)) return;
-      const demo = event.target.closest("[data-product-demo], [data-feature-snippet]");
-      if (demo && event.target.closest("button"))
-        track("demo_use", {
-          scene: demo.getAttribute("data-feature-snippet") || demo.getAttribute("data-product-demo") || "dashboard",
+      const illustration = event.target.closest("[data-feature-illustration]");
+      if (illustration && event.target.closest("button"))
+        track("illustration_control", {
+          scene: illustration.getAttribute("data-feature-snippet") || "dashboard",
         });
       const link = event.target.closest("a");
       if (!link) return;

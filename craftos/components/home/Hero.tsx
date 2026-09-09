@@ -23,7 +23,7 @@ export function Hero() {
                 10 Tage kostenlos testen <ArrowUpRight size={17} />
               </a>
               <a href="#produktdemo" className="btn-secondary">
-                Kurz ausprobieren <ArrowDown size={16} />
+                Ablauf ansehen <ArrowDown size={16} />
               </a>
             </div>
             <p className="mt-4 text-xs flex flex-wrap gap-x-5 gap-y-2">

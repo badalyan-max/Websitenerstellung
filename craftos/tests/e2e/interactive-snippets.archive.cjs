@@ -1,3 +1,4 @@
+/* Historical interactive snippets from 9fdf2fc; superseded by function-illustrations.pw.cjs for automatic illustrations. */
 /* eslint-disable @typescript-eslint/no-require-imports -- Supports a Playwright installation in another worktree. */
 const { test, expect } = require(process.env.CRAFTOS_PLAYWRIGHT_PATH || '@playwright/test')
 

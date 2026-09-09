@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import {
   ArrowUpRight,
   Check,
@@ -8,6 +7,7 @@ import {
   Monitor,
 } from "lucide-react";
 import { Hero } from "@/components/home/Hero";
+import { FeatureSnippet } from "@/components/feature-snippet/FeatureSnippet";
 import { PricingTable } from "@/components/preise/PricingTable";
 import { Faq } from "@/components/ui/Faq";
 import { TrialCta } from "@/components/ui/TrialCta";
@@ -139,23 +139,12 @@ export default function Home() {
               Die Mobile-App kennenlernen <ArrowUpRight size={18} />
             </Link>
           </div>
-          <figure>
-            <Image
-              src="/images/team-baustelle-2026.webp"
-              alt="Bauleiterin und Handwerker besprechen Arbeiten auf einer Innenausbau-Baustelle"
-              width={1536}
-              height={1024}
-              sizes="(max-width:767px) 100vw, 50vw"
-              className="rounded-2xl object-cover aspect-[4/5]"
-            />
-            <figcaption className="text-xs text-ink-500 mt-3">
-              Illustratives Nutzungsmotiv. Echte App-Ansichten finden Sie in der{" "}
-              <Link href="/app#app-ansichten" className="underline underline-offset-4">
-                Mobile-App-Galerie
-              </Link>
-              .
-            </figcaption>
-          </figure>
+          <div className="min-w-0">
+            <FeatureSnippet variant="planung" />
+            <Link href="/app#app-ansichten" className="text-link mt-5">
+              Echte App-Ansichten ansehen <ArrowUpRight size={18} />
+            </Link>
+          </div>
         </div>
       </section>
       <section className="section-space home-features">
