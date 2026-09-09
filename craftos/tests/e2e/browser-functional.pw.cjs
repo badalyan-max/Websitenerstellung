@@ -4,7 +4,7 @@ const { test, expect } = require(process.env.CRAFTOS_PLAYWRIGHT_PATH || '@playwr
 const scenes = [
   { id: 'dashboard', label: 'Überblick', steps: ['Überblick', 'Projekt', 'Kosten'] },
   { id: 'angebot', label: 'Kalkulation', steps: ['Aufmaß', 'Menge', 'Kalkulation', 'Vorschau'] },
-  { id: 'planung', label: 'Planung', steps: ['Einsatz', 'Zuordnung', 'Verschieben', 'Mobile Zeit', 'Kosten'] },
+  { id: 'planung', label: 'Planung', steps: ['Einsatz anlegen', 'Termin ändern', 'Mobile Zeit starten', 'Zeit buchen', 'Kosten'] },
   { id: 'rechnung', label: 'Rechnung', steps: ['Bericht', 'Entwurf', 'Prüfen', 'Fertigstellen'] },
   { id: 'beleg', label: 'Belegscan', steps: ['Beleg', 'Angaben', 'Projekt', 'Buchhaltung'] },
   { id: 'ki', label: 'Craft AI', steps: ['Anfrage', 'Entwurf', 'Prüfen', 'Bestätigt'] },
@@ -19,7 +19,7 @@ async function openDemo(page) {
   await page.goto('/')
   const demo = page.locator('[data-product-demo]').first()
   await expect(demo).toBeVisible()
-  // A deliberate reset also pauses the default presentation after hydration.
+  // A deliberate reset provides the same fixture after hydration.
   await demo.getByRole('button', { name: 'Diese Demo wiederholen' }).click()
   return demo
 }
@@ -183,9 +183,13 @@ test('Planung: Auswählen statt Ziehen, eigener Timer und Projektkosten', async 
   await demo.getByRole('textbox', { name: 'Geplante Dauer' }).fill('2,5')
   await activate(demo.getByRole('button', { name: 'Einsatz anlegen', exact: true }), testInfo)
   const mobile = await demo.locator('[data-demo-mobile]').isVisible()
-  await demo.getByRole('combobox', { name: mobile ? 'Neuer Einsatztag' : 'Tag', exact: true }).selectOption({ label: 'Do, 10.09.' })
-  await activate(demo.getByRole('button', { name: mobile ? 'Einsatz verschieben' : 'Einsatz verschieben / aktualisieren', exact: true }), testInfo)
-  await expectStep(demo, 'Verschieben')
+  if (mobile) {
+    await activate(demo.locator('[data-demo-mobile] [data-planning-target][data-day="do"][data-member="jonas"]'), testInfo)
+  } else {
+    await demo.getByRole('combobox', { name: 'Tag', exact: true }).selectOption({ label: 'Do, 10.09.' })
+    await activate(demo.getByRole('button', { name: 'Einsatz aktualisieren', exact: true }), testInfo)
+  }
+  await expectStep(demo, 'Mobile Zeit starten')
   await expect(await activeView(demo)).toContainText(mobile ? 'Jonas Weber' : 'Hallo Jonas,')
   await activate(demo.getByRole('button', { name: 'Timer starten', exact: true }), testInfo)
   await expect(demo).toContainText('02:30:00')

@@ -72,7 +72,9 @@ export default function Page() {
               Welche Lizenz passt zu Ihrem Team?
             </Link>
           </div>
-          <MobileAppGallery />
+          <div id="app-ansichten" className="scroll-mt-24">
+            <MobileAppGallery />
+          </div>
         </div>
       </section>
       <section className="section-space">

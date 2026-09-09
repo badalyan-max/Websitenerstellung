@@ -10,6 +10,8 @@ import {
   type ReactNode,
 } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { PlanningBoard } from "./PlanningBoard";
 import {
   ArrowDownLeft,
   ArrowLeft,
@@ -87,117 +89,116 @@ const noSubscription = () => () => {};
 const clientReady = () => true;
 const serverReady = () => false;
 
-const MOBILE_GUIDANCE: Record<DemoSceneId, { title: string; hint: string }[]> =
-  {
-    dashboard: [
-      {
-        title: "Ihr Betrieb im Überblick",
-        hint: "Öffnen Sie das Projekt, um vom Überblick in die konkrete Arbeit zu wechseln.",
-      },
-      {
-        title: "Das Projekt ist geöffnet",
-        hint: "Kunde, Termin und Budget gehören zusammen. Sehen Sie sich jetzt die erfassten Kosten an.",
-      },
-      {
-        title: "Die Projektkosten im Blick",
-        hint: "Die gebuchten Stunden und das zugeordnete Material bilden die bisher erfassten Kosten.",
-      },
-    ],
-    angebot: [
-      {
-        title: "Fläche und Abzüge erfassen",
-        hint: "Ändern Sie die Beispielwerte. Die Nettofläche wird direkt neu berechnet.",
-      },
-      {
-        title: "Menge übernommen. Jetzt kalkulieren.",
-        hint: "Ergänzen Sie die Kostenansätze für diese Angebotsposition.",
-      },
-      {
-        title: "Der Preis ist berechnet",
-        hint: "Prüfen Sie die Kosten und öffnen Sie anschließend die Angebotsvorschau.",
-      },
-      {
-        title: "Ihr Angebot ist vorbereitet",
-        hint: "Die Vorschau enthält genau die Menge und Preise aus Ihrer Beispielkalkulation.",
-      },
-    ],
-    planung: [
-      {
-        title: "Einen Einsatz anlegen",
-        hint: "Wählen Sie Person, Tag und Dauer für den Wandanstrich.",
-      },
-      {
-        title: "Geplant. Jetzt den Termin ändern.",
-        hint: "Wählen Sie den neuen Tag und bei Bedarf eine andere Person.",
-      },
-      {
-        title: "Der neue Einsatz ist angekommen",
-        hint: "Die zugewiesene Person kann jetzt die Zeit in der Mobile-App starten.",
-      },
-      {
-        title: "Die mobile Zeiterfassung läuft",
-        hint: "Die Demo spult die geplante Dauer vor. Stoppen Sie den Timer, um diese Zeit zu buchen.",
-      },
-      {
-        title: "Zeit gebucht. Kosten aktualisiert.",
-        hint: "Die neue Arbeitszeit ergänzt die bereits vorhandenen Projektstunden.",
-      },
-    ],
-    rechnung: [
-      {
-        title: "Eine dokumentierte Leistung wählen",
-        hint: "Übernehmen Sie die Position aus dem fertigen Bautagesbericht.",
-      },
-      {
-        title: "Rechnungsentwurf erstellt",
-        hint: "Prüfen Sie Kunde, Leistung, Menge und Betrag. Der Entwurf hat noch keine Rechnungsnummer.",
-      },
-      {
-        title: "Geprüft und bereit zum Abschluss",
-        hint: "Erst „Rechnung fertigstellen“ schreibt die Rechnung fest und vergibt ihre Nummer.",
-      },
-      {
-        title: "Festgeschrieben und nummeriert",
-        hint: "Die Beispielrechnung hat jetzt ihre Nummer. Änderungen erfolgen über nachvollziehbare Folgebelege.",
-      },
-    ],
-    beleg: [
-      {
-        title: "Mit dem Originalbeleg beginnen",
-        hint: "Lassen Sie die Demo die Angaben dieses fiktiven Materialbelegs übernehmen.",
-      },
-      {
-        title: "Erkannte Angaben kontrollieren",
-        hint: "Vergleichen und korrigieren Sie die Angaben vor der Übernahme.",
-      },
-      {
-        title: "Den geprüften Beleg zuordnen",
-        hint: "Wählen Sie das Projekt, zu dem diese Ausgabe gehört.",
-      },
-      {
-        title: "Die Ausgabe ist zugeordnet",
-        hint: "In CraftOS folgen Kontierung und DATEV-Export für die Steuerberatung.",
-      },
-    ],
-    ki: [
-      {
-        title: "Eine konkrete Bitte formulieren",
-        hint: "Die lokale Demo versteht eine Dauer bis 12 Stunden und bereitet einen Zeiteintrag vor.",
-      },
-      {
-        title: "Den Vorschlag prüfen",
-        hint: "Kontrollieren Sie das Projekt und ändern Sie bei Bedarf die Dauer. Es wurde noch nichts angelegt.",
-      },
-      {
-        title: "Jetzt ausdrücklich entscheiden",
-        hint: "Autoplay endet hier. Nur Ihre Bestätigung legt den Zeiteintrag als Entwurf an.",
-      },
-      {
-        title: "Ihr bestätigter Entwurf ist angelegt",
-        hint: "Der Zeiteintrag steht als Entwurf zur weiteren Bearbeitung bereit.",
-      },
-    ],
-  };
+const STEP_GUIDANCE: Record<DemoSceneId, { title: string; hint: string }[]> = {
+  dashboard: [
+    {
+      title: "Ihr Betrieb im Überblick",
+      hint: "Öffnen Sie das Projekt, um vom Überblick in die konkrete Arbeit zu wechseln.",
+    },
+    {
+      title: "Das Projekt ist geöffnet",
+      hint: "Kunde, Termin und Budget gehören zusammen. Sehen Sie sich jetzt die erfassten Kosten an.",
+    },
+    {
+      title: "Die Projektkosten im Blick",
+      hint: "Die gebuchten Stunden und das zugeordnete Material bilden die bisher erfassten Kosten.",
+    },
+  ],
+  angebot: [
+    {
+      title: "Fläche und Abzüge erfassen",
+      hint: "Ändern Sie die Beispielwerte. Die Nettofläche wird direkt neu berechnet.",
+    },
+    {
+      title: "Menge übernommen. Jetzt kalkulieren.",
+      hint: "Ergänzen Sie die Kostenansätze für diese Angebotsposition.",
+    },
+    {
+      title: "Der Preis ist berechnet",
+      hint: "Prüfen Sie die Kosten und öffnen Sie anschließend die Angebotsvorschau.",
+    },
+    {
+      title: "Ihr Angebot ist vorbereitet",
+      hint: "Die Vorschau enthält genau die Menge und Preise aus Ihrer Beispielkalkulation.",
+    },
+  ],
+  planung: [
+    {
+      title: "Einen Einsatz anlegen",
+      hint: "Wählen Sie Person, Tag und Dauer für den Wandanstrich.",
+    },
+    {
+      title: "Geplant. Jetzt den Termin ändern.",
+      hint: "Ziehen Sie den Einsatz auf einen anderen Tag oder tippen Sie das Ziel an. Bei einer anderen Person entsteht eine Kopie.",
+    },
+    {
+      title: "Der neue Einsatz ist angekommen",
+      hint: "Die zugewiesene Person kann jetzt die Zeit in der Mobile-App starten.",
+    },
+    {
+      title: "Die mobile Zeiterfassung läuft",
+      hint: "Die Demo spult die geplante Dauer vor. Stoppen Sie den Timer, um diese Zeit zu buchen.",
+    },
+    {
+      title: "Zeit gebucht. Kosten aktualisiert.",
+      hint: "Die neue Arbeitszeit ergänzt die bereits vorhandenen Projektstunden.",
+    },
+  ],
+  rechnung: [
+    {
+      title: "Eine dokumentierte Leistung wählen",
+      hint: "Übernehmen Sie die Position aus dem fertigen Bautagesbericht.",
+    },
+    {
+      title: "Rechnungsentwurf erstellt",
+      hint: "Prüfen Sie Kunde, Leistung, Menge und Betrag. Der Entwurf hat noch keine Rechnungsnummer.",
+    },
+    {
+      title: "Geprüft und bereit zum Abschluss",
+      hint: "Erst „Rechnung fertigstellen“ schreibt die Rechnung fest und vergibt ihre Nummer.",
+    },
+    {
+      title: "Festgeschrieben und nummeriert",
+      hint: "Die Beispielrechnung hat jetzt ihre Nummer. Änderungen erfolgen über nachvollziehbare Folgebelege.",
+    },
+  ],
+  beleg: [
+    {
+      title: "Mit dem Originalbeleg beginnen",
+      hint: "Lassen Sie die Demo die Angaben dieses fiktiven Materialbelegs übernehmen.",
+    },
+    {
+      title: "Erkannte Angaben kontrollieren",
+      hint: "Vergleichen und korrigieren Sie die Angaben vor der Übernahme.",
+    },
+    {
+      title: "Den geprüften Beleg zuordnen",
+      hint: "Wählen Sie das Projekt, zu dem diese Ausgabe gehört.",
+    },
+    {
+      title: "Die Ausgabe ist zugeordnet",
+      hint: "In CraftOS folgen Kontierung und DATEV-Export für die Steuerberatung.",
+    },
+  ],
+  ki: [
+    {
+      title: "Eine konkrete Bitte formulieren",
+      hint: "Die lokale Demo versteht eine Dauer bis 12 Stunden und bereitet einen Zeiteintrag vor.",
+    },
+    {
+      title: "Den Vorschlag prüfen",
+      hint: "Kontrollieren Sie das Projekt und ändern Sie bei Bedarf die Dauer. Es wurde noch nichts angelegt.",
+    },
+    {
+      title: "Jetzt ausdrücklich entscheiden",
+      hint: "Autoplay endet hier. Nur Ihre Bestätigung legt den Zeiteintrag als Entwurf an.",
+    },
+    {
+      title: "Ihr bestätigter Entwurf ist angelegt",
+      hint: "Der Zeiteintrag steht als Entwurf zur weiteren Bearbeitung bereit.",
+    },
+  ],
+};
 
 function Badge({
   children,
@@ -484,7 +485,7 @@ function DashboardScene({ state, send }: SceneProps) {
         </div>
         <div className={s.stat}>
           <span>
-            <FileText size={16} /> Offene Rechnungen
+            <FileText size={16} /> Offene Beträge
           </span>
           <strong>{formatEuro(8640, 0)}</strong>
           <small>5 Rechnungen ausstehend</small>
@@ -1146,7 +1147,7 @@ function PlanningScene({ state, send }: SceneProps) {
         </div>
         <Badge tone="amber">7.–11. September</Badge>
       </div>
-      <div className={s.planningLayout}>
+      <div className={s.planningLayout} data-planning-step={state.step}>
         <section className={s.panel}>
           <PanelHeading
             icon={CalendarDays}
@@ -1196,190 +1197,114 @@ function PlanningScene({ state, send }: SceneProps) {
               onClick={() =>
                 send(
                   plan.assignment
-                    ? {
-                        type: "move-assignment",
-                        day: plan.day,
-                        member: plan.member,
-                      }
+                    ? { type: "update-assignment" }
                     : { type: "save-assignment" },
                 )
               }
             >
-              {plan.assignment
-                ? "Einsatz verschieben / aktualisieren"
-                : "Einsatz anlegen"}{" "}
+              {plan.assignment ? "Einsatz aktualisieren" : "Einsatz anlegen"}{" "}
               <Plus size={15} />
             </Action>
             {!validPlanningHours(plan.hours) && (
               <p className={s.error}>
-                Wählen Sie eine Dauer zwischen 0 und 12 Stunden.
+                Die Dauer muss größer als 0 und höchstens 12 Stunden sein.
               </p>
             )}
           </div>
-          <div className={s.scheduleDesktop}>
-            <div className={s.scheduleHeader}>
-              <span>Team</span>
-              {DEMO_DAYS.map((d) => (
-                <span key={d.id}>
-                  {d.short}
-                  <small>{d.date}</small>
-                </span>
-              ))}
-            </div>
-            {DEMO_MEMBERS.map((m, row) => (
-              <div className={s.scheduleRow} key={m.id}>
-                <div className={s.schedulePerson}>
-                  <span className={s.avatar}>{m.initials}</span>
-                  <strong>{m.name.split(" ")[0]}</strong>
-                </div>
-                {DEMO_DAYS.map((d, col) => (
-                  <div
-                    className={s.scheduleCell}
-                    key={d.id}
-                    onDragOver={(e) => {
-                      if (plan.assignment && plan.timer === "idle")
-                        e.preventDefault();
-                    }}
-                    onDrop={(e) => {
-                      e.preventDefault();
-                      if (
-                        e.dataTransfer.getData("text/plain") ===
-                        "craftos-example-assignment"
-                      )
-                        send({
-                          type: "move-assignment",
-                          day: d.id,
-                          member: m.id,
-                        });
-                    }}
-                  >
-                    {plan.assignment?.member === m.id &&
-                    plan.assignment.day === d.id ? (
-                      <div
-                        className={s.assignment}
-                        draggable={plan.timer === "idle"}
-                        onDragStart={(e) => {
-                          send({ type: "pause" });
-                          e.dataTransfer.setData(
-                            "text/plain",
-                            "craftos-example-assignment",
-                          );
-                        }}
-                      >
-                        <strong>Bäckerei Krause</strong>
-                        <span>{formatNumber(plan.assignment.hours)} Std.</span>
-                        <small>Wandanstrich</small>
-                      </div>
-                    ) : (row === 1 && col === 0) || (row === 2 && col === 3) ? (
-                      <div className={s.otherAssignment}>
-                        <strong>
-                          {row === 1 ? "Familie Weber" : "Sonnenhof"}
-                        </strong>
-                        <span>Vorbereitung</span>
-                      </div>
-                    ) : null}
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-          <div className={s.mobileAssignment}>
-            <CalendarDays size={20} />
-            <div>
-              <strong>
-                {plan.assignment
-                  ? `${day.label}, ${day.date}`
-                  : "Noch kein Einsatz geplant"}
-              </strong>
-              <p>
-                {plan.assignment
-                  ? `${member.name} · ${formatNumber(plan.assignment.hours)} Std.`
-                  : "Wählen Sie Person, Tag und Dauer."}
-              </p>
-              {plan.assignment && <span>{DEMO_PROJECT.name}</span>}
-            </div>
+          <div className={s.boardPadding}>
+            <PlanningBoard
+              key={plan.assignment ? "planned" : "empty"}
+              state={state}
+              send={send}
+            />
           </div>
         </section>
-        <aside className={s.mobileColumn}>
-          <div className={s.phone}>
-            <div className={s.phoneTop}>
-              <span>09:41</span>
-              <span className={s.phoneNotch} />
-              <span>LTE</span>
-            </div>
-            <div className={s.phoneContent}>
-              <p className={s.mobileGreeting}>
-                Hallo {member.name.split(" ")[0]},
-              </p>
-              <h3>Dein Arbeitstag</h3>
-              <div className={s.mobileProject}>
-                <FolderClosed size={19} />
-                <div>
-                  <strong>Bäckerei Krause</strong>
-                  <span>
-                    {day.short}, {day.date} · Wandanstrich
-                  </span>
-                </div>
+        {state.step >= 2 && (
+          <aside className={s.mobileColumn}>
+            <div className={s.phone}>
+              <div className={s.phoneTop}>
+                <span>09:41</span>
+                <span className={s.phoneNotch} />
+                <span>LTE</span>
               </div>
-              <div className={s.timerPanel}>
-                <span>
-                  {plan.timer === "stopped"
-                    ? "Zeit gebucht"
-                    : plan.timer === "running"
-                      ? "Zeiterfassung läuft"
-                      : "Bereit für den Einsatz"}
-                </span>
-                <strong>
-                  {plan.timer === "idle" ? "00:00:00" : timerText}
-                </strong>
-                <p>
-                  <MapPin size={12} /> Standort im Beispiel verfügbar
+              <div className={s.phoneContent}>
+                <p className={s.mobileGreeting}>
+                  Hallo {member.name.split(" ")[0]},
                 </p>
-                <Action
-                  disabled={!plan.assignment || plan.timer === "stopped"}
-                  onClick={() =>
-                    send({
-                      type:
-                        plan.timer === "running" ? "stop-timer" : "start-timer",
-                    })
-                  }
-                >
-                  {plan.timer === "stopped" ? (
-                    <>
-                      <Check size={15} /> Gebucht
-                    </>
-                  ) : plan.timer === "running" ? (
-                    <>
-                      <Pause size={15} /> Stoppen & buchen
-                    </>
-                  ) : (
-                    <>
-                      <Play size={15} /> Timer starten
-                    </>
-                  )}
-                </Action>
-              </div>
-              <p className={s.timeTravelNote}>
-                Zeitraffer: Die Demo zeigt{" "}
-                {formatNumber(
-                  (plan.assignment?.hours ?? decimal(plan.hours)) || 0,
-                )}{" "}
-                Stunden Arbeit.
-              </p>
-              {plan.timer === "stopped" && (
-                <div className={s.mobileSuccess}>
-                  <CircleCheck size={18} />
-                  <span>
-                    {formatNumber(plan.loggedHours)} Std. dem Projekt
-                    zugeordnet.
-                  </span>
+                <h3>Dein Arbeitstag</h3>
+                <div className={s.mobileProject}>
+                  <FolderClosed size={19} />
+                  <div>
+                    <strong>Bäckerei Krause</strong>
+                    <span>
+                      {day.short}, {day.date} · Wandanstrich
+                    </span>
+                  </div>
                 </div>
-              )}
+                <div className={s.timerPanel}>
+                  <span>
+                    {plan.timer === "stopped"
+                      ? "Zeit gebucht"
+                      : plan.timer === "running"
+                        ? "Zeiterfassung läuft"
+                        : "Bereit für den Einsatz"}
+                  </span>
+                  <strong>
+                    {plan.timer === "idle" ? "00:00:00" : timerText}
+                  </strong>
+                  <p>
+                    <MapPin size={12} /> Standort im Beispiel verfügbar
+                  </p>
+                  <Action
+                    disabled={!plan.assignment || plan.timer === "stopped"}
+                    onClick={() =>
+                      send({
+                        type:
+                          plan.timer === "running"
+                            ? "stop-timer"
+                            : "start-timer",
+                      })
+                    }
+                  >
+                    {plan.timer === "stopped" ? (
+                      <>
+                        <Check size={15} /> Gebucht
+                      </>
+                    ) : plan.timer === "running" ? (
+                      <>
+                        <Pause size={15} /> Stoppen & buchen
+                      </>
+                    ) : (
+                      <>
+                        <Play size={15} /> Timer starten
+                      </>
+                    )}
+                  </Action>
+                </div>
+                <p className={s.timeTravelNote}>
+                  Zeitraffer: Die Demo zeigt{" "}
+                  {formatNumber(
+                    (plan.assignment?.hours ?? decimal(plan.hours)) || 0,
+                  )}{" "}
+                  Stunden Arbeit.
+                </p>
+                {plan.timer === "stopped" && (
+                  <div className={s.mobileSuccess}>
+                    <CircleCheck size={18} />
+                    <span>
+                      {formatNumber(plan.loggedHours)} Std. dem Projekt
+                      zugeordnet.
+                    </span>
+                  </div>
+                )}
+              </div>
+              <div className={s.phoneHome} />
             </div>
-            <div className={s.phoneHome} />
-          </div>
-          <span className={s.deviceLabel}>Mobile-App · Beispielansicht</span>
-        </aside>
+            <span className={s.deviceLabel}>
+              Zeiterfassung als Funktionsbeispiel
+            </span>
+          </aside>
+        )}
       </div>
       {plan.timer === "stopped" && (
         <section className={`${s.panel} ${s.resultPanel}`}>
@@ -2027,7 +1952,7 @@ function MobileStepContent({ state, send }: SceneProps) {
               <strong>{formatEuro(42600, 0)}</strong>
             </div>
             <div>
-              <span>Offene Rechnungen</span>
+              <span>Offene Beträge</span>
               <strong>{formatEuro(8640, 0)}</strong>
             </div>
           </div>
@@ -2223,6 +2148,8 @@ function MobileStepContent({ state, send }: SceneProps) {
   }
 
   if (state.scene === "planung") {
+    if (state.step === 1)
+      return <PlanningBoard compact state={state} send={send} />;
     if (state.step <= 1)
       return (
         <>
@@ -2296,6 +2223,40 @@ function MobileStepContent({ state, send }: SceneProps) {
       const minutes = Math.round(hours * 60);
       return (
         <>
+          {state.step === 2 && plan.lastChange && (
+            <>
+              <div className={s.mobileResultBanner} role="status">
+                <CircleCheck size={21} />
+                <span>
+                  <strong>
+                    {plan.lastChange.kind === "copied"
+                      ? "Zusätzlich eingeplant"
+                      : "Einsatz verschoben"}
+                  </strong>
+                  <small>
+                    {
+                      DEMO_MEMBERS.find(
+                        (m) => m.id === plan.lastChange?.to.member,
+                      )?.name
+                    }{" "}
+                    am{" "}
+                    {
+                      DEMO_DAYS.find((d) => d.id === plan.lastChange?.to.day)
+                        ?.label
+                    }
+                    . {formatNumber(plan.lastChange.to.hours)} Std.
+                  </small>
+                  {plan.lastChange.kind === "copied" && (
+                    <small>Der ursprüngliche Einsatz bleibt bestehen.</small>
+                  )}
+                </span>
+              </div>
+              <details className={s.mobileBoardDetails}>
+                <summary>Plantafel weiter ausprobieren</summary>
+                <PlanningBoard compact state={state} send={send} />
+              </details>
+            </>
+          )}
           <div className={s.mobileResultBanner}>
             <CalendarDays size={21} />
             <span>
@@ -2678,6 +2639,7 @@ export function ProductDemo({
   );
   const root = useRef<HTMLDivElement>(null);
   const mobileStage = useRef<HTMLFieldSetElement>(null);
+  const desktopTitle = useRef<HTMLHeadingElement>(null);
   const mobileTitle = useRef<HTMLHeadingElement>(null);
   const focusAfterAction = useRef(false);
   const hydrationReady = useSyncExternalStore(
@@ -2689,8 +2651,9 @@ export function ProductDemo({
   const [pageVisible, setPageVisible] = useState(true);
   const labelId = useId();
   const mobilePickerId = useId();
+  const disclaimerId = useId();
   const scene = DEMO_SCENES.find((item) => item.id === state.scene)!;
-  const mobileGuidance = MOBILE_GUIDANCE[state.scene][state.step];
+  const mobileGuidance = STEP_GUIDANCE[state.scene][state.step];
   const followingScene =
     DEMO_SCENES[(DEMO_SCENES.indexOf(scene) + 1) % DEMO_SCENES.length];
   const Scene = SCENE_COMPONENTS[state.scene];
@@ -2712,6 +2675,7 @@ export function ProductDemo({
         "measurement",
         "calculation",
         "planning-field",
+        "planning-mode",
         "receipt-field",
         "ai-prompt",
         "ai-hours",
@@ -2727,7 +2691,10 @@ export function ProductDemo({
     if (!focusAfterAction.current) return;
     focusAfterAction.current = false;
     const node = mobileStage.current;
-    if (!node || !node.getClientRects().length) return;
+    if (!node || !node.getClientRects().length) {
+      desktopTitle.current?.focus({ preventScroll: true });
+      return;
+    }
     mobileTitle.current?.focus({ preventScroll: true });
     node.scrollIntoView({
       block: "start",
@@ -2792,19 +2759,25 @@ export function ProductDemo({
       className={`${s.demo} ${compact ? s.compact : ""}`}
       data-product-demo={state.scene}
       aria-labelledby={labelId}
+      aria-describedby={disclaimerId}
+      data-demo-playing={state.playing}
     >
-      <div className={s.demoLabel}>
-        <span>
-          <span className={s.liveDot} />
-          <strong id={labelId}>Interaktive Beispieldemo</strong>
-        </span>
-        <span>Vereinfachtes Beispiel · keine Originaloberfläche</span>
+      <div className={s.demoIntro}>
+        <div>
+          <span className={s.demoBadge}>Interaktive Beispieldemo</span>
+          <strong id={labelId} className={s.demoIntroTitle}>
+            CraftOS Abläufe selbst ausprobieren
+          </strong>
+          <p id={disclaimerId} className={s.demoDisclaimer}>
+            Diese Demo erklärt ausgewählte CraftOS Funktionen mit fiktiven
+            Daten. Sie ist keine echte Produktoberfläche; Gestaltung und
+            Bedienumfang sind für die Erklärung vereinfacht.
+          </p>
+        </div>
+        <Link href="/app#app-ansichten" className={s.originalLink}>
+          Originale App-Ansichten <ArrowRight size={16} aria-hidden="true" />
+        </Link>
       </div>
-      <p className={s.demoDisclaimer}>
-        Diese interaktive Demo veranschaulicht typische CraftOS-Abläufe mit
-        fiktiven Daten. Gestaltung und Bedienung sind für die Erklärung
-        vereinfacht und können von der tatsächlichen Software abweichen.
-      </p>
       <nav className={s.sceneNav} aria-label="Produktdemo auswählen">
         {DEMO_SCENES.map((item) => {
           const Icon = ICONS[item.id];
@@ -2928,6 +2901,75 @@ export function ProductDemo({
           </p>
         )}
       </fieldset>
+      <div className={s.player} data-demo-desktop-guide>
+        <div className={s.playerStory}>
+          <span className={s.guideStep}>
+            Schritt {state.step + 1} von {scene.steps.length}
+          </span>
+          <h2 ref={desktopTitle} tabIndex={-1}>
+            {mobileGuidance.title}
+          </h2>
+          <p aria-live="polite">{mobileGuidance.hint}</p>
+          <ol className={s.stepList} aria-label="Ablauf">
+            {scene.steps.map((step, i) => (
+              <li
+                key={step}
+                className={
+                  i === state.step
+                    ? s.stepCurrent
+                    : i < state.step
+                      ? s.stepDone
+                      : ""
+                }
+                aria-current={i === state.step ? "step" : undefined}
+              >
+                <span>{i < state.step ? <Check size={11} /> : i + 1}</span>
+                {step}
+              </li>
+            ))}
+          </ol>
+        </div>
+        <div className={s.playerButtons}>
+          <button
+            type="button"
+            className={s.playerPrimary}
+            onClick={() => dispatch({ type: state.playing ? "pause" : "play" })}
+            disabled={state.reducedMotion || !canAdvance}
+            aria-label={
+              state.playing ? "Demo pausieren" : "Demo automatisch abspielen"
+            }
+          >
+            {state.playing ? <Pause size={16} /> : <Play size={16} />}
+            <span>{state.playing ? "Pause" : "Vorführen"}</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => send({ type: "advance" })}
+            disabled={!canAdvance}
+          >
+            <span>Nächster Schritt</span>
+            <ArrowRight size={16} />
+          </button>
+          <button
+            type="button"
+            onClick={() => send({ type: "reset" })}
+            aria-label="Diese Demo wiederholen"
+          >
+            <RotateCcw size={16} />
+            <span>Wiederholen</span>
+          </button>
+        </div>
+        {state.reducedMotion && (
+          <p className={s.playerHint}>
+            Reduzierte Bewegung ist aktiv. Sie steuern jeden Schritt selbst.
+          </p>
+        )}
+        {state.scene === "ki" && state.step === 2 && (
+          <p className={s.playerHint}>
+            Die Demo wartet auf „Jetzt ausdrücklich bestätigen“ im Entwurf.
+          </p>
+        )}
+      </div>
       <div
         className={s.appShell}
         onFocusCapture={() => {
@@ -2977,7 +3019,7 @@ export function ProductDemo({
           <div className={s.sidebarBottom}>
             <div className={s.sidebarConnected}>
               <span />
-              <span>Büro & Baustelle verbunden</span>
+              <span>Fiktiver Beispielbetrieb</span>
             </div>
             <div className={s.userProfile}>
               <span className={s.userAvatar}>AK</span>
@@ -3005,78 +3047,21 @@ export function ProductDemo({
                 {scene.id === "dashboard" ? "Dashboard" : scene.label}
               </span>
             </div>
-            <span className={s.workspaceStatus}>
-              <span /> Beispielbetrieb
-            </span>
+            <span className={s.workspaceStatus}>Vereinfachte Demo</span>
           </header>
           <div className={s.content}>
             <Scene state={state} send={send} />
           </div>
         </div>
       </div>
-      <div className={s.player}>
-        <div className={s.playerStory}>
-          <strong>{scene.title}</strong>
-          <p aria-live="polite">{scene.explanations[state.step]}</p>
-          <ol className={s.stepList} aria-label="Ablauf">
-            {scene.steps.map((step, i) => (
-              <li
-                key={step}
-                className={
-                  i === state.step
-                    ? s.stepCurrent
-                    : i < state.step
-                      ? s.stepDone
-                      : ""
-                }
-                aria-current={i === state.step ? "step" : undefined}
-              >
-                <span>{i < state.step ? <Check size={11} /> : i + 1}</span>
-                {step}
-              </li>
-            ))}
-          </ol>
-        </div>
-        <div className={s.playerButtons}>
-          <button
-            type="button"
-            className={s.playerPrimary}
-            onClick={() => dispatch({ type: state.playing ? "pause" : "play" })}
-            disabled={state.reducedMotion || !canAdvance}
-            aria-label={
-              state.playing ? "Demo pausieren" : "Demo automatisch abspielen"
-            }
-          >
-            {state.playing ? <Pause size={16} /> : <Play size={16} />}
-            <span>{state.playing ? "Pause" : "Start"}</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => send({ type: "advance" })}
-            disabled={!canAdvance}
-          >
-            <span>Nächster Schritt</span>
-            <ArrowRight size={16} />
-          </button>
-          <button
-            type="button"
-            onClick={() => send({ type: "reset" })}
-            aria-label="Diese Demo wiederholen"
-          >
-            <RotateCcw size={16} />
-            <span>Wiederholen</span>
-          </button>
-        </div>
-        {state.reducedMotion && (
-          <p className={s.playerHint}>
-            Reduzierte Bewegung ist aktiv. Sie steuern jeden Schritt selbst.
-          </p>
-        )}
-        {state.scene === "ki" && state.step === 2 && (
-          <p className={s.playerHint}>
-            Die Demo wartet auf „Jetzt ausdrücklich bestätigen“ im Entwurf.
-          </p>
-        )}
+
+      <div className={s.demoTakeaway}>
+        <strong>Das zeigt Ihnen dieses Beispiel</strong>
+        <p>{scene.explanations[state.step]}</p>
+        <span>
+          Alle Änderungen bleiben in dieser Demo. Es werden keine echten
+          Projekte, Zeiten oder Belege angelegt.
+        </span>
       </div>
     </div>
   );

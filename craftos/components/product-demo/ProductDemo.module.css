@@ -1937,7 +1937,7 @@
   align-items: center;
   padding: 23px 25px;
   background: #fff;
-  border-top: 1px solid var(--demo-line);
+  border-bottom: 1px solid var(--demo-line);
 }
 .playerStory > strong {
   font-size: 13px;
@@ -1945,7 +1945,7 @@
 }
 .playerStory > p {
   color: #6c7785;
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.65;
   margin-top: 5px;
   max-width: 68ch;
@@ -2040,17 +2040,7 @@
   border: 0;
 }
 .sceneEnter {
-  animation: demoScene 0.25s ease-out both;
-}
-@keyframes demoScene {
-  from {
-    opacity: 0.45;
-    transform: translateY(5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  min-width: 0;
 }
 .compact .content {
   padding: 23px;
@@ -2983,12 +2973,17 @@
     margin-bottom: 6px;
   }
   .mobileScenePicker select {
+    appearance: none;
+    -webkit-appearance: none;
     width: 100%;
     min-height: 44px;
     padding: 10px 36px 10px 12px;
     border-radius: 7px;
     border: 1px solid #4b5562;
     background: #2b313a;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
     color: #fff;
     font-size: 15px;
   }
@@ -3427,5 +3422,169 @@
   .mobileStepBody .costSummary > div {
     font-size: 13px;
     padding: 12px 0;
+  }
+}
+
+/* Keep the explanation visibly outside the illustrative application. */
+.demoIntro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 24px;
+  background: #fff8e9;
+  border-bottom: 1px solid #e8d6b3;
+}
+.demoBadge {
+  display: inline-block;
+  padding: 4px 9px;
+  border: 1px solid #d6b778;
+  border-radius: 5px;
+  color: #715013;
+  font-size: 12px;
+  font-weight: 600;
+  background: #fff;
+}
+.demoIntroTitle {
+  display: block;
+  margin-top: 9px;
+  font-family: var(--font-display), sans-serif;
+  font-size: 22px;
+  color: #282b30;
+  letter-spacing: -0.025em;
+}
+.demoIntro .demoDisclaimer {
+  max-width: 75ch;
+  margin-top: 8px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.originalLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid #d5bc8d;
+  background: #fff;
+  color: #694713;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.originalLink:hover {
+  background: #ffefcf;
+}
+.guideStep {
+  display: block;
+  font-size: 12px;
+  color: #94610e;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.playerStory > h2 {
+  font-size: 20px;
+}
+.playerStory > h2:focus {
+  outline: none;
+}
+.playerButtons > button {
+  min-height: 44px;
+  font-size: 12px;
+}
+.sceneNav button {
+  min-height: 46px;
+  font-size: 13px;
+}
+.boardPadding {
+  padding: 0 16px 16px;
+}
+.planningLayout[data-planning-step="0"],
+.planningLayout[data-planning-step="1"] {
+  grid-template-columns: minmax(0, 1fr);
+}
+.demoTakeaway {
+  padding: 18px 24px;
+  border-top: 1px solid var(--demo-line);
+  background: #fafbfd;
+}
+.demoTakeaway > strong {
+  display: block;
+  color: #404b59;
+  font-size: 13px;
+}
+.demoTakeaway > p {
+  margin-top: 5px;
+  color: #4e5b68;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.demoTakeaway > span {
+  display: block;
+  margin-top: 8px;
+  color: #65727f;
+  font-size: 11px;
+}
+.mobileBoardDetails {
+  border: 1px solid #d8dee5;
+  border-radius: 8px;
+  padding: 0 12px;
+  margin: 12px 0 18px;
+}
+.mobileBoardDetails summary {
+  padding: 13px 0;
+  min-height: 46px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.mobileBoardDetails[open] {
+  padding-bottom: 14px;
+}
+@container craftosDemo (max-width: 950px) {
+  .planningLayout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .planningLayout .mobileColumn {
+    max-width: 270px;
+    justify-self: center;
+    width: 100%;
+  }
+  .demoIntro {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .player {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .playerButtons {
+    justify-content: flex-start;
+  }
+}
+@container craftosDemo (max-width: 600px) {
+  .demoIntro {
+    padding: 16px 15px;
+    gap: 12px;
+  }
+  .demoIntroTitle {
+    font-size: 21px;
+  }
+  .demoIntro .demoDisclaimer {
+    font-size: 13px;
+  }
+  .originalLink {
+    font-size: 13px;
+  }
+  .demoTakeaway {
+    padding: 16px 15px;
+  }
+  .mobileGuide > p {
+    font-size: 14px;
   }
 }

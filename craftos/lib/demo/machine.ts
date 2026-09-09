@@ -49,11 +49,17 @@ export const DEMO_SCENES: {
     id: "planung",
     label: "Planung",
     title: "Büro und Baustelle arbeiten zusammen",
-    steps: ["Einsatz", "Zuordnung", "Verschieben", "Mobile Zeit", "Kosten"],
+    steps: [
+      "Einsatz anlegen",
+      "Termin ändern",
+      "Mobile Zeit starten",
+      "Zeit buchen",
+      "Kosten",
+    ],
     explanations: [
       "Planen Sie einen Einsatz mit Person, Tag und Dauer.",
-      "Der Einsatz steht bei der zugewiesenen Person in der Plantafel.",
-      "Verschieben Sie den Einsatz über die Felder oder per Drag & Drop.",
+      "Ziehen Sie den Einsatz auf einen anderen Tag oder wählen Sie das Ziel per Klick. Eine andere Person erhält standardmäßig eine Kopie.",
+      "Die Planung ist aktualisiert. Starten Sie jetzt die beispielhafte Zeiterfassung für den ursprünglichen Einsatz.",
       "Die mobile Zeiterfassung ordnet Arbeitszeit dem Projekt zu; die Uhr ist hier vorgespult.",
       "Die gebuchte Beispieldauer ergänzt die bereits erfassten Projektstunden.",
     ],
@@ -96,6 +102,12 @@ export const DEMO_SCENES: {
   },
 ];
 
+export type DemoAssignment = {
+  member: DemoMember;
+  day: DemoDay;
+  hours: number;
+};
+
 export interface DemoState {
   scene: DemoSceneId;
   step: number;
@@ -119,7 +131,14 @@ export interface DemoState {
     member: DemoMember;
     day: DemoDay;
     hours: string;
-    assignment: { member: DemoMember; day: DemoDay; hours: number } | null;
+    forceMove: boolean;
+    assignment: DemoAssignment | null;
+    copies: DemoAssignment[];
+    lastChange: {
+      kind: "created" | "moved" | "copied" | "updated";
+      from?: DemoAssignment;
+      to: DemoAssignment;
+    } | null;
     timer: "idle" | "running" | "stopped";
     loggedHours: number;
   };
@@ -164,13 +183,25 @@ export type DemoAction = Source &
         value: string;
       }
     | { type: "save-measurement" | "calculate" | "preview-offer" }
+    | { type: "planning-mode"; forceMove: boolean }
     | {
         type: "planning-field";
         field: "member" | "day" | "hours";
         value: string;
       }
-    | { type: "save-assignment" | "start-timer" | "stop-timer" }
-    | { type: "move-assignment"; day: DemoDay; member: DemoMember }
+    | {
+        type:
+          | "save-assignment"
+          | "update-assignment"
+          | "start-timer"
+          | "stop-timer";
+      }
+    | {
+        type: "move-assignment";
+        day: DemoDay;
+        member: DemoMember;
+        copy?: boolean;
+      }
     | { type: "select-report"; selected: boolean }
     | { type: "create-invoice" | "review-invoice" | "finalize-invoice" }
     | { type: "scan-receipt" | "review-receipt" | "assign-receipt" }
@@ -202,7 +233,10 @@ export function createDemoState(scene: DemoSceneId = "dashboard"): DemoState {
       member: "mila",
       day: "di",
       hours: "3,5",
+      forceMove: false,
       assignment: null,
+      copies: [],
+      lastChange: null,
       timer: "idle",
       loggedHours: 0,
     },
@@ -327,6 +361,9 @@ export function getNextDemoAction(state: DemoState): DemoAction | null {
                   ? "do"
                   : "mi",
             member: state.planning.member,
+            copy:
+              state.planning.member !== state.planning.assignment?.member &&
+              !state.planning.forceMove,
           },
           { type: "start-timer" },
           { type: "stop-timer" },
@@ -384,11 +421,7 @@ function transition(state: DemoState, action: DemoAction): DemoState {
         ...state,
         motionReady: true,
         reducedMotion: action.reduced,
-        playing: action.reduced
-          ? false
-          : state.motionReady
-            ? state.playing
-            : true,
+        playing: action.reduced ? false : state.playing,
       };
     case "advance": {
       const next = getNextDemoAction(state);
@@ -455,6 +488,13 @@ function transition(state: DemoState, action: DemoAction): DemoState {
         getCalculation(state).valid
         ? { ...state, step: 3 }
         : state;
+    case "planning-mode":
+      return state.scene === "planung" && state.planning.timer === "idle"
+        ? {
+            ...state,
+            planning: { ...state.planning, forceMove: action.forceMove },
+          }
+        : state;
     case "planning-field": {
       if (
         action.field === "member" &&
@@ -486,31 +526,73 @@ function transition(state: DemoState, action: DemoAction): DemoState {
                 day: state.planning.day,
                 hours: decimal(state.planning.hours),
               },
-            },
-          }
-        : state;
-    case "move-assignment":
-      return state.scene === "planung" &&
-        state.planning.assignment &&
-        state.planning.timer === "idle" &&
-        DEMO_DAYS.some((d) => d.id === action.day) &&
-        DEMO_MEMBERS.some((m) => m.id === action.member) &&
-        validPlanningHours(state.planning.hours)
-        ? {
-            ...state,
-            step: 2,
-            planning: {
-              ...state.planning,
-              day: action.day,
-              member: action.member,
-              assignment: {
-                day: action.day,
-                member: action.member,
-                hours: decimal(state.planning.hours),
+              lastChange: {
+                kind: "created",
+                to: {
+                  member: state.planning.member,
+                  day: state.planning.day,
+                  hours: decimal(state.planning.hours),
+                },
               },
             },
           }
         : state;
+    case "update-assignment":
+    case "move-assignment": {
+      const plan = state.planning;
+      if (
+        state.scene !== "planung" ||
+        !plan.assignment ||
+        plan.timer !== "idle"
+      )
+        return state;
+      const updating = action.type === "update-assignment";
+      const day = action.type === "move-assignment" ? action.day : plan.day;
+      const member =
+        action.type === "move-assignment" ? action.member : plan.member;
+      const copy = action.type === "move-assignment" && action.copy === true;
+      if (
+        !DEMO_DAYS.some((d) => d.id === day) ||
+        !DEMO_MEMBERS.some((m) => m.id === member)
+      )
+        return state;
+      if (updating && !validPlanningHours(plan.hours)) return state;
+      const to = {
+        day,
+        member,
+        hours: updating ? decimal(plan.hours) : plan.assignment.hours,
+      };
+      // This bounded example has one editable assignment. Occupied destinations
+      // do not create duplicates; the full product has a separate conflict dialog.
+      if (plan.copies.some((a) => a.day === day && a.member === member))
+        return state;
+      if (
+        to.day === plan.assignment.day &&
+        to.member === plan.assignment.member &&
+        to.hours === plan.assignment.hours
+      )
+        return state;
+      return {
+        ...state,
+        step: 2,
+        planning: {
+          ...plan,
+          assignment: copy ? plan.assignment : to,
+          copies: copy ? [...plan.copies, to] : plan.copies,
+          day: copy ? plan.assignment.day : day,
+          member: copy ? plan.assignment.member : member,
+          hours: String(copy ? plan.assignment.hours : to.hours).replace(
+            ".",
+            ",",
+          ),
+          lastChange: {
+            kind: copy ? "copied" : updating ? "updated" : "moved",
+            from: plan.assignment,
+            to,
+          },
+        },
+      };
+    }
     case "start-timer":
       return state.scene === "planung" &&
         state.step >= 1 &&

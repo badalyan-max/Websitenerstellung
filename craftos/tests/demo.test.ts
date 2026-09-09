@@ -19,6 +19,121 @@ const advance = (state: DemoState) =>
   act(state, { type: "advance", source: "autoplay" });
 
 describe("Produktdemo: nachvollziehbare Beispielabläufe", () => {
+  it.each([false, true])(
+    "verwendet dieselbe Personenregel auch bei Nächster Schritt (Umplanen=%s)",
+    (forceMove) => {
+      let state = act(createDemoState("planung"), { type: "save-assignment" });
+      state = act(state, {
+        type: "planning-field",
+        field: "member",
+        value: "jonas",
+      });
+      state = act(state, { type: "planning-mode", forceMove });
+      const next = getNextDemoAction(state);
+      expect(next).toMatchObject({
+        type: "move-assignment",
+        member: "jonas",
+        copy: !forceMove,
+      });
+      state = advance(state);
+      expect(state.planning.copies).toHaveLength(forceMove ? 0 : 1);
+      expect(state.planning.assignment?.member).toBe(
+        forceMove ? "jonas" : "mila",
+      );
+      expect(act(state, { type: "reset" }).planning.forceMove).toBe(false);
+    },
+  );
+
+  it("beginnt auch nach Erkennen der Bewegungseinstellung erst auf ausdrücklichen Start", () => {
+    const state = act(createDemoState(), {
+      type: "motion-preference",
+      reduced: false,
+    });
+    expect(state.playing).toBe(false);
+    expect(act(state, { type: "play" }).playing).toBe(true);
+  });
+
+  it("erhält die gespeicherte Dauer beim Ziehen trotz noch nicht gespeicherter Feldänderung", () => {
+    let state = act(createDemoState("planung"), { type: "save-assignment" });
+    state = act(state, { type: "planning-field", field: "hours", value: "9" });
+    state = act(state, { type: "move-assignment", member: "mila", day: "mi" });
+    expect(state.planning.assignment).toEqual({
+      member: "mila",
+      day: "mi",
+      hours: 3.5,
+    });
+    expect(state.planning.hours).toBe("3,5");
+    expect(state.planning.lastChange?.kind).toBe("moved");
+  });
+
+  it("kopiert für eine weitere Person und erhält den ursprünglichen Einsatz", () => {
+    let state = act(createDemoState("planung"), { type: "save-assignment" });
+    state = act(state, {
+      type: "move-assignment",
+      member: "jonas",
+      day: "mi",
+      copy: true,
+    });
+    expect(state.planning.assignment).toEqual({
+      member: "mila",
+      day: "di",
+      hours: 3.5,
+    });
+    expect(state.planning.copies).toEqual([
+      { member: "jonas", day: "mi", hours: 3.5 },
+    ]);
+    expect(state.planning.lastChange?.kind).toBe("copied");
+    expect(getProjectCosts(state).hours).toBe(7); // Planning is not recorded working time.
+    const again = act(state, {
+      type: "move-assignment",
+      member: "jonas",
+      day: "mi",
+      copy: true,
+    });
+    expect(again.planning.copies).toHaveLength(1);
+  });
+
+  it("trennt explizites Bearbeiten von Verschieben und lehnt ungültige Bearbeitungen ab", () => {
+    let state = act(createDemoState("planung"), { type: "save-assignment" });
+    state = act(state, { type: "planning-field", field: "hours", value: "2" });
+    state = act(state, { type: "update-assignment" });
+    expect(state.planning.assignment?.hours).toBe(2);
+    state = act(state, { type: "planning-field", field: "hours", value: "" });
+    expect(
+      act(state, { type: "update-assignment" }).planning.assignment?.hours,
+    ).toBe(2);
+  });
+
+  it("verändert weder Einsatz noch Kopien bei gleichem Ziel oder laufender Zeiterfassung", () => {
+    let state = act(createDemoState("planung"), { type: "save-assignment" });
+    expect(
+      act(state, { type: "move-assignment", member: "mila", day: "di" }).step,
+    ).toBe(1);
+    state = act(state, { type: "start-timer" });
+    expect(
+      act(state, {
+        type: "move-assignment",
+        member: "jonas",
+        day: "fr",
+        copy: true,
+      }).planning.copies,
+    ).toEqual([]);
+  });
+
+  it("löscht auch Kopien und Rückmeldungen beim Wiederholen", () => {
+    let state = act(createDemoState("planung"), { type: "save-assignment" });
+    state = act(state, {
+      type: "move-assignment",
+      member: "jonas",
+      day: "mi",
+      copy: true,
+    });
+    state = act(state, { type: "reset" });
+    expect(state.planning.copies).toEqual([]);
+    expect(state.planning.lastChange).toBeNull();
+    expect(state.planning.assignment).toBeNull();
+  });
+
   it("berechnet Nettofläche, Material, Arbeitszeit, Zuschlag und Steuer konsistent", () => {
     const calculation = getCalculation(createDemoState("angebot"));
     expect(calculation).toMatchObject({

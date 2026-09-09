@@ -29,6 +29,7 @@ import {
   type ComparisonSourceId,
 } from "@/lib/comparison";
 import styles from "./Comparison.module.css";
+import { ProviderLogo } from "./ProviderLogo";
 
 const title = "CraftOS, Craftnote und plancraft im Vergleich";
 const description =
@@ -206,7 +207,7 @@ export default function ComparisonPage() {
                   key={example.name}
                   className={`${styles.example} ${index === 0 ? styles.exampleOwn : ""}`}
                 >
-                  <p className={styles.smallLabel}>{example.name}</p>
+                  <ProviderLogo provider={example.name} />
                   <h3>{example.package}</h3>
                   <p className={styles.total}>
                     {money(example.annualCents / 12)}
@@ -270,7 +271,9 @@ export default function ComparisonPage() {
               aria-labelledby="craftnote-heading"
             >
               <div className={styles.providerHeading}>
-                <h3 id="craftnote-heading">Craftnote</h3>
+                <h3 id="craftnote-heading">
+                  <ProviderLogo provider="Craftnote" />
+                </h3>
                 <SourceLink id="craftnotePrices" label="Preise beim Anbieter" />
               </div>
               <p className={styles.providerIntro}>
@@ -341,7 +344,9 @@ export default function ComparisonPage() {
               aria-labelledby="plancraft-heading"
             >
               <div className={styles.providerHeading}>
-                <h3 id="plancraft-heading">plancraft</h3>
+                <h3 id="plancraft-heading">
+                  <ProviderLogo provider="plancraft" />
+                </h3>
                 <SourceLink id="plancraftPrices" label="Preise beim Anbieter" />
               </div>
               <p className={styles.providerIntro}>
@@ -463,9 +468,9 @@ export default function ComparisonPage() {
                 <thead>
                   <tr>
                     <th scope="col">Leistung</th>
-                    <th scope="col">CraftOS</th>
-                    <th scope="col">Craftnote</th>
-                    <th scope="col">plancraft</th>
+                    <th scope="col"><ProviderLogo provider="CraftOS" /></th>
+                    <th scope="col"><ProviderLogo provider="Craftnote" /></th>
+                    <th scope="col"><ProviderLogo provider="plancraft" /></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -567,6 +572,11 @@ export default function ComparisonPage() {
                 Handwerksbetriebe. Er ist keine vollständige Produktbewertung
                 und beruht bei anderen Anbietern auf öffentlichen Preis-,
                 Produkt- und Hilfeseiten.
+              </p>
+              <p>
+                Die Logos kennzeichnen die verglichenen Anbieter. Die Marken
+                gehören ihren jeweiligen Inhabern; ihre Darstellung bedeutet
+                keine Partnerschaft oder Empfehlung durch diese Unternehmen.
               </p>
               <Link className="text-link" href="/funktionen">
                 CraftOS-Funktionen im Detail
