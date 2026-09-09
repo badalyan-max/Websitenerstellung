@@ -1,0 +1,46 @@
+.bridge { min-width: 0; container-type: inline-size; }
+.devices { display: grid; grid-template-columns: minmax(0, 1fr) 194px; align-items: center; gap: 20px; padding: 8px 0 18px; }
+.phoneSlot { min-width: 0; }
+.phone { width: 194px; height: 410px; flex-shrink: 0; padding: 5px; border: 2px solid var(--color-ink-700); border-radius: 31px; background: var(--color-ink-950); box-shadow: 0 12px 22px -12px #10101460, inset 0 0 0 1px #ffffff44; position: relative; }
+.phone::before { content: ""; position: absolute; width: 3px; height: 38px; right: -4px; top: 86px; border-radius: 0 2px 2px 0; background: var(--color-ink-700); }
+.phone::after { content: ""; position: absolute; width: 3px; height: 48px; left: -4px; top: 72px; border-radius: 2px 0 0 2px; background: var(--color-ink-700); }
+.screen { height: 100%; border-radius: 24px; overflow: hidden; background: var(--color-ink-50); display: flex; flex-direction: column; }
+.status { display: flex; justify-content: space-between; align-items: center; height: 30px; flex-shrink: 0; padding: 0 9px; font-size: 8px; font-weight: 600; position: relative; }
+.status > i { position: absolute; width: 51px; height: 14px; top: 6px; left: calc(50% - 25.5px); border-radius: 9px; background: var(--color-ink-950); }
+.status > span:last-child { display: flex; align-items: center; gap: 3px; }
+.mobileTitle { height: 31px; padding: 0 8px; display: flex; align-items: center; justify-content: space-between; gap: 3px; flex-shrink: 0; }
+.mobileTitle strong { font-size: 11px; letter-spacing: -.15px; }
+.mobileContent { padding: 8px 9px 6px; flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; }
+.tabs { display: flex; justify-content: space-around; padding: 8px 3px 2px; border-top: 1px solid var(--color-ink-150); flex-shrink: 0; }
+.tabs > span { display: flex; flex-direction: column; align-items: center; gap: 3px; color: var(--color-ink-500); }
+.tabs > span[data-active=true] { color: var(--color-primary-800); }
+.tabs small { font-size: 7px !important; color: inherit !important; }
+.homeIndicator { height: 3px; width: 58px; background: var(--color-ink-900); margin: 9px auto 5px; border-radius: 3px; flex-shrink: 0; }
+.webSlot { min-width: 0; }
+.web { background: white; border: 1px solid var(--color-ink-200); border-radius: 10px; overflow: hidden; box-shadow: 0 8px 18px -14px #10101466; }
+.windowBar { display: flex; align-items: center; justify-content: space-between; padding: 9px 11px; background: var(--color-ink-100); border-bottom: 1px solid var(--color-ink-150); font-size: 9px; color: var(--color-ink-600); }
+.windowBar > span:first-child { display: flex; gap: 3px; }
+.windowBar i { height: 4px; width: 4px; border-radius: 50%; background: var(--color-ink-300); }
+.webTitle { display: flex; align-items: center; gap: 7px; padding: 12px; border-bottom: 1px solid var(--color-ink-150); }
+.webTitle strong { font-size: 13px; flex: 1; }
+.brand { display: grid; place-items: center; font-size: 12px; font-weight: 700; width: 22px; height: 22px; border-radius: 5px; background: var(--color-primary-500); }
+.avatar { font-size: 8px; background: var(--color-ink-100); padding: 5px; border-radius: 50%; }
+.webContent { display: flex; flex-direction: column; gap: 12px; padding: 13px; min-height: 228px; }
+.flow { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--color-primary-800); font-weight: 600; }
+.flowLine { flex: 1; height: 1px; background: var(--color-ink-200); margin-left: 8px; }
+.caption { min-height: 35px; margin: 7px 0 0 !important; font-size: 12px; line-height: 1.5; color: var(--color-ink-700) !important; }
+@container (max-width: 480px) {
+  .devices { grid-template-columns: 1fr; grid-template-rows: minmax(410px, auto); justify-items: center; gap: 0; }
+  .webSlot, .phoneSlot { grid-column: 1; grid-row: 1; transition: opacity .4s ease; }
+  .webSlot { width: 100%; }
+  .webContent { min-height: 0; }
+  .bridge[data-focus=mobile] .webSlot, .bridge[data-focus=web] .phoneSlot { opacity: 0; visibility: hidden; pointer-events: none; transition: none; }
+  .phone { width: 194px; height: 410px; }
+  @media (prefers-reduced-motion: reduce) {
+    .devices { grid-template-rows: auto auto; gap: 19px; }
+    .webSlot { grid-row: 1; opacity: 1 !important; visibility: visible !important; }
+    .phoneSlot { grid-row: 2; opacity: 1 !important; visibility: visible !important; }
+    .bridge[data-direction=mobile-to-web] .webSlot { grid-row: 2; }
+    .bridge[data-direction=mobile-to-web] .phoneSlot { grid-row: 1; }
+  }
+}

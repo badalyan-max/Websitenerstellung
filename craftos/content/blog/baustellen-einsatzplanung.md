@@ -50,6 +50,12 @@ In der Web-App verbindet die „Plantafel“ Einsätze mit Mitarbeitern und Zeit
 
 Die [Anleitung zur Einsatzplanung](/hilfe/plantafel-einsatz-planen) erklärt den Einstieg. [Mitarbeiter und Ressourcen zuordnen](/hilfe/planung-mitarbeiter-ressourcen) beschreibt die ergänzenden Prüfungen. Mitarbeiter sehen ihre Aufgaben in der Mobile-App entsprechend ihrer Rolle und Zuordnung.
 
+## Was zeigt die Einsatzkarte?
+
+Unter „Einsätze“ sehen Sie im Web die geplanten Einsatzorte und können nach Tag und Mitarbeiter filtern. Das hilft, räumlich nahe Aufträge zu erkennen und die Teamplanung einzuordnen. Die Kartenpunkte stehen für hinterlegte Zielorte der Einsätze; sie zeigen keine aktuellen Mitarbeiterpositionen.
+
+Auf dem Handy öffnet Ihr Team den jeweiligen Einsatz mit Projekt, Zeitraum und Status. Der hinterlegte Zielort und die verfügbare Route unterstützen die Anfahrt. Karten und Routen benötigen eine Internetverbindung; für eine Route ab dem eigenen Standort ist zusätzlich die Standortfreigabe nötig. Ein Einsatz ohne gespeicherte Koordinaten bleibt in der Web-Liste sichtbar, erscheint aber nicht als Kartenpunkt.
+
 ## Wie verbinden Sie Planung und tatsächliche Ausführung?
 
 Geplante Stunden sind eine Annahme. Tatsächlich erfasste Zeiten zeigen, was passiert ist. Vergleichen Sie beides nach einem abgeschlossenen Einsatz und prüfen Sie die Gründe größerer Abweichungen.

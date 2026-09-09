@@ -1,6 +1,6 @@
 ---
 title: "Projektbezogene Zeiterfassung: aus Stunden brauchbare Auftragsdaten machen"
-description: "So erfassen Sie Arbeitszeit mit Projekt, Tätigkeit und Pausen und nutzen sie für Abrechnung und Nachkalkulation."
+description: "So erfassen Sie Arbeitszeit mit GPS und passendem Projekt und nutzen die Angaben für Abrechnung und Nachkalkulation."
 category: "team"
 publishedAt: "2026-09-09"
 updatedAt: "2026-09-09"
@@ -40,7 +40,7 @@ Starten Sie nicht versehentlich einen zweiten Vorgang, nur weil eine Bestätigun
 
 ## Wie bleibt der Projektbezug korrekt?
 
-Wählen Sie den konkreten Auftrag vor dem Start. Bei einem Wechsel auf eine andere Baustelle beenden Sie den bisherigen Vorgang und erfassen den neuen Zusammenhang. Ein durchgehender Tag auf einem einzigen Projekt kann sonst zwei Aufträge wirtschaftlich verzerren.
+Prüfen Sie den konkreten Auftrag beim Start. Bei einem Wechsel auf eine andere Baustelle beenden Sie den bisherigen Vorgang und erfassen den neuen Zusammenhang. Ein durchgehender Tag auf einem einzigen Projekt kann sonst zwei Aufträge wirtschaftlich verzerren.
 
 Wenn das richtige Projekt fehlt, prüfen Sie die Zuweisung mit dem Büro. Buchen Sie die Zeit nicht dauerhaft auf einen ähnlichen Auftrag, nur um ein Pflichtfeld zu füllen. Solche Ausweichlösungen sind später schwer zu erkennen.
 
@@ -49,6 +49,14 @@ Wenn das richtige Projekt fehlt, prüfen Sie die Zuweisung mit dem Büro. Buchen
 In der Mobile-App finden Mitarbeiter den Bereich „Zeit“ mit den erfassten Zeiten und dem Timer. Über „Nachtragen“ können sie einen Eintrag ergänzen. Die verfügbaren Aufgaben und die Erfassung für andere Personen hängen von Rolle und Teamleitungsfreigabe ab.
 
 Die Web-App bietet unter „Zeiten“ die Übersicht und Exportmöglichkeiten. Die [Timer-Anleitung](/hilfe/mobilen-timer-bedienen) und die [Hilfe zur Korrektur](/hilfe/zeiteintrag-erfassen-korrigieren) erklären die aktuellen Felder und Schritte.
+
+## Wie helfen GPS und automatische Projektzuordnung?
+
+Auf der Baustelle starten Sie den mobilen Timer. Ist kein Projekt vorgegeben, ordnet CraftOS das nächstgelegene zugängliche Projekt innerhalb des eingestellten Radius automatisch zu. Dafür braucht das Projekt einen gespeicherten Standort, etwa aus seiner Ausführungsadresse. Starten Sie den Timer ausdrücklich aus einem Projekt, bleibt dieses Projekt gewählt.
+
+Beim Starten und Stoppen wird jeweils ein Standortpunkt gespeichert. Nach der Synchronisierung kann das Büro diese Angaben am Zeiteintrag nachvollziehen. So ergänzen Ort und gemeldete Genauigkeit die erfasste Arbeitszeit. Es entsteht kein fortlaufender Bewegungsverlauf; die Standortfreigabe und eine erfolgreiche Ortung sind für beide Aktionen erforderlich.
+
+Die Zuordnung spart Auswahl im Alltag, braucht aber einen kurzen Kontrollblick: Liegen Baustellen dicht beieinander oder ist das GPS ungenau, kann ein anderer Auftrag näher liegen. Ohne passenden Treffer bleibt die Zeit zunächst ohne Projektbezug. Radius und Projektstandort richten Sie mit der [GPS- und Timer-Anleitung](/hilfe/mobilen-timer-bedienen) ein.
 
 ## Was sollte das Büro regelmäßig prüfen?
 

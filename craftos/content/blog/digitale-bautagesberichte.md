@@ -53,6 +53,12 @@ In der Mobile-App öffnen Sie das Projekt und dessen Bautagesberichte. Über „
 
 Die [Hilfe zum Bautagesbericht](/hilfe/bautagesbericht-erstellen) führt durch den aktuellen Ablauf. Wenn Leistungen abgerechnet werden sollen, erklärt [Berichte abrechnen](/hilfe/berichte-abrechnen) die Auswahl und Kontrolle des Rechnungsentwurfs.
 
+## Wie wird der Ort einer Unterschrift dokumentiert?
+
+Bestätigen Beteiligte einen Bericht in der Mobile-App mit ihrer Unterschrift, erfasst CraftOS dabei den Standort mit Genauigkeit und Zeitpunkt. Diese Angaben bleiben an der jeweiligen Unterschrift sichtbar, nach erfolgreicher Synchronisierung auch im Büro. Bei mehreren Unterzeichnenden werden die Angaben je Person getrennt festgehalten.
+
+Die Standortfreigabe und eine erfolgreiche Ortung sind für die Bestätigung erforderlich. Erfasst wird der Ort dieser konkreten Aktion auf dem Gerät, kein fortlaufender Bewegungsverlauf. Derselbe Zusammenhang steht bei mobilen Abnahmeprotokollen zur Verfügung; die [Abnahme-Anleitung](/hilfe/abnahme-dokumentieren) erklärt den Ablauf.
+
 ## Was unterscheidet Bericht, Mangel und Abnahme?
 
 Der Tagesbericht hält die Arbeit und relevante Ereignisse fest. Ein Mangelvorgang verfolgt einen konkreten zu bearbeitenden Sachverhalt. Eine Abnahme dokumentiert einen eigenen Abschluss- oder Übergabevorgang mit dem dazugehörigen Inhalt.

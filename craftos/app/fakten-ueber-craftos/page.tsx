@@ -53,6 +53,22 @@ export default function Page() {
                 "Bereits geladene mobile Daten und ausgewählte Eingaben; keine vollständige Offline-Zusage für Fotos, KI oder neue Downloads.",
               ],
               [
+                "GPS-Zeiterfassung",
+                "Die Mobile-App speichert beim Starten und Stoppen des Timers jeweils einen Standortpunkt mit Genauigkeit. Die Web-App zeigt diese Orte am Zeiteintrag. Es werden keine Bewegungsverläufe aufgezeichnet.",
+              ],
+              [
+                "Automatische Projektzuordnung",
+                "Beim mobilen Timerstart wird das nächstgelegene zugängliche Projekt innerhalb des eingestellten Radius zugeordnet. Dafür braucht das Projekt gespeicherte Koordinaten. Eine ausdrückliche Projektwahl hat Vorrang; neue mobile Nachträge für Arbeit oder Fahrt erhalten eine änderbare Vorauswahl.",
+              ],
+              [
+                "Einsatzkarte",
+                "Die Web-App zeigt geplante Einsatzorte mit Tages- und Mitarbeiterfilter. Mobile Mitarbeiter öffnen den Zielort und die Navigation am Einsatz. Die Karte zeigt keine aktuellen Aufenthaltsorte des Teams.",
+              ],
+              [
+                "Unterschriften mit Standort",
+                "Mobile Unterschriften in Berichten, Abnahmen und unterstützten Kundendokumenten werden mit Ort und Zeitpunkt gespeichert und sind in App und Web nachvollziehbar. Die Bestätigung benötigt eine Standortfreigabe und eine ermittelbare Position.",
+              ],
+              [
                 "KI",
                 "Abfragen und unterstützte Entwürfe. Schreibende Übernahme nach Prüfung und Bestätigung, kein pauschales autonomes Verbuchen.",
               ],

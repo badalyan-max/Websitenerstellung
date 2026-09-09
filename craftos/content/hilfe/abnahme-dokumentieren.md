@@ -1,6 +1,6 @@
 ---
 title: "Eine Abnahme mit Prüfpunkten und Ergebnis dokumentieren"
-description: "So erfassen Sie Beteiligte, Prüfpunkte, Mängel und Unterschriften und kontrollieren den tatsächlichen Abnahmestand."
+description: "So erfassen Sie Prüfpunkte, Mängel und mobile Unterschriften mit Ort und Zeitpunkt und prüfen den Abnahmestand."
 category: "baudokumentation"
 publishedAt: "2026-09-09"
 updatedAt: "2026-09-09"
@@ -41,6 +41,14 @@ Wird die Abnahme tatsächlich verweigert, verwenden Sie den dafür vorgesehenen 
 Das Protokoll erscheint mit Datum, Art und Ergebnis. Mobile und Web verwenden teilweise unterschiedliche Bezeichnungen für eine Abnahme mit Mängeln; maßgeblich ist der gespeicherte Sachverhalt.
 
 „Trotzdem speichern“ bei einem Hinweis bedeutet nicht automatisch, dass eine vollständig abgeschlossene erfolgreiche Abnahme vorliegt. Prüfen Sie den resultierenden Status.
+
+## Standort bei der mobilen Unterschrift
+
+Beim Bestätigen der Unterschrift erfasst die Mobile-App einen GPS-Punkt mit Genauigkeit und Zeitpunkt. Für Auftraggeber und Auftragnehmer werden diese Angaben getrennt gespeichert. Erlauben Sie dafür den Standortzugriff und warten Sie auf die erfolgreiche Bestätigung, bevor Sie das Protokoll erstellen.
+
+Im gespeicherten Protokoll sind die Angaben an der jeweiligen Unterschrift sichtbar, nach der Synchronisierung auch im Web für Personen mit Zugriff auf die Abnahme. Über den Standort können Sie den Punkt auf einer Karte öffnen.
+
+Wird die Standortfreigabe verweigert oder ist keine Ortung möglich, wird die Unterschrift noch nicht bestätigt. Die Zeichnung bleibt erhalten; korrigieren Sie die Freigabe beziehungsweise den Empfang und versuchen Sie es erneut. Erfasst wird der Ort dieser Bestätigung, kein Bewegungsverlauf.
 
 ## Häufige Probleme
 

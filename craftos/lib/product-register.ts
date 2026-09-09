@@ -5,13 +5,13 @@ export const productBasis = {
   checkedAt: "2026-09-09",
   web: {
     branch: "main",
-    head: "d442df6874e69f13f1ffef04b9a9d59ee5d8e9a5",
+    head: "179cef55583e67b2853f1154ed1efe68a418bb3f",
     includesWorkingTree: true,
   },
   mobile: {
     branch: "master",
     head: "9e6260d3c1bb9b50139c87777a72806b3499c4a8",
-    includesWorkingTree: false,
+    includesWorkingTree: true,
   },
   publicationDeploymentVerified: true,
   publishedWebHead: "e91428111a0e020c767a85b0cf53803ef8de3ade",
@@ -30,12 +30,24 @@ const evidence: Record<string, string[]> = {
     "src/pages/Buchungsjournal.tsx",
     "src/pages/SteuerberaterExport.tsx",
   ],
-  plantafel: ["src/pages/Plantafel.tsx"],
-  zeiterfassung: ["src/pages/Zeiten.tsx"],
+  plantafel: [
+    "src/pages/Plantafel.tsx",
+    "src/pages/Einsaetze.tsx",
+    "src/api/assignments.ts",
+  ],
+  zeiterfassung: [
+    "src/pages/Zeiten.tsx",
+    "src/components/time/EditTimeEntryDialog.tsx",
+    "src/components/projects/EditProjectDialog.tsx",
+    "src/api/projects.ts",
+  ],
   lager: ["src/pages/Lager.tsx"],
   baudokumentation: [
     "src/api/constructionReports.ts",
     "src/api/documentReports.ts",
+    "src/components/projects/bauakte/ConstructionReportsSection.tsx",
+    "src/components/projects/bauakte/AcceptanceSection.tsx",
+    "src/pages/DocumentDetail.tsx",
   ],
   team: ["src/pages/Mitarbeiter.tsx"],
   nachkalkulation: [
@@ -67,12 +79,26 @@ const mobileEvidence: Record<string, string[]> = {
   eingangsrechnungen: [
     "src/features/supplier-invoices/screens/ScanReceiptScreen.tsx",
   ],
-  plantafel: ["src/features/assignments/screens/AssignmentsListScreen.tsx"],
-  zeiterfassung: ["src/features/time-tracking/screens/TimeTrackingScreen.tsx"],
+  plantafel: [
+    "src/features/assignments/screens/AssignmentsListScreen.tsx",
+    "src/features/assignments/screens/DispatchDetailScreen.tsx",
+    "src/features/assignments/hooks/useDirections.ts",
+  ],
+  zeiterfassung: [
+    "src/features/time-tracking/screens/TimeTrackingScreen.tsx",
+    "src/features/time-tracking/components/TimeEntrySheet.tsx",
+    "src/features/time-tracking/hooks/useTimeEntries.ts",
+    "src/shared/lib/geo/nearestProject.ts",
+    "src/shared/hooks/useGeoRadius.ts",
+    "src/shared/hooks/useGeolocation.ts",
+  ],
   baudokumentation: [
     "src/features/construction-reports/screens/DailyReportScreen.tsx",
     "src/features/defects/screens/DefectDetailScreen.tsx",
     "src/features/acceptance/screens/AcceptanceScreen.tsx",
+    "src/features/documents/hooks/useSignDocument.ts",
+    "src/shared/components/FullscreenSignatureOverlay.tsx",
+    "src/shared/components/SignaturePad.tsx",
   ],
   aufmass: [
     "src/features/room-measurements/screens/RoomMeasurementsScreen.tsx",
@@ -93,6 +119,7 @@ export function getProductRegister() {
     features: funktionen.map((f) => ({
       slug: f.slug,
       name: f.name,
+      summary: f.heroIntro,
       platforms: f.platforms,
       access: f.access,
       license: f.platforms.includes("web")
@@ -122,6 +149,8 @@ export function getProductRegister() {
       "Portal-Onlinezahlungen deaktiviert",
       "DATANORM v5 nicht als geprüft zugesagt",
       "Keine vollständige Offline-Zusage",
+      "GPS erfasst einzelne Vorgänge, keine dauerhaften Mitarbeiterstandorte",
+      "Automatische Projektzuordnung beim Timerstart benötigt Projektkoordinaten im passenden Radius",
       "Keine autonom verbuchende KI",
       "Keine pauschale behördliche GoBD-Zertifizierung",
     ],

@@ -1,0 +1,104 @@
+.project { display: flex; align-items: flex-start; gap: 7px; min-width: 0; color: var(--color-ink-800); font-size: 11px; line-height: 1.4; }
+.project svg { flex: 0 0 auto; margin-top: 1px; color: var(--color-primary-600); }
+.project strong { overflow-wrap: anywhere; }
+.webTabs { display: flex; gap: 19px; padding-bottom: 9px; border-bottom: 1px solid var(--color-ink-100); font-size: 10px; color: var(--color-ink-500); }
+.webTabs strong { color: var(--color-primary-700); }
+.projectSummary { display: flex; flex-direction: column; gap: 4px; }
+.projectSummary > span, .eyebrow { color: var(--color-ink-500); font-size: 9px; }
+.projectSummary > strong { font: 600 19px/1.2 var(--font-display); color: var(--color-ink-900); }
+.projectSummary p { margin: 0; font-size: 11px; line-height: 1.5; color: var(--color-ink-500); }
+.fileRow { display: flex; align-items: center; gap: 10px; padding: 13px 11px; border: 1px solid var(--color-ink-150); border-radius: 10px; background: white; transition: background 350ms, border-color 350ms; }
+.fileRow > svg { color: var(--color-primary-600); flex: 0 0 auto; }
+.fileRow > div { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.fileRow strong { font-size: 12px; }
+.fileRow small { font-size: 10px; color: var(--color-ink-500); }
+.fileRow[data-ready="true"] { border-color: var(--color-primary-300); background: var(--color-primary-50); }
+.fileState { display: flex; margin-left: auto; color: var(--color-primary-700); font-size: 9px; font-weight: 700; }
+.action, .mobileAction { display: flex; justify-content: center; align-items: center; gap: 5px; min-height: 31px; padding: 7px 9px; border-radius: 7px; background: var(--color-primary-500); color: var(--color-ink-900); font-size: 10px; line-height: 1.35; font-weight: 700; transition: background 350ms, box-shadow 350ms; }
+.action { align-self: flex-start; }
+.action svg, .mobileAction svg { flex: 0 0 auto; }
+.action[data-ready="true"], .mobileAction[data-ready="true"] { background: var(--color-primary-100); box-shadow: inset 0 0 0 1px var(--color-primary-300); }
+.mobileAction { font-size: 9px; padding-inline: 5px; }
+.mobileTabs { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--color-ink-150); font-size: 9px; text-align: center; }
+.mobileTabs span { padding: 7px 2px; border-bottom: 2px solid transparent; }
+.mobileTabs [data-ready="true"] { border-color: var(--color-primary-500); color: var(--color-primary-700); font-weight: 700; }
+.mobileFile { display: flex; align-items: center; gap: 5px; padding: 9px 6px; border: 1px solid var(--color-ink-150); border-radius: 8px; transition: border-color 350ms, background 350ms; }
+.mobileFile > svg { flex: 0 0 auto; color: var(--color-primary-600); }
+.mobileFile > span { display: flex; flex: 1; flex-direction: column; gap: 3px; min-width: 0; }
+.mobileFile strong { font-size: 9px; }
+.mobileFile small { font-size: 8px; color: var(--color-ink-500); }
+.mobileFile[data-ready="true"] { border-color: var(--color-primary-300); background: var(--color-primary-50); }
+.mobileNote { margin: auto 0 0; color: var(--color-ink-500); font-size: 9px; line-height: 1.5; }
+.planPreview { min-height: 109px; padding: 7px; border-radius: 8px; background: var(--color-ink-50); }
+.planSheet { padding: 8px 7px 5px; opacity: 0; transform: translateY(5px); background: white; box-shadow: 0 2px 6px #1010140a; transition: opacity 400ms, transform 400ms; }
+.planPreview[data-visible="true"] .planSheet { opacity: 1; transform: translateY(0); }
+.planRooms { display: grid; grid-template-columns: 1.45fr 1fr; grid-template-rows: 35px 22px; border: 2px solid var(--color-ink-600); }
+.planRooms span { display: flex; justify-content: center; align-items: center; font-size: 7px; color: var(--color-ink-600); }
+.planRooms span:first-child { grid-row: span 2; border-right: 2px solid var(--color-ink-600); }
+.planRooms span:last-child { border-top: 2px solid var(--color-ink-600); }
+.planSheet > small { display: block; margin-top: 5px; color: var(--color-ink-400); font-size: 6px; text-align: center; }
+.offerPanel { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.documentMeta { display: flex; justify-content: space-between; align-items: center; gap: 7px; min-height: 19px; color: var(--color-ink-500); font-size: 9px; }
+.documentMeta > span:last-child { padding: 3px 6px; border-radius: 4px; background: var(--color-ink-50); }
+.documentMeta > [data-ready="true"] { background: var(--color-primary-100) !important; color: var(--color-primary-800); }
+.positions { border-top: 1px solid var(--color-ink-100); }
+.position { display: flex; justify-content: space-between; align-items: center; gap: 7px; min-height: 36px; padding-block: 5px; border-bottom: 1px solid var(--color-ink-100); }
+.position > div { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.position strong { font-size: 10px; line-height: 1.25; font-weight: 600; }
+.position small { color: var(--color-ink-500); font-size: 8px; }
+.position > span { flex-shrink: 0; font-size: 10px; font-variant-numeric: tabular-nums; }
+.totals { display: flex; flex-direction: column; gap: 4px; margin: 0; }
+.totals > div { display: flex; justify-content: space-between; gap: 8px; font-size: 10px; }
+.totals dt { color: var(--color-ink-500); }
+.totals dd { margin: 0; font-variant-numeric: tabular-nums; }
+.totals > div:last-child { padding-top: 4px; font-size: 12px; font-weight: 700; }
+.totals > div:last-child dt { color: var(--color-ink-900); }
+.offerActions { display: grid; grid-template-columns: 1fr 1.2fr; gap: 6px; }
+.offerActions .action { font-size: 9px; padding-inline: 5px; align-self: stretch; }
+.signatureAction { display: flex; align-items: center; justify-content: center; gap: 4px; border: 1px solid var(--color-ink-150); border-radius: 7px; font-size: 9px; padding: 5px; line-height: 1.25; color: var(--color-ink-600); }
+.signatureAction svg { flex: 0 0 auto; }
+.signatureAction[data-ready="true"] { border-color: var(--color-primary-300); color: var(--color-primary-800); }
+.signatureReceipt { display: flex; align-items: center; gap: 8px; height: 39px; padding: 2px 5px; border-top: 1px solid var(--color-ink-100); }
+.signatureReceipt .signature { width: 83px; height: 29px; flex: 0 0 auto; }
+.signatureReceipt > span { font-size: 9px; color: var(--color-ink-500); }
+.signatureReceipt > span small { display: block; padding-top: 3px; color: var(--color-ink-500); font-size: 8px; }
+.signatureReceipt[data-ready="true"] > span { color: var(--color-primary-800); }
+.mobileDocument { display: flex; align-items: flex-start; gap: 7px; padding: 9px 7px; background: var(--color-ink-50); border-radius: 8px; }
+.mobileDocument > svg { flex: 0 0 auto; color: var(--color-primary-600); }
+.mobileDocument > div { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.mobileDocument strong { font-size: 11px; }
+.mobileDocument span { font-size: 8px; }
+.mobileDocument small { font-size: 8px; color: var(--color-ink-500); }
+.signaturePad { display: flex; flex-direction: column; justify-content: space-between; height: 87px; flex: 0 0 auto; padding: 8px 7px; border: 1px solid var(--color-ink-150); border-radius: 8px; background: white; transition: border-color 350ms; }
+.signaturePad > small { font-size: 8px; color: var(--color-ink-500); }
+.signaturePad[data-ready="true"] { border-color: var(--color-primary-400); }
+.signature { display: block; width: 100%; height: 45px; overflow: visible; }
+.signature path { fill: none; stroke: var(--color-ink-800); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 850ms ease; }
+.signature[data-signed="true"] path { stroke-dashoffset: 0; }
+.signatureLine { border-top: 1px solid var(--color-ink-200); }
+.timeEntry { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 13px 8px; border: 1px solid var(--color-ink-150); border-radius: 10px; background: white; }
+.timeEntry > svg { color: var(--color-primary-600); margin-top: 3px; }
+.timeEntry > strong { font: 600 29px/1.1 var(--font-display); }
+.timeEntry > strong small { font-size: 10px; line-height: 1.3; font-weight: 500; }
+.timeEntry > span:not(.eyebrow) { color: var(--color-ink-600); font-size: 11px; }
+.timeEntry > p { margin: 0; color: var(--color-ink-500); font-size: 10px; }
+.aiPanel { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.aiLabel { display: flex; align-items: center; gap: 7px; color: var(--color-primary-700); font-size: 10px; }
+.question { display: flex; align-items: center; gap: 10px; padding: 11px; border: 1px solid var(--color-ink-150); border-radius: 11px; }
+.question p { flex: 1; margin: 0; font-size: 11px; line-height: 1.4; color: var(--color-ink-800); }
+.send { display: flex; align-items: center; justify-content: center; width: 29px; height: 29px; flex: 0 0 auto; border-radius: 7px; background: var(--color-primary-500); color: var(--color-ink-900); }
+.answer { display: flex; flex-direction: column; gap: 7px; padding: 10px; min-height: 65px; border-radius: 11px; background: var(--color-ink-50); transition: background 350ms; }
+.answer[data-ready="true"] { background: var(--color-primary-50); }
+.aiMark { display: flex; align-items: center; gap: 5px; color: var(--color-primary-700); font-size: 10px; font-weight: 700; }
+.answer p { margin: 0; color: var(--color-ink-700); font-size: 11px; line-height: 1.45; }
+.source { border: 1px solid var(--color-ink-150); border-radius: 9px; padding: 10px; transition: border-color 350ms; }
+.source[data-ready="true"] { border-color: var(--color-primary-300); }
+.source > div:first-child { display: flex; align-items: center; gap: 7px; font-size: 10px; color: var(--color-ink-600); }
+.source > div:first-child > svg:last-child { margin-left: auto; }
+.sourceDetails { display: flex; flex-direction: column; gap: 3px; min-height: 49px; padding-top: 7px; opacity: 0; transform: translateY(3px); transition: opacity 350ms, transform 350ms; }
+.sourceDetails[data-visible="true"] { opacity: 1; transform: translateY(0); }
+.sourceDetails > span { font-size: 10px; color: var(--color-ink-500); }
+.sourceDetails > strong { font-size: 11px; color: var(--color-ink-800); }
+.sourceDetails > small { font-size: 9px; color: var(--color-ink-500); }
+.webNote { margin: 0; color: var(--color-ink-500); font-size: 10px; line-height: 1.4; }
+@media (prefers-reduced-motion: reduce) { .signature path, .planSheet, .sourceDetails, .fileRow, .action, .mobileAction, .mobileFile, .signaturePad, .answer, .source { transition: none; } }

@@ -9,7 +9,7 @@ import { FeatureSnippet } from "@/components/feature-snippet/FeatureSnippet";
 import { TrialCta } from "@/components/ui/TrialCta";
 export const metadata = pageMetadata(
   "Mobile-App für Handwerker – in der Voll-Lizenz inklusive",
-  "CraftOS auf der Baustelle: Zeiten, Projekte, Aufmaß und Berichte auf dem Handy. Die Voll-Lizenz enthält die Mobile-App für dieselbe Person.",
+  "GPS-Zeiterfassung, Projektzuordnung, Einsatzkarte und Unterschriften unterwegs. Die Voll-Lizenz enthält die Mobile-App für dieselbe Person.",
   "/app",
 );
 export default function Page() {
@@ -25,8 +25,8 @@ export default function Page() {
               in die Arbeitshose.
             </h1>
             <p className="mt-6 text-lg max-w-xl">
-              Projekte dabei haben. Zeiten direkt erfassen. Leistungen
-              festhalten, solange sie noch frisch im Kopf sind.
+              Arbeitszeiten mit Standort erfassen. Den nächsten Einsatz auf der
+              Karte finden. Unterschriften direkt beim Auftrag festhalten.
             </p>
             <p className="mt-6 font-semibold flex items-center gap-2">
               <Check size={20} className="text-primary-500" />
@@ -89,15 +89,15 @@ export default function Page() {
             {[
               [
                 Clock,
-                "Zeiten mit Projektbezug",
-                "Arbeit und Fahrt erfassen, Einträge prüfen und dem Projekt zuordnen.",
+                "Zeiten mit GPS",
+                "Start- und Endort festhalten. Das passende Projekt wird beim Timerstart über die Nähe zum hinterlegten Projektort zugeordnet.",
                 "/hilfe/mobilen-timer-bedienen",
               ],
               [
                 FolderKanban,
-                "Projekte und Einsätze",
-                "Freigegebene Projekte, Kundendaten und geplante Einsätze nachsehen.",
-                "/hilfe/projekt-phasen-anlegen",
+                "Einsatzort auf der Karte",
+                "Den geplanten Auftrag öffnen, Ziel und Adresse sehen und die Navigation zur Baustelle starten.",
+                "/hilfe/plantafel-einsatz-planen",
               ],
               [
                 Ruler,
@@ -107,8 +107,8 @@ export default function Page() {
               ],
               [
                 Camera,
-                "Leistungen dokumentieren",
-                "Berichte, Fotos, Mängel und Abnahmen vor Ort bearbeiten.",
+                "Unterschrift mit Standort",
+                "Berichte und Abnahmen unterschreiben lassen. Ort und Zeitpunkt bleiben beim Projekt nachvollziehbar.",
                 "/funktionen/baudokumentation",
               ],
             ].map(([Icon, t, p, h]) => {
@@ -131,14 +131,17 @@ export default function Page() {
       <section className="section-space bg-ink-100">
         <div className="site-container grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14 lg:items-center">
           <div className="min-w-0">
-            <p className="eyebrow">Zeit direkt beim Projekt</p>
-            <h2 className="section-title">Ein Handgriff. Die Zeit ist erfasst.</h2>
+            <p className="eyebrow">GPS und Projektzuordnung</p>
+            <h2 className="section-title">
+              Auf der Baustelle starten. Im Büro nachvollziehen.
+            </h2>
             <p className="section-intro">
-              Projekt wählen, Timer starten, Eintrag prüfen: Probieren Sie das
-              Prinzip der mobilen Zeiterfassung in einem kleinen Beispiel aus.
+              Die App erkennt beim Timerstart ein passendes Projekt in Ihrer
+              Nähe. Start- und Endort bleiben zusammen mit der Arbeitszeit
+              gespeichert und sind im Büro am Eintrag sichtbar.
             </p>
             <Link href="/hilfe/mobilen-timer-bedienen" className="text-link mt-6">
-              Den Timer in der App bedienen
+              GPS und automatische Zuordnung einrichten
             </Link>
           </div>
           <div className="w-full min-w-0 max-w-[640px] justify-self-center">
@@ -178,12 +181,12 @@ export default function Page() {
               </li>
               <li>
                 <Check />
-                <span>Standortberechtigung für den mobilen Timer prüfen.</span>
+                <span>Standortfreigabe für Timer und Unterschriften prüfen.</span>
               </li>
               <li>
                 <Check />
                 <span>
-                  Fotos, KI und neue Downloads benötigen eine Verbindung.
+                  Karten, Routen, Fotos, KI und neue Downloads benötigen Verbindung.
                 </span>
               </li>
               <li>

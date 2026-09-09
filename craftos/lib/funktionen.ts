@@ -319,7 +319,7 @@ const definitions: Definition[] = [
     icon: CalendarDays,
     title: "Wer macht was? Und wann passt es wirklich?",
     intro:
-      "Mitarbeiter, Nachunternehmer und Ressourcen gemeinsam planen. Verschieben oder verlängern Sie Einsätze und prüfen Sie die Auswirkung auf die Kapazität.",
+      "Planen Sie Ihr Team und behalten Sie die Einsatzorte auf der Karte im Blick. Änderungen aus dem Büro erscheinen in der mobilen Einsatzübersicht.",
     platforms: ["web", "mobile"],
     access:
       "Büro und Admin planen im Web; mobile Mitarbeiter sehen zugeordnete Einsätze.",
@@ -336,13 +336,25 @@ const definitions: Definition[] = [
         "Kapazitäten berücksichtigen",
         "Mitarbeiter, Abwesenheiten und Ressourcen geben der Planung einen nachvollziehbaren Rahmen.",
       ],
+      [
+        "Einsatzorte auf der Karte",
+        "Sehen Sie, wo Ihr Team eingeplant ist, und filtern Sie die Einsätze nach Tag und Mitarbeiter.",
+      ],
+      [
+        "Unterwegs zum Auftrag",
+        "Ihr Team öffnet den Einsatz auf dem Handy, sieht den Zielort und kann die Navigation starten.",
+      ],
+      [
+        "Über Änderungen informiert",
+        "Verknüpfte Teammitglieder werden über neue und geänderte Einsätze benachrichtigt. Bei aktivierten Push-Mitteilungen erscheint der Hinweis direkt auf dem Handy.",
+      ],
     ],
     steps: [
       "Wählen Sie Projekt, Zeitraum und Mitarbeiter.",
       "Legen Sie den Einsatz an oder verschieben Sie einen bestehenden Einsatz.",
       "Prüfen Sie Kapazitäten und zugeordnete Ressourcen.",
     ],
-    note: "Die mobile Einsatzansicht und die vollständige Web-Plantafel haben unterschiedliche Bedienmöglichkeiten.",
+    note: "Die Karte zeigt geplante Einsatzorte, keine laufend erfassten Mitarbeiterstandorte. Für Kartenpins sind Zielkoordinaten erforderlich; Karten und Routen in der App benötigen Verbindung.",
     help: "plantafel-einsatz-planen",
     related: ["zeiterfassung", "team", "projektverwaltung"],
     demo: "planung",
@@ -353,14 +365,18 @@ const definitions: Definition[] = [
     icon: Clock,
     title: "Die Zeit landet dort, wo die Arbeit passiert.",
     intro:
-      "Erfassen Sie Arbeitszeit passend zum Auftrag per mobilem Timer oder manuellem Eintrag. Die Stunden stehen anschließend für Auswertung und Nachkalkulation bereit.",
+      "Starten, arbeiten, stoppen: Die App erfasst die Zeit mit Standort und ordnet sie beim Timerstart dem passenden Projekt in Ihrer Nähe zu. Im Büro stehen die Stunden für Auswertung und Nachkalkulation bereit.",
     platforms: ["web", "mobile"],
     access:
       "Mobile Mitarbeiter erfassen eigene Zeiten; fremde Einträge sind nur mit passenden Rechten sichtbar und bearbeitbar.",
     points: [
       [
-        "Starten und stoppen",
-        "Der mobile Timer führt zu einem Zeiteintrag für Ihr Projekt.",
+        "Arbeitszeit mit Standort",
+        "Die App hält beim Starten und Stoppen jeweils den Standort fest. Im Büro sehen Sie den Ort zum Zeiteintrag.",
+      ],
+      [
+        "Das Projekt findet sich mit",
+        "Liegt ein hinterlegter Projektort im eingestellten Radius, ordnet die App den Timer beim Start dem nächstgelegenen passenden Projekt zu.",
       ],
       [
         "Nachtragen und korrigieren",
@@ -372,11 +388,11 @@ const definitions: Definition[] = [
       ],
     ],
     steps: [
-      "Wählen Sie das Projekt und starten Sie den Timer.",
+      "Starten Sie den mobilen Timer mit Standortfreigabe und prüfen Sie die automatisch gewählte Zuordnung oder starten Sie direkt im Projekt.",
       "Beenden Sie den Eintrag und kontrollieren Sie Dauer und Zuordnung.",
       "Prüfen Sie die Stunden in der Web-Auswertung.",
     ],
-    note: "Die mobile GPS-Erfassung benötigt die passende Gerätefreigabe. Offline-Textdaten und Timer sind von Foto-Uploads zu unterscheiden.",
+    note: "Die App erfasst einzelne Standortpunkte beim Start und Stopp, keine Bewegungsverläufe. GPS-Freigabe und eine ermittelbare Position sind erforderlich. Die automatische Projektwahl setzt gespeicherte Projektkoordinaten im passenden Radius voraus; eine bewusst gewählte Zuordnung bleibt erhalten.",
     help: "mobilen-timer-bedienen",
     related: ["plantafel", "nachkalkulation", "team"],
     demo: "planung",
@@ -419,7 +435,7 @@ const definitions: Definition[] = [
     icon: HardHat,
     title: "Was auf der Baustelle passiert, bleibt im Projekt.",
     intro:
-      "Bautagesberichte, Mängel und Abnahmen mit Fotos und Unterschriften dokumentieren. Die Informationen bleiben dort auffindbar, wo sie gebraucht werden.",
+      "Halten Sie Arbeiten, Fotos und Mängel direkt beim Projekt fest. Mobile Unterschriften ergänzen Berichte und Abnahmen um Ort und Zeitpunkt, im Büro jederzeit wieder auffindbar.",
     platforms: ["web", "mobile"],
     access:
       "Projektzugriff und Dokumentationsaktionen richten sich nach Rolle und Freigabe.",
@@ -433,8 +449,8 @@ const definitions: Definition[] = [
         "Status und Zuständigkeiten unterstützen die Bearbeitung bis zur Erledigung.",
       ],
       [
-        "Abnahmen dokumentieren",
-        "Protokollangaben und Unterschriften werden mit dem Projekt verbunden.",
+        "Unterschriften mit Ort und Zeit",
+        "Beim Unterschreiben in der App werden Standort und Zeitpunkt erfasst. Die Unterschriftsorte der Beteiligten bleiben im Bericht oder Abnahmeprotokoll getrennt nachvollziehbar.",
       ],
       [
         "Berichte abrechnen",
@@ -446,7 +462,7 @@ const definitions: Definition[] = [
       "Ergänzen Sie Angaben, Fotos und gegebenenfalls Unterschriften.",
       "Prüfen Sie das Dokument und erstellen Sie die Ausgabe.",
     ],
-    note: "Foto-Uploads benötigen Verbindung. Eine dokumentierte Unterschrift ist keine pauschale rechtliche Garantie.",
+    note: "Die Bestätigung einer mobilen Unterschrift benötigt Standortfreigabe und eine ermittelbare Position. Der angezeigte Ort kann ungenau sein; Foto-Uploads benötigen Verbindung.",
     help: "bautagesbericht-erstellen",
     related: ["projektverwaltung", "rechnungen", "aufmass"],
     demo: "rechnung",

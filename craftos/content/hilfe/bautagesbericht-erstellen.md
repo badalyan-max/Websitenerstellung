@@ -1,6 +1,6 @@
 ---
 title: "Einen Bautagesbericht erstellen"
-description: "So dokumentieren Sie ausgeführte Arbeiten, Material und Besonderheiten im richtigen Projekt."
+description: "So dokumentieren Sie Arbeiten, Material und Besonderheiten und erfassen mobile Unterschriften mit Ort und Zeitpunkt."
 category: "baudokumentation"
 publishedAt: "2026-09-09"
 updatedAt: "2026-09-09"
@@ -37,6 +37,14 @@ Sie benötigen Zugriff auf das Projekt und die Baudokumentation. Fotos und einze
 ## Ergebnis prüfen
 
 Der Bericht erscheint mit Datum und Status im Projekt. Ein Entwurf ist nicht automatisch unterschrieben oder abgeschlossen.
+
+## Mobile Unterschriften mit Ort und Zeitpunkt
+
+Lassen Sie die vorgesehenen Personen auf dem Gerät unterschreiben und bestätigen Sie jede Unterschrift. Bei dieser Bestätigung erfasst die App jeweils den aktuellen Standort mit der gemeldeten Genauigkeit und dem Zeitpunkt. Die Standortfreigabe und eine erfolgreiche Ortung sind dafür erforderlich.
+
+Nach dem Speichern sehen berechtigte Personen die Unterschriften samt Standortangaben im Bericht, sowohl mobil als auch nach der Synchronisierung im Web. Die Kartenverknüpfung öffnet den erfassten Punkt. Bei mehreren Unterzeichnenden werden die Angaben getrennt je Unterschrift gespeichert.
+
+Kann der Standort nicht ermittelt werden, wird die Unterschrift noch nicht bestätigt; die Zeichnung bleibt erhalten. Prüfen Sie die Standortfreigabe und versuchen Sie die Bestätigung erneut. Ort und Zeitpunkt dokumentieren die konkrete Bestätigung auf dem Gerät; eine laufende Ortung findet dabei nicht statt.
 
 Für die Lindenstraße sollte beispielsweise nachvollziehbar sein, welche Wandflächen bearbeitet wurden und welche Zusatzvorbereitung noch abgestimmt werden muss. Eine Beschreibung wie „alles erledigt“ ist dafür zu ungenau.
 

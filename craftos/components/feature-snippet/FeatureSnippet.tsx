@@ -9,17 +9,17 @@ import s from "./FeatureSnippet.module.css";
 export type SnippetVariant = "dashboard" | "angebot" | "planung" | "rechnung" | "beleg" | "ki" | "zeit" | "lager" | "aufmass";
 
 const content: Record<SnippetVariant, { title: string; summary: string }> = {
-  dashboard: { title: "Alles beim Auftrag", summary: "Vom Überblick zum Projekt: Unterlagen, Material und erfasste Zeit bleiben zusammen." },
-  angebot: { title: "Position für Position zum Angebot", summary: "Leistungen werden ergänzt. Mengen und Einzelpreise ergeben automatisch die Angebotssumme." },
+  dashboard: { title: "Alles beim Auftrag", summary: "Im Büro eine Datei in der Projektakte hinterlegen, auf der Baustelle denselben Plan auf dem Handy öffnen." },
+  angebot: { title: "Vom Angebot zur Unterschrift", summary: "Das Angebot im Web vorbereiten und mobil vom Kunden unterschreiben lassen. Die gespeicherte Unterschrift bleibt beim Dokument sichtbar." },
   planung: { title: "Vom Büro auf die Baustelle", summary: "Der Einsatz wandert auf einen anderen Tag und erscheint in der App. Mitarbeiter und geplante Dauer bleiben erhalten." },
-  rechnung: { title: "Vom Entwurf zur Rechnung", summary: "Angaben prüfen und fertigstellen: Die Rechnung erhält ihre Nummer und einen geschützten Stand." },
-  beleg: { title: "Ein Beleg findet seinen Platz", summary: "Erkannte Belegdaten werden geprüft und korrigiert. Anschließend wird der Beleg dem Projekt zugeordnet." },
-  ki: { title: "Eine Frage. Mehr Überblick.", summary: "Craft AI fasst offene Rechnungen zusammen. Die zugrunde liegenden Belege bleiben nachvollziehbar." },
-  zeit: { title: "Arbeitszeit bleibt beim Auftrag", summary: "Timer starten, Zeit erfassen und dem Auftrag zuordnen. Die Uhr läuft hier zur Veranschaulichung im Zeitraffer." },
+  rechnung: { title: "Vom Entwurf zur Rechnung", summary: "Auf dem Handy Leistungen unterschreiben lassen, im Büro in einen Rechnungsentwurf übernehmen und nach Prüfung fertigstellen." },
+  beleg: { title: "Ein Beleg findet seinen Platz", summary: "Den Beleg mobil scannen, Angaben prüfen und beim Projekt speichern. Im Büro folgt die weitere Bearbeitung unter Eingangsrechnungen." },
+  ki: { title: "Eine Frage. Mehr Überblick.", summary: "Mobile Arbeitszeiten stehen auch Craft AI im Web zur Verfügung. Eine Frage zeigt die erfassten Zeiten mit Projekt und Zeitraum." },
+  zeit: { title: "Arbeitszeit bleibt beim Auftrag", summary: "GPS erfasst den Standort beim Starten und Stoppen. Beim Start wird ein passendes Projekt im Umkreis zugeordnet. Die Zeitanzeige läuft im Zeitraffer." },
   lager: { title: "Material mit Überblick", summary: "Sechs Eimer gehen auf die Baustelle, zwei kommen zurück. Der Bestand verändert sich von 24 auf 18 und anschließend 20." },
-  aufmass: { title: "Aus Maßen wird eine Menge", summary: "35 m² Wandfläche abzüglich einer Öffnung von 2 m² ergeben 33 m² für die Angebotsposition." },
+  aufmass: { title: "Aus Maßen wird eine Menge", summary: "Das mobile Aufmaß liefert 33 m² für die Angebotsposition im Web. Der Preis wird anschließend ergänzt; er wird nicht aus den Maßen ermittelt." },
 };
-const phaseDuration = [800, 700, 1000, 700, 1200, 700, 1600, 2200];
+const phaseDuration = [1200, 900, 1500, 1000, 1700, 1000, 1800, 3000];
 
 export function FeatureSnippet({ variant, example, className = "" }: { variant: SnippetVariant; example?: SnippetExample; className?: string }) {
   return <Illustration key={`${variant}:${example?.id ?? "default"}`} variant={variant} example={example} className={className} />;
@@ -74,6 +74,7 @@ function Illustration({ variant, example, className }: { variant: SnippetVariant
       const targetName = shownPhase <= 2 ? "first" : shownPhase <= 4 ? "second" : "third";
       const target = area.querySelector<HTMLElement>(`[data-cursor-target="${targetName}"]`);
       const rect = target?.getBoundingClientRect();
+      pointer.dataset.pointerKind = target?.closest('[data-illustration-platform="mobile"]') ? "touch" : "mouse";
       const entering = shownPhase === 0;
       const x = entering || !rect ? bounds.width * .88 : rect.left - bounds.left + rect.width * .6;
       const y = entering || !rect ? bounds.height * .88 : rect.top - bounds.top + rect.height * .55;

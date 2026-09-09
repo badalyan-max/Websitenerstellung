@@ -47,4 +47,6 @@ Der gewünschte Vorgang ist nach erfolgreicher Synchronisierung im gemeinsamen D
 
 Foto- und Dateifunktionen können andere Voraussetzungen haben als strukturierte Einträge. Bei „Offline hier noch nicht möglich“ ergänzen Sie die Datei später mit Verbindung; daraus folgt kein pauschales Offline-Fotoversprechen.
 
+Karten, Routen und die Unterschrift an einem Kundendokument benötigen eine Verbindung. Die Standortfreigabe bleibt auch bei unterstützter Offline-Erfassung erforderlich: Timerstart und -stopp sowie die Bestätigung mobiler Unterschriften benötigen einen ermittelbaren GPS-Punkt. Prüfen Sie nach der Rückkehr ins Netz, ob der zugehörige Eintrag beziehungsweise Bericht erfolgreich übertragen wurde.
+
 Der [Offline-Ratgeber](/blog/offline-baustellen-app) erklärt die Vorbereitung; die [Zeiterfassung](/funktionen/zeiterfassung) zeigt einen typischen unterstützten Arbeitsablauf.

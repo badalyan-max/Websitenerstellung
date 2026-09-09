@@ -27,6 +27,8 @@ Sie benötigen Zugriff auf die betroffenen Zeiten. Die sichtbaren Personen und P
 
 Der Web-Dialog arbeitet mit einer Stundenzahl. Er verwendet nicht dieselben Von-/Bis-Felder wie der mobile Nachtrag.
 
+Beim manuellen Nachtrag im Web wird kein neuer GPS-Standort aufgenommen. Bereits vorhandene Standortangaben eines mobilen Eintrags bleiben in den Details einsehbar.
+
 ## In der Mobile-App
 
 1. Öffnen Sie „Zeit“ und wählen Sie „Nachtragen“ oder einen vorhandenen Eintrag.
@@ -34,6 +36,12 @@ Der Web-Dialog arbeitet mit einer Stundenzahl. Er verwendet nicht dieselben Von-
 3. Erfassen Sie die tatsächliche „Pause“ und kontrollieren Sie „Summe“.
 4. Wählen Sie das passende Projekt und ergänzen Sie die Beschreibung.
 5. Speichern Sie und prüfen Sie gegebenenfalls ausstehende Synchronisierungen.
+
+Bei einem neuen Nachtrag für Arbeit oder Fahrt kann ein nahegelegenes Projekt bereits vorausgewählt sein. Prüfen Sie diese Auswahl und ändern Sie sie bei Bedarf; ein ausdrücklich aus dem Projekt übernommener Bezug bleibt erhalten.
+
+Beim Speichern eines neuen mobilen Eintrags ist die Standortfreigabe erforderlich. CraftOS erfasst dabei den aktuellen Standort des Geräts. Tragen Sie einen vergangenen Arbeitstag nach, ist dies der Ort des Nachtrags und kein nachträglich ermittelter Aufenthaltsort während der Arbeit. Ohne Standort kann der neue Eintrag nicht gespeichert werden.
+
+Bearbeiten Sie einen bestehenden Eintrag, wird kein neuer Standort aufgenommen. Vorhandene Start- und Endpunkte werden mit ihrer Genauigkeit angezeigt und bleiben unverändert. Die [Timer-Anleitung](/hilfe/mobilen-timer-bedienen) erklärt die Standortaufnahme während einer laufenden Erfassung.
 
 ## Beispiel und Ergebnis
 

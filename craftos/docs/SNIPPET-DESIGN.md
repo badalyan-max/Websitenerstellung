@@ -6,13 +6,31 @@ Stand: 9. September 2026. Die aktuelle Nutzerentscheidung ersetzt die bedienbare
 
 Die bestehende CraftOS-Gestaltung bleibt erhalten: Ink #101014, Weiß #ffffff, Flächen #f4f4f5, Amber #f2af38, dunkles Amber #784b10, Erfolg #24764d; Clash Display für Überschriften und General Sans für die Darstellung der Daten. Als visuelle Referenz wurden die grafischen Funktionsausschnitte auf https://plancraft.com/de-de im Browser angesehen; Layout, Code, Texte und Inhalte entstehen eigenständig für CraftOS.
 
-Neben der jeweiligen Funktion steht ein kompaktes Beispiel ohne Appnavigation, Schrittmenü oder Eingabefelder. Ein sichtbarer Cursor fährt zu den tatsächlichen Elementen der Illustration, führt drei vorbereitete Handlungen vor und lässt das Ergebnis kurz stehen. Nach ungefähr neun Sekunden beginnt der Ablauf erneut. Die Cursorposition folgt den tatsächlichen Elementpositionen, auch wenn die mobile Darstellung anders angeordnet ist.
+Neben der jeweiligen Funktion steht ein Funktionsbeispiel ohne bedienbare Geschäftsfunktionen, Schrittmenü oder Eingabefelder. Ein sichtbarer Cursor fährt zu den tatsächlichen Elementen der Illustration, führt drei vorbereitete Handlungen vor und lässt das Ergebnis kurz stehen. Nach 12,1 Sekunden beginnt der Ablauf erneut. Die Cursorposition folgt den tatsächlichen Elementpositionen, auch wenn die mobile Darstellung anders angeordnet ist.
 
 Die einzige Bedienung ist eine zugängliche Pausefunktion. Oberflächen dürfen auf Berührung oder Hover dezent reagieren, verändern aber keine Geschäftsdaten und bieten keine bearbeitbare Demo an. Die Animation läuft nur im sichtbaren Bereich und bei sichtbarem Browser-Tab. Reduzierte Bewegung zeigt das vollständige statische Ergebnis ohne Cursor; eine dauerhafte Textzusammenfassung erklärt den gesamten Vorgang auch im ausgelieferten HTML.
 
-Die Planung verbindet den Web-Ausschnitt mit einer stilisierten Handyansicht. Dieselben Projekt- und Zeitangaben bleiben nachvollziehbar. Die Darstellung behauptet weder eine identische Produktoberfläche noch Pushbenachrichtigungen oder eine Offlineübertragung.
+Die Beispiele verbinden eine Webansicht mit einem vollständig gerahmten Smartphone (194 × 410 px, Seitenverhältnis 2,11). Statusleiste, Kameraausschnitt, seitliche Tasten und unterer Homeindikator machen das Gerät eindeutig erkennbar. Die Appnavigation ist ausschließlich eine Illustration. Auf Desktop stehen Web und App nebeneinander; in schmalen Containern wechseln die Ansichten vor der jeweils nächsten Handlung in einer festen Bühne. Reduzierte Bewegung zeigt beide Ansichten statisch untereinander. Daten und Plattformgrenzen bleiben nachvollziehbar. Die Darstellung behauptet weder eine identische Produktoberfläche noch eine garantierte Zustellung oder eine Offlineübertragung.
 
 Der lokale Produktabgleich erfolgte gegen Web main 179cef5 und Mobile master 9e6260d einschließlich des vorhandenen Arbeitsstands. Mobile bietet „Einsätze“ mit „Ab heute“ und Tagesgruppen (AssignmentsListScreen.tsx), Projektname und Uhrzeitspanne (DispatchAssignmentCard.tsx); useAssignments.ts liest dieselbe Einsatzzeile, useRealtime.ts invalidiert sie bei Änderungen. Web usePlantafelDragDrop.ts verschiebt das Datum dieser Zeile und erhält die Start-/Endzeit. Die Handyillustration zeigt deshalb 09:00 bis 12:30 und kein zusätzliches Feld für die geplante Dauer; „Dauer“ im echten Einsatzdetail bezieht sich auf die Fahrzeit. Der Abgleich war rein lesend, die App-Repositories wurden nicht verändert.
+
+## Produktmechanik der verbundenen Beispiele
+
+| Beispiel | Quelle und Ziel | Bewusste Grenze |
+| --- | --- | --- |
+| Projektüberblick | Im Web eine Projektdatei hinzufügen, auf dem Handy dieselbe Datei im Projekt öffnen. | Eine gespeicherte Datei und anschließend die Zielansicht zeigen, keine universelle Sofortübertragung behaupten. |
+| Angebot | Angebot im Web vorbereiten, mobil vom Kunden unterschreiben lassen, Signatur im Web am Dokument sehen. | Mobile Kundenunterschrift gilt für unterstützte Dokumenttypen, nicht für Rechnungen. |
+| Planung | Bestehenden Einsatz bei derselben Person von Dienstag auf Mittwoch ziehen; aktualisierten Einsatz in der Mobile-App öffnen. | Beim Wechsel der Person kann die echte Plantafel kopieren. Deshalb bleibt die Person im Beispiel gleich. |
+| Zeiterfassung | Mobil starten, GPS und Projektzuordnung erfassen, stoppen; fertigen Eintrag im Web prüfen. | Einzelne Standortpunkte bei Start/Stopp, kein Dauertracking. Keine erfundene Zeitfreigabe. |
+| Aufmaß | Mobil 35 m² minus 2 m² speichern; im Web 33 m² als Angebotsmenge übernehmen und einen Preis ergänzen. | Die Aufmaßübernahme berechnet keinen Verkaufspreis; der Preis wird ausdrücklich danach ergänzt. |
+| Beleg | Mobil Foto auslesen, erkannte Angaben prüfen und speichern; im Web unter Eingangsrechnungen weiterbearbeiten. | Mobiles Speichern ist keine endgültige Kontierungs-/GoBD-Prüfung und keine autonome Verbuchung. |
+| Bericht und Rechnung | Mobil einen Bericht unterschreiben; im Web Leistungen in einen Entwurf übernehmen und erst nach Prüfung fertigstellen. | Ohne Unterschrift ist der mobile Bericht ein nicht abrechenbarer Entwurf. Die Übernahme selbst stellt keine Rechnung fertig. |
+| Craft AI | Mobile Zeitdaten speichern; diese im Web mit Craft AI abfragen. | Kein nativer mobiler KI-Chat und keine schreibende Agentaktion im Beispiel. |
+| Lager | Im Web Bestand 24, Entnahme 6, Rückbuchung 2, verbleibend 20 darstellen. | Die native App besitzt im geprüften Stand keine Lagerbuchung; Materialzeilen im mobilen Bericht verändern keinen Lagerbestand. |
+
+Die Quellenprüfung erfolgte ausschließlich lesend gegen die tatsächlichen App-Repositories. Die ergänzenden Standortbelege und Voraussetzungen stehen in `GPS-PRODUCT-EVIDENCE.md`. Zeit, Belege und Unterschriften verwenden fiktive Daten; die Animation ruft keine Produkt-API auf und übermittelt keine Standorte.
+
+Die gemeinsame Timeline besitzt acht Phasen mit 1200/900/1500/1000/1700/1000/1800/3000 ms. Cursorbewegung, Ausführung und lesbare Ergebnispausen sind getrennt. Ein Touchpunkt ersetzt den Mauszeiger innerhalb der illustrierten Handyansicht. Pause hält sowohl die Timeline als auch laufende CSS-Bewegungen an. Beobachter und Timer werden bei unmount bereinigt.
 
 ## Beispiele je Gewerk
 
@@ -35,3 +53,7 @@ Die Navigation verwendet jetzt explizite Disclosure-Buttons mit `aria-expanded` 
 Browserprüfungen für die Seitenposition betätigen den sichtbaren Sticky-Schalter über seine tatsächlichen Bildschirmkoordinaten: Playwrights automatisches ScrollIntoView bei `locator.tap()` kann ansonsten selbst zum ursprünglichen Dokumentplatz des Headers scrollen und einen Sprung verursachen, der bei echten Touch-Eingaben nicht auftritt.
 
 Das lokale Review identifizierte außerdem drei Snippet-Randfälle: ein gehaltener Button darf durch einen Timer nicht seine Aktion wechseln, Reset muss laufende Ziehgesten verwerfen, und ein per Tastatur ausgewähltes Ziel muss den Fokus auf die versetzte Karte übertragen. Alle drei Fälle erhielten zunächst fehlschlagende Browserregressionen und wurden anschließend behoben.
+
+## Dezente Einsatzbenachrichtigung
+
+Nach der Terminverschiebung erscheint in Phase 5 für eine Sekunde ein schmaler transparenter Hinweis „Einsatz verschoben“ am oberen Rand der Handyansicht. Er überlagert nicht die Einsatzkarte. In Phase 6 verschwindet er und der aktualisierte Tag wird im Einsatz gezeigt. Der tatsächliche Trigger und die Voraussetzungen sind in `GPS-PRODUCT-EVIDENCE.md` belegt; es wird keine echte Benachrichtigung versandt. Reduzierte Bewegung lässt den vorübergehenden Hinweis weg und zeigt den aktualisierten Einsatz dauerhaft.
