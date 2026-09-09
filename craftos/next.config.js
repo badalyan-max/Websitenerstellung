@@ -2,7 +2,8 @@
 const nextConfig = {
   agentRules: false,
   poweredByHeader: false,
-  output: 'standalone',
+  // Managed adapters package their own output; Next 16.3 cannot combine both modes.
+  output: process.env.VERCEL || process.env.NEXT_ADAPTER_PATH ? undefined : 'standalone',
 
   images: {
     formats: ['image/avif', 'image/webp'],
