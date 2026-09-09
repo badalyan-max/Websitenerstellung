@@ -1,0 +1,226 @@
+{
+  "date": "2026-09-09",
+  "environment": "Local production server; Chromium; 390x844; cold cache; 4x CPU; 150ms latency; 1.6Mbit/s download. Synthetic interaction durations, not field INP.",
+  "note": "Vier unveränderte Seiten aus dem abschließenden Matrixlauf; /app nach der abschließenden Bildkodierung und Browseralternative gezielt neu gemessen.",
+  "results": [
+    {
+      "route": "/",
+      "run": 1,
+      "lcp": 2164,
+      "cls": 0,
+      "interactionDurations": [
+        56,
+        56,
+        56,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "route": "/",
+      "run": 2,
+      "lcp": 1648,
+      "cls": 0,
+      "interactionDurations": [
+        40,
+        40,
+        40,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "route": "/",
+      "run": 3,
+      "lcp": 1636,
+      "cls": 0,
+      "interactionDurations": [
+        32,
+        32,
+        32,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "route": "/preise",
+      "run": 1,
+      "lcp": 1124,
+      "cls": 0,
+      "interactionDurations": [
+        32,
+        32,
+        32,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "route": "/preise",
+      "run": 2,
+      "lcp": 1104,
+      "cls": 0,
+      "interactionDurations": [
+        32,
+        32,
+        32,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "route": "/preise",
+      "run": 3,
+      "lcp": 1172,
+      "cls": 0,
+      "interactionDurations": [
+        32,
+        32,
+        32,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "route": "/blog/handwerkerrechnung-schreiben",
+      "run": 1,
+      "lcp": 1116,
+      "cls": 0,
+      "interactionDurations": [
+        32,
+        32,
+        32,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "route": "/blog/handwerkerrechnung-schreiben",
+      "run": 2,
+      "lcp": 1096,
+      "cls": 0,
+      "interactionDurations": [
+        32,
+        32,
+        32,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "route": "/blog/handwerkerrechnung-schreiben",
+      "run": 3,
+      "lcp": 1076,
+      "cls": 0,
+      "interactionDurations": [
+        32,
+        32,
+        32,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "route": "/rechner/stundensatz",
+      "run": 1,
+      "lcp": 1152,
+      "cls": 0,
+      "interactionDurations": [
+        32,
+        32,
+        32,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "route": "/rechner/stundensatz",
+      "run": 2,
+      "lcp": 1216,
+      "cls": 0,
+      "interactionDurations": [
+        32,
+        32,
+        32,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "route": "/rechner/stundensatz",
+      "run": 3,
+      "lcp": 1196,
+      "cls": 0,
+      "interactionDurations": [
+        24,
+        24,
+        24,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "route": "/app",
+      "run": 1,
+      "lcp": 2484,
+      "cls": 0,
+      "interactionDurations": [
+        32,
+        32,
+        32,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "route": "/app",
+      "run": 2,
+      "lcp": 2488,
+      "cls": 0,
+      "interactionDurations": [
+        24,
+        24,
+        24,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "route": "/app",
+      "run": 3,
+      "lcp": 2464,
+      "cls": 0,
+      "interactionDurations": [
+        24,
+        24,
+        24,
+        16,
+        16,
+        16
+      ]
+    }
+  ]
+}

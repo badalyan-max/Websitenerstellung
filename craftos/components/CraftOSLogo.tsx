@@ -54,10 +54,10 @@ export function CraftOSLogo({ variant = 'full', size = 'md', className }: CraftO
       <CraftOSMark size={iconSize} />
       {variant === 'full' && (
         <div className={cn('flex flex-col', textSize)}>
-          <span className="font-display font-bold leading-none tracking-tight text-ink-900">
+          <span className="font-display font-bold leading-none tracking-tight text-current">
             CraftOS
           </span>
-          <span className="text-xs font-medium text-ink-400">Handwerkersoftware</span>
+          <span className="text-xs font-medium text-zinc-400">Handwerkersoftware</span>
         </div>
       )}
     </div>

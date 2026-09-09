@@ -1,159 +1,88 @@
-import type { Metadata } from 'next'
-import { CreditCard, Landmark, HardDrive, Coins, Check } from 'lucide-react'
-import { PageHero } from '@/components/ui/PageHero'
-import { HexIcon, SectionHeading } from '@/components/ui/primitives'
-import { PricingTable } from '@/components/preise/PricingTable'
-import { Faq } from '@/components/ui/Faq'
-import { JsonLd } from '@/components/seo/JsonLd'
-import { breadcrumbSchema, faqSchema } from '@/lib/schema'
-import { site, creditPakete } from '@/lib/site'
-
-export const metadata: Metadata = {
-  title: 'Preise – CraftOS Lizenzen ab 9,95 € pro Monat',
-  description:
-    'Transparente Preise für CraftOS: App-Lizenz 9,95 €, Voll-Lizenz (Büro/Admin) 29,95 € pro Nutzer und Monat. Im Jahresabo ≈ 17 % sparen. 50-GB-Speicherpool, SEPA oder Kreditkarte.',
-  alternates: { canonical: `${site.url}/preise` },
-}
-
-const details = [
+import Link from "next/link";
+import { PageHero } from "@/components/ui/PageHero";
+import { PricingTable } from "@/components/preise/PricingTable";
+import { Faq } from "@/components/ui/Faq";
+import { TrialCta } from "@/components/ui/TrialCta";
+import { pageMetadata } from "@/lib/metadata";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { faqSchema } from "@/lib/schema";
+export const metadata = pageMetadata(
+  "Preise: Voll-Lizenz inklusive Mobile-App",
+  "CraftOS Voll-Lizenz 29,95 € netto/Monat inklusive Web-App und Handy-App. App-Lizenz 9,95 €. Jahresabo rund 17 % günstiger. 10 Tage testen.",
+  "/preise",
+);
+const faqs = [
   {
-    icon: Landmark,
-    title: 'SEPA-Lastschrift',
-    desc: 'Empfohlen – nur 0,35 % Gebühr pro Abbuchung.',
+    q: "Ist die Handy-App in der Voll-Lizenz dabei?",
+    a: "Ja. Eine Voll-Lizenz enthält die Web-App und die Mobile-App für dieselbe Person. Sie brauchen dafür keine zusätzliche App-Lizenz.",
   },
   {
-    icon: CreditCard,
-    title: 'Kreditkarte',
-    desc: '1,5 % + 0,25 € pro Zahlung (Visa/Mastercard), sofort aktiv.',
+    q: "Wie berechnet sich der Jahresrabatt?",
+    a: "Die Jahreslizenz kostet zehn Monatsraten. Bei der Voll-Lizenz sind das 299,50 € statt 359,40 € für zwölf einzelne Monate: 59,90 € Ersparnis oder 16,67 %, gerundet rund 17 %. Alle Beträge netto.",
   },
   {
-    icon: HardDrive,
-    title: '50-GB-Speicherpool',
-    desc: 'Ein Pool für den ganzen Betrieb – unabhängig von der Lizenzanzahl, erweiterbar.',
+    q: "Welche Funktionen kosten zusätzlich?",
+    a: "Die freigegebenen Kernmodule wie Plantafel, Angebote, Rechnungen, Projekte und Lager gehören zur Voll-Lizenz. KI-Abfragen und KI-Belegscans verbrauchen Credits. Erweiterter Speicher kann zusätzlich kosten. Der konkrete Zugriff richtet sich nach Rolle und Berechtigungen.",
   },
   {
-    icon: Coins,
-    title: 'KI-Credits (Pay-as-you-go)',
-    desc: `150 Credits Startguthaben inklusive. Pakete ab ${creditPakete[0].preis} € – mit bis zu ${creditPakete[creditPakete.length - 1].bonus} % Bonus.`,
-  },
-]
-
-const faqItems = [
-  {
-    q: 'Brauche ich für jeden Mitarbeiter eine Lizenz?',
-    a: 'Ja, lizenziert wird pro Nutzer. Es gibt zwei Modelle: die Voll-Lizenz (29,95 €) für Büro und Geschäftsführung sowie die App-Lizenz (9,95 €) für Monteure. Ob eine Voll-Lizenz als Büro- oder Admin-Rolle läuft, stellen Sie in CraftOS ein.',
+    q: "Welche Lizenz braucht mein Betrieb mindestens?",
+    a: "Mindestens eine Voll-Lizenz für die Administration. Weitere Personen im Büro erhalten eigene Voll-Lizenzen; für Mitarbeitende auf der Baustelle können Sie App-Lizenzen ergänzen. Eine Lizenz ist personenbezogen.",
   },
   {
-    q: 'Was ist der Unterschied zwischen monatlich und jährlich?',
-    a: 'Im Jahresabo zahlen Sie den Preis von etwa 10 Monaten – rund 17 % Ersparnis. Monatliche Abos sind jederzeit monatlich kündbar.',
+    q: "Ist das ein einmaliger Kauf?",
+    a: "CraftOS wird als monatliches oder jährliches Abonnement angeboten. Beim Jahresabo zahlen Sie für ein Jahr im Voraus. Es handelt sich nicht um eine einmalige Dauerlizenz.",
   },
   {
-    q: 'Wie viel Speicher ist enthalten?',
-    a: 'Jeder Betrieb erhält einen gemeinsamen 50-GB-Speicherpool – unabhängig davon, wie viele Lizenzen Sie haben. Zusätzlicher Speicher ist in Blöcken zubuchbar.',
+    q: "Was passiert nach den 10 Testtagen?",
+    a: "Sie testen ohne Zahlungsdaten und wählen ein kostenpflichtiges Abonnement aktiv in der App. Die verbindlichen Zahlungs- und Verlängerungsbedingungen sehen Sie vor dem Abschluss im Checkout.",
   },
-  {
-    q: 'Wie funktioniert die Abrechnung der KI-Credits?',
-    a: 'Craft AI rechnet nach Verbrauch ab: 1 Credit = 1 Cent. Zum Start sind 150 Credits Guthaben inklusive. Danach kaufen Sie Pakete (10–100 €) mit bis zu 20 % Bonus – kein Abo-Zwang.',
-  },
-  {
-    q: 'Fallen Einrichtungsgebühren an?',
-    a: 'Nein. Keine Einrichtungsgebühr, keine Mindestlaufzeit im Monatsabo. Sie testen 14 Tage kostenlos mit vollem Funktionsumfang.',
-  },
-  {
-    q: 'Was passiert nach der kostenlosen Testphase?',
-    a: 'Die Testphase endet automatisch – es entsteht kein Abo und es wird nichts abgebucht. Keine Abofalle: Sie entscheiden danach aktiv, ob Sie mit einer Lizenz weitermachen.',
-  },
-  {
-    q: 'Sind Plantafel und Lager wirklich ohne Aufpreis dabei?',
-    a: 'Ja. Plantafel, Lager & Materialwirtschaft, DATEV-Export und E-Rechnung sind Bestandteil der Voll-Lizenz – bei CraftOS gibt es keine kostenpflichtigen Zusatzmodule.',
-  },
-  {
-    q: 'Kann ich jederzeit kündigen?',
-    a: 'Ja. Monatliche Lizenzen sind monatlich kündbar, Jahreslizenzen zum Ende der Laufzeit. Ihre Daten können Sie jederzeit exportieren.',
-  },
-]
-
-export default function PreisePage() {
+];
+export default function Page() {
   return (
     <>
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: 'Start', path: '/' },
-          { name: 'Preise', path: '/preise' },
-        ])}
-      />
-      <JsonLd data={faqSchema(faqItems)} />
-
       <PageHero
         eyebrow="Preise"
-        title="Zwei Lizenzen. Fertig."
-        intro="Voll-Lizenz für Büro und Geschäftsführung, App-Lizenz für die Baustelle. Keine versteckten Kosten, keine Einrichtungsgebühr, monatlich kündbar – und 14 Tage kostenlos testen."
+        title={
+          <>
+            Ihr Betrieb wächst.
+            <br />
+            Ihre Software wächst mit.
+          </>
+        }
+        intro="Ein klarer Preis pro Person. Alle Kernmodule, die Web-App und die Handy-App sind in der Volllizenz enthalten."
       />
-
-      <section>
-        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:py-20">
+      <section className="section-space">
+        <div className="site-container">
           <PricingTable />
-
-          {/* Bei CraftOS inklusive — anderswo Zusatzmodul oder gar nicht vorhanden */}
-          <div className="mx-auto mt-14 max-w-4xl rounded-2xl border border-primary-500/25 bg-primary-500/[0.06] p-7 sm:p-8">
-            <p className="spec-label text-[0.62rem] text-primary-400">Bei CraftOS inklusive</p>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-500">
-              Vieles, was anderswo als Zusatzmodul berechnet wird oder ganz fehlt, ist in der
-              Voll-Lizenz einfach drin:
+          <div className="soft-panel mt-10">
+            <h2 className="text-2xl font-semibold">
+              Ein Beispiel für einen Betrieb mit fünf Personen.
+            </h2>
+            <p className="mt-4">
+              Eine Voll-Lizenz für den Inhaber und vier App-Lizenzen fürs Team:{" "}
+              <strong>69,75 € netto im Monat</strong> oder{" "}
+              <strong>697,50 € netto im Jahr (rund 17 % günstiger)</strong>. Die
+              Handy-App des Inhabers ist bereits enthalten.
             </p>
-            <ul className="mt-5 grid gap-x-8 gap-y-3 sm:grid-cols-2">
-              {[
-                'Plantafel & Einsatzplanung – kein kostenpflichtiges Zusatzmodul',
-                'Lager & Materialwirtschaft – inklusive Fahrzeuglager',
-                'DATEV-Export, Steuer-Cockpit & automatisches Mahnwesen',
-                'E-Rechnung (XRechnung) erstellen und empfangen',
-                'Kundenportal mit Online-Angebotsfreigabe',
-                'Alle Updates & neue Funktionen ohne Aufpreis',
-              ].map((t) => (
-                <li key={t} className="flex items-start gap-2.5 text-sm text-ink-600">
-                  <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary-400" strokeWidth={2.5} />
-                  {t}
-                </li>
-              ))}
-            </ul>
+            <p className="text-sm text-ink-600 mt-3">
+              Bei jährlicher Abrechnung entspricht das 58,13 € netto pro Monat;
+              Zahlung für das ganze Jahr. Zusätzlicher KI-Verbrauch und Speicher
+              sind nicht im Beispiel enthalten.
+            </p>
           </div>
+          <Link className="text-link mt-8" href="/vergleich">
+            Leistungsumfang und Anbieter sachlich vergleichen
+          </Link>
         </div>
       </section>
-
-      {/* Zahlung & Extras */}
-      <section className="border-y border-ink-200 bg-ink-950/60">
-        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
-          <SectionHeading align="center" eyebrow="Abrechnung" title="Flexibel & transparent" />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {details.map((d) => (
-              <div key={d.title} className="rounded-2xl border border-ink-200 bg-ink-100 p-6">
-                <HexIcon icon={d.icon} />
-                <h3 className="mt-4 font-display text-lg font-semibold text-ink-900">{d.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-ink-500">{d.desc}</p>
-              </div>
-            ))}
-          </div>
+      <section className="section-space bg-ink-100">
+        <div className="site-container max-w-4xl">
+          <h2 className="section-title mb-10">Preise ohne offene Fragen.</h2>
+          <Faq items={faqs} />
         </div>
       </section>
-
-      {/* FAQ */}
-      <section>
-        <div className="mx-auto max-w-3xl px-5 py-20 sm:px-8">
-          <SectionHeading align="center" eyebrow="FAQ" title="Fragen zu den Preisen" />
-          <div className="mt-12">
-            <Faq items={faqItems} />
-          </div>
-          <p className="mt-10 text-center text-ink-500">
-            Noch Fragen?{' '}
-            <a
-              href={`mailto:${site.email}`}
-              className="font-semibold text-primary-400 hover:text-primary-300"
-            >
-              {site.email}
-            </a>
-          </p>
-        </div>
-      </section>
+      <JsonLd data={faqSchema(faqs)} />
+      <TrialCta />
     </>
-  )
+  );
 }

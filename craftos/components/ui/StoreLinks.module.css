@@ -1,0 +1,50 @@
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 58px;
+  padding: 10px 17px;
+  border: 1px solid #65656e;
+  border-radius: 10px;
+  background: #18181e;
+  color: #fff;
+  line-height: 1.2;
+  text-decoration: none;
+}
+.link:hover {
+  background: #2c2720;
+  border-color: #f2af38;
+  color: #ffca66;
+}
+.link svg {
+  flex: none;
+}
+.link span {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.link small {
+  font-size: 10px;
+  color: #c8c8d0;
+}
+.link strong {
+  font-size: 17px;
+  font-weight: 600;
+}
+.compact {
+  gap: 5px;
+}
+.compact .link {
+  min-height: 44px;
+  padding: 8px 10px;
+  gap: 7px;
+  font-size: 12px;
+  border-color: #45454f;
+}

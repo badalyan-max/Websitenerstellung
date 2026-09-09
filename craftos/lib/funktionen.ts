@@ -1,284 +1,667 @@
-// Funktions-Katalog mit Status-Tiers:
-// 'heute'  = live in der App (verifiziert im Code)
-// 'launch' = kommt zum Launch (in Arbeit)
-// 'vision' = Roadmap/Vision (ehrlich gelabelt)
-import type { LucideIcon } from 'lucide-react'
 import {
+  LayoutDashboard,
+  FolderKanban,
   FileText,
   Receipt,
-  Landmark,
-  CalendarRange,
+  Calculator,
+  CalendarDays,
   Clock,
-  Boxes,
+  Package,
   HardHat,
   Users,
   TrendingUp,
   Globe,
-} from 'lucide-react'
+  Ruler,
+  ScanLine,
+  FileCheck2,
+  ClipboardList,
+  type LucideIcon,
+} from "lucide-react";
 
-export type Tier = 'heute' | 'launch' | 'vision'
-
+export type ProductPlatform = "web" | "mobile";
+export type DemoScene =
+  | "dashboard"
+  | "angebot"
+  | "planung"
+  | "rechnung"
+  | "beleg"
+  | "ki";
 export interface Funktion {
-  slug: string
-  name: string
-  icon: LucideIcon
-  tier: Tier
-  /** Kurzbeschreibung für Karten/Teaser */
-  kurz: string
-  heroTitle: string
-  /** ≤300 Zeichen Fakten-Antwort (GEO/Fan-out) */
-  heroIntro: string
-  /** Welche interaktive Demo auf der Detailseite gezeigt wird */
-  demo?: 'angebot' | 'plantafel' | 'zeiterfassung' | 'kichat' | 'lager'
-  bullets: { titel: string; text: string; tier?: Tier }[]
-  faq: { q: string; a: string }[]
-  seoTitle: string
-  seoDescription: string
+  slug: string;
+  name: string;
+  icon: LucideIcon;
+  tier: "heute" | "launch" | "vision";
+  kurz: string;
+  heroTitle: string;
+  heroIntro: string;
+  bullets: {
+    titel: string;
+    text: string;
+    tier?: "heute" | "launch" | "vision";
+  }[];
+  faq: { q: string; a: string }[];
+  seoTitle: string;
+  seoDescription: string;
+  platforms: ProductPlatform[];
+  access: string;
+  steps: string[];
+  notes: string[];
+  helpSlug: string;
+  related: string[];
+  demo?: DemoScene;
+  checkedAt: string;
 }
-
-export const funktionen: Funktion[] = [
+interface Definition {
+  slug: string;
+  name: string;
+  icon: LucideIcon;
+  title: string;
+  intro: string;
+  platforms: ProductPlatform[];
+  access: string;
+  points: [string, string][];
+  steps: string[];
+  note: string;
+  help: string;
+  related: string[];
+  demo?: DemoScene;
+  upcoming?: boolean;
+}
+const definitions: Definition[] = [
   {
-    slug: 'angebote',
-    name: 'Angebote & Kalkulation',
+    slug: "dashboard",
+    name: "Dashboard",
+    icon: LayoutDashboard,
+    title: "Der Arbeitstag beginnt mit Überblick.",
+    intro:
+      "Projekte, offene Beträge, Angebote und Aufgaben auf einen Blick. Ihr Dashboard verbindet die wichtigen Zahlen mit der nächsten konkreten Aufgabe.",
+    platforms: ["web"],
+    access:
+      "Büro und Admin; die sichtbaren Daten richten sich nach den eingerichteten Rechten.",
+    points: [
+      [
+        "Zahlen mit Zusammenhang",
+        "Aktive Projekte, offene Angebote, offene Beträge und erfasste Stunden führen in die weitere Arbeit.",
+      ],
+      [
+        "Umsatz im Verlauf",
+        "Verfolgen Sie die zeitliche Entwicklung und vergleichen Sie mit dem Vorjahr.",
+      ],
+      [
+        "Ihre Arbeitsfläche",
+        "Widgets verschieben, vergrößern und ausblenden; sensible Zahlen bei Bedarf weichzeichnen.",
+      ],
+    ],
+    steps: [
+      "Öffnen Sie das Dashboard in der Web-App.",
+      "Prüfen Sie Kennzahlen, Aufgaben und aktuelle Projekte.",
+      "Öffnen Sie ein Projekt oder passen Sie Ihre Widgets an.",
+    ],
+    note: "Die Auswertung berücksichtigt die tatsächlich erfassten Betriebsdaten.",
+    help: "projekt-phasen-anlegen",
+    related: ["projektverwaltung", "nachkalkulation", "plantafel"],
+    demo: "dashboard",
+  },
+  {
+    slug: "projektverwaltung",
+    name: "Projektverwaltung",
+    icon: FolderKanban,
+    title: "Ein Projekt. Alle Informationen an ihrem Platz.",
+    intro:
+      "Kunden, Phasen, Aufgaben, Termine, Dokumente und Projektchat bleiben beim Auftrag, vom ersten Angebot bis zur letzten Rückmeldung von der Baustelle.",
+    platforms: ["web", "mobile"],
+    access:
+      "Büro und Admin verwalten Projekte; mobile Mitarbeiter sehen freigegebene Projekte und Bereiche.",
+    points: [
+      [
+        "Klare Projektbereiche",
+        "Übersicht, Planung, Dokumente und weitere Arbeitsbereiche sind über kompakte Reiter erreichbar.",
+      ],
+      [
+        "Gespräche im Kontext",
+        "Der Projektchat hält Rückfragen beim zugehörigen Auftrag.",
+      ],
+      [
+        "Dateien wiederfinden",
+        "Ordner, Unterordner und Filter strukturieren Pläne, Bilder und Unterlagen.",
+      ],
+    ],
+    steps: [
+      "Legen Sie das Projekt an und ordnen Sie den Kunden zu.",
+      "Pflegen Sie Phasen, Aufgaben, Termine und Zuständigkeiten.",
+      "Ergänzen Sie Dokumente, Dateien und Nachrichten im Projekt.",
+    ],
+    note: "Finanzdaten und Projektzugriffe werden durch die Rechte des Mitglieds begrenzt.",
+    help: "projekt-phasen-anlegen",
+    related: ["arbeitsanweisungen", "baudokumentation", "nachkalkulation"],
+    demo: "dashboard",
+  },
+  {
+    slug: "angebote",
+    name: "Angebote & Kalkulation",
     icon: FileText,
-    tier: 'heute',
-    kurz: 'Angebote mit Tiefenkalkulation, Aufmaß und Leistungsvorlagen – in Minuten statt Abenden.',
-    heroTitle: 'Angebote schreiben, die kalkuliert sind – nicht geschätzt',
-    heroIntro:
-      'CraftOS kalkuliert Angebote aus Material, Lohn und Zuschlägen. Aufmaß fließt direkt in die Positionen, Leistungsvorlagen füllen den Rest. Reverse-Pricing verteilt einen Zielpreis nachvollziehbar auf alle Positionen.',
-    demo: 'angebot',
-    bullets: [
-      { titel: 'Tiefenkalkulation', text: 'Material-, Lohn- und Gemeinkostenzuschläge pro Position – mit Lohngruppen für realistische Stundensätze.' },
-      { titel: 'Aufmaß & Massen', text: 'Räume und Flächen mit Abzügen erfassen – die Massen wandern automatisch in Angebot und Abrechnung.' },
-      { titel: 'Leistungsvorlagen', text: 'Fertige Vorlagen für Elektro, SHK, Maler, Schreiner und Allround-Arbeiten – plus eigene Vorlagen.' },
-      { titel: 'Reverse-Pricing', text: 'Zielpreis vorgeben, CraftOS rechnet rückwärts: Rabatte und Anpassungen bleiben nachvollziehbar.' },
-      { titel: 'Optional- & Alternativ-Positionen', text: 'Varianten anbieten, ohne das Angebot aufzublähen – der Kunde entscheidet.' },
-      { titel: 'GAEB & DATANORM', text: 'Ausschreibungen und Artikelkataloge anbinden – im Ausbau.', tier: 'launch' },
+    title: "Angebote, die bis zur letzten Position passen.",
+    intro:
+      "Leistungen beschreiben, Mengen übernehmen und Kosten kalkulieren. Material, Lohn und Zuschläge machen aus einer Schätzung ein nachvollziehbares Angebot.",
+    platforms: ["web", "mobile"],
+    access:
+      "Die vollständige Tiefenkalkulation steht Büro und Admin im Web zur Verfügung; mobile Dokumentaktionen hängen von Rolle und Freigabe ab.",
+    points: [
+      [
+        "Positionen wiederverwenden",
+        "Eigene Artikel und Leistungsvorlagen ersparen wiederholte Eingaben.",
+      ],
+      [
+        "Kosten nachvollziehen",
+        "Kalkulieren Sie Lohn, Material, Geräte, Fremdleistungen und weitere Kosten je Position.",
+      ],
+      [
+        "Mengen übernehmen",
+        "Verwenden Sie geprüfte Aufmaßmengen als Angebotspositionen.",
+      ],
+      [
+        "Dokumente ausgeben",
+        "Erstellen Sie ein PDF mit Ihren Firmenangaben und Ihrem Briefpapier.",
+      ],
     ],
-    faq: [
-      { q: 'Wie schnell erstelle ich ein Angebot in CraftOS?', a: 'Mit Leistungsvorlagen und Artikelkatalog steht ein typisches Angebot in wenigen Minuten – inklusive sauberer Kalkulation.' },
-      { q: 'Kann ich vom Wunschpreis rückwärts kalkulieren?', a: 'Ja. Reverse-Pricing verteilt Ihren Zielpreis automatisch und transparent auf die Positionen.' },
+    steps: [
+      "Legen Sie einen Angebotsentwurf mit Kunde und Projektbezug an.",
+      "Ergänzen Sie Positionen, Mengen, Preise und Zuschläge.",
+      "Prüfen Sie das Angebot und erstellen Sie die PDF-Ausgabe.",
     ],
-    seoTitle: 'Angebote & Kalkulation – Handwerker-Angebotssoftware',
-    seoDescription: 'Angebote mit Tiefenkalkulation, Aufmaß, Leistungsvorlagen und Reverse-Pricing. CraftOS – 14 Tage kostenlos testen.',
+    note: "GAEB- und DATANORM-Import unterstützen die Übernahme von Daten. Prüfen Sie Ihre konkrete Lieferantendatei; eine pauschale DATANORM-v5-Kompatibilität wird nicht zugesagt.",
+    help: "angebot-entwurf-anlegen",
+    related: ["aufmass", "rechnungen", "nachkalkulation"],
+    demo: "angebot",
   },
   {
-    slug: 'rechnungen',
-    name: 'Rechnungen & E-Rechnung',
+    slug: "rechnungen",
+    name: "Rechnungen",
     icon: Receipt,
-    tier: 'heute',
-    kurz: 'Vom Abschlag bis zur Schlussrechnung – mit XRechnung, GiroCode und automatischem Mahnwesen.',
-    heroTitle: 'Rechnungen, die sich selbst um die Zahlung kümmern',
-    heroIntro:
-      'CraftOS erstellt alle Rechnungsarten des Handwerks: Abschlag, Schluss-, Pauschal-, Storno- und Gutschrift. E-Rechnungen (XRechnung) auf Knopfdruck, GiroCode zum Scannen und ein 3-stufiges Mahnwesen, das automatisch läuft.',
-    bullets: [
-      { titel: 'Alle Rechnungsarten', text: 'Abschlags-, Schluss-, Pauschal-, Stornorechnung und Gutschrift – mit automatischer Abschlagsverrechnung.' },
-      { titel: 'E-Rechnung (XRechnung)', text: 'Normkonforme XRechnung erzeugen und empfangen – Pflichtformat für öffentliche Auftraggeber.' },
-      { titel: 'GiroCode auf der Rechnung', text: 'Kunde scannt den QR-Code mit der Banking-App – Betrag und Verwendungszweck sind vorausgefüllt.' },
-      { titel: 'Automatisches Mahnwesen', text: '3 Mahnstufen mit Fristen und Verzugszinsen – CraftOS erinnert, Sie bleiben höflich.' },
-      { titel: 'Sicherheitseinbehalt & VOB', text: 'Einbehalte (5 %/10 %) und Zahlungsziele direkt im Dokument geregelt.' },
-      { titel: '§13b & Kleinunternehmer', text: 'Steuerschuldumkehr und §19-Regelung korrekt ausgewiesen – automatisch.' },
+    title: "Von der geleisteten Arbeit zur nachvollziehbaren Rechnung.",
+    intro:
+      "Rechnungen, Abschläge und Schlussrechnungen erstellen, Zahlungen zuordnen und den Belegzusammenhang behalten. Sie prüfen den Entwurf, bevor das Dokument fertiggestellt wird.",
+    platforms: ["web"],
+    access:
+      "Büro oder Admin mit den erforderlichen Dokument- und Finanzrechten.",
+    points: [
+      [
+        "Passender Belegtyp",
+        "Rechnung, Abschlag, Teil- und Schlussrechnung sowie Storno und Korrektur unterstützen unterschiedliche Fälle.",
+      ],
+      [
+        "Kontrolliert fertigstellen",
+        "Die Rechnungsnummer entsteht beim Fertigstellen des Dokuments.",
+      ],
+      [
+        "Zahlungen zuordnen",
+        "Erfassen Sie Zahlungseingänge und Teilzahlungen an der Rechnung.",
+      ],
+      [
+        "Berichte abrechnen",
+        "Übernehmen Sie geeignete Leistungen in eine Einzel- oder Sammelrechnung.",
+      ],
     ],
-    faq: [
-      { q: 'Erstellt CraftOS E-Rechnungen?', a: 'Ja. CraftOS erzeugt XRechnungen (UBL 2.1) und liest eingehende E-Rechnungen automatisch aus.' },
-      { q: 'Was passiert, wenn ein Kunde nicht zahlt?', a: 'Das Mahnwesen läuft automatisch in drei Stufen mit konfigurierbaren Fristen und Verzugszinsen.' },
+    steps: [
+      "Erstellen Sie einen Rechnungsentwurf, etwa aus einem Angebot oder Bericht.",
+      "Prüfen Sie Empfänger, Leistungen, Beträge und Anrechnungen.",
+      "Stellen Sie die Rechnung fertig und geben Sie das Dokument aus.",
     ],
-    seoTitle: 'Rechnungssoftware Handwerk – E-Rechnung, GiroCode & Mahnwesen',
-    seoDescription: 'Abschlags- & Schlussrechnungen, XRechnung, GiroCode, automatisches Mahnwesen. CraftOS – 14 Tage kostenlos testen.',
+    note: "Fertiggestellte Rechnungen werden über nachvollziehbare Folgebelege korrigiert. Eine Zahlungserfassung ist keine Bankbestätigung.",
+    help: "rechnung-fertigstellen",
+    related: ["e-rechnung", "buchhaltung", "baudokumentation"],
+    demo: "rechnung",
   },
   {
-    slug: 'buchhaltung',
-    name: 'DATEV, Steuern & Belege',
-    icon: Landmark,
-    tier: 'heute',
-    kurz: 'Belegscan-KI, automatische Kontierung, DATEV-Export und Steuer-Cockpit – prüfbereit ohne Aktenordner.',
-    heroTitle: 'Buchhaltung, die der Steuerberater liebt',
-    heroIntro:
-      'CraftOS liest Eingangsrechnungen per KI aus, schlägt das Buchungskonto (SKR03) vor und übergibt sauber kontiert an DATEV. Das Steuer-Cockpit zeigt USt-Voranmeldung und Fristen, §48b-Nachweise inklusive.',
-    bullets: [
-      { titel: 'Belegscan mit KI', text: 'Eingangsrechnung fotografieren oder hochladen – Betrag, Lieferant und Positionen werden automatisch erkannt.' },
-      { titel: 'Auto-Kontierung (SKR03)', text: 'CraftOS schlägt das passende Konto vor – kostenlos, ohne Credits.' },
-      { titel: 'DATEV-Export', text: 'Buchungsdaten mit BU-Schlüsseln (inkl. §13b) direkt an den Steuerberater übergeben.' },
-      { titel: 'Steuer-Cockpit', text: 'USt-Voranmeldung, Fristen und Steuer-Meldeprofil an einem Ort – nichts verpassen.' },
-      { titel: 'Buchungsjournal & offene Posten', text: 'Jede Zahlung, jeder Beleg nachvollziehbar – GoBD-konform abgelegt.' },
+    slug: "e-rechnung",
+    name: "E-Rechnung",
+    icon: FileCheck2,
+    title: "Rechnungsdaten, mit denen andere Systeme weiterarbeiten.",
+    intro:
+      "XRechnung und ZUGFeRD verbinden strukturierte Rechnungsdaten mit Ihrem Dokumentablauf. Auch elektronische Eingangsrechnungen lassen sich einlesen.",
+    platforms: ["web"],
+    access: "Büro oder Admin mit Zugriff auf Rechnungen und deren Ausgabe.",
+    points: [
+      [
+        "XRechnung",
+        "Erzeugen Sie strukturierte XML-Daten für entsprechende Empfangsprozesse.",
+      ],
+      [
+        "ZUGFeRD",
+        "Die lesbare PDF wird mit eingebetteten strukturierten Rechnungsdaten verbunden.",
+      ],
+      [
+        "Strukturierter Eingang",
+        "E-Rechnungsdaten werden direkt gelesen; dafür ist keine OCR notwendig.",
+      ],
     ],
-    faq: [
-      { q: 'Funktioniert CraftOS mit meinem Steuerberater?', a: 'Ja. Der DATEV-Export übergibt Buchungssätze inklusive Kontierung – Ihr Steuerberater arbeitet wie gewohnt weiter.' },
+    steps: [
+      "Ergänzen Sie Absender, Empfänger und Rechnungspositionen.",
+      "Prüfen Sie empfängerbezogene Referenzen und das gewünschte Format.",
+      "Erzeugen Sie die Ausgabe und kontrollieren Sie das Validierungsergebnis.",
     ],
-    seoTitle: 'DATEV & Buchhaltung für Handwerker – Belegscan mit KI',
-    seoDescription: 'Belege per KI erfassen, automatisch kontieren, an DATEV exportieren. Steuer-Cockpit inklusive. CraftOS – 14 Tage kostenlos testen.',
+    note: "Eine gewöhnliche PDF ist keine strukturierte E-Rechnung. Erforderliche Referenzen hängen vom Empfänger ab.",
+    help: "e-rechnung-herunterladen",
+    related: ["rechnungen", "eingangsrechnungen", "buchhaltung"],
+    demo: "rechnung",
   },
   {
-    slug: 'plantafel',
-    name: 'Plantafel & Einsatzplanung',
-    icon: CalendarRange,
-    tier: 'heute',
-    kurz: 'Mitarbeiter, Subunternehmer und Maschinen per Drag & Drop planen – Änderungen sofort aufs Handy.',
-    heroTitle: 'Die Plantafel, die Ihre Woche im Griff hat',
-    heroIntro:
-      'Wer arbeitet wann auf welcher Baustelle? Die CraftOS-Plantafel zeigt Mitarbeiter, Subunternehmer und Ressourcen in einer Wochenansicht. Einsätze werden per Drag & Drop geplant – das Team sieht Änderungen sofort in der App.',
-    demo: 'plantafel',
-    bullets: [
-      { titel: 'Drag & Drop Planung', text: 'Einsätze ziehen, verschieben, verlängern – die Plantafel rechnet Zeiten und Konflikte mit.' },
-      { titel: 'Teams & Kolonnen', text: 'Mitarbeiter zu Teams gruppieren und als Kolonne auf Baustellen planen.' },
-      { titel: 'Subunternehmer & Maschinen', text: 'Auch Nachunternehmer und Ressourcen (Geräte, Fahrzeuge) haben ihre Zeile.' },
-      { titel: 'Push aufs Handy', text: 'Einsatz geändert? Das Team bekommt sofort eine Benachrichtigung in der App.' },
-      { titel: 'Kapazitäten im Blick', text: 'Auslastung pro Woche sehen – bevor die Doppelbuchung passiert.' },
+    slug: "buchhaltung",
+    name: "Buchhaltung & DATEV",
+    icon: Calculator,
+    title: "Die Vorbereitung sitzt. Die Steuerberatung kann weiterarbeiten.",
+    intro:
+      "Belege prüfen, Buchungen nachvollziehen und Daten samt Belegbezug exportieren. So schaffen Betrieb und Steuerberatung eine gemeinsame Arbeitsgrundlage.",
+    platforms: ["web"],
+    access:
+      "Berechtigte Büro-/Admin-Zugänge; Finanz- und Exportrechte werden gesondert vergeben.",
+    points: [
+      [
+        "Buchungsjournal",
+        "Buchungen und Belegbezüge bleiben in einem gemeinsamen Ablauf nachvollziehbar.",
+      ],
+      [
+        "Geprüfte Belege",
+        "Zuordnung, Kontierung und Festschreibung unterstützen eine strukturierte Vorbereitung.",
+      ],
+      [
+        "DATEV-Ausgabe",
+        "Ein Assistent erstellt CSV- beziehungsweise ZIP-Ausgaben zur Weiterverarbeitung.",
+      ],
     ],
-    faq: [
-      { q: 'Sehen Mitarbeiter ihre Einsätze in der App?', a: 'Ja. Jeder Mitarbeiter sieht seine zugewiesenen Einsätze in der Mobile-App und wird bei Änderungen per Push informiert.' },
+    steps: [
+      "Prüfen Sie Belege, Zuordnungen und Buchungsdaten.",
+      "Wählen Sie Zeitraum und Umfang im Steuerberater-Export.",
+      "Erzeugen Sie die Ausgabe und stimmen Sie den Import mit der Steuerberatung ab.",
     ],
-    seoTitle: 'Plantafel Handwerk – Einsatzplanung per Drag & Drop',
-    seoDescription: 'Mitarbeiter, Kolonnen, Subunternehmer & Maschinen planen. Push-Benachrichtigung inklusive. CraftOS – 14 Tage kostenlos testen.',
+    note: "Der Export ersetzt keine fachliche Prüfung oder Steuererklärung. Eine automatische ELSTER-Einreichung erfolgt nicht.",
+    help: "datev-export-erstellen",
+    related: ["eingangsrechnungen", "rechnungen", "nachkalkulation"],
+    demo: "beleg",
   },
   {
-    slug: 'zeiterfassung',
-    name: 'Zeiterfassung & Urlaub',
+    slug: "eingangsrechnungen",
+    name: "Eingangsrechnungen & Belegscan",
+    icon: ScanLine,
+    title: "Der Beleg ist erfasst. Die Entscheidung bleibt bei Ihnen.",
+    intro:
+      "Belege aufnehmen, erkannte Angaben kontrollieren und Ausgaben einem Projekt zuordnen. Sie korrigieren bei Bedarf und speichern nach der Prüfung.",
+    platforms: ["web", "mobile"],
+    access:
+      "Die jeweilige Finanzfreigabe ist erforderlich; eine App-Lizenz allein gibt keinen pauschalen Zugriff auf Belege.",
+    points: [
+      [
+        "Vom Foto zur Prüfung",
+        "Die mobile Erfassung führt über Upload und Erkennung zu editierbaren Feldern.",
+      ],
+      [
+        "Doppelte Belege erkennen",
+        "Hinweise auf mögliche Dubletten unterstützen die Kontrolle vor der Übernahme.",
+      ],
+      [
+        "Kosten zuordnen",
+        "Projekt- und Bereichszuordnungen stellen den Bezug zur Nachkalkulation her.",
+      ],
+    ],
+    steps: [
+      "Wählen Sie eine Datei oder fotografieren Sie den Beleg.",
+      "Prüfen Sie Angaben, mögliche Dubletten und die Zuordnung.",
+      "Speichern Sie die passenden Daten erst nach Ihrer Kontrolle.",
+    ],
+    note: "KI-Auslesen benötigt eine Verbindung und verbraucht Credits; strukturierte E-Rechnungsdaten werden ohne OCR gelesen.",
+    help: "beleg-scannen-pruefen",
+    related: ["buchhaltung", "projektverwaltung", "nachkalkulation"],
+    demo: "beleg",
+  },
+  {
+    slug: "plantafel",
+    name: "Plantafel & Einsatzplanung",
+    icon: CalendarDays,
+    title: "Wer macht was? Und wann passt es wirklich?",
+    intro:
+      "Mitarbeiter, Nachunternehmer und Ressourcen gemeinsam planen. Verschieben oder verlängern Sie Einsätze und prüfen Sie die Auswirkung auf die Kapazität.",
+    platforms: ["web", "mobile"],
+    access:
+      "Büro und Admin planen im Web; mobile Mitarbeiter sehen zugeordnete Einsätze.",
+    points: [
+      [
+        "Mehr als einzelne Termine",
+        "Planen Sie mehrtägige Einsätze mit Bezug zu Projektphasen.",
+      ],
+      [
+        "Änderungen direkt vornehmen",
+        "Einsätze lassen sich verschieben, kopieren und zeitlich anpassen.",
+      ],
+      [
+        "Kapazitäten berücksichtigen",
+        "Mitarbeiter, Abwesenheiten und Ressourcen geben der Planung einen nachvollziehbaren Rahmen.",
+      ],
+    ],
+    steps: [
+      "Wählen Sie Projekt, Zeitraum und Mitarbeiter.",
+      "Legen Sie den Einsatz an oder verschieben Sie einen bestehenden Einsatz.",
+      "Prüfen Sie Kapazitäten und zugeordnete Ressourcen.",
+    ],
+    note: "Die mobile Einsatzansicht und die vollständige Web-Plantafel haben unterschiedliche Bedienmöglichkeiten.",
+    help: "plantafel-einsatz-planen",
+    related: ["zeiterfassung", "team", "projektverwaltung"],
+    demo: "planung",
+  },
+  {
+    slug: "zeiterfassung",
+    name: "Zeiterfassung",
     icon: Clock,
-    tier: 'heute',
-    kurz: 'Stunden mobil erfassen – auch per Sprache – mit Arbeitszeitkonto, Urlaub und Export.',
-    heroTitle: 'Zeiterfassung, die auf der Baustelle funktioniert',
-    heroIntro:
-      'Ihr Team bucht Arbeits- und Fahrtzeiten am Handy – auf Wunsch per Spracheingabe, mit GPS-Kontext. Arbeitszeitmodelle, Feiertage je Bundesland, Urlaubsanträge und Arbeitszeitkonto sind eingebaut. Export für die Lohnabrechnung inklusive.',
-    demo: 'zeiterfassung',
-    bullets: [
-      { titel: 'Mobil & per Sprache', text: '„3 Stunden Baustelle Müller" – diktieren statt tippen, CraftOS versteht deutsch.' },
-      { titel: 'Arbeit, Fahrt, Pause', text: 'Zeitarten sauber getrennt – für korrekte Lohnabrechnung und Kalkulation.' },
-      { titel: 'Urlaub & Abwesenheiten', text: 'Anträge in der App stellen, im Büro freigeben – Resturlaub zählt automatisch.' },
-      { titel: 'Arbeitszeitmodelle', text: 'Wochen- und Saisonmodelle, Feiertage je Bundesland, Arbeitszeitkonto.' },
-      { titel: 'Projektgenau', text: 'Jede Stunde landet am Projekt – die Nachkalkulation weiß Bescheid.' },
+    title: "Die Zeit landet dort, wo die Arbeit passiert.",
+    intro:
+      "Erfassen Sie Arbeitszeit passend zum Auftrag per mobilem Timer oder manuellem Eintrag. Die Stunden stehen anschließend für Auswertung und Nachkalkulation bereit.",
+    platforms: ["web", "mobile"],
+    access:
+      "Mobile Mitarbeiter erfassen eigene Zeiten; fremde Einträge sind nur mit passenden Rechten sichtbar und bearbeitbar.",
+    points: [
+      [
+        "Starten und stoppen",
+        "Der mobile Timer führt zu einem Zeiteintrag für Ihr Projekt.",
+      ],
+      [
+        "Nachtragen und korrigieren",
+        "Manuelle Einträge ergänzen die Erfassung im Rahmen der Berechtigungen.",
+      ],
+      [
+        "Stunden weiterverwenden",
+        "Projekt- und Monatsansichten unterstützen Auswertung und Nachkalkulation.",
+      ],
     ],
-    faq: [
-      { q: 'Können Zeiten per Sprache erfasst werden?', a: 'Ja. Die Spracheingabe (deutsch) wandelt Diktate in fertige Zeiteinträge um – ideal mit Arbeitshandschuhen.' },
+    steps: [
+      "Wählen Sie das Projekt und starten Sie den Timer.",
+      "Beenden Sie den Eintrag und kontrollieren Sie Dauer und Zuordnung.",
+      "Prüfen Sie die Stunden in der Web-Auswertung.",
     ],
-    seoTitle: 'Zeiterfassung Handwerk – mobil, per Sprache, projektgenau',
-    seoDescription: 'Mobile Zeiterfassung mit Spracheingabe, Urlaubsverwaltung & Arbeitszeitkonto. CraftOS – 14 Tage kostenlos testen.',
+    note: "Die mobile GPS-Erfassung benötigt die passende Gerätefreigabe. Offline-Textdaten und Timer sind von Foto-Uploads zu unterscheiden.",
+    help: "mobilen-timer-bedienen",
+    related: ["plantafel", "nachkalkulation", "team"],
+    demo: "planung",
   },
   {
-    slug: 'lager',
-    name: 'Lager & Materialwirtschaft',
-    icon: Boxes,
-    tier: 'heute',
-    kurz: 'Bestände über Lager, Lagerplätze und Fahrzeuge führen – Entnahmen speisen die Nachkalkulation.',
-    heroTitle: 'Wissen, wo Ihr Material ist – und was es kostet',
-    heroIntro:
-      'CraftOS führt Bestände über mehrere Lager, Lagerplätze und Fahrzeuge. Wareneingang, Warenausgang, Umlagerung und Rückbuchung – jeder Ausgang ist auftragsgebunden und speist die Nachkalkulation in Echtzeit. Mit Seriennummern und KI-Belegscan für den Wareneingang.',
-    demo: 'lager',
-    bullets: [
-      { titel: 'Mehrere Lager & Fahrzeuge', text: 'Hauptlager, Container, Montagebus – jedes Lager mit eigenen Plätzen und Beständen.' },
-      { titel: 'Auftragsgenaue Entnahme', text: 'Warenausgänge brauchen Kunde + Auftrag – so stimmt die Nachkalkulation immer.' },
-      { titel: 'Seriennummern & Beleg-Scan', text: 'Geräte mit Seriennummer verfolgen, Wareneingänge per Lieferschein-Scan mit KI erfassen.' },
-      { titel: 'Rückbuchung vom Auftrag', text: 'Nicht verbautes Material zurückbuchen – die Projektkosten korrigieren sich automatisch.' },
-      { titel: 'Mindestbestand & Inventur', text: 'Warnungen bei Meldebestand und geführter Inventur-Workflow.', tier: 'launch' },
+    slug: "lager",
+    name: "Lager & Material",
+    icon: Package,
+    title: "Wissen, was da ist. Und wohin es gegangen ist.",
+    intro:
+      "Bestände, Lagerorte und Bewegungen nachvollziehbar verwalten. Auftragsbezogene Entnahmen verbinden das Material mit den Kosten des Projekts.",
+    platforms: ["web"],
+    access: "Büro- und Admin-Zugänge mit den eingerichteten Lagerrechten.",
+    points: [
+      [
+        "Lagerorte abbilden",
+        "Organisieren Sie Bestände nach Lagerorten und Lagerplätzen.",
+      ],
+      [
+        "Bewegungen nachvollziehen",
+        "Wareneingang, Entnahme, Umlagerung und Rückbuchung bilden den Materialfluss ab.",
+      ],
+      [
+        "Bestände prüfen",
+        "Inventur und Bestandskorrektur unterstützen den Abgleich mit dem tatsächlichen Material.",
+      ],
     ],
-    faq: [
-      { q: 'Kann ich Fahrzeugbestände führen?', a: 'Ja. Montagebusse sind eigene Lager – Umlagerungen zwischen Halle und Fahrzeug sind zwei Klicks.' },
+    steps: [
+      "Legen Sie Artikel, Lagerorte und Bestände an.",
+      "Buchen Sie die Materialbewegung mit dem passenden Bezug.",
+      "Prüfen Sie Bestände und führen Sie bei Bedarf eine Inventur durch.",
     ],
-    seoTitle: 'Lagerverwaltung Handwerk – Material auftragsgenau buchen',
-    seoDescription: 'Lager, Lagerplätze & Fahrzeuge, Seriennummern, auftragsgebundene Entnahme, Nachkalkulation live. CraftOS – 14 Tage testen.',
+    note: "Bestands- und Kostenwerte setzen voraus, dass die tatsächlichen Bewegungen gebucht werden.",
+    help: "material-entnehmen-zurueckbuchen",
+    related: ["nachkalkulation", "angebote", "projektverwaltung"],
   },
   {
-    slug: 'baudokumentation',
-    name: 'Baudokumentation & Berichte',
+    slug: "baudokumentation",
+    name: "Baudokumentation",
     icon: HardHat,
-    tier: 'heute',
-    kurz: 'Bautagesberichte, Mängel und Abnahmen – mit Fotos, GPS und Unterschrift direkt vom Smartphone.',
-    heroTitle: 'Beweise statt Behauptungen: die digitale Bauakte',
-    heroIntro:
-      'Bautagesberichte mit Fotos, GPS und digitaler Unterschrift entstehen direkt auf der Baustelle. Mängel werden erfasst und verfolgt, Abnahmen protokolliert. Alles landet in der Projektakte – rechtssicher und jederzeit auffindbar.',
-    bullets: [
-      { titel: 'Bautagesberichte', text: 'Wetter, Personal, Leistung, Fotos – unterschrieben und mit GPS-Position gespeichert.' },
-      { titel: 'Mängelverfolgung', text: 'Mangel fotografieren, zuweisen, Frist setzen – bis zur Behebung verfolgt.' },
-      { titel: 'Abnahmeprotokolle', text: 'Abnahme mit Unterschrift des Kunden direkt am Gerät – PDF in der Akte.' },
-      { titel: 'Projektordner & Dateien', text: 'Pläne, Fotos und Dokumente strukturiert je Projekt – mit Freigaben fürs Team.' },
-      { titel: 'Berichtsvorlagen', text: 'Eigene Vorlagen im Designer gestalten – Ihr Betrieb, Ihr Briefkopf.' },
+    title: "Was auf der Baustelle passiert, bleibt im Projekt.",
+    intro:
+      "Bautagesberichte, Mängel und Abnahmen mit Fotos und Unterschriften dokumentieren. Die Informationen bleiben dort auffindbar, wo sie gebraucht werden.",
+    platforms: ["web", "mobile"],
+    access:
+      "Projektzugriff und Dokumentationsaktionen richten sich nach Rolle und Freigabe.",
+    points: [
+      [
+        "Bautagesberichte",
+        "Leistungen, Personal und ergänzende Informationen in Berichten bündeln.",
+      ],
+      [
+        "Mängel bearbeiten",
+        "Status und Zuständigkeiten unterstützen die Bearbeitung bis zur Erledigung.",
+      ],
+      [
+        "Abnahmen dokumentieren",
+        "Protokollangaben und Unterschriften werden mit dem Projekt verbunden.",
+      ],
+      [
+        "Berichte abrechnen",
+        "Geeignete Leistungen lassen sich in einen prüfbaren Rechnungsentwurf übernehmen.",
+      ],
     ],
-    faq: [
-      { q: 'Sind die Berichte rechtssicher?', a: 'Berichte enthalten Zeitstempel, GPS-Position und digitale Unterschrift – und werden unveränderbar in der Projektakte abgelegt.' },
+    steps: [
+      "Öffnen Sie Berichte, Mängel oder Abnahmen im Projekt.",
+      "Ergänzen Sie Angaben, Fotos und gegebenenfalls Unterschriften.",
+      "Prüfen Sie das Dokument und erstellen Sie die Ausgabe.",
     ],
-    seoTitle: 'Baudokumentation App – Bautagesbericht, Mängel & Abnahme',
-    seoDescription: 'Bautagesberichte mit Foto, GPS & Unterschrift. Mängelverfolgung und Abnahmeprotokolle mobil. CraftOS – 14 Tage testen.',
+    note: "Foto-Uploads benötigen Verbindung. Eine dokumentierte Unterschrift ist keine pauschale rechtliche Garantie.",
+    help: "bautagesbericht-erstellen",
+    related: ["projektverwaltung", "rechnungen", "aufmass"],
+    demo: "rechnung",
   },
   {
-    slug: 'team',
-    name: 'Team, Rechte & Nachunternehmer',
+    slug: "aufmass",
+    name: "Aufmaß",
+    icon: Ruler,
+    title: "Aus Maßen werden nachvollziehbare Positionen.",
+    intro:
+      "Räume, Flächen und Abzüge erfassen und geprüfte Mengen ins Angebot übernehmen. Boden, Wand und Decke bleiben dabei dem Projekt zugeordnet.",
+    platforms: ["web", "mobile"],
+    access:
+      "Projekt- und Aufmaßrechte sind erforderlich; die vollständige anschließende Angebotskalkulation erfolgt im Web.",
+    points: [
+      [
+        "Raumweise erfassen",
+        "Strukturieren Sie Boden-, Wand- und Deckenflächen passend zu den Räumen.",
+      ],
+      [
+        "Abzüge berücksichtigen",
+        "Türen, Fenster und weitere Öffnungen fließen in die Mengen ein.",
+      ],
+      [
+        "Mengen übernehmen",
+        "Verwenden Sie geprüfte Mengen im Angebot und ergänzen Sie Leistung und Preis.",
+      ],
+    ],
+    steps: [
+      "Legen Sie einen Raum im Aufmaß des Projekts an.",
+      "Erfassen Sie Abmessungen und abzuziehende Öffnungen.",
+      "Prüfen Sie die Mengen und übernehmen Sie Angebotspositionen.",
+    ],
+    note: "Maße werden eingegeben und geprüft. Automatische Laseranbindung oder präzise Fotogrammetrie werden nicht vorausgesetzt.",
+    help: "raumaufmass-angebot-uebernehmen",
+    related: ["angebote", "arbeitsanweisungen", "baudokumentation"],
+    demo: "angebot",
+  },
+  {
+    slug: "arbeitsanweisungen",
+    name: "Arbeitsanweisungen",
+    icon: ClipboardList,
+    title: "Das Team weiß, was zu tun ist.",
+    intro:
+      "Leistungen und Materialbedarf aus dem Dokument für die Ausführung bereitstellen, ohne Verkaufspreise und mit direktem Projektbezug.",
+    platforms: ["web"],
+    access:
+      "Berechtigte Büro- und Admin-Zugänge erstellen und verwalten die Arbeitsanweisungen in der Web-App.",
+    points: [
+      [
+        "Leistungen weitergeben",
+        "Arbeitsanweisungen übernehmen den fachlichen Inhalt des Quelldokuments.",
+      ],
+      [
+        "Material zusammenführen",
+        "Eine aggregierte Materialliste unterstützt die Einsatzvorbereitung.",
+      ],
+      [
+        "Preise schützen",
+        "Die für die Ausführung bestimmten Informationen werden ohne Verkaufspreise dargestellt.",
+      ],
+    ],
+    steps: [
+      "Wählen Sie ein geeignetes Quelldokument im Projekt.",
+      "Prüfen Sie die abgeleiteten Leistungen und den Materialbedarf.",
+      "Stellen Sie die Arbeitsanweisung für die Ausführung bereit.",
+    ],
+    note: "Arbeitsanweisungen erstellen und verwalten Sie in der Web-App. Eine Materialliste allein bucht noch keine Lagerentnahme.",
+    help: "projektdateien-ordner",
+    related: ["angebote", "projektverwaltung", "lager"],
+  },
+  {
+    slug: "team",
+    name: "Team & Rechte",
     icon: Users,
-    tier: 'heute',
-    kurz: 'Rollen mit klaren Rechten, Nachunternehmer mit eigenem Zugang – jeder sieht genau das Richtige.',
-    heroTitle: 'Jeder im Team sieht genau das, was er braucht',
-    heroIntro:
-      'CraftOS regelt Zugriffe über Rollen: Admin, Büro, Projektleitung, Team. Monteure sehen ihre Einsätze und Zeiten, das Büro die Projekte, der Chef alles. Nachunternehmer bekommen eigene, begrenzte Zugänge – sauber getrennt vom Betrieb.',
-    bullets: [
-      { titel: '5 Rollen-Presets', text: 'Von Admin bis Monteur – Rechte sind vorkonfiguriert und anpassbar.' },
-      { titel: 'Nachunternehmer-Zugänge', text: 'Subs einladen, Einsätze zuweisen – interne Zahlen bleiben intern.' },
-      { titel: 'Einladungen per E-Mail', text: 'Team-Mitglieder in Minuten onboarden – Lizenz zuweisen, fertig.' },
-      { titel: 'Kundenportal', text: 'Kunden sehen Angebote, Rechnungen und Termine in ihrem eigenen Portal – und geben Angebote online frei.' },
+    title: "Jeder Zugang passt zur Aufgabe.",
+    intro:
+      "Mitarbeiter einladen, Zugänge zuweisen und Rechte passend zur Arbeit vergeben. Büro und Baustelle nutzen dieselbe Grundlage mit unterschiedlichen Aufgaben.",
+    platforms: ["web", "mobile"],
+    access:
+      "Admin verwaltet Lizenzen und Rechte; weitere Aktionen hängen von den eingerichteten Berechtigungen ab.",
+    points: [
+      [
+        "Passende Zugänge",
+        "Admin und Büro nutzen den Web-Zugang, App-Zugänge sind für mobile Mitarbeit vorgesehen.",
+      ],
+      [
+        "Fünf Rollen-Presets",
+        "Vorgegebene Rollen unterstützen die Einrichtung; einzelne Rechte bleiben überprüfbar.",
+      ],
+      [
+        "Abwesenheiten berücksichtigen",
+        "Urlaubsanträge und ihre Bearbeitung ergänzen die Team- und Einsatzplanung.",
+      ],
     ],
-    faq: [
-      { q: 'Was kostet ein zusätzlicher Monteur?', a: 'Die App-Lizenz für Mitarbeiter im Einsatz kostet 9,95 € pro Monat (99,50 € im Jahresabo).' },
+    steps: [
+      "Laden Sie ein Mitglied ein und weisen Sie den passenden Lizenztyp zu.",
+      "Wählen Sie die Rolle und prüfen Sie die Berechtigungen.",
+      "Ordnen Sie Projekte und Einsätze dem Aufgabenbereich zu.",
     ],
-    seoTitle: 'Teamverwaltung Handwerk – Rollen, Rechte & Subunternehmer',
-    seoDescription: 'Rollenbasierte Rechte, Nachunternehmer-Zugänge und Kundenportal. CraftOS – 14 Tage kostenlos testen.',
+    note: "Lizenz und Rolle sind unterschiedliche Einstellungen. Der erste Admin-Zugang ist erforderlich.",
+    help: "rollen-zugriffsrechte-einstellen",
+    related: ["plantafel", "zeiterfassung", "projektverwaltung"],
   },
   {
-    slug: 'nachkalkulation',
-    name: 'Nachkalkulation & Vorhersagen',
+    slug: "nachkalkulation",
+    name: "Nachkalkulation",
     icon: TrendingUp,
-    tier: 'heute',
-    kurz: 'Soll/Ist pro Projekt in Echtzeit – plus Vorhersagen für Termin, Liquidität und Saison.',
-    heroTitle: 'Wissen, ob die Baustelle verdient – bevor sie fertig ist',
-    heroIntro:
-      'Die Nachkalkulation stellt Soll und Ist gegenüber: Zeiten, Material, Eingangsrechnungen, Lohnkosten. Dazu prognostiziert CraftOS Fertigstellung, Cashflow und Saisonspitzen – deterministisch berechnet, nicht geraten.',
-    bullets: [
-      { titel: 'Soll/Ist live', text: 'Jede Stunde und jede Materialentnahme aktualisiert die Projektrentabilität sofort.' },
-      { titel: 'Cashflow-Vorhersage', text: 'Offene Posten, Abschläge und Fristen ergeben die Liquiditätskurve der nächsten Wochen.' },
-      { titel: 'Fertigstellungs-Prognose', text: 'CraftOS rechnet aus Fortschritt und Tempo den realistischen Endtermin.' },
-      { titel: 'Berichte & Auswertungen', text: 'Umsatz, Auslastung, Projekterfolg – als Dashboard und Export.' },
+    title: "Was war geplant? Was hat der Auftrag wirklich gekostet?",
+    intro:
+      "Geplante und tatsächliche Kosten für Lohn, Material und weitere Leistungen vergleichen. So werden Abweichungen und fehlende Zuordnungen sichtbar.",
+    platforms: ["web"],
+    access:
+      "Büro oder Admin mit Zugriff auf die Finanz- und Controllingdaten des Projekts.",
+    points: [
+      [
+        "Kostenarten getrennt sehen",
+        "Lohn, Material, Geräte, Fremdleistungen und weitere Kosten gegenüberstellen.",
+      ],
+      [
+        "Fortschritt einordnen",
+        "Bewerten Sie Kosten gemeinsam mit dem erfassten Projektfortschritt.",
+      ],
+      [
+        "Besser kalkulieren",
+        "Nutzen Sie abgeschlossene Aufträge als Grundlage für zukünftige Angebote.",
+      ],
     ],
-    faq: [
-      { q: 'Woher kommen die Zahlen der Nachkalkulation?', a: 'Aus dem laufenden Betrieb: erfasste Zeiten, gebuchtes Material, Eingangsrechnungen und Lohnkosten je Projekt.' },
+    steps: [
+      "Öffnen Sie das Controlling des Projekts.",
+      "Vergleichen Sie Planwerte mit Stunden, Material und Belegen.",
+      "Prüfen Sie Abweichungen und ergänzen Sie fehlende Zuordnungen.",
     ],
-    seoTitle: 'Nachkalkulation Handwerk – Projektrentabilität in Echtzeit',
-    seoDescription: 'Soll/Ist-Vergleich, Cashflow-Vorhersage & Fertigstellungsprognose. CraftOS – 14 Tage kostenlos testen.',
+    note: "Prognosen sind berechnete Einschätzungen aus vorhandenen Daten, keine Zusage eines zukünftigen Ergebnisses.",
+    help: "zeiten-pruefen-exportieren",
+    related: ["zeiterfassung", "lager", "eingangsrechnungen"],
+    demo: "planung",
   },
   {
-    slug: 'kundenportal',
-    name: 'Kundenportal',
+    slug: "kundenportal",
+    name: "Kundenportal",
     icon: Globe,
-    tier: 'heute',
-    kurz: 'Kunden sehen Angebote, Rechnungen und Termine online – und geben Angebote digital frei.',
-    heroTitle: 'Das Portal, das Rückfragen überflüssig macht',
-    heroIntro:
-      'Ihre Kunden bekommen einen eigenen Zugang: Angebote online freigeben, Rechnungen einsehen und bezahlen, Termine und Nachrichten an einem Ort. Weniger Telefon, schnellere Entscheidungen, professioneller Auftritt.',
-    bullets: [
-      { titel: 'Angebote online freigeben', text: 'Kunde klickt „Annehmen" – Sie sehen es sofort und legen los.' },
-      { titel: 'Rechnungen & Zahlung', text: 'Rechnung einsehen und direkt online bezahlen.' },
-      { titel: 'Termine & Nachrichten', text: 'Anstehende Einsätze und die Kommunikation gebündelt im Portal.' },
+    title: "Ein gemeinsamer Ort für Ihre Kunden.",
+    intro:
+      "Angebote, Dokumente und Kommunikation im Browser. Der vollständige Einladungs- und Zugangsablauf befindet sich noch in Prüfung.",
+    platforms: ["web"],
+    access:
+      "Separater Kundenbereich; die allgemeine Freigabe des vollständigen Zugangsablaufs steht noch aus.",
+    upcoming: true,
+    points: [
+      [
+        "Dokumente im Browser",
+        "Freigegebene Angebote und Rechnungen können im Kundenbereich dargestellt werden.",
+      ],
+      [
+        "Angebote beantworten",
+        "Der Portalablauf unterstützt Annahme und Ablehnung mit optionaler Rückmeldung.",
+      ],
+      [
+        "Verfügbarkeit transparent",
+        "Der vollständige Zugangsablauf ist noch nicht allgemein als abgenommen ausgewiesen.",
+      ],
     ],
-    faq: [
-      { q: 'Muss mein Kunde eine App installieren?', a: 'Nein. Das Kundenportal läuft im Browser – ein Link genügt.' },
+    steps: [
+      "Klären Sie mit dem Support, ob der Portalzugang für Ihren Betrieb freigegeben ist.",
+      "Stellen Sie die vorgesehenen Dokumente und Projektinformationen bereit.",
+      "Der Kunde sieht die freigegebenen Informationen im Browser.",
     ],
-    seoTitle: 'Kundenportal Handwerk – Angebote online freigeben',
-    seoDescription: 'Digitales Kundenportal: Angebotsfreigabe, Rechnungen, Termine & Nachrichten. CraftOS – 14 Tage kostenlos testen.',
+    note: "Onlinezahlungen im Portal sind deaktiviert. Zahlungen erfolgen nach den Angaben auf der Rechnung.",
+    help: "kunden-ansprechpartner-anlegen",
+    related: ["angebote", "rechnungen", "projektverwaltung"],
   },
-]
-
+];
+export const funktionen: Funktion[] = definitions.map((d) => ({
+  slug: d.slug,
+  name: d.name,
+  icon: d.icon,
+  tier: d.upcoming ? "launch" : "heute",
+  kurz: d.intro,
+  heroTitle: d.title,
+  heroIntro: d.intro,
+  bullets: d.points.map(([titel, text]) => ({ titel, text })),
+  faq: [
+    { q: "Wie läuft die Nutzung ab?", a: d.steps.join(" ") },
+    { q: "Welchen Zugang benötigen Sie?", a: d.access },
+  ],
+  seoTitle: d.name + " für Handwerksbetriebe",
+  seoDescription: d.intro,
+  platforms: d.platforms,
+  access: d.access,
+  steps: d.steps,
+  notes: [d.note],
+  helpSlug: d.help,
+  related: d.related,
+  demo: d.demo,
+  checkedAt: "2026-09-09",
+}));
 export function getFunktion(slug: string): Funktion | undefined {
-  return funktionen.find((f) => f.slug === slug)
+  return funktionen.find((f) => f.slug === slug);
 }
-
-/** Vision-/Roadmap-Einträge (bewusst ohne eigene Detailseiten) */
-export const vision = [
+export const upcomingFeatures = [
   {
-    name: 'Telefon-Agent',
-    text: 'Eine KI nimmt Anrufe entgegen, erfasst das Anliegen, ordnet Bestandskunden zu und legt Aufgaben an – Ihr Front-Office schläft nie.',
+    name: "Telefon-Agent",
+    text: "Anrufe aufnehmen, Anliegen erfassen und die weitere Bearbeitung im Betrieb vorbereiten.",
+    when: "Geplant: September / Anfang Oktober 2026",
   },
   {
-    name: 'Offener MCP-Server',
-    text: 'Docken Sie Ihre eigene KI (z. B. ChatGPT oder Claude) sicher an CraftOS an – gleiche Rechte, gleiche Datensicherheit wie der eingebaute Agent.',
+    name: "Offener MCP-Server",
+    text: "Externe KI-Assistenten mit den freigegebenen CraftOS-Funktionen verbinden.",
+    when: "Geplant: September / Anfang Oktober 2026",
   },
   {
-    name: 'AR-Aufmaß mit Laser-Kopplung',
-    text: 'Bosch-Laser per Bluetooth verbinden, Räume in 3D erfassen – und die Maße landen direkt im Angebot.',
+    name: "Weitere Agent-Aktionen",
+    text: "Craft AI soll nach Ihrer Bestätigung zusätzliche Aufgaben im System ausführen können.",
+    when: "Geplant: September 2026",
   },
-] as const
+];
+export const vision = upcomingFeatures;

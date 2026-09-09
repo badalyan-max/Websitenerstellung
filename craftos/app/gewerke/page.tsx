@@ -1,87 +1,84 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
-import { ArrowRight, Layers } from 'lucide-react'
-import { PageHero } from '@/components/ui/PageHero'
-import { CtaButton, SectionHeading } from '@/components/ui/primitives'
-import { GewerkIcon } from '@/components/ui/GewerkIcon'
-import { JsonLd } from '@/components/seo/JsonLd'
-import { breadcrumbSchema } from '@/lib/schema'
-import { gewerke } from '@/lib/gewerke'
-import { site } from '@/lib/site'
-
-export const metadata: Metadata = {
-  title: 'Handwerkersoftware nach Gewerk – Elektro, SHK, Maler & mehr',
-  description:
-    'CraftOS für Ihr Gewerk: Elektriker, SHK, Maler, Tischler, Dachdecker, GaLaBau u. v. m. Mit fertigen Leistungsvorlagen. 14 Tage kostenlos testen.',
-  alternates: { canonical: `${site.url}/gewerke` },
-}
-
-export default function GewerkePage() {
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
+import { gewerke } from "@/lib/gewerke";
+import { GewerkIcon } from "@/components/ui/GewerkIcon";
+import { PageHero } from "@/components/ui/PageHero";
+import { TrialCta } from "@/components/ui/TrialCta";
+import { pageMetadata } from "@/lib/metadata";
+export const metadata = pageMetadata(
+  "Handwerkersoftware nach Gewerk",
+  "CraftOS für Elektro, SHK, Maler, Tischler und weitere Gewerke: passende Abläufe für Angebote, Planung, Projekte und Abrechnung.",
+  "/gewerke",
+);
+export default function Page() {
   return (
     <>
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: 'Start', path: '/' },
-          { name: 'Gewerke', path: '/gewerke' },
-        ])}
-      />
       <PageHero
-        eyebrow="Gewerke"
+        eyebrow="Für Ihr Gewerk"
         title={
           <>
-            Ihr Gewerk. <span className="text-primary-400">Ihre Software.</span>
+            Anderes Werkzeug.
+            <br />
+            Derselbe Anspruch.
           </>
         }
-        intro="CraftOS ist für das Bau- und Ausbauhandwerk gemacht – und kennt die Abläufe Ihres Gewerks: vom Aufmaß über die Kolonnenplanung bis zur Schlussrechnung."
+        intro="Jedes Gewerk arbeitet anders. Gute Angebote, eine verlässliche Planung und nachvollziehbare Zahlen brauchen sie alle."
       />
-
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="section-space">
+        <div className="site-container">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10">
             {gewerke.map((g) => (
               <Link
+                href={"/gewerke/" + g.slug}
                 key={g.slug}
-                href={`/gewerke/${g.slug}`}
-                className="card-hover group flex flex-col rounded-2xl border border-ink-200 bg-ink-100 p-6"
+                className="border-t border-ink-200 py-8 group"
               >
-                <div className="flex items-start justify-between gap-3">
-                  <span className="flex items-center gap-3">
-                    <GewerkIcon
-                      slug={g.slug}
-                      className="h-6 w-6 flex-shrink-0 text-primary-400"
-                    />
-                    <h2 className="font-display text-lg font-semibold text-ink-900">{g.name}</h2>
-                  </span>
-                  {g.hatVorlagen && (
-                    <span className="inline-flex flex-shrink-0 items-center gap-1 rounded-full bg-primary-500/10 px-2 py-0.5 font-mono text-[0.6rem] font-medium uppercase tracking-wider text-primary-400">
-                      <Layers className="h-3 w-3" />
-                      Vorlagen
-                    </span>
-                  )}
-                </div>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-500">
-                  {g.painPoints[0].text}
-                </p>
-                <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-primary-400">
-                  CraftOS für {g.kurz}
-                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                </span>
+                <GewerkIcon slug={g.slug} className="w-16 h-16" />
+                <h2 className="text-2xl font-semibold mt-6 flex justify-between gap-4 group-hover:text-primary-800">
+                  {g.name}
+                  <ArrowUpRight size={20} className="shrink-0 mt-1" />
+                </h2>
+                <p className="text-sm text-ink-600 mt-4">{g.heroIntro}</p>
+                {g.hatVorlagen && (
+                  <p className="text-xs text-primary-800 mt-4 font-semibold">
+                    Mit vorbereiteten Leistungsvorlagen
+                  </p>
+                )}
               </Link>
             ))}
           </div>
-
-          <div className="mt-14 rounded-2xl border border-ink-200 bg-ink-100 p-8 text-center">
-            <SectionHeading
-              title="Ihr Gewerk ist nicht dabei?"
-              intro="CraftOS ist gewerkeoffen: Leistungen, Artikel und Vorlagen legen Sie in Minuten selbst an – oder Sie starten mit den Allround-Vorlagen."
-              align="center"
-            />
-            <div className="mt-7">
-              <CtaButton>14 Tage kostenlos testen</CtaButton>
-            </div>
+        </div>
+      </section>
+      <section className="section-space bg-ink-100">
+        <div className="site-container split-section">
+          <Image
+            src="/images/werkstatt-2026.webp"
+            alt="Tischlerin prüft ein Eichenbrett an einer Werkbank bei Tageslicht"
+            width={1536}
+            height={1024}
+            className="rounded-2xl"
+            sizes="(max-width:767px) 100vw, 50vw"
+          />
+          <div>
+            <p className="eyebrow">So individuell wie Ihr Betrieb</p>
+            <h2 className="section-title">
+              Ihre Erfahrung.
+              <br />
+              Eine gute Grundlage.
+            </h2>
+            <p className="section-intro">
+              Hinterlegen Sie eigene Leistungen, Preise und Arbeitsabläufe.
+              CraftOS hält die Informationen zusammen, die Sie für Ihre
+              Entscheidungen brauchen.
+            </p>
+            <Link className="text-link mt-6" href="/funktionen/angebote">
+              Angebote und Kalkulation entdecken
+            </Link>
           </div>
         </div>
       </section>
+      <TrialCta />
     </>
-  )
+  );
 }

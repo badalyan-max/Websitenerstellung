@@ -1,0 +1,1148 @@
+{
+  "source": "C:\\Users\\badal\\.codex\\worktrees\\craftos-relaunch-01a08357\\main",
+  "destination": "C:\\Projekte\\Websitenerstellung",
+  "baseline": "142ab8284e293ccace77e13a93c00ffbf53c8af0",
+  "originalChangesPreserved": [
+    "craftos/BILDER-PROMPTS.md",
+    "AGENTS.md",
+    "craftos/_seo-referenz/"
+  ],
+  "files": [
+    {
+      "path": ".gitignore",
+      "action": "copy",
+      "sha256": "D34C4096E5D6A982371D9CA57FD7E6A9F0D8AFA51ADD5F2A5AAA0065E9AF6D3C"
+    },
+    {
+      "path": ".planning/config.json",
+      "action": "copy",
+      "sha256": "C08D0688290E4823332F260E13CD5AD2E317952E82D98B39751942EFAEF765D1"
+    },
+    {
+      "path": ".planning/handoff.json",
+      "action": "copy",
+      "sha256": "39ED5D4A31ED5E5A371E6951FFC7F4D18D3131ACB6A1773503985A77A079AB90"
+    },
+    {
+      "path": ".planning/PROJECT.md",
+      "action": "copy",
+      "sha256": "35CAA941C25C0868F0A12EEC9DCC64B2E6D04C90EAD57145D6BC552126A0EC29"
+    },
+    {
+      "path": ".planning/REQUIREMENTS.md",
+      "action": "copy",
+      "sha256": "1ACBF0EB409249CE8FB2551E0D458602E6F7F0D82B2B5950DF11994104B75918"
+    },
+    {
+      "path": ".planning/ROADMAP.md",
+      "action": "copy",
+      "sha256": "C85C16B997B88EAD1A41C8B8C01EA90914287D97F06CD514F40D845B53445F48"
+    },
+    {
+      "path": ".planning/STATE.md",
+      "action": "copy",
+      "sha256": "B3C7A6F5BC67C8FF1E3C98E4BB15D3A7E71B88B259615B063ED83312B7FACF7D"
+    },
+    {
+      "path": "craftos/app/agb/page.tsx",
+      "action": "copy",
+      "sha256": "CBEB6EEA322416400869085CCC5F827FDAFD3D30F2AA8FA0ADDCFF74BCE7F60C"
+    },
+    {
+      "path": "craftos/app/app/page.tsx",
+      "action": "copy",
+      "sha256": "C833508677FEA06A3FB0681B528713A8F6FF87F3D491CFB3152237D241967A5B"
+    },
+    {
+      "path": "craftos/app/blog/[slug]/opengraph-image.tsx",
+      "action": "copy",
+      "sha256": "4EB00403D9D3C4007210B5D319B36C7A78208E3DB98A7412F752D67CDB4FE722"
+    },
+    {
+      "path": "craftos/app/blog/[slug]/page.tsx",
+      "action": "copy",
+      "sha256": "A0BF9B06F7467A34C5102A0F17F44283E59FE9195F0C9E4166EF946884BA898B"
+    },
+    {
+      "path": "craftos/app/blog/kategorie/[category]/page.tsx",
+      "action": "copy",
+      "sha256": "63B00F6C5651C82793EE4BF3A1074EF715C8DABFB063791274AD83DD6F717DDE"
+    },
+    {
+      "path": "craftos/app/blog/page.tsx",
+      "action": "copy",
+      "sha256": "1BCCFA7D2691E35D77C612422B8951AED2F29DC72EC5F2DC3DF4F880DBA6BA9F"
+    },
+    {
+      "path": "craftos/app/craft-ai/page.tsx",
+      "action": "copy",
+      "sha256": "22DA4755AB54E9517DBFBB8E93D6CB0FE08A32EE3B0F126FF86C8FCA8243047F"
+    },
+    {
+      "path": "craftos/app/fakten-ueber-craftos/page.tsx",
+      "action": "copy",
+      "sha256": "B6894F7F582E8DFD4CF9A2F7738BB9DBCBCC2870517B6B63FD55CA6518ED8E1A"
+    },
+    {
+      "path": "craftos/app/feed.xml/route.ts",
+      "action": "copy",
+      "sha256": "4175C26BA7E0F24F6A2EF98FD1108DCEDA33C9F32798EEBD4AC69095998FBDCB"
+    },
+    {
+      "path": "craftos/app/funktionen/[slug]/page.tsx",
+      "action": "copy",
+      "sha256": "5292247ACB414A39F2DAB047D2B150E419D25AA3D0A5F05BEACB2C7587E78B33"
+    },
+    {
+      "path": "craftos/app/funktionen/page.tsx",
+      "action": "copy",
+      "sha256": "CF0723F861B65B0D85BF9A72705CAA51081103394F5E821ACD011560C7DCFF0D"
+    },
+    {
+      "path": "craftos/app/gewerke/[slug]/page.tsx",
+      "action": "copy",
+      "sha256": "02D46F1D177AB433FC6993AEC3A84B69E8D28ABCF98BCF44921BC0124A774F6F"
+    },
+    {
+      "path": "craftos/app/gewerke/page.tsx",
+      "action": "copy",
+      "sha256": "469F6FCE64B09F6AE98783B0E9620EFD8C4715021A5EE82D232E3A6970AB1172"
+    },
+    {
+      "path": "craftos/app/globals.css",
+      "action": "copy",
+      "sha256": "C0228E28FEF6D551CC42DA02EDE5B91E526E1579BD97265ECD0FDF18EB31CE01"
+    },
+    {
+      "path": "craftos/app/gobd/page.tsx",
+      "action": "copy",
+      "sha256": "808111A184BEB4C453B29F80645F7E180ED0FCC94F7BEA7C84013093EA6B8BD7"
+    },
+    {
+      "path": "craftos/app/hilfe/[slug]/opengraph-image.tsx",
+      "action": "copy",
+      "sha256": "2163034D5C17EB2E0059E498A40391A34E634181E877BFB55C4A4D360B38B896"
+    },
+    {
+      "path": "craftos/app/hilfe/[slug]/page.tsx",
+      "action": "copy",
+      "sha256": "AEF200BFD654AC3699A3CF438C1D0708C20E1A0155DF8C10CA457655B4CBA988"
+    },
+    {
+      "path": "craftos/app/hilfe/kategorie/[category]/page.tsx",
+      "action": "copy",
+      "sha256": "BD3C942DD4ADA82EA281C3968E01E4FA8D3E9A660E44CBE81EBC786B5CC4C74C"
+    },
+    {
+      "path": "craftos/app/hilfe/page.tsx",
+      "action": "copy",
+      "sha256": "566904DEE8BEFC1663C9B1ED45614F60E7C945E51B460907D294640F9B28CD53"
+    },
+    {
+      "path": "craftos/app/layout.tsx",
+      "action": "copy",
+      "sha256": "B560FCC8339645BB0BF1A9D447E4EADB5B8BCF71A81E6AD3074BC42571099ACF"
+    },
+    {
+      "path": "craftos/app/not-found.tsx",
+      "action": "copy",
+      "sha256": "4242D90C924AD2532E89CEADC3117842D07481A272136F2DAA69D2DCD96B9476"
+    },
+    {
+      "path": "craftos/app/page.tsx",
+      "action": "copy",
+      "sha256": "864B6578BBE612F2AC1DF94E8635102E8165664DBE198E56F63A73BA60F5FF6E"
+    },
+    {
+      "path": "craftos/app/preise/page.tsx",
+      "action": "copy",
+      "sha256": "8E220F699C69D7D736CADB26F5F6631717B3D5DA92FB03326058AB636F025970"
+    },
+    {
+      "path": "craftos/app/rechner/angebotskalkulation/page.tsx",
+      "action": "copy",
+      "sha256": "E0E24EADFF998BFDAECB714E5D60F166F3D2D14A0106707E5A471842D2E30B3E"
+    },
+    {
+      "path": "craftos/app/rechner/page.tsx",
+      "action": "copy",
+      "sha256": "18FAA83680BC795D93056C730DCA6271A807E58223E9B45824B98D0FB4FBF9A3"
+    },
+    {
+      "path": "craftos/app/rechner/stundensatz/page.tsx",
+      "action": "copy",
+      "sha256": "1481D7928D1509E9534BC63B7ACD264A65663289A814AB38CC84444A24417D9A"
+    },
+    {
+      "path": "craftos/app/robots.ts",
+      "action": "copy",
+      "sha256": "DDEAE1ED3FB4ED78A66D63E55D51B500BE15CA47371CAFE2ABFDF84B7C57B9D1"
+    },
+    {
+      "path": "craftos/app/sitemap.ts",
+      "action": "copy",
+      "sha256": "9FD65A8557D78B5D63A454063298E9449AD5D3A9CDD53C40400CFDC8F5EE5F0B"
+    },
+    {
+      "path": "craftos/app/support/page.tsx",
+      "action": "copy",
+      "sha256": "1F9634A014FE89B76BAC703A6D3477CBB3B99780C0433AFEF038A070E45246C7"
+    },
+    {
+      "path": "craftos/app/vergleich/Comparison.module.css",
+      "action": "copy",
+      "sha256": "81F7085BE461EC22E36C548B322F173CF62A7554916238962DA64B88F6496743"
+    },
+    {
+      "path": "craftos/app/vergleich/page.tsx",
+      "action": "copy",
+      "sha256": "BD74CF821EE93B87BE89F346DD17845C8B5750C3F788A0FA6B078E1046FB556B"
+    },
+    {
+      "path": "craftos/components/Analytics.tsx",
+      "action": "copy",
+      "sha256": "CBD876C8477AF5A0E8592810C8FB869B0E2B2042751C847CFDB48D1ED7305647"
+    },
+    {
+      "path": "craftos/components/calculators/CalculatorFields.tsx",
+      "action": "copy",
+      "sha256": "6F03222E9147BDF56D863B60E9580F277306D6437CBE537B87C7F74BE75CD020"
+    },
+    {
+      "path": "craftos/components/calculators/CalculatorPage.tsx",
+      "action": "copy",
+      "sha256": "280F5EFED63E770776C4DC490D3802CE296D58D31DB8DF4D04F8939A8045F723"
+    },
+    {
+      "path": "craftos/components/calculators/Calculators.module.css",
+      "action": "copy",
+      "sha256": "34EF5E4D9E60F072F1A67991AF6CAFB3C107C929ABA195D77A9AEB80C68FAFE4"
+    },
+    {
+      "path": "craftos/components/calculators/HourlyRateCalculator.tsx",
+      "action": "copy",
+      "sha256": "7E9C21038F7BEFAD7F052AC35133C9C2ED9816780D940AE0DDA1ABA0649F810D"
+    },
+    {
+      "path": "craftos/components/calculators/OfferCalculator.tsx",
+      "action": "copy",
+      "sha256": "9CBC654060A026539BF69F1F8B2449351A34779227E175E5E086A1771E7F3FA7"
+    },
+    {
+      "path": "craftos/components/content/ArticlePage.tsx",
+      "action": "copy",
+      "sha256": "7EF93E14F4F4C65DDEBEE7E292D7E354DE21613743A5315282DA46A96E65B708"
+    },
+    {
+      "path": "craftos/components/content/ContentIndex.tsx",
+      "action": "copy",
+      "sha256": "D6E1563E030A1E785AB2E7A34B69DC713E0D76972CBCB5BCFD5951B06D9BCA87"
+    },
+    {
+      "path": "craftos/components/content/ContentSearch.tsx",
+      "action": "copy",
+      "sha256": "E2736276E736E040DC5E28B11AAB7A8B3E7ED44AD53B1A2D1DD8740A7031F58F"
+    },
+    {
+      "path": "craftos/components/CraftOSLogo.tsx",
+      "action": "copy",
+      "sha256": "5EA320E82722D78A70F66F58502D571ED45F91EE508EC476E07EA2D744420009"
+    },
+    {
+      "path": "craftos/components/demos/AngebotDemo.tsx",
+      "action": "delete"
+    },
+    {
+      "path": "craftos/components/demos/DemoFrame.tsx",
+      "action": "delete"
+    },
+    {
+      "path": "craftos/components/demos/KiChatDemo.tsx",
+      "action": "delete"
+    },
+    {
+      "path": "craftos/components/demos/LagerDemo.tsx",
+      "action": "delete"
+    },
+    {
+      "path": "craftos/components/demos/PlantafelDemo.tsx",
+      "action": "delete"
+    },
+    {
+      "path": "craftos/components/demos/ZeitenDemo.tsx",
+      "action": "delete"
+    },
+    {
+      "path": "craftos/components/home/Hero.tsx",
+      "action": "copy",
+      "sha256": "B640D826A13E99ABC15C7136F4FF561AE1D5FD5A368B38E9C0107EB62F8484FD"
+    },
+    {
+      "path": "craftos/components/layout/Footer.tsx",
+      "action": "copy",
+      "sha256": "A3CA200EEE994713A0CC3DEA6F7C58E0E49E2437B18E2A8BA5193485BF7CED28"
+    },
+    {
+      "path": "craftos/components/layout/Header.module.css",
+      "action": "copy",
+      "sha256": "453E0ECC7B0D51D5F1B1E63838933D8FDE57A154EBFD38C225BD6F0832799D05"
+    },
+    {
+      "path": "craftos/components/layout/Header.tsx",
+      "action": "copy",
+      "sha256": "F2010A47CC0DB58138E92D910881D8850F8C57184C52F3B14AB259B7D81B4C94"
+    },
+    {
+      "path": "craftos/components/preise/PricingTable.module.css",
+      "action": "copy",
+      "sha256": "4CE5BD6D7C8609B6C68E6306AB4B4531328A6C1F347A54BDD4C6A79E0D8B102A"
+    },
+    {
+      "path": "craftos/components/preise/PricingTable.tsx",
+      "action": "copy",
+      "sha256": "D1FCCB0AE42C5F0942ACE46E6AA1671C3AB689B839A3CEAD448E8863D30A8B83"
+    },
+    {
+      "path": "craftos/components/product-demo/ProductDemo.module.css",
+      "action": "copy",
+      "sha256": "AFCA49DB981B0AC46F9A8BA50C117197D476E278B617D2C392E85AA4225CFE74"
+    },
+    {
+      "path": "craftos/components/product-demo/ProductDemo.tsx",
+      "action": "copy",
+      "sha256": "3E2F612E95C98D64479DB9C364A256A3D60F64193FF95C2F6533A7100FBC8258"
+    },
+    {
+      "path": "craftos/components/product-demo/README.md",
+      "action": "copy",
+      "sha256": "9683002AB67AF105E59EB7E9F902A4FF61DC26F504FD459A0998F80E036D1C0D"
+    },
+    {
+      "path": "craftos/components/seo/JsonLd.tsx",
+      "action": "copy",
+      "sha256": "30E46FF706DA302726716F74445B164F33BC83CB062D81F33164B95415B00945"
+    },
+    {
+      "path": "craftos/components/ui/BildBanner.tsx",
+      "action": "delete"
+    },
+    {
+      "path": "craftos/components/ui/Faq.tsx",
+      "action": "copy",
+      "sha256": "766E1E8B88CE468BA014D5E9360F1B4609BE6B2653DE867EFB4039232D6BBF4C"
+    },
+    {
+      "path": "craftos/components/ui/GewerkIcon.tsx",
+      "action": "copy",
+      "sha256": "4BD639E0BAD5B90E6828D0E2F316DF373ADFC97DFDBF2BE9842BC14E4226FC7D"
+    },
+    {
+      "path": "craftos/components/ui/MobileAppGallery.module.css",
+      "action": "copy",
+      "sha256": "E315DCCA9D3067AB2C6758A8B4ACD56876365A28B59ABEB1E5CB0874190DE204"
+    },
+    {
+      "path": "craftos/components/ui/MobileAppGallery.tsx",
+      "action": "copy",
+      "sha256": "2D470729ECE0DABAE03145612EEE934D12C4DA28CEE1CF24ADEC67E93B43AA1A"
+    },
+    {
+      "path": "craftos/components/ui/PageHero.tsx",
+      "action": "copy",
+      "sha256": "8F922F0F4A8AF21948065FDE71E403EFDA99E3D3E4553B9FAADD87A06EB55F1D"
+    },
+    {
+      "path": "craftos/components/ui/primitives.tsx",
+      "action": "delete"
+    },
+    {
+      "path": "craftos/components/ui/Reveal.tsx",
+      "action": "delete"
+    },
+    {
+      "path": "craftos/components/ui/ScreenshotFrame.tsx",
+      "action": "delete"
+    },
+    {
+      "path": "craftos/components/ui/StoreLinks.module.css",
+      "action": "copy",
+      "sha256": "FEC060B4877DE1294D5984B9BF0051DFA5EF3D34C8F31F745CFC9BDE97783F33"
+    },
+    {
+      "path": "craftos/components/ui/StoreLinks.tsx",
+      "action": "copy",
+      "sha256": "575A0003DFCB08B9EF71F33197835FF497B299F6D3B3C6A8935C762ED0F397C9"
+    },
+    {
+      "path": "craftos/components/ui/TrialCta.tsx",
+      "action": "copy",
+      "sha256": "D23159E1186EC7DD621230E4DF735A1EA8B7C00C0847A33436F9E61A58E8C593"
+    },
+    {
+      "path": "craftos/content/blog/abschlagsrechnung-schlussrechnung.md",
+      "action": "copy",
+      "sha256": "52DF8BEA54104963DA3422CA83F820E9B81DA1DE9CF60E2087CCEDCD94494573"
+    },
+    {
+      "path": "craftos/content/blog/aufmass-angebot-mengen-abzuege.md",
+      "action": "copy",
+      "sha256": "C35BFC83DDAB6D81387604EAECCDEA5F3CEEF276A7421826CBB76D0F638ABD07"
+    },
+    {
+      "path": "craftos/content/blog/baustellen-einsatzplanung.md",
+      "action": "copy",
+      "sha256": "518A4748CAB5FF84B5BF3582603D18D75FFDB99145BA0B21A4C9AAE5497FA3EA"
+    },
+    {
+      "path": "craftos/content/blog/datev-export-vorbereiten.md",
+      "action": "copy",
+      "sha256": "A8249ACF94739DFB2719F5EF206F8EC89C5AC3CD52EBBCE76427E800E208EF85"
+    },
+    {
+      "path": "craftos/content/blog/digitale-bautagesberichte.md",
+      "action": "copy",
+      "sha256": "3D5D7C1E1B328668CC1BB74915EDCB05E2BB89A8F16807A4D94572280BFF7292"
+    },
+    {
+      "path": "craftos/content/blog/digitale-projektakte.md",
+      "action": "copy",
+      "sha256": "5B9C150BE4F27729918461BDD9FCF147AAD590F33CF1CBE14A1E7B9406DF38AC"
+    },
+    {
+      "path": "craftos/content/blog/eingangsrechnungen-digital-organisieren.md",
+      "action": "copy",
+      "sha256": "E38C215BE6108B0E2EAF552728434C71C9A7745F8C503A21098B96E02673A816"
+    },
+    {
+      "path": "craftos/content/blog/handwerkerangebot-erstellen.md",
+      "action": "copy",
+      "sha256": "F520068139199CF76BC32C562CF9331EAA1F5FC107BBD7C5BDDF061C487A2173"
+    },
+    {
+      "path": "craftos/content/blog/handwerkerrechnung-schreiben.md",
+      "action": "copy",
+      "sha256": "002265BA4D18418B3E7C78B5D488A0E8F73510248C9C68818550FCA6EED50566"
+    },
+    {
+      "path": "craftos/content/blog/handwerkersoftware-auswaehlen.md",
+      "action": "copy",
+      "sha256": "34DA003833979B14D62E941EF3405035A37C57C80C21F8A4600230BD5CDAF100"
+    },
+    {
+      "path": "craftos/content/blog/handwerkersoftware-einzelunternehmen.md",
+      "action": "copy",
+      "sha256": "52C30650AD63F8BF20932F68537CDE8ABA65989E0DAF4226E37A98471F8CB7F0"
+    },
+    {
+      "path": "craftos/content/blog/handwerkersoftware-wechseln.md",
+      "action": "copy",
+      "sha256": "C8BD04A62A2C846AC7F85B459853C176E908B1953566157A9220234007806E9B"
+    },
+    {
+      "path": "craftos/content/blog/ki-belegscan-pruefen.md",
+      "action": "copy",
+      "sha256": "234A0B7BCDAED69B072EC54E9E7E70FE7B78E2B9D70E267EFE791A4C7BD62643"
+    },
+    {
+      "path": "craftos/content/blog/materialverbrauch-baustelle-zuordnen.md",
+      "action": "copy",
+      "sha256": "9CE853109CAF9370A2B67824CD7040A0BF86F0D0CB22056A2D6A2F7C85E7680B"
+    },
+    {
+      "path": "craftos/content/blog/nachkalkulation-handwerk.md",
+      "action": "copy",
+      "sha256": "9BD0A1CA6455C7969206E66F31CBFBE246AFF39117C9778BBCB82355FCCA82AE"
+    },
+    {
+      "path": "craftos/content/blog/offene-posten-liquiditaet.md",
+      "action": "copy",
+      "sha256": "6DEFFE956E5A9574BBF2E24D07133A84630330D9A4B42D9333A00D6E8574FD01"
+    },
+    {
+      "path": "craftos/content/blog/offline-baustellen-app.md",
+      "action": "copy",
+      "sha256": "2AC085E5AA02F538D2662E3F2DADB3E5AA7A02471701ADF3B3FB2AC0B59C41A2"
+    },
+    {
+      "path": "craftos/content/blog/projektbezogene-zeiterfassung.md",
+      "action": "copy",
+      "sha256": "4D0035BD121919DC86D1D228DA8069B74A0E102EAF56459B6738385912CDC163"
+    },
+    {
+      "path": "craftos/content/blog/stundenverrechnungssatz-berechnen.md",
+      "action": "copy",
+      "sha256": "EE4B5CD97CAEAADC0C21B14735DDCDDD53D1026875B112CA2A34092CDE3A7B45"
+    },
+    {
+      "path": "craftos/content/blog/tiefenkalkulation-handwerk.md",
+      "action": "copy",
+      "sha256": "4F15341885605D1EA3EE38019738CF7A13B665360063C3C0A027A4ED4DB649C9"
+    },
+    {
+      "path": "craftos/content/blog/urlaub-abwesenheiten-einsatzplanung.md",
+      "action": "copy",
+      "sha256": "92EFBD80A21C2CAB916A51CB05381DA02532BD867364CF385B49C42DDF6FFD4E"
+    },
+    {
+      "path": "craftos/content/blog/web-app-baustellen-app.md",
+      "action": "copy",
+      "sha256": "D375FAE3C3B46EE59B5EDDA6AF2D7B77C3AB35B0FF7CF0CCD359F694423D4402"
+    },
+    {
+      "path": "craftos/content/blog/xrechnung-zugferd-pdf-unterschiede.md",
+      "action": "copy",
+      "sha256": "32E94597460B330E301ECC919406303D57FECE98CE84F5B666A61B8997B0DF90"
+    },
+    {
+      "path": "craftos/content/blog/zahlungserinnerung-mahnung-handwerk.md",
+      "action": "copy",
+      "sha256": "73BBAC80BEA629EBE4397CD71A543963AEE81488D4AAC90A38CB17D6859D02DA"
+    },
+    {
+      "path": "craftos/content/hilfe/abnahme-dokumentieren.md",
+      "action": "copy",
+      "sha256": "ACD773440865A9CA64CD7518EB038519C0D5DECBDE0DEEFFB5316184F02CE44C"
+    },
+    {
+      "path": "craftos/content/hilfe/abschlagsrechnung-erstellen.md",
+      "action": "copy",
+      "sha256": "F15DC1DF4B251A0637EB1F6E2E4EB3C4A5C74EC19BE11732360E038697EC401B"
+    },
+    {
+      "path": "craftos/content/hilfe/angebot-entwurf-anlegen.md",
+      "action": "copy",
+      "sha256": "B7E361DBC0B561E84F067601FBAC767173AF658A91A6322F59F448A5BAC57312"
+    },
+    {
+      "path": "craftos/content/hilfe/angebot-in-rechnung-uebernehmen.md",
+      "action": "copy",
+      "sha256": "77C99FC8B36F5B2414B361AD925E1A6ED2E86AB446DB9FD792C3A359D085B139"
+    },
+    {
+      "path": "craftos/content/hilfe/angebotspositionen-leistungsvorlagen.md",
+      "action": "copy",
+      "sha256": "E17D6D3C2EB3F3C22E90C4F2203EB4F96420CEE1B9FE6A85ABE47336FEB166B2"
+    },
+    {
+      "path": "craftos/content/hilfe/anmelden-web-mobile.md",
+      "action": "copy",
+      "sha256": "7A5E3499190DD4B2FADEAC761D109F12F84CE0CD251A7DE6B2C8C0DF9A51B127"
+    },
+    {
+      "path": "craftos/content/hilfe/artikel-stammdaten-anlegen.md",
+      "action": "copy",
+      "sha256": "C930B1D4C3B5D8B8DD3F14609DB8A424261A62E056B4A457A6CDB8D13429C470"
+    },
+    {
+      "path": "craftos/content/hilfe/bautagesbericht-erstellen.md",
+      "action": "copy",
+      "sha256": "819AA5E0DA03FDA251EE5E1304757A3B40230F48E94E2F86E467058AC8BEB031"
+    },
+    {
+      "path": "craftos/content/hilfe/beleg-kontieren-zuordnen.md",
+      "action": "copy",
+      "sha256": "1F3F6013BCF44B668ACC2B1A7B37AD42A1B52AB85E31912EBB48FE69813AC78F"
+    },
+    {
+      "path": "craftos/content/hilfe/beleg-scannen-pruefen.md",
+      "action": "copy",
+      "sha256": "0D641D822579E7F379E76CEECE3E90BE677B0E8B71A03804CD3B70BEC0098B52"
+    },
+    {
+      "path": "craftos/content/hilfe/berichte-abrechnen.md",
+      "action": "copy",
+      "sha256": "ED96977429A86E6D31E09034349C0AAB5B3A9167D8D9108029976A2BD293B5B4"
+    },
+    {
+      "path": "craftos/content/hilfe/craft-ai-betriebsdaten-fragen.md",
+      "action": "copy",
+      "sha256": "940739CA7590F31322138BB51E5A03056C84CFD903B969D5E3EE6C5A1A9172F6"
+    },
+    {
+      "path": "craftos/content/hilfe/datev-export-erstellen.md",
+      "action": "copy",
+      "sha256": "B20B55673560B7F047C671D9406575B8950F0D78471A61F277630587BFB2A25A"
+    },
+    {
+      "path": "craftos/content/hilfe/e-rechnung-herunterladen.md",
+      "action": "copy",
+      "sha256": "E415BA4782C82FB5536220D84125386576E4703FAF3D9DF7D9954DACF88C9B26"
+    },
+    {
+      "path": "craftos/content/hilfe/firmenprofil-einrichten.md",
+      "action": "copy",
+      "sha256": "C110136E5E6ED60BB9CC7DA946C9A35B085D9B264E9DD8667A71F1BC15F8B834"
+    },
+    {
+      "path": "craftos/content/hilfe/gaeb-importieren.md",
+      "action": "copy",
+      "sha256": "F049E3A59FC2679D5FE174663477F945719BB046348CB0C9AB1CF3C345EA6F01"
+    },
+    {
+      "path": "craftos/content/hilfe/inventur-durchfuehren.md",
+      "action": "copy",
+      "sha256": "2F359A5185F75F494DD7E7E592E7B85A7D057B2516E8ACB21E313A3D160A8EE7"
+    },
+    {
+      "path": "craftos/content/hilfe/ki-entwurf-pruefen-uebernehmen.md",
+      "action": "copy",
+      "sha256": "A3FC1FC48ACF0018E435757CB1C51CEBCCD9F433C78FC4D804D6122AA0440D58"
+    },
+    {
+      "path": "craftos/content/hilfe/kunden-ansprechpartner-anlegen.md",
+      "action": "copy",
+      "sha256": "2C4883067AF92442D8E920ECFDB043920CD243BD65B42BF71350387392C52A2C"
+    },
+    {
+      "path": "craftos/content/hilfe/lagerorte-lagerplaetze-einrichten.md",
+      "action": "copy",
+      "sha256": "2F4C242C64C722D9E4835AAA0486741D71DBE451EE787C03417435544A61F1E6"
+    },
+    {
+      "path": "craftos/content/hilfe/mangel-erfassen-bearbeiten.md",
+      "action": "copy",
+      "sha256": "DF3B01E172B435A1134A88AFDDEEE327A40B53FC3080994492B6087944FCAFCB"
+    },
+    {
+      "path": "craftos/content/hilfe/material-entnehmen-zurueckbuchen.md",
+      "action": "copy",
+      "sha256": "EE969D8219D0290F766527CEA268708D3BD3B73A2600F79C712C6CB5ED8572E2"
+    },
+    {
+      "path": "craftos/content/hilfe/mitarbeiter-einladen-lizenz-zuweisen.md",
+      "action": "copy",
+      "sha256": "0129EBA827B9E5D8A7BD0DCE7860F35490653361529EC5ADB933139DA3D3215B"
+    },
+    {
+      "path": "craftos/content/hilfe/mobile-offline-synchronisierung.md",
+      "action": "copy",
+      "sha256": "C29ABCF8516CA13B40EAAED3503CFA569A0CBDB518DD92477572782C344662A7"
+    },
+    {
+      "path": "craftos/content/hilfe/mobilen-timer-bedienen.md",
+      "action": "copy",
+      "sha256": "3C1695EE1219DB30865C3F2837110B6B42280C16F4BD281966AEF0DD95EA2B2D"
+    },
+    {
+      "path": "craftos/content/hilfe/plantafel-einsatz-planen.md",
+      "action": "copy",
+      "sha256": "BAC4AC7776B7B0BE6505C9907742BDFC878206A0CB7ED70C97C2372A09CB4486"
+    },
+    {
+      "path": "craftos/content/hilfe/planung-mitarbeiter-ressourcen.md",
+      "action": "copy",
+      "sha256": "7499DDD9620C619FCB7D1F6A017317750C366243D128EA31658A379A7DB244B7"
+    },
+    {
+      "path": "craftos/content/hilfe/position-tiefenkalkulieren.md",
+      "action": "copy",
+      "sha256": "D3E40D2D4D58DFAF8B3B57EA97BB578A55301B20F1E622D898CD5C4FB7F1DEF2"
+    },
+    {
+      "path": "craftos/content/hilfe/projekt-phasen-anlegen.md",
+      "action": "copy",
+      "sha256": "C734FEE0492CC72B7C8385C5C7A75DB81273047E08E2A1D7FD217670B94F5A73"
+    },
+    {
+      "path": "craftos/content/hilfe/projektdateien-ordner.md",
+      "action": "copy",
+      "sha256": "8F267072D97DEA629019D94F2E4C969D63CBAA083C2F29A2E1ECE31F8887F12C"
+    },
+    {
+      "path": "craftos/content/hilfe/raumaufmass-angebot-uebernehmen.md",
+      "action": "copy",
+      "sha256": "CEFC46589E4FEBEE47B8AFB3AFBC502E8A1C76F3A80E78A3D33324534DF85373"
+    },
+    {
+      "path": "craftos/content/hilfe/rechnung-fertigstellen.md",
+      "action": "copy",
+      "sha256": "EDE1F15CA1DA31927151DA6D3A37B4DE58721C5DC6D5AAECD0E39413383129B5"
+    },
+    {
+      "path": "craftos/content/hilfe/rechnung-stornieren.md",
+      "action": "copy",
+      "sha256": "5B49FB98E3CB9612863E3EA6D4E74808909306AFEC505FA29C5F344DFA2A98AB"
+    },
+    {
+      "path": "craftos/content/hilfe/rollen-zugriffsrechte-einstellen.md",
+      "action": "copy",
+      "sha256": "A65B37BE6A1A137D3DB95CDDC0EF7E39CB2AB9325DA8291AC5F53B5C29624A42"
+    },
+    {
+      "path": "craftos/content/hilfe/schlussrechnung-erstellen.md",
+      "action": "copy",
+      "sha256": "4639A64E185BF0B7714E1180D350EFC63C0474D03059598683366653A638A6E8"
+    },
+    {
+      "path": "craftos/content/hilfe/urlaub-beantragen-bearbeiten.md",
+      "action": "copy",
+      "sha256": "59D83C4E023B3EEC13EB63ADF49BECA7720520E2FECB7E47C933BDE9838FDD96"
+    },
+    {
+      "path": "craftos/content/hilfe/wareneingang-buchen.md",
+      "action": "copy",
+      "sha256": "D834A260207F100349D1C46EB6E4B5A154E7FDDA0C2A819841C9119A54188D44"
+    },
+    {
+      "path": "craftos/content/hilfe/zahlungen-erfassen.md",
+      "action": "copy",
+      "sha256": "610C25E134689069D4B84E981A03C96D5AFC5596BE7CA7D5D55602E7CBD8D8D4"
+    },
+    {
+      "path": "craftos/content/hilfe/zeiteintrag-erfassen-korrigieren.md",
+      "action": "copy",
+      "sha256": "14DE8A6125B93505FCC8C18D8722DDE0E256AA1B34DF5EDF3B199A1B8F19E5AA"
+    },
+    {
+      "path": "craftos/content/hilfe/zeiten-pruefen-exportieren.md",
+      "action": "copy",
+      "sha256": "5E07FDF2B0893E4DF113C13E7C6212FCAA0C58C55A2CC298A0F47DF14F73CCE8"
+    },
+    {
+      "path": "craftos/docs/ANALYTICS.md",
+      "action": "copy",
+      "sha256": "3C471BB47B6A6EB3DFB180B0511886BE5C8838B48FA6C8483869560F17BCC6A8"
+    },
+    {
+      "path": "craftos/docs/browser-functional-audit.md",
+      "action": "copy",
+      "sha256": "5A3936D5B1980107619FF9F6423636F818A42D5D7E4C0E0565F71748B869B847"
+    },
+    {
+      "path": "craftos/docs/competitor-source-audit.md",
+      "action": "copy",
+      "sha256": "01DBB47DA25C969982657A56FFFC7326061977A15C8966ECF0B21041C290BAF4"
+    },
+    {
+      "path": "craftos/docs/content-source-audit.md",
+      "action": "copy",
+      "sha256": "5051C2308E978F4915547E4CDBA9BA4A8D92BD7F8FDDC8B43776183D03DEC22F"
+    },
+    {
+      "path": "craftos/docs/MEDIA.md",
+      "action": "copy",
+      "sha256": "7E972B8E444155AE23144D212B809042D5775B129F47C7D0457E4FFF279A3735"
+    },
+    {
+      "path": "craftos/docs/mobile-capture-manifest.json",
+      "action": "copy",
+      "sha256": "AB3B0A73E5405EE21B21A95EDF1A69B102E9171B5E6652B5B32C3CF6B695810B"
+    },
+    {
+      "path": "craftos/docs/mobile-capture-sources.md",
+      "action": "copy",
+      "sha256": "6276CD07B35BF3AB426F180F536F13253FB7E13B6F2E2A7E6DE49081EAA0E56B"
+    },
+    {
+      "path": "craftos/docs/MOBILE-MOCKUPS.md",
+      "action": "copy",
+      "sha256": "84395CED29CD1CCA2DC4E285D596478AC7B7DAFD91D255981D3DDEEFB733B949"
+    },
+    {
+      "path": "craftos/docs/performance-results.json",
+      "action": "copy",
+      "sha256": "6ACE93E3906577ED0DA4987D5C574EF4BF8972733D89C380C770854E4FAE9706"
+    },
+    {
+      "path": "craftos/docs/PERFORMANCE.md",
+      "action": "copy",
+      "sha256": "E1A861A819D6A681D1BF53EBA8FF80FB113A1AEAFCA2D9918F1BD72D214B7626"
+    },
+    {
+      "path": "craftos/docs/PRODUCT-REGISTER.md",
+      "action": "copy",
+      "sha256": "9F6ADCEFE6D22DA3557E3DAF926A9A5140A0D5FB77580D5E85175ECBEAD0D8D5"
+    },
+    {
+      "path": "craftos/docs/product-source-snapshot.json",
+      "action": "copy",
+      "sha256": "7209E58AA0340415C7C08A81948CBAEB7FD54E5FDDDF6405A9D80DFACD891BC5"
+    },
+    {
+      "path": "craftos/docs/RELAUNCH-ABNAHME.md",
+      "action": "copy",
+      "sha256": "32AEB92E0E0D30B9C873594A7F1544E3CF6F780719A4892D2281BD496A7F3D7A"
+    },
+    {
+      "path": "craftos/docs/store-media-sources.json",
+      "action": "copy",
+      "sha256": "5CE963C586B93614911A0F6A3984F2D3307697A5556C6BE7219D4BB3B553D48B"
+    },
+    {
+      "path": "craftos/docs/store-media-sources.md",
+      "action": "copy",
+      "sha256": "5F6A5282A60A2976D76EB625859FD8D3D75FCBB7226B9C8A9115FFA7374FDC34"
+    },
+    {
+      "path": "craftos/eslint.config.mjs",
+      "action": "copy",
+      "sha256": "CADD8B209D88DF0C04860E4F3923EE6C3C5544D26670C7816C0E640B75E3C05E"
+    },
+    {
+      "path": "craftos/lib/calculators.ts",
+      "action": "copy",
+      "sha256": "285BE19691480918A4D4BA5A891D35ED6DA55F68A1B2906DE593BBB14DA5281D"
+    },
+    {
+      "path": "craftos/lib/comparison.ts",
+      "action": "copy",
+      "sha256": "D6E912FBA2EF2323D6139BB59706EA928466368EFAE4E57D2774ABCA1AE272E9"
+    },
+    {
+      "path": "craftos/lib/content-types.ts",
+      "action": "copy",
+      "sha256": "3FEF2136A069424720CA588B08ACD7AC7CCCD6C8212AC55361BD483C72ADA135"
+    },
+    {
+      "path": "craftos/lib/content.ts",
+      "action": "copy",
+      "sha256": "63DDE1FAF94B581F81ACC0247171BE6028BE2F8F9B666706AA65F5755D14805B"
+    },
+    {
+      "path": "craftos/lib/demo/data.ts",
+      "action": "copy",
+      "sha256": "24EDBFAC9FB0607415901870F39465559EC07B9571E54289025721F3715B2CBA"
+    },
+    {
+      "path": "craftos/lib/demo/machine.ts",
+      "action": "copy",
+      "sha256": "4B6228691DD674E1FA4B85B4696E021C8B16B1FC3A490A2740D90B6491078AF4"
+    },
+    {
+      "path": "craftos/lib/funktionen.ts",
+      "action": "copy",
+      "sha256": "B151BE2AC19DC80CAD5CED13948FE2C872C81F7A707394A90276FE452FD087CF"
+    },
+    {
+      "path": "craftos/lib/gewerke.ts",
+      "action": "copy",
+      "sha256": "E2B92E9A3F7D690373CAA69373B4AFD735A7DD288F7C4B1DA0B353F470361FAE"
+    },
+    {
+      "path": "craftos/lib/images.ts",
+      "action": "delete"
+    },
+    {
+      "path": "craftos/lib/metadata.ts",
+      "action": "copy",
+      "sha256": "09E72DB7ACFFE7EEC5477DC70938ECA4B682CACE488C4A6E5BAFE9F7FFE88547"
+    },
+    {
+      "path": "craftos/lib/og.tsx",
+      "action": "copy",
+      "sha256": "E5D065D5691A58CF4BCC8C092D029C2B7F15CB164B97432D0DE1DC0118785DFA"
+    },
+    {
+      "path": "craftos/lib/product-register.ts",
+      "action": "copy",
+      "sha256": "2BB40D523632781DAF7A0456FDDE6999E4185B79659E84CBC1535ED3B1CE641C"
+    },
+    {
+      "path": "craftos/lib/schema.ts",
+      "action": "copy",
+      "sha256": "A72AC5554951C4995CBCD6A8DE06E3344A51293AD4664AC2700CBD95D2DFE354"
+    },
+    {
+      "path": "craftos/lib/site.ts",
+      "action": "copy",
+      "sha256": "4FF14B16A87EFE06F39B1F42CA2431B380E07E8074DA94E24E82E90C32B4278E"
+    },
+    {
+      "path": "craftos/next.config.js",
+      "action": "copy",
+      "sha256": "8362D80AC842B6C419108B8DDE9BCD7A47299BFEA7DDBBB34BA7E2BE354F698E"
+    },
+    {
+      "path": "craftos/package-lock.json",
+      "action": "copy",
+      "sha256": "979449D3F4F57626F14330CC7AA380B7431F717E0BF11291C09D8480D24B4FBC"
+    },
+    {
+      "path": "craftos/package.json",
+      "action": "copy",
+      "sha256": "A9EE0C39865FD6E00625FF4C8531DEF140FE11C4DD308B527A26DB2527C7FFC5"
+    },
+    {
+      "path": "craftos/public/icons/gewerke/allrounder.svg",
+      "action": "copy",
+      "sha256": "15E5D776330AD743EABA5D3F6CB94B8899AD078D2AD07278269BAE3857B02D0F"
+    },
+    {
+      "path": "craftos/public/icons/gewerke/bauunternehmen.svg",
+      "action": "copy",
+      "sha256": "16FBD9E51020FDD067EC7E0621F0B749E8CC2752F39A6ACED0725E71A4A0798C"
+    },
+    {
+      "path": "craftos/public/icons/gewerke/dachdecker.svg",
+      "action": "copy",
+      "sha256": "3A85DA6BACE2794E1C64CDB923394EE39CBD7BC8B62E350FA4CC715B006B14D7"
+    },
+    {
+      "path": "craftos/public/icons/gewerke/elektriker.svg",
+      "action": "copy",
+      "sha256": "5FEA83209DFF9D7DF80556C13141919571874A5E34EC710AC2995085C0D59AC6"
+    },
+    {
+      "path": "craftos/public/icons/gewerke/fliesenleger.svg",
+      "action": "copy",
+      "sha256": "0EDFA1ED1D5EB21D23E55D3C519E4335CBA4C724CEEC848654D8BAB6F3F6B81F"
+    },
+    {
+      "path": "craftos/public/icons/gewerke/galabau.svg",
+      "action": "copy",
+      "sha256": "095B8B205828112A77AD9B203CCA498F59B2323EF7BE7702C6153CE220F98E9A"
+    },
+    {
+      "path": "craftos/public/icons/gewerke/maler.svg",
+      "action": "copy",
+      "sha256": "EF5A17EC04D007148095CAF571A069C4C5C67FB5906E68D3B54F30EFF2D2733B"
+    },
+    {
+      "path": "craftos/public/icons/gewerke/metallbau.svg",
+      "action": "copy",
+      "sha256": "6E32F82FCA73D12115807D2DE6FD954D7C19B06FA6BC1817429CF01437A6C60C"
+    },
+    {
+      "path": "craftos/public/icons/gewerke/shk.svg",
+      "action": "copy",
+      "sha256": "D8591E61B56741493A6068B49A6D64594CB77CCDAD847F26BE0FFE133B4EA9B6"
+    },
+    {
+      "path": "craftos/public/icons/gewerke/tischler-schreiner.svg",
+      "action": "copy",
+      "sha256": "7F760B8F29DC98CDB808597D27B3F676C8A355DA51186154EB0DCF8702789925"
+    },
+    {
+      "path": "craftos/public/icons/gewerke/trockenbau.svg",
+      "action": "copy",
+      "sha256": "94CE9D14B4DE6F3750D27F4FEB184B1EF38A586D3091675CF43A065C75DC993A"
+    },
+    {
+      "path": "craftos/public/icons/gewerke/zimmerer.svg",
+      "action": "copy",
+      "sha256": "69A8EACE6A65D6FB5BA48D1CA693275CEBF5E961600D06478EDFE2C02054B7ED"
+    },
+    {
+      "path": "craftos/public/images/mobile/current/dashboard-display.avif",
+      "action": "copy",
+      "sha256": "1510E8B1F3FA814122C97AFF2B153C5AED32B58EC4F1EFD916ADAE0EE43F20BE"
+    },
+    {
+      "path": "craftos/public/images/mobile/current/dashboard-display.webp",
+      "action": "copy",
+      "sha256": "FFC2C8D88C278B57635B39B5EF5E5092731DE77DA610F0C222F41885EE75CCA3"
+    },
+    {
+      "path": "craftos/public/images/mobile/current/dashboard-mockup.png",
+      "action": "copy",
+      "sha256": "7A25C9881875A6A43A82154A6A781C9FEFFA94DFBC80FD53CD799CB70B996439"
+    },
+    {
+      "path": "craftos/public/images/mobile/current/dashboard-mockup.webp",
+      "action": "copy",
+      "sha256": "88BF64F21CD6262647CDB301C7B577E313ED3D2F72539A1C0A16F9FE52F9FB93"
+    },
+    {
+      "path": "craftos/public/images/mobile/current/dashboard-original.png",
+      "action": "copy",
+      "sha256": "33434424A6AFA050ACBE67DC978D4334D68D08814905107ED73C4E7489099D22"
+    },
+    {
+      "path": "craftos/public/images/mobile/current/projekt-display.avif",
+      "action": "copy",
+      "sha256": "C394AB643F67FE1F77958C4A23C302CD2F893881798E3FBCBEDE0EDCA95AB043"
+    },
+    {
+      "path": "craftos/public/images/mobile/current/projekt-display.webp",
+      "action": "copy",
+      "sha256": "B693729EC17E423965A653EB097D81F74EA700656DE9FE14AB715A593E7F0195"
+    },
+    {
+      "path": "craftos/public/images/mobile/current/projekt-mockup.png",
+      "action": "copy",
+      "sha256": "69B21924565B22E9CC39F01E9498B560B6B51BC3CC3147C15F45756ADBBD1068"
+    },
+    {
+      "path": "craftos/public/images/mobile/current/projekt-mockup.webp",
+      "action": "copy",
+      "sha256": "ECC4DCC16B98774ACD2E6E3BBB6C2793331E7C7EFB8E364D7C33C1D06544752B"
+    },
+    {
+      "path": "craftos/public/images/mobile/current/projekt-original.png",
+      "action": "copy",
+      "sha256": "D5BB27F0D37A38C97A1BD9404CB72E025105F5EF57EFE1F20F69B2423F243044"
+    },
+    {
+      "path": "craftos/public/images/mobile/current/zeiten-display.avif",
+      "action": "copy",
+      "sha256": "D109591733341BB29BFB130287D0A58791E443D9F4CC2CB95194BBD72FDAE783"
+    },
+    {
+      "path": "craftos/public/images/mobile/current/zeiten-display.webp",
+      "action": "copy",
+      "sha256": "3273B9C1BFBDFFA88925E886196B4C169C196F46B7486B4B1D7962FB7C46CB7B"
+    },
+    {
+      "path": "craftos/public/images/mobile/current/zeiten-mockup.png",
+      "action": "copy",
+      "sha256": "2E67DDE83575E721FF26C2E4DFF58F0F13E8872675BFAC5C2930F24FF02AD80A"
+    },
+    {
+      "path": "craftos/public/images/mobile/current/zeiten-mockup.webp",
+      "action": "copy",
+      "sha256": "F6CF0D3FE30AD4EE8DD133BA77A616180EA49A771B4E04F5596084E358CCE47C"
+    },
+    {
+      "path": "craftos/public/images/mobile/current/zeiten-original.png",
+      "action": "copy",
+      "sha256": "CE44BFE736963AE327D5A9FE789C45A010992335E5EE124CE651DC33599D5F98"
+    },
+    {
+      "path": "craftos/public/images/mobile/projekte.webp",
+      "action": "copy",
+      "sha256": "E10E1B4CBA5F77CA0291FC58DEBCD28B5C146E18AB3F97479EA4EC7ABEE6D2F5"
+    },
+    {
+      "path": "craftos/public/images/mobile/qr-android.svg",
+      "action": "copy",
+      "sha256": "D5D6975C700A0C4391B7F40D1556C2309A113B81E53526B333FFBF87D2138B59"
+    },
+    {
+      "path": "craftos/public/images/mobile/qr-ios.svg",
+      "action": "copy",
+      "sha256": "A5AF009F3D144B07C7FE831318542B26B96AE447539E68C3E740866E0215750B"
+    },
+    {
+      "path": "craftos/public/images/mobile/store/01-zeiterfassung.webp",
+      "action": "copy",
+      "sha256": "4228C27715D144BA8FCBD474F1047F8275C3668F869C87FFDA0AC4DBBD1020EC"
+    },
+    {
+      "path": "craftos/public/images/mobile/store/02-projektinfos.webp",
+      "action": "copy",
+      "sha256": "50F4D2C675902306323A84A4CF4B91CD8032D735B3591FD626C0470B1025E7BD"
+    },
+    {
+      "path": "craftos/public/images/mobile/store/03-ueberblick.webp",
+      "action": "copy",
+      "sha256": "509739B2F58E7053E3E1638F85EEC8D10630C95DBEA9810AEE6899EFCDE0401D"
+    },
+    {
+      "path": "craftos/public/images/mobile/store/04-projektverwaltung.webp",
+      "action": "copy",
+      "sha256": "676ED2BC36D51178A1064F825598EB2BA1AEB38EA3A9E6CE252D96C28E8BD3FE"
+    },
+    {
+      "path": "craftos/public/images/mobile/store/05-aufmass.webp",
+      "action": "copy",
+      "sha256": "251A0296E6A95241A2C668624A2D53F7E826807C6A43328149CEAACFC6A79A12"
+    },
+    {
+      "path": "craftos/public/images/mobile/store/06-beleg-scan.webp",
+      "action": "copy",
+      "sha256": "6BD751DBC1BEE3348CC63A819C8F4AD98712766A4739EB2DC116F572B3828E2A"
+    },
+    {
+      "path": "craftos/public/images/mobile/store/07-kunden.webp",
+      "action": "copy",
+      "sha256": "EFF44C76456E506E5AD36590AF93EE404C30EA00D12634194BEE58C43B994D87"
+    },
+    {
+      "path": "craftos/public/images/mobile/store/08-unterschriften.webp",
+      "action": "copy",
+      "sha256": "E4CA8015677F9B125ABC1C9CF467C62BB8BB1E18114721BD923FE22863D24B07"
+    },
+    {
+      "path": "craftos/public/images/mobile/store/09-projektmanagement.webp",
+      "action": "copy",
+      "sha256": "AA611648BB7F159F5BB728AC830012E7A4A7BEF234F314F32AFE9B1F93A42913"
+    },
+    {
+      "path": "craftos/public/images/mobile/zeiten.webp",
+      "action": "copy",
+      "sha256": "B9CF22465FBADDAF9F49DADC8C63D0FD38EE69F78BFF006C4CF9EC6794549F25"
+    },
+    {
+      "path": "craftos/public/images/team-baustelle-2026.webp",
+      "action": "copy",
+      "sha256": "ACD13E04E5DE055780E6FE69BDEB3B3AA2CDBC843E0406F296C90E0722AE41C7"
+    },
+    {
+      "path": "craftos/public/images/werkstatt-2026.webp",
+      "action": "copy",
+      "sha256": "B536C280AADADE60B306F7B13111058D46D59BC6662B502C1512BEB5DBA12822"
+    },
+    {
+      "path": "craftos/scripts/performance-audit.mjs",
+      "action": "copy",
+      "sha256": "CFF38770A9B9DDDF5029558F9A92D4C7049874F3E743E79747FB1D357F179F5F"
+    },
+    {
+      "path": "craftos/scripts/route-audit.mjs",
+      "action": "copy",
+      "sha256": "949013D655D0E3F9F330E02B3500CF61E1D7FED24223E06AF6E5DCA10BF8B683"
+    },
+    {
+      "path": "craftos/scripts/visual-audit.mjs",
+      "action": "copy",
+      "sha256": "C642B3BD2496DDAC4034E3D71B27B02CE15C0179F2EE52995321E0CCB1D01493"
+    },
+    {
+      "path": "craftos/tests/calculator-hydration.test.ts",
+      "action": "copy",
+      "sha256": "5BDA996AD0BE119C8906C3A7A69D9C55D2B0F0ABB40F0C8FF24E227F0B916946"
+    },
+    {
+      "path": "craftos/tests/calculators.test.ts",
+      "action": "copy",
+      "sha256": "13D03D8C97EE47B483C2C3D8DF069E5AFBF57402F909CD8402AC7C483494CE3F"
+    },
+    {
+      "path": "craftos/tests/content.test.ts",
+      "action": "copy",
+      "sha256": "EAA218B768B8BD9B029AB43924DB3921CA747EE48EDF9185FE2C610B263E238E"
+    },
+    {
+      "path": "craftos/tests/demo.test.ts",
+      "action": "copy",
+      "sha256": "61100F338CB467ECD3F2C2E8596B7889DA0CF6EE5678DE2D8638D52B96A3507B"
+    },
+    {
+      "path": "craftos/tests/e2e/.gitignore",
+      "action": "copy",
+      "sha256": "C116C8DBF967266923CA30E1127834EF2A55B2BF2428AB06F0605F830AFFAC5C"
+    },
+    {
+      "path": "craftos/tests/e2e/browser-functional.pw.cjs",
+      "action": "copy",
+      "sha256": "2E617D26BBA21BB0F2D59BA7B024D8D4BA7D299E16F03717F278378E06051F4D"
+    },
+    {
+      "path": "craftos/tests/e2e/mobile-step-flow.pw.cjs",
+      "action": "copy",
+      "sha256": "098573C4541C3D915EC8C85B790B287D924A26BDD6C725A9593F7E387F918866"
+    },
+    {
+      "path": "craftos/tests/e2e/playwright.config.cjs",
+      "action": "copy",
+      "sha256": "2C7D6975A2117831A6FDE42170084997FA584B899D07F47AEB557BD84A58BFDE"
+    },
+    {
+      "path": "craftos/tests/product-register.test.ts",
+      "action": "copy",
+      "sha256": "6FBCAE59BB3768E94CD6F3B91CE00452EF6163735C63309F14BD5D3B3C8A6BBE"
+    },
+    {
+      "path": "craftos/tests/server-only.ts",
+      "action": "copy",
+      "sha256": "0E22CBEA6CD592474164027EC70504619C343B2D994F906ADEADD0C13BAA156F"
+    },
+    {
+      "path": "craftos/vitest.config.ts",
+      "action": "copy",
+      "sha256": "C53726AFB620608B228525C212BC7EC19B2B152CF1A443E904275CA690A6983A"
+    }
+  ],
+  "mode": "applied_and_hash_verified",
+  "finalVerification": "2026-09-09: npm ci, build, lint and fresh browser smoke passed in original folder; SHA-256 comparison passed."
+}

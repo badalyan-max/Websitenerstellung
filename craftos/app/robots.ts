@@ -1,18 +1,12 @@
-import type { MetadataRoute } from 'next'
-import { site } from '@/lib/site'
-
-// KI-Crawler ausdrücklich erlauben (GEO/AI-Sichtbarkeit)
+import type { MetadataRoute } from "next";
+import { site } from "@/lib/site";
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: 'GPTBot', allow: '/' },
-      { userAgent: 'Google-Extended', allow: '/' },
-      { userAgent: 'anthropic-ai', allow: '/' },
-      { userAgent: 'ClaudeBot', allow: '/' },
-      { userAgent: 'PerplexityBot', allow: '/' },
-      { userAgent: '*', allow: '/' },
+      { userAgent: "OAI-SearchBot", allow: "/", disallow: ["/api/"] },
+      { userAgent: "*", allow: "/", disallow: ["/api/"] },
     ],
-    sitemap: `${site.url}/sitemap.xml`,
+    sitemap: site.url + "/sitemap.xml",
     host: site.url,
-  }
+  };
 }

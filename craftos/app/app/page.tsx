@@ -1,200 +1,194 @@
-import type { Metadata } from 'next'
-import {
-  Fingerprint,
-  Camera,
-  Bell,
-  WifiOff,
-  Clock,
-  Ruler,
-  ClipboardCheck,
-  ScanLine,
-  MapPin,
-  PenLine,
-} from 'lucide-react'
-import { PageHero } from '@/components/ui/PageHero'
-import { Faq } from '@/components/ui/Faq'
-import { JsonLd } from '@/components/seo/JsonLd'
-import {
-  CtaButton,
-  GhostButton,
-  HexIcon,
-  SectionHeading,
-} from '@/components/ui/primitives'
-import { ZeitenDemo } from '@/components/demos/ZeitenDemo'
-import { breadcrumbSchema, faqSchema } from '@/lib/schema'
-import { site } from '@/lib/site'
-import { appBaustelle } from '@/lib/images'
-import { BildBanner } from '@/components/ui/BildBanner'
-
-export const metadata: Metadata = {
-  title: 'Mobile-App – Die Baustelle in der Tasche (iOS & Android)',
-  description:
-    'Die CraftOS Mobile-App: Zeiterfassung, Bautagesberichte, Aufmaß, Mängel & Abnahme – offline-fähig, mit Face ID und Push. Für iOS und Android.',
-  alternates: { canonical: `${site.url}/app` },
-}
-
-const nativeFeatures = [
-  {
-    icon: WifiOff,
-    title: 'Offline-fähig',
-    desc: 'Kein Netz im Keller? Egal. Die App arbeitet weiter und synchronisiert automatisch, sobald Verbindung besteht.',
-  },
-  {
-    icon: Clock,
-    title: 'Zeiterfassung',
-    desc: 'Arbeits- und Fahrtzeiten buchen – auch per Spracheingabe. Jede Stunde landet am richtigen Projekt.',
-  },
-  {
-    icon: Ruler,
-    title: 'Aufmaß vor Ort',
-    desc: 'Räume und Flächen mit Abzügen erfassen – die Maße fließen direkt ins Angebot.',
-  },
-  {
-    icon: PenLine,
-    title: 'Bautagesberichte',
-    desc: 'Wetter, Leistung, Fotos und die Unterschrift des Kunden – rechtssicher mit GPS und Zeitstempel.',
-  },
-  {
-    icon: ClipboardCheck,
-    title: 'Mängel & Abnahme',
-    desc: 'Mängel fotografieren und verfolgen, Abnahmeprotokolle direkt am Gerät unterschreiben lassen.',
-  },
-  {
-    icon: ScanLine,
-    title: 'Belege scannen',
-    desc: 'Tankquittung oder Materialrechnung abfotografieren – die KI liest sie aus und legt sie richtig ab.',
-  },
-  {
-    icon: Camera,
-    title: 'Baustellenfotos',
-    desc: 'Fotos landen automatisch komprimiert in der richtigen Projektakte – nie wieder WhatsApp-Chaos.',
-  },
-  {
-    icon: Fingerprint,
-    title: 'Face ID / Touch ID',
-    desc: 'Sicher angemeldet in einer Sekunde – ohne Passwort-Tipperei mit Arbeitshandschuhen.',
-  },
-  {
-    icon: Bell,
-    title: 'Push-Benachrichtigungen',
-    desc: 'Neuer Einsatz, geänderte Planung, Urlaubsfreigabe – das Team weiß sofort Bescheid.',
-  },
-]
-
-const faqItems = [
-  {
-    q: 'Für welche Geräte gibt es die CraftOS-App?',
-    a: 'Die CraftOS-App gibt es für iOS (App Store) und Android (Google Play). Sie ist die Companion-App zur Web-App – Monteure brauchen nur die günstige App-Lizenz.',
-  },
-  {
-    q: 'Funktioniert die App ohne Internet?',
-    a: 'Ja. Zeiten, Berichte und Fotos werden offline erfasst und automatisch synchronisiert, sobald wieder Verbindung besteht.',
-  },
-  {
-    q: 'Was sehen Monteure in der App?',
-    a: 'Genau das, was sie brauchen: ihre zugewiesenen Einsätze und Projekte, Zeiterfassung, Urlaub, Berichte und Dokumente – keine Preise, keine Kalkulation (steuerbar über Rollen).',
-  },
-  {
-    q: 'Kostet die App extra?',
-    a: 'Die App ist Teil jeder Lizenz. Reine App-Nutzer (Monteure) zahlen nur 9,95 € pro Monat – die Voll-Lizenz enthält Web und App.',
-  },
-]
-
-export default function AppPage() {
+import Link from "next/link";
+import Image from "next/image";
+import { Check, Clock, Camera, Ruler, FolderKanban } from "lucide-react";
+import { site } from "@/lib/site";
+import { StoreLinks } from "@/components/ui/StoreLinks";
+import { MobileAppGallery } from "@/components/ui/MobileAppGallery";
+import { pageMetadata } from "@/lib/metadata";
+import { ProductDemo } from "@/components/product-demo/ProductDemo";
+import { TrialCta } from "@/components/ui/TrialCta";
+export const metadata = pageMetadata(
+  "Mobile-App für Handwerker – in der Voll-Lizenz inklusive",
+  "CraftOS auf der Baustelle: Zeiten, Projekte, Aufmaß und Berichte auf dem Handy. Die Voll-Lizenz enthält die Mobile-App für dieselbe Person.",
+  "/app",
+);
+export default function Page() {
   return (
     <>
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: 'Start', path: '/' },
-          { name: 'Mobile-App', path: '/app' },
-        ])}
-      />
-      <JsonLd data={faqSchema(faqItems)} />
-
-      <PageHero
-        eyebrow="Mobile-App · iOS & Android"
-        title={
-          <>
-            Die Baustelle hat jetzt
-            <br />
-            <span className="text-primary-400">ein Büro in der Tasche</span>
-          </>
-        }
-        intro="Zeiten, Fotos, Berichte, Aufmaß, Mängel und Abnahmen – direkt vor Ort erfasst statt abends abgetippt. Offline-fähig, mit Face ID und Push."
-      />
-
-      <BildBanner bild={appBaustelle} priority />
-
-      {/* Demo + GPS-Hinweis */}
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid items-start gap-10 lg:grid-cols-2">
-            <div>
-              <SectionHeading
-                eyebrow="Direkt ausprobieren"
-                title="So schnell ist eine Stunde gebucht"
-                intro="Starten Sie den Timer – genau so fühlt sich die Zeiterfassung in der App an. Auf der Baustelle geht es sogar schneller: per Spracheingabe."
-              />
-              <div className="mt-8 flex items-start gap-3 rounded-2xl border border-ink-200 bg-ink-100 p-5">
-                <MapPin className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary-400" />
-                <p className="text-sm leading-relaxed text-ink-500">
-                  <span className="font-semibold text-ink-700">Mit GPS-Kontext:</span> Einsätze,
-                  Fahrten und Berichte kennen ihren Ort – für lückenlose Dokumentation und
-                  automatische Zuordnung.
-                </p>
-              </div>
+      <section className="dark-section">
+        <div className="site-container grid md:grid-cols-[1.1fr_.9fr] gap-12 items-center pt-12 pb-16 md:py-12">
+          <div>
+            <p className="eyebrow">Die CraftOS Mobile-App</p>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold">
+              Ihr Büro passt
+              <br />
+              in die Arbeitshose.
+            </h1>
+            <p className="mt-6 text-lg max-w-xl">
+              Projekte dabei haben. Zeiten direkt erfassen. Leistungen
+              festhalten, solange sie noch frisch im Kopf sind.
+            </p>
+            <p className="mt-6 font-semibold flex items-center gap-2">
+              <Check size={20} className="text-primary-500" />
+              In jeder Voll-Lizenz enthalten.
+            </p>
+            <div className="mt-7">
+              <StoreLinks />
             </div>
-            <ZeitenDemo />
+            <p className="mt-4 text-sm">
+              Direkt zum passenden Store. Anschließend mit Ihrem CraftOS Konto
+              anmelden.
+            </p>
+            <div className="hidden md:flex gap-5 mt-7">
+              {(
+                [
+                  ["ios", "iPhone und iPad", site.iosUrl],
+                  ["android", "Android", site.androidUrl],
+                ] as const
+              ).map(([platform, label, url]) => (
+                <a
+                  key={platform}
+                  href={url}
+                  className="text-center"
+                  aria-label={label + ": Store öffnen oder QR-Code scannen"}
+                >
+                  <Image
+                    src={"/images/mobile/qr-" + platform + ".svg"}
+                    width={116}
+                    height={116}
+                    alt={
+                      "QR-Code zum " +
+                      (platform === "ios" ? "App Store" : "Google Play Store")
+                    }
+                    className="bg-white rounded-lg"
+                  />
+                  <span className="block text-xs text-zinc-300 mt-2">
+                    {label}
+                  </span>
+                </a>
+              ))}
+            </div>
+            <Link href="/preise" className="text-link text-sm mt-6">
+              Welche Lizenz passt zu Ihrem Team?
+            </Link>
           </div>
+          <MobileAppGallery />
         </div>
       </section>
-
-      <div className="anriss mx-auto max-w-7xl" aria-hidden="true" />
-
-      {/* Native Features */}
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeading
-            eyebrow="Alles drin"
-            title="Gebaut für Hände, die arbeiten"
-            intro="Große Touch-Flächen, klare Wege, keine Schnörkel – die App ist für die Baustelle gemacht, nicht fürs Schreibtisch-Demo."
-          />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {nativeFeatures.map((f) => (
-              <div key={f.title} className="rounded-2xl border border-ink-200 bg-ink-100 p-6">
-                <HexIcon icon={f.icon} />
-                <h3 className="mt-4 font-display text-lg font-semibold text-ink-900">{f.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-500">{f.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="pb-16 lg:pb-20">
-        <div className="mx-auto max-w-3xl px-5 sm:px-8">
-          <SectionHeading eyebrow="FAQ" title="Fragen zur App" align="center" className="mb-10" />
-          <Faq items={faqItems} />
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="relative overflow-hidden bg-ink-950 py-16 lg:py-20">
-        <div className="bg-werkbank mask-fade absolute inset-0" aria-hidden="true" />
-        <div className="relative mx-auto max-w-3xl px-5 text-center sm:px-8">
-          <h2 className="font-display text-3xl font-bold text-ink-900 sm:text-4xl">
-            Holen Sie die Baustelle ins System
+      <section className="section-space">
+        <div className="site-container">
+          <p className="eyebrow">Am richtigen Ort erfasst</p>
+          <h2 className="section-title">
+            Der nächste Handgriff.
+            <br />
+            Die passende Information.
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-ink-500">
-            Web-App testen, Team einladen, App aus dem Store laden – in 10 Minuten läuft&apos;s.
-          </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <CtaButton>14 Tage kostenlos testen</CtaButton>
-            <GhostButton href="/preise">Lizenzen ansehen</GhostButton>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+            {[
+              [
+                Clock,
+                "Zeiten mit Projektbezug",
+                "Arbeit und Fahrt erfassen, Einträge prüfen und dem Projekt zuordnen.",
+                "/hilfe/mobilen-timer-bedienen",
+              ],
+              [
+                FolderKanban,
+                "Projekte und Einsätze",
+                "Freigegebene Projekte, Kundendaten und geplante Einsätze nachsehen.",
+                "/hilfe/projekt-phasen-anlegen",
+              ],
+              [
+                Ruler,
+                "Aufmaß vor Ort",
+                "Raum- und Messdaten beim Projekt festhalten und für Angebote verwenden.",
+                "/hilfe/raumaufmass-angebot-uebernehmen",
+              ],
+              [
+                Camera,
+                "Leistungen dokumentieren",
+                "Berichte, Fotos, Mängel und Abnahmen vor Ort bearbeiten.",
+                "/funktionen/baudokumentation",
+              ],
+            ].map(([Icon, t, p, h]) => {
+              const I = Icon as typeof Clock;
+              return (
+                <Link
+                  href={h as string}
+                  className="border-t border-ink-200 pt-6"
+                  key={t as string}
+                >
+                  <I size={28} strokeWidth={1.4} />
+                  <h3 className="text-2xl mt-5 font-semibold">{t as string}</h3>
+                  <p className="text-sm text-ink-600 mt-3">{p as string}</p>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
+      <section className="section-space bg-ink-100">
+        <div className="site-container">
+          <p className="eyebrow">Büro und Baustelle im selben Ablauf</p>
+          <h2 className="section-title mb-10">Geplant. Erfasst. Zugeordnet.</h2>
+          <ProductDemo initialScene="planung" />
+        </div>
+      </section>
+      <section className="section-space">
+        <div className="site-container split-section items-start">
+          <div>
+            <p className="eyebrow">Auch bei schwachem Empfang</p>
+            <h2 className="section-title">
+              Wissen, was
+              <br />
+              offline bereitliegt.
+            </h2>
+            <p className="section-intro">
+              Bereits geladene Daten und ausgewählte Texteingaben können auf dem
+              Gerät verfügbar bleiben. Der Synchronisierungsstatus zeigt, ob
+              noch etwas übertragen werden muss.
+            </p>
+            <Link
+              href="/hilfe/mobile-offline-synchronisierung"
+              className="text-link mt-6"
+            >
+              Offline-Nutzung richtig vorbereiten
+            </Link>
+          </div>
+          <div className="soft-panel">
+            <h3 className="text-2xl font-semibold">
+              Vor dem Baustelleneinsatz
+            </h3>
+            <ul className="rule-list mb-0">
+              <li>
+                <Check />
+                <span>Relevante Projekte mit Verbindung öffnen und laden.</span>
+              </li>
+              <li>
+                <Check />
+                <span>Standortberechtigung für den mobilen Timer prüfen.</span>
+              </li>
+              <li>
+                <Check />
+                <span>
+                  Fotos, KI und neue Downloads benötigen eine Verbindung.
+                </span>
+              </li>
+              <li>
+                <Check />
+                <span>
+                  Nach dem Einsatz offene Übertragungen kontrollieren.
+                </span>
+              </li>
+            </ul>
+            <p className="text-sm text-ink-600 mt-5">
+              Welche Aktionen möglich sind, hängt von Rolle, geladenen Daten und
+              Verbindung ab. Nicht alle Inhalte stehen vollständig offline
+              bereit.
+            </p>
+          </div>
+        </div>
+      </section>
+      <TrialCta />
     </>
-  )
+  );
 }

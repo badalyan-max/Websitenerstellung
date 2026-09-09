@@ -1,0 +1,74 @@
+.gallery {
+  width: 100%;
+  max-width: 420px;
+  margin: auto;
+}
+.choices {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  padding: 4px;
+  background: #242429;
+  border: 1px solid #45454f;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.choices button {
+  min-height: 44px;
+  padding: 8px 4px;
+  border: 0;
+  background: transparent;
+  color: #e4e4e9;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.3;
+}
+.choices button:hover {
+  color: #ffca66;
+}
+.choices button.active {
+  color: #18181e;
+  background: #f2af38;
+  font-weight: 600;
+}
+.figure {
+  margin: 0;
+  text-align: center;
+}
+.image {
+  display: block;
+  width: min(100%, 360px);
+  height: auto;
+  margin: auto;
+  border-radius: 18px;
+  box-shadow: 0 20px 50px #0005;
+}
+.figure figcaption {
+  margin-top: 14px;
+  color: #c8c8d0;
+  font-size: 11px;
+  line-height: 1.6;
+}
+@media (max-width: 767px) {
+  .image {
+    width: min(100%, 324px);
+  }
+  .choices {
+    margin-bottom: 16px;
+  }
+}
+
+.originalToggle {
+  display: block;
+  margin: 12px auto 0;
+  min-height: 44px;
+  padding: 8px 14px;
+  color: #ffca66;
+  background: transparent;
+  border: 1px solid #655337;
+  border-radius: 7px;
+  font-size: 12px;
+}
+.originalToggle:hover {
+  background: #372d20;
+}

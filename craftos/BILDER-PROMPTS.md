@@ -13,7 +13,7 @@ und mir Bescheid geben — die Seiten sind vorbereitet bzw. ich binde sie dann e
 ## 1. Hero-Werkbank (Startseite, optionales Hintergrundbild)
 **Zielpfad:** `public/images/hero-werkbank.jpg` (1920×1080)
 
-> A professional carpenter's workbench in a dark workshop at night, scattered premium hand tools (hammer, folding rule, pencil), a modern tablet standing upright showing a dark app interface with amber accents, sawdust particles floating in a single warm amber light beam from above, dark moody atmosphere, near-black background #101014, warm amber rim light #f2af38, cinematic photography, photorealistic, high detail, no text, no watermark, 16:9
+> A professional carpenter's workbench in a dark workshop at night, scattered premium hand tools (hammer, folding rule, pencil), a modern tablet standing upright showing a dark app interface with amber accents, sawdust particles floating in a single warm amber light beam from above, dark moody atmosphere, near-black background #101014, warm amber rim light #4f4a42ff, cinematic photography, photorealistic, high detail, no text, no watermark, 16:9
 
 ## 2. Elektriker (Gewerke-Seite)
 **Zielpfad:** `public/images/gewerk-elektriker.jpg` (1600×900)

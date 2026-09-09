@@ -1,0 +1,190 @@
+{
+  "checkedAt": "2026-09-09T01:17:21.654488+00:00",
+  "files": [
+    {
+      "repository": "web",
+      "path": "src/pages/Dashboard.tsx",
+      "sha256": "dc5e1d88ea3435c582c1ad1ea6a6a3234efc3d10864272e46a9b3b239b503e6f"
+    },
+    {
+      "repository": "web",
+      "path": "src/hooks/useDashboardSettings.ts",
+      "sha256": "ca7b45d6237e5d95207ecde535d6fa95bfb23d405e27fed443ef6c89d0b285bd"
+    },
+    {
+      "repository": "web",
+      "path": "src/pages/ProjectDetail.tsx",
+      "sha256": "44689a9b90569295c7609ea98167e5a11c2242b42d37e8ee7d4ee0cfcb49c451"
+    },
+    {
+      "repository": "web",
+      "path": "src/pages/Projekte.tsx",
+      "sha256": "342fb381075cffcc95ba918e637e45ff8de800a6ffeeb7c738474d0cc1f39d6a"
+    },
+    {
+      "repository": "web",
+      "path": "src/pages/DocumentEditorPage.tsx",
+      "sha256": "ec2caad12fd41b5a1d0f1b784a29f4e25240a981bf1c427ceb510fded022d476"
+    },
+    {
+      "repository": "web",
+      "path": "src/lib/calculationUtils.ts",
+      "sha256": "918872524152a7b5491c42fff0cf88b1510728836cd57ab82af0ce89be019e32"
+    },
+    {
+      "repository": "web",
+      "path": "src/pages/Rechnungen.tsx",
+      "sha256": "c87f4233b8ba9883448387e7ade1d28b848a05aa49103600447a895919ee420b"
+    },
+    {
+      "repository": "web",
+      "path": "supabase/migrations/20260908020000_finalize_status.sql",
+      "sha256": "a5132a48f422e33c7d6047db71b60f4cc332fb71fe2c7f54c7015f90cf9024c6"
+    },
+    {
+      "repository": "web",
+      "path": "supabase/migrations/20260908040000_lock_guard_hardening.sql",
+      "sha256": "abf0a4054c90972d5ce77529e02a561ff475088d6b36d818178d06552744baaa"
+    },
+    {
+      "repository": "web",
+      "path": "src/pages/Buchungsjournal.tsx",
+      "sha256": "3133328cc2e8f2290c08593e2036c3c8c78d1f0b54a3201397bdfdc1757218c7"
+    },
+    {
+      "repository": "web",
+      "path": "src/pages/SteuerberaterExport.tsx",
+      "sha256": "4e38bb0e89c81c6fb7c74b5aea73af752245e19e11722abb8a6984acc115fcd3"
+    },
+    {
+      "repository": "web",
+      "path": "src/pages/Plantafel.tsx",
+      "sha256": "eadb017671a0f2a04d85ae2524b8f8929e63318ef263855592306064f6ce78c2"
+    },
+    {
+      "repository": "web",
+      "path": "src/pages/Zeiten.tsx",
+      "sha256": "73534ff6788dca9196a63eb9092fd5fe5745bfd80573d2f11c4a1a11b6b450c9"
+    },
+    {
+      "repository": "web",
+      "path": "src/pages/Lager.tsx",
+      "sha256": "25aceabf02536f683a9d1aad8b8da816997483df6ccdfe544094a54e5b04861c"
+    },
+    {
+      "repository": "web",
+      "path": "src/api/constructionReports.ts",
+      "sha256": "95ea24c1d39b2d0b9bc465a2bb7049135f8a7c6aa5b2dcff88523e1459d3f955"
+    },
+    {
+      "repository": "web",
+      "path": "src/api/documentReports.ts",
+      "sha256": "6ed8303e54394f15cd9ceade4de2f57c86efdff04cb26366b84ed5ecc779f23b"
+    },
+    {
+      "repository": "web",
+      "path": "src/pages/Mitarbeiter.tsx",
+      "sha256": "cde3966595d0767f6045d446638f02a791e934416a54e59eb79360ff5501465e"
+    },
+    {
+      "repository": "web",
+      "path": "src/api/customerPortal.ts",
+      "sha256": "87f1fafeac57225f8a9120fcc18d87ee32df6a5e113dd990c4df9fcee42e8e23"
+    },
+    {
+      "repository": "web",
+      "path": "src/components/portal/InvoicePayment.tsx",
+      "sha256": "fc82c1abdbed6c23a1dadfb8314c4586c6e888e41f1b7dc5b256369a0925f70f"
+    },
+    {
+      "repository": "web",
+      "path": "supabase/functions/create-invoice-payment/index.ts",
+      "sha256": "39f353d1d2f8fddc9cc1b6b1581df5a1e9adb90cc39dcac813461df27db2acd1"
+    },
+    {
+      "repository": "web",
+      "path": "src/api/roomMeasurements.ts",
+      "sha256": "7dff590c3d7109bc603ab2a0f3398d221ca52af8b6fffaa354f16b7e01661c8a"
+    },
+    {
+      "repository": "web",
+      "path": "src/pages/Eingangsrechnungen.tsx",
+      "sha256": "c1b78b1e489c229acbe0ae514c247b9cebc92a905eef5822aa3d9d586f427eaa"
+    },
+    {
+      "repository": "web",
+      "path": "supabase/migrations/20260614140000_eingangsrechnungen_gobd_lock_review_audit.sql",
+      "sha256": "e57dbcb77dca6c02f080e6028dd455898a2ec926f3159a6af78ed4ab11379346"
+    },
+    {
+      "repository": "web",
+      "path": "supabase/functions/generate-einvoice/index.ts",
+      "sha256": "6f99f3ed79d7182fb77a28b1bdc9e0dc1c59a8d9b848742ebed9fc5379a7e41a"
+    },
+    {
+      "repository": "web",
+      "path": "supabase/migrations/20260710190000_documents_e_invoice_pdf_writeonce.sql",
+      "sha256": "98a56477e68da5bac540edbe933a29965e90c1a830d3de20c086e7331f445cb1"
+    },
+    {
+      "repository": "web",
+      "path": "src/api/workInstructions.ts",
+      "sha256": "2608b7964f0ca31310ba515252c0b625dee279b7bb8f39432320de705da1b968"
+    },
+    {
+      "repository": "mobile",
+      "path": "src/features/projects/screens/ProjectDetailScreen.tsx",
+      "sha256": "2af7a8db6b8448009981734879c1fe49225d490ffe654d241234f343faa589b8"
+    },
+    {
+      "repository": "mobile",
+      "path": "src/features/projects/screens/ProjectFilesScreen.tsx",
+      "sha256": "085da553862471a52fcd5ec5bd7c63a83a6f15fc4505804bdb37fa5ccfbbcbb3"
+    },
+    {
+      "repository": "mobile",
+      "path": "src/features/documents/screens/DocumentSignScreen.tsx",
+      "sha256": "a50d7bb5dcf72b743384649252f704f880d937926a764a42d57bbe85e4decca9"
+    },
+    {
+      "repository": "mobile",
+      "path": "src/features/supplier-invoices/screens/ScanReceiptScreen.tsx",
+      "sha256": "acf4cb65640d0f84c4983385fcd61176d1302522978331357919bc9c0eb7cddb"
+    },
+    {
+      "repository": "mobile",
+      "path": "src/features/assignments/screens/AssignmentsListScreen.tsx",
+      "sha256": "5d1fed7d8e65a4557014023cd0eb68276be8c4116f58f1670b4f27efe885fb78"
+    },
+    {
+      "repository": "mobile",
+      "path": "src/features/time-tracking/screens/TimeTrackingScreen.tsx",
+      "sha256": "5bcd20e137449a452df9980bc977e1859c36c9b8c90e2c5c2c21c1149efe900f"
+    },
+    {
+      "repository": "mobile",
+      "path": "src/features/construction-reports/screens/DailyReportScreen.tsx",
+      "sha256": "023316fb5acdd135387fc3eb3d26efbf3afc6ad5250d510c1335c6c01181df13"
+    },
+    {
+      "repository": "mobile",
+      "path": "src/features/defects/screens/DefectDetailScreen.tsx",
+      "sha256": "383896366933d3416d820a0cdd9a2ccc489a99d961957d02399934588a639848"
+    },
+    {
+      "repository": "mobile",
+      "path": "src/features/acceptance/screens/AcceptanceScreen.tsx",
+      "sha256": "3a3f3dd69efcea9a21e7b509a26e28c5a6c8e1a0bbd9741710073b4b8911518f"
+    },
+    {
+      "repository": "mobile",
+      "path": "src/features/room-measurements/screens/RoomMeasurementsScreen.tsx",
+      "sha256": "cac5f4e759b130391a25b6f99dc6de9d3933c40af5fdd08d5e40c9eadfcb42c3"
+    },
+    {
+      "repository": "mobile",
+      "path": "src/features/vacation/components/VacationTab.tsx",
+      "sha256": "91ff361cf06a1b5451fdd244e06d833cfdb6aa5e7c1eda0064478d4229775497"
+    }
+  ]
+}

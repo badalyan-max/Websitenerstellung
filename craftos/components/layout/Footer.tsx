@@ -1,90 +1,87 @@
-import Link from 'next/link'
-import { CraftOSLogo } from '@/components/CraftOSLogo'
-import { site } from '@/lib/site'
-
-const cols = [
-  {
-    title: 'Produkt',
-    links: [
-      { label: 'Funktionen', href: '/funktionen' },
-      { label: 'Gewerke', href: '/gewerke' },
-      { label: 'Craft AI', href: '/craft-ai' },
-      { label: 'Mobile-App', href: '/app' },
-      { label: 'Preise', href: '/preise' },
-      { label: 'Fakten über CraftOS', href: '/fakten-ueber-craftos' },
+import Link from "next/link";
+import { CraftOSLogo } from "@/components/CraftOSLogo";
+import { site } from "@/lib/site";
+const columns = [
+  [
+    "Produkt",
+    [
+      ["Funktionen", "/funktionen"],
+      ["Mobile-App", "/app"],
+      ["Craft AI", "/craft-ai"],
+      ["Preise", "/preise"],
+      ["Warum CraftOS?", "/vergleich"],
     ],
-  },
-  {
-    title: 'Loslegen',
-    links: [
-      { label: 'Kostenlos testen', href: site.ctaUrl, external: true },
-      { label: 'Anmelden', href: site.appUrl, external: true },
+  ],
+  [
+    "Für Ihren Betrieb",
+    [
+      ["Gewerke", "/gewerke"],
+      ["GoBD & Nachvollziehbarkeit", "/gobd"],
+      ["Fakten zu CraftOS", "/fakten-ueber-craftos"],
     ],
-  },
-  {
-    title: 'Rechtliches',
-    links: [
-      { label: 'Support & Hilfe', href: '/support' },
-      { label: 'Impressum', href: '/impressum' },
-      { label: 'Datenschutz', href: '/datenschutz' },
-      { label: 'AGB', href: '/agb' },
+  ],
+  [
+    "Wissen & Hilfe",
+    [
+      ["Ratgeber", "/blog"],
+      ["Hilfezentrum", "/hilfe"],
+      ["Kostenlose Rechner", "/rechner"],
+      ["Kontakt", "/support"],
     ],
-  },
-]
-
+  ],
+] as const;
 export function Footer() {
   return (
-    <footer className="relative border-t border-ink-200 bg-ink-950 text-ink-600">
-      <div className="bg-werkbank absolute inset-0 opacity-50" aria-hidden="true" />
-      <div className="relative mx-auto max-w-7xl px-5 py-16 sm:px-8">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
-          <div className="max-w-sm">
-            <CraftOSLogo size="md" />
-            <p className="mt-5 text-sm leading-relaxed text-ink-400">
-              {site.tagline}. Angebote, Rechnungen, Plantafel, Lager, Zeiterfassung und KI –
-              entwickelt für das deutsche Handwerk. Ihre Daten liegen in Frankfurt am Main.
+    <footer className="dark-section pt-16 pb-8">
+      <div className="site-container">
+        <div className="grid gap-10 md:grid-cols-[1.2fr_1fr_1fr_1fr]">
+          <div>
+            <Link
+              href="/"
+              aria-label="CraftOS Startseite"
+              className="block w-40"
+            >
+              <CraftOSLogo />
+            </Link>
+            <p className="mt-5 max-w-xs text-sm">
+              Ihr Betrieb. Ein System.
+              <br />
+              Im Büro und auf der Baustelle.
             </p>
-            <p className="spec-label mt-6 text-primary-500">100 % DSGVO-konform · Daten in Deutschland</p>
+            <a
+              className="mt-4 inline-block text-sm text-white"
+              href={"mailto:" + site.email}
+            >
+              {site.email}
+            </a>
           </div>
-
-          {cols.map((col) => (
-            <div key={col.title}>
-              <h3 className="font-mono text-xs uppercase tracking-widest text-ink-400">
-                {col.title}
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {col.links.map((link) => (
-                  <li key={link.label}>
-                    {'external' in link && link.external ? (
-                      <a
-                        href={link.href}
-                        className="text-sm text-ink-600 transition-colors hover:text-ink-900"
-                      >
-                        {link.label}
-                      </a>
-                    ) : (
-                      <Link
-                        href={link.href}
-                        className="text-sm text-ink-600 transition-colors hover:text-ink-900"
-                      >
-                        {link.label}
-                      </Link>
-                    )}
+          {columns.map(([title, links]) => (
+            <div key={title}>
+              <h2 className="text-base font-semibold mb-5">{title}</h2>
+              <ul className="space-y-3">
+                {links.map(([label, href]) => (
+                  <li key={href}>
+                    <Link
+                      className="text-sm text-zinc-400 hover:text-amber-300"
+                      href={href}
+                    >
+                      {label}
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
-
-        <div className="anriss anriss-amber mt-14" aria-hidden="true" />
-        <div className="flex flex-col items-start justify-between gap-4 pt-8 sm:flex-row sm:items-center">
-          <p className="text-xs text-ink-400">
-            © {new Date().getFullYear()} CraftOS · Alle Rechte vorbehalten
-          </p>
-          <p className="font-mono text-xs text-ink-400">app.craftos.eu · v1.0</p>
+        <div className="mt-14 pt-6 border-t border-white/15 flex flex-wrap gap-x-6 gap-y-3 text-xs text-zinc-400">
+          <span>© {new Date().getFullYear()} CraftOS</span>
+          <Link href="/impressum">Impressum</Link>
+          <Link href="/datenschutz">Datenschutz</Link>
+          <Link href="/agb">AGB</Link>
+          <a href="/feed.xml">RSS-Feed</a>
+          <span className="md:ml-auto">Mit Sorgfalt fürs Handwerk.</span>
         </div>
       </div>
     </footer>
-  )
+  );
 }

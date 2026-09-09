@@ -1,38 +1,58 @@
-import type { MetadataRoute } from 'next'
-import { site } from '@/lib/site'
-import { gewerke } from '@/lib/gewerke'
-import { funktionen } from '@/lib/funktionen'
-
-export default function sitemap(): MetadataRoute.Sitemap {
-  const statisch = [
-    { path: '', priority: 1.0, freq: 'weekly' as const },
-    { path: '/funktionen', priority: 0.9, freq: 'monthly' as const },
-    { path: '/gewerke', priority: 0.9, freq: 'monthly' as const },
-    { path: '/craft-ai', priority: 0.9, freq: 'monthly' as const },
-    { path: '/app', priority: 0.8, freq: 'monthly' as const },
-    { path: '/preise', priority: 0.9, freq: 'monthly' as const },
-    { path: '/fakten-ueber-craftos', priority: 0.7, freq: 'monthly' as const },
-    { path: '/support', priority: 0.5, freq: 'monthly' as const },
-    { path: '/impressum', priority: 0.2, freq: 'yearly' as const },
-    { path: '/datenschutz', priority: 0.2, freq: 'yearly' as const },
-    { path: '/agb', priority: 0.2, freq: 'yearly' as const },
-  ]
-  const gewerkeRoutes = gewerke.map((g) => ({
-    path: `/gewerke/${g.slug}`,
-    priority: 0.8,
-    freq: 'monthly' as const,
-  }))
-  const funktionenRoutes = funktionen.map((f) => ({
-    path: `/funktionen/${f.slug}`,
-    priority: 0.8,
-    freq: 'monthly' as const,
-  }))
-
-  const now = new Date()
-  return [...statisch, ...gewerkeRoutes, ...funktionenRoutes].map((r) => ({
-    url: `${site.url}${r.path}`,
-    lastModified: now,
-    changeFrequency: r.freq,
-    priority: r.priority,
-  }))
+import type { MetadataRoute } from "next";
+import { site } from "@/lib/site";
+import { funktionen } from "@/lib/funktionen";
+import { gewerke } from "@/lib/gewerke";
+import { getContentList } from "@/lib/content";
+import { categories } from "@/lib/content-types";
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const articles = [
+    ...(await getContentList("blog")),
+    ...(await getContentList("hilfe")),
+  ];
+  const pages = [
+    "",
+    "/funktionen",
+    "/gewerke",
+    "/app",
+    "/craft-ai",
+    "/preise",
+    "/gobd",
+    "/vergleich",
+    "/fakten-ueber-craftos",
+    "/support",
+    "/blog",
+    "/hilfe",
+    "/rechner",
+    "/rechner/stundensatz",
+    "/rechner/angebotskalkulation",
+  ];
+  return [
+    ...pages.map((p) => ({ url: site.url + p, lastModified: "2026-09-09" })),
+    ...["/agb", "/datenschutz", "/impressum"].map((p) => ({
+      url: site.url + p,
+    })),
+    ...funktionen.map((f) => ({
+      url: site.url + "/funktionen/" + f.slug,
+      lastModified: f.checkedAt,
+    })),
+    ...gewerke.map((g) => ({
+      url: site.url + "/gewerke/" + g.slug,
+      lastModified: "2026-09-09",
+    })),
+    ...(["blog", "hilfe"] as const).flatMap((kind) =>
+      Object.keys(categories[kind]).map((c) => ({
+        url: site.url + "/" + kind + "/kategorie/" + c,
+        lastModified: articles
+          .filter((a) => a.kind === kind && a.category === c)
+          .reduce(
+            (latest, a) => (a.updatedAt > latest ? a.updatedAt : latest),
+            "2026-09-09",
+          ),
+      })),
+    ),
+    ...articles.map((a) => ({
+      url: site.url + "/" + a.kind + "/" + a.slug,
+      lastModified: a.updatedAt,
+    })),
+  ];
 }

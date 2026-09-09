@@ -1,98 +1,59 @@
-import { site, tarife } from './site'
-
-// JSON-LD Schema-Generatoren (GEO/SEO – "Muttersprache der KI")
-
+import { site } from "./site";
 export function organizationSchema() {
   return {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": site.url + "/#organization",
     name: site.name,
     url: site.url,
-    logo: `${site.url}/icons/icon-512x512.png`,
+    logo: site.url + "/icons/icon-512x512.png",
     description: site.description,
     email: site.email,
-    sameAs: [] as string[],
-  }
+  };
 }
-
 export function softwareApplicationSchema() {
   return {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: site.name,
-    applicationCategory: 'BusinessApplication',
-    operatingSystem: 'Web, iOS, Android',
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": site.url + "/#software",
+    name: "CraftOS",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web, iOS, Android",
     description: site.description,
     url: site.url,
-    inLanguage: 'de-DE',
+    inLanguage: "de-DE",
+    publisher: { "@id": site.url + "/#organization" },
     offers: {
-      '@type': 'AggregateOffer',
-      priceCurrency: 'EUR',
-      lowPrice: tarife[0].monat,
-      highPrice: tarife[tarife.length - 1].monat,
-      offerCount: tarife.length,
-      offers: tarife.map((t) => ({
-        '@type': 'Offer',
-        name: `CraftOS ${t.name}`,
-        price: t.monat,
-        priceCurrency: 'EUR',
-        category: 'Monatslizenz pro Nutzer',
-      })),
+      "@type": "Offer",
+      name: "Voll-Lizenz inklusive Web-App und Mobile-App",
+      price: "29.95",
+      priceCurrency: "EUR",
+      url: site.url + "/preise",
+      description:
+        "Netto pro Person und Monat. Mindestens eine Voll-Lizenz pro Betrieb. Zusatzlizenzen und KI-Verbrauch gesondert.",
     },
-  }
+  };
 }
-
 export function faqSchema(items: { q: string; a: string }[]) {
   return {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
     mainEntity: items.map((i) => ({
-      '@type': 'Question',
+      "@type": "Question",
       name: i.q,
-      acceptedAnswer: { '@type': 'Answer', text: i.a },
+      acceptedAnswer: { "@type": "Answer", text: i.a },
     })),
-  }
+  };
 }
-
-export function articleSchema(article: {
-  title: string
-  description: string
-  slug: string
-  date: string
-  updated?: string
-  image?: string
-}) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: article.title,
-    description: article.description,
-    inLanguage: 'de-DE',
-    author: { '@type': 'Organization', name: site.name, url: site.url },
-    publisher: {
-      '@type': 'Organization',
-      name: site.name,
-      logo: { '@type': 'ImageObject', url: `${site.url}/icons/icon-512x512.png` },
-    },
-    datePublished: article.date,
-    dateModified: article.updated || article.date,
-    ...(article.image ? { image: `${site.url}${article.image}` } : {}),
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `${site.url}/blog/${article.slug}`,
-    },
-  }
-}
-
 export function breadcrumbSchema(items: { name: string; path: string }[]) {
   return {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: items.map((item, idx) => ({
-      '@type': 'ListItem',
-      position: idx + 1,
-      name: item.name,
-      item: `${site.url}${item.path}`,
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((i, n) => ({
+      "@type": "ListItem",
+      position: n + 1,
+      name: i.name,
+      item: site.url + i.path,
     })),
-  }
+  };
 }

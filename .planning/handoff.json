@@ -1,0 +1,33 @@
+{
+  "project": "C:/Projekte/Websitenerstellung",
+  "agent": "codex",
+  "session_id": "01a08357-f0e1-7812-9793-d124174b504d",
+  "status": "release_prepared",
+  "summary": "Vollständiger Relaunch lokal integriert und abgenommen; Nutzer hat Commit, Push und Veröffentlichung freigegeben. Live-Produktstände und angewandte GoBD-Migrationen sind abgeglichen. Release über main und das bestehende Vercel-Projekt craftos wird ausgeführt.",
+  "decisions": [
+    "10 Testtage; Jahresabo standardmäßig mit monatlichem Äquivalent24,96€/8,29€, tatsächlichem Jahresbetrag und rund17% Vorteil; Volllizenz enthält Mobile für dieselbe Person.",
+    "Lebhafter CraftOS-Stil mit Amber, dunklem Einstieg, lesbaren hellen Inhalten; geführte mobile Demo mit sichtbarer Aktion, Fokus und ausdrücklicher KI-Bestätigung.",
+    "Drei direkte Screenshots aktueller Mobile-Komponenten mit fiktiven Daten; KI ergänzt Handyrahmen/Hintergrund. Originalumschalter; AVIF mit WebP-Browseralternative; keine frei erfundenen Produktoberflächen.",
+    "Web-Codebasis d442df68 inklusive vorhandener Änderungen; Mobile abschließend9e6260d sauber. Telefonagent/offener MCP und weitere schreibende Agent-Aktionen als angekündigte Features gekennzeichnet.",
+    "BILDER-PROMPTS.md, AGENTS.md und _seo-referenz im Original erhalten; Dateiumfang siehe .planning/integration-manifest.json, alle Kopien per SHA-256 geprüft."
+  ],
+  "files": [
+    "craftos/app",
+    "craftos/components",
+    "craftos/content",
+    "craftos/lib",
+    "craftos/public/images/mobile/current",
+    "craftos/docs/RELAUNCH-ABNAHME.md",
+    ".planning/integration-manifest.json",
+    "craftos/docs/RELEASE-2026-09-09.md"
+  ],
+  "tests": [
+    "81 Unit-Tests und98 Browserfälle bestanden; Chromium/WebKit, Touch/Tastatur, reduzierte Bewegung.",
+    "125 öffentliche Routen und129 Linkziele erreichbar,7 echte404;100 visuelle Ansichten und gezielte20 Nachprüfungen,144 Demo- und60 Medienzustände.",
+    "AVIF/WebP-Fallback mit24 Zuständen bestätigt; abschließend /, /app und /blog/handwerkersoftware-wechseln aus Original in Chromium/WebKit ohne Warnungen, Seiten- oder Hydrationsfehler.",
+    "Produktionsbuild im Original erzeugt131 Seiten; Lint und Typprüfung bestanden; npm ci erfolgreich,0 gemeldete Sicherheitslücken.",
+    "15 lokale LCP-Messungen unter2,5s, CLS0 und synthetische Interaktionen unter200ms; App-Median2,484s mit knapper Reserve, keine Felddaten.",
+    "Lokales Standardreview:3 P2 behoben; fokussiertes Nachreview ohne Befund."
+  ],
+  "next_step": "Nach Ship-Gate alle geprüften Änderungen committen und auf main pushen; READY-Deployment und öffentliche Domain prüfen. Abschließenden Release-Status in gemeinsamer Übergabe speichern."
+}

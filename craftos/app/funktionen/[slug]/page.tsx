@@ -1,208 +1,166 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
-import { notFound } from 'next/navigation'
-import { ArrowRight, Check } from 'lucide-react'
-import { PageHero } from '@/components/ui/PageHero'
-import { Faq } from '@/components/ui/Faq'
-import { JsonLd } from '@/components/seo/JsonLd'
-import { CtaButton, GhostButton, SectionHeading, TierBadge } from '@/components/ui/primitives'
-import { ScreenshotFrame } from '@/components/ui/ScreenshotFrame'
-import { AngebotDemo } from '@/components/demos/AngebotDemo'
-import { PlantafelDemo } from '@/components/demos/PlantafelDemo'
-import { ZeitenDemo } from '@/components/demos/ZeitenDemo'
-import { KiChatDemo } from '@/components/demos/KiChatDemo'
-import { LagerDemo } from '@/components/demos/LagerDemo'
-import { breadcrumbSchema, faqSchema } from '@/lib/schema'
-import { funktionen, getFunktion } from '@/lib/funktionen'
-import { site } from '@/lib/site'
-import { funktionBilder } from '@/lib/images'
-import { BildBanner } from '@/components/ui/BildBanner'
-
-const DEMOS = {
-  angebot: AngebotDemo,
-  plantafel: PlantafelDemo,
-  zeiterfassung: ZeitenDemo,
-  kichat: KiChatDemo,
-  lager: LagerDemo,
-} as const
-
-// Definierte Screenshot-Plätze je Modul (Slots aus lib/images.ts)
-const SHOWCASE: Record<string, string[]> = {
-  angebote: ['angebot-maske', 'angebot-aufmass'],
-  rechnungen: ['rechnung-dokument', 'rechnung-mahnwesen'],
-  buchhaltung: ['beleg-scan', 'datev-export'],
-  plantafel: ['plantafel-woche', 'plantafel-app'],
-  zeiterfassung: ['zeiterfassung-konto', 'zeiterfassung-app'],
-  lager: ['lager-bestand', 'lager-scan'],
-  baudokumentation: ['baudoku-akte', 'baudoku-bericht'],
-  team: ['team-rollen'],
-  nachkalkulation: ['nachkalkulation-dashboard'],
-}
-
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { Check, ArrowUpRight, Monitor, Smartphone } from "lucide-react";
+import { getFunktion, funktionen } from "@/lib/funktionen";
+import { pageMetadata } from "@/lib/metadata";
+import { PageHero } from "@/components/ui/PageHero";
+import { ProductDemo } from "@/components/product-demo/ProductDemo";
+import { Faq } from "@/components/ui/Faq";
+import { TrialCta } from "@/components/ui/TrialCta";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { faqSchema, breadcrumbSchema } from "@/lib/schema";
 export function generateStaticParams() {
-  return funktionen.map((f) => ({ slug: f.slug }))
+  return funktionen.map((f) => ({ slug: f.slug }));
 }
-
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>
-}): Promise<Metadata> {
-  const { slug } = await params
-  const f = getFunktion(slug)
-  if (!f) return {}
-  return {
-    title: f.seoTitle,
-    description: f.seoDescription,
-    alternates: { canonical: `${site.url}/funktionen/${f.slug}` },
-  }
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const f = getFunktion(slug);
+  return f
+    ? pageMetadata(f.seoTitle, f.seoDescription, "/funktionen/" + slug)
+    : {};
 }
-
-export default async function FunktionDetailPage({
+export default async function Page({
   params,
 }: {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params
-  const f = getFunktion(slug)
-  if (!f) notFound()
-
-  const Demo = f.demo ? DEMOS[f.demo] : null
-  const weitere = funktionen.filter((x) => x.slug !== f.slug).slice(0, 3)
-
+  const { slug } = await params,
+    f = getFunktion(slug);
+  if (!f) notFound();
   return (
     <>
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: 'Start', path: '/' },
-          { name: 'Funktionen', path: '/funktionen' },
-          { name: f.name, path: `/funktionen/${f.slug}` },
-        ])}
-      />
-      <JsonLd data={faqSchema(f.faq)} />
-
       <PageHero eyebrow={f.name} title={f.heroTitle} intro={f.heroIntro} />
-
-      {/* Details + Demo */}
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div
-            className={
-              Demo ? 'grid items-start gap-10 lg:grid-cols-[1.1fr_1fr]' : 'mx-auto max-w-3xl'
-            }
-          >
-            <div>
-              <ul className="space-y-6">
-                {f.bullets.map((b) => (
-                  <li key={b.titel} className="flex items-start gap-3.5">
-                    <span className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary-500/15 text-primary-400">
-                      <Check className="h-3.5 w-3.5" strokeWidth={3} />
-                    </span>
-                    <div>
-                      <div className="flex flex-wrap items-center gap-2.5">
-                        <h2 className="font-display text-lg font-semibold text-ink-900">
-                          {b.titel}
-                        </h2>
-                        {b.tier && b.tier !== 'heute' && <TierBadge tier={b.tier} />}
-                      </div>
-                      <p className="mt-1.5 leading-relaxed text-ink-500">{b.text}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            {Demo && (
-              <div className="lg:sticky lg:top-24">
-                <Demo />
-                <p className="mt-3 px-1 text-center text-xs text-ink-400">
-                  Interaktive Demo — so arbeitet das echte Modul.
-                </p>
-              </div>
+      <section className="section-space">
+        <div className="site-container">
+          <div className="flex flex-wrap gap-5 mb-8">
+            {f.platforms.map((p) => (
+              <span
+                key={p}
+                className="inline-flex gap-2 items-center text-sm font-semibold"
+              >
+                {p === "web" ? <Monitor size={18} /> : <Smartphone size={18} />}{" "}
+                {p === "web" ? "Web-App" : "Mobile-App"}
+              </span>
+            ))}
+            {f.tier === "launch" && (
+              <span className="text-sm font-semibold text-primary-800">
+                In Prüfung
+              </span>
             )}
           </div>
-        </div>
-      </section>
-
-      {/* Einblick ins Modul: definierte Screenshot-Plätze */}
-      {SHOWCASE[f.slug] && (
-        <section className="pb-16 lg:pb-20">
-          <div className="mx-auto max-w-7xl px-5 sm:px-8">
-            <SectionHeading eyebrow="Einblick" title={`So sieht ${f.name} in CraftOS aus`} />
-            <div
-              className={
-                SHOWCASE[f.slug].length > 1
-                  ? 'mt-10 grid items-center gap-8 sm:grid-cols-[1.4fr_1fr]'
-                  : 'mt-10 mx-auto max-w-2xl'
-              }
-            >
-              {SHOWCASE[f.slug].map((slot) => (
-                <ScreenshotFrame key={slot} slot={slot} />
-              ))}
-            </div>
-            <p className="mt-8">
-              <a
-                href={site.ctaUrl}
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-400 transition-colors hover:text-primary-300"
-              >
-                Kostenlos testen
-                <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
-              </a>
-            </p>
-          </div>
-        </section>
-      )}
-
-      {funktionBilder[f.slug] && <BildBanner bild={funktionBilder[f.slug]} className="mb-16" />}
-
-      <div className="anriss mx-auto max-w-7xl" aria-hidden="true" />
-
-      {/* Weitere Funktionen */}
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeading eyebrow="Mehr Werkzeug" title="Das greift direkt ineinander" />
-          <div className="mt-8 grid gap-5 sm:grid-cols-3">
-            {weitere.map((w) => (
-              <Link
-                key={w.slug}
-                href={`/funktionen/${w.slug}`}
-                className="card-hover group rounded-2xl border border-ink-200 bg-ink-100 p-5"
-              >
-                <h3 className="font-display text-base font-semibold text-ink-900">{w.name}</h3>
-                <p className="mt-1.5 text-sm text-ink-500">{w.kurz}</p>
-                <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary-400">
-                  Ansehen
-                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                </span>
-              </Link>
+          {f.demo && <ProductDemo key={slug} initialScene={f.demo} />}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+            {f.bullets.map((b) => (
+              <div key={b.titel} className="border-t border-ink-200 pt-6">
+                <Check size={22} className="text-primary-800" />
+                <h2 className="text-2xl mt-5 font-semibold">{b.titel}</h2>
+                <p className="text-ink-600 mt-4">{b.text}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
-
-      {/* FAQ — Einwandbehandlung direkt vor der Conversion */}
-      <section className="pb-16 lg:pb-20">
-        <div className="mx-auto max-w-3xl px-5 sm:px-8">
-          <SectionHeading eyebrow="FAQ" title="Häufige Fragen" align="center" className="mb-10" />
-          <Faq items={[...f.faq]} />
+      <section className="section-space bg-ink-100">
+        <div className="site-container grid lg:grid-cols-[.8fr_1fr] gap-12">
+          <div>
+            <p className="eyebrow">So arbeiten Sie damit</p>
+            <h2 className="section-title">
+              Vom ersten Schritt
+              <br />
+              zum Ergebnis.
+            </h2>
+            <Link href={"/hilfe/" + f.helpSlug} className="text-link mt-7">
+              {slug === "arbeitsanweisungen"
+                ? "Ergänzend: Projektdateien organisieren"
+                : slug === "dashboard"
+                  ? "Projekt und Phasen anlegen"
+                  : slug === "nachkalkulation"
+                    ? "Erfasste Zeiten prüfen"
+                    : "Anleitung Schritt für Schritt"}{" "}
+              <ArrowUpRight size={18} />
+            </Link>
+          </div>
+          <ol className="space-y-7">
+            {f.steps.map((s, i) => (
+              <li key={s} className="flex gap-5">
+                <span className="font-display text-3xl text-primary-800 w-9 shrink-0">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p className="pt-1">{s}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
-
-      {/* CTA */}
-      <section className="relative overflow-hidden bg-ink-950 py-16 lg:py-20">
-        <div className="bg-werkbank mask-fade absolute inset-0" aria-hidden="true" />
-        <div className="relative mx-auto max-w-3xl px-5 text-center sm:px-8">
-          <h2 className="font-display text-3xl font-bold text-ink-900 sm:text-4xl">
-            {f.name} – jetzt selbst erleben
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-ink-500">
-            14 Tage kostenlos, voller Funktionsumfang, keine Kreditkarte.
-          </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <CtaButton>Jetzt kostenlos testen</CtaButton>
-            <GhostButton href="/funktionen">Alle Funktionen</GhostButton>
+      <section className="section-space">
+        <div className="site-container split-section items-start">
+          <div>
+            <p className="eyebrow">Gut vorbereitet</p>
+            <h2 className="text-3xl font-semibold">
+              Zugriff und Voraussetzungen
+            </h2>
+            <p className="mt-5 text-ink-600">{f.access}</p>
+            {f.notes.map((n) => (
+              <p className="notice mt-6 text-sm" key={n}>
+                {n}
+              </p>
+            ))}
+            <p className="text-sm mt-5 text-ink-600">
+              Die Voll-Lizenz enthält Web-App und Mobile-App für dieselbe
+              Person. Mehr zu{" "}
+              <Link href="/preise" className="text-link">
+                Lizenzen und Preisen
+              </Link>
+              .
+            </p>
+            {[
+              "rechnungen",
+              "buchhaltung",
+              "eingangsrechnungen",
+              "e-rechnung",
+            ].includes(slug) && (
+              <Link className="text-link mt-5" href="/gobd">
+                GoBD-Festschreibung und Nachvollziehbarkeit erklärt{" "}
+                <ArrowUpRight size={17} />
+              </Link>
+            )}
+          </div>
+          <Faq items={f.faq} />
+        </div>
+      </section>
+      <section className="section-space bg-ink-100">
+        <div className="site-container">
+          <h2 className="text-3xl font-semibold">Passt dazu.</h2>
+          <div className="grid md:grid-cols-3 gap-8 mt-8">
+            {f.related.map((s) => {
+              const r = getFunktion(s);
+              return r ? (
+                <Link
+                  key={s}
+                  href={"/funktionen/" + s}
+                  className="border-t border-ink-300 pt-6"
+                >
+                  <h3 className="text-2xl font-semibold">{r.name}</h3>
+                  <p className="text-sm text-ink-600 mt-3">{r.kurz}</p>
+                </Link>
+              ) : null;
+            })}
           </div>
         </div>
       </section>
+      <JsonLd data={faqSchema(f.faq)} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Start", path: "/" },
+          { name: "Funktionen", path: "/funktionen" },
+          { name: f.name, path: "/funktionen/" + slug },
+        ])}
+      />
+      <TrialCta />
     </>
-  )
+  );
 }

@@ -1,194 +1,154 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Check, Minus } from 'lucide-react'
-import { tarife, site, speicherPool } from '@/lib/site'
-import { cn } from '@/lib/utils'
+import { useState } from "react";
+import { ArrowUpRight, Check, Laptop, Smartphone } from "lucide-react";
+import { tarife, site } from "@/lib/site";
+import styles from "./PricingTable.module.css";
 
-// Zwei Spalten: App-Lizenz · Voll-Lizenz. 'admin' = nur mit Admin-Rolle der Voll-Lizenz.
-const matrix: { label: string; values: [boolean, boolean | 'admin'] }[] = [
-  { label: 'Mobile-App (iOS & Android)', values: [true, true] },
-  { label: 'Zeiterfassung (auch per Sprache)', values: [true, true] },
-  { label: 'Zugewiesene Projekte & Einsätze', values: [true, true] },
-  { label: 'Aufmaß, Berichte & Fotos vor Ort', values: [true, true] },
-  { label: 'Web-App (Büro)', values: [false, true] },
-  { label: 'Projekte & Kunden verwalten', values: [false, true] },
-  { label: 'Angebote, Rechnungen & E-Rechnung', values: [false, true] },
-  { label: 'Plantafel & Einsatzplanung', values: [false, true] },
-  { label: 'Lager & Materialwirtschaft', values: [false, true] },
-  { label: 'Team-, Rechte- & Nachunternehmer-Verwaltung', values: [false, 'admin'] },
-  { label: 'Craft AI verwalten (Pay-as-you-go-Credits)', values: [false, 'admin'] },
-  { label: 'DATEV-Export, Buchungsjournal & Steuer-Cockpit', values: [false, 'admin'] },
-  { label: 'Abo-, Lizenz- & Speicherverwaltung', values: [false, 'admin'] },
-]
+const euro = (value: number) =>
+  new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(value);
 
-const eur = (n: number) =>
-  n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+function displayCopy(value: string) {
+  const text = value
+    .replaceAll("Web-App", "Webapp")
+    .replaceAll("Mobile-App", "mobile App")
+    .replaceAll("Handy-App", "mobile App")
+    .replaceAll("Voll-Lizenz", "Volllizenz")
+    .replaceAll("App-Lizenz", "mobile Lizenz");
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
 
 export function PricingTable() {
-  const [jaehrlich, setJaehrlich] = useState(true)
+  const [annual, setAnnual] = useState(true);
 
   return (
-    <div>
-      {/* Abrechnungs-Wahl: segmentierte Schalter statt Switch */}
-      <div
-        className="mx-auto flex w-fit rounded-xl border border-ink-200 bg-ink-100 p-1"
-        role="group"
-        aria-label="Abrechnungszeitraum"
-      >
-        {(
-          [
-            { key: true, label: 'Jährlich', hint: '−17 %' },
-            { key: false, label: 'Monatlich', hint: null },
-          ] as const
-        ).map((o) => (
+    <div className={styles.pricing}>
+      <div className={styles.billingHeader}>
+        <div
+          className={styles.toggle}
+          role="group"
+          aria-label="Abrechnung wählen"
+        >
           <button
-            key={o.label}
             type="button"
-            aria-pressed={jaehrlich === o.key}
-            onClick={() => setJaehrlich(o.key)}
-            className={cn(
-              'flex cursor-pointer items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-all duration-200',
-              jaehrlich === o.key
-                ? 'bg-primary-500 text-[#1c1507] shadow-[0_2px_12px_-2px_rgba(242,175,56,0.5)]'
-                : 'text-ink-500 hover:text-ink-800',
-            )}
+            onClick={() => setAnnual(false)}
+            aria-pressed={!annual}
+            className={!annual ? styles.selected : undefined}
           >
-            {o.label}
-            {o.hint && (
-              <span
-                className={cn(
-                  'rounded-full px-1.5 py-0.5 font-mono text-[0.62rem] font-bold',
-                  jaehrlich === o.key ? 'bg-[#1c1507]/15 text-[#1c1507]' : 'bg-success/15 text-success',
-                )}
-              >
-                {o.hint}
-              </span>
-            )}
+            Monatlich
           </button>
-        ))}
+          <button
+            type="button"
+            onClick={() => setAnnual(true)}
+            aria-pressed={annual}
+            className={annual ? styles.selected : undefined}
+          >
+            Jährlich
+          </button>
+        </div>
+        <p className={styles.saving}>
+          <span>Rund 17 % sparen</span>mit jährlicher Abrechnung
+        </p>
       </div>
 
-      {/* Zwei Lizenzmodelle */}
-      <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-2">
-        {tarife.map((t) => {
-          const preis = jaehrlich ? t.jahr / 12 : t.monat
-          const voll = t.id === 'voll'
+      <div className={styles.cards}>
+        {[...tarife].reverse().map((tariff) => {
+          const isFull = tariff.id === "voll";
+          const name = isFull ? "Volllizenz" : "Mobile Lizenz";
+
           return (
-            <div
-              key={t.id}
-              className={cn(
-                'relative flex flex-col rounded-2xl bg-ink-100 p-8',
-                voll
-                  ? 'border-2 border-primary-500 shadow-[0_20px_60px_-20px_rgba(242,175,56,0.25)]'
-                  : 'border border-ink-200',
-              )}
+            <article
+              key={tariff.id}
+              className={`${styles.card} ${isFull ? styles.fullCard : styles.mobileCard}`}
+              aria-labelledby={`tariff-${tariff.id}`}
             >
-              {t.badge && (
-                <span className="absolute -top-3 left-8 rounded-full bg-primary-500 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-[#1c1507]">
-                  {t.badge}
-                </span>
-              )}
-              <h3 className="font-display text-2xl font-bold text-ink-900">{t.name}</h3>
-              <p className="mt-1 text-sm text-ink-400">{t.fuer}</p>
-              <p className="mt-6 flex items-baseline gap-2.5">
-                {jaehrlich && (
-                  <span className="font-mono text-lg tabular-nums text-ink-400 line-through decoration-ink-300">
-                    {eur(t.monat)} €
+              <header className={styles.cardHeader}>
+                <div className={styles.platform}>
+                  <span className={styles.platformIcon} aria-hidden="true">
+                    {isFull ? (
+                      <Laptop size={23} strokeWidth={1.7} />
+                    ) : (
+                      <Smartphone size={23} strokeWidth={1.7} />
+                    )}
                   </span>
-                )}
-                <span className="font-display text-5xl font-bold tabular-nums text-ink-900">
-                  {eur(preis)} €
-                </span>
-                <span className="text-base font-medium text-ink-400">/Monat</span>
-              </p>
-              <p className="mt-1.5 font-mono text-xs text-ink-400">
-                {jaehrlich
-                  ? `${eur(t.jahr)} €/Jahr · pro Nutzer · 2 Monate geschenkt`
-                  : 'pro Nutzer · monatlich kündbar'}
-              </p>
+                  <span>
+                    {isFull
+                      ? "Webapp und mobile App inklusive"
+                      : "Für Ihr Team auf der Baustelle"}
+                  </span>
+                </div>
+                <h3 id={`tariff-${tariff.id}`}>{name}</h3>
+                <p className={styles.audience}>{displayCopy(tariff.fuer)}</p>
+              </header>
 
-              <a
-                href={site.ctaUrl}
-                className={cn(
-                  'mt-7 inline-flex w-full items-center justify-center rounded-xl px-5 py-3.5 text-sm font-semibold transition-colors',
-                  voll
-                    ? 'btn-cta'
-                    : 'border border-ink-300 text-ink-800 hover:border-primary-500/50 hover:text-ink-900',
-                )}
-              >
-                Kostenlos testen
-              </a>
+              <div className={styles.priceBlock}>
+                <div
+                  className={styles.price}
+                  aria-live="polite"
+                  aria-atomic="true"
+                >
+                  <strong>
+                    {euro(annual ? tariff.jahr / 12 : tariff.monat)}
+                    <span className={styles.currency}>€</span>
+                  </strong>
+                  <span className={styles.priceUnit}>
+                    pro Person
+                    <br />
+                    und Monat
+                  </span>
+                  <span className={styles.srOnly}>
+                    {annual
+                      ? ", bei jährlicher Abrechnung"
+                      : ", bei monatlicher Abrechnung"}
+                  </span>
+                </div>
+                <p className={styles.billingDetail}>
+                  {annual ? (
+                    <>
+                      <strong>{euro(tariff.jahr)} €</strong> jährlich im Voraus
+                    </>
+                  ) : (
+                    <>
+                      Oder <strong>{euro(tariff.jahr)} €</strong> jährlich im
+                      Voraus
+                    </>
+                  )}
+                </p>
+                <p className={styles.tax}>
+                  Alle Preise netto, zzgl. gesetzlicher Umsatzsteuer.
+                </p>
+              </div>
 
-              <ul className="mt-7 space-y-3 border-t border-ink-200 pt-7">
-                {t.highlights.map((h) => (
-                  <li key={h} className="flex items-start gap-2.5 text-sm text-ink-600">
-                    <Check
-                      className="mt-0.5 h-4.5 w-4.5 flex-shrink-0 text-success"
-                      strokeWidth={2.5}
-                    />
-                    {h}
+              <ul className={styles.features}>
+                {tariff.highlights.map((highlight) => (
+                  <li key={highlight}>
+                    <Check size={17} strokeWidth={2.4} aria-hidden="true" />
+                    <span>{displayCopy(highlight)}</span>
                   </li>
                 ))}
               </ul>
-            </div>
-          )
+
+              <div className={styles.cardFooter}>
+                <a href={site.ctaUrl} className={styles.cta}>
+                  10 Tage kostenlos testen
+                  <ArrowUpRight size={19} aria-hidden="true" />
+                </a>
+                <p>Ohne Zahlungsdaten</p>
+              </div>
+            </article>
+          );
         })}
       </div>
 
-      <p className="mt-6 text-center font-mono text-xs text-ink-400">
-        {speicherPool} — unabhängig von der Lizenzanzahl, jederzeit erweiterbar.
-      </p>
-
-      {/* Vergleichstabelle */}
-      <div className="mt-16 overflow-x-auto rounded-2xl border border-ink-200">
-        <table className="w-full min-w-[30rem] text-left text-sm">
-          <thead>
-            <tr className="border-b border-ink-200 bg-ink-150">
-              <th className="px-5 py-4 font-display text-base font-bold text-ink-900">Funktion</th>
-              {tarife.map((t) => (
-                <th
-                  key={t.id}
-                  className={cn(
-                    'px-5 py-4 text-center font-display text-base font-bold text-ink-900',
-                    t.id === 'voll' &&
-                      'border-t-2 border-primary-500 bg-primary-500/[0.08] text-primary-300',
-                  )}
-                >
-                  {t.name}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {matrix.map((row, i) => (
-              <tr key={row.label} className={i % 2 ? 'bg-ink-150/50' : 'bg-ink-100'}>
-                <td className="px-5 py-3.5 font-medium text-ink-600">{row.label}</td>
-                {row.values.map((v, j) => (
-                  <td
-                    key={j}
-                    className={cn('px-5 py-3.5 text-center', j === 1 && 'bg-primary-500/[0.06]')}
-                  >
-                    {v === 'admin' ? (
-                      <span className="rounded bg-primary-500/12 px-1.5 py-0.5 font-mono text-[0.62rem] font-semibold uppercase tracking-wider text-primary-400">
-                        Admin-Rolle
-                      </span>
-                    ) : v ? (
-                      <Check className="mx-auto h-5 w-5 text-success" strokeWidth={2.5} />
-                    ) : (
-                      <Minus className="mx-auto h-4 w-4 text-ink-300" />
-                    )}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <p className="mt-4 font-mono text-xs leading-relaxed text-ink-400">
-        Admin-Rolle: Jede Voll-Lizenz läuft als Büro- oder Admin-Rolle — Sie stellen es in der
-        Lizenzverwaltung um. Mindestens eine Admin-Rolle pro Betrieb.
+      <p className={styles.terms}>
+        Ein Betrieb benötigt mindestens eine Volllizenz für die Administration.
+        Zugriffsrechte werden je Rolle vergeben. Craft AI und Belegscans mit KI
+        werden nach Verbrauch über Credits abgerechnet; erweiterter Speicher
+        kann zusätzlich kosten.
       </p>
     </div>
-  )
+  );
 }

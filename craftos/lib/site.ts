@@ -1,78 +1,71 @@
-// Zentrale Seiten-Konfiguration & Inhalte für CraftOS
 export const site = {
-  name: 'CraftOS',
-  subtitle: 'Handwerkersoftware',
-  tagline: 'Das Betriebssystem für Handwerksbetriebe',
+  name: "CraftOS",
+  subtitle: "Handwerkersoftware",
+  tagline: "Mehr Handwerk. Weniger Büro.",
   description:
-    'CraftOS ist die All-in-One Handwerkersoftware für das deutsche Handwerk: Angebote & Rechnungen, Plantafel, Zeiterfassung, Lager und Craft AI – alles in einem System.',
-  url: 'https://craftos.eu',
-  appUrl: 'https://app.craftos.eu',
-  // Login/Registrierung läuft über die App-Subdomain
-  ctaUrl: 'https://app.craftos.eu',
-  demoUrl: 'https://app.craftos.eu/demo',
-  email: 'support@craftos.eu',
-  locale: 'de_DE',
-} as const
-
+    "Angebote, Rechnungen, Plantafel, Zeiten und Projekte in einem System: CraftOS verbindet Ihr Büro mit der Baustelle. Web-App und Mobile-App inklusive.",
+  url: "https://craftos.eu",
+  appUrl: "https://app.craftos.eu",
+  ctaUrl: "https://app.craftos.eu",
+  demoUrl: "/#produktdemo",
+  email: "support@craftos.eu",
+  locale: "de_DE",
+  iosUrl: "https://apps.apple.com/de/app/craftos/id6757652683",
+  androidUrl:
+    "https://play.google.com/store/apps/details?id=com.despia.craftos",
+  trialDays: 10,
+  checkedAt: "2026-09-09",
+} as const;
 export const nav = [
-  { label: 'Funktionen', href: '/funktionen' },
-  { label: 'Gewerke', href: '/gewerke' },
-  { label: 'Craft AI', href: '/craft-ai' },
-  { label: 'App', href: '/app' },
-  { label: 'Preise', href: '/preise' },
-] as const
-
-// Lizenz-Tarife (1:1 aus dem App-Code: src/lib/constants.ts PRICING)
-// Speicher: 50-GB-Pool pro Organisation (lizenzunabhängig), erweiterbar.
-export const speicherPool = '50 GB Speicher-Pool pro Betrieb'
-
-// Zwei Lizenzmodelle: App-Lizenz (Monteure) und Voll-Lizenz (Büro ODER Admin —
-// welche Rolle eine Voll-Lizenz bekommt, wird in CraftOS eingestellt).
+  { label: "Produkt", href: "/funktionen" },
+  { label: "Gewerke", href: "/gewerke" },
+  { label: "Preise", href: "/preise" },
+  { label: "Wissen", href: "/blog" },
+  { label: "Hilfe", href: "/hilfe" },
+] as const;
+export const speicherPool = "50 GB Speicher-Pool pro Betrieb";
+export const annualSavingPercent = 100 * (1 - 10 / 12);
 export const tarife = [
   {
-    id: 'app',
-    name: 'App-Lizenz',
+    id: "app",
+    name: "App-Lizenz",
     monat: 9.95,
     jahr: 99.5,
     badge: null,
-    fuer: 'Monteure & Mitarbeiter im Einsatz',
+    fuer: "Für Mitarbeitende auf der Baustelle",
     highlights: [
-      'Mobile-App für iOS & Android',
-      'Zeiterfassung (auch per Sprache)',
-      'Zugewiesene Projekte & Einsätze',
-      'Fotos, Berichte & Aufmaß vor Ort',
-      'Urlaub & Abwesenheiten beantragen',
+      "Mobile-App für den Baustellenalltag",
+      "Zeiten, zugewiesene Projekte und Einsätze",
+      "Aufmaß, Fotos und Baudokumentation",
+      "Urlaub und Abwesenheiten",
+      "Ergänzt die Voll-Lizenz Ihres Betriebs",
     ],
   },
   {
-    id: 'voll',
-    name: 'Voll-Lizenz',
+    id: "voll",
+    name: "Voll-Lizenz",
     monat: 29.95,
     jahr: 299.5,
-    badge: 'Büro & Admin',
-    fuer: 'Büro, Bauleitung & Geschäftsführung – die Rolle legen Sie in CraftOS fest',
+    badge: "Web-App + Mobile-App inklusive",
+    fuer: "Für Inhaber, Büro und Bauleitung",
     highlights: [
-      'Web-App + Mobile-App, voller Funktionsumfang',
-      'Angebote, Rechnungen & E-Rechnung',
-      'Plantafel, Zeiterfassung, Lager & Baudoku',
-      'Als Admin-Rolle: Team, Rechte, DATEV & Craft AI',
-      '150 Credits KI-Startguthaben pro Betrieb',
+      "Web-App und Handy-App für dieselbe Person enthalten",
+      "Angebote, Rechnungen und E-Rechnung",
+      "Plantafel, Projekte, Zeiten und Lager",
+      "Belege, DATEV und Nachkalkulation",
+      "Keine zusätzlichen Modulgebühren für die Plantafel",
     ],
   },
-] as const
-
-// Zahlungskonditionen (aus src/lib/subscription/pricing.ts)
+] as const;
 export const zahlung = {
-  sepa: 'SEPA-Lastschrift · 0,35 % Gebühr',
-  karte: 'Kreditkarte (Visa/Mastercard) · 1,5 % + 0,25 €',
-  jahresrabatt: 'Jahresabo ≈ 17 % günstiger (2 Monate geschenkt)',
-  trial: '14 Tage kostenlos testen – voller Funktionsumfang, inkl. 1,50 € KI-Startguthaben',
-} as const
-
-// KI-Credit-Pakete (Pay-as-you-go, 1 Credit = 0,01 €)
+  sepa: "SEPA-Lastschrift",
+  karte: "Kreditkarte",
+  jahresrabatt: "Jährliches Abo: rund 17 % günstiger als 12 Monatszahlungen",
+  trial: "10 Tage kostenlos testen. Ohne Zahlungsdaten.",
+} as const;
 export const creditPakete = [
   { preis: 10, bonus: 0, guthaben: 10 },
   { preis: 25, bonus: 10, guthaben: 27.5 },
   { preis: 50, bonus: 15, guthaben: 57.5 },
   { preis: 100, bonus: 20, guthaben: 120 },
-] as const
+] as const;

@@ -1,103 +1,66 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
-import { ArrowLeft, Mail, Phone, Clock } from 'lucide-react'
-import { LegalShell, LegalSection } from '@/components/legal/Legal'
-import { site } from '@/lib/site'
-
-export const metadata: Metadata = {
-  title: 'Support & Hilfe',
-  description:
-    'Support und Kontakt zur CraftOS App – der Companion-App für Handwerk und Bau. E-Mail, Telefon und Antworten auf häufige Fragen.',
-  alternates: { canonical: `${site.url}/support` },
-  robots: { index: true, follow: true },
-}
-
-const faq = [
-  {
-    q: 'Wie melde ich mich an?',
-    a: 'CraftOS ist die mobile Ergänzung zur CraftOS-Software für Handwerksbetriebe. Du meldest dich mit den Zugangsdaten deines Betriebs-Kontos an. Bei Fragen zum Zugang wende dich an deinen Betrieb oder an den Support.',
-  },
-  {
-    q: 'Ich kann mich nicht einloggen.',
-    a: 'Prüfe Internetverbindung und E-Mail/Passwort. Bei anhaltenden Problemen schreibe an support@craftos.eu.',
-  },
-  {
-    q: 'Funktioniert die App offline?',
-    a: 'Ja. Eingaben werden lokal gespeichert und automatisch synchronisiert, sobald wieder eine Verbindung besteht.',
-  },
-]
-
-export default function SupportPage() {
+import Link from "next/link";
+import { Mail, BookOpen, ArrowUpRight } from "lucide-react";
+import { PageHero } from "@/components/ui/PageHero";
+import { site } from "@/lib/site";
+import { pageMetadata } from "@/lib/metadata";
+export const metadata = pageMetadata(
+  "Kontakt & Support",
+  "Hilfe bei CraftOS: Anleitungen für Web und Mobile, Kontakt zum Support und praktische Informationen zu Ihrer Anfrage.",
+  "/support",
+);
+export default function Page() {
   return (
-    <LegalShell title="Support & Hilfe" eyebrow="Support">
-      <Link
-        href="/"
-        className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 transition-colors hover:text-primary-700"
-      >
-        <ArrowLeft className="h-4 w-4" strokeWidth={2.5} />
-        Zurück zur Startseite
-      </Link>
-
-      <p>
-        Hier findest du Hilfe und Kontakt zur CraftOS App – der Companion-App für Handwerk und
-        Bau.
-      </p>
-
-      <LegalSection heading="Kontakt">
-        <ul className="space-y-3">
-          <li className="flex items-center gap-3">
-            <Mail className="h-5 w-5 flex-shrink-0 text-primary-600" />
-            <span>
-              E-Mail:{' '}
-              <a
-                href="mailto:support@craftos.eu"
-                className="font-semibold text-primary-600 hover:underline"
-              >
-                support@craftos.eu
-              </a>
-            </span>
-          </li>
-          <li className="flex items-center gap-3">
-            <Phone className="h-5 w-5 flex-shrink-0 text-primary-600" />
-            <span>
-              Telefon:{' '}
-              <a href="tel:+4915155631914" className="font-semibold text-primary-600 hover:underline">
-                +49 151 55631914
-              </a>
-            </span>
-          </li>
-          <li className="flex items-center gap-3">
-            <Clock className="h-5 w-5 flex-shrink-0 text-primary-600" />
-            <span>Antwortzeit: in der Regel innerhalb von 1–2 Werktagen</span>
-          </li>
-        </ul>
-      </LegalSection>
-
-      <LegalSection heading="Häufige Fragen">
-        <div className="space-y-6">
-          {faq.map((item) => (
-            <div key={item.q}>
-              <h3 className="font-display text-lg font-bold text-ink-900">{item.q}</h3>
-              <p className="mt-2 text-ink-700">{item.a}</p>
-            </div>
-          ))}
+    <>
+      <PageHero
+        eyebrow="Kontakt & Support"
+        title={
+          <>
+            Wir helfen Ihnen
+            <br />
+            beim nächsten Schritt.
+          </>
+        }
+        intro="Ob Einrichtung, Rechnung oder eine Frage zur Mobile-App: Beschreiben Sie uns kurz, wobei Sie Unterstützung benötigen."
+      />
+      <section className="section-space">
+        <div className="site-container split-section items-start">
+          <div>
+            <Mail size={32} />
+            <h2 className="text-3xl font-semibold mt-5">
+              Direkt zum CraftOS Support.
+            </h2>
+            <a href={"mailto:" + site.email} className="text-link text-lg mt-5">
+              {site.email}
+              <ArrowUpRight size={18} />
+            </a>
+            <p className="text-ink-600 mt-6">
+              Nennen Sie die betroffene Ansicht, Ihr Gerät und die Schritte, bei
+              denen die Frage auftritt. Eine genaue Fehlermeldung hilft uns bei
+              der Einordnung.
+            </p>
+            <p className="text-sm text-ink-500 mt-4">
+              Bitte senden Sie keine Passwörter oder vollständigen
+              Zahlungsdaten.
+            </p>
+          </div>
+          <div className="soft-panel">
+            <BookOpen size={32} />
+            <h2 className="text-3xl font-semibold mt-5">
+              Die Antwort ist vielleicht schon da.
+            </h2>
+            <p className="text-ink-600 mt-5">
+              Im Hilfezentrum finden Sie Anleitungen zu Einrichtung, Angeboten,
+              Rechnungen, Zeiten, Lager und Craft AI.
+            </p>
+            <Link href="/hilfe" className="btn-cta mt-6">
+              Hilfezentrum öffnen <ArrowUpRight size={17} />
+            </Link>
+            <Link href="/blog" className="text-link block mt-6">
+              Ratgeber für Ihren Betriebsalltag
+            </Link>
+          </div>
         </div>
-      </LegalSection>
-
-      <LegalSection heading="Rechtliches">
-        <ul className="space-y-2">
-          <li>
-            <Link href="/datenschutz" className="font-semibold text-primary-600 hover:underline">
-              Datenschutzerklärung
-            </Link>
-          </li>
-          <li>
-            <Link href="/impressum" className="font-semibold text-primary-600 hover:underline">
-              Impressum
-            </Link>
-          </li>
-        </ul>
-      </LegalSection>
-    </LegalShell>
-  )
+      </section>
+    </>
+  );
 }

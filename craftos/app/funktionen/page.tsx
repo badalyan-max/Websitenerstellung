@@ -1,133 +1,87 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
-import { PageHero } from '@/components/ui/PageHero'
-import { JsonLd } from '@/components/seo/JsonLd'
-import {
-  CtaButton,
-  GhostButton,
-  HexIcon,
-  SectionHeading,
-  TierBadge,
-} from '@/components/ui/primitives'
-import { PlantafelDemo } from '@/components/demos/PlantafelDemo'
-import { ZeitenDemo } from '@/components/demos/ZeitenDemo'
-import { LagerDemo } from '@/components/demos/LagerDemo'
-import { breadcrumbSchema } from '@/lib/schema'
-import { funktionen, vision } from '@/lib/funktionen'
-import { site } from '@/lib/site'
-
-export const metadata: Metadata = {
-  title: 'Funktionen – Alles, was ein Handwerksbetrieb braucht',
-  description:
-    'Angebote & Kalkulation, Rechnungen & E-Rechnung, Plantafel, Zeiterfassung, Lager, Baudokumentation, DATEV & Craft AI – der komplette Funktionsumfang von CraftOS.',
-  alternates: { canonical: `${site.url}/funktionen` },
-}
-
-export default function FunktionenPage() {
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { funktionen, upcomingFeatures } from "@/lib/funktionen";
+import { PageHero } from "@/components/ui/PageHero";
+import { TrialCta } from "@/components/ui/TrialCta";
+import { pageMetadata } from "@/lib/metadata";
+export const metadata = pageMetadata(
+  "Alle Funktionen der Handwerkersoftware",
+  "Angebote, Rechnungen, Plantafel, Aufmaß, Projekte und Lager: Entdecken Sie die Funktionen von CraftOS für Büro und Baustelle.",
+  "/funktionen",
+);
+export default function Page() {
   return (
     <>
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: 'Start', path: '/' },
-          { name: 'Funktionen', path: '/funktionen' },
-        ])}
-      />
       <PageHero
-        eyebrow="Funktionen"
+        eyebrow="Das Produkt"
         title={
           <>
-            Ein Werkzeugkasten.
+            Weniger suchen.
             <br />
-            <span className="text-primary-400">Kein Werkzeug fehlt.</span>
+            Mehr erledigen.
           </>
         }
-        intro="Vom Angebot bis zum DATEV-Export: Jedes Modul greift ins nächste. Hier ist der komplette Überblick – inklusive Live-Demos zum Ausprobieren."
+        intro="CraftOS verbindet die Arbeitsschritte Ihres Betriebs: vom ersten Kundenkontakt über die Baustelle bis zur Abrechnung."
       />
-
-      {/* Funktions-Katalog */}
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="section-space">
+        <div className="site-container">
+          <div className="feature-grid">
             {funktionen.map((f) => (
               <Link
                 key={f.slug}
-                href={`/funktionen/${f.slug}`}
-                className="card-hover group flex flex-col rounded-2xl border border-ink-200 bg-ink-100 p-6"
+                href={"/funktionen/" + f.slug}
+                className="feature-link"
               >
-                <div className="flex items-start justify-between gap-3">
-                  <HexIcon icon={f.icon} />
-                  <TierBadge tier={f.tier} />
-                </div>
-                <h2 className="mt-4 font-display text-lg font-semibold text-ink-900">{f.name}</h2>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-500">{f.kurz}</p>
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary-400">
-                  Im Detail
-                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                <f.icon size={28} strokeWidth={1.5} />
+                <h2 className="text-2xl font-semibold mt-5 mb-3">{f.name}</h2>
+                <p>{f.kurz}</p>
+                <span className="text-xs text-ink-500 mt-5 block">
+                  {f.platforms
+                    .map((p) => (p === "web" ? "Web-App" : "Mobile-App"))
+                    .join(" · ")}
+                  {f.tier === "launch" ? " · In Prüfung" : ""}
                 </span>
+                <ArrowUpRight size={19} className="mt-5" />
               </Link>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Live-Demos */}
-      <section className="relative overflow-hidden bg-ink-950 py-16 lg:py-24">
-        <div className="bg-werkbank absolute inset-0 opacity-60" aria-hidden="true" />
-        <div className="glow-amber absolute inset-x-0 top-0 h-64" aria-hidden="true" />
-        <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeading
-            eyebrow="Anfassen erlaubt"
-            title="Drei Werkzeuge, direkt hier ausprobieren"
-            intro="So arbeitet CraftOS wirklich – ziehen, tippen, starten."
-            align="center"
-          />
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            <PlantafelDemo />
-            <ZeitenDemo />
-            <LagerDemo />
+          <div className="notice mt-12">
+            <h2 className="text-2xl font-semibold">
+              Voll-Lizenz heißt: Web-App und Handy-App.
+            </h2>
+            <p className="mt-3">
+              Alle freigegebenen Kernmodule sind enthalten; Rollen bestimmen den
+              Zugriff. KI-Verbrauch und zusätzlicher Speicher werden separat
+              abgerechnet.
+            </p>
+            <Link href="/preise" className="text-link mt-4">
+              Preise und Lizenzumfang ansehen
+            </Link>
           </div>
         </div>
       </section>
-
-      {/* Vision */}
-      <section className="py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeading
-            eyebrow="Roadmap"
-            title="Woran wir gerade schmieden"
-            intro="Ehrlich gelabelt: Das kommt als Nächstes – und das ist unsere Vision."
-          />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {vision.map((v) => (
-              <div key={v.name} className="rounded-2xl border border-ink-200 bg-ink-100 p-6">
-                <div className="flex items-center justify-between gap-3">
-                  <h3 className="font-display text-base font-semibold text-ink-800">{v.name}</h3>
-                  <TierBadge tier="vision" />
-                </div>
-                <p className="mt-2.5 text-sm leading-relaxed text-ink-500">{v.text}</p>
+      <section className="section-space bg-ink-100">
+        <div className="site-container">
+          <p className="eyebrow">Die nächsten Erweiterungen</p>
+          <h2 className="section-title">Demnächst in CraftOS.</h2>
+          <p className="section-intro">
+            Diese Funktionen befinden sich in Vorbereitung; die Zeitangaben
+            beschreiben den aktuellen Planungsstand.
+          </p>
+          <div className="grid md:grid-cols-3 gap-8 mt-10">
+            {upcomingFeatures.map((f) => (
+              <div className="border-t border-ink-300 pt-6" key={f.name}>
+                <p className="text-xs text-primary-800 font-semibold">
+                  {f.when}
+                </p>
+                <h3 className="text-2xl font-semibold mt-4">{f.name}</h3>
+                <p className="text-ink-600 text-sm mt-3">{f.text}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
-
-      {/* CTA */}
-      <section className="relative overflow-hidden bg-ink-950 py-16 lg:py-20">
-        <div className="bg-werkbank mask-fade absolute inset-0" aria-hidden="true" />
-        <div className="relative mx-auto max-w-3xl px-5 text-center sm:px-8">
-          <h2 className="font-display text-3xl font-bold text-ink-900 sm:text-4xl">
-            Überzeugen Sie sich selbst
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-ink-500">
-            14 Tage voller Funktionsumfang – kostenlos und ohne Kreditkarte.
-          </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <CtaButton>Jetzt kostenlos testen</CtaButton>
-            <GhostButton href="/preise">Preise ansehen</GhostButton>
-          </div>
-        </div>
-      </section>
+      <TrialCta />
     </>
-  )
+  );
 }
