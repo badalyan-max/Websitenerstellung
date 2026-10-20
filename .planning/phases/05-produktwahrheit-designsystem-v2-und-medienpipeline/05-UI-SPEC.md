@@ -86,7 +86,7 @@ Ergänzt im ersten `@theme`-Block von `app/globals.css`. Bestehende Tokens bleib
   --shadow-device: 0 24px 48px -24px #10101466, 0 0 0 1px #10101414;
   --shadow-device-dark: 0 24px 64px -16px #000000a6, 0 0 0 4px #f2af381f;
   /* Abschnittsrhythmus */
-  --spacing-section: 96px;     /* ≥ 1024 px */
+  --spacing-section: 96px;     /* ≥ 1024 px – Ausnahme „Abschnittsabstand Desktop“, siehe Spacing Scale → Ausnahmen */
   --spacing-section-md: 64px;  /* 768–1023 px */
   --spacing-section-sm: 48px;  /* < 768 px */
   /* Warme Kachelkante (bisher nur als Literal in .soft-panel) */
@@ -109,18 +109,18 @@ Deklarierte Werte (alle Vielfache von 4) [STANDARD, an Bestand angepasst]:
 | xl | 32px | Innenabstand großer Kacheln (lg/wide) ab 1024 px, Abstand Lead–Bausteininhalt mobil |
 | 2xl | 48px | Abstand Abschnittskopf → Bausteininhalt ab 768 px, Abschnittsabstand mobil (`--spacing-section-sm`) |
 | 3xl | 64px | Abschnittsabstand Tablet (`--spacing-section-md`), Abstand zwischen Musterseiten-Blöcken |
-| 4xl | 96px | Abschnittsabstand Desktop ≥ 1024 px (`--spacing-section`) |
 
 **Regeln:**
-- Vertikaler Abschnittsabstand v2: `padding-block` 96 / 64 / 48 px (≥ 1024 / 768–1023 / < 768). Gilt für neue v2-Abschnitte; die bestehende Klasse `.section-space` (72/44 px) bleibt für noch nicht migrierte Seiten unverändert.
+- Vertikaler Abschnittsabstand v2: `padding-block` 96 / 64 / 48 px (≥ 1024 / 768–1023 / < 768); der Desktopwert 96 px ist die unten deklarierte Ausnahme. Gilt für neue v2-Abschnitte; die bestehende Klasse `.section-space` (72/44 px) bleibt für noch nicht migrierte Seiten unverändert.
 - Abschnittskopf → Inhalt: 48 px ab 768 px, 32 px darunter.
 - Kachel-/Karteninnenabstand: 24 px ab 768 px, 16 px darunter; große Kacheln (lg/wide) 32 px ab 1024 px.
 - Zeilenlänge: Lead max. `60ch`, Kachel-/Kartentext max. `45ch`, FAQ-Antwort max. `68ch`.
 
 **Ausnahmen:**
+- Abschnittsabstand Desktop 96 px (= 2 × 48, 8-px-Raster): nur `padding-block` von v2-Abschnitten ab 1024 px (Token `--spacing-section`); Begründung: ruhiger Abschnittsrhythmus bei großen Produktdarstellungen. Für keinen anderen Abstand zulässig.
 - Touch-Ziele: mindestens 44 × 44 px (Buttons bleiben bei `min-height: 48px` [BESTAND]; FAQ-`summary` min. 48 px; Tabellen-Scrollbereich und Textlinks in Karten durch gestreckten Klickbereich der Karte).
 - Mini-UI innerhalb der Geräterahmen ist eine verkleinerte Illustration: Innenabstände 4/8/12/16 px, Haarlinien 1–2 px; 12 px ist nur dort erlaubt.
-- Bestand bleibt unverändert und gilt als Altlast bis zur Migration: `.site-container` mobil `calc(100% - 36px)` (18 px Rand), `.btn-cta` Innenabstand 13/22 px.
+- Bestand bleibt unverändert und gilt als Altlast bis zur Migration: `.site-container` mobil `calc(100% - 36px)` (18 px Rand), `.btn-cta` Innenabstand 13/22 px (nur Altseiten; v2 nutzt `.v2-btn-cta` mit 12/24 px, siehe Typography).
 
 ---
 
@@ -141,6 +141,10 @@ Vier Größen, zwei Gewichte [ERMESSEN, abgeleitet aus Bestand; Bestand nutzt de
 - Zahlen in Kennzahlen, Tabellen und Mini-UI: `font-variant-numeric: tabular-nums`.
 - Keine Großbuchstaben-Labels, keine Kursivhervorhebung einzelner Wörter, keine farbige Einzelwort-Hervorhebung in Überschriften.
 - Deutsche Typografie: geschütztes Leerzeichen zwischen Zahl und Einheit (`29,95 €`, `10 Tage`, `50 GB`); Anführungszeichen „…“; Preise über `Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" })` aus `tarife` – nie als Literal [RESEARCH Anti-Patterns].
+- **Keine Vererbung der Altklassen in v2:** v2-Bausteine verwenden weder `.btn-cta` (15 px) noch `.eyebrow` (13 px, Sperrung, Pille unter `.dark-section`). Stattdessen eigene Klassen in `components/v2/*.module.css` bzw. einem v2-Block in `globals.css`:
+  - `.v2-eyebrow`: 14 px / 600, Zeilenhöhe 1.4, Satzschreibung, `letter-spacing: 0`, `text-transform: none`, keine Pille/kein Hintergrund – auch nicht auf dunklen Flächen; Farbe `primary-700` hell bzw. Amber dunkel; 22-px-Strich (1 px) davor, 8 px Abstand.
+  - `.v2-btn-cta`: 16 px / 600, Zeilenhöhe 1.5, `min-height: 48px`, Innenabstand 12 × 24 px, Radius 6 px (Wert von `--radius-badge`, kein weiterer Radius), Fläche Amber `#F2AF38` flach (kein Verlauf, kein Unterkantenschatten wie Bestand), Text `#101014`, Icon `ArrowUpRight` 16 px mit 8 px Abstand. Hover (nur `hover: hover`): `translateY(-2px)`, 180 ms, kein Schattenwechsel.
+  - Bestand-Ausnahme: `.btn-cta` und `.eyebrow` bleiben für noch nicht migrierte Altseiten unverändert und werden erst mit der Migration der jeweiligen Seite (Phasen 6–9) ersetzt. Sie gelten nicht als Teil dieser Typoskala.
 - Mini-UI in Geräterahmen ist Illustration und von dieser Skala ausgenommen (verkleinerte Produktschrift 8–13 px wie im Bestand `DeviceFrame.module.css`); sie zählt nicht als lesbarer Fließtext und wird nicht für Inhalte verwendet, die nur dort stehen.
 
 ---
@@ -155,14 +159,17 @@ Vier Größen, zwei Gewichte [ERMESSEN, abgeleitet aus Bestand; Bestand nutzt de
 | Destructive | `#B32F28` (`destructive`) | In Phase 5 nicht verwendet (Marketingseite ohne destruktive Aktionen). In Vergleichstabellen wird „nicht enthalten“ bewusst **nicht** rot dargestellt. |
 
 **Accent `#F2AF38` reserviert für:**
-1. Hintergrund des Haupt-CTA-Buttons `.btn-cta` („10 Tage kostenlos testen“) [BESTAND].
+1. Hintergrund des Haupt-CTA-Buttons („10 Tage kostenlos testen“): in v2 `.v2-btn-cta`, auf Altseiten `.btn-cta` [BESTAND].
 2. Sechseck-Knoten der Schrittfolge (Füllung) und die verbindende Maßlinie (2 px).
 3. Markenzeichen und aktiver Tab innerhalb der Geräterahmen (`CraftOSMark`, aktiver Phone-Tab in `primary-800 #784b10` als Text, Amber-Unterstrich 2 px).
 4. Obere Kantenmarkierung (3 px) der CraftOS-Spalte in der Vergleichstabelle.
 5. Eyebrow-Text und Icon-Farbe **auf dunklen Flächen** (Amber auf #101014, Kontrast ≈ 10:1).
 6. Untere Kante des Seitenheros (`border-bottom: 3px`) [BESTAND].
+7. Abschnittsfläche `#F2AF38` der Schrittfolge mit `tone="amber"` – höchstens einmal je Seite, einzige erlaubte vollflächige Amber-Fläche.
+8. Amber-Tönung `#F2AF381F` (Amber mit 12 % Deckkraft) **nur auf dunklen Flächen**: Icon-Felder (48 × 48 px) in dunklen Bento-Kacheln und Fläche des Lizenz-Badges.
+9. Text des Lizenz-Badges auf dunklen Flächen: `#FFD06A` (helles Amber, Kontrast ≈ 12:1 auf #101014).
 
-Nicht erlaubt: Amber als Text auf hellem Grund (Kontrast ≈ 1,9:1), Amber für Kachelflächen, Amber-Verläufe als Dekoration, Amber für alle Links.
+Nicht erlaubt: Amber `#F2AF38` als Text auf hellem Grund (Kontrast ≈ 1,9:1), Amber für Kachelflächen, Amber-Verläufe als Dekoration, Amber für alle Links, Amber-Tönungen auf hellen Flächen (dort `primary-50`/`primary-100`, die nicht zum Akzentbudget zählen, sondern als helle Hinterlegung gelten).
 
 **Abgeleitete Farben (Text, Linien, Zustände):**
 
@@ -170,7 +177,8 @@ Nicht erlaubt: Amber als Text auf hellem Grund (Kontrast ≈ 1,9:1), Amber für 
 |---|---|---|
 | Haupttext hell | `#17171C` (`ink-900`) | ≈ 17:1 auf Weiß |
 | Sekundärtext hell (Lead, Kartentext, Labels) | `#62626E` (`ink-500`) | ≈ 6,1:1 auf Weiß, ≈ 5,5:1 auf `#F7F3EB` |
-| Akzenttext hell (Eyebrow hell, Link-Hover, Lizenz-Badge-Text) | `#99600B` (`primary-700`) bzw. `#784B10` (`primary-800`) | ≥ 5:1 auf Weiß und auf `primary-50` |
+| Akzenttext auf Weiß (Eyebrow hell, Link-Hover) | `#99600B` (`primary-700`) | ≈ 5,0:1 auf Weiß (AA erfüllt). Auf `primary-50 #FFF4D9` nur ≈ 4,5:1 (grenzwertig) – deshalb **nicht** auf hellem Amber verwenden. |
+| Text auf hellem Amber (`primary-50`/`primary-100`: Lizenz-Badge, FAQ-Symbol, aktiver Mini-UI-Tab) | `#784B10` (`primary-800`) | ≈ 6,6:1 auf `primary-50`, ≈ 7,3:1 auf Weiß. Verbindlich: Text auf heller Amber-Fläche ausschließlich `primary-800`. |
 | Text dunkel | `#F4F4F5` Überschriften, `#BCBCC6` Fließtext [BESTAND] | ≥ 9:1 auf #101014 |
 | `ink-400 #777782` | nur Icons und Dekor, **nie Text** | ≈ 4,4:1 – unter Grenzwert |
 | Neutrale Linie | `#DEDEE3` (`ink-200`) | Tabellenzeilen, weiße Kacheln |
@@ -228,7 +236,7 @@ interface SectionHeaderProps {
 ```
 
 ```
-Eyebrow (14/600, primary-700 hell | Amber dunkel, 22-px-Strich davor [BESTAND .eyebrow])
+Eyebrow .v2-eyebrow (14/600, primary-700 hell | Amber dunkel, 22-px-Strich davor, keine Pille, keine Sperrung – nicht [BESTAND .eyebrow])
 H2 Display 48/600 Clash, max. 800 px breit
 Lead 20/400 General Sans, ink-500, max. 60ch
 ↓ 48 px (≥768) / 32 px
@@ -332,9 +340,10 @@ interface KeyFactsProps { facts: KeyFact[]; note: string; tone?: "light" | "dark
 
 ```
 ┌──────────────┬──────────────┬──────────────┬──────────────┐
-│ 10 Tage      │ 29,95 €      │ 9,95 €       │ 21 Sprachen  │  Display 48/600, tabular
-│ kostenlos    │ Voll-Lizenz  │ App-Lizenz   │ in der       │  Label 14/400 ink-500
-│ testen       │ pro Monat    │ pro Monat    │ Mobile-App   │
+│ 10 Tage      │ 29,95 €      │ 9,95 €       │ 21           │  Display 48/600, tabular
+│ kostenlos    │ Voll-Lizenz  │ App-Lizenz   │ Sprachen in  │  Label 14/400 ink-500
+│ testen       │ pro Monat    │ pro Monat    │ der Mobile-  │
+│              │              │              │ App          │
 └──────────────┴──────────────┴──────────────┴──────────────┘
 Preise netto zzgl. USt. Stand: 20.10.2026.                      Label 14/400
 ```
@@ -502,7 +511,7 @@ dunkel #101014, padding-block 64 px (mobil 48 px)
 ```
 
 - Überschrift Display 48/600 (mobil 32), Satz Body 16/400 `#BCBCC6`.
-- Primärbutton `.btn-cta` mit `href={site.ctaUrl}` (damit `trial_click` über `classifyAppLink` in `components/Analytics.tsx` weiter erfasst wird) [BESTAND]; Sekundärlink als `.text-link` in `#F4F4F5`.
+- Primärbutton `.v2-btn-cta` (16/600, nicht `.btn-cta`) mit `href={site.ctaUrl}` (damit `trial_click` über `classifyAppLink` in `components/Analytics.tsx` weiter erfasst wird) [BESTAND]; Sekundärlink als `.text-link` in `#F4F4F5`.
 - Ab 768 px Text links, Aktionen rechts (vertikal zentriert); darunter gestapelt, Button volle Breite.
 - Höchstens ein CTA-Band je Seite, immer als letzter Inhaltsabschnitt vor dem Footer.
 
@@ -513,7 +522,7 @@ dunkel #101014, padding-block 64 px (mobil 48 px)
 | Element | Bewegung | Dauer | Reduced Motion |
 |---|---|---|---|
 | Verlinkte Kacheln/Karten | Rahmenfarbe, Unterstreichung des Titels (nur `hover: hover`) | 150 ms ease | sofort (globale Regel `app/globals.css` setzt 0,01 ms) |
-| `.btn-cta` | bestehender Hover (−2 px, Schatten) | 180 ms [BESTAND] | sofort |
+| `.v2-btn-cta` | Hover `translateY(-2px)`, kein Schattenwechsel (Altklasse `.btn-cta` behält ihren Bestands-Hover) | 180 ms | sofort |
 | FAQ-Symbol | Drehung 45° beim Öffnen | 150 ms | sofort |
 | Alle übrigen v2-Bausteine | keine | – | – |
 
@@ -549,17 +558,17 @@ dunkel #101014, padding-block 64 px (mobil 48 px)
 | # | Block | Inhalt (Muster, verbindlich in Struktur, Text innerhalb Budget anpassbar) |
 |---|---|---|
 | 0 | Kopf (dunkel, `PageHero` Bestand) | H1 „Designbausteine v2“, Satz „Interne Musterseite: alle Bausteine für die Neugestaltung der CraftOS-Website mit echten Inhalten.“ |
-| 1 | Tokens | Farbfelder (Weiß, `#F7F3EB`, `#101014`, Amber, `primary-700`, `ink-500`) mit Hex und Rolle; Schriftmuster der vier Größen; Abstandsleiste 4–96 px; Radien 6/16/24 px |
+| 1 | Tokens | Farbfelder (Weiß, `#F7F3EB`, `#101014`, Amber, `primary-700`, `ink-500`) mit Hex und Rolle; Schriftmuster der vier Größen; Abstandsleiste 4–64 px plus gesondert markierte Ausnahme 96 px (Abschnittsabstand Desktop); Radien 6/16/24 px |
 | 2 | `SectionHeader` | Eyebrow „Angebot“, H2 „Vom Aufmaß zum unterschriebenen Angebot“, Lead „Maße auf der Baustelle erfassen, im Büro ins Angebot übernehmen und online unterschreiben lassen.“ – hell und dunkel |
 | 3 | `BentoGrid` | `lg` dunkel „Plantafel“ mit `BrowserFrame` (Wochenansicht, `evidence: web:src/pages/Plantafel.tsx`); `md` „Zeiterfassung“ mit `PhoneFrame` (Tab „Zeiten“); `sm` „E-Rechnung“ (Icon `FileCheck2`); `sm` „Belege scannen“ (Icon `ScanLine`); `wide` „Mängel und Abnahme“ mit Foto oder Phone |
 | 4 | `StepFlow` | 6 Schritte Angebot → Planung → Baustelle → Rechnung → Buchhaltung → Team, jeweils hell und `tone="amber"` |
-| 5 | `KeyFacts` | „10 Tage“ (`site.trialDays`), „29,95 €“ (`tarife` voll), „9,95 €“ (`tarife` app), „21 Sprachen“ (Register Mobile-Locales); Note „Preise netto zzgl. USt. Stand: 20.10.2026.“ |
+| 5 | `KeyFacts` | „10 Tage“ (`site.trialDays`), „29,95 €“ (`tarife` voll), „9,95 €“ (`tarife` app), Wert „21“ mit Beschriftung „Sprachen in der Mobile-App“ (Register Mobile-Locales); Note „Preise netto zzgl. USt. Stand: 20.10.2026.“ |
 | 6 | `FeatureCard` ×3 | Aufmaß (Web-App, Mobile-App), Zeiterfassung (Web-App, Mobile-App), E-Rechnung (Web-App) – jeweils mit Szene |
 | 7 | Geräterahmen | `BrowserFrame`, `PhoneFrame` in drei Breiten (160/194/240), `DevicePair`, jeweils mit `IllustrationLabel` |
 | 8 | `ComparisonTable` | Caption „Voll-Lizenz und App-Lizenz im Vergleich“; Spalten Voll-Lizenz (highlight), App-Lizenz; Zeilen u. a. Web-App, Mobile-App, Angebote und Rechnungen, Plantafel, Zeiterfassung, Aufmaß und Baudokumentation, Urlaub und Abwesenheiten, Preis pro Monat (aus `tarife`); Note „Preise netto zzgl. USt. Quelle: Preisliste CraftOS, Stand 20.10.2026.“ |
 | 9 | Badges | alle Plattform- und Lizenz-Badges hell und dunkel |
 | 10 | `FaqList` | 3 Fragen (siehe Copywriting) |
-| 11 | `MediaFigure` + Kennzeichnung | `werkstatt-2026` (optimiert ≤ 150 KB) ohne Label; ein Beispiel mit „Darstellung, KI-gestaltet“ nur, falls ein KI-Bild vorliegt, sonst Platzhalterzeile „Kein KI-Bild hinterlegt“ ausschließlich auf der Musterseite |
+| 11 | `MediaFigure` + Kennzeichnung | `werkstatt-2026` (optimiert ≤ 150 KB) ohne Label; ein Beispiel mit „Darstellung, KI-gestaltet“ nur, falls ein KI-Bild vorliegt, sonst Platzhalterzeile „Kein KI-Bild hinterlegt – Bild mit Kennzeichnung in public/images ablegen.“ ausschließlich auf der Musterseite |
 | 12 | Hinweis | „Videoplayer: entfällt (Videos sind nicht Teil des Meilensteins).“ |
 | 13 | `CtaBand` | wie Copywriting |
 
@@ -574,7 +583,7 @@ Jeder Block trägt eine kleine Kopfzeile mit Komponentenname (Label 14/600, `ink
 | Startseite (Phase 6) | Hero (Bestand, mit `DevicePair` statt kleinem Mock) → `KeyFacts` → `StepFlow tone="amber"` (Arbeitsablauf) → `BentoGrid` (Kernfunktionen, max. 7) → `ComparisonTable` oder Preisteaser → `FaqList` → `CtaBand` |
 | Funktionsübersicht (Phase 6, FEAT-01) | `SectionHeader` je Arbeitsablauf-Gruppe (Eyebrow = Gruppe) + `FeatureCard`-Raster je Gruppe; Reihenfolge Angebot → Planung → Baustelle → Rechnung → Buchhaltung → Team |
 | Funktionsdetail (Phase 7, FEAT-02) | `PageHero` + `DevicePair` → Badges (Plattform, Lizenz) → `StepFlow` (Ablauf, 3–5 Schritte) → `BentoGrid` (Teilfunktionen) → `FaqList` → `CtaBand` |
-| Mobile-App (Phase 7, FEAT-03) | `PhoneFrame`-Reihe je App-Funktion im `BentoGrid` → `KeyFacts` (u. a. 21 Sprachen) → `CtaBand` |
+| Mobile-App (Phase 7, FEAT-03) | `PhoneFrame`-Reihe je App-Funktion im `BentoGrid` → `KeyFacts` (u. a. Wert „21“, Beschriftung „Sprachen in der Mobile-App“) → `CtaBand` |
 | Alternativen/Vergleich (Phase 8) | `SectionHeader` → `ComparisonTable` (nur belegte Wettbewerberdaten mit Quelle/Stand) → `FaqList` → `CtaBand` |
 
 Regeln: zwei aufeinanderfolgende Abschnitte nutzen nie denselben Baustein; jeder Abschnitt = `SectionHeader` + genau ein visueller Baustein; höchstens ein `StepFlow tone="amber"` und ein `CtaBand` je Seite.
@@ -583,11 +592,11 @@ Regeln: zwei aufeinanderfolgende Abschnitte nutzen nie denselben Baustein; jeder
 
 ## Copywriting Contract
 
-Ansprache „Sie“, Satzschreibung, aktive Verben, keine Füllwörter, keine Ausrufezeichen, keine Datumsangaben bei nicht-live Funktionen [CONTEXT D-12, PROJECT].
+Ansprache „Sie“, Satzschreibung, aktive Verben, keine Füllwörter, keine Ausrufezeichen [PROJECT]. Nicht-live Funktionen werden nirgends angekündigt – weder Abschnitt, Hinweis, Termin noch „demnächst“/„in Entwicklung“ [CONTEXT D-12]. In Vergleichstabellen erscheint eine fehlende Funktion ausschließlich als neutrale „Nein“-Zelle (Icon `Minus` + Screenreadertext „Nein“) ohne Entwicklungshinweis.
 
 | Element | Copy |
 |---------|------|
-| Primary CTA | „10 Tage kostenlos testen“ (Button `.btn-cta`, Ziel `site.ctaUrl`, Icon `ArrowUpRight`) [BESTAND Hero; DESIGN-01 „10 Tage testen“] |
+| Primary CTA | „10 Tage kostenlos testen“ (Button `.v2-btn-cta` 16/600, auf Altseiten `.btn-cta`, Ziel `site.ctaUrl`, Icon `ArrowUpRight`) [BESTAND Hero; DESIGN-01 „10 Tage testen“] |
 | Sekundäre Aktion CTA-Band | „Preise ansehen“ → `/preise` |
 | Kartenlink | „Mehr zu {Funktionsname}“ (z. B. „Mehr zu Aufmaß“) |
 | CTA-Band Überschrift / Satz | „Machen Sie Platz für Ihr Handwerk.“ / „10 Tage kostenlos testen, ohne Zahlungsdaten.“ [BESTAND TrialCta, gekürzt] |
@@ -595,11 +604,10 @@ Ansprache „Sie“, Satzschreibung, aktive Verben, keine Füllwörter, keine Au
 | Kennzeichnung KI-Bild | „Darstellung, KI-gestaltet“ |
 | Kennzahlen-Hinweis | „Preise netto zzgl. USt. Stand: {Datum aus Produkt-Snapshot}.“ |
 | Tabellenhinweis mobil | „Zum Vergleichen seitlich wischen“ |
-| Status „in Entwicklung“ (nur Faktenkorrektur Phase 5, PROD-04) | Überschrift „In Entwicklung“, Satz „Diese Funktionen entwickeln wir weiter; sie sind derzeit nicht in CraftOS verfügbar.“ – ohne Termin, ohne „demnächst“ [ERMESSEN, CONTEXT D-12 entfernt den Abschnitt auf `/funktionen` vollständig; dieser Text gilt nur für Stellen, an denen eine Erwähnung fachlich nötig bleibt, z. B. `lib/comparison.ts`] |
 | FAQ-Muster 1 | „Brauche ich für den Test eine Zahlungsmethode?“ – „Nein. Sie testen CraftOS 10 Tage kostenlos, eine Zahlungsmethode ist dafür nicht erforderlich.“ |
 | FAQ-Muster 2 | „Was kostet die App-Lizenz?“ – „Die App-Lizenz kostet 9,95 € netto im Monat oder 99,50 € netto im Jahr und ergänzt die Voll-Lizenz Ihres Betriebs.“ (Werte aus `tarife`) |
 | FAQ-Muster 3 | „Wie werden KI-Funktionen abgerechnet?“ – „Über im Voraus gekaufte Credits; jeder Betrieb erhält einmalig 150 Credits Startguthaben.“ [RESEARCH Preis-Wahrheitstabelle] |
-| Empty state heading | Entfällt als Oberfläche: Die Website rendert statisch aus Datenmodulen, ein Baustein ohne Inhalte wird nicht ausgeliefert. Musterseite Block 11 ohne KI-Bild: „Kein KI-Bild hinterlegt“ (nur `/styleguide`). |
+| Empty state heading | Entfällt als Oberfläche: Die Website rendert statisch aus Datenmodulen, ein Baustein ohne Inhalte wird nicht ausgeliefert. Musterseite Block 11 ohne KI-Bild: „Kein KI-Bild hinterlegt – Bild mit Kennzeichnung in public/images ablegen.“ (nur `/styleguide`). |
 | Empty state body | Entwicklerfehler beim Build statt leerer Fläche: „BentoGrid: mindestens 3 Kacheln erforderlich – Inhalte in lib/… ergänzen.“ (analog für `StepFlow` 3–6 Schritte, `KeyFacts` 3–4 Fakten, `FaqList` 3–8 Fragen) |
 | Error state | Laufzeitfehler gibt es in den Bausteinen nicht (keine Datenabfrage). Build-/Testfehler nennen Problem und Abhilfe: „KeyFacts: Wert ‚{value}‘ ohne Quelle – source aus site.ts, tarife oder Produktregister angeben.“; „Textbudget überschritten: {Baustein}.{Feld} hat {n} von {max} Zeichen – Satz kürzen.“; „PhoneFrame: evidence fehlt – Belegpfad aus origin/release angeben.“ Für Besucher gilt die bestehende 404-Seite (`app/not-found.tsx`). |
 | Destructive confirmation | Keine destruktiven Aktionen in dieser Phase (Marketingseite ohne Konten, Formulare oder Löschfunktionen). |
