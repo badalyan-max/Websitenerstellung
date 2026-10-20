@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-last_updated: "2026-10-20T21:28:14.035Z"
+last_updated: "2026-10-20T21:40:51.198Z"
 last_activity: 2026-10-20 -- Phase 5 execution started
 progress:
   total_phases: 6
   completed_phases: 0
   total_plans: 8
-  completed_plans: 3
+  completed_plans: 4
   percent: 0
 ---
 
@@ -29,9 +29,9 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 5 (Produktwahrheit, Keyword-Map und Designbausteine) — EXECUTING
-Plan: 4 of 8
+Plan: 5 of 8
 Status: Ready to execute
-Last activity: 2026-10-20 -- Phase 5 execution started
+Last activity: 2026-10-20 -- Plan 05-04 abgeschlossen (Designsystem v2 Teil A)
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -50,6 +50,9 @@ Progress: [░░░░░░░░░░] 0%
 - [Phase 05]: 05-02: Vorhersagen nur intern als liveExtra mit advertised false (Umfang ungeprüft)
 - [Phase 05]: 05-03: Lizenznamen einheitlich Voll-Lizenz (Admin oder Büro) und App-Lizenz; Preise nur aus site.ts, geprüft gegen docs/product-pricing-snapshot.json (origin/release 07cf0645)
 - [Phase 05]: 05-03: KI-Credits als einmaliges Startguthaben (150) plus im Voraus gekaufte Pakete; Schema-Offer mit valueAddedTaxIncluded false
+- [Phase 05-04]: TEXT_BUDGET enthält Mengen unter count; Bausteine erzwingen Text- und Mengenbudgets beim Rendern mit UI-SPEC-Fehlertexten
+- [Phase 05-04]: StepFlow als Maßkette (Sechseck-Knoten + Maßlinie mit Endstrichen); tone=amber mit dunklem Knoten
+- [Phase 05-04]: Wirksames ink-100 ist #f7f3eb; v2-Module nutzen UI-SPEC-Hexwerte und var()-Fallbacks
 
 ### Pending Todos
 
@@ -67,3 +70,4 @@ None yet.
 | Phase 05 P01 | 27min | 3 tasks | 90 files |
 | Phase 05 P02 | 35min | 2 tasks | 17 files |
 | Phase 05 P03 | 10 min | 3 tasks | 12 files |
+| Phase 05 P04 | 20 min | 2 tasks | 16 files |
