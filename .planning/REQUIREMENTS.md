@@ -11,7 +11,7 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 
 ### Design (DESIGN)
 - [ ] **DESIGN-01**: Besucher erfassen auf der Startseite ohne Scrollen, was CraftOS ist, sehen eine Produktdarstellung und finden „10 Tage testen“; jeder Abschnitt hat höchstens eine Überschrift, einen Satz Einleitung und visuelle Elemente statt Fließtextblöcke.
-- [ ] **DESIGN-02**: Ein Designsystem v2 (Tokens, Bildrahmen für Desktop und Phone, Videoplayer, Kachel-/Bento-Raster, Kennzahlen, Funktionskarte mit Bild) wird auf allen Seiten einheitlich genutzt; Marke (Amber, Clash Display, General Sans, Logo) bleibt.
+- [ ] **DESIGN-02**: Ein Designsystem v2 (Tokens, Bildrahmen für Desktop und Phone mit vereinfachter UI, Kachel-/Bento-Raster, Schrittfolge, Kennzahlen, Funktionskarte mit visuellem Element, Vergleichstabelle) wird auf allen Seiten einheitlich genutzt; Marke (Amber, Clash Display, General Sans, Logo) bleibt.
 - [ ] **DESIGN-03**: Besucher finden über ein Menü mit Funktionsgruppen, Kurzbeschreibungen und Vorschaubildern jede Funktion in höchstens zwei Klicks, auf Desktop und Mobil.
 - [ ] **DESIGN-04**: Bewegung ist dezent (Hover, Einblenden einzelner Elemente, Videos), es gibt keine globale Scroll-Animation, und bei „reduzierte Bewegung“ bleiben alle Inhalte statisch sichtbar.
 - [ ] **DESIGN-05**: Jede Seite besteht die Barrierefreiheitsprüfung (axe ohne ernsthafte Verstöße, Kontrast ≥ 4,5:1, Tastaturbedienung) bei 360, 390, 768, 1024 und 1440 px.
@@ -28,7 +28,7 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 - [ ] **FEAT-04**: Die 12 Gewerke-Seiten zeigen gewerktypische Abläufe mit visuellen Elementen statt nur Text.
 
 ### SEO und KI-Sichtbarkeit (SEO)
-- [ ] **SEO-02**: Eine Keyword-Map aus DataForSEO-Daten (Suchvolumen DE, Schwierigkeit, Intent, Wettbewerber) ordnet jeder Seite genau ein Hauptkeyword zu; Titel, H1 und Description folgen ihr. Ohne Zugang bleibt diese Anforderung offen und wird nicht geschätzt.
+- [ ] **SEO-02**: Eine Keyword-Map aus SE-Ranking-Daten (Suchvolumen DE, Schwierigkeit, Intent, Wettbewerber) ordnet jeder Seite genau ein Hauptkeyword zu; Titel, H1 und Description folgen ihr. Ohne Zugang bleibt diese Anforderung offen und wird nicht geschätzt.
 - [ ] **SEO-03**: Die vier Alternativen-Seiten (plancraft, Craftnote, HERO, ToolTime) sind mit belegten, datierten Wettbewerberangaben, FAQPage- und BreadcrumbList-Schema live und vom Vergleich und Footer verlinkt.
 - [ ] **SEO-04**: Die Preisseite beginnt mit einem zitierfähigen Antwortsatz und einer Preistabelle.
 - [ ] **SEO-05**: Alle Seiten haben Titel ≤ 60 Zeichen, Descriptions 120–155 Zeichen, sichtbare Breadcrumbs mit Schema, eine individuelle OG-Grafik und genau eine H1; keine doppelten Titel.

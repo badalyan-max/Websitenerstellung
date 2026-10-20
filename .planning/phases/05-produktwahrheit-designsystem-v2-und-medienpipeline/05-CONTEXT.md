@@ -32,6 +32,14 @@ Die Website stellt ausschließlich live verfügbare Funktionen mit korrekten Pre
 - **D-09:** Interaktive Klick-Demo (`components/product-demo`) wird nicht eingesetzt, aber auch nicht gelöscht.
 - **D-10:** Schrittweiser Rollout: Phase 5 endet mit Ship-Gate, Push, `npm run indexnow`, Live-Prüfung.
 
+### Entscheidungen nach der Recherche (20.10.2026, Claude nach Inhaber-Vorgabe „Fakten selbst aus den Repos holen“)
+- **D-11:** Kundenportal gilt als live (Einladung und Portalseiten ohne Feature-Flag in Web `origin/release` 07cf0645); Onlinezahlung im Portal wird nicht beworben. Hinweis „in Prüfung“ entfällt.
+- **D-12:** Abschnitt „Demnächst in CraftOS“ (Telefon-Agent, MCP-Server, Weitere Agent-Aktionen) wird vollständig entfernt, ebenso alle datierten Ankündigungen an den 8 in RESEARCH genannten Stellen; nicht-live Funktionen werden nirgends angekündigt.
+- **D-13:** Begriff „Bauphasen“ ist Hauptbegriff, „Arbeitsabschnitte“ (Mobile seit 19.10.2026) wird als Synonym genannt.
+- **D-14:** Titel/H1/Description werden in Phase 5 nur als Zielwerte in der Keyword-Map festgelegt; Umsetzung in Phasen 6–8.
+- **D-15:** Ungenutzte große Bilder in `public/` werden nicht gelöscht (Löschregel); die Budgetprüfung gilt für tatsächlich ausgelieferte Bilder. Ausgelieferte Originalaufnahmen über 150 KB (165/204 KB) werden nach AVIF/WebP konvertiert.
+- **D-16:** SE-Ranking-Unit-Budget für die Keyword-Map höchstens 30.000 Units (related/similar/questions kosten 10 Units je Keyword → mit `limit` arbeiten).
+
 ### Claude's Discretion
 - Aufbau der vereinfachten UI-Darstellungen und Wiederverwendung der feature-snippet-Szenen.
 - Format und Ort der Keyword-Map (z. B. `craftos/docs/seo/KEYWORD-MAP.md` plus Datenmodul) und des Rohdaten-Abzugs.
