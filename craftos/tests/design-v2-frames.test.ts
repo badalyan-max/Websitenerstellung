@@ -296,6 +296,15 @@ describe("Bestand DeviceFrame", () => {
 });
 
 describe("Mini-UI", () => {
+  it("MiniWeek wirft, wenn ein Einsatz über Freitag hinausragt", () => {
+    expect(() =>
+      renderToString(createElement(MiniWeek, { entries: [{ day: 4, label: "Dach Schulte", span: 3 }] })),
+    ).toThrow(/ragt über Freitag hinaus/);
+    expect(() =>
+      renderToString(createElement(MiniWeek, { entries: [{ day: 3, label: "Dach Schulte", span: 2 }] })),
+    ).not.toThrow();
+  });
+
   it("hält das Budget von 24 Zeichen je Zeile und 5 Zeilen je Liste", () => {
     expect(MINI_BUDGET).toEqual({ row: 24, rows: 5 });
     const lang = "Bäckerei Krause, Filiale Nord";

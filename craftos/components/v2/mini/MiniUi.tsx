@@ -104,7 +104,13 @@ export function MiniWeek({ entries }: { entries: MiniWeekEntry[] }) {
   if (entries.length > MINI_BUDGET.rows) {
     throw new Error(`MiniWeek: höchstens ${MINI_BUDGET.rows} Einsätze erlaubt – Inhalte in lib/… kürzen.`);
   }
-  for (const entry of entries) assertRow(entry.label);
+  for (const entry of entries) {
+    assertRow(entry.label);
+    // Ein Einsatz darf nicht über Freitag hinausragen, sonst entstehen implizite Grid-Spalten (LO-09).
+    if (entry.day + (entry.span ?? 1) > WEEK_DAYS.length) {
+      throw new Error(`MiniWeek: Einsatz „${entry.label}“ ragt über Freitag hinaus (day + span > ${WEEK_DAYS.length}).`);
+    }
+  }
   return (
     <div className={s.week}>
       {WEEK_DAYS.map((day, index) => (
