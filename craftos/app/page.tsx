@@ -16,7 +16,7 @@ import { pageMetadata } from "@/lib/metadata";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { faqSchema } from "@/lib/schema";
 export const metadata = pageMetadata(
-  "Handwerkersoftware für Büro & Baustelle",
+  "CraftOS – Handwerkersoftware für Büro & Baustelle",
   "CraftOS verbindet Angebote, Rechnungen, Plantafel, Zeiten und Lager. Voll-Lizenz inklusive Mobile-App. 10 Tage kostenlos testen.",
   "/",
 );

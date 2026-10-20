@@ -1,13 +1,19 @@
 import { site } from "./site";
+// Abgrenzung zu gleichnamigen Produkten für Suchmaschinen und KI-Suchen
+const brandName = "CraftOS Handwerkersoftware";
+const storeUrls = [site.iosUrl, site.androidUrl];
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": site.url + "/#organization",
     name: site.name,
+    alternateName: [brandName],
     url: site.url,
     logo: site.url + "/icons/icon-512x512.png",
     description: site.description,
+    disambiguatingDescription:
+      "CraftOS (craftos.eu) ist der Anbieter der gleichnamigen Handwerkersoftware für Handwerksbetriebe in Deutschland.",
     email: site.email,
   };
 }
@@ -17,11 +23,13 @@ export function softwareApplicationSchema() {
     "@type": "SoftwareApplication",
     "@id": site.url + "/#software",
     name: "CraftOS",
+    alternateName: brandName,
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web, iOS, Android",
     description: site.description,
     url: site.url,
     inLanguage: "de-DE",
+    sameAs: storeUrls,
     publisher: { "@id": site.url + "/#organization" },
     offers: {
       "@type": "Offer",

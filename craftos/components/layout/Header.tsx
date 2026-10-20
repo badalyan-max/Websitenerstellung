@@ -173,7 +173,7 @@ export function Header() {
           ))}
           <div className={styles.actions}>
             <StoreLinks compact />
-            <a href={site.appUrl} className={styles.login} onClick={closeNavigation}>Anmelden</a>
+            <a href={site.appUrl} className={styles.login} data-track="login" onClick={closeNavigation}>Anmelden</a>
             <a href={site.ctaUrl} className="btn-cta" onClick={closeNavigation}>10 Tage testen <ArrowUpRight size={16} aria-hidden="true" /></a>
           </div>
         </nav>

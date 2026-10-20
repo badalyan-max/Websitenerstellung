@@ -14,7 +14,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test --config tests/e2e/playwright.config.cjs",
-    "test:deployment": "node scripts/check-deployment-build.mjs"
+    "test:deployment": "node scripts/check-deployment-build.mjs",
+    "indexnow": "node scripts/indexnow-submit.mjs"
   },
   "keywords": [
     "handwerkersoftware",
@@ -28,6 +29,7 @@
   "private": true,
   "dependencies": {
     "@vercel/analytics": "^1.6.1",
+    "@vercel/speed-insights": "^2.0.0",
     "clsx": "^2.1.1",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.475.0",
