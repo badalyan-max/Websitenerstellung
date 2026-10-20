@@ -1,0 +1,122 @@
+/* Schrittfolge v2 – UI-SPEC §3. Maßkette: Sechseck-Knoten + 2-px-Maßlinie mit Endstrichen. */
+.flow {
+  --sf-line: #f2af38;
+  --sf-node-bg: #f2af38;
+  --sf-node-fg: #17171c;
+  --sf-title: #17171c;
+  --sf-text: #62626e;
+}
+/* Amber-Fläche: Knoten dunkel, damit er sich abhebt; Linie und Text wie Bestand .home-flow. */
+.flow[data-tone="amber"] {
+  --sf-line: #77531155;
+  --sf-node-bg: #101014;
+  --sf-node-fg: #f2af38;
+  --sf-text: #46381f;
+  padding: 32px 16px;
+  border-radius: var(--radius-stage, 24px);
+  background: #f2af38;
+}
+.flow[data-tone="amber"] :focus-visible {
+  outline-color: #101014;
+}
+.list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  column-gap: 16px;
+  padding-bottom: 32px;
+}
+.step:last-child {
+  padding-bottom: 0;
+}
+/* Vertikale Maßlinie vom Knoten zum nächsten Knoten, Endstriche oben und unten. */
+.step:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 48px;
+  bottom: 8px;
+  left: 15px;
+  width: 10px;
+  border-block: 2px solid var(--sf-line);
+  background: linear-gradient(var(--sf-line), var(--sf-line)) center / 2px 100% no-repeat;
+}
+.node {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  clip-path: polygon(50% 0, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+  background: var(--sf-node-bg);
+  color: var(--sf-node-fg);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.body {
+  min-width: 0;
+}
+.title {
+  margin: 8px 0 0;
+  font-family: var(--font-display, var(--font-clash, sans-serif));
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: var(--sf-title);
+}
+.link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
+.icon {
+  display: block;
+  margin-top: 8px;
+  color: var(--sf-title);
+}
+.text {
+  margin: 8px 0 0;
+  max-width: 45ch;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--sf-text);
+}
+@media (min-width: 768px) {
+  .flow[data-tone="amber"] {
+    padding: 48px 32px;
+  }
+}
+@media (min-width: 1024px) {
+  .list {
+    grid-template-columns: repeat(var(--steps, 4), minmax(0, 1fr));
+    column-gap: 24px;
+  }
+  .step {
+    display: block;
+    padding-bottom: 0;
+  }
+  /* Horizontale Maßlinie: vom Knoten bis kurz vor den nächsten Knoten (Spaltenlücke 24 px). */
+  .step:not(:last-child)::before {
+    top: 15px;
+    bottom: auto;
+    left: 52px;
+    right: -12px;
+    width: auto;
+    height: 10px;
+    border-block: 0;
+    border-inline: 2px solid var(--sf-line);
+    background-size: 100% 2px;
+  }
+  .title {
+    margin-top: 16px;
+  }
+}

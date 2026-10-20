@@ -1,0 +1,54 @@
+/* FAQ v2 – UI-SPEC §10. Trennlinien 1 px, Frage 16/600, einzige Bewegung: Symboldrehung 150 ms. */
+.list {
+  border-top: 1px solid #dedee3;
+}
+.item {
+  border-bottom: 1px solid #dedee3;
+}
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 48px;
+  padding-block: 16px;
+  list-style: none;
+}
+.summary::-webkit-details-marker {
+  display: none;
+}
+.question {
+  margin: 0;
+  min-width: 0;
+  font-family: var(--font-sans, var(--font-general, sans-serif));
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: #17171c;
+}
+/* Symbol auf hellem Amber: Text-/Iconfarbe ausschließlich primary-800. */
+.symbol {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-badge, 6px);
+  background: #fff4d9;
+  color: #784b10;
+}
+.plus {
+  transition: transform 0.15s ease;
+}
+.item[open] .plus {
+  transform: rotate(45deg);
+}
+.answer {
+  margin: 0 0 24px;
+  max-width: 68ch;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #62626e;
+}

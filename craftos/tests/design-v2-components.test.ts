@@ -1,8 +1,8 @@
-import { createElement } from "react";
+import { createElement, type FunctionComponent } from "react";
 import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { FileCheck2, ScanLine } from "lucide-react";
-import { BentoGrid, BentoTile, TileIcon, type BentoTileProps } from "@/components/v2/BentoGrid";
+import { BentoGrid, BentoTile, TileIcon, type BentoGridProps, type BentoTileProps } from "@/components/v2/BentoGrid";
 import { CtaBand } from "@/components/v2/CtaBand";
 import { FaqList } from "@/components/v2/FaqList";
 import { StepFlow, type Step } from "@/components/v2/StepFlow";
@@ -128,7 +128,10 @@ describe("Bewegungsfreiheit Teil A (DESIGN-04)", () => {
   });
 });
 
-const sizes: BentoTileProps["size"][] = ["lg", "sm", "sm", "md", "wide", "sm", "md", "sm"];
+/** Kinder als createElement-Argumente (react/no-children-prop); Mengenprüfung erfolgt zur Laufzeit. */
+const Grid = BentoGrid as FunctionComponent<Omit<BentoGridProps, "children">>;
+
+const sizes: BentoTileProps["size"][] =["lg", "sm", "sm", "md", "wide", "sm", "md", "sm"];
 function tiles(n: number) {
   return Array.from({ length: n }, (_, i) =>
     createElement(BentoTile, {
@@ -143,7 +146,7 @@ function tiles(n: number) {
   );
 }
 function grid(n: number) {
-  return renderToString(createElement(BentoGrid, { label: "Kernfunktionen" }, ...tiles(n)));
+  return renderToString(createElement(Grid, { label: "Kernfunktionen" }, ...tiles(n)));
 }
 
 const steps: Step[] = [
@@ -186,13 +189,13 @@ describe("BentoGrid", () => {
     const gleich = ["a", "b", "c"].map((t) =>
       createElement(BentoTile, { key: t, size: "sm", title: t, text: "Satz.", visual: createElement(TileIcon, { icon: ScanLine }) }),
     );
-    expect(() => renderToString(createElement(BentoGrid, null, ...gleich))).toThrow(
+    expect(() => renderToString(createElement(Grid, null, ...gleich))).toThrow(
       "BentoGrid: mindestens zwei verschiedene Kachelgrößen erforderlich – size variieren.",
     );
     const dunkel = (["lg", "sm", "md"] as const).map((size) =>
       createElement(BentoTile, { key: size, size, surface: "dark", title: size, text: "Satz.", visual: createElement(TileIcon, { icon: ScanLine }) }),
     );
-    expect(() => renderToString(createElement(BentoGrid, null, ...dunkel))).toThrow(
+    expect(() => renderToString(createElement(Grid, null, ...dunkel))).toThrow(
       "BentoGrid: höchstens 1 dunkle Kachel je Raster erlaubt – surface anpassen.",
     );
   });
