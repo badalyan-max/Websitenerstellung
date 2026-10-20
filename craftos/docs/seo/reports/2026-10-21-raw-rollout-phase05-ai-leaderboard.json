@@ -1,0 +1,306 @@
+{
+  "results": {
+    "streit-software.de": {
+      "chatgpt": {
+        "link_presence": 56,
+        "brand_presence": 140
+      },
+      "gemini": {
+        "link_presence": 455,
+        "brand_presence": 26
+      },
+      "perplexity": {
+        "link_presence": 358,
+        "brand_presence": 12
+      },
+      "ai-overview": {
+        "link_presence": 4721,
+        "brand_presence": 268
+      },
+      "ai-mode": {
+        "link_presence": 775,
+        "brand_presence": 29
+      }
+    },
+    "craftnote.de": {
+      "chatgpt": {
+        "link_presence": 48,
+        "brand_presence": 14
+      },
+      "gemini": {
+        "link_presence": 7,
+        "brand_presence": 11
+      },
+      "perplexity": {
+        "link_presence": 18,
+        "brand_presence": 4
+      },
+      "ai-overview": {
+        "link_presence": 258,
+        "brand_presence": 64
+      },
+      "ai-mode": {
+        "link_presence": 9,
+        "brand_presence": 3
+      }
+    },
+    "das-programm.io": {
+      "chatgpt": {
+        "link_presence": 2,
+        "brand_presence": 10
+      },
+      "gemini": {
+        "link_presence": 4,
+        "brand_presence": 7
+      },
+      "perplexity": {
+        "link_presence": 2,
+        "brand_presence": 0
+      },
+      "ai-overview": {
+        "link_presence": 212,
+        "brand_presence": 267
+      },
+      "ai-mode": {
+        "link_presence": 13,
+        "brand_presence": 11
+      }
+    },
+    "craftos.eu": {
+      "chatgpt": {
+        "link_presence": 1,
+        "brand_presence": null
+      },
+      "gemini": {
+        "link_presence": null,
+        "brand_presence": 0
+      },
+      "perplexity": {
+        "link_presence": null,
+        "brand_presence": null
+      },
+      "ai-overview": {
+        "link_presence": null,
+        "brand_presence": 1
+      },
+      "ai-mode": {
+        "link_presence": null,
+        "brand_presence": null
+      }
+    },
+    "tooltime.de": {
+      "chatgpt": {
+        "link_presence": 1,
+        "brand_presence": 11
+      },
+      "gemini": {
+        "link_presence": null,
+        "brand_presence": 6
+      },
+      "perplexity": {
+        "link_presence": null,
+        "brand_presence": 3
+      },
+      "ai-overview": {
+        "link_presence": null,
+        "brand_presence": 473
+      },
+      "ai-mode": {
+        "link_presence": 0,
+        "brand_presence": 17
+      }
+    },
+    "plancraft.com": {
+      "chatgpt": {
+        "link_presence": 18,
+        "brand_presence": 11
+      },
+      "gemini": {
+        "link_presence": 12,
+        "brand_presence": 9
+      },
+      "perplexity": {
+        "link_presence": 7,
+        "brand_presence": 3
+      },
+      "ai-overview": {
+        "link_presence": 330,
+        "brand_presence": 131
+      },
+      "ai-mode": {
+        "link_presence": 22,
+        "brand_presence": 4
+      }
+    },
+    "openhandwerk.de": {
+      "chatgpt": {
+        "link_presence": 4,
+        "brand_presence": 4
+      },
+      "gemini": {
+        "link_presence": null,
+        "brand_presence": null
+      },
+      "perplexity": {
+        "link_presence": 2,
+        "brand_presence": null
+      },
+      "ai-overview": {
+        "link_presence": 165,
+        "brand_presence": 18
+      },
+      "ai-mode": {
+        "link_presence": 1,
+        "brand_presence": 0
+      }
+    },
+    "hero-software.de": {
+      "chatgpt": {
+        "link_presence": 21,
+        "brand_presence": 147
+      },
+      "gemini": {
+        "link_presence": 21,
+        "brand_presence": 41
+      },
+      "perplexity": {
+        "link_presence": 56,
+        "brand_presence": 17
+      },
+      "ai-overview": {
+        "link_presence": 2023,
+        "brand_presence": 804
+      },
+      "ai-mode": {
+        "link_presence": 88,
+        "brand_presence": 112
+      }
+    }
+  },
+  "unavailable": [
+    {
+      "domain": "craftos.eu",
+      "reason": "no_data",
+      "engine": "perplexity"
+    },
+    {
+      "domain": "craftos.eu",
+      "reason": "no_data",
+      "engine": "ai-mode"
+    },
+    {
+      "domain": "openhandwerk.de",
+      "reason": "no_data",
+      "engine": "gemini"
+    }
+  ],
+  "sov_components": [
+    "brand_presence",
+    "link_presence"
+  ],
+  "request_metadata": {
+    "scope_applied": "base_domain",
+    "source": "de",
+    "primary": "craftos.eu",
+    "engines": [
+      "chatgpt",
+      "perplexity",
+      "gemini",
+      "ai-overview",
+      "ai-mode"
+    ],
+    "competitors": [
+      "plancraft.com",
+      "hero-software.de",
+      "craftnote.de",
+      "openhandwerk.de",
+      "tooltime.de",
+      "das-programm.io",
+      "streit-software.de"
+    ],
+    "scope_requested": "base_domain"
+  },
+  "partial": true,
+  "leaderboard": [
+    {
+      "rank": 1,
+      "link_presence": 6365,
+      "brand_presence": 475,
+      "domain": "streit-software.de",
+      "brand_origin": "request",
+      "brand": "Streit",
+      "is_primary_target": false,
+      "share_of_voice": 0.4164
+    },
+    {
+      "rank": 2,
+      "link_presence": 2209,
+      "brand_presence": 1121,
+      "domain": "hero-software.de",
+      "brand_origin": "request",
+      "brand": "HERO",
+      "is_primary_target": false,
+      "share_of_voice": 0.323
+    },
+    {
+      "rank": 3,
+      "link_presence": 1,
+      "brand_presence": 510,
+      "domain": "tooltime.de",
+      "brand_origin": "request",
+      "brand": "ToolTime",
+      "is_primary_target": false,
+      "share_of_voice": 0.0953
+    },
+    {
+      "rank": 4,
+      "link_presence": 233,
+      "brand_presence": 295,
+      "domain": "das-programm.io",
+      "brand_origin": "request",
+      "brand": "Das Programm",
+      "is_primary_target": false,
+      "share_of_voice": 0.0671
+    },
+    {
+      "rank": 5,
+      "link_presence": 389,
+      "brand_presence": 158,
+      "domain": "plancraft.com",
+      "brand_origin": "request",
+      "brand": "Plancraft",
+      "is_primary_target": false,
+      "share_of_voice": 0.0495
+    },
+    {
+      "rank": 6,
+      "link_presence": 340,
+      "brand_presence": 96,
+      "domain": "craftnote.de",
+      "brand_origin": "request",
+      "brand": "Craftnote",
+      "is_primary_target": false,
+      "share_of_voice": 0.0354
+    },
+    {
+      "rank": 7,
+      "link_presence": 172,
+      "brand_presence": 22,
+      "domain": "openhandwerk.de",
+      "brand_origin": "request",
+      "brand": "openHandwerk",
+      "is_primary_target": false,
+      "share_of_voice": 0.013
+    },
+    {
+      "rank": 8,
+      "link_presence": 1,
+      "brand_presence": 1,
+      "domain": "craftos.eu",
+      "brand_origin": "request",
+      "brand": "CraftOS",
+      "is_primary_target": true,
+      "share_of_voice": 0.0002
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "summary": [
+    {
+      "target": "craftos.eu",
+      "backlinks": 12,
+      "refdomains": 12,
+      "subnets": 5,
+      "ips": 7,
+      "nofollow_backlinks": 0,
+      "dofollow_backlinks": 12,
+      "edu_backlinks": 0,
+      "gov_backlinks": 0,
+      "inlink_rank": 1,
+      "domain_inlink_rank": 3,
+      "from_home_page_backlinks": 0,
+      "dofollow_from_home_page_backlinks": 0,
+      "text_backlinks": 12,
+      "dofollow_refdomains": 12,
+      "from_home_page_refdomains": 0,
+      "edu_refdomains": 0,
+      "gov_refdomains": 0,
+      "anchors": 1,
+      "dofollow_anchors": 1,
+      "pages_with_backlinks": 2,
+      "top_anchors_by_backlinks": [
+        {
+          "anchor": "craftos.eu",
+          "backlinks": 12
+        }
+      ],
+      "top_anchors_by_refdomains": [
+        {
+          "anchor": "craftos.eu",
+          "refdomains": 17
+        }
+      ],
+      "top_pages_by_backlinks": [
+        {
+          "url": "https://craftos.eu/",
+          "backlinks": 11
+        },
+        {
+          "url": "http://craftos.eu/",
+          "backlinks": 1
+        }
+      ],
+      "top_pages_by_refdomains": [
+        {
+          "url": "https://craftos.eu/",
+          "refdomains": 15
+        },
+        {
+          "url": "http://craftos.eu/",
+          "refdomains": 2
+        }
+      ],
+      "top_tlds": [
+        {
+          "tld": "com",
+          "count": 6
+        },
+        {
+          "tld": "info",
+          "count": 2
+        },
+        {
+          "tld": "club",
+          "count": 1
+        },
+        {
+          "tld": "guru",
+          "count": 1
+        },
+        {
+          "tld": "pl",
+          "count": 1
+        },
+        {
+          "tld": "pro",
+          "count": 1
+        }
+      ],
+      "top_countries": [
+        {
+          "country": "us",
+          "count": 10
+        },
+        {
+          "country": "pl",
+          "count": 1
+        },
+        {
+          "country": "sg",
+          "count": 1
+        }
+      ]
+    }
+  ]
+}

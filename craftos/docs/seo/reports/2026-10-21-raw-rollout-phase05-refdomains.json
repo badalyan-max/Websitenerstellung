@@ -1,0 +1,88 @@
+{
+  "refdomains": [
+    {
+      "refdomain": "webboard.pl",
+      "backlinks": 1,
+      "dofollow_backlinks": 1,
+      "domain_inlink_rank": 69,
+      "first_seen": "2021-01-06"
+    },
+    {
+      "refdomain": "sport-life.club",
+      "backlinks": 1,
+      "dofollow_backlinks": 1,
+      "domain_inlink_rank": 56,
+      "first_seen": "2026-01-22"
+    },
+    {
+      "refdomain": "dsnylu.com",
+      "backlinks": 1,
+      "dofollow_backlinks": 1,
+      "domain_inlink_rank": 53,
+      "first_seen": "2026-01-21"
+    },
+    {
+      "refdomain": "bmwyng.com",
+      "backlinks": 1,
+      "dofollow_backlinks": 1,
+      "domain_inlink_rank": 52,
+      "first_seen": "2026-01-27"
+    },
+    {
+      "refdomain": "kgzxkf.com",
+      "backlinks": 1,
+      "dofollow_backlinks": 1,
+      "domain_inlink_rank": 51,
+      "first_seen": "2026-01-20"
+    },
+    {
+      "refdomain": "obmain.com",
+      "backlinks": 1,
+      "dofollow_backlinks": 1,
+      "domain_inlink_rank": 50,
+      "first_seen": "2026-01-22"
+    },
+    {
+      "refdomain": "qhtycw.com",
+      "backlinks": 1,
+      "dofollow_backlinks": 1,
+      "domain_inlink_rank": 49,
+      "first_seen": "2026-01-30"
+    },
+    {
+      "refdomain": "jobsapp.info",
+      "backlinks": 1,
+      "dofollow_backlinks": 1,
+      "domain_inlink_rank": 49,
+      "first_seen": "2025-08-24"
+    },
+    {
+      "refdomain": "hzdlpq.com",
+      "backlinks": 1,
+      "dofollow_backlinks": 1,
+      "domain_inlink_rank": 49,
+      "first_seen": "2026-01-28"
+    },
+    {
+      "refdomain": "nettools.guru",
+      "backlinks": 1,
+      "dofollow_backlinks": 1,
+      "domain_inlink_rank": 48,
+      "first_seen": "2026-01-26"
+    },
+    {
+      "refdomain": "sergechel.info",
+      "backlinks": 1,
+      "dofollow_backlinks": 1,
+      "domain_inlink_rank": 48,
+      "first_seen": "2025-05-28"
+    },
+    {
+      "refdomain": "australianwebdirectory.pro",
+      "backlinks": 1,
+      "dofollow_backlinks": 1,
+      "domain_inlink_rank": 18,
+      "first_seen": "2025-08-08"
+    }
+  ]
+}
