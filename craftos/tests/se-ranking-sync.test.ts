@@ -94,8 +94,8 @@ describe('Berichte ohne Überschreiben (HI-01)', () => {
       { id: 2, name: 'bautagebuch app', link: 'https://craftos.eu/blog/digitale-bautagesberichte' },
       { id: 3, name: 'gaeb software', link: 'https://craftos.eu/funktionen/gaeb' },
     ])
-    const r1 = await apply(p, soll, { reportDir: dir, datum: '2026-10-21', log: silent })
-    const r2 = await apply(p, soll, { reportDir: dir, datum: '2026-10-21', log: silent })
+    const r1 = await apply(p, soll, { reportDir: dir, datum: '2026-10-21', log: silent, retarget: true })
+    const r2 = await apply(p, soll, { reportDir: dir, datum: '2026-10-21', log: silent, retarget: true })
     expect(r1.file).not.toBe(r2.file)
     expect(readJson(r1.file).zielseiteAngeglichen).toEqual([
       expect.objectContaining({ keyword: 'bautagebuch app', vorher: 'https://craftos.eu/blog/digitale-bautagesberichte' }),
@@ -133,7 +133,7 @@ describe('Protokoll auch bei Abbruch (HI-02)', () => {
         return { success: true }
       },
     })
-    const r = await apply(p, soll, { reportDir: dir, datum: '2026-10-21', log: silent })
+    const r = await apply(p, soll, { reportDir: dir, datum: '2026-10-21', log: silent, retarget: true })
     expect(zwischenstand!.zielseiteAngeglichen).toHaveLength(1)
     const prot = readJson(r.file)
     expect(r.code).toBe(1)
@@ -249,5 +249,47 @@ describe('Nur eindeutige Limits, stille Fehlschläge bleiben Fehler (HI-03)', ()
     expect(alt.report.limits).toEqual([])
     expect(alt.report.limitsHinweis).toMatch(/älter als 30 Tage/)
     expect(alt.report.offenOhneLimit).toHaveLength(2)
+  })
+})
+
+describe('Keyword-Schreibweise bleibt erhalten, Zielseiten nur mit --retarget (MD-03)', () => {
+  const start = (): Kw[] => [
+    { id: 1, name: 'Handwerkersoftware', link: 'https://craftos.eu/vergleich' },
+    { id: 2, name: 'bautagebuch app', link: 'https://craftos.eu/funktionen/baudokumentation' },
+    { id: 3, name: 'gaeb software', link: 'https://craftos.eu/funktionen/gaeb' },
+  ]
+
+  it('ändert ohne --retarget keine Zielseite und listet die Abweichung nur auf', async () => {
+    const p = fakeProject(start())
+    const r = await apply(p, soll, { reportDir: dir, datum: '2026-10-21', log: silent })
+    const prot = readJson(r.file)
+    expect(p.calls.some((c) => c.name === 'PROJECT_updateKeyword')).toBe(false)
+    expect(prot.zielseiteNichtAngeglichen).toEqual([
+      expect.objectContaining({ keyword: 'handwerkersoftware', istUrl: 'https://craftos.eu/vergleich', sollUrl: 'https://craftos.eu/' }),
+    ])
+    expect(prot.fehlgeschlagen).toEqual([])
+    expect(r.code).toBe(0)
+  })
+
+  it('sendet mit --retarget den Original-Keywordtext und lässt die Schreibweise unverändert', async () => {
+    const p = fakeProject(start())
+    const r = await apply(p, soll, { reportDir: dir, datum: '2026-10-21', log: silent, retarget: true })
+    const upd = p.calls.find((c) => c.name === 'PROJECT_updateKeyword')!
+    expect(upd.args).toEqual({ site_id: 13094375, keyword_id: 1, keyword: 'Handwerkersoftware', target_url: 'https://craftos.eu/' })
+    expect(p.keywords[0].name).toBe('Handwerkersoftware')
+    expect(readJson(r.file).schreibweiseGeaendert).toEqual([])
+  })
+
+  it('meldet eine serverseitig geänderte Schreibweise', async () => {
+    const p = fakeProject(start(), {
+      PROJECT_updateKeyword: (a) => {
+        const k = p.keywords.find((x) => x.id === a.keyword_id)!
+        k.link = String(a.target_url)
+        k.name = k.name.toLowerCase()
+        return { success: true }
+      },
+    })
+    const r = await apply(p, soll, { reportDir: dir, datum: '2026-10-21', log: silent, retarget: true })
+    expect(readJson(r.file).schreibweiseGeaendert).toEqual([{ id: 1, vorher: 'Handwerkersoftware', nachher: 'handwerkersoftware' }])
   })
 })

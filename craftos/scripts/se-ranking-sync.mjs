@@ -1,7 +1,10 @@
 // Abgleich des SE-Ranking-Projekts 13094375 mit der Keyword-Map (SEO-07, D-07a).
 //   node scripts/se-ranking-sync.mjs --list-tools [PRÄFIX]  Toolnamen und Pflichtargumente des MCP-Servers
 //   node scripts/se-ranking-sync.mjs --check                 Ist/Soll vergleichen → docs/seo/reports/<Datum>-projektabgleich[-N].json
-//   node scripts/se-ranking-sync.mjs --apply                 Fehlende Keywords hinzufügen, Zielseiten angleichen
+//   node scripts/se-ranking-sync.mjs --apply                 Fehlende Keywords hinzufügen; abweichende Zielseiten
+//                                                            nur auflisten (zielseiteNichtAngeglichen)
+//   node scripts/se-ranking-sync.mjs --apply --retarget      zusätzlich Zielseiten bestehender Keywords angleichen
+//                                                            (Keyword-Text in Original-Schreibweise, keine Umbenennung)
 //                                                            → docs/seo/reports/<Datum>-projektabgleich-apply[-N].json
 // Soll = alle Hauptkeywords der Keyword-Map (bestehende und geplante Seiten), Ziel-URL https://craftos.eu{path}.
 // Löschregel: Das Skript entfernt nie Keywords, Wettbewerber oder Prompts; zusätzliche Projekt-Keywords
@@ -22,8 +25,9 @@ const MAP_FILE = path.join(ROOT, "docs/seo/keyword-map.json");
 const REPORT_DIR = path.join(ROOT, "docs/seo/reports");
 
 const mode = process.argv[2];
-if (!["--list-tools", "--check", "--apply"].includes(mode)) {
-  console.error("Aufruf: node scripts/se-ranking-sync.mjs <--list-tools [PRÄFIX] | --check | --apply>");
+const retarget = process.argv.slice(3).includes("--retarget");
+if (!["--list-tools", "--check", "--apply"].includes(mode) || (retarget && mode !== "--apply")) {
+  console.error("Aufruf: node scripts/se-ranking-sync.mjs <--list-tools [PRÄFIX] | --check | --apply [--retarget]>");
   process.exit(1);
 }
 
@@ -41,8 +45,10 @@ try {
   if (mode === "--list-tools") await listTools(client);
   else {
     const soll = buildSoll(JSON.parse(fs.readFileSync(MAP_FILE, "utf8")));
-    const run = mode === "--check" ? check : apply;
-    ({ code } = await run(client, soll, { reportDir: REPORT_DIR }));
+    ({ code } =
+      mode === "--check"
+        ? await check(client, soll, { reportDir: REPORT_DIR })
+        : await apply(client, soll, { reportDir: REPORT_DIR, retarget }));
   }
   console.log(`MCP-Aufrufe: ${client.callCount}`);
   process.exit(code);

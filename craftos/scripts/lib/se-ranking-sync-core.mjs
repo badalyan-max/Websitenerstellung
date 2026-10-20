@@ -79,7 +79,8 @@ export function latestApplyFile(reportDir) {
 export async function readProject(client) {
   const keywords = rows(await client.callTool("PROJECT_listKeywords", { site_id: SITE_ID })).map((k) => ({
     id: Number(k.id),
-    keyword: normKw(k.name),
+    keyword: normKw(k.name), // nur zum Vergleich mit der Soll-Liste
+    name: String(k.name), // Original-Schreibweise im Projekt, wird beim Angleichen unverändert gesendet
     url: normUrl(k.link),
   }));
   return { keywords };
@@ -116,7 +117,7 @@ export function diff(soll, ist) {
     const k = istBy.get(s.keyword);
     if (!k) fehlend.push({ keyword: s.keyword, url: s.url, status: s.status, phase: s.phase });
     else if (k.url !== s.url)
-      zielseiteAbweichend.push({ keyword: s.keyword, url: s.url, istUrl: k.url, status: s.status, phase: s.phase, id: k.id });
+      zielseiteAbweichend.push({ keyword: s.keyword, url: s.url, istUrl: k.url, status: s.status, phase: s.phase, id: k.id, name: k.name });
   }
   const zusaetzlich = ist.keywords.filter((k) => !sollSet.has(k.keyword)).map((k) => ({ keyword: k.keyword, url: k.url }));
   return { fehlend, zielseiteAbweichend, zusaetzlich };
@@ -141,7 +142,7 @@ export async function check(client, soll, { reportDir, datum = today(), log = co
     else limits = alle;
   }
   const limitKw = new Set(limits.map((l) => l.keyword));
-  const strip = (e) => Object.fromEntries(Object.entries(e).filter(([k]) => k !== "id"));
+  const strip = (e) => Object.fromEntries(Object.entries(e).filter(([k]) => k !== "id" && k !== "name"));
   const offenOhneLimit = [...d.fehlend, ...d.zielseiteAbweichend.map(strip)].filter((e) => !limitKw.has(e.keyword));
   const report = {
     datum,
@@ -188,17 +189,25 @@ const entry = (e, extra = {}) => ({ keyword: e.keyword, url: e.url, status: e.st
 // Das Protokoll wird vor der ersten Änderung angelegt und nach jeder Mutation fortgeschrieben. Bricht der Lauf
 // ab (Netzwerk, Timeout, 5xx, JSON-RPC-Fehler), wird der Projektstand neu gelesen und der Abbruch protokolliert,
 // damit die bereits geänderten Einträge samt vorher-URLs im Repo nachvollziehbar bleiben (HI-02).
-/** @param {any} client @param {any[]} soll @param {RunOptions} opts */
-export async function apply(client, soll, { reportDir, datum = today(), log = console.log }) {
+// Zielseiten bestehender Projekt-Keywords (ggf. vom Inhaber gesetzt) werden nur mit retarget (--retarget)
+// geändert; sonst stehen die Abweichungen unter zielseiteNichtAngeglichen. Beim Angleichen wird der
+// Keyword-Text in der Original-Schreibweise des Projekts gesendet, damit nichts umbenannt wird (MD-03).
+/** @param {any} client @param {any[]} soll @param {RunOptions & { retarget?: boolean }} opts */
+export async function apply(client, soll, { reportDir, datum = today(), log = console.log, retarget = false }) {
   const ist = await readProject(client);
   const d = diff(soll, ist);
   const protokoll = {
     datum,
     projekt: SITE_ID,
     status: "laufend",
+    retarget,
     abgebrochen: null,
     hinzugefuegt: [],
     zielseiteAngeglichen: [],
+    zielseiteNichtAngeglichen: retarget
+      ? []
+      : d.zielseiteAbweichend.map((u) => ({ keyword: u.keyword, istUrl: u.istUrl, sollUrl: u.url, status: u.status, phase: u.phase })),
+    schreibweiseGeaendert: [],
     limits: [],
     fehlgeschlagen: [],
     unbestaetigt: [], // an PROJECT_addKeywords übergeben, Übernahme noch nicht durch Neulesen bestätigt
@@ -211,7 +220,8 @@ export async function apply(client, soll, { reportDir, datum = today(), log = co
   let abbruch = null; // Projektlimit: restliche Einträge werden als Limit geführt
   let fehler = null; // jeder andere Fehler: Lauf stoppt, restliche Einträge bleiben offen
 
-  const updates = [...d.zielseiteAbweichend].sort(applyOrder);
+  const updates = retarget ? [...d.zielseiteAbweichend].sort(applyOrder) : [];
+  const nichtAngeglichen = new Set(protokoll.zielseiteNichtAngeglichen.map((z) => z.keyword));
   const adds = [...d.fehlend].sort(applyOrder);
   try {
     // 1. Zielseiten bestehender Projekt-Keywords angleichen (verbraucht kein Keyword-Kontingent).
@@ -225,7 +235,7 @@ export async function apply(client, soll, { reportDir, datum = today(), log = co
         await client.callTool("PROJECT_updateKeyword", {
           site_id: SITE_ID,
           keyword_id: u.id,
-          keyword: u.keyword,
+          keyword: u.name, // Pflichtfeld beim Ändern der target_url; unverändert in Original-Schreibweise
           target_url: u.url,
         });
         zielseiteAngeglichen.push({ keyword: u.keyword, vorher: u.istUrl, nachher: u.url, status: u.status, phase: u.phase });
@@ -296,8 +306,14 @@ export async function apply(client, soll, { reportDir, datum = today(), log = co
     // Als angeglichen gemeldete Zielseiten, die doch noch abweichen, sind fehlgeschlagen.
     for (let i = zielseiteAngeglichen.length - 1; i >= 0; i--)
       if (offenNachher.has(zielseiteAngeglichen[i].keyword)) zielseiteAngeglichen.splice(i, 1);
+    // Schreibweise der angeglichenen Keywords darf sich nicht geändert haben (Positionshistorie, MD-03).
+    const nameNachher = new Map(nachherIst.keywords.map((k) => [k.id, k.name]));
+    for (const u of updates) {
+      const n = nameNachher.get(u.id);
+      if (n !== undefined && n !== u.name) protokoll.schreibweiseGeaendert.push({ id: u.id, vorher: u.name, nachher: n });
+    }
     for (const [kw, e] of offenNachher) {
-      if (limits.some((l) => l.keyword === kw)) continue;
+      if (limits.some((l) => l.keyword === kw) || nichtAngeglichen.has(kw)) continue;
       const art = e.istUrl === undefined ? "fehlend" : "zielseite";
       // Ohne Limit-Antwort offen geblieben: Fehlschlag, nie stillschweigend als Tarifentscheidung führen (HI-03).
       fehlgeschlagen.push(
@@ -328,5 +344,12 @@ export async function apply(client, soll, { reportDir, datum = today(), log = co
   if (fehler) log(`Abbruch: ${fehler.message} – Teilprotokoll in ${path.basename(file)}`);
   if (!nachherIst) log(protokoll.verifikation);
   if (fehlgeschlagen.length) log("Fehlgeschlagene Einträge prüfen – kein Projektlimit");
+  if (protokoll.zielseiteNichtAngeglichen.length)
+    log(
+      `Zielseite abweichend, nicht geändert: ${protokoll.zielseiteNichtAngeglichen.length} – Liste im Protokoll prüfen,` +
+        " angleichen nur ausdrücklich mit --apply --retarget",
+    );
+  if (protokoll.schreibweiseGeaendert.length)
+    log(`WARNUNG: Schreibweise von ${protokoll.schreibweiseGeaendert.length} Keywords nach dem Angleichen geändert`);
   return { code: fehler || !nachherIst || fehlgeschlagen.length ? 1 : 0, file, protokoll };
 }
