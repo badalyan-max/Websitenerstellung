@@ -112,6 +112,16 @@ describe("CtaBand", () => {
     expect(secondary?.[1]).toBe("Preise ansehen");
     expect(count(html, /<h2\b/g)).toBe(1);
   });
+
+  it("aria-labelledby zeigt auch bei zwei Instanzen auf den jeweils eigenen Titel (eindeutige IDs)", () => {
+    const props = { title: "Machen Sie Platz für Ihr Handwerk.", text: "Ohne Zahlungsdaten – Sie entscheiden nach dem Test." };
+    const html = renderToString(createElement("div", null, createElement(CtaBand, props), createElement(CtaBand, props)));
+    const labelled = [...html.matchAll(/aria-labelledby="([^"]+)"/g)].map((m) => m[1]);
+    const ids = [...html.matchAll(/<h2\b[^>]*\bid="([^"]+)"/g)].map((m) => m[1]);
+    expect(labelled).toHaveLength(2);
+    expect(new Set(ids).size).toBe(2);
+    expect(labelled).toEqual(ids);
+  });
 });
 
 describe("Bewegungsfreiheit Teil A (DESIGN-04)", () => {

@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { site } from "@/lib/site";
 import s from "./CtaBand.module.css";
@@ -20,16 +21,18 @@ const defaultSecondary = { label: "Preise ansehen", href: "/preise" } as const;
  */
 export function CtaBand({ title, text, secondary = defaultSecondary }: CtaBandProps) {
   const budget = TEXT_BUDGET.ctaBand;
+  // Eindeutige ID je Instanz, damit aria-labelledby auch bei Mehrfachverwendung auf den eigenen Titel zeigt (LO-04).
+  const titleId = useId();
   const buttonLabel = `${site.trialDays} Tage kostenlos testen`;
   assertTextBudget("ctaBand.title", title, budget.title);
   assertTextBudget("ctaBand.text", text, budget.text);
   assertTextBudget("ctaBand.button", buttonLabel, budget.button);
 
   return (
-    <section className={s.band} data-tone="dark" aria-labelledby="cta-band-title">
+    <section className={s.band} data-tone="dark" aria-labelledby={titleId}>
       <div className={`site-container ${s.inner}`}>
         <div className={s.copy}>
-          <h2 id="cta-band-title" className={s.title}>
+          <h2 id={titleId} className={s.title}>
             {title}
           </h2>
           <p className={s.text}>{text}</p>
