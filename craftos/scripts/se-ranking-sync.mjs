@@ -7,8 +7,10 @@
 // Löschregel: Das Skript entfernt nie Keywords, Wettbewerber oder Prompts; zusätzliche Projekt-Keywords
 // (z. B. „craftview software gmbh“) bleiben unverändert und werden nur unter „zusaetzlich“ aufgeführt.
 // Berichte werden nie überschrieben: weitere Läufe am selben Tag erhalten die Laufnummer -2, -3, …
-// Projektlimits (z. B. HTTP 403) werden je nicht übernommenem Soll-Eintrag in limits[] der apply-Datei
-// persistiert; jeder spätere --check übernimmt sie (limitsQuelle) und wertet sie nicht als Prüffehler.
+// Projektlimits (nur HTTP 402 oder eindeutiger Limit-/Kontingenttext) werden je nicht übernommenem Soll-Eintrag
+// mit grund "limit" in limits[] der apply-Datei persistiert; ein späterer --check (höchstens 30 Tage danach)
+// übernimmt sie (limitsQuelle) und wertet sie nicht als Prüffehler. Alles andere, auch stillschweigend nicht
+// übernommene Einträge, steht unter fehlgeschlagen[] und führt zu Exit 1.
 // Die Logik liegt in scripts/lib/se-ranking-sync-core.mjs (Vitest: tests/se-ranking-sync.test.ts).
 import fs from "node:fs";
 import path from "node:path";

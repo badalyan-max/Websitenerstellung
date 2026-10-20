@@ -16,9 +16,13 @@ export const normUrl = (u) => {
   return s === `${ORIGIN}/` ? s : s.replace(/\/+$/, "");
 };
 export const normKw = (k) => String(k).trim().toLowerCase();
-export const isLimitError = (err) =>
-  err instanceof McpError &&
-  (err.status === 403 || err.status === 402 || /\b403\b|limit|quota|exceed|not enough|insufficient/i.test(err.message));
+// Nur eindeutige Kontingent-/Tarifantworten gelten als Projektlimit (HTTP 402 oder ein klarer Limit-Text).
+// Ein nacktes 403 oder Validierungsfehler („parameter 'limit' must be …“, „keyword length exceeds …“) sind Fehler.
+const LIMIT_RE =
+  /\b(?:quota|keywords? limit|(?:limit|quota) (?:is |has been |was )?(?:reached|exceeded)|exceed(?:s|ed)? (?:the |your )?(?:\w+ )?(?:limit|quota)|not enough (?:units|keywords|credits|balance|funds)|insufficient (?:units|credits|balance|funds)|upgrade your (?:plan|subscription|tariff))\b/i;
+export const isLimitError = (err) => err instanceof McpError && (err.status === 402 || LIMIT_RE.test(err.message));
+// Limits aus apply-Dateien, die älter als diese Frist sind, nimmt --check nicht mehr aus (Tarifentscheidung erneut fällig).
+export const LIMIT_MAX_AGE_DAYS = 30;
 const rows = (r) =>
   Array.isArray(r) ? r : Array.isArray(r?.data) ? r.data : Array.isArray(r?.items) ? r.items : [];
 
@@ -126,7 +130,16 @@ export async function check(client, soll, { reportDir, datum = today(), log = co
   const tracking = await readTracking(client);
   const d = diff(soll, ist);
   const applyFile = latestApplyFile(reportDir);
-  const limits = applyFile ? (JSON.parse(fs.readFileSync(applyFile, "utf8")).limits ?? []) : [];
+  let limits = [];
+  let limitsHinweis = null;
+  if (applyFile) {
+    const alterTage = (Date.parse(datum) - Date.parse(path.basename(applyFile).slice(0, 10))) / 86400000;
+    // Nur ausdrücklich als Limit geführte Einträge ausnehmen; stille Fehlschläge bleiben Prüffehler (HI-03).
+    const alle = (JSON.parse(fs.readFileSync(applyFile, "utf8")).limits ?? []).filter((l) => l.grund === "limit");
+    if (alterTage > LIMIT_MAX_AGE_DAYS)
+      limitsHinweis = `${alle.length} Limits aus ${path.basename(applyFile)} älter als ${LIMIT_MAX_AGE_DAYS} Tage – nicht berücksichtigt`;
+    else limits = alle;
+  }
   const limitKw = new Set(limits.map((l) => l.keyword));
   const strip = (e) => Object.fromEntries(Object.entries(e).filter(([k]) => k !== "id"));
   const offenOhneLimit = [...d.fehlend, ...d.zielseiteAbweichend.map(strip)].filter((e) => !limitKw.has(e.keyword));
@@ -148,6 +161,7 @@ export async function check(client, soll, { reportDir, datum = today(), log = co
     aiPrompts: tracking.aiPrompts,
     limits,
     limitsQuelle: applyFile ? path.basename(applyFile) : null,
+    limitsHinweis,
     offenOhneLimit,
   };
   const file = writeJsonUnique(reportDir, `${datum}-projektabgleich`, report);
@@ -158,6 +172,7 @@ export async function check(client, soll, { reportDir, datum = today(), log = co
       `Wettbewerber ${report.wettbewerberAnzahl}, KI-Prompts ${report.aiPrompts.length}, Limits ${limits.length}, offen ohne Limit ${offenOhneLimit.length}`,
   );
   if (limits.length) log("Projektlimit dokumentiert – Entscheidung Inhaber (Tarif) nötig");
+  if (limitsHinweis) log(limitsHinweis);
   return { code: offenOhneLimit.length ? 1 : 0, file, report };
 }
 
@@ -203,7 +218,7 @@ export async function apply(client, soll, { reportDir, datum = today(), log = co
     for (const u of updates) {
       if (fehler) break;
       if (abbruch) {
-        limits.push(entry(u, { art: "zielseite", fehler: abbruch }));
+        limits.push(entry(u, { art: "zielseite", grund: "limit", fehler: abbruch }));
         continue;
       }
       try {
@@ -217,7 +232,7 @@ export async function apply(client, soll, { reportDir, datum = today(), log = co
       } catch (err) {
         if (isLimitError(err)) {
           abbruch = err.message;
-          limits.push(entry(u, { art: "zielseite", fehler: abbruch }));
+          limits.push(entry(u, { art: "zielseite", grund: "limit", fehler: abbruch }));
         } else fehler = err;
       }
       save();
@@ -227,7 +242,7 @@ export async function apply(client, soll, { reportDir, datum = today(), log = co
     for (let i = 0; i < adds.length && !fehler; i += ADD_CHUNK) {
       const chunk = adds.slice(i, i + ADD_CHUNK);
       if (abbruch) {
-        for (const a of chunk) limits.push(entry(a, { art: "fehlend", fehler: abbruch }));
+        for (const a of chunk) limits.push(entry(a, { art: "fehlend", grund: "limit", fehler: abbruch }));
         continue;
       }
       try {
@@ -239,7 +254,7 @@ export async function apply(client, soll, { reportDir, datum = today(), log = co
       } catch (err) {
         if (isLimitError(err)) {
           abbruch = err.message;
-          for (const a of chunk) limits.push(entry(a, { art: "fehlend", fehler: abbruch }));
+          for (const a of chunk) limits.push(entry(a, { art: "fehlend", grund: "limit", fehler: abbruch }));
         } else {
           fehler = err;
           // Ein Timeout kann trotzdem übernommen worden sein: Paket bis zur Verifikation als unbestätigt führen.
@@ -284,9 +299,15 @@ export async function apply(client, soll, { reportDir, datum = today(), log = co
     for (const [kw, e] of offenNachher) {
       if (limits.some((l) => l.keyword === kw)) continue;
       const art = e.istUrl === undefined ? "fehlend" : "zielseite";
-      if (fehler) fehlgeschlagen.push(entry(e, { art, fehler: `Lauf abgebrochen: ${fehler.message}` }));
-      else
-        limits.push(entry(e, { art, fehler: abbruch ?? "nach --apply nicht im Projekt übernommen (Server meldete keinen Fehler)" }));
+      // Ohne Limit-Antwort offen geblieben: Fehlschlag, nie stillschweigend als Tarifentscheidung führen (HI-03).
+      fehlgeschlagen.push(
+        entry(e, {
+          art,
+          fehler: fehler
+            ? `Lauf abgebrochen: ${fehler.message}`
+            : "nach --apply nicht im Projekt übernommen (Server meldete keinen Fehler)",
+        }),
+      );
     }
     protokoll.verifikation = `Projektstand neu gelesen: ${nachherIst.keywords.length} Keywords, ${offenNachher.size} Soll-Einträge offen`;
   }
@@ -306,5 +327,6 @@ export async function apply(client, soll, { reportDir, datum = today(), log = co
   if (limits.length) log("Projektlimit erreicht – Entscheidung Inhaber (Tarif) nötig");
   if (fehler) log(`Abbruch: ${fehler.message} – Teilprotokoll in ${path.basename(file)}`);
   if (!nachherIst) log(protokoll.verifikation);
-  return { code: fehler || !nachherIst ? 1 : 0, file, protokoll };
+  if (fehlgeschlagen.length) log("Fehlgeschlagene Einträge prüfen – kein Projektlimit");
+  return { code: fehler || !nachherIst || fehlgeschlagen.length ? 1 : 0, file, protokoll };
 }

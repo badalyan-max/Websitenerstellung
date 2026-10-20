@@ -2,9 +2,11 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { errorStatus, McpError } from '../scripts/lib/se-ranking-mcp.mjs'
 import {
   apply,
   check,
+  isLimitError,
   latestApplyFile,
   writeJsonUnique,
 } from '../scripts/lib/se-ranking-sync-core.mjs'
@@ -178,5 +180,74 @@ describe('Protokoll auch bei Abbruch (HI-02)', () => {
     expect(prot.status).toBe('unvollstaendig')
     expect(prot.verifikation).toMatch(/nicht lesbar/)
     expect(prot.unbestaetigt.map((u: { keyword: string }) => u.keyword)).toEqual(['gaeb software'])
+  })
+})
+
+describe('Nur eindeutige Limits, stille Fehlschläge bleiben Fehler (HI-03)', () => {
+  it('isLimitError erkennt nur 402 und klare Kontingenttexte', () => {
+    const e = (msg: string, status: number | null = null) => new McpError(msg, { status })
+    expect(isLimitError(e('Payment required', 402))).toBe(true)
+    expect(isLimitError(e('Tool PROJECT_addKeywords meldet Fehler: Keyword limit reached for this project'))).toBe(true)
+    expect(isLimitError(e('You have exceeded the keyword limit of your tariff', 403))).toBe(true)
+    expect(isLimitError(e('Not enough units on balance'))).toBe(true)
+    // Kein Limit: nacktes 403, Validierungsfehler mit „limit“/„exceeds“, fremde Fehlertypen.
+    expect(isLimitError(e('Forbidden', 403))).toBe(false)
+    expect(isLimitError(e("parameter 'limit' must be between 1 and 1000"))).toBe(false)
+    expect(isLimitError(e('keyword length exceeds 255 characters'))).toBe(false)
+    expect(isLimitError(new Error('Keyword limit reached'))).toBe(false)
+  })
+
+  it('errorStatus liest den Status nur aus eindeutigen Stellen', () => {
+    expect(errorStatus({ status: 403, message: 'x' }, '')).toBe(403)
+    expect(errorStatus({ error: { code: 402 } }, '')).toBe(402)
+    expect(errorStatus('HTTP 503 Service Unavailable', 'HTTP 503 Service Unavailable')).toBe(503)
+    expect(errorStatus('403 Forbidden', '403 Forbidden')).toBe(403)
+    expect(errorStatus('', 'status: 429')).toBe(429)
+    expect(errorStatus('', 'keyword_id 22299151 not found, limit 500 exceeded')).toBeNull()
+    expect(errorStatus({ code: 50000 }, '')).toBeNull()
+  })
+
+  it('führt stillschweigend nicht übernommene Einträge unter fehlgeschlagen, nicht unter limits', async () => {
+    const p = fakeProject([{ id: 1, name: 'handwerkersoftware', link: 'https://craftos.eu/' }], {
+      PROJECT_addKeywords: () => ({ success: true }), // Server meldet Erfolg, übernimmt aber nichts
+    })
+    const r = await apply(p, soll, { reportDir: dir, datum: '2026-10-21', log: silent })
+    const prot = readJson(r.file)
+    expect(r.code).toBe(1)
+    expect(prot.limits).toEqual([])
+    expect(prot.fehlgeschlagen.map((f: { keyword: string }) => f.keyword)).toEqual(['bautagebuch app', 'gaeb software'])
+    expect(prot.fehlgeschlagen[0].fehler).toMatch(/Server meldete keinen Fehler/)
+  })
+
+  it('protokolliert echte Limits mit grund "limit" und Exit 0', async () => {
+    const p = fakeProject([{ id: 1, name: 'handwerkersoftware', link: 'https://craftos.eu/' }], {
+      PROJECT_addKeywords: () => {
+        throw new McpError('Tool PROJECT_addKeywords meldet Fehler: keyword limit reached', { status: 403 })
+      },
+    })
+    const r = await apply(p, soll, { reportDir: dir, datum: '2026-10-21', log: silent })
+    const prot = readJson(r.file)
+    expect(r.code).toBe(0)
+    expect(prot.fehlgeschlagen).toEqual([])
+    expect(prot.limits.map((l: { keyword: string; grund: string }) => [l.keyword, l.grund])).toEqual([
+      ['bautagebuch app', 'limit'],
+      ['gaeb software', 'limit'],
+    ])
+  })
+
+  it('--check nimmt nur grund "limit" aus und ignoriert Limits älter als 30 Tage', async () => {
+    const p = fakeProject([{ id: 1, name: 'handwerkersoftware', link: 'https://craftos.eu/' }])
+    const limit = { keyword: 'bautagebuch app', url: soll[1].url, status: 'bestehend', phase: null, art: 'fehlend', grund: 'limit' }
+    const still = { keyword: 'gaeb software', url: soll[2].url, status: 'geplant', phase: 7, art: 'fehlend', fehler: 'nach --apply nicht übernommen' }
+    fs.writeFileSync(path.join(dir, '2026-10-21-projektabgleich-apply.json'), JSON.stringify({ limits: [limit, still] }))
+    const frisch = await check(p, soll, { reportDir: dir, datum: '2026-10-22', log: silent })
+    expect(frisch.code).toBe(1)
+    expect(frisch.report.limits).toHaveLength(1)
+    expect(frisch.report.offenOhneLimit.map((o) => o.keyword)).toEqual(['gaeb software'])
+
+    const alt = await check(p, soll, { reportDir: dir, datum: '2026-12-01', log: silent })
+    expect(alt.report.limits).toEqual([])
+    expect(alt.report.limitsHinweis).toMatch(/älter als 30 Tage/)
+    expect(alt.report.offenOhneLimit).toHaveLength(2)
   })
 })

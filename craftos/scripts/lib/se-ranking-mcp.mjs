@@ -11,6 +11,7 @@ const TIMEOUT_MS = 180000;
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export class McpError extends Error {
+  /** @param {string} message @param {{ status?: number | null, code?: number | null, tool?: string | null }} [opts] */
   constructor(message, { status = null, code = null, tool = null } = {}) {
     super(message);
     this.name = "McpError";
@@ -47,13 +48,29 @@ function redact(text, secret) {
   return secret ? s.split(secret).join("[entfernt]") : s;
 }
 
-export function createClient({ log = () => {} } = {}) {
-  try {
-    process.loadEnvFile(ENV_FILE);
-  } catch {
-    // Fehlende Datei wird unten als fehlender Schlüssel gemeldet.
+// HTTP-Status eines Tool-Fehlers nur aus eindeutigen Stellen übernehmen (Statusfeld der Antwort oder „HTTP 403“,
+// „status: 403“, „403 Forbidden“ am Textanfang) – nicht aus der ersten beliebigen Zahl im Text (HI-03).
+export function errorStatus(data, msg) {
+  if (data && typeof data === "object") {
+    for (const v of [data.status, data.status_code, data.statusCode, data.code, data.error?.status, data.error?.code]) {
+      const n = Number(v);
+      if (Number.isInteger(n) && n >= 400 && n <= 599) return n;
+    }
   }
-  const apiKey = process.env[KEY_NAME];
+  const m = /(?:^|\bHTTP(?:\s+status)?\s*|\bstatus(?:\s*code)?\s*[:=]?\s*)([45]\d\d)\b/i.exec(String(msg ?? "").trim());
+  return m ? Number(m[1]) : null;
+}
+
+// Optionen für Tests: apiKey (statt .env) und fetch (gemockt).
+export function createClient({ log = () => {}, apiKey: injectedKey = null, fetch: fetchFn = globalThis.fetch } = {}) {
+  if (!injectedKey) {
+    try {
+      process.loadEnvFile(ENV_FILE);
+    } catch {
+      // Fehlende Datei wird unten als fehlender Schlüssel gemeldet.
+    }
+  }
+  const apiKey = injectedKey || process.env[KEY_NAME];
   if (!apiKey) throw new McpError(`${KEY_NAME} fehlt in ${ENV_FILE}`);
 
   let sessionId = null;
@@ -75,7 +92,7 @@ export function createClient({ log = () => {} } = {}) {
       if (sessionId) headers["Mcp-Session-Id"] = sessionId;
       let res;
       try {
-        res = await fetch(MCP_URL, {
+        res = await fetchFn(MCP_URL, {
           method: "POST",
           headers,
           body: JSON.stringify(body),
@@ -142,7 +159,7 @@ export function createClient({ log = () => {} } = {}) {
   }
 
   // Ruft ein Tool auf und liefert den geparsten Inhalt (JSON, sonst Text). Tool-Fehler (isError) werden als
-  // McpError geworfen; status/Code werden aus dem Fehlertext übernommen, soweit erkennbar (z. B. 403).
+  // McpError geworfen; status wird nur aus eindeutigen Stellen übernommen (errorStatus).
   async function callTool(name, args = {}) {
     await init();
     callCount++;
@@ -161,9 +178,8 @@ export function createClient({ log = () => {} } = {}) {
     }
     if (r.isError) {
       const msg = redact(typeof data === "string" ? data : JSON.stringify(data), apiKey);
-      const m = msg.match(/\b(4\d\d|5\d\d)\b/);
       throw new McpError(`Tool ${name} meldet Fehler: ${msg.slice(0, 400)}`, {
-        status: m ? Number(m[1]) : null,
+        status: errorStatus(data, msg),
         tool: name,
       });
     }
