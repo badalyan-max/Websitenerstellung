@@ -1,0 +1,4524 @@
+[
+  {
+    "path": "/",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "handwerkersoftware",
+      "volume": 1300,
+      "difficulty": 55,
+      "intents": [
+        "I"
+      ],
+      "cpc": 9.64,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "handwerker software",
+      "software für handwerker"
+    ],
+    "competitors": [
+      {
+        "domain": "hero-software.de",
+        "position": 1,
+        "url": "https://hero-software.de/"
+      }
+    ],
+    "target": {
+      "title": "Handwerkersoftware für Büro und Baustelle | CraftOS",
+      "h1": "Handwerkersoftware, die Büro und Baustelle verbindet",
+      "description": "CraftOS ist die Handwerkersoftware für Angebote, Rechnungen, Plantafel, Zeiterfassung und Lager – Web-App und Mobile-App in einer Lizenz. 10 Tage testen."
+    }
+  },
+  {
+    "path": "/funktionen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "software für handwerksbetriebe",
+      "volume": 110,
+      "difficulty": 35,
+      "intents": [
+        "I"
+      ],
+      "cpc": 7.03,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "betriebssoftware handwerk"
+    ],
+    "competitors": [
+      {
+        "domain": "hero-software.de",
+        "position": 3,
+        "url": "https://hero-software.de/"
+      },
+      {
+        "domain": "das-programm.io",
+        "position": 6,
+        "url": "https://das-programm.io/"
+      },
+      {
+        "domain": "openhandwerk.de",
+        "position": 23,
+        "url": "https://openhandwerk.de/"
+      },
+      {
+        "domain": "plancraft.com",
+        "position": 39,
+        "url": "https://plancraft.com/de-de/handwerkersoftware-kleinbetriebe"
+      }
+    ],
+    "target": {
+      "title": "Software für Handwerksbetriebe: alle Funktionen | CraftOS",
+      "h1": "Alle Funktionen der Software für Handwerksbetriebe",
+      "description": "Angebote, Rechnungen, Plantafel, Zeiterfassung, Aufmaß, Lager und Baudokumentation: alle Funktionen der Software für Handwerksbetriebe im Überblick."
+    }
+  },
+  {
+    "path": "/gewerke",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "branchensoftware handwerk",
+      "volume": 20,
+      "difficulty": 30,
+      "intents": [
+        "I"
+      ],
+      "cpc": 5.46,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [],
+    "competitors": [
+      {
+        "domain": "craftnote.de",
+        "position": 8,
+        "url": "https://craftnote.de/blog/was-macht-eine-gute-und-moderne-branchensoftware-aus/"
+      },
+      {
+        "domain": "das-programm.io",
+        "position": 16,
+        "url": "https://das-programm.io/"
+      },
+      {
+        "domain": "openhandwerk.de",
+        "position": 31,
+        "url": "https://openhandwerk.de/"
+      }
+    ],
+    "target": {
+      "title": "Branchensoftware Handwerk nach Gewerk | CraftOS",
+      "h1": "Branchensoftware fürs Handwerk – passend zu Ihrem Gewerk",
+      "description": "CraftOS als Branchensoftware fürs Handwerk: passende Abläufe für Elektro, SHK, Maler, Tischler und weitere Gewerke – vom Angebot bis zur Rechnung."
+    }
+  },
+  {
+    "path": "/app",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "handwerker app",
+      "volume": 20,
+      "difficulty": 21,
+      "intents": [
+        "I"
+      ],
+      "cpc": 4.03,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "reason": "Kandidat „handwerker app kostenlos“ hat mehr Volumen, passt aber nicht: CraftOS ist nach der Testphase kostenpflichtig. Gewählt ist der passende Kandidat.",
+    "secondary": [
+      "app für handwerker"
+    ],
+    "competitors": [
+      {
+        "domain": "craftnote.de",
+        "position": 9,
+        "url": "https://craftnote.de/"
+      },
+      {
+        "domain": "das-programm.io",
+        "position": 11,
+        "url": "https://das-programm.io/handwerker-app/"
+      },
+      {
+        "domain": "label-software.de",
+        "position": 36,
+        "url": "https://www.label-software.de/handwerker-app"
+      },
+      {
+        "domain": "openhandwerk.de",
+        "position": 45,
+        "url": "https://openhandwerk.de/"
+      },
+      {
+        "domain": "plancraft.com",
+        "position": 65,
+        "url": "https://plancraft.com/de-de/funktionen/mobile-app"
+      }
+    ],
+    "target": {
+      "title": "Handwerker-App für die Baustelle | CraftOS",
+      "h1": "Die Handwerker-App für Ihr Team auf der Baustelle",
+      "description": "Die Handwerker-App von CraftOS: Zeiten mit Projektbezug erfassen, Einsätze sehen, Fotos und Unterschriften aufnehmen. In der Voll-Lizenz inklusive."
+    }
+  },
+  {
+    "path": "/craft-ai",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "ki im handwerk",
+      "volume": 390,
+      "difficulty": 27,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "cpc": 2.21,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "ki handwerk",
+      "künstliche intelligenz handwerk"
+    ],
+    "competitors": [
+      {
+        "domain": "hero-software.de",
+        "position": 2,
+        "url": "https://hero-software.de/blog/digitalisierung/beste-ki-tools-fuer-handwerker"
+      },
+      {
+        "domain": "streit-software.de",
+        "position": 3,
+        "url": "https://www.streit-software.de/wissen/ki-handwerk"
+      }
+    ],
+    "target": {
+      "title": "KI im Handwerk: Craft AI für Ihre Betriebsdaten | CraftOS",
+      "h1": "KI im Handwerk: Craft AI beantwortet Fragen zu Ihrem Betrieb",
+      "description": "Craft AI bringt KI ins Handwerk: Fragen zu Projekten, Rechnungen und Zeiten stellen und Entwürfe vorbereiten lassen. Sie prüfen und übernehmen selbst."
+    }
+  },
+  {
+    "path": "/preise",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "handwerkersoftware preise",
+      "volume": 50,
+      "difficulty": 21,
+      "intents": [
+        "I"
+      ],
+      "cpc": 3.13,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "handwerkersoftware günstig",
+      "handwerkersoftware kosten"
+    ],
+    "competitors": [
+      {
+        "domain": "hero-software.de",
+        "position": 2,
+        "url": "https://hero-software.de/preise"
+      }
+    ],
+    "target": {
+      "title": "Handwerkersoftware Preise und Lizenzen | CraftOS",
+      "h1": "Preise der Handwerkersoftware CraftOS",
+      "description": "Handwerkersoftware-Preise transparent: Voll-Lizenz mit Web-App und Mobile-App, günstigere App-Lizenz fürs Team und Jahresabo mit Rabatt. 10 Tage testen."
+    }
+  },
+  {
+    "path": "/gobd",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "gobd konforme software",
+      "volume": 40,
+      "difficulty": 22,
+      "intents": [
+        "I"
+      ],
+      "cpc": 3.4,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "gobd konform",
+      "gobd handwerk"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "GoBD-konforme Software fürs Handwerk | CraftOS",
+      "h1": "GoBD-konforme Software: wie CraftOS Ihre Abläufe unterstützt",
+      "description": "Festschreibung, geschützte Rechnungen, Versionen und Protokolle: So unterstützt CraftOS als GoBD-konforme Software die Abläufe in Ihrem Handwerksbetrieb."
+    }
+  },
+  {
+    "path": "/vergleich",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "handwerkersoftware vergleich",
+      "volume": 90,
+      "difficulty": 22,
+      "intents": [
+        "I"
+      ],
+      "cpc": 7.31,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "handwerkersoftware test",
+      "handwerkersoftware testsieger"
+    ],
+    "competitors": [
+      {
+        "domain": "das-programm.io",
+        "position": 13,
+        "url": "https://das-programm.io/"
+      },
+      {
+        "domain": "plancraft.com",
+        "position": 21,
+        "url": "https://plancraft.com/de-de/blog/handwerker-projektmanagement-software-vergleich"
+      }
+    ],
+    "target": {
+      "title": "Handwerkersoftware-Vergleich mit Quellen | CraftOS",
+      "h1": "Handwerkersoftware im Vergleich: CraftOS, Craftnote und plancraft",
+      "description": "Handwerkersoftware-Vergleich mit Quellen: Preise, Mobile-App, E-Rechnung und Funktionen von CraftOS, Craftnote und plancraft nebeneinander geprüft."
+    }
+  },
+  {
+    "path": "/fakten-ueber-craftos",
+    "status": "bestehend",
+    "primary": null,
+    "reason": "Alle pageCandidates („craftos“, „craftos software“, „craftos erfahrungen“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
+    "secondary": [],
+    "competitors": []
+  },
+  {
+    "path": "/support",
+    "status": "bestehend",
+    "primary": null,
+    "reason": "Alle pageCandidates („craftos support“, „craftos kontakt“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
+    "secondary": [],
+    "competitors": []
+  },
+  {
+    "path": "/blog",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "handwerk blog",
+      "volume": 40,
+      "difficulty": 11,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "ratgeber handwerk"
+    ],
+    "competitors": [
+      {
+        "domain": "craftnote.de",
+        "position": 3,
+        "url": "https://craftnote.de/blog/"
+      }
+    ],
+    "target": {
+      "title": "Handwerk-Blog: Ratgeber für Ihren Betrieb | CraftOS",
+      "h1": "Handwerk-Blog: Ratgeber für Büro und Baustelle",
+      "description": "Der Handwerk-Blog von CraftOS: Ratgeber zu Rechnungen, Kalkulation, Projekten und Teamplanung – mit Beispielen, Quellen und kostenlosen Rechnern."
+    }
+  },
+  {
+    "path": "/hilfe",
+    "status": "bestehend",
+    "primary": null,
+    "reason": "Alle pageCandidates („craftos hilfe“, „craftos anleitung“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
+    "secondary": [],
+    "competitors": []
+  },
+  {
+    "path": "/rechner",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "kalkulationsrechner",
+      "volume": 40,
+      "difficulty": 18,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.74,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "handwerker rechner",
+      "rechner handwerk"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Kalkulationsrechner fürs Handwerk – kostenlos | CraftOS",
+      "h1": "Kostenlose Kalkulationsrechner fürs Handwerk",
+      "description": "Kostenlose Kalkulationsrechner fürs Handwerk: Stundenverrechnungssatz und Angebotspreis mit Ihren eigenen Zahlen berechnen – direkt im Browser."
+    }
+  },
+  {
+    "path": "/rechner/stundensatz",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "handwerker stundensatz",
+      "volume": 320,
+      "difficulty": 6,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0.29,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "stundensatz rechner",
+      "stundenverrechnungssatz rechner"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Handwerker-Stundensatz berechnen: Rechner | CraftOS",
+      "h1": "Handwerker-Stundensatz berechnen",
+      "description": "Mit dem kostenlosen Rechner Ihren Handwerker-Stundensatz berechnen: Jahreskosten, produktive Stunden und Gewinnzuschlag ergeben einen tragfähigen Preis."
+    }
+  },
+  {
+    "path": "/rechner/angebotskalkulation",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "angebotskalkulation",
+      "volume": 590,
+      "difficulty": 9,
+      "intents": [
+        "I"
+      ],
+      "cpc": 2.44,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "angebotskalkulation rechner",
+      "angebotskalkulation handwerk"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Angebotskalkulation: kostenloser Rechner | CraftOS",
+      "h1": "Angebotskalkulation mit Material, Lohn und Zuschlag",
+      "description": "Angebotskalkulation online: Material, Lohnstunden und Zuschläge eingeben und einen nachvollziehbaren Angebotspreis für Ihren Handwerksauftrag berechnen."
+    }
+  },
+  {
+    "path": "/agb",
+    "status": "bestehend",
+    "primary": null,
+    "reason": "Rechtsseite (Pflichtangabe); bewusst ohne Suchbegriff, begründete Ausnahme nach D-07.",
+    "secondary": [],
+    "competitors": []
+  },
+  {
+    "path": "/datenschutz",
+    "status": "bestehend",
+    "primary": null,
+    "reason": "Rechtsseite (Pflichtangabe); bewusst ohne Suchbegriff, begründete Ausnahme nach D-07.",
+    "secondary": [],
+    "competitors": []
+  },
+  {
+    "path": "/impressum",
+    "status": "bestehend",
+    "primary": null,
+    "reason": "Rechtsseite (Pflichtangabe); bewusst ohne Suchbegriff, begründete Ausnahme nach D-07.",
+    "secondary": [],
+    "competitors": []
+  },
+  {
+    "path": "/funktionen/dashboard",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "kennzahlen handwerksbetrieb",
+      "volume": 10,
+      "difficulty": 26,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "reason": "Kandidat „dashboard software“ hat mehr Volumen, zielt aber auf allgemeine BI-Werkzeuge; gewählt ist der passende Kandidat.",
+    "secondary": [
+      "handwerker dashboard"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Kennzahlen Handwerksbetrieb: das Dashboard | CraftOS",
+      "h1": "Die Kennzahlen Ihres Handwerksbetriebs auf einen Blick",
+      "description": "Projekte, offene Beträge, Angebote und Aufgaben auf einen Blick: Das Dashboard zeigt die Kennzahlen Ihres Handwerksbetriebs mit der nächsten Aufgabe."
+    }
+  },
+  {
+    "path": "/funktionen/projektverwaltung",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "auftragsverwaltung software",
+      "volume": 170,
+      "difficulty": 9,
+      "intents": [
+        "I"
+      ],
+      "cpc": 8.45,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "projektmanagement handwerk",
+      "projektverwaltung handwerk"
+    ],
+    "competitors": [
+      {
+        "domain": "hero-software.de",
+        "position": 1,
+        "url": "https://hero-software.de/features/app/auftraege"
+      },
+      {
+        "domain": "openhandwerk.de",
+        "position": 1,
+        "url": "https://openhandwerk.de/alle-funktionen-auftragsverwaltung/"
+      },
+      {
+        "domain": "das-programm.io",
+        "position": 31,
+        "url": "https://das-programm.io/funktionen/auftraege-aufgaben/"
+      }
+    ],
+    "target": {
+      "title": "Auftragsverwaltung-Software fürs Handwerk | CraftOS",
+      "h1": "Auftragsverwaltung: alle Informationen beim Projekt",
+      "description": "Auftragsverwaltung-Software für Handwerker: Kunden, Phasen, Aufgaben, Dokumente und Projektchat bleiben beim Auftrag – vom Angebot bis zur Abnahme."
+    }
+  },
+  {
+    "path": "/funktionen/angebote",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "angebotssoftware",
+      "volume": 210,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 11.47,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "angebotssoftware handwerk",
+      "kalkulationssoftware handwerk"
+    ],
+    "competitors": [
+      {
+        "domain": "das-programm.io",
+        "position": 19,
+        "url": "https://das-programm.io/funktionen/angebot/"
+      }
+    ],
+    "target": {
+      "title": "Angebotssoftware mit Kalkulation fürs Handwerk | CraftOS",
+      "h1": "Angebotssoftware, die bis zur letzten Position passt",
+      "description": "Angebotssoftware für Handwerker: Leistungen beschreiben, Mengen aus dem Aufmaß übernehmen und Material, Lohn und Zuschläge nachvollziehbar kalkulieren."
+    }
+  },
+  {
+    "path": "/funktionen/rechnungen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "rechnungssoftware handwerker",
+      "volume": 210,
+      "difficulty": 18,
+      "intents": [
+        "I"
+      ],
+      "cpc": 9.32,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "rechnungsprogramm handwerker",
+      "software rechnungen schreiben"
+    ],
+    "competitors": [
+      {
+        "domain": "hero-software.de",
+        "position": 1,
+        "url": "https://hero-software.de/features/rechnungsprogramm-handwerker"
+      }
+    ],
+    "target": {
+      "title": "Rechnungssoftware Handwerker: prüfbar abrechnen | CraftOS",
+      "h1": "Rechnungssoftware: von der Arbeit zur prüfbaren Rechnung",
+      "description": "Rechnungssoftware für Handwerker: Rechnungen, Abschläge und Schlussrechnungen erstellen, Zahlungen zuordnen und jeden Entwurf vor dem Fertigstellen prüfen."
+    }
+  },
+  {
+    "path": "/funktionen/e-rechnung",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "e-rechnung handwerk",
+      "volume": 50,
+      "difficulty": 17,
+      "intents": [
+        "I"
+      ],
+      "cpc": 2.35,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "e-rechnung software",
+      "e-rechnung erstellen"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "E-Rechnung Handwerk: XRechnung und ZUGFeRD | CraftOS",
+      "h1": "E-Rechnung im Handwerk mit XRechnung und ZUGFeRD",
+      "description": "E-Rechnung im Handwerk: XRechnung und ZUGFeRD aus CraftOS erzeugen und elektronische Eingangsrechnungen einlesen – strukturiert und im Dokumentablauf."
+    }
+  },
+  {
+    "path": "/funktionen/buchhaltung",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "buchhaltung handwerk",
+      "volume": 210,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 3.93,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "buchhaltung handwerker",
+      "datev schnittstelle",
+      "buchhaltungssoftware handwerker"
+    ],
+    "competitors": [
+      {
+        "domain": "streit-software.de",
+        "position": 4,
+        "url": "https://www.streit-software.de/wissen/buchhaltung-im-handwerk"
+      }
+    ],
+    "target": {
+      "title": "Buchhaltung Handwerk: vorbereitet für DATEV | CraftOS",
+      "h1": "Buchhaltung im Handwerk: sauber vorbereitet für die Steuerberatung",
+      "description": "Buchhaltung im Handwerk vorbereiten: Belege prüfen, Buchungen nachvollziehen und Daten mit Belegbezug für DATEV und Ihre Steuerberatung exportieren."
+    }
+  },
+  {
+    "path": "/funktionen/eingangsrechnungen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "eingangsrechnungen digitalisieren",
+      "volume": 90,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 8.51,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "eingangsrechnungen erfassen",
+      "belegscan app"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Eingangsrechnungen digitalisieren mit Belegscan | CraftOS",
+      "h1": "Eingangsrechnungen digitalisieren und prüfen",
+      "description": "Eingangsrechnungen digitalisieren: Belege aufnehmen, erkannte Angaben kontrollieren und Ausgaben einem Projekt zuordnen. Gespeichert wird nach Prüfung."
+    }
+  },
+  {
+    "path": "/funktionen/plantafel",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "plantafel software",
+      "volume": 90,
+      "difficulty": 24,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "cpc": 7.23,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "plantafel handwerk",
+      "einsatzplanung handwerk"
+    ],
+    "competitors": [
+      {
+        "domain": "hero-software.de",
+        "position": 4,
+        "url": "https://hero-software.de/features/baustellenplaner/digitale-plantafel"
+      },
+      {
+        "domain": "openhandwerk.de",
+        "position": 36,
+        "url": "https://openhandwerk.de/blog/plantafel-in-openhandwerk/"
+      },
+      {
+        "domain": "craftnote.de",
+        "position": 45,
+        "url": "https://craftnote.de/blog/was-ist-eine-plantafel-und-wie-wird-sie-in-unternehmen-eingesetzt/"
+      },
+      {
+        "domain": "plancraft.com",
+        "position": 83,
+        "url": "https://plancraft.com/de-de"
+      }
+    ],
+    "target": {
+      "title": "Plantafel-Software für die Einsatzplanung | CraftOS",
+      "h1": "Plantafel-Software: wer macht was und wann",
+      "description": "Plantafel-Software für Handwerksbetriebe: Team und Einsätze planen, Einsatzorte auf der Karte sehen und Änderungen direkt in die Mobile-App übertragen."
+    }
+  },
+  {
+    "path": "/funktionen/zeiterfassung",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "zeiterfassung handwerk",
+      "volume": 390,
+      "difficulty": 12,
+      "intents": [
+        "I"
+      ],
+      "cpc": 7.38,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "zeiterfassung app handwerker",
+      "mobile zeiterfassung handwerker",
+      "mobile arbeitszeiterfassung"
+    ],
+    "competitors": [
+      {
+        "domain": "streit-software.de",
+        "position": 1,
+        "url": "https://www.streit-software.de/handwerkersoftware/desktop/digitale-zeiterfassung"
+      },
+      {
+        "domain": "plancraft.com",
+        "position": 1,
+        "url": "https://plancraft.com/de-de/funktionen/zeiterfassung-handwerk"
+      },
+      {
+        "domain": "hero-software.de",
+        "position": 5,
+        "url": "https://hero-software.de/features/zeiterfassung-app"
+      },
+      {
+        "domain": "craftnote.de",
+        "position": 17,
+        "url": "https://craftnote.de/blog/welche-app-fuer-zeiterfassung-im-handwerk/"
+      }
+    ],
+    "target": {
+      "title": "Zeiterfassung Handwerk: App mit Projektbezug | CraftOS",
+      "h1": "Zeiterfassung im Handwerk: die Zeit landet beim Projekt",
+      "description": "Zeiterfassung im Handwerk per App: Timer starten, Projekt in der Nähe zuordnen und die Stunden im Büro für Auswertung und Nachkalkulation nutzen."
+    }
+  },
+  {
+    "path": "/funktionen/lager",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "lagerverwaltung app",
+      "volume": 210,
+      "difficulty": 14,
+      "intents": [
+        "I"
+      ],
+      "cpc": 2.78,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "lagerverwaltung handwerk",
+      "materialverwaltung handwerk"
+    ],
+    "competitors": [
+      {
+        "domain": "hero-software.de",
+        "position": 1,
+        "url": "https://hero-software.de/features/lagerverwaltung"
+      },
+      {
+        "domain": "streit-software.de",
+        "position": 1,
+        "url": "https://www.streit-software.de/handwerkersoftware/apps/mobile-lagerverwaltung"
+      }
+    ],
+    "target": {
+      "title": "Lagerverwaltung-App für Handwerker | CraftOS",
+      "h1": "Lagerverwaltung per App: wissen, was da ist",
+      "description": "Lagerverwaltung-App für Handwerksbetriebe: Bestände, Lagerorte und Bewegungen nachvollziehen und Entnahmen direkt den Kosten des Projekts zuordnen."
+    }
+  },
+  {
+    "path": "/funktionen/baudokumentation",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "bautagebuch app",
+      "volume": 590,
+      "difficulty": 7,
+      "intents": [
+        "I"
+      ],
+      "cpc": 2.31,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "baudokumentation app",
+      "digitale bauakte"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Bautagebuch-App für die Baudokumentation | CraftOS",
+      "h1": "Bautagebuch-App: was auf der Baustelle passiert, bleibt im Projekt",
+      "description": "Bautagebuch-App für Handwerker: Arbeiten, Fotos und Mängel beim Projekt festhalten, Berichte mobil unterschreiben lassen und im Büro wiederfinden."
+    }
+  },
+  {
+    "path": "/funktionen/aufmass",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "aufmaß app",
+      "volume": 590,
+      "difficulty": 12,
+      "intents": [
+        "I"
+      ],
+      "cpc": 2.18,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "aufmaß software"
+    ],
+    "competitors": [
+      {
+        "domain": "streit-software.de",
+        "position": 7,
+        "url": "https://www.streit-software.de/handwerkersoftware/apps/aufmass-app"
+      },
+      {
+        "domain": "hero-software.de",
+        "position": 12,
+        "url": "https://hero-software.de/features/aufmass-app"
+      },
+      {
+        "domain": "plancraft.com",
+        "position": 14,
+        "url": "https://plancraft.com/de-de/funktionen/handwerk-aufmass"
+      },
+      {
+        "domain": "das-programm.io",
+        "position": 50,
+        "url": "https://das-programm.io/funktionen/aufmass/"
+      }
+    ],
+    "target": {
+      "title": "Aufmaß-App: Räume erfassen, Angebot erstellen | CraftOS",
+      "h1": "Aufmaß-App: aus Maßen werden Positionen",
+      "description": "Aufmaß-App für Handwerker: Räume, Flächen und Abzüge erfassen und geprüfte Mengen für Boden, Wand und Decke direkt ins Angebot übernehmen."
+    }
+  },
+  {
+    "path": "/funktionen/arbeitsanweisungen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "arbeitsanweisung erstellen",
+      "volume": 90,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.91,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "reason": "Kandidat „arbeitsanweisung vorlage“ hat mehr Volumen, sucht aber Vorlagen zum Herunterladen; gewählt ist der passende Kandidat.",
+    "secondary": [
+      "arbeitsanweisung vorlage"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Arbeitsanweisung erstellen fürs Team | CraftOS",
+      "h1": "Arbeitsanweisungen erstellen: das Team weiß, was zu tun ist",
+      "description": "Arbeitsanweisung erstellen aus Angebot oder Auftrag: Leistungen und Materialbedarf ohne Verkaufspreise und mit Projektbezug an das Team weitergeben."
+    }
+  },
+  {
+    "path": "/funktionen/team",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "mitarbeiter app handwerk",
+      "volume": 10,
+      "difficulty": 24,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [],
+    "competitors": [
+      {
+        "domain": "openhandwerk.de",
+        "position": 32,
+        "url": "https://openhandwerk.de/"
+      },
+      {
+        "domain": "label-software.de",
+        "position": 56,
+        "url": "https://www.label-software.de/label-mobile/stempeluhr-app-zeiterfassung"
+      }
+    ],
+    "target": {
+      "title": "Mitarbeiter-App Handwerk: Team und Rechte | CraftOS",
+      "h1": "Team und Rechte: jeder Zugang passt zur Aufgabe",
+      "description": "Mitarbeiter-App im Handwerk: Mitarbeitende einladen, Zugänge zuweisen und Rechte passend zur Arbeit vergeben – Büro und Baustelle auf einer Grundlage."
+    }
+  },
+  {
+    "path": "/funktionen/nachkalkulation",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "nachkalkulation handwerk",
+      "volume": 40,
+      "difficulty": 7,
+      "intents": [
+        "I"
+      ],
+      "cpc": 2.71,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "nachkalkulation bau",
+      "nachkalkulation software"
+    ],
+    "competitors": [
+      {
+        "domain": "streit-software.de",
+        "position": 1,
+        "url": "https://www.streit-software.de/vorlagen/nachkalkulation-im-handwerk"
+      },
+      {
+        "domain": "plancraft.com",
+        "position": 11,
+        "url": "https://plancraft.com/de-de/funktionen/kalkulationssoftware-handwerk"
+      },
+      {
+        "domain": "openhandwerk.de",
+        "position": 25,
+        "url": "https://openhandwerk.de/tag/kalkulation/"
+      },
+      {
+        "domain": "das-programm.io",
+        "position": 32,
+        "url": "https://das-programm.io/funktionen/kalkulation/"
+      },
+      {
+        "domain": "craftnote.de",
+        "position": 57,
+        "url": "https://craftnote.de/blog/11-fehler-bei-der-auftragskalkulation-im-handwerk/"
+      }
+    ],
+    "target": {
+      "title": "Nachkalkulation Handwerk: Ist-Kosten im Blick | CraftOS",
+      "h1": "Nachkalkulation: was hat der Auftrag wirklich gekostet?",
+      "description": "Nachkalkulation im Handwerk: geplante und tatsächliche Kosten für Lohn, Material und Leistungen vergleichen und Abweichungen je Auftrag sichtbar machen."
+    }
+  },
+  {
+    "path": "/funktionen/kundenportal",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "kundenportal software",
+      "volume": 110,
+      "difficulty": 13,
+      "intents": [
+        "I"
+      ],
+      "cpc": 4.46,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "kundenportal handwerk",
+      "kundenportal"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Kundenportal-Software für Handwerksbetriebe | CraftOS",
+      "h1": "Kundenportal: ein gemeinsamer Ort für Ihre Kunden",
+      "description": "Kundenportal-Software für Handwerker: Angebote, Dokumente und Kommunikation für Ihre Kunden im Browser bereitstellen – mit Einladung und eigenem Zugang."
+    }
+  },
+  {
+    "path": "/gewerke/elektriker",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "elektriker software",
+      "volume": 70,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 6.21,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "software für elektriker",
+      "elektro software"
+    ],
+    "competitors": [
+      {
+        "domain": "plancraft.com",
+        "position": 17,
+        "url": "https://plancraft.com/de-de/gewerke/elektriker-software"
+      },
+      {
+        "domain": "das-programm.io",
+        "position": 20,
+        "url": "https://das-programm.io/gewerke/elektriker-software/"
+      }
+    ],
+    "target": {
+      "title": "Elektriker-Software für Elektrobetriebe | CraftOS",
+      "h1": "Elektriker-Software für Angebot, Einsatz und Abrechnung",
+      "description": "Elektriker-Software von CraftOS: Angebote kalkulieren, Einsätze planen, Zeiten und Material erfassen und Rechnungen erstellen – für Elektrobetriebe."
+    }
+  },
+  {
+    "path": "/gewerke/shk",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "shk software",
+      "volume": 210,
+      "difficulty": 7,
+      "intents": [
+        "I"
+      ],
+      "cpc": 6.84,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "software für shk",
+      "sanitär software"
+    ],
+    "competitors": [
+      {
+        "domain": "hero-software.de",
+        "position": 8,
+        "url": "https://hero-software.de/anwendungen/shk-software"
+      },
+      {
+        "domain": "plancraft.com",
+        "position": 17,
+        "url": "https://plancraft.com/de-de/gewerke/shk-software"
+      },
+      {
+        "domain": "label-software.de",
+        "position": 21,
+        "url": "https://www.label-software.de/shk-handwerkersoftware"
+      },
+      {
+        "domain": "das-programm.io",
+        "position": 26,
+        "url": "https://das-programm.io/gewerke/shk-software/"
+      },
+      {
+        "domain": "craftnote.de",
+        "position": 51,
+        "url": "https://craftnote.de/gewerke/shk/"
+      },
+      {
+        "domain": "openhandwerk.de",
+        "position": 77,
+        "url": "https://openhandwerk.de/shk-betriebe/"
+      }
+    ],
+    "target": {
+      "title": "SHK-Software für Sanitär, Heizung, Klima | CraftOS",
+      "h1": "SHK-Software für Sanitär, Heizung und Klima",
+      "description": "SHK-Software von CraftOS: Angebote, Einsatzplanung, Zeiterfassung und Rechnungen für Betriebe in Sanitär, Heizung und Klima in einem System."
+    }
+  },
+  {
+    "path": "/gewerke/maler",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "software für maler",
+      "volume": 170,
+      "difficulty": 7,
+      "intents": [
+        "I"
+      ],
+      "cpc": 9.25,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "malersoftware",
+      "maler software"
+    ],
+    "competitors": [
+      {
+        "domain": "hero-software.de",
+        "position": 1,
+        "url": "https://hero-software.de/anwendungen/maler-software"
+      },
+      {
+        "domain": "plancraft.com",
+        "position": 1,
+        "url": "https://plancraft.com/de-de/gewerke/maler-software"
+      },
+      {
+        "domain": "das-programm.io",
+        "position": 24,
+        "url": "https://das-programm.io/gewerke/maler-und-lackierer-software/"
+      },
+      {
+        "domain": "craftnote.de",
+        "position": 41,
+        "url": "https://craftnote.de/gewerke/maler-und-lackierer/"
+      }
+    ],
+    "target": {
+      "title": "Software für Maler und Lackierer | CraftOS",
+      "h1": "Software für Maler: vom Aufmaß bis zur Rechnung",
+      "description": "Software für Maler und Lackierer: Räume aufmessen, Flächen ins Angebot übernehmen, Einsätze planen und Arbeitszeiten projektbezogen erfassen."
+    }
+  },
+  {
+    "path": "/gewerke/tischler-schreiner",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "software für schreiner",
+      "volume": 210,
+      "difficulty": 19,
+      "intents": [
+        "I"
+      ],
+      "cpc": 4.22,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "schreiner software",
+      "tischler software"
+    ],
+    "competitors": [
+      {
+        "domain": "streit-software.de",
+        "position": 1,
+        "url": "https://www.streit-software.de/branchen/schreiner-tischler"
+      },
+      {
+        "domain": "hero-software.de",
+        "position": 7,
+        "url": "https://hero-software.de/anwendungen/tischler-software"
+      },
+      {
+        "domain": "plancraft.com",
+        "position": 12,
+        "url": "https://plancraft.com/de-de/gewerke/software-schreiner"
+      },
+      {
+        "domain": "das-programm.io",
+        "position": 17,
+        "url": "https://das-programm.io/gewerke/holzbau-tischler-software/"
+      },
+      {
+        "domain": "craftnote.de",
+        "position": 49,
+        "url": "https://craftnote.de/gewerke/schreiner-und-tischler/"
+      }
+    ],
+    "target": {
+      "title": "Software für Schreiner und Tischler | CraftOS",
+      "h1": "Software für Schreiner und Tischler",
+      "description": "Software für Schreiner und Tischler: Angebote mit Material und Lohn kalkulieren, Aufträge planen, Montagezeiten erfassen und sauber abrechnen."
+    }
+  },
+  {
+    "path": "/gewerke/dachdecker",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "dachdecker software",
+      "volume": 320,
+      "difficulty": 12,
+      "intents": [
+        "I"
+      ],
+      "cpc": 7.76,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "software für dachdecker",
+      "dachdecker app"
+    ],
+    "competitors": [
+      {
+        "domain": "plancraft.com",
+        "position": 7,
+        "url": "https://plancraft.com/de-de/gewerke/dachdecker-software"
+      },
+      {
+        "domain": "hero-software.de",
+        "position": 8,
+        "url": "https://hero-software.de/anwendungen/dachdecker-software"
+      },
+      {
+        "domain": "das-programm.io",
+        "position": 91,
+        "url": "https://das-programm.io/"
+      }
+    ],
+    "target": {
+      "title": "Dachdecker-Software für Büro und Dach | CraftOS",
+      "h1": "Dachdecker-Software für Angebot, Baustelle und Rechnung",
+      "description": "Dachdecker-Software von CraftOS: Aufmaß und Angebot, Einsatzplanung, Baustellenfotos, Zeiten und Rechnungen – im Büro und auf dem Dach per App."
+    }
+  },
+  {
+    "path": "/gewerke/fliesenleger",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "fliesenleger software",
+      "volume": 170,
+      "difficulty": 7,
+      "intents": [
+        "I"
+      ],
+      "cpc": 7.55,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "software für fliesenleger",
+      "fliesenleger app"
+    ],
+    "competitors": [
+      {
+        "domain": "hero-software.de",
+        "position": 1,
+        "url": "https://hero-software.de/anwendungen/fliesenleger-software"
+      },
+      {
+        "domain": "das-programm.io",
+        "position": 8,
+        "url": "https://das-programm.io/gewerke/fliesenleger-software/"
+      },
+      {
+        "domain": "craftnote.de",
+        "position": 30,
+        "url": "https://craftnote.de/gewerke/fliesenleger/"
+      },
+      {
+        "domain": "plancraft.com",
+        "position": 69,
+        "url": "https://plancraft.com/de-de/gewerke/estrichleger"
+      }
+    ],
+    "target": {
+      "title": "Fliesenleger-Software mit Raumaufmaß | CraftOS",
+      "h1": "Fliesenleger-Software: Flächen erfassen, Angebot erstellen",
+      "description": "Fliesenleger-Software von CraftOS: Räume und Flächen aufmessen, Abzüge berücksichtigen, Angebote kalkulieren und Arbeitszeiten je Projekt erfassen."
+    }
+  },
+  {
+    "path": "/gewerke/zimmerer",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "zimmerer software",
+      "volume": 140,
+      "difficulty": 7,
+      "intents": [
+        "I"
+      ],
+      "cpc": 3.42,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "software für zimmerer",
+      "holzbau software"
+    ],
+    "competitors": [
+      {
+        "domain": "hero-software.de",
+        "position": 1,
+        "url": "https://hero-software.de/anwendungen/holzbau-software"
+      },
+      {
+        "domain": "streit-software.de",
+        "position": 1,
+        "url": "https://www.streit-software.de/wissen/abbundprogramme-vergleich"
+      },
+      {
+        "domain": "plancraft.com",
+        "position": 7,
+        "url": "https://plancraft.com/de-de/gewerke/zimmerer-software"
+      }
+    ],
+    "target": {
+      "title": "Zimmerer-Software für Holzbaubetriebe | CraftOS",
+      "h1": "Zimmerer-Software für Zimmerei und Holzbau",
+      "description": "Zimmerer-Software von CraftOS: Angebote kalkulieren, Montageeinsätze planen, Zeiten und Material auf der Baustelle erfassen und Projekte abrechnen."
+    }
+  },
+  {
+    "path": "/gewerke/galabau",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "galabau software",
+      "volume": 210,
+      "difficulty": 16,
+      "intents": [
+        "I"
+      ],
+      "cpc": 4.25,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "garten und landschaftsbau software",
+      "software für galabau"
+    ],
+    "competitors": [
+      {
+        "domain": "hero-software.de",
+        "position": 6,
+        "url": "https://hero-software.de/anwendungen/galabau-software"
+      },
+      {
+        "domain": "plancraft.com",
+        "position": 19,
+        "url": "https://plancraft.com/de-de/gewerke/galabau-software"
+      },
+      {
+        "domain": "das-programm.io",
+        "position": 47,
+        "url": "https://das-programm.io/gewerke/galabau-software/"
+      }
+    ],
+    "target": {
+      "title": "GaLaBau-Software für Garten- und Landschaftsbau | CraftOS",
+      "h1": "GaLaBau-Software für Garten- und Landschaftsbau",
+      "description": "GaLaBau-Software von CraftOS: Projekte und Pflege planen, Kolonnen einteilen, Zeiten und Material erfassen und Leistungen im GaLaBau abrechnen."
+    }
+  },
+  {
+    "path": "/gewerke/trockenbau",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "trockenbau software",
+      "volume": 140,
+      "difficulty": 6,
+      "intents": [
+        "I"
+      ],
+      "cpc": 8.05,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "software für trockenbau",
+      "innenausbau software"
+    ],
+    "competitors": [
+      {
+        "domain": "hero-software.de",
+        "position": 1,
+        "url": "https://hero-software.de/anwendungen/trockenbau-software"
+      },
+      {
+        "domain": "das-programm.io",
+        "position": 8,
+        "url": "https://das-programm.io/gewerke/trockenbau-software/"
+      },
+      {
+        "domain": "openhandwerk.de",
+        "position": 55,
+        "url": "https://openhandwerk.de/"
+      },
+      {
+        "domain": "plancraft.com",
+        "position": 60,
+        "url": "https://plancraft.com/de-de"
+      }
+    ],
+    "target": {
+      "title": "Trockenbau-Software für den Innenausbau | CraftOS",
+      "h1": "Trockenbau-Software für Aufmaß, Angebot und Ausführung",
+      "description": "Trockenbau-Software von CraftOS: Wand- und Deckenflächen aufmessen, Angebote kalkulieren, Einsätze planen und Zeiten im Innenausbau erfassen."
+    }
+  },
+  {
+    "path": "/gewerke/metallbau",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "metallbau software",
+      "volume": 140,
+      "difficulty": 13,
+      "intents": [
+        "I"
+      ],
+      "cpc": 5.05,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "software für metallbau",
+      "schlosserei software"
+    ],
+    "competitors": [
+      {
+        "domain": "das-programm.io",
+        "position": 1,
+        "url": "https://das-programm.io/gewerke/metallbau-software/"
+      },
+      {
+        "domain": "hero-software.de",
+        "position": 1,
+        "url": "https://hero-software.de/anwendungen/metallbau-software"
+      },
+      {
+        "domain": "openhandwerk.de",
+        "position": 11,
+        "url": "https://openhandwerk.de/blog/metallbau-software-warum-metallbauer-von-strukturierter-projektsoftware-profitieren/"
+      },
+      {
+        "domain": "plancraft.com",
+        "position": 16,
+        "url": "https://plancraft.com/de-de/gewerke/metallbau-software"
+      },
+      {
+        "domain": "craftnote.de",
+        "position": 35,
+        "url": "https://craftnote.de/gewerke/metallbauer/"
+      }
+    ],
+    "target": {
+      "title": "Metallbau-Software für Schlossereien | CraftOS",
+      "h1": "Metallbau-Software für Werkstatt und Montage",
+      "description": "Metallbau-Software von CraftOS: Angebote mit Material und Lohn kalkulieren, Montagen planen, Zeiten und Material erfassen und Aufträge sauber abrechnen."
+    }
+  },
+  {
+    "path": "/gewerke/bauunternehmen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "bauunternehmen software",
+      "volume": 210,
+      "difficulty": 13,
+      "intents": [
+        "I"
+      ],
+      "cpc": 6.38,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "software für bauunternehmen",
+      "bausoftware"
+    ],
+    "competitors": [
+      {
+        "domain": "hero-software.de",
+        "position": 3,
+        "url": "https://hero-software.de/anwendungen/bau-software"
+      },
+      {
+        "domain": "plancraft.com",
+        "position": 33,
+        "url": "https://plancraft.com/de-de/gewerke/bauunternehmen-software"
+      }
+    ],
+    "target": {
+      "title": "Bauunternehmen-Software für Baubetriebe | CraftOS",
+      "h1": "Software für Bauunternehmen: Projekte, Team und Abrechnung",
+      "description": "Bauunternehmen-Software: Projekte mit Phasen führen, Kolonnen planen, Bautagesberichte erfassen und Abschläge sowie Schlussrechnungen erstellen."
+    }
+  },
+  {
+    "path": "/gewerke/allrounder",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "hausmeister software",
+      "volume": 260,
+      "difficulty": 12,
+      "intents": [
+        "I"
+      ],
+      "cpc": 6.97,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "hausmeisterservice software",
+      "software für hausmeisterservice"
+    ],
+    "competitors": [
+      {
+        "domain": "hero-software.de",
+        "position": 1,
+        "url": "https://hero-software.de/anwendungen/hausmeister-software"
+      },
+      {
+        "domain": "das-programm.io",
+        "position": 16,
+        "url": "https://das-programm.io/gewerke/hausmeister-software/"
+      }
+    ],
+    "target": {
+      "title": "Hausmeister-Software für Hausmeisterservice | CraftOS",
+      "h1": "Hausmeister-Software für wiederkehrende Einsätze",
+      "description": "Hausmeister-Software von CraftOS: wiederkehrende Leistungen vorbereiten, Einsätze einteilen, Arbeit dokumentieren und erbrachte Leistungen abrechnen."
+    }
+  },
+  {
+    "path": "/blog/kategorie/rechnungen",
+    "status": "bestehend",
+    "primary": null,
+    "reason": "Alle pageCandidates („rechnungsstellung handwerk“, „rechnungen handwerk“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
+    "secondary": [],
+    "competitors": []
+  },
+  {
+    "path": "/blog/kategorie/kalkulation",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "kalkulation handwerk",
+      "volume": 90,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 2.22,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "preiskalkulation handwerk"
+    ],
+    "competitors": [
+      {
+        "domain": "plancraft.com",
+        "position": 26,
+        "url": "https://plancraft.com/de-de/funktionen/kalkulationssoftware-handwerk"
+      },
+      {
+        "domain": "craftnote.de",
+        "position": 31,
+        "url": "https://craftnote.de/blog/11-fehler-bei-der-auftragskalkulation-im-handwerk/"
+      }
+    ],
+    "target": {
+      "title": "Kalkulation Handwerk: Ratgeber und Rechner | CraftOS",
+      "h1": "Kalkulation im Handwerk: Angebote und Preise",
+      "description": "Ratgeber zur Kalkulation im Handwerk: Stundenverrechnungssatz, Tiefenkalkulation, Aufmaß und Angebot – mit Beispielen, Quellen und kostenlosen Rechnern."
+    }
+  },
+  {
+    "path": "/blog/kategorie/softwareauswahl",
+    "status": "bestehend",
+    "primary": null,
+    "reason": "Alle pageCandidates („handwerkersoftware auswahl“, „software auswahl handwerk“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
+    "secondary": [],
+    "competitors": []
+  },
+  {
+    "path": "/blog/kategorie/belege",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "belege digitalisieren",
+      "volume": 90,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 2.06,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "belegverwaltung"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Belege digitalisieren im Handwerk: Ratgeber | CraftOS",
+      "h1": "Belege digitalisieren und den Überblick behalten",
+      "description": "Ratgeber: Belege digitalisieren, Eingangsrechnungen organisieren, offene Posten im Blick behalten und den DATEV-Export für die Steuerkanzlei vorbereiten."
+    }
+  },
+  {
+    "path": "/blog/kategorie/projekte",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "projektmanagement bau",
+      "volume": 480,
+      "difficulty": 15,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "cpc": 1.95,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [],
+    "competitors": [],
+    "target": {
+      "title": "Projektmanagement Bau: Ratgeber | CraftOS",
+      "h1": "Projektmanagement am Bau für Handwerksbetriebe",
+      "description": "Ratgeber zu Projektmanagement am Bau: Einsatzplanung, digitale Projektakte, Materialverbrauch und Nachkalkulation für Handwerksbetriebe erklärt."
+    }
+  },
+  {
+    "path": "/blog/kategorie/team",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "baustellenkommunikation",
+      "volume": 50,
+      "difficulty": 7,
+      "intents": [
+        "I"
+      ],
+      "cpc": 11.72,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "teamplanung handwerk"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Baustellenkommunikation und Team: Ratgeber | CraftOS",
+      "h1": "Baustellenkommunikation und Teamarbeit",
+      "description": "Ratgeber zu Baustellenkommunikation: Bautagesberichte, Zeiterfassung, Urlaubsplanung und Offline-Arbeit auf der Baustelle – praxisnah für Ihr Team."
+    }
+  },
+  {
+    "path": "/hilfe/kategorie/einrichtung",
+    "status": "bestehend",
+    "primary": null,
+    "reason": "Alle pageCandidates („handwerkersoftware einrichten“, „craftos einrichten“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
+    "secondary": [],
+    "competitors": []
+  },
+  {
+    "path": "/hilfe/kategorie/angebote",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "angebot erstellen software",
+      "volume": 50,
+      "difficulty": 9,
+      "intents": [
+        "I"
+      ],
+      "cpc": 11.9,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [],
+    "competitors": [
+      {
+        "domain": "das-programm.io",
+        "position": 13,
+        "url": "https://das-programm.io/funktionen/angebot/"
+      }
+    ],
+    "target": {
+      "title": "Angebot erstellen Software-gestützt: Anleitungen | CraftOS",
+      "h1": "Anleitungen: Angebote in CraftOS erstellen",
+      "description": "Angebot erstellen mit Software: Anleitungen für Entwürfe, Leistungsvorlagen, Positionskalkulation, Raumaufmaß und GAEB-Import in der CraftOS Web-App."
+    }
+  },
+  {
+    "path": "/hilfe/kategorie/rechnungen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "rechnung erstellen software",
+      "volume": 90,
+      "difficulty": 49,
+      "intents": [
+        "I"
+      ],
+      "cpc": 6.73,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [],
+    "competitors": [],
+    "target": {
+      "title": "Rechnung erstellen Software-gestützt: Anleitungen | CraftOS",
+      "h1": "Anleitungen: Rechnungen in CraftOS erstellen",
+      "description": "Rechnung erstellen mit Software: Anleitungen für Abschläge, Schlussrechnung, E-Rechnung, Storno und das Fertigstellen von Rechnungen in CraftOS."
+    }
+  },
+  {
+    "path": "/hilfe/kategorie/belege",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "belege erfassen",
+      "volume": 30,
+      "difficulty": 13,
+      "intents": [
+        "I"
+      ],
+      "cpc": 3.2,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "belege verwalten"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Belege erfassen und Zahlungen buchen: Hilfe | CraftOS",
+      "h1": "Anleitungen: Belege erfassen und Zahlungen zuordnen",
+      "description": "Belege erfassen, scannen und kontieren, Zahlungen zu Rechnungen buchen und den DATEV-Export erstellen: Schritt-für-Schritt-Anleitungen für CraftOS."
+    }
+  },
+  {
+    "path": "/hilfe/kategorie/projekte",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "bauprojekt planen",
+      "volume": 50,
+      "difficulty": 7,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.99,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "projektplanung handwerk"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Bauprojekt planen mit CraftOS: Anleitungen | CraftOS",
+      "h1": "Anleitungen: Projekte und Einsätze planen",
+      "description": "Bauprojekt planen in CraftOS: Anleitungen für Projektphasen, Plantafel, Ressourcen und Projektdateien – damit Büro und Baustelle denselben Stand haben."
+    }
+  },
+  {
+    "path": "/hilfe/kategorie/zeiten",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "zeiterfassung app",
+      "volume": 3100,
+      "difficulty": 87,
+      "intents": [
+        "I"
+      ],
+      "cpc": 3.58,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "arbeitszeiten erfassen app"
+    ],
+    "competitors": [
+      {
+        "domain": "craftnote.de",
+        "position": 44,
+        "url": "https://craftnote.de/blog/welche-app-fuer-zeiterfassung-im-handwerk/"
+      },
+      {
+        "domain": "streit-software.de",
+        "position": 86,
+        "url": "https://www.streit-software.de/v/zeit-plus%20Arbeitszeiterfassung%20im%20Handwerk%20ganz%20einfach%20%E2%80%93%20mit%20der%20Zeiterfassung-App%20f%C3%BCr%20das%20Handwerk%20..."
+      }
+    ],
+    "target": {
+      "title": "Zeiterfassung-App: Anleitungen für CraftOS | CraftOS",
+      "h1": "Anleitungen: Zeiten und Mobile-App",
+      "description": "Zeiterfassung per App: Anleitungen zum Timer, zum Nachtragen und Exportieren von Zeiten, zu Urlaubsanträgen und zur Offline-Synchronisierung in CraftOS."
+    }
+  },
+  {
+    "path": "/hilfe/kategorie/lager",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "lagerbestand verwalten",
+      "volume": 10,
+      "difficulty": 10,
+      "intents": [
+        "I"
+      ],
+      "cpc": 5.19,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "lager verwalten"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Lagerbestand verwalten: Anleitungen | CraftOS",
+      "h1": "Anleitungen: Lager und Material",
+      "description": "Lagerbestand verwalten in CraftOS: Anleitungen für Artikelstammdaten, Lagerorte, Wareneingang, Materialentnahme und Inventur mit Bestandsdifferenzen."
+    }
+  },
+  {
+    "path": "/hilfe/kategorie/baudokumentation",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "baustellendokumentation",
+      "volume": 210,
+      "difficulty": 10,
+      "intents": [
+        "I"
+      ],
+      "cpc": 5.12,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "baudokumentation"
+    ],
+    "competitors": [
+      {
+        "domain": "craftnote.de",
+        "position": 57,
+        "url": "https://craftnote.de/blog/digitale-baudokumentation-so-dokumentierst-du-deine-baustellen-lueckenlos-und-papierfrei/"
+      },
+      {
+        "domain": "plancraft.com",
+        "position": 70,
+        "url": "https://plancraft.com/de-de/funktionen/digitale-baudokumentation"
+      }
+    ],
+    "target": {
+      "title": "Baustellendokumentation: Anleitungen | CraftOS",
+      "h1": "Anleitungen: Baustellendokumentation",
+      "description": "Baustellendokumentation in CraftOS: Anleitungen für Bautagesberichte, Mängel und Abnahmen mit Prüfpunkten – auf der Baustelle erfasst, im Büro auffindbar."
+    }
+  },
+  {
+    "path": "/hilfe/kategorie/craft-ai",
+    "status": "bestehend",
+    "primary": null,
+    "reason": "Alle pageCandidates („ki assistent handwerk“, „ki software handwerk“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
+    "secondary": [],
+    "competitors": []
+  },
+  {
+    "path": "/blog/abschlagsrechnung-schlussrechnung",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "abschlagsrechnung schlussrechnung",
+      "volume": 70,
+      "difficulty": 6,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0.53,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "abschlagsrechnung und schlussrechnung",
+      "unterschied abschlagsrechnung schlussrechnung"
+    ],
+    "competitors": [
+      {
+        "domain": "plancraft.com",
+        "position": 32,
+        "url": "https://plancraft.com/de-de/blog/abschlagsrechnungen-richtig-stellen-kumulativ-oder-pauschal-8"
+      }
+    ],
+    "target": {
+      "title": "Abschlagsrechnung Schlussrechnung: Unterschied | CraftOS",
+      "h1": "Abschlagsrechnung und Schlussrechnung sauber trennen",
+      "description": "Abschlagsrechnung und Schlussrechnung im Handwerk: wie Sie Leistungen, Teilzahlungen und Restforderung sauber auseinanderhalten und prüfbar abrechnen."
+    }
+  },
+  {
+    "path": "/blog/aufmass-angebot-mengen-abzuege",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "aufmaß erstellen",
+      "volume": 210,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 2.35,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "aufmaß abzüge",
+      "aufmaß regeln"
+    ],
+    "competitors": [
+      {
+        "domain": "plancraft.com",
+        "position": 1,
+        "url": "https://plancraft.com/de-de/funktionen/handwerk-aufmass"
+      },
+      {
+        "domain": "hero-software.de",
+        "position": 7,
+        "url": "https://hero-software.de/features/aufmass-app"
+      },
+      {
+        "domain": "craftnote.de",
+        "position": 17,
+        "url": "https://craftnote.de/blog/was-ist-ein-aufmass/"
+      },
+      {
+        "domain": "das-programm.io",
+        "position": 49,
+        "url": "https://das-programm.io/funktionen/aufmass/"
+      }
+    ],
+    "target": {
+      "title": "Aufmaß erstellen: Mengen und Abzüge prüfen | CraftOS",
+      "h1": "Aufmaß erstellen und ins Angebot übernehmen",
+      "description": "Aufmaß erstellen und ins Angebot übernehmen: wie Sie Mengen, Einheiten und Abzüge richtig prüfen, bevor daraus Positionen und Preise werden."
+    }
+  },
+  {
+    "path": "/blog/baustellen-einsatzplanung",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "baustellenplanung",
+      "volume": 70,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 3.45,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "einsatzplanung baustelle",
+      "ressourcenplanung bau"
+    ],
+    "competitors": [
+      {
+        "domain": "craftnote.de",
+        "position": 40,
+        "url": "https://craftnote.de/blog/digitaler-baustellenplaner-fuer-die-projektplanung-im-handwerk/"
+      }
+    ],
+    "target": {
+      "title": "Baustellenplanung: Kapazität und Einsätze | CraftOS",
+      "h1": "Baustellenplanung mit Kapazität, Abwesenheiten und Übergaben",
+      "description": "Baustellenplanung: Kapazitäten, Abwesenheiten und Übergaben verbinden, damit Team, Fahrzeuge und Material zur richtigen Zeit am Einsatzort sind."
+    }
+  },
+  {
+    "path": "/blog/datev-export-vorbereiten",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "belege für steuerberater vorbereiten",
+      "volume": 10,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0.83,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "datev export vorbereiten",
+      "datev übergabe"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Belege für Steuerberater vorbereiten | CraftOS",
+      "h1": "DATEV-Export vorbereiten: Belege für den Steuerberater",
+      "description": "Belege für den Steuerberater vorbereiten: Vollständigkeit prüfen, Zeitraum abstimmen und den DATEV-Export übergeben, mit dem die Kanzlei weiterarbeitet."
+    }
+  },
+  {
+    "path": "/blog/digitale-bautagesberichte",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "bautagesbericht",
+      "volume": 320,
+      "difficulty": 11,
+      "intents": [
+        "I"
+      ],
+      "cpc": 2.05,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "digitaler bautagesbericht",
+      "bautagesbericht app"
+    ],
+    "competitors": [
+      {
+        "domain": "plancraft.com",
+        "position": 30,
+        "url": "https://help.plancraft.com/de/articles/382754-bautagesbericht-erstellen-vorlage-fur-tagliche-baustellendokumentation"
+      }
+    ],
+    "target": {
+      "title": "Bautagesbericht digital: so hilft er wirklich | CraftOS",
+      "h1": "Digitale Bautagesberichte, die wirklich helfen",
+      "description": "Bautagesbericht digital führen: Leistungen, Abweichungen, Wetter und Behinderungen so dokumentieren, dass sie für Abrechnung und Nachweis wirklich helfen."
+    }
+  },
+  {
+    "path": "/blog/digitale-projektakte",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "digitale projektakte",
+      "volume": 30,
+      "difficulty": 7,
+      "intents": [
+        "I"
+      ],
+      "cpc": 5.8,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "projektakte",
+      "elektronische bauakte"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Digitale Projektakte im Handwerk | CraftOS",
+      "h1": "Digitale Projektakte: alles zum Auftrag an einem Ort",
+      "description": "Digitale Projektakte im Handwerk: Angebote, Dateien, Zeiten und Entscheidungen zusammenführen, damit jeder im Team den aktuellen Stand des Auftrags kennt."
+    }
+  },
+  {
+    "path": "/blog/eingangsrechnungen-digital-organisieren",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "eingangsrechnungen verwalten",
+      "volume": 70,
+      "difficulty": 9,
+      "intents": [
+        "I"
+      ],
+      "cpc": 12.09,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "rechnungseingang digital"
+    ],
+    "competitors": [
+      {
+        "domain": "plancraft.com",
+        "position": 6,
+        "url": "https://plancraft.com/de-de/funktionen/eingangsrechnungen"
+      }
+    ],
+    "target": {
+      "title": "Eingangsrechnungen verwalten: digital und geprüft | CraftOS",
+      "h1": "Eingangsrechnungen digital verwalten",
+      "description": "Eingangsrechnungen verwalten im Handwerk: vom Posteingang über Prüfung und Projektzuordnung bis zur geprüften Übergabe an Buchhaltung und Steuerkanzlei."
+    }
+  },
+  {
+    "path": "/blog/handwerkerangebot-erstellen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "angebot handwerker",
+      "volume": 170,
+      "difficulty": 6,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.26,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "handwerkerangebot",
+      "angebot schreiben handwerk"
+    ],
+    "competitors": [
+      {
+        "domain": "streit-software.de",
+        "position": 3,
+        "url": "https://www.streit-software.de/wissen/pflichtangaben-angebot-handwerker"
+      },
+      {
+        "domain": "das-programm.io",
+        "position": 7,
+        "url": "https://das-programm.io/support/artikel/angebot-schreiben-fuer-handwerker/"
+      },
+      {
+        "domain": "openhandwerk.de",
+        "position": 14,
+        "url": "https://openhandwerk.de/blog/angebote-im-handwerk-darauf-sollte-geachtet-werden/"
+      },
+      {
+        "domain": "plancraft.com",
+        "position": 21,
+        "url": "https://plancraft.com/de-de/vorlage-angebot-rechnung-fuer-handwerker"
+      },
+      {
+        "domain": "craftnote.de",
+        "position": 31,
+        "url": "https://craftnote.de/blog/wie-handwerker-ihre-angebote-richtig-erstellen-und-abrechnen/"
+      }
+    ],
+    "target": {
+      "title": "Angebot Handwerker erstellen: Leistung und Preis | CraftOS",
+      "h1": "Handwerkerangebot erstellen: Leistung, Annahmen und Preis",
+      "description": "Ein gutes Angebot als Handwerker erstellen: Leistungen klar beschreiben, Annahmen offenlegen und den Preis so begründen, dass Kunden ihn nachvollziehen."
+    }
+  },
+  {
+    "path": "/blog/handwerkerrechnung-schreiben",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "handwerkerrechnung",
+      "volume": 590,
+      "difficulty": 13,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.4,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "rechnung handwerker",
+      "handwerkerrechnung muster"
+    ],
+    "competitors": [
+      {
+        "domain": "streit-software.de",
+        "position": 4,
+        "url": "https://www.streit-software.de/wissen/handwerkerrechnung-pflichtangaben"
+      }
+    ],
+    "target": {
+      "title": "Handwerkerrechnung schreiben: Pflichtangaben | CraftOS",
+      "h1": "Handwerkerrechnung schreiben: vom Nachweis zum Dokument",
+      "description": "Handwerkerrechnung schreiben: Pflichtangaben, Leistungsnachweis und Lohnanteil richtig darstellen, damit Ihre Rechnung prüfbar ist und bezahlt wird."
+    }
+  },
+  {
+    "path": "/blog/handwerkersoftware-auswaehlen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "beste handwerkersoftware",
+      "volume": 90,
+      "difficulty": 24,
+      "intents": [
+        "I"
+      ],
+      "cpc": 7.75,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "handwerkersoftware auswählen",
+      "welche handwerkersoftware"
+    ],
+    "competitors": [
+      {
+        "domain": "das-programm.io",
+        "position": 18,
+        "url": "https://das-programm.io/"
+      },
+      {
+        "domain": "plancraft.com",
+        "position": 23,
+        "url": "https://plancraft.com/de-de/blog/handwerker-projektmanagement-software-vergleich"
+      }
+    ],
+    "target": {
+      "title": "Beste Handwerkersoftware finden: mit Testauftrag | CraftOS",
+      "h1": "Die beste Handwerkersoftware für Ihren Betrieb auswählen",
+      "description": "Die beste Handwerkersoftware finden Sie mit einem echten Auftrag statt einer Funktionsliste: Kriterien, Testablauf und Fragen für Ihre Auswahl."
+    }
+  },
+  {
+    "path": "/blog/handwerkersoftware-einzelunternehmen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "software für kleine handwerksbetriebe",
+      "volume": 50,
+      "difficulty": 36,
+      "intents": [
+        "I"
+      ],
+      "cpc": 5.19,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "handwerkersoftware für einzelunternehmer"
+    ],
+    "competitors": [
+      {
+        "domain": "hero-software.de",
+        "position": 3,
+        "url": "https://hero-software.de/"
+      },
+      {
+        "domain": "das-programm.io",
+        "position": 20,
+        "url": "https://das-programm.io/gewerke/software-fuer-kleine-handwerksbetriebe/"
+      },
+      {
+        "domain": "openhandwerk.de",
+        "position": 48,
+        "url": "https://openhandwerk.de/"
+      }
+    ],
+    "target": {
+      "title": "Software für kleine Handwerksbetriebe | CraftOS",
+      "h1": "Software für kleine Handwerksbetriebe und Einzelunternehmer",
+      "description": "Software für kleine Handwerksbetriebe und Einzelunternehmer: wenig Verwaltung, vollständige Aufträge – worauf es bei Auswahl, Preis und Mobile-App ankommt."
+    }
+  },
+  {
+    "path": "/blog/handwerkersoftware-wechseln",
+    "status": "bestehend",
+    "primary": null,
+    "reason": "Alle pageCandidates („handwerkersoftware wechseln“, „software wechseln“, „datenübernahme software“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
+    "secondary": [],
+    "competitors": []
+  },
+  {
+    "path": "/blog/ki-belegscan-pruefen",
+    "status": "bestehend",
+    "primary": null,
+    "reason": "Alle pageCandidates („belegscan“, „ki belegerkennung“, „beleg scannen app“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
+    "secondary": [],
+    "competitors": []
+  },
+  {
+    "path": "/blog/materialverbrauch-baustelle-zuordnen",
+    "status": "bestehend",
+    "primary": null,
+    "reason": "Alle pageCandidates („materialverbrauch baustelle“, „materialerfassung baustelle“, „materialverbrauch erfassen“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
+    "secondary": [],
+    "competitors": []
+  },
+  {
+    "path": "/blog/nachkalkulation-handwerk",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "nachkalkulation",
+      "volume": 590,
+      "difficulty": 7,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.73,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "nachkalkulation beispiel",
+      "nachkalkulation berechnen"
+    ],
+    "competitors": [
+      {
+        "domain": "hero-software.de",
+        "position": 1,
+        "url": "https://hero-software.de/blog/ratgeber/nachkalkulation"
+      },
+      {
+        "domain": "openhandwerk.de",
+        "position": 11,
+        "url": "https://wissensdatenbank.openhandwerk.de/nachkalkulation-in-openhandwerk"
+      }
+    ],
+    "target": {
+      "title": "Nachkalkulation: Abweichungen erkennen | CraftOS",
+      "h1": "Nachkalkulation im Handwerk: aus Abweichungen lernen",
+      "description": "Nachkalkulation: geplante und tatsächliche Kosten vergleichen, Abweichungen erkennen und die nächsten Angebote im Handwerk gezielt verbessern."
+    }
+  },
+  {
+    "path": "/blog/offene-posten-liquiditaet",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "offene posten",
+      "volume": 390,
+      "difficulty": 9,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0.1,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "offene posten liste",
+      "liquiditätsplanung handwerk"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Offene Posten und Liquidität im Handwerk | CraftOS",
+      "h1": "Offene Posten und Liquidität richtig lesen",
+      "description": "Offene Posten im Handwerk verstehen: warum Rechnungsbeträge kein verfügbares Geld sind und wie Sie Forderungen und Liquidität getrennt im Blick behalten."
+    }
+  },
+  {
+    "path": "/blog/offline-baustellen-app",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "offline zeiterfassung",
+      "volume": 10,
+      "difficulty": 0,
+      "intents": [
+        "I"
+      ],
+      "cpc": 2.5,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "baustellen app offline",
+      "offline app baustelle"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Offline-Zeiterfassung auf der Baustelle | CraftOS",
+      "h1": "Offline auf der Baustelle arbeiten",
+      "description": "Offline-Zeiterfassung und Baustellen-App ohne Netz: Arbeit vorbereiten, Daten lokal erfassen und die Synchronisierung danach zuverlässig prüfen."
+    }
+  },
+  {
+    "path": "/blog/projektbezogene-zeiterfassung",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "projektzeiterfassung",
+      "volume": 320,
+      "difficulty": 17,
+      "intents": [
+        "I"
+      ],
+      "cpc": 7.17,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "projektbezogene zeiterfassung",
+      "zeiterfassung projekte"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Projektzeiterfassung im Handwerk | CraftOS",
+      "h1": "Projektbezogene Zeiterfassung: Stunden mit Auftragsbezug",
+      "description": "Projektzeiterfassung im Handwerk: wie aus erfassten Stunden brauchbare Auftragsdaten für Abrechnung, Nachkalkulation und bessere Angebote werden."
+    }
+  },
+  {
+    "path": "/blog/stundenverrechnungssatz-berechnen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "stundenverrechnungssatz berechnen",
+      "volume": 480,
+      "difficulty": 6,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0.23,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "stundenverrechnungssatz",
+      "stundenverrechnungssatz handwerk"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Stundenverrechnungssatz berechnen: Anleitung | CraftOS",
+      "h1": "Stundenverrechnungssatz berechnen: von Kosten zum Preis",
+      "description": "Stundenverrechnungssatz berechnen: von Jahreskosten und produktiven Stunden zum tragfähigen Preis – mit Beispiel und kostenlosem Rechner."
+    }
+  },
+  {
+    "path": "/blog/tiefenkalkulation-handwerk",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "zuschlagskalkulation handwerk",
+      "volume": 10,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.66,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "zuschlagskalkulation",
+      "tiefenkalkulation"
+    ],
+    "competitors": [
+      {
+        "domain": "streit-software.de",
+        "position": 4,
+        "url": "https://www.streit-software.de/wissen/kalkulation-im-handwerk"
+      },
+      {
+        "domain": "craftnote.de",
+        "position": 12,
+        "url": "https://craftnote.de/blog/11-fehler-bei-der-auftragskalkulation-im-handwerk/"
+      },
+      {
+        "domain": "das-programm.io",
+        "position": 77,
+        "url": "https://das-programm.io/support/artikel/efb-formblatt-221-efb-formblatt-223-einfach-aus-dem-angebot"
+      },
+      {
+        "domain": "hero-software.de",
+        "position": 95,
+        "url": "https://hero-software.de/features/kalkulationsprogramm/baukalkulation"
+      }
+    ],
+    "target": {
+      "title": "Zuschlagskalkulation Handwerk: Tiefenkalkulation | CraftOS",
+      "h1": "Tiefenkalkulation: Material, Lohn und Zuschläge verbinden",
+      "description": "Zuschlagskalkulation im Handwerk als Tiefenkalkulation: Material, Lohn, Gemeinkosten und Marge je Position nachvollziehbar zu einem Preis verbinden."
+    }
+  },
+  {
+    "path": "/blog/urlaub-abwesenheiten-einsatzplanung",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "urlaubsplanung mitarbeiter",
+      "volume": 480,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.99,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "urlaubsplanung",
+      "abwesenheitsplanung"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Urlaubsplanung Mitarbeiter in der Einsatzplanung | CraftOS",
+      "h1": "Urlaub und Abwesenheiten in der Einsatzplanung",
+      "description": "Urlaubsplanung für Mitarbeiter im Handwerk: Urlaub und Abwesenheiten früh in der Einsatzplanung berücksichtigen, damit Baustellen besetzt bleiben."
+    }
+  },
+  {
+    "path": "/blog/web-app-baustellen-app",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "baustellen app",
+      "volume": 260,
+      "difficulty": 15,
+      "intents": [
+        "I"
+      ],
+      "cpc": 3.98,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "web app handwerk"
+    ],
+    "competitors": [
+      {
+        "domain": "streit-software.de",
+        "position": 5,
+        "url": "https://www.streit-software.de/wissen/baustellen-app"
+      },
+      {
+        "domain": "craftnote.de",
+        "position": 44,
+        "url": "https://craftnote.de/blog/vier-apps-zur-erleichterung-der-arbeit-auf-der-baustelle/"
+      }
+    ],
+    "target": {
+      "title": "Baustellen-App und Web-App: Aufgaben verteilen | CraftOS",
+      "h1": "Web-App und Baustellen-App sinnvoll aufteilen",
+      "description": "Baustellen-App und Web-App im Handwerk: welche Aufgaben ins Büro gehören, was das Team mobil erledigt und wie beide auf denselben Daten arbeiten."
+    }
+  },
+  {
+    "path": "/blog/xrechnung-zugferd-pdf-unterschiede",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "xrechnung zugferd unterschied",
+      "volume": 70,
+      "difficulty": 17,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0.27,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "xrechnung oder zugferd",
+      "zugferd"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "XRechnung ZUGFeRD Unterschied einfach erklärt | CraftOS",
+      "h1": "XRechnung, ZUGFeRD oder PDF: welches Format passt?",
+      "description": "XRechnung und ZUGFeRD im Unterschied zur PDF-Rechnung: was die Formate leisten, wer welches verlangt und welches Format für Ihren Handwerksbetrieb passt."
+    }
+  },
+  {
+    "path": "/blog/zahlungserinnerung-mahnung-handwerk",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "zahlungserinnerung muster",
+      "volume": 260,
+      "difficulty": 21,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0.21,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "zahlungserinnerung",
+      "mahnung handwerker",
+      "mahnung muster"
+    ],
+    "competitors": [
+      {
+        "domain": "streit-software.de",
+        "position": 27,
+        "url": "https://www.streit-software.de/vorlagen/handwerker-mahnung-muster"
+      }
+    ],
+    "target": {
+      "title": "Zahlungserinnerung Muster und Ablauf | CraftOS",
+      "h1": "Zahlungserinnerung und Mahnung: offene Rechnungen nachfassen",
+      "description": "Zahlungserinnerung mit Muster und klarem Ablauf: offene Rechnungen im Handwerk freundlich, aber konsequent nachfassen – bis zur Mahnung mit Frist."
+    }
+  },
+  {
+    "path": "/hilfe/abnahme-dokumentieren",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "bauabnahme protokoll",
+      "volume": 110,
+      "difficulty": 7,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.13,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "abnahmeprotokoll",
+      "abnahme dokumentieren"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Bauabnahme-Protokoll in CraftOS erstellen | CraftOS",
+      "h1": "Eine Abnahme mit Prüfpunkten dokumentieren",
+      "description": "Bauabnahme-Protokoll in CraftOS: Prüfpunkte festhalten, Ergebnis und Vorbehalte dokumentieren und die Abnahme mobil unterschreiben lassen."
+    }
+  },
+  {
+    "path": "/hilfe/abschlagsrechnung-erstellen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "abschlagsrechnung muster",
+      "volume": 480,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0.57,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "abschlagsrechnung erstellen",
+      "abschlagsrechnung"
+    ],
+    "competitors": [
+      {
+        "domain": "streit-software.de",
+        "position": 1,
+        "url": "https://www.streit-software.de/vorlagen/abschlagszahlung"
+      }
+    ],
+    "target": {
+      "title": "Abschlagsrechnung Muster und Anleitung | CraftOS",
+      "h1": "Eine Abschlagsrechnung aus dem Projekt erstellen",
+      "description": "Abschlagsrechnung mit Muster erstellen: so legen Sie in CraftOS eine Abschlagsrechnung aus dem Projekt an, prüfen Beträge und stellen sie fertig."
+    }
+  },
+  {
+    "path": "/hilfe/angebot-entwurf-anlegen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "angebot erstellen",
+      "volume": 480,
+      "difficulty": 10,
+      "intents": [
+        "I"
+      ],
+      "cpc": 6.85,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "angebotsentwurf",
+      "angebot anlegen"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Angebot erstellen: Entwurf anlegen | CraftOS",
+      "h1": "Einen Angebotsentwurf anlegen",
+      "description": "Angebot erstellen in CraftOS: Entwurf anlegen, Kunde und Projekt wählen, Positionen ergänzen und das Angebot vor dem Versand gründlich prüfen."
+    }
+  },
+  {
+    "path": "/hilfe/angebot-in-rechnung-uebernehmen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "handwerker angebot in rechnung stellen",
+      "volume": 20,
+      "difficulty": 9,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "reason": "Alle pageCandidates ohne Daten (export--candidates-1.json); Hauptkeyword aus domain-keywords--openhandwerk.de.json, passt zur Übernahme eines Angebots in die Rechnung.",
+    "secondary": [
+      "angebot in rechnung umwandeln",
+      "aus angebot rechnung erstellen"
+    ],
+    "competitors": [
+      {
+        "domain": "openhandwerk.de",
+        "position": 27,
+        "url": "https://openhandwerk.de/blog/angebote-im-handwerk-darauf-sollte-geachtet-werden/"
+      }
+    ],
+    "target": {
+      "title": "Handwerker-Angebot in Rechnung stellen | CraftOS",
+      "h1": "Ein Angebot in eine Rechnung übernehmen",
+      "description": "Handwerker-Angebot in Rechnung stellen: Positionen aus dem angenommenen Angebot übernehmen, Mengen anpassen und die Rechnung in CraftOS fertigstellen."
+    }
+  },
+  {
+    "path": "/hilfe/angebotspositionen-leistungsvorlagen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "leistungsverzeichnis vorlage",
+      "volume": 210,
+      "difficulty": 6,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.37,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "leistungsvorlagen",
+      "angebotspositionen"
+    ],
+    "competitors": [
+      {
+        "domain": "streit-software.de",
+        "position": 2,
+        "url": "https://www.streit-software.de/vorlagen/leistungsverzeichnis-erstellen"
+      }
+    ],
+    "target": {
+      "title": "Leistungsverzeichnis-Vorlage für Angebote | CraftOS",
+      "h1": "Angebotspositionen und Leistungsvorlagen verwenden",
+      "description": "Leistungsverzeichnis-Vorlage in CraftOS: wiederkehrende Angebotspositionen als Leistungsvorlagen speichern und in neuen Angeboten schnell wiederverwenden."
+    }
+  },
+  {
+    "path": "/hilfe/anmelden-web-mobile",
+    "status": "bestehend",
+    "primary": null,
+    "reason": "Alle pageCandidates („craftos login“, „craftos anmelden“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
+    "secondary": [],
+    "competitors": []
+  },
+  {
+    "path": "/hilfe/artikel-stammdaten-anlegen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "artikelstammdaten",
+      "volume": 110,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.89,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "artikel anlegen",
+      "stammdaten anlegen"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Artikelstammdaten anlegen | CraftOS",
+      "h1": "Einen Artikel in den Stammdaten anlegen",
+      "description": "Artikelstammdaten in CraftOS anlegen: Bezeichnung, Einheit, Einkaufs- und Verkaufspreis sowie Lagerangaben pflegen, damit Angebote und Lager stimmen."
+    }
+  },
+  {
+    "path": "/hilfe/bautagesbericht-erstellen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "bautagesbericht vorlage",
+      "volume": 320,
+      "difficulty": 10,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.23,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "bautagesbericht erstellen",
+      "bautagesbericht muster"
+    ],
+    "competitors": [
+      {
+        "domain": "streit-software.de",
+        "position": 3,
+        "url": "https://www.streit-software.de/wissen/bautagebuch"
+      },
+      {
+        "domain": "plancraft.com",
+        "position": 28,
+        "url": "https://help.plancraft.com/de/articles/382754-bautagesbericht-erstellen-vorlage-fur-tagliche-baustellendokumentation"
+      }
+    ],
+    "target": {
+      "title": "Bautagesbericht Vorlage und Anleitung | CraftOS",
+      "h1": "Einen Bautagesbericht erstellen",
+      "description": "Bautagesbericht mit Vorlage in CraftOS erstellen: Leistungen, Team und Besonderheiten erfassen und den Bericht mobil unterschreiben lassen."
+    }
+  },
+  {
+    "path": "/hilfe/beleg-kontieren-zuordnen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "beleg kontieren",
+      "volume": 170,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.03,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "belege kontieren",
+      "kontierung"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Beleg kontieren und Projekten zuordnen | CraftOS",
+      "h1": "Einen Beleg kontieren und zuordnen",
+      "description": "Beleg kontieren in CraftOS: Konto und Steuersatz prüfen, Ausgaben einem Projekt zuordnen und den Beleg für Buchhaltung und DATEV-Export vorbereiten."
+    }
+  },
+  {
+    "path": "/hilfe/beleg-scannen-pruefen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "beleg hochladen",
+      "volume": 10,
+      "difficulty": 22,
+      "intents": [
+        "I"
+      ],
+      "cpc": 2.13,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "beleg scannen",
+      "belege scannen"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Beleg hochladen, auslesen und prüfen | CraftOS",
+      "h1": "Einen Beleg hochladen und prüfen",
+      "description": "Beleg hochladen oder scannen: wie CraftOS Angaben ausliest, welche Felder Sie vor dem Speichern prüfen sollten und wie Sie Fehler korrigieren."
+    }
+  },
+  {
+    "path": "/hilfe/berichte-abrechnen",
+    "status": "bestehend",
+    "primary": null,
+    "reason": "Alle pageCandidates („stundenlohnarbeiten abrechnen“, „regiebericht abrechnen“, „leistungen abrechnen“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
+    "secondary": [],
+    "competitors": []
+  },
+  {
+    "path": "/hilfe/craft-ai-betriebsdaten-fragen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "ki fragen stellen",
+      "volume": 4400,
+      "difficulty": 82,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0.23,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "reason": "Einziger Kandidat mit Daten; hohe Schwierigkeit, aber passend zur Anleitung, Craft AI Fragen zu Betriebsdaten zu stellen.",
+    "secondary": [
+      "ki auswertung"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "KI Fragen stellen zu Betriebsdaten | CraftOS",
+      "h1": "Craft AI zu Ihren Betriebsdaten befragen",
+      "description": "KI Fragen stellen zu Ihren Betriebsdaten: wie Sie Craft AI zu Projekten, Rechnungen und Zeiten befragen und Antworten mit den Quelldaten abgleichen."
+    }
+  },
+  {
+    "path": "/hilfe/datev-export-erstellen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "datev export",
+      "volume": 210,
+      "difficulty": 10,
+      "intents": [
+        "I"
+      ],
+      "cpc": 3.22,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "datev export erstellen",
+      "datev export steuerberater"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "DATEV-Export für die Steuerkanzlei | CraftOS",
+      "h1": "Einen DATEV-Export erstellen",
+      "description": "DATEV-Export in CraftOS erstellen: Zeitraum wählen, Belege prüfen und die Exportdatei mit Belegbezug an Ihre Steuerkanzlei übergeben."
+    }
+  },
+  {
+    "path": "/hilfe/e-rechnung-herunterladen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "zugferd rechnung erstellen",
+      "volume": 10,
+      "difficulty": 26,
+      "intents": [
+        "I"
+      ],
+      "cpc": 2.09,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "xrechnung erstellen",
+      "xrechnung herunterladen"
+    ],
+    "competitors": [
+      {
+        "domain": "das-programm.io",
+        "position": 18,
+        "url": "https://das-programm.io/support/artikel/zugferd/"
+      },
+      {
+        "domain": "streit-software.de",
+        "position": 23,
+        "url": "https://www.streit-software.de/schnittstellen/zugferd"
+      },
+      {
+        "domain": "hero-software.de",
+        "position": 32,
+        "url": "https://hero-software.de/features/rechnungsprogramm-handwerker/e-rechnung"
+      }
+    ],
+    "target": {
+      "title": "ZUGFeRD-Rechnung erstellen und laden | CraftOS",
+      "h1": "Eine XRechnung oder ZUGFeRD-Rechnung herunterladen",
+      "description": "ZUGFeRD-Rechnung erstellen und herunterladen: so laden Sie in CraftOS eine fertiggestellte Rechnung als ZUGFeRD oder XRechnung für Ihren Kunden herunter."
+    }
+  },
+  {
+    "path": "/hilfe/firmenprofil-einrichten",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "briefpapier rechnung",
+      "volume": 20,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 4.93,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "firmenprofil einrichten",
+      "rechnungsvorlage einrichten"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Briefpapier Rechnung und Firmenprofil einrichten | CraftOS",
+      "h1": "Firmenprofil und Rechnungsgrundlagen einrichten",
+      "description": "Firmenprofil einrichten: Logo, Briefpapier für Rechnung und Angebot, Bankverbindung und Steuerangaben in CraftOS einmal hinterlegen und überall nutzen."
+    }
+  },
+  {
+    "path": "/hilfe/gaeb-importieren",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "gaeb datei öffnen",
+      "volume": 390,
+      "difficulty": 21,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.64,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "gaeb import",
+      "gaeb importieren"
+    ],
+    "competitors": [
+      {
+        "domain": "streit-software.de",
+        "position": 6,
+        "url": "https://www.streit-software.de/wissen/gaeb-datei"
+      }
+    ],
+    "target": {
+      "title": "GAEB-Datei öffnen und importieren | CraftOS",
+      "h1": "Ein GAEB-Leistungsverzeichnis importieren",
+      "description": "GAEB-Datei öffnen und als Angebot importieren: so übernehmen Sie ein GAEB-Leistungsverzeichnis in CraftOS und prüfen Positionen, Mengen und Einheiten."
+    }
+  },
+  {
+    "path": "/hilfe/inventur-durchfuehren",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "inventur lager",
+      "volume": 70,
+      "difficulty": 9,
+      "intents": [
+        "I"
+      ],
+      "cpc": 2.27,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "inventur durchführen",
+      "inventurdifferenzen buchen"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Inventur Lager durchführen und buchen | CraftOS",
+      "h1": "Eine Inventur durchführen",
+      "description": "Inventur im Lager mit CraftOS: Bestände zählen, Differenzen nachvollziehbar buchen und die Bestände nach der Inventur sauber dokumentieren."
+    }
+  },
+  {
+    "path": "/hilfe/ki-entwurf-pruefen-uebernehmen",
+    "status": "bestehend",
+    "primary": null,
+    "reason": "Alle pageCandidates („ki entwurf prüfen“, „ki texte prüfen“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
+    "secondary": [],
+    "competitors": []
+  },
+  {
+    "path": "/hilfe/kunden-ansprechpartner-anlegen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "kundenverwaltung",
+      "volume": 140,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 4.83,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "kunden anlegen",
+      "ansprechpartner anlegen"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Kundenverwaltung: Kunden anlegen | CraftOS",
+      "h1": "Kunden und Ansprechpartner anlegen",
+      "description": "Kundenverwaltung in CraftOS: Kunden und Ansprechpartner anlegen, Adressen und Kontaktdaten pflegen und Kunden direkt mit Projekten verbinden."
+    }
+  },
+  {
+    "path": "/hilfe/lagerorte-lagerplaetze-einrichten",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "lagerplatzverwaltung",
+      "volume": 20,
+      "difficulty": 6,
+      "intents": [
+        "I"
+      ],
+      "cpc": 7.37,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "lagerplätze einrichten",
+      "lagerorte"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Lagerplatzverwaltung: Lagerorte einrichten | CraftOS",
+      "h1": "Lagerorte und Lagerplätze einrichten",
+      "description": "Lagerplatzverwaltung in CraftOS: Lagerorte und Lagerplätze übersichtlich anlegen, damit Bestände und Entnahmen eindeutig zugeordnet sind."
+    }
+  },
+  {
+    "path": "/hilfe/mangel-erfassen-bearbeiten",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "mängelliste",
+      "volume": 480,
+      "difficulty": 9,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "mängelmanagement app",
+      "mängel erfassen"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Mängelliste: Mangel erfassen und prüfen | CraftOS",
+      "h1": "Einen Mangel erfassen und bearbeiten",
+      "description": "Mängelliste in CraftOS führen: Mangel mit Foto und Ort erfassen, Zuständigkeit und Frist festlegen und die Behebung bis zur Prüfung nachverfolgen."
+    }
+  },
+  {
+    "path": "/hilfe/material-entnehmen-zurueckbuchen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "materialentnahmeschein",
+      "volume": 170,
+      "difficulty": 7,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "materialentnahme",
+      "material entnehmen"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Materialentnahmeschein digital buchen | CraftOS",
+      "h1": "Material entnehmen und zurückbuchen",
+      "description": "Materialentnahmeschein digital: Material für einen Auftrag aus dem Lager entnehmen, Rückgaben buchen und die Kosten dem Projekt zuordnen."
+    }
+  },
+  {
+    "path": "/hilfe/mitarbeiter-einladen-lizenz-zuweisen",
+    "status": "bestehend",
+    "primary": null,
+    "reason": "Alle pageCandidates („mitarbeiter einladen“, „lizenz zuweisen“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
+    "secondary": [],
+    "competitors": []
+  },
+  {
+    "path": "/hilfe/mobile-offline-synchronisierung",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "offline synchronisierung",
+      "volume": 10,
+      "difficulty": 9,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "app offline nutzen",
+      "synchronisierung app"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Offline-Synchronisierung der Mobile-App | CraftOS",
+      "h1": "Offline- und Synchronisierungsstatus verstehen",
+      "description": "Offline-Synchronisierung der CraftOS Mobile-App: was ohne Netz gespeichert wird, wie Sie den Status erkennen und offene Änderungen sicher übertragen."
+    }
+  },
+  {
+    "path": "/hilfe/mobilen-timer-bedienen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "stempeluhr app",
+      "volume": 10,
+      "difficulty": 19,
+      "intents": [
+        "I"
+      ],
+      "cpc": 2.06,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "zeiterfassung timer",
+      "arbeitszeit timer app"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Stempeluhr-App: Timer starten und stoppen | CraftOS",
+      "h1": "Den Timer in der Mobile-App bedienen",
+      "description": "Die Stempeluhr-App in CraftOS: Timer starten, Projekt zuordnen und wieder stoppen – so landen Ihre Arbeitszeiten direkt beim richtigen Auftrag."
+    }
+  },
+  {
+    "path": "/hilfe/plantafel-einsatz-planen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "einsatzplanung",
+      "volume": 390,
+      "difficulty": 12,
+      "intents": [
+        "I"
+      ],
+      "cpc": 4.26,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "plantafel",
+      "einsatz planen"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Einsatzplanung auf der Plantafel | CraftOS",
+      "h1": "Einen Einsatz auf der Plantafel planen",
+      "description": "Einsatzplanung auf der Plantafel: so planen oder verschieben Sie einen Einsatz in CraftOS und Ihr Team sieht die Änderung sofort in der Mobile-App."
+    }
+  },
+  {
+    "path": "/hilfe/planung-mitarbeiter-ressourcen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "ressourcenplanung",
+      "volume": 440,
+      "difficulty": 9,
+      "intents": [
+        "I"
+      ],
+      "cpc": 4.83,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "mitarbeiterplanung",
+      "fahrzeugplanung"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Ressourcenplanung: Team, Fahrzeuge, Geräte | CraftOS",
+      "h1": "Mitarbeiter, Fahrzeuge und Geräte zuordnen",
+      "description": "Ressourcenplanung in CraftOS: Mitarbeiter, Fahrzeuge und Geräte einem Einsatz zuordnen, Überschneidungen erkennen und Kapazitäten realistisch planen."
+    }
+  },
+  {
+    "path": "/hilfe/position-tiefenkalkulieren",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "preise kalkulieren",
+      "volume": 140,
+      "difficulty": 12,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.28,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-2.json",
+        "fetchedAt": "2026-10-20T20:48:25.925Z"
+      }
+    },
+    "reason": "Alle pageCandidates ohne Daten (export--candidates-1.json); Hauptkeyword aus related--angebotskalkulation.json, passt zur detaillierten Kalkulation einer Position.",
+    "secondary": [
+      "position kalkulieren",
+      "einheitspreis kalkulieren"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Preise kalkulieren: Position im Detail | CraftOS",
+      "h1": "Eine Angebotsposition detailliert kalkulieren",
+      "description": "Preise kalkulieren je Position: Material, Lohnzeit, Geräte und Zuschläge in CraftOS erfassen und den Einheitspreis nachvollziehbar berechnen."
+    }
+  },
+  {
+    "path": "/hilfe/projekt-phasen-anlegen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "bauphasen",
+      "volume": 590,
+      "difficulty": 16,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.83,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "arbeitsabschnitte bau",
+      "projektphasen",
+      "bauphasen planen"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Bauphasen im Projekt anlegen | CraftOS",
+      "h1": "Ein Projekt mit Bauphasen anlegen",
+      "description": "Bauphasen (Arbeitsabschnitte) im Projekt anlegen: Phasen benennen, Zeiträume setzen und Aufgaben zuordnen, damit Planung und Abrechnung zusammenpassen."
+    }
+  },
+  {
+    "path": "/hilfe/projektdateien-ordner",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "ordnerstruktur projekte",
+      "volume": 30,
+      "difficulty": 12,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.47,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "projektdateien",
+      "projektordner struktur"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Ordnerstruktur Projekte: Dateien ablegen | CraftOS",
+      "h1": "Projektdateien in Ordnern ablegen",
+      "description": "Ordnerstruktur für Projekte in CraftOS: Pläne, Fotos und Dokumente in Ordnern ablegen, sinnvoll benennen und auf der Baustelle schnell wiederfinden."
+    }
+  },
+  {
+    "path": "/hilfe/raumaufmass-angebot-uebernehmen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "aufmaß raum",
+      "volume": 10,
+      "difficulty": 7,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.27,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "raumaufmaß",
+      "raumaufmaß app"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Aufmaß Raum erfassen und übernehmen | CraftOS",
+      "h1": "Raumaufmaß erfassen und ins Angebot übernehmen",
+      "description": "Aufmaß je Raum erfassen: Boden-, Wand- und Deckenflächen mit Abzügen in CraftOS aufnehmen und als geprüfte Angebotspositionen übernehmen."
+    }
+  },
+  {
+    "path": "/hilfe/rechnung-fertigstellen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "rechnung korrigieren",
+      "volume": 170,
+      "difficulty": 9,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0.76,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "reason": "Einziger Kandidat mit Daten („schlussrechnung erstellen“) gehört inhaltlich zu /hilfe/schlussrechnung-erstellen; Hauptkeyword aus domain-keywords--das-programm.io.json beschreibt den Prüf- und Korrekturschritt vor dem Fertigstellen.",
+    "secondary": [
+      "rechnung fertigstellen",
+      "rechnung festschreiben"
+    ],
+    "competitors": [
+      {
+        "domain": "das-programm.io",
+        "position": 6,
+        "url": "https://das-programm.io/support/artikel/rechnungskorrektur/"
+      }
+    ],
+    "target": {
+      "title": "Rechnung korrigieren und fertigstellen | CraftOS",
+      "h1": "Eine Rechnung prüfen und fertigstellen",
+      "description": "Rechnung korrigieren, solange sie ein Entwurf ist: in CraftOS Angaben prüfen, Fehler beheben und die Rechnung danach GoBD-gerecht fertigstellen."
+    }
+  },
+  {
+    "path": "/hilfe/rechnung-stornieren",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "storno rechnung",
+      "volume": 590,
+      "difficulty": 9,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0.16,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "rechnung stornieren",
+      "stornorechnung"
+    ],
+    "competitors": [
+      {
+        "domain": "openhandwerk.de",
+        "position": 60,
+        "url": "https://openhandwerk.de/oh/rechnungswesen/stornieren-einer-rechnung/"
+      }
+    ],
+    "target": {
+      "title": "Storno-Rechnung: Rechnung stornieren | CraftOS",
+      "h1": "Eine fertige Rechnung nachvollziehbar stornieren",
+      "description": "Storno-Rechnung in CraftOS erstellen: eine fertiggestellte Rechnung nachvollziehbar stornieren, Gründe dokumentieren und bei Bedarf neu abrechnen."
+    }
+  },
+  {
+    "path": "/hilfe/rollen-zugriffsrechte-einstellen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "zugriffsrechte",
+      "volume": 260,
+      "difficulty": 19,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "benutzerrechte",
+      "rollen und rechte"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Zugriffsrechte und Rollen einstellen | CraftOS",
+      "h1": "Rollen und Zugriffsrechte einstellen",
+      "description": "Zugriffsrechte in CraftOS einstellen: Rollen für Büro und Baustelle vergeben und festlegen, wer Preise, Rechnungen und Auswertungen sehen darf."
+    }
+  },
+  {
+    "path": "/hilfe/schlussrechnung-erstellen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "schlussrechnung muster",
+      "volume": 480,
+      "difficulty": 7,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0.93,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "schlussrechnung erstellen",
+      "schlussrechnung"
+    ],
+    "competitors": [
+      {
+        "domain": "plancraft.com",
+        "position": 62,
+        "url": "https://help.plancraft.com/de/articles/383297-schlussrechnung-aus-abschlagsrechnungen-erstellen"
+      }
+    ],
+    "target": {
+      "title": "Schlussrechnung Muster und Anleitung | CraftOS",
+      "h1": "Eine Schlussrechnung mit Abschlägen erstellen",
+      "description": "Schlussrechnung mit Muster: so erstellen Sie in CraftOS eine Schlussrechnung, verrechnen bisherige Abschlagsrechnungen und prüfen die Restforderung."
+    }
+  },
+  {
+    "path": "/hilfe/urlaub-beantragen-bearbeiten",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "urlaub beantragen",
+      "volume": 390,
+      "difficulty": 12,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0.68,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "urlaubsantrag",
+      "urlaubsantrag app"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Urlaub beantragen per App | CraftOS",
+      "h1": "Urlaub beantragen und Anträge bearbeiten",
+      "description": "Urlaub beantragen per App: Mitarbeitende stellen Anträge in der Mobile-App, das Büro genehmigt sie und die Plantafel berücksichtigt die Abwesenheit."
+    }
+  },
+  {
+    "path": "/hilfe/wareneingang-buchen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "wareneingang buchen",
+      "volume": 110,
+      "difficulty": 11,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.6,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "wareneingang",
+      "wareneingangskontrolle"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Wareneingang buchen ins Lager | CraftOS",
+      "h1": "Einen Wareneingang ins Lager buchen",
+      "description": "Wareneingang buchen in CraftOS: gelieferte Artikel prüfen, Mengen und Lagerort erfassen und den Lagerbestand nachvollziehbar aktualisieren."
+    }
+  },
+  {
+    "path": "/hilfe/zahlungen-erfassen",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "zahlungseingang",
+      "volume": 660,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 4.38,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "zahlungseingang buchen",
+      "zahlung erfassen"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Zahlungseingang zur Rechnung erfassen | CraftOS",
+      "h1": "Eine Zahlung zu einer Rechnung erfassen",
+      "description": "Zahlungseingang erfassen: in CraftOS Teil- und Vollzahlungen einer Rechnung zuordnen, Zahlungsdatum festhalten und offene Posten aktuell halten."
+    }
+  },
+  {
+    "path": "/hilfe/zeiteintrag-erfassen-korrigieren",
+    "status": "bestehend",
+    "primary": null,
+    "reason": "Alle pageCandidates („arbeitszeit nachtragen“, „zeiteintrag korrigieren“, „arbeitszeit korrigieren“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
+    "secondary": [],
+    "competitors": []
+  },
+  {
+    "path": "/hilfe/zeiten-pruefen-exportieren",
+    "status": "bestehend",
+    "primary": {
+      "keyword": "stundenzettel excel",
+      "volume": 320,
+      "difficulty": 9,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0.71,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "zeiterfassung excel",
+      "arbeitszeiten exportieren"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Stundenzettel Excel: Zeiten exportieren | CraftOS",
+      "h1": "Zeiten prüfen und exportieren",
+      "description": "Stundenzettel als Excel oder CSV: Arbeitszeiten in CraftOS prüfen, nach Mitarbeiter oder Projekt filtern und für Lohnabrechnung und Auswertung exportieren."
+    }
+  },
+  {
+    "path": "/vergleich/plancraft-alternative",
+    "status": "geplant",
+    "phase": 8,
+    "primary": {
+      "keyword": "plancraft alternative",
+      "volume": 30,
+      "difficulty": 11,
+      "intents": [
+        "I"
+      ],
+      "cpc": 4.13,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "plancraft"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "plancraft-Alternative: CraftOS im Vergleich | CraftOS",
+      "h1": "Die plancraft-Alternative für Büro und Baustelle",
+      "description": "plancraft-Alternative gesucht? CraftOS im sachlichen Vergleich: Funktionen, Mobile-App, E-Rechnung und Preise mit Quellen und Prüfdatum gegenübergestellt."
+    }
+  },
+  {
+    "path": "/vergleich/craftnote-alternative",
+    "status": "geplant",
+    "phase": 8,
+    "primary": {
+      "keyword": "craftnote alternative",
+      "volume": 30,
+      "difficulty": 6,
+      "intents": [
+        "I"
+      ],
+      "cpc": 11.18,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "craftnote"
+    ],
+    "competitors": [
+      {
+        "domain": "craftnote.de",
+        "position": 5,
+        "url": "https://craftnote.de/blog/5-bauprojektmanagement-tools-die-jedem-handwerksunternehmen-helfen-koennen/"
+      },
+      {
+        "domain": "openhandwerk.de",
+        "position": 36,
+        "url": "https://openhandwerk.de/integrationen/"
+      }
+    ],
+    "target": {
+      "title": "Craftnote-Alternative: CraftOS im Vergleich | CraftOS",
+      "h1": "Die Craftnote-Alternative mit Angebot und Rechnung",
+      "description": "Craftnote-Alternative gesucht? CraftOS im Vergleich: Baustellendoku, Angebote, Rechnungen und Preise mit Quellen und Prüfdatum gegenübergestellt."
+    }
+  },
+  {
+    "path": "/vergleich/hero-alternative",
+    "status": "geplant",
+    "phase": 8,
+    "primary": {
+      "keyword": "hero software alternative",
+      "volume": 10,
+      "difficulty": 15,
+      "intents": [
+        "I"
+      ],
+      "cpc": 11.44,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "hero alternative",
+      "hero software"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "HERO Software Alternative: CraftOS | CraftOS",
+      "h1": "Die HERO-Software-Alternative im Vergleich",
+      "description": "HERO Software Alternative gesucht? CraftOS im Vergleich: Funktionen, Mobile-App, Lizenzen und Preise mit Quellen und Prüfdatum gegenübergestellt."
+    }
+  },
+  {
+    "path": "/vergleich/tooltime-alternative",
+    "status": "geplant",
+    "phase": 8,
+    "primary": {
+      "keyword": "tooltime",
+      "volume": 4400,
+      "difficulty": 78,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "cpc": 5.56,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "reason": "Kandidat „tooltime alternative“ ohne Daten (export--candidates-1.json); Markenbegriff „tooltime“ als einziger Kandidat mit Daten, Seite vergleicht sachlich.",
+    "secondary": [
+      "tooltime alternative"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "ToolTime oder CraftOS? Der Vergleich | CraftOS",
+      "h1": "ToolTime-Alternative: CraftOS im Vergleich",
+      "description": "ToolTime oder CraftOS? Der sachliche Vergleich von Funktionen, Mobile-App, E-Rechnung und Preisen – mit Quellen, Prüfdatum und Hinweisen zum Umstieg."
+    }
+  },
+  {
+    "path": "/funktionen/gaeb",
+    "status": "geplant",
+    "phase": 7,
+    "primary": {
+      "keyword": "gaeb software",
+      "volume": 140,
+      "difficulty": 18,
+      "intents": [
+        "I"
+      ],
+      "cpc": 2.51,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "gaeb programm",
+      "datanorm import"
+    ],
+    "competitors": [
+      {
+        "domain": "das-programm.io",
+        "position": 30,
+        "url": "https://das-programm.io/schnittstelle/gaeb/"
+      }
+    ],
+    "target": {
+      "title": "GAEB-Software: Import, Export, DATANORM | CraftOS",
+      "h1": "GAEB-Software für Ausschreibung und Angebot",
+      "description": "GAEB-Software in CraftOS: Leistungsverzeichnisse importieren, Angebote kalkulieren und als GAEB exportieren sowie Artikel per DATANORM übernehmen."
+    }
+  },
+  {
+    "path": "/funktionen/mahnwesen",
+    "status": "geplant",
+    "phase": 7,
+    "primary": {
+      "keyword": "mahnwesen software",
+      "volume": 40,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 8.62,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "mahnwesen handwerk"
+    ],
+    "competitors": [
+      {
+        "domain": "openhandwerk.de",
+        "position": 27,
+        "url": "https://openhandwerk.de/blog/offene-posten-verwalten-mahnwesen-automatisieren-effizienzsteigerung-fuer-handwerksbetriebe/"
+      }
+    ],
+    "target": {
+      "title": "Mahnwesen-Software für Handwerker | CraftOS",
+      "h1": "Mahnwesen: offene Rechnungen konsequent nachfassen",
+      "description": "Mahnwesen-Software für Handwerker: Zahlungserinnerungen und Mahnstufen einstellen, Mahnhistorie je Rechnung sehen und offene Posten im Blick behalten."
+    }
+  },
+  {
+    "path": "/funktionen/terminplanung",
+    "status": "geplant",
+    "phase": 7,
+    "primary": {
+      "keyword": "bauzeitenplan software",
+      "volume": 140,
+      "difficulty": 12,
+      "intents": [
+        "I"
+      ],
+      "cpc": 3.99,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "terminplanung handwerk",
+      "bauablaufplan software"
+    ],
+    "competitors": [
+      {
+        "domain": "streit-software.de",
+        "position": 3,
+        "url": "https://www.streit-software.de/wissen/bauzeitenplan-software"
+      },
+      {
+        "domain": "craftnote.de",
+        "position": 37,
+        "url": "https://craftnote.de/blog/bauzeitenplan-der-ueberblick-fuer-ein-reibungsloses-bauprojekt/"
+      }
+    ],
+    "target": {
+      "title": "Bauzeitenplan-Software mit Bauphasen | CraftOS",
+      "h1": "Terminplanung mit Bauphasen und Abhängigkeiten",
+      "description": "Bauzeitenplan-Software in CraftOS: Bauphasen und Arbeitsabschnitte im Gantt-Plan terminieren, Abhängigkeiten setzen und mit der Plantafel verbinden."
+    }
+  },
+  {
+    "path": "/funktionen/bankabgleich",
+    "status": "geplant",
+    "phase": 7,
+    "primary": {
+      "keyword": "zahlungsabgleich",
+      "volume": 20,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 8.97,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "bankabgleich software",
+      "offene posten abgleichen"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Zahlungsabgleich mit Bankumsätzen | CraftOS",
+      "h1": "Bankabgleich: Zahlungen automatisch zuordnen",
+      "description": "Zahlungsabgleich in CraftOS: Bankumsätze einlesen, Zahlungseingänge Rechnungen zuordnen und Ausgaben mit Eingangsrechnungen abgleichen."
+    }
+  },
+  {
+    "path": "/funktionen/datenuebernahme",
+    "status": "geplant",
+    "phase": 7,
+    "primary": {
+      "keyword": "datenimport",
+      "volume": 90,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "reason": "Lücke aus domain-keywords--das-programm.io.json; Datenübernahme ist live (Web-Route /daten-uebernehmen).",
+    "secondary": [
+      "daten importieren"
+    ],
+    "competitors": [
+      {
+        "domain": "das-programm.io",
+        "position": 8,
+        "url": "https://das-programm.io/support/artikel/daten-import/"
+      }
+    ],
+    "target": {
+      "title": "Datenimport beim Umstieg auf CraftOS | CraftOS",
+      "h1": "Datenübernahme beim Umstieg auf CraftOS",
+      "description": "Datenimport beim Wechsel zu CraftOS: vorhandene Stammdaten aus Ihrer bisherigen Software übernehmen und vor dem Start des Echtbetriebs in Ruhe prüfen."
+    }
+  },
+  {
+    "path": "/funktionen/maengelmanagement",
+    "status": "geplant",
+    "phase": 7,
+    "primary": {
+      "keyword": "mängelmanagement",
+      "volume": 140,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 3.47,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-2.json",
+        "fetchedAt": "2026-10-20T20:48:25.925Z"
+      }
+    },
+    "reason": "Lücke aus related--maengelmanagement-app.json; Mängel sind live (Web und Mobile).",
+    "secondary": [
+      "mängelmanagement app"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Mängelmanagement für Handwerk und Bau | CraftOS",
+      "h1": "Mängelmanagement von der Erfassung bis zur Prüfung",
+      "description": "Mängelmanagement in CraftOS: Mängel mit Foto und Ort erfassen, Fristen und Zuständige festlegen und die Behebung bis zur Abnahme lückenlos nachverfolgen."
+    }
+  },
+  {
+    "path": "/hilfe/leistungszeitraum-rechnung",
+    "status": "geplant",
+    "phase": 9,
+    "primary": {
+      "keyword": "leistungszeitraum rechnung",
+      "volume": 390,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0.33,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "leistungszeitraum",
+      "leistungsdatum rechnung",
+      "leistungszeitraum auf rechnung"
+    ],
+    "competitors": [
+      {
+        "domain": "plancraft.com",
+        "position": 24,
+        "url": "https://help.plancraft.com/de/articles/383014-leistungsdatum-oder-leistungszeitraum-in-rechnungen-eintragen"
+      }
+    ],
+    "target": {
+      "title": "Leistungszeitraum Rechnung: richtig angeben | CraftOS",
+      "h1": "Leistungszeitraum und Leistungsdatum auf der Rechnung",
+      "description": "Leistungszeitraum auf der Rechnung richtig angeben: wann ein Leistungsdatum genügt, wann ein Zeitraum nötig ist und welche Pflichtangaben gelten."
+    }
+  },
+  {
+    "path": "/hilfe/regiebericht",
+    "status": "geplant",
+    "phase": 9,
+    "primary": {
+      "keyword": "regiebericht",
+      "volume": 390,
+      "difficulty": 4,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.84,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "regiebericht vorlage",
+      "regiearbeiten"
+    ],
+    "competitors": [
+      {
+        "domain": "plancraft.com",
+        "position": 8,
+        "url": "https://help.plancraft.com/de/articles/382759-regiebericht-zusatzarbeiten-korrekt-dokumentieren-und-abrechnen"
+      },
+      {
+        "domain": "openhandwerk.de",
+        "position": 26,
+        "url": "https://openhandwerk.de/blog/erstellung-von-regieberichten-und-rapportzetteln-digitalisieren-sie-ihre-baustellendokumentation-effizient/"
+      },
+      {
+        "domain": "craftnote.de",
+        "position": 33,
+        "url": "https://craftnote.de/rapport/"
+      }
+    ],
+    "target": {
+      "title": "Regiebericht: Vorlage und Abrechnung | CraftOS",
+      "h1": "Regiebericht schreiben und abrechnen",
+      "description": "Regiebericht im Handwerk: Stundenlohnarbeiten und Material nachvollziehbar dokumentieren, vom Auftraggeber bestätigen lassen und sauber abrechnen."
+    }
+  },
+  {
+    "path": "/hilfe/bedenkenanzeige",
+    "status": "geplant",
+    "phase": 9,
+    "primary": {
+      "keyword": "bedenkenanzeige",
+      "volume": 390,
+      "difficulty": 7,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.51,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "secondary": [
+      "bedenkenanzeige vob",
+      "bedenkenanzeige muster"
+    ],
+    "competitors": [
+      {
+        "domain": "plancraft.com",
+        "position": 24,
+        "url": "https://help.plancraft.com/de/articles/382765-bedenkenanzeige-nach-vob-b-4-abs-3-in-plancraft-erstellen"
+      }
+    ],
+    "target": {
+      "title": "Bedenkenanzeige nach VOB: Muster und Ablauf | CraftOS",
+      "h1": "Bedenkenanzeige schreiben und dokumentieren",
+      "description": "Bedenkenanzeige nach VOB/B: wann Handwerker sie schreiben sollten, was hineingehört und wie Sie Versand und Antwort im Projekt dokumentieren."
+    }
+  },
+  {
+    "path": "/blog/maengelanzeige",
+    "status": "geplant",
+    "phase": 9,
+    "primary": {
+      "keyword": "mängelanzeige",
+      "volume": 810,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0.99,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "reason": "Lücke aus domain-keywords--craftnote.de.json (KD < 20).",
+    "secondary": [
+      "mängelanzeige vob",
+      "mängelrüge frist"
+    ],
+    "competitors": [
+      {
+        "domain": "craftnote.de",
+        "position": 9,
+        "url": "https://craftnote.de/blog/maengelanzeige-im-handwerk-definition-verjaehrungsfristen-und-die-richtige-reaktion/"
+      }
+    ],
+    "target": {
+      "title": "Mängelanzeige im Handwerk: Fristen und Ablauf | CraftOS",
+      "h1": "Mängelanzeige: richtig reagieren als Handwerksbetrieb",
+      "description": "Mängelanzeige erhalten oder schreiben: Fristen nach BGB und VOB, notwendige Inhalte und wie Handwerksbetriebe Mängel nachvollziehbar dokumentieren."
+    }
+  },
+  {
+    "path": "/blog/reverse-charge-bauleistungen",
+    "status": "geplant",
+    "phase": 9,
+    "primary": {
+      "keyword": "reverse charge rechnungsstellung",
+      "volume": 590,
+      "difficulty": 9,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0.2,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "reason": "Lücke aus domain-keywords--hero-software.de.json (KD < 20).",
+    "secondary": [],
+    "competitors": [
+      {
+        "domain": "hero-software.de",
+        "position": 1,
+        "url": "https://hero-software.de/blog/zahlungswesen-handwerk/reverse-charge-rechnung"
+      }
+    ],
+    "target": {
+      "title": "Reverse Charge Rechnungsstellung am Bau | CraftOS",
+      "h1": "Reverse Charge bei Bauleistungen richtig abrechnen",
+      "description": "Reverse-Charge-Rechnungsstellung bei Bauleistungen nach § 13b UStG: wann sie gilt, welche Angaben auf die Rechnung gehören und typische Fehler."
+    }
+  },
+  {
+    "path": "/blog/materialliste-vorlage",
+    "status": "geplant",
+    "phase": 9,
+    "primary": {
+      "keyword": "materialliste vorlage",
+      "volume": 210,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.15,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "reason": "Lücke aus domain-keywords--craftnote.de.json (KD < 20).",
+    "secondary": [
+      "materialliste erstellen"
+    ],
+    "competitors": [
+      {
+        "domain": "craftnote.de",
+        "position": 39,
+        "url": "https://craftnote.de/download/materialverbrauchsliste/"
+      }
+    ],
+    "target": {
+      "title": "Materialliste-Vorlage für die Baustelle | CraftOS",
+      "h1": "Materialliste für Baustelle und Auftrag erstellen",
+      "description": "Materialliste-Vorlage fürs Handwerk: welche Angaben hineingehören, wie Sie Mengen aus dem Angebot ableiten und Entnahmen später dem Projekt zuordnen."
+    }
+  },
+  {
+    "path": "/blog/gaeb-formate",
+    "status": "geplant",
+    "phase": 9,
+    "primary": {
+      "keyword": "gaeb formate",
+      "volume": 590,
+      "difficulty": 12,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0.35,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "reason": "Lücke aus domain-keywords--das-programm.io.json (KD < 20).",
+    "secondary": [
+      "gaeb format",
+      "gaeb datei"
+    ],
+    "competitors": [
+      {
+        "domain": "streit-software.de",
+        "position": 6,
+        "url": "https://www.streit-software.de/wissen/gaeb-formate"
+      },
+      {
+        "domain": "hero-software.de",
+        "position": 10,
+        "url": "https://hero-software.de/blog/ratgeber/gaeb-datei"
+      },
+      {
+        "domain": "das-programm.io",
+        "position": 48,
+        "url": "https://das-programm.io/schnittstelle/gaeb/"
+      }
+    ],
+    "target": {
+      "title": "GAEB-Formate erklärt: X81 bis X86 | CraftOS",
+      "h1": "GAEB-Formate verstehen: welche Datei wofür?",
+      "description": "GAEB-Formate einfach erklärt: was X81, X83, X84 und X86 bedeuten, welche Phase der Ausschreibung sie abbilden und wie Sie GAEB-Dateien öffnen."
+    }
+  },
+  {
+    "path": "/blog/bauablaufplan",
+    "status": "geplant",
+    "phase": 9,
+    "primary": {
+      "keyword": "bauablaufplan",
+      "volume": 390,
+      "difficulty": 10,
+      "intents": [
+        "I"
+      ],
+      "cpc": 2.36,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "reason": "Lücke aus domain-keywords--craftnote.de.json (KD < 20).",
+    "secondary": [
+      "bauzeitenplan excel vorlage",
+      "bauzeitenplan"
+    ],
+    "competitors": [
+      {
+        "domain": "craftnote.de",
+        "position": 50,
+        "url": "https://craftnote.de/blog/bauzeitenplan-der-ueberblick-fuer-ein-reibungsloses-bauprojekt/"
+      }
+    ],
+    "target": {
+      "title": "Bauablaufplan erstellen: Phasen und Termine | CraftOS",
+      "h1": "Bauablaufplan und Bauzeitenplan erstellen",
+      "description": "Bauablaufplan erstellen: Bauphasen festlegen, Abhängigkeiten und Puffer planen und den Bauzeitenplan im Handwerksbetrieb aktuell halten."
+    }
+  },
+  {
+    "path": "/blog/arbeitszeitnachweis-vorlage",
+    "status": "geplant",
+    "phase": 9,
+    "primary": {
+      "keyword": "arbeitszeitnachweis vorlagen",
+      "volume": 480,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0.79,
+      "source": {
+        "endpoint": "POST /v1/keywords/export",
+        "file": "docs/seo/data/kwmap/export--candidates-1.json",
+        "fetchedAt": "2026-10-20T20:48:23.838Z"
+      }
+    },
+    "reason": "Lücke aus domain-keywords--streit-software.de.json (KD < 20).",
+    "secondary": [
+      "stundenzettel vorlage"
+    ],
+    "competitors": [
+      {
+        "domain": "streit-software.de",
+        "position": 19,
+        "url": "https://www.streit-software.de/vorlagen/stundenzettel"
+      }
+    ],
+    "target": {
+      "title": "Arbeitszeitnachweis-Vorlagen fürs Handwerk | CraftOS",
+      "h1": "Arbeitszeitnachweis: Vorlage oder App?",
+      "description": "Arbeitszeitnachweis-Vorlagen im Handwerk: welche Angaben Pflicht sind, wann Papier reicht und wie eine App den Nachweis mit Projektbezug erstellt."
+    }
+  }
+]
