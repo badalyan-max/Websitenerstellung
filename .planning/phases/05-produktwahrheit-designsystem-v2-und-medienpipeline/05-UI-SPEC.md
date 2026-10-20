@@ -1,7 +1,8 @@
 ---
 phase: 05
 slug: produktwahrheit-designsystem-v2-und-medienpipeline
-status: draft
+status: approved
+reviewed_at: 2026-10-20
 shadcn_initialized: false
 preset: none
 created: 2026-10-20
@@ -119,7 +120,7 @@ Deklarierte Werte (alle Vielfache von 4) [STANDARD, an Bestand angepasst]:
 **Ausnahmen:**
 - Abschnittsabstand Desktop 96 px (= 2 × 48, 8-px-Raster): nur `padding-block` von v2-Abschnitten ab 1024 px (Token `--spacing-section`); Begründung: ruhiger Abschnittsrhythmus bei großen Produktdarstellungen. Für keinen anderen Abstand zulässig.
 - Touch-Ziele: mindestens 44 × 44 px (Buttons bleiben bei `min-height: 48px` [BESTAND]; FAQ-`summary` min. 48 px; Tabellen-Scrollbereich und Textlinks in Karten durch gestreckten Klickbereich der Karte).
-- Mini-UI innerhalb der Geräterahmen ist eine verkleinerte Illustration: Innenabstände 4/8/12/16 px, Haarlinien 1–2 px; 12 px ist nur dort erlaubt.
+- Mini-UI innerhalb der Geräterahmen ist eine verkleinerte Illustration: Innenabstände 4/8/12/16 px, Haarlinien 1–2 px; 12 px ist nur dort erlaubt sowie als senkrechter Innenabstand von `.v2-btn-cta` (24 px Zeilenhöhe + 2 × 12 px = 48 px Mindesthöhe).
 - Bestand bleibt unverändert und gilt als Altlast bis zur Migration: `.site-container` mobil `calc(100% - 36px)` (18 px Rand), `.btn-cta` Innenabstand 13/22 px (nur Altseiten; v2 nutzt `.v2-btn-cta` mit 12/24 px, siehe Typography).
 
 ---
@@ -184,6 +185,7 @@ Nicht erlaubt: Amber `#F2AF38` als Text auf hellem Grund (Kontrast ≈ 1,9:1), A
 | Neutrale Linie | `#DEDEE3` (`ink-200`) | Tabellenzeilen, weiße Kacheln |
 | Warme Linie | `#E7DCC9` (`--color-line-warm`) | Kacheln auf Warmfläche |
 | Fokusring | `3px solid #BB7609`, `outline-offset: 4px` [BESTAND] | auf hell und dunkel sichtbar |
+| Fokusring auf Amber-Fläche (`StepFlow tone="amber"`) | `3px solid #101014` (ink-900, ≈ 9,3:1 auf `#F2AF38`) | nur innerhalb amberfarbener Flächen, weil `#BB7609` dort nur ≈ 1,9:1 erreicht |
 | Haken in Tabellen | Icon `Check` in `ink-900`, Kreis `primary-100 #FFEFCC` nur in CraftOS-Spalte | „Nein“ = Icon `Minus` in `ink-400` + Screenreadertext |
 
 **Flächenrhythmus einer Seite (Vorgabe für Phasen 6–9):** Hero dunkel → Abschnitte abwechselnd Weiß / `#F7F3EB` → CTA-Band dunkel. Zwischen Hero und CTA-Band keine weiteren vollflächig dunklen Abschnitte; Dunkel innerhalb des Inhalts nur als einzelne Bento-Kachel.
@@ -506,7 +508,7 @@ interface CtaBandProps {
 dunkel #101014, padding-block 64 px (mobil 48 px)
 ┌──────────────────────────────────────────────────────────────┐
 │ Machen Sie Platz für Ihr Handwerk.        [10 Tage kostenlos testen ↗] │
-│ 10 Tage kostenlos testen, ohne Zahlungsdaten.   Preise ansehen          │
+│ Ohne Zahlungsdaten – Sie entscheiden nach dem Test.   Preise ansehen    │
 └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -599,7 +601,7 @@ Ansprache „Sie“, Satzschreibung, aktive Verben, keine Füllwörter, keine Au
 | Primary CTA | „10 Tage kostenlos testen“ (Button `.v2-btn-cta` 16/600, auf Altseiten `.btn-cta`, Ziel `site.ctaUrl`, Icon `ArrowUpRight`) [BESTAND Hero; DESIGN-01 „10 Tage testen“] |
 | Sekundäre Aktion CTA-Band | „Preise ansehen“ → `/preise` |
 | Kartenlink | „Mehr zu {Funktionsname}“ (z. B. „Mehr zu Aufmaß“) |
-| CTA-Band Überschrift / Satz | „Machen Sie Platz für Ihr Handwerk.“ / „10 Tage kostenlos testen, ohne Zahlungsdaten.“ [BESTAND TrialCta, gekürzt] |
+| CTA-Band Überschrift / Satz | „Machen Sie Platz für Ihr Handwerk.“ / „Ohne Zahlungsdaten – Sie entscheiden nach dem Test.“ (wiederholt nicht das Button-Label) |
 | Kennzeichnung Code-Darstellung | „Vereinfachte Darstellung mit Beispieldaten“ |
 | Kennzeichnung KI-Bild | „Darstellung, KI-gestaltet“ |
 | Kennzahlen-Hinweis | „Preise netto zzgl. USt. Stand: {Datum aus Produkt-Snapshot}.“ |
