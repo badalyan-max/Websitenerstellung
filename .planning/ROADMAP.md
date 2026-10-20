@@ -53,7 +53,7 @@ Plans:
 - [x] 05-02-PLAN.md — Produktregister auf origin/release, Kundenportal live, Ankündigungen entfernt, Routen-Audit-Flag – Welle 1
 - [x] 05-03-PLAN.md — Preis-Snapshot, Paritätstest, Extra-Speicher und Credits überall abgeleitet – Welle 1
 - [x] 05-04-PLAN.md — Designsystem v2 Teil A (Kaskade, Tokens, Budgets, SectionHeader, Bento, Schritte, Kennzahlen, FAQ, CTA) – Welle 1
-- [ ] 05-05-PLAN.md — Designsystem v2 Teil B (Vergleichstabelle, Badges, Funktionskarte, Kennzeichnung, Medien, Geräterahmen, Mini-UI) – Welle 1
+- [x] 05-05-PLAN.md — Designsystem v2 Teil B (Vergleichstabelle, Badges, Funktionskarte, Kennzeichnung, Medien, Geräterahmen, Mini-UI) – Welle 1
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -146,7 +146,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 5. Produktwahrheit, Keyword-Map und Designbausteine | 4/8 | In Progress|  |
+| 5. Produktwahrheit, Keyword-Map und Designbausteine | 5/8 | In Progress|  |
 | 6. Startseite, Navigation und Funktionsübersicht | 0/TBD | Not started | - |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 0/TBD | Not started | - |
 | 8. SEO und KI-Sichtbarkeit | 0/TBD | Not started | - |

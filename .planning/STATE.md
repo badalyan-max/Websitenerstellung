@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-last_updated: "2026-10-20T21:40:51.198Z"
-last_activity: 2026-10-20 -- Phase 5 execution started
+last_updated: "2026-10-20T21:58:48.455Z"
+last_activity: 2026-10-20 -- Plan 05-05 abgeschlossen (Designsystem v2 Teil B)
 progress:
   total_phases: 6
   completed_phases: 0
   total_plans: 8
-  completed_plans: 4
+  completed_plans: 5
   percent: 0
 ---
 
@@ -29,9 +29,9 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 5 (Produktwahrheit, Keyword-Map und Designbausteine) — EXECUTING
-Plan: 5 of 8
+Plan: 6 of 8
 Status: Ready to execute
-Last activity: 2026-10-20 -- Plan 05-04 abgeschlossen (Designsystem v2 Teil A)
+Last activity: 2026-10-20 -- Plan 05-05 abgeschlossen (Designsystem v2 Teil B)
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -53,6 +53,10 @@ Progress: [░░░░░░░░░░] 0%
 - [Phase 05-04]: TEXT_BUDGET enthält Mengen unter count; Bausteine erzwingen Text- und Mengenbudgets beim Rendern mit UI-SPEC-Fehlertexten
 - [Phase 05-04]: StepFlow als Maßkette (Sechseck-Knoten + Maßlinie mit Endstrichen); tone=amber mit dunklem Knoten
 - [Phase 05-04]: Wirksames ink-100 ist #f7f3eb; v2-Module nutzen UI-SPEC-Hexwerte und var()-Fallbacks
+- [Phase 05]: 05-05: FeatureCard hat genau einen gestreckten Link „Mehr zu {name}“ und prüft tier heute plus belegte Plattformen gegen lib/funktionen.ts
+- [Phase 05]: 05-05: MediaFigure übersetzt priority in loading=eager + fetchPriority=high (next/image priority in Next.js 16 abgekündigt)
+- [Phase 05]: 05-05: Geräterahmen komplett aria-hidden + inert, Bedeutung über Pflicht-Prop description (sr-only); DevicePair trägt genau eine Kennzeichnung
+- [Phase 05]: 05-05: Mini-UI-Statusnamen nur Entwurf, Offen, Gesendet, Bezahlt, Überfällig, Storniert (Beleg web:src/pages/Dokumente.tsx)
 
 ### Pending Todos
 
@@ -71,3 +75,4 @@ None yet.
 | Phase 05 P02 | 35min | 2 tasks | 17 files |
 | Phase 05 P03 | 10 min | 3 tasks | 12 files |
 | Phase 05 P04 | 20 min | 2 tasks | 16 files |
+| Phase 05 P05 | 17 min | 2 tasks | 21 files |
