@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ArrowUpRight, Check, Laptop, Smartphone } from "lucide-react";
-import { tarife, site } from "@/lib/site";
+import { annualSavingPercent, extraSpeicher, site, tarife } from "@/lib/site";
 import styles from "./PricingTable.module.css";
 
 const euro = (value: number) =>
@@ -15,9 +15,7 @@ function displayCopy(value: string) {
   const text = value
     .replaceAll("Web-App", "Webapp")
     .replaceAll("Mobile-App", "mobile App")
-    .replaceAll("Handy-App", "mobile App")
-    .replaceAll("Voll-Lizenz", "Volllizenz")
-    .replaceAll("App-Lizenz", "mobile Lizenz");
+    .replaceAll("Handy-App", "mobile App");
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
@@ -50,14 +48,14 @@ export function PricingTable() {
           </button>
         </div>
         <p className={styles.saving}>
-          <span>Rund 17 % sparen</span>mit jährlicher Abrechnung
+          <span>Rund {Math.round(annualSavingPercent)} % sparen</span>mit
+          jährlicher Abrechnung
         </p>
       </div>
 
       <div className={styles.cards}>
         {[...tarife].reverse().map((tariff) => {
           const isFull = tariff.id === "voll";
-          const name = isFull ? "Volllizenz" : "Mobile Lizenz";
 
           return (
             <article
@@ -80,7 +78,7 @@ export function PricingTable() {
                       : "Für Ihr Team auf der Baustelle"}
                   </span>
                 </div>
-                <h3 id={`tariff-${tariff.id}`}>{name}</h3>
+                <h3 id={`tariff-${tariff.id}`}>{tariff.name}</h3>
                 <p className={styles.audience}>{displayCopy(tariff.fuer)}</p>
               </header>
 
@@ -133,7 +131,7 @@ export function PricingTable() {
 
               <div className={styles.cardFooter}>
                 <a href={site.ctaUrl} className={styles.cta}>
-                  10 Tage kostenlos testen
+                  {site.trialDays} Tage kostenlos testen
                   <ArrowUpRight size={19} aria-hidden="true" />
                 </a>
                 <p>Ohne Zahlungsdaten</p>
@@ -144,10 +142,12 @@ export function PricingTable() {
       </div>
 
       <p className={styles.terms}>
-        Ein Betrieb benötigt mindestens eine Volllizenz für die Administration.
+        Ein Betrieb benötigt mindestens eine{" "}
+        {tarife.find((t) => t.id === "voll")!.name} für die Administration.
         Zugriffsrechte werden je Rolle vergeben. Craft AI und Belegscans mit KI
-        werden nach Verbrauch über Credits abgerechnet; erweiterter Speicher
-        kann zusätzlich kosten.
+        laufen über im Voraus gekaufte Credits. Extra-Speicher:{" "}
+        {extraSpeicher.gb} GB für {euro(extraSpeicher.monat)} € netto pro Monat
+        oder {euro(extraSpeicher.jahr)} € netto pro Jahr.
       </p>
     </div>
   );

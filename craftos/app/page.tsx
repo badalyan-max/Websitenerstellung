@@ -15,19 +15,26 @@ import { funktionen } from "@/lib/funktionen";
 import { pageMetadata } from "@/lib/metadata";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { faqSchema } from "@/lib/schema";
+import { site, tarife } from "@/lib/site";
+const euro = new Intl.NumberFormat("de-DE", {
+  style: "currency",
+  currency: "EUR",
+});
+const voll = tarife.find((t) => t.id === "voll")!;
+const app = tarife.find((t) => t.id === "app")!;
 export const metadata = pageMetadata(
   "CraftOS – Handwerkersoftware für Büro & Baustelle",
-  "CraftOS verbindet Angebote, Rechnungen, Plantafel, Zeiten und Lager. Voll-Lizenz inklusive Mobile-App. 10 Tage kostenlos testen.",
+  `CraftOS verbindet Angebote, Rechnungen, Plantafel, Zeiten und Lager. Voll-Lizenz inklusive Mobile-App. ${site.trialDays} Tage kostenlos testen.`,
   "/",
 );
 const faqs = [
   {
     q: "Ist die Handy-App in der Voll-Lizenz enthalten?",
-    a: "Ja. Die Voll-Lizenz für 29,95 € netto pro Person und Monat umfasst die Web-App und die Mobile-App für dieselbe Person. Für Mitarbeitende auf der Baustelle gibt es ergänzende App-Lizenzen für 9,95 € netto monatlich.",
+    a: `Ja. Die ${voll.name} für ${euro.format(voll.monat)} netto pro Person und Monat umfasst die Web-App und die Mobile-App für dieselbe Person. Für Mitarbeitende auf der Baustelle gibt es ergänzende ${app.name}en für ${euro.format(app.monat)} netto monatlich.`,
   },
   {
     q: "Wie lange kann ich CraftOS kostenlos testen?",
-    a: "Sie können CraftOS 10 Tage ohne Zahlungsdaten testen. Ein kostenpflichtiges Abonnement wählen Sie aktiv in der App; den Zahlungsbeginn sehen Sie im Checkout.",
+    a: `Sie können CraftOS ${site.trialDays} Tage ohne Zahlungsdaten testen. Ein kostenpflichtiges Abonnement wählen Sie aktiv in der App; den Zahlungsbeginn sehen Sie im Checkout.`,
   },
   {
     q: "Kostet die Plantafel zusätzlich?",

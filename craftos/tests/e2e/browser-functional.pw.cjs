@@ -155,8 +155,8 @@ test('Rechner: Eingaben lösen keine Requests aus und bleiben nicht nach Neulade
 test('Preise: Jahresabo als Standard, Monatsäquivalent und sichtbare Jahreszahlung', async ({ page }, testInfo) => {
   await page.goto('/preise')
   const billing = page.getByRole('group', { name: 'Abrechnung wählen', exact: true })
-  const full = page.getByRole('article', { name: 'Volllizenz', exact: true })
-  const mobile = page.getByRole('article', { name: 'Mobile Lizenz', exact: true })
+  const full = page.getByRole('article', { name: 'Voll-Lizenz', exact: true })
+  const mobile = page.getByRole('article', { name: 'App-Lizenz', exact: true })
   await expect(billing.getByRole('button', { name: 'Jährlich', exact: true })).toHaveAttribute('aria-pressed', 'true')
   await expect(full.locator('strong').first()).toHaveText(/^24,96\s*€$/)
   await expect(full.getByText('299,50 €', { exact: true })).toBeVisible()

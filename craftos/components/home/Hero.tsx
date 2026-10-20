@@ -1,7 +1,12 @@
 import { ArrowDown, ArrowUpRight, Check } from "lucide-react";
-import { site } from "@/lib/site";
+import { annualSavingPercent, site, tarife } from "@/lib/site";
 import { FeatureSnippet } from "@/components/feature-snippet/FeatureSnippet";
 import { StoreLinks } from "@/components/ui/StoreLinks";
+const euro = new Intl.NumberFormat("de-DE", {
+  style: "currency",
+  currency: "EUR",
+});
+const voll = tarife.find((t) => t.id === "voll")!;
 export function Hero() {
   return (
     <section className="dark-section home-hero pb-10 md:pb-12">
@@ -20,7 +25,7 @@ export function Hero() {
             </p>
             <div className="flex flex-wrap gap-3 mt-6">
               <a className="btn-cta" href={site.ctaUrl}>
-                10 Tage kostenlos testen <ArrowUpRight size={17} />
+                {site.trialDays} Tage kostenlos testen <ArrowUpRight size={17} />
               </a>
               <a href="#produktdemo" className="btn-secondary">
                 Ablauf ansehen <ArrowDown size={16} />
@@ -31,14 +36,15 @@ export function Hero() {
                 <Check size={14} />
                 Ohne Zahlungsdaten
               </span>
-              <span>Volllizenz inklusive Handy App</span>
+              <span>{voll.name} inklusive Mobile-App</span>
             </p>
             <div className="mt-5">
               <StoreLinks />
             </div>
             <p className="mt-5 text-xs max-w-md">
-              Ab 24,96 € netto / Monat im Jahresabo (rund 17 % günstiger).
-              299,50 € jährlich.
+              Ab {euro.format(voll.jahr / 12)} netto / Monat im Jahresabo (rund{" "}
+              {Math.round(annualSavingPercent)} % günstiger).{" "}
+              {euro.format(voll.jahr)} jährlich.
             </p>
           </div>
           <div

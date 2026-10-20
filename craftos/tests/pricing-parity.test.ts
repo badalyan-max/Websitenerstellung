@@ -41,6 +41,9 @@ describe("Preise entsprechen origin/release der Web-App", () => {
     expect(creditPakete.map((c) => [c.preis, c.bonus])).toEqual(
       snapshot.creditPackages.map((c) => [c.amount, c.bonusPercent]),
     );
+    expect(creditPakete.map((c) => c.guthaben)).toEqual(
+      snapshot.creditPackages.map((c) => c.amount + c.bonus),
+    );
     expect(site.trialDays).toBe(snapshot.trialDays);
     expect(snapshot.netPrices).toBe(true);
   });

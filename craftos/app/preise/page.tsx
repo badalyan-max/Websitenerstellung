@@ -6,9 +6,32 @@ import { TrialCta } from "@/components/ui/TrialCta";
 import { pageMetadata } from "@/lib/metadata";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { faqSchema } from "@/lib/schema";
+import {
+  annualSavingPercent,
+  creditPakete,
+  extraSpeicher,
+  site,
+  startCredits,
+  tarife,
+} from "@/lib/site";
+const euroFormat = new Intl.NumberFormat("de-DE", {
+  style: "currency",
+  currency: "EUR",
+});
+const euro = (value: number) => euroFormat.format(value);
+const prozent = (value: number) =>
+  new Intl.NumberFormat("de-DE", { maximumFractionDigits: 2 }).format(value);
+const voll = tarife.find((t) => t.id === "voll")!;
+const app = tarife.find((t) => t.id === "app")!;
+const ersparnisRund = Math.round(annualSavingPercent);
+// Rechenbeispiel: eine Voll-Lizenz für den Inhaber und vier App-Lizenzen fürs Team
+const teamApps = 4;
+const beispielMonat = voll.monat + teamApps * app.monat;
+const beispielJahr = voll.jahr + teamApps * app.jahr;
+const extraSpeicherText = `${extraSpeicher.gb} GB Extra-Speicher kosten ${euro(extraSpeicher.monat)} netto pro Monat oder ${euro(extraSpeicher.jahr)} netto pro Jahr`;
 export const metadata = pageMetadata(
   "Preise: Voll-Lizenz inklusive Mobile-App",
-  "CraftOS Voll-Lizenz 29,95 € netto/Monat inklusive Web-App und Handy-App. App-Lizenz 9,95 €. Jahresabo rund 17 % günstiger. 10 Tage testen.",
+  `CraftOS ${voll.name} ${euro(voll.monat)} netto/Monat inklusive Web-App und Handy-App. ${app.name} ${euro(app.monat)}. Jahresabo rund ${ersparnisRund} % günstiger. ${site.trialDays} Tage testen.`,
   "/preise",
 );
 const faqs = [
@@ -18,11 +41,11 @@ const faqs = [
   },
   {
     q: "Wie berechnet sich der Jahresrabatt?",
-    a: "Die Jahreslizenz kostet zehn Monatsraten. Bei der Voll-Lizenz sind das 299,50 € statt 359,40 € für zwölf einzelne Monate: 59,90 € Ersparnis oder 16,67 %, gerundet rund 17 %. Alle Beträge netto.",
+    a: `Die Jahreslizenz kostet zehn Monatsraten. Bei der ${voll.name} sind das ${euro(voll.jahr)} statt ${euro(voll.monat * 12)} für zwölf einzelne Monate: ${euro(voll.monat * 12 - voll.jahr)} Ersparnis oder ${prozent(annualSavingPercent)} %, gerundet rund ${ersparnisRund} %. Alle Beträge netto.`,
   },
   {
     q: "Welche Funktionen kosten zusätzlich?",
-    a: "Die freigegebenen Kernmodule wie Plantafel, Angebote, Rechnungen, Projekte und Lager gehören zur Voll-Lizenz. KI-Abfragen und KI-Belegscans verbrauchen Credits. Erweiterter Speicher kann zusätzlich kosten. Der konkrete Zugriff richtet sich nach Rolle und Berechtigungen.",
+    a: `Die freigegebenen Kernmodule wie Plantafel, Angebote, Rechnungen, Projekte und Lager gehören zur Voll-Lizenz. KI-Abfragen und KI-Belegscans verbrauchen im Voraus gekaufte Credits; zum Start gibt es einmalig ${startCredits} Credits. ${extraSpeicherText}. Der konkrete Zugriff richtet sich nach Rolle und Berechtigungen.`,
   },
   {
     q: "Welche Lizenz braucht mein Betrieb mindestens?",
@@ -33,7 +56,7 @@ const faqs = [
     a: "CraftOS wird als monatliches oder jährliches Abonnement angeboten. Beim Jahresabo zahlen Sie für ein Jahr im Voraus. Es handelt sich nicht um eine einmalige Dauerlizenz.",
   },
   {
-    q: "Was passiert nach den 10 Testtagen?",
+    q: `Was passiert nach den ${site.trialDays} Testtagen?`,
     a: "Sie testen ohne Zahlungsdaten und wählen ein kostenpflichtiges Abonnement aktiv in der App. Die verbindlichen Zahlungs- und Verlängerungsbedingungen sehen Sie vor dem Abschluss im Checkout.",
   },
 ];
@@ -49,7 +72,7 @@ export default function Page() {
             Ihre Software wächst mit.
           </>
         }
-        intro="Ein klarer Preis pro Person. Alle Kernmodule, die Web-App und die Handy-App sind in der Volllizenz enthalten."
+        intro="Ein klarer Preis pro Person. Alle Kernmodule, die Web-App und die Handy-App sind in der Voll-Lizenz enthalten."
       />
       <section className="section-space">
         <div className="site-container">
@@ -60,16 +83,62 @@ export default function Page() {
             </h2>
             <p className="mt-4">
               Eine Voll-Lizenz für den Inhaber und vier App-Lizenzen fürs Team:{" "}
-              <strong>69,75 € netto im Monat</strong> oder{" "}
-              <strong>697,50 € netto im Jahr (rund 17 % günstiger)</strong>. Die
-              Handy-App des Inhabers ist bereits enthalten.
+              <strong>{euro(beispielMonat)} netto im Monat</strong> oder{" "}
+              <strong>
+                {euro(beispielJahr)} netto im Jahr (rund {ersparnisRund} %
+                günstiger)
+              </strong>
+              . Die Handy-App des Inhabers ist bereits enthalten.
             </p>
             <p className="text-sm text-ink-600 mt-3">
-              Bei jährlicher Abrechnung entspricht das 58,13 € netto pro Monat;
-              Zahlung für das ganze Jahr. Zusätzlicher KI-Verbrauch und Speicher
-              sind nicht im Beispiel enthalten.
+              Bei jährlicher Abrechnung entspricht das {euro(beispielJahr / 12)}{" "}
+              netto pro Monat; Zahlung für das ganze Jahr. KI-Credits und
+              Extra-Speicher sind nicht im Beispiel enthalten.
             </p>
           </div>
+          <section
+            aria-labelledby="ki-credits"
+            className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] lg:items-start"
+          >
+            <div>
+              <h2 id="ki-credits" className="text-2xl font-semibold">
+                KI-Credits: Startguthaben, danach im Voraus.
+              </h2>
+              <p className="mt-4">
+                Zum Start erhält Ihr Betrieb einmalig {startCredits} Credits für
+                Craft AI und KI-Belegscans. Danach kaufen Sie Credit-Pakete im
+                Voraus in der Web-App. Es gibt kein Monatskontingent und keine
+                Nachabrechnung.
+              </p>
+            </div>
+            <div>
+              <ul
+                aria-label="Credit-Pakete"
+                className="grid grid-cols-2 gap-px border-y border-ink-200 bg-ink-200 md:grid-cols-4"
+              >
+                {creditPakete.map((paket) => (
+                  <li
+                    key={paket.preis}
+                    className="flex flex-col gap-1 bg-white px-4 py-5"
+                  >
+                    <span className="text-3xl font-semibold tabular-nums">
+                      {euro(paket.preis)}
+                    </span>
+                    <span className="text-sm text-ink-600">
+                      {paket.bonus > 0 ? `+${paket.bonus} % Bonus` : "ohne Bonus"}
+                    </span>
+                    <span className="text-sm text-ink-600 tabular-nums">
+                      Guthaben {euro(paket.guthaben)}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-3 text-sm text-ink-600">
+                Paketpreise netto, zzgl. gesetzlicher Umsatzsteuer.{" "}
+                {extraSpeicherText}.
+              </p>
+            </div>
+          </section>
           <Link className="text-link mt-8" href="/vergleich">
             Leistungsumfang und Anbieter sachlich vergleichen
           </Link>
