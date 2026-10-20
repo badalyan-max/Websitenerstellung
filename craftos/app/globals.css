@@ -36,6 +36,20 @@
   --font-display: var(--font-clash), system-ui, sans-serif;
   --font-sans: var(--font-general), system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Consolas, monospace;
+  /* Designsystem v2 (UI-SPEC Phase 5) – Erweiterung, kein Ersatz */
+  /* Radien – Hierarchie statt Einheitsradius */
+  --radius-badge: 6px;     /* Plattform-/Lizenz-Badges */
+  --radius-tile: 16px;     /* Bento-Kacheln sm/md, Funktionskarten, Tabellenrahmen */
+  --radius-stage: 24px;    /* große Kacheln lg/wide, Gerätebühnen */
+  /* Schatten – ausschließlich Geräterahmen */
+  --shadow-device: 0 24px 48px -24px #10101466, 0 0 0 1px #10101414;
+  --shadow-device-dark: 0 24px 64px -16px #000000a6, 0 0 0 4px #f2af381f;
+  /* Abschnittsrhythmus */
+  --spacing-section: 96px;     /* ≥ 1024 px – Ausnahme „Abschnittsabstand Desktop“ */
+  --spacing-section-md: 64px;  /* 768–1023 px */
+  --spacing-section-sm: 48px;  /* < 768 px */
+  /* Warme Kachelkante (bisher nur als Literal in .soft-panel) */
+  --color-line-warm: #e7dcc9;
 }
 :root {
   color-scheme: light;
@@ -177,6 +191,55 @@ img {
 }
 .dark-section .btn-secondary {
   border-color: #575762;
+}
+/* Designsystem v2: eigene Klassen, erben nichts von .eyebrow/.btn-cta (UI-SPEC Typography). */
+.v2-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #99600b;
+}
+.v2-eyebrow::before {
+  content: "";
+  flex: none;
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+}
+[data-tone="dark"] .v2-eyebrow,
+.dark-section .v2-eyebrow {
+  color: #f2af38;
+}
+.v2-btn-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px 24px;
+  border: 0;
+  border-radius: var(--radius-badge);
+  background: #f2af38;
+  color: #101014;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: transform 0.18s ease;
+}
+.v2-btn-cta svg {
+  flex: none;
+}
+@media (hover: hover) {
+  .v2-btn-cta:hover {
+    transform: translateY(-2px);
+  }
 }
 .text-link {
   display: inline-flex;

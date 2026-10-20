@@ -1,0 +1,52 @@
+/* Abschnittskopf v2 – UI-SPEC §1. Eyebrow 24 px → H2, H2 16 px → Lead, Kopf → Inhalt 48/32 px. */
+.header {
+  margin: 0 0 32px;
+  max-width: 800px;
+}
+.header[data-align="center"] {
+  margin-inline: auto;
+  text-align: center;
+}
+.header .eyebrow {
+  display: flex;
+  margin: 0 0 24px;
+}
+.header[data-align="center"] .eyebrow {
+  justify-content: center;
+}
+.title {
+  margin: 0;
+  max-width: 800px;
+  font-family: var(--font-display, var(--font-clash, sans-serif));
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #17171c;
+  scroll-margin-top: 100px;
+}
+.lead {
+  margin: 16px 0 0;
+  max-width: 60ch;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #62626e;
+}
+.header[data-align="center"] .lead {
+  margin-inline: auto;
+}
+.header[data-tone="dark"] .title {
+  color: #f4f4f5;
+}
+.header[data-tone="dark"] .lead {
+  color: #bcbcc6;
+}
+@media (min-width: 768px) {
+  .header {
+    margin-bottom: 48px;
+  }
+  .title {
+    font-size: clamp(32px, 4vw, 48px);
+  }
+}

@@ -1,0 +1,80 @@
+/* Kennzahlen-Leiste v2 – UI-SPEC §4. Trennung nur durch 1-px-Linien, kein Rahmen, kein Verlauf. */
+.root {
+  --kf-line: #dedee3;
+  --kf-value: #17171c;
+  --kf-label: #62626e;
+}
+.root[data-tone="dark"] {
+  --kf-line: #ffffff25;
+  --kf-value: #f4f4f5;
+  --kf-label: #bcbcc6;
+}
+.list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  border-bottom: 1px solid var(--kf-line);
+}
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 24px 16px 24px 0;
+  border-top: 1px solid var(--kf-line);
+}
+.fact:nth-child(even) {
+  padding-left: 16px;
+  border-left: 1px solid var(--kf-line);
+}
+.value {
+  order: -1;
+  margin: 0;
+  font-family: var(--font-display, var(--font-clash, sans-serif));
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--kf-value);
+}
+.label {
+  margin: 0;
+  max-width: 24ch;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--kf-label);
+}
+.note {
+  margin: 16px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--kf-label);
+}
+@media (min-width: 768px) {
+  .fact {
+    padding: 32px 24px 32px 0;
+  }
+  .fact:nth-child(even) {
+    padding-left: 24px;
+  }
+  .value {
+    font-size: clamp(32px, 4vw, 48px);
+  }
+}
+@media (min-width: 1024px) {
+  .list {
+    grid-template-columns: repeat(var(--facts, 4), minmax(0, 1fr));
+  }
+  .fact:nth-child(n) {
+    padding-left: 24px;
+    border-left: 1px solid var(--kf-line);
+  }
+  .fact:first-child {
+    padding-left: 0;
+    border-left: 0;
+  }
+}

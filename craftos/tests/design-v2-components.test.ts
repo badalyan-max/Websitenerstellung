@@ -103,7 +103,7 @@ describe("CtaBand", () => {
     expect(primary).toBeDefined();
     expect(primary).toContain(`href="${site.ctaUrl}"`);
     expect(primary).toContain("10 Tage kostenlos testen");
-    expect(html).not.toMatch(/class="[^"]*\bbtn-cta\b/);
+    expect(html, "Altklasse .btn-cta").not.toMatch(/class="(?:[^"]*\s)?btn-cta[\s"]/);
     const secondary = html.match(/<a\b[^>]*href="\/preise"[^>]*>([\s\S]*?)<\/a>/);
     expect(secondary?.[1]).toBe("Preise ansehen");
     expect(count(html, /<h2\b/g)).toBe(1);
