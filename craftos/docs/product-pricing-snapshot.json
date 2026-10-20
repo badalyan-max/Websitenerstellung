@@ -4,7 +4,7 @@
     "ref": "origin/release",
     "tag": "v4.0.0-test.238",
     "commit": "07cf0645517b81fa39c8644e3c9c84904f789bc4",
-    "readAt": "2026-10-20T21:18:41.121Z"
+    "readAt": "2026-10-20T23:22:46.462Z"
   },
   "mobileSource": {
     "repo": "craftos-mobile",
@@ -21,6 +21,7 @@
     "APP_YEARLY": 99.5,
     "YEARLY_DISCOUNT_PERCENT": 17,
     "ADMIN_FREE_CREDITS": 150,
+    "FREE_AI_CREDIT": 1.5,
     "ORG_STORAGE_BASE_GB": 50,
     "EXTRA_STORAGE_GB": 50,
     "EXTRA_STORAGE_PRICE_MONTHLY": 0.99,
@@ -49,6 +50,7 @@
       "bonusPercent": 20
     }
   ],
+  "creditValueEur": 0.01,
   "trialDays": 10,
   "netPrices": true
 }

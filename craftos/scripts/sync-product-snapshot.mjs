@@ -45,10 +45,15 @@ if (process.argv.includes("--check")) {
   const keys = [
     "ADMIN_MONTHLY", "BUERO_MONTHLY", "APP_MONTHLY",
     "ADMIN_YEARLY", "BUERO_YEARLY", "APP_YEARLY",
-    "YEARLY_DISCOUNT_PERCENT", "ADMIN_FREE_CREDITS", "ORG_STORAGE_BASE_GB",
+    "YEARLY_DISCOUNT_PERCENT", "ADMIN_FREE_CREDITS", "FREE_AI_CREDIT", "ORG_STORAGE_BASE_GB",
     "EXTRA_STORAGE_GB", "EXTRA_STORAGE_PRICE_MONTHLY", "EXTRA_STORAGE_PRICE_YEARLY",
   ];
   const pricing = Object.fromEntries(keys.map((k) => [k, num(constants, k)]));
+
+  // Wert eines Credits in Euro: FREE_AI_CREDIT (Startguthaben in EUR) / ADMIN_FREE_CREDITS (Startguthaben in
+  // Credits); laut constants.ts und useAiCredits.ts gilt 1 Credit = 0,01 €.
+  const creditValueEur = Math.round((pricing.FREE_AI_CREDIT / pricing.ADMIN_FREE_CREDITS) * 1e6) / 1e6;
+  if (!(creditValueEur > 0)) throw new Error("Credit-Wert aus FREE_AI_CREDIT/ADMIN_FREE_CREDITS nicht ableitbar.");
 
   const vat = constants.match(/export const VAT_RATE = ([\d.]+)/);
   if (!vat) throw new Error("VAT_RATE in src/lib/constants.ts nicht gefunden.");
@@ -83,6 +88,7 @@ if (process.argv.includes("--check")) {
     pricing,
     vatRate: Number(vat[1]),
     creditPackages,
+    creditValueEur,
     trialDays,
     netPrices,
   };

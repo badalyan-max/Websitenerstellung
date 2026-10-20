@@ -3,6 +3,7 @@ import { funktionen } from "./funktionen";
 import { gewerke } from "./gewerke";
 import {
   creditPakete,
+  creditUmrechnung,
   extraSpeicher,
   site,
   speicherPool,
@@ -35,7 +36,7 @@ export function buildLlmsTxt(): string {
     `- Zahlung: ${zahlung.sepa} oder ${zahlung.karte}. ${zahlung.jahresrabatt}.`,
     `- Speicher: ${speicherPool}`,
     `- Extra-Speicher: ${euro(extraSpeicher.monat)} netto pro Monat je ${extraSpeicher.gb} GB oder ${euro(extraSpeicher.jahr)} netto im Jahr`,
-    `- KI-Credits: einmalig ${startCredits} Credits Startguthaben, danach im Voraus gekaufte Credit-Pakete (netto): ${pakete}. Kein Monatskontingent, keine Nachabrechnung.`,
+    `- KI-Credits: einmalig ${startCredits} Credits Startguthaben (${creditUmrechnung}), danach im Voraus gekaufte Credit-Pakete (netto): ${pakete}. Kein Monatskontingent, keine Nachabrechnung.`,
     `- Mobile-App: iOS ${site.iosUrl}, Android ${site.androidUrl}`,
     `- Kontakt: ${site.email}`,
     `- Stand der Angaben: ${site.checkedAt}`,

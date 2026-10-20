@@ -10,6 +10,7 @@ import {
   annualSavingPercent,
   creditPakete,
   extraSpeicher,
+  creditUmrechnung,
   site,
   startCredits,
   tarife,
@@ -45,7 +46,7 @@ const faqs = [
   },
   {
     q: "Welche Funktionen kosten zusätzlich?",
-    a: `Die freigegebenen Kernmodule wie Plantafel, Angebote, Rechnungen, Projekte und Lager gehören zur Voll-Lizenz. KI-Abfragen und KI-Belegscans verbrauchen im Voraus gekaufte Credits; zum Start gibt es einmalig ${startCredits} Credits. ${extraSpeicherText}. Der konkrete Zugriff richtet sich nach Rolle und Berechtigungen.`,
+    a: `Die freigegebenen Kernmodule wie Plantafel, Angebote, Rechnungen, Projekte und Lager gehören zur Voll-Lizenz. KI-Abfragen und KI-Belegscans verbrauchen im Voraus gekaufte Credits; zum Start gibt es einmalig ${startCredits} Credits (${creditUmrechnung}). ${extraSpeicherText}. Der konkrete Zugriff richtet sich nach Rolle und Berechtigungen.`,
   },
   {
     q: "Welche Lizenz braucht mein Betrieb mindestens?",
@@ -106,7 +107,7 @@ export default function Page() {
               </h2>
               <p className="mt-4">
                 Zum Start erhält Ihr Betrieb einmalig {startCredits} Credits für
-                Craft AI und KI-Belegscans. Danach kaufen Sie Credit-Pakete im
+                Craft AI und KI-Belegscans ({creditUmrechnung}). Danach kaufen Sie Credit-Pakete im
                 Voraus in der Web-App. Es gibt kein Monatskontingent und keine
                 Nachabrechnung.
               </p>

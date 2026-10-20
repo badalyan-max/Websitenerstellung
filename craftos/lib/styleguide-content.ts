@@ -22,7 +22,7 @@ import type { PhoneTab } from "@/components/v2/PhoneFrame";
 import type { Step } from "@/components/v2/StepFlow";
 import { getFunktion, type ProductPlatform } from "@/lib/funktionen";
 import { mobileLocales, productBasis } from "@/lib/product-register";
-import { site, startCredits, tarife } from "@/lib/site";
+import { creditUmrechnung, site, startCredits, tarife } from "@/lib/site";
 
 const NBSP = " ";
 
@@ -361,7 +361,7 @@ export const faqContent: { q: string; a: string }[] = [
   },
   {
     q: "Wie werden KI-Funktionen abgerechnet?",
-    a: `Über im Voraus gekaufte Credits; jeder Betrieb erhält einmalig ${startCredits}${NBSP}Credits Startguthaben.`,
+    a: `Über im Voraus gekaufte Credits; jeder Betrieb erhält einmalig ${startCredits}${NBSP}Credits Startguthaben (${creditUmrechnung}).`,
   },
 ];
 

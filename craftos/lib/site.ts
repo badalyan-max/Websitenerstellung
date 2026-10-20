@@ -30,6 +30,11 @@ export const speicherPool = "50 GB Speicher-Pool pro Betrieb";
 export const extraSpeicher = { gb: 50, monat: 0.99, jahr: 9.9 } as const;
 /** Einmaliges KI-Startguthaben einer neuen Organisation (kein Monatskontingent). */
 export const startCredits = 150;
+/** Wert eines KI-Credits in Euro (Web-App: „1 Credit = 0,01 €“; FREE_AI_CREDIT 1,50 € = 150 Credits). */
+export const creditWertEuro = 0.01;
+const euroKurz = (value: number) => value.toFixed(2).replace(".", ",") + " €";
+/** Einordnung der Start-Credits für /preise, FAQ-Schema und llms.txt: „entspricht 1,50 €; 1 Credit = 0,01 €“. */
+export const creditUmrechnung = `entspricht ${euroKurz(startCredits * creditWertEuro)}; 1 Credit = ${euroKurz(creditWertEuro)}`;
 export const annualSavingPercent = 100 * (1 - 10 / 12);
 export const tarife = [
   {

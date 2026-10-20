@@ -69,6 +69,20 @@ describe("Preise entsprechen origin/release der Web-App", () => {
     expect(txt).toContain("netto");
   });
 
+  it("Credit-Einheit: 1 Credit = 0,01 €, Start-Credits mit Euro-Gegenwert auf /preise, im FAQ-Schema und in llms.txt", () => {
+    const { creditWertEuro, creditUmrechnung } = siteModule;
+    expect(creditWertEuro).toBe(snapshot.creditValueEur);
+    expect(p.FREE_AI_CREDIT / p.ADMIN_FREE_CREDITS).toBeCloseTo(snapshot.creditValueEur, 10);
+    const startEuro = euro(p.FREE_AI_CREDIT);
+    expect(creditUmrechnung).toBe(`entspricht ${startEuro}; 1 Credit = ${euro(snapshot.creditValueEur)}`);
+    expect(buildLlmsTxt()).toContain(`${p.ADMIN_FREE_CREDITS} Credits Startguthaben (${creditUmrechnung})`);
+    // /preise: Fließtext und FAQ (Quelle des FAQPage-JSON-LD) nutzen beide creditUmrechnung.
+    const seite = read("app/preise/page.tsx");
+    expect(seite).toContain("Craft AI und KI-Belegscans ({creditUmrechnung})");
+    expect(seite).toContain("einmalig ${startCredits} Credits (${creditUmrechnung})");
+    expect(seite).toMatch(/faqSchema\(faqs\)/);
+  });
+
   it("Schema: Offer-Preis aus der Voll-Lizenz, ohne Umsatzsteuer", () => {
     const offers = softwareApplicationSchema().offers as {
       price: string;
