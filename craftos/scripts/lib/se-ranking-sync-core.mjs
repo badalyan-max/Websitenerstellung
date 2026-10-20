@@ -3,11 +3,13 @@
 // Berichte werden nie überschrieben (D-15/D-07a): ein zweiter Lauf am selben Tag erhält die Laufnummer -2, -3, …
 import fs from "node:fs";
 import path from "node:path";
-import { McpError } from "./se-ranking-mcp.mjs";
+import { McpError, rowsOf } from "./se-ranking-mcp.mjs";
 
 export const SITE_ID = 13094375;
 export const ORIGIN = "https://craftos.eu";
 const ADD_CHUNK = 20;
+const PROMPT_PAGE = 100; // PROJECT_listPrompts: limit 1–1000, offset
+const MAX_PAGES = 50;
 
 export const today = () => new Date().toLocaleDateString("sv-SE"); // YYYY-MM-DD, lokale Zeit
 export const normUrl = (u) => {
@@ -23,8 +25,6 @@ const LIMIT_RE =
 export const isLimitError = (err) => err instanceof McpError && (err.status === 402 || LIMIT_RE.test(err.message));
 // Limits aus apply-Dateien, die älter als diese Frist sind, nimmt --check nicht mehr aus (Tarifentscheidung erneut fällig).
 export const LIMIT_MAX_AGE_DAYS = 30;
-const rows = (r) =>
-  Array.isArray(r) ? r : Array.isArray(r?.data) ? r.data : Array.isArray(r?.items) ? r.items : [];
 
 // Soll-Liste: jeder Map-Eintrag mit primary, dedupliziert nach primary.keyword (erster Eintrag gewinnt).
 export function buildSoll(map) {
@@ -75,28 +75,53 @@ export function latestApplyFile(reportDir) {
   return last ? path.join(reportDir, last.name) : null;
 }
 
-// ---------- Projektstand lesen ----------
+// ---------- Projektstand lesen (fail closed, MD-04) ----------
+// PROJECT_listKeywords hat laut Tool-Schema keine Paginierung (nur site_id, site_engine_id) und liefert alle
+// Keywords. Unbekanntes Antwortformat, ungültige Einträge oder ein leeres Projekt brechen ab: Projekt 13094375
+// ist nie leer, eine leere Liste hieße „alle Soll-Keywords fehlen“ und würde Kontingent und Duplikate kosten.
 export async function readProject(client) {
-  const keywords = rows(await client.callTool("PROJECT_listKeywords", { site_id: SITE_ID })).map((k) => ({
-    id: Number(k.id),
-    keyword: normKw(k.name), // nur zum Vergleich mit der Soll-Liste
-    name: String(k.name), // Original-Schreibweise im Projekt, wird beim Angleichen unverändert gesendet
-    url: normUrl(k.link),
-  }));
+  const liste = rowsOf(await client.callTool("PROJECT_listKeywords", { site_id: SITE_ID }), "PROJECT_listKeywords");
+  if (!liste.length) throw new Error("PROJECT_listKeywords meldet 0 Keywords – Abbruch (Projekt ist nie leer)");
+  const keywords = liste.map((k, i) => {
+    const id = Number(k?.id);
+    if (!Number.isInteger(id) || id <= 0 || typeof k?.name !== "string" || !k.name.trim())
+      throw new Error(`PROJECT_listKeywords: Eintrag ${i + 1} ohne gültige id/name – Abbruch`);
+    return {
+      id,
+      keyword: normKw(k.name), // nur zum Vergleich mit der Soll-Liste
+      name: k.name, // Original-Schreibweise im Projekt, wird beim Angleichen unverändert gesendet
+      url: normUrl(k.link),
+    };
+  });
+  if (new Set(keywords.map((k) => k.id)).size !== keywords.length)
+    throw new Error("PROJECT_listKeywords: doppelte Keyword-IDs (Teil- oder Mehrfachantwort) – Abbruch");
   return { keywords };
 }
 
+// Alle Prompts einer Engine seitenweise lesen (limit/offset laut Tool-Schema), statt bei 100 abzuschneiden.
+async function listAllPrompts(client, llmId) {
+  const alle = [];
+  for (let seite = 0; seite < MAX_PAGES; seite++) {
+    const teil = rowsOf(
+      await client.callTool("PROJECT_listPrompts", { site_id: SITE_ID, llm_id: llmId, limit: PROMPT_PAGE, offset: seite * PROMPT_PAGE }),
+      "PROJECT_listPrompts",
+    );
+    alle.push(...teil);
+    if (teil.length < PROMPT_PAGE) return alle;
+  }
+  throw new Error(`PROJECT_listPrompts: mehr als ${MAX_PAGES} Seiten – Abbruch`);
+}
+
 export async function readTracking(client) {
-  const competitors = rows(await client.callTool("PROJECT_listCompetitors", { site_id: SITE_ID })).map((c) => ({
+  const competitors = rowsOf(await client.callTool("PROJECT_listCompetitors", { site_id: SITE_ID }), "PROJECT_listCompetitors").map((c) => ({
     name: c.name,
     url: c.url,
   }));
-  const engines = rows(await client.callTool("PROJECT_listLlmEngines", { site_id: SITE_ID }));
+  const engines = rowsOf(await client.callTool("PROJECT_listLlmEngines", { site_id: SITE_ID }), "PROJECT_listLlmEngines");
   const aiPrompts = [];
   for (const eng of engines) {
-    const prompts = rows(
-      await client.callTool("PROJECT_listPrompts", { site_id: SITE_ID, llm_id: Number(eng.id), limit: 100 }),
-    );
+    if (!Number.isInteger(Number(eng?.id))) throw new Error("PROJECT_listLlmEngines: Engine ohne gültige id – Abbruch");
+    const prompts = await listAllPrompts(client, Number(eng.id));
     for (const p of prompts)
       aiPrompts.push({
         engine: eng.base_name,

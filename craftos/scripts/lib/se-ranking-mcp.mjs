@@ -101,6 +101,19 @@ export function errorStatus(data, msg) {
 const hasServerErrorCode = (data) =>
   !!data && typeof data === "object" && (data.code === SERVER_ERROR_CODE || data.error?.code === SERVER_ERROR_CODE);
 
+// Listenantwort eines Tools fail-closed lesen (MD-04): Array, { data: [...] } oder { items: [...] }; jede andere
+// Form bricht ab, statt als leere Liste („leeres Projekt“) weiterverarbeitet zu werden.
+export function rowsOf(r, label) {
+  if (Array.isArray(r)) return r;
+  if (r && typeof r === "object") {
+    if (Array.isArray(r.data)) return r.data;
+    if (Array.isArray(r.items)) return r.items;
+  }
+  const form =
+    r === null ? "null" : typeof r === "object" ? `Objekt mit ${Object.keys(r).join(", ") || "keinen Feldern"}` : typeof r;
+  throw new McpError(`Antwortformat von ${label} unbekannt (${form}) – Abbruch statt leerer Liste`, { kind: "parse", tool: label });
+}
+
 // Retry-After als Sekunden oder HTTP-Datum; null bei fehlendem oder ungültigem Wert.
 export function parseRetryAfter(value, now = Date.now()) {
   if (value == null || String(value).trim() === "") return null;

@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
-import { errorStatus, McpError } from '../scripts/lib/se-ranking-mcp.mjs'
+import { errorStatus, McpError, rowsOf } from '../scripts/lib/se-ranking-mcp.mjs'
 import {
   apply,
   check,
@@ -291,5 +291,42 @@ describe('Keyword-Schreibweise bleibt erhalten, Zielseiten nur mit --retarget (M
     })
     const r = await apply(p, soll, { reportDir: dir, datum: '2026-10-21', log: silent, retarget: true })
     expect(readJson(r.file).schreibweiseGeaendert).toEqual([{ id: 1, vorher: 'Handwerkersoftware', nachher: 'handwerkersoftware' }])
+  })
+})
+
+describe('Unerwartete Antworten brechen ab statt „leeres Projekt“ (MD-04)', () => {
+  it('rowsOf akzeptiert Array, data und items und wirft bei anderer Form', () => {
+    expect(rowsOf([1], 'x')).toEqual([1])
+    expect(rowsOf({ data: [2] }, 'x')).toEqual([2])
+    expect(rowsOf({ items: [3] }, 'x')).toEqual([3])
+    expect(() => rowsOf({ keywords: [] }, 'PROJECT_listKeywords')).toThrow(/Antwortformat von PROJECT_listKeywords unbekannt/)
+    expect(() => rowsOf('Fehlertext', 'x')).toThrow(/unbekannt/)
+    expect(() => rowsOf(null, 'x')).toThrow(/unbekannt/)
+  })
+
+  it.each([
+    ['unbekanntes Format', { keywords: [{ id: 1, name: 'handwerkersoftware' }] }, /Antwortformat/],
+    ['leeres Projekt', { data: [] }, /0 Keywords/],
+    ['Eintrag ohne Namen', { data: [{ id: 1, link: null }] }, /ohne gültige id\/name/],
+    ['doppelte IDs', { data: [{ id: 1, name: 'a' }, { id: 1, name: 'b' }] }, /doppelte Keyword-IDs/],
+  ])('apply bricht bei %s ohne jede Mutation ab', async (_fall, antwort, meldung) => {
+    const p = fakeProject([], { PROJECT_listKeywords: () => antwort })
+    await expect(apply(p, soll, { reportDir: dir, datum: '2026-10-21', log: silent, retarget: true })).rejects.toThrow(meldung)
+    expect(p.calls.map((c) => c.name)).toEqual(['PROJECT_listKeywords'])
+    expect(fs.readdirSync(dir)).toEqual([])
+  })
+
+  it('liest KI-Prompts seitenweise statt bei 100 abzuschneiden', async () => {
+    const p = fakeProject([{ id: 1, name: 'handwerkersoftware', link: 'https://craftos.eu/' }], {
+      PROJECT_listLlmEngines: () => ({ data: [{ id: 7, base_name: 'ChatGPT' }] }),
+      PROJECT_listPrompts: (a) => {
+        const offset = Number(a.offset)
+        const n = offset === 0 ? 100 : offset === 100 ? 30 : 0
+        return { data: Array.from({ length: n }, (_, i) => ({ prompt: `p${offset + i}` })) }
+      },
+    })
+    const r = await check(p, soll, { reportDir: dir, datum: '2026-10-21', log: silent })
+    expect(r.report.aiPrompts).toHaveLength(130)
+    expect(p.calls.filter((c) => c.name === 'PROJECT_listPrompts').map((c) => c.args.offset)).toEqual([0, 100])
   })
 })

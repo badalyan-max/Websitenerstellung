@@ -6,7 +6,7 @@
 // Existiert eine Zieldatei bereits, bricht das Skript vor jedem Netzaufruf mit exitCode 1 ab (kein Überschreiben).
 import fs from "node:fs";
 import path from "node:path";
-import { createClient } from "./lib/se-ranking-mcp.mjs";
+import { createClient, rowsOf } from "./lib/se-ranking-mcp.mjs";
 
 const SITE_ID = 13094375;
 const BASE_DATE = "2026-10-20";
@@ -44,7 +44,8 @@ if (existing.length) {
 
 // ---------- Hilfsfunktionen ----------
 const readJson = (f) => JSON.parse(fs.readFileSync(f, "utf8"));
-const rows = (r) => (Array.isArray(r) ? r : Array.isArray(r?.data) ? r.data : Array.isArray(r?.items) ? r.items : []);
+// Listenantworten fail closed lesen (MD-04): unbekanntes Format bricht ab, statt als leere Liste zu zählen.
+const rows = (r, label = "Antwort") => rowsOf(r, label);
 const normKw = (k) => String(k).trim().toLowerCase();
 const toPath = (u) => {
   if (!u) return "–";
@@ -101,9 +102,12 @@ try {
   subBefore = await client.callTool("DATA_getSubscription", {});
 
   const keywordsRaw = await client.callTool("PROJECT_listKeywords", { site_id: SITE_ID });
+  if (!rows(keywordsRaw, "PROJECT_listKeywords").length) throw new Error("PROJECT_listKeywords meldet 0 Keywords – Abbruch");
   raw["keywords"] = keywordsRaw;
-  const engines = rows(await client.callTool("PROJECT_getSearchEngines", { site_id: SITE_ID }));
+  const engines = rows(await client.callTool("PROJECT_getSearchEngines", { site_id: SITE_ID }), "PROJECT_getSearchEngines");
   const siteEngineId = Number(engines[0]?.site_engine_id);
+  if (!Number.isInteger(siteEngineId) || siteEngineId <= 0)
+    throw new Error("PROJECT_getSearchEngines liefert keine site_engine_id – Abbruch vor dem Positionsabruf");
   const positionenRaw = await client.callTool("PROJECT_getKeywordStats", {
     site_id: SITE_ID,
     date_from: BASE_DATE,
@@ -111,6 +115,7 @@ try {
     site_engine_id: siteEngineId,
     with_landing_pages: "1",
   });
+  rows(positionenRaw, "PROJECT_getKeywordStats");
   raw["positionen"] = positionenRaw;
 
   // KI-Leaderboard mit denselben Parametern wie die Ausgangsdatei (request_metadata).
@@ -126,12 +131,14 @@ try {
   raw["ai-leaderboard"] = leaderboardRaw;
 
   const backlinksRaw = await client.callTool("DATA_getBacklinksSummary", { target: ["craftos.eu"] });
+  rows(backlinksRaw?.summary ?? backlinksRaw, "DATA_getBacklinksSummary");
   raw["backlinks-summary"] = backlinksRaw;
   const refdomainsRaw = await client.callTool("DATA_getBacklinksRefDomains", {
     target: "craftos.eu",
     order_by: "domain_inlink_rank",
     limit: REFDOMAIN_LIMIT,
   });
+  rows(refdomainsRaw?.refdomains ?? refdomainsRaw, "DATA_getBacklinksRefDomains");
   raw["refdomains"] = refdomainsRaw;
 
   subAfter = await client.callTool("DATA_getSubscription", {});
