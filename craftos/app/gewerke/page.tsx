@@ -53,7 +53,7 @@ export default function Page() {
       <section className="section-space bg-ink-100">
         <div className="site-container split-section">
           <Image
-            src="/images/werkstatt-2026.webp"
+            src="/images/werkstatt-2026-1600.webp"
             alt="Tischlerin prüft ein Eichenbrett an einer Werkbank bei Tageslicht"
             width={1536}
             height={1024}
