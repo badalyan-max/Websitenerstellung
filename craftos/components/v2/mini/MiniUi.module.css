@@ -1,0 +1,169 @@
+/* Mini-UI v2 – UI-SPEC §6. Verkleinerte Illustration: General Sans 8–13 px, ink-Farben, tabellarische Ziffern.
+   Ausnahme der Abstandsskala: Innenabstände 4/8/12/16 px, Haarlinien 1–2 px. */
+.list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-sans, var(--font-general, sans-serif));
+  font-variant-numeric: tabular-nums;
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 8px 0;
+  border-bottom: 1px solid #ededf0;
+}
+.row:last-child {
+  border-bottom: 0;
+}
+.rowIcon {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: #f7f3eb;
+  color: #784b10;
+}
+.rowText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+.primary,
+.secondary {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.primary {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #17171c;
+}
+.secondary {
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #62626e;
+}
+.value {
+  flex: none;
+  font-size: 10px;
+  font-weight: 600;
+  color: #17171c;
+}
+.status {
+  flex: none;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 1.4;
+  background: #ededf0;
+  color: #393941;
+}
+.status[data-status="Bezahlt"] {
+  background: #ffefcc;
+  color: #784b10;
+}
+.status[data-status="Überfällig"] {
+  background: #17171c;
+  color: #fff;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 12px;
+  border: 1px solid #ededf0;
+  border-radius: 8px;
+  background: #fff;
+  font-family: var(--font-sans, var(--font-general, sans-serif));
+  font-variant-numeric: tabular-nums;
+}
+.statLabel {
+  font-size: 9px;
+  color: #62626e;
+}
+.statValue {
+  font-size: 13px;
+  font-weight: 600;
+  color: #17171c;
+}
+.week {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-auto-rows: minmax(20px, auto);
+  gap: 4px;
+  font-family: var(--font-sans, var(--font-general, sans-serif));
+}
+.weekDay {
+  grid-row: 1;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #ededf0;
+  font-size: 9px;
+  font-weight: 600;
+  color: #62626e;
+}
+.weekBlock {
+  overflow: hidden;
+  padding: 4px;
+  border-left: 2px solid #f2af38;
+  border-radius: 4px;
+  background: #fff4d9;
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #784b10;
+}
+.weekBlock[data-lane="1"] {
+  border-left-color: #777782;
+  background: #f7f3eb;
+  color: #393941;
+}
+.weekBlock[data-lane="2"] {
+  border-left-color: #393941;
+  background: #ededf0;
+  color: #17171c;
+}
+.timer {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 4px 8px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #101014;
+  color: #f4f4f5;
+  font-family: var(--font-sans, var(--font-general, sans-serif));
+  font-variant-numeric: tabular-nums;
+}
+.timerDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f2af38;
+}
+.timerLabel {
+  overflow: hidden;
+  font-size: 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #bcbcc6;
+}
+.timerValue {
+  grid-column: 1 / -1;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}

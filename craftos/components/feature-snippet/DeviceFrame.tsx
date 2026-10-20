@@ -8,7 +8,7 @@ export function PhoneFrame({ title, children, active = "Projekte", notification 
       <div className={s.status}><span>09:41</span><i /><span><Signal size={10} /><Wifi size={10} /><BatteryFull size={13} /></span></div>
       <div className={s.mobileTitle}><ChevronLeft size={16} /><strong>{title}</strong><MoreHorizontal size={16} /></div>
       <div className={s.mobileContent}>{children}</div>
-      <div className={s.tabs}>{[[CalendarDays, "Einsätze"], [Clock3, "Zeit"], [FolderOpen, "Projekte"], [MoreHorizontal, "Mehr"]].map(([Icon, label]) => {
+      <div className={s.tabs}>{[[CalendarDays, "Einsätze"], [Clock3, "Zeiten"], [FolderOpen, "Projekte"], [MoreHorizontal, "Mehr"]].map(([Icon, label]) => {
         const I = Icon as typeof Clock3;
         return <span key={label as string} data-active={label === active}><I size={15} /><small>{label as string}</small></span>;
       })}</div>

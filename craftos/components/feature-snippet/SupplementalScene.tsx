@@ -104,7 +104,7 @@ export function SupplementalScene({ variant, stage, phase, example }: Props) {
       "Im Büro fragt Craft AI die erfassten Zeiten ab.",
       "Die Antwort zeigt den gespeicherten Eintrag mit Projekt und Zeitraum.",
     ]}
-    phone={<PhoneFrame title="Zeiterfassung" active="Zeit">
+    phone={<PhoneFrame title="Zeiterfassung" active="Zeiten">
       <Project name={project} />
       <div className={s.timeEntry}><span className={s.eyebrow}>Heute · 16. September</span><Clock3 size={23} /><strong>3,5 <small>Stunden</small></strong><span>09:00–12:30</span><p>Wandanstrich</p></div>
       <span className={s.mobileAction} data-cursor-target="first" data-ready={stage >= 1}>{stage >= 1 ? <CheckCheck size={13} /> : <Check size={13} />}{stage >= 1 ? "Zeit gespeichert" : "Zeit speichern"}</span>
