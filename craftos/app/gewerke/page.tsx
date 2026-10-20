@@ -1,10 +1,10 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { gewerke } from "@/lib/gewerke";
 import { GewerkIcon } from "@/components/ui/GewerkIcon";
 import { PageHero } from "@/components/ui/PageHero";
 import { TrialCta } from "@/components/ui/TrialCta";
+import { MediaFigure } from "@/components/v2/MediaFigure";
 import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata(
   "Handwerkersoftware nach Gewerk",
@@ -52,13 +52,14 @@ export default function Page() {
       </section>
       <section className="section-space bg-ink-100">
         <div className="site-container split-section">
-          <Image
+          {/* KI-generiertes Motiv (docs/MEDIA.md) → sichtbare Kennzeichnung „Darstellung, KI-gestaltet“ (D-04, MEDIA-03). */}
+          <MediaFigure
             src="/images/werkstatt-2026-1600.webp"
             alt="Tischlerin prüft ein Eichenbrett an einer Werkbank bei Tageslicht"
             width={1536}
             height={1024}
-            className="rounded-2xl"
             sizes="(max-width:767px) 100vw, 50vw"
+            label="ki"
           />
           <div>
             <p className="eyebrow">So individuell wie Ihr Betrieb</p>
