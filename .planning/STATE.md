@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-last_updated: "2026-10-20T21:16:57.101Z"
+last_updated: "2026-10-20T21:28:14.035Z"
 last_activity: 2026-10-20 -- Phase 5 execution started
 progress:
   total_phases: 6
   completed_phases: 0
   total_plans: 8
-  completed_plans: 2
+  completed_plans: 3
   percent: 0
 ---
 
@@ -29,7 +29,7 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 5 (Produktwahrheit, Keyword-Map und Designbausteine) — EXECUTING
-Plan: 3 of 8
+Plan: 4 of 8
 Status: Ready to execute
 Last activity: 2026-10-20 -- Phase 5 execution started
 
@@ -48,6 +48,8 @@ Progress: [░░░░░░░░░░] 0%
 - [Phase 05]: 05-02: Produktregister bezieht sich ausschließlich auf origin/release (Web 07cf0645 / v4.0.0-test.238, Mobile 5610a064 / mobile-v1.0.0-test.93)
 - [Phase 05]: 05-02: Kundenportal live (D-11); Ankündigungen nicht-live Funktionen vollständig entfernt, durch announcements.test.ts und route-audit-Flag announcement gesperrt
 - [Phase 05]: 05-02: Vorhersagen nur intern als liveExtra mit advertised false (Umfang ungeprüft)
+- [Phase 05]: 05-03: Lizenznamen einheitlich Voll-Lizenz (Admin oder Büro) und App-Lizenz; Preise nur aus site.ts, geprüft gegen docs/product-pricing-snapshot.json (origin/release 07cf0645)
+- [Phase 05]: 05-03: KI-Credits als einmaliges Startguthaben (150) plus im Voraus gekaufte Pakete; Schema-Offer mit valueAddedTaxIncluded false
 
 ### Pending Todos
 
@@ -64,3 +66,4 @@ None yet.
 |-------|------|----------|-------|
 | Phase 05 P01 | 27min | 3 tasks | 90 files |
 | Phase 05 P02 | 35min | 2 tasks | 17 files |
+| Phase 05 P03 | 10 min | 3 tasks | 12 files |

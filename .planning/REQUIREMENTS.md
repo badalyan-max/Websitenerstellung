@@ -7,7 +7,7 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 ### Produktstand (PROD)
 
 - [x] **PROD-02**: Besucher sehen nur Funktionen, die in den aktuellen Produktions-Releases von Web und Mobile live sind; das Produktregister nennt Release-Tag, Commit und Belegpfade je Funktion.
-- [ ] **PROD-03**: Preise, Lizenzarten (Admin/Büro als „Voll-Lizenz“, App, Extra-Speicher), Netto-Hinweis, Testphase und Credits stimmen auf allen Seiten, in `llms.txt` und im Schema mit `src/lib/constants.ts` der Web-App überein.
+- [x] **PROD-03**: Preise, Lizenzarten (Admin/Büro als „Voll-Lizenz“, App, Extra-Speicher), Netto-Hinweis, Testphase und Credits stimmen auf allen Seiten, in `llms.txt` und im Schema mit `src/lib/constants.ts` der Web-App überein.
 - [x] **PROD-04**: Veraltete Ankündigungen (Telefon-Agent, MCP-Server, Agent-Aktionen mit vergangenen Terminen) sind entfernt oder ohne Datum als „in Entwicklung“ gekennzeichnet; nicht-live Funktionen werden nirgends als verfügbar dargestellt.
 
 ### Design (DESIGN)
@@ -72,7 +72,7 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | PROD-02 | Phase 5 | Complete |
-| PROD-03 | Phase 5 | Pending |
+| PROD-03 | Phase 5 | Complete |
 | PROD-04 | Phase 5 | Complete |
 | DESIGN-01 | Phase 6 | Pending |
 | DESIGN-02 | Phase 5 | Pending |
