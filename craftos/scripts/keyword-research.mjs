@@ -69,7 +69,10 @@ function loadManifest() {
 }
 function saveManifest(m) {
   m.budget = BUDGET;
-  m.unitsEstimatedTotal = m.files.reduce((s, f) => s + (f.unitsEstimated || 0), 0);
+  // unrecordedCalls: abgerechnete Aufrufe ohne gespeicherte Datei (z. B. Fehlbehandlung), zählen zum Budget.
+  m.unitsEstimatedTotal =
+    m.files.reduce((s, f) => s + (f.unitsEstimated || 0), 0) +
+    (m.unrecordedCalls || []).reduce((s, c) => s + (c.unitsEstimated || 0), 0);
   fs.writeFileSync(MANIFEST_FILE, JSON.stringify(m, null, 2) + "\n");
 }
 
@@ -144,7 +147,7 @@ async function request(method, endpoint, query, body) {
 
 async function subscription() {
   const { status, body } = await request("GET", "account/subscription");
-  if (status !== 200) {
+  if (status < 200 || status >= 300) {
     console.error(`Kontingent nicht abrufbar (HTTP ${status}).`);
     return null;
   }
@@ -177,7 +180,8 @@ function unitsFor(call, body) {
 function collectExportKeywords() {
   const out = new Set(allPageCandidates());
   for (const f of fs.readdirSync(DATA_DIR)) {
-    if (!f.endsWith(".json") || f === "manifest.json" || f.startsWith("export--")) continue;
+    // Quellen laut Plan: related, questions, longtail, domain-keywords (comparison enthält dieselben Zahlen bereits).
+    if (!/^(related|questions|longtail|domain-keywords)--.*\.json$/.test(f)) continue;
     const body = JSON.parse(fs.readFileSync(path.join(DATA_DIR, f), "utf8"));
     if (f.startsWith("longtail--")) {
       for (const k of body.keywords ?? []) if (typeof k === "string") out.add(k);
@@ -200,7 +204,9 @@ function exportedKeywords() {
 }
 
 const manifest = loadManifest();
-const booked = manifest.files.reduce((s, f) => s + (f.unitsEstimated || 0), 0);
+const booked =
+  manifest.files.reduce((s, f) => s + (f.unitsEstimated || 0), 0) +
+  (manifest.unrecordedCalls || []).reduce((s, c) => s + (c.unitsEstimated || 0), 0);
 const calls = plannedCalls();
 const open = calls.filter((c) => !fs.existsSync(path.join(DATA_DIR, c.file)));
 const exp = exportWorstCase();
@@ -241,7 +247,7 @@ if (mode === "run") {
   let failed = 0;
   for (const [i, c] of open.entries()) {
     const { status, body } = await request("GET", c.endpoint, buildQuery(c.params));
-    if (status !== 200) {
+    if (status < 200 || status >= 300) {
       failed++;
       const msg = body?.message || body?.error || JSON.stringify(body).slice(0, 200);
       console.error(`FEHLER ${c.file}: HTTP ${status} ${msg}`);
@@ -277,7 +283,7 @@ if (mode === "export") {
     const keywords = missing.slice(p * EXPORT_CHUNK, (p + 1) * EXPORT_CHUNK);
     const file = `export--candidates-${count + p + 1}.json`;
     const { status, body } = await request("POST", "keywords/export", "source=de", { keywords });
-    if (status !== 200) {
+    if (status < 200 || status >= 300) {
       const msg = body?.message || body?.error || JSON.stringify(body).slice(0, 200);
       console.error(`FEHLER ${file}: HTTP ${status} ${msg}`);
       process.exitCode = 1;
