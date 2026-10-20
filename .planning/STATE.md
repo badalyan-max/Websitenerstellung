@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-last_updated: "2026-10-20T22:39:09.599Z"
-last_activity: 2026-10-20 -- Plan 05-05 abgeschlossen (Designsystem v2 Teil B)
+last_updated: "2026-10-20T22:56:59.919Z"
+last_activity: 2026-10-21 -- Plan 05-07 abgeschlossen (Linkplan, SE-Ranking-Projektabgleich, Messbericht)
 progress:
   total_phases: 6
   completed_phases: 0
   total_plans: 8
-  completed_plans: 6
+  completed_plans: 7
   percent: 0
 ---
 
@@ -29,9 +29,9 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 5 (Produktwahrheit, Keyword-Map und Designbausteine) — EXECUTING
-Plan: 7 of 8
+Plan: 8 of 8
 Status: Ready to execute
-Last activity: 2026-10-20 -- Plan 05-05 abgeschlossen (Designsystem v2 Teil B)
+Last activity: 2026-10-21 -- Plan 05-07 abgeschlossen (Linkplan, SE-Ranking-Projektabgleich, Messbericht)
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -60,6 +60,9 @@ Progress: [░░░░░░░░░░] 0%
 - [Phase 05]: 05-06: werkstatt-2026 ist KI-generiert und wird auf /styleguide als „Darstellung, KI-gestaltet“ gekennzeichnet; Kennzeichnung auf /gewerke folgt in Phase 6–8
 - [Phase 05]: 05-06: Bildbudget prüft nur referenzierte Dateien inkl. per Verzeichnis aufgelöster dynamischer Pfade; Formatausnahmen icon-192/512 und craftnote.png begründet
 - [Phase 05]: 05-06: CLS-Ursachen in FeatureSnippet (Pause-Knopf) und SupplementalScene (Statuspille) per CSS-Platzreserve behoben, Animation unverändert
+- [Phase 05]: 05-07: Projekt 13094375 trackt alle 126 Hauptkeywords der Keyword-Map (19 geplante mit geplantem Pfad); limits[] leer, SEO-07 erledigt
+- [Phase 05]: 05-07: SEO-08 in REQUIREMENTS offen bis Plan 05-08; mindestens 15 neue seriöse Refdomains bleibt Meilensteinziel
+- [Phase 05]: 05-07: Portal-Mailtexte nicht neu formuliert; Register und LINKPLAN nennen Empfänger, Absender und Betreffvorschlag
 
 ### Pending Todos
 
@@ -80,3 +83,4 @@ None yet.
 | Phase 05 P04 | 20 min | 2 tasks | 16 files |
 | Phase 05 P05 | 17 min | 2 tasks | 21 files |
 | Phase 05 P06 | 36 min | 3 tasks | 24 files |
+| Phase 05 P07 | 17min | 3 tasks | 16 files |
