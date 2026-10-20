@@ -42,7 +42,16 @@ craftos.eu wird klar gegliedert und optisch ansprechend: weniger Fließtext, Kac
   5. Eine Budgetprüfung lehnt Bilder über 150 KB ab, alle Medien haben feste Abmessungen ohne Layout-Shift, und der korrigierte Stand ist nach Ship-Gate live mit IndexNow-Meldung.
   6. Das SE-Ranking-Projekt trackt alle Hauptkeywords der Keyword-Map mit Zielseite plus die KI-Prompts; ein Messbericht-Skript bzw. eine feste Abfrage vergleicht Positionen, KI-Share-of-Voice und verweisende Domains mit dem Ausgangsstand vom 20.10.2026.
   7. Eine priorisierte Linkliste mit Statusregister und kopierfertigen Browser-Prompts für Portale, Fachmedien und Verzeichnisse liegt vor; die ersten Einträge (Bewertungs- und Vergleichsportale) sind an den Inhaber übergeben.
-**Plans**: TBD
+**Plans**: 7 plans (3 Wellen)
+
+Plans:
+- [ ] 05-01-PLAN.md — Keyword-Map aus SE-Ranking-Daten (Skript, Rohdaten ≤ 30.000 Units, Map, Test) – Welle 1
+- [ ] 05-02-PLAN.md — Produktregister auf origin/release, Kundenportal live, Ankündigungen entfernt – Welle 1
+- [ ] 05-03-PLAN.md — Preis-Snapshot, Paritätstest, Extra-Speicher und Credits überall abgeleitet – Welle 1
+- [ ] 05-04-PLAN.md — Designsystem-v2-Bausteine (Tokens, Raster, Schritte, Kennzahlen, Karten, Rahmen, Tabelle, FAQ, CTA) – Welle 1
+- [ ] 05-05-PLAN.md — Musterseite /styleguide (noindex), Medienbudget, Galerie-Kennzeichnung, E2E – Welle 2
+- [ ] 05-06-PLAN.md — Linkplan mit Statusregister und Browser-Prompts, SE-Ranking-Projektabgleich, Messbericht – Welle 2
+- [ ] 05-07-PLAN.md — Phasen-Gate, Ship-Gate, Push, IndexNow, Live-Prüfung, Etappenmessung – Welle 3
 **UI hint**: yes
 
 ### Phase 6: Startseite, Navigation und Funktionsübersicht
@@ -110,7 +119,7 @@ craftos.eu wird klar gegliedert und optisch ansprechend: weniger Fließtext, Kac
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 5. Produktwahrheit, Keyword-Map und Designbausteine | 0/TBD | Not started | - |
+| 5. Produktwahrheit, Keyword-Map und Designbausteine | 0/7 | Planned | - |
 | 6. Startseite, Navigation und Funktionsübersicht | 0/TBD | Not started | - |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 0/TBD | Not started | - |
 | 8. SEO und KI-Sichtbarkeit | 0/TBD | Not started | - |
