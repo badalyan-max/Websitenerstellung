@@ -1,5 +1,7 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import { describe, expect, it } from 'vitest'
-import { createClient, McpError, parseRetryAfter } from '../scripts/lib/se-ranking-mcp.mjs'
+import { createClient, McpError, parseRetryAfter, redact } from '../scripts/lib/se-ranking-mcp.mjs'
 
 // MCP-Client gegen gemockten fetch: keine Netzaufrufe, Testschlüssel statt .env.
 const KEY = 'test-schluessel-123'
@@ -150,5 +152,24 @@ describe('Backoff des MCP-Clients (MD-01)', () => {
     expect(parseRetryAfter('Wed, 21 Oct 2026 10:00:05 GMT', now)).toBe(5000)
     expect(parseRetryAfter('unsinn', now)).toBeNull()
     expect(parseRetryAfter(null, now)).toBeNull()
+  })
+})
+
+describe('Schlüssel nie in Fehlertexten (MD-02)', () => {
+  it('redact ersetzt jedes Vorkommen und lässt Text ohne Schlüssel unverändert', () => {
+    expect(redact(`Invalid token ${KEY}; header Token ${KEY}`, KEY)).toBe('Invalid token [entfernt]; header Token [entfernt]')
+    expect(redact('kein Schlüssel', KEY)).toBe('kein Schlüssel')
+    expect(redact(undefined, KEY)).toBe('')
+  })
+
+  it('keyword-research.mjs gibt API-Fehlerkörper nur über errorText (redact) aus', () => {
+    const src = fs.readFileSync(path.join(import.meta.dirname, '../scripts/keyword-research.mjs'), 'utf8')
+    expect(src).toMatch(/import \{ redact \} from "\.\/lib\/se-ranking-mcp\.mjs"/)
+    // Jede Ausgabe eines Antwortkörpers läuft über errorText(body); kein roher body?.message mehr in console.error.
+    const fehlerAusgaben = src.split('\n').filter((l) => l.includes('console.error(') && /body/.test(l))
+    expect(fehlerAusgaben.length).toBeGreaterThan(0)
+    for (const l of fehlerAusgaben) expect(l).toMatch(/errorText\(body\)/)
+    // fetch liegt in try/catch; Netzwerkfehler werden ebenfalls bereinigt.
+    expect(src).toMatch(/Netzwerkfehler bei \$\{method\} \$\{endpoint\}: \$\{redact\(err\?\.message, apiKey\)\}/)
   })
 })

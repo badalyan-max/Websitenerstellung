@@ -6,6 +6,7 @@
 // Er wird nie ausgegeben und nie gespeichert; Rohdateien enthalten nur die API-Antwort.
 import fs from "node:fs";
 import path from "node:path";
+import { redact } from "./lib/se-ranking-mcp.mjs";
 
 const KEY_NAME = "SE_RANKING_API_KEY";
 const ENV_FILE = process.env.CRAFTOS_ENV_FILE || "C:/Projekte/Websitenerstellung/.env";
@@ -46,6 +47,11 @@ if (!apiKey) {
   process.exit(1);
 }
 const authHeaders = () => ({ Authorization: `Token ${apiKey}` });
+// Fehlerkörper der API vor jeder Ausgabe vom Schlüssel bereinigen (MD-02); erst bereinigen, dann kürzen.
+const errorText = (body) => {
+  const m = body?.message || body?.error;
+  return redact(typeof m === "string" ? m : JSON.stringify(m ?? body), apiKey).slice(0, 200);
+};
 
 const seeds = JSON.parse(fs.readFileSync(SEEDS_FILE, "utf8"));
 fs.mkdirSync(DATA_DIR, { recursive: true });
@@ -121,14 +127,21 @@ async function request(method, endpoint, query, body) {
   if (wait > 0) await sleep(wait);
   for (let attempt = 0; ; attempt++) {
     lastCall = Date.now();
-    const res = await fetch(`${BASE}/${endpoint}${query ? "?" + query : ""}`, {
-      method,
-      headers: { ...authHeaders(), ...(body ? { "Content-Type": "application/json" } : {}) },
-      body: body ? JSON.stringify(body) : undefined,
-      signal: AbortSignal.timeout(120000),
-    });
+    let res;
+    let text;
+    try {
+      res = await fetch(`${BASE}/${endpoint}${query ? "?" + query : ""}`, {
+        method,
+        headers: { ...authHeaders(), ...(body ? { "Content-Type": "application/json" } : {}) },
+        body: body ? JSON.stringify(body) : undefined,
+        signal: AbortSignal.timeout(120000),
+      });
+      text = await res.text();
+    } catch (err) {
+      // Netzwerkfehler/Timeout ohne Stacktrace als Fehlerstatus 0 melden (Aufrufer zählen ihn als FEHLER).
+      return { status: 0, body: { message: `Netzwerkfehler bei ${method} ${endpoint}: ${redact(err?.message, apiKey)}` } };
+    }
     if (res.status !== 429) {
-      const text = await res.text();
       let json;
       try {
         json = JSON.parse(text);
@@ -148,7 +161,7 @@ async function request(method, endpoint, query, body) {
 async function subscription() {
   const { status, body } = await request("GET", "account/subscription");
   if (status < 200 || status >= 300) {
-    console.error(`Kontingent nicht abrufbar (HTTP ${status}).`);
+    console.error(`Kontingent nicht abrufbar (HTTP ${status}): ${errorText(body)}`);
     return null;
   }
   const info = body.subscription_info || {};
@@ -249,8 +262,7 @@ if (mode === "run") {
     const { status, body } = await request("GET", c.endpoint, buildQuery(c.params));
     if (status < 200 || status >= 300) {
       failed++;
-      const msg = body?.message || body?.error || JSON.stringify(body).slice(0, 200);
-      console.error(`FEHLER ${c.file}: HTTP ${status} ${msg}`);
+      console.error(`FEHLER ${c.file}: HTTP ${status} ${errorText(body)}`);
       continue;
     }
     writeRaw(c.file, body);
@@ -284,8 +296,7 @@ if (mode === "export") {
     const file = `export--candidates-${count + p + 1}.json`;
     const { status, body } = await request("POST", "keywords/export", "source=de", { keywords });
     if (status < 200 || status >= 300) {
-      const msg = body?.message || body?.error || JSON.stringify(body).slice(0, 200);
-      console.error(`FEHLER ${file}: HTTP ${status} ${msg}`);
+      console.error(`FEHLER ${file}: HTTP ${status} ${errorText(body)}`);
       process.exitCode = 1;
       break;
     }

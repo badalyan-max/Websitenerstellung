@@ -80,7 +80,8 @@ function parseRpc(text, id) {
 }
 
 // Entfernt den Schlüssel aus beliebigem Text (Fehlermeldungen des Servers), damit er nie im Log landet.
-function redact(text, secret) {
+// Immer vor dem Kürzen anwenden, sonst bleibt ein angeschnittener Schlüsselrest stehen.
+export function redact(text, secret) {
   const s = String(text ?? "");
   return secret ? s.split(secret).join("[entfernt]") : s;
 }
