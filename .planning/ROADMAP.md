@@ -70,7 +70,7 @@ Plans:
 
 **Goal**: Besucher verstehen auf der Startseite sofort, was CraftOS ist, und finden über Menü und Funktionsübersicht jede Live-Funktion in höchstens zwei Klicks.
 **Depends on**: Phase 5
-**Requirements**: DESIGN-01, DESIGN-03, FEAT-01
+**Requirements**: DESIGN-01, DESIGN-03, FEAT-01 (dazu Umsetzung DESIGN-02, SEO-02 aus Phase 5)
 **Success Criteria** (what must be TRUE):
 
   1. Auf der Startseite sehen Besucher ohne Scrollen (360 px bis 1440 px) eine klare Aussage, was CraftOS ist, eine Produktdarstellung und „10 Tage testen“; jeder Abschnitt hat höchstens eine Überschrift, einen Einleitungssatz und visuelle Elemente statt Fließtextblöcken.
@@ -85,7 +85,7 @@ Plans:
 
 **Goal**: Jede Live-Funktion hat eine kurze, einheitlich gegliederte Detailseite, und die Mobile-App-Seite zeigt den vollen App-Umfang.
 **Depends on**: Phase 6
-**Requirements**: FEAT-02, FEAT-03, MEDIA-01
+**Requirements**: FEAT-02, FEAT-03, MEDIA-01 (dazu Umsetzung DESIGN-02, SEO-02 aus Phase 5)
 **Success Criteria** (what must be TRUE):
 
   1. Jede Live-Funktion hat eine Detailseite nach fester Vorlage: visuelles Element, Kurznutzen, Ablauf in Schritten, Plattformen (Web/Mobile), Rollen, FAQ; die seit 09.09.2026 neuen Funktionen haben eigene Seiten, sofern Keyword-Map oder Produktumfang es rechtfertigen, sonst einen Abschnitt auf der passenden Seite.
@@ -99,7 +99,7 @@ Plans:
 
 **Goal**: Suchmaschinen und KI-Suchen finden auf craftos.eu zitierfähige Antworten zu Preisen, Alternativen und Funktionen, und jede Seite hat saubere Metadaten nach der Keyword-Map, Breadcrumbs und eine eigene OG-Grafik.
 **Depends on**: Phase 7
-**Requirements**: SEO-03, SEO-04, SEO-05, SEO-06, SEO-09
+**Requirements**: SEO-03, SEO-04, SEO-05, SEO-06, SEO-09 (dazu Abschluss DESIGN-02, SEO-02 aus Phase 5)
 **Success Criteria** (what must be TRUE):
 
   1. Die vier Alternativen-Seiten (plancraft, Craftnote, HERO, ToolTime) sind mit belegten, datierten Wettbewerberangaben, FAQPage- und BreadcrumbList-Schema live und vom Vergleich und Footer verlinkt.
@@ -130,7 +130,7 @@ Plans:
 
 **Goal**: Alle Seiten sind barrierefrei und schnell, und ein erneuter Audit von craftos.eu zeigt keine offenen technischen oder On-Page-Fehler.
 **Depends on**: Phase 9
-**Requirements**: DESIGN-05, QA-04, QA-05, QA-06
+**Requirements**: DESIGN-05, QA-04, QA-05, QA-06 (dazu Messung SEO-08: ≥15 neue Refdomains)
 **Success Criteria** (what must be TRUE):
 
   1. Jede Seite besteht bei 360, 390, 768, 1024 und 1440 px die Barrierefreiheitsprüfung (axe ohne ernsthafte Verstöße, Kontrast ≥ 4,5:1, vollständige Tastaturbedienung).
@@ -146,7 +146,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete   | 2026-10-20 |
+| 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
 | 6. Startseite, Navigation und Funktionsübersicht | 0/TBD | Not started | - |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 0/TBD | Not started | - |
 | 8. SEO und KI-Sichtbarkeit | 0/TBD | Not started | - |

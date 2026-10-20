@@ -75,7 +75,7 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 | PROD-03 | Phase 5 | Complete |
 | PROD-04 | Phase 5 | Complete |
 | DESIGN-01 | Phase 6 | Pending |
-| DESIGN-02 | Phase 5 | Pending |
+| DESIGN-02 | Phase 5 (Grundlage), Phasen 6–8 (Umsetzung) | In Progress |
 | DESIGN-03 | Phase 6 | Pending |
 | DESIGN-04 | Phase 5 | Complete |
 | DESIGN-05 | Phase 10 | Pending |
@@ -87,13 +87,13 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 | FEAT-02 | Phase 7 | Pending |
 | FEAT-03 | Phase 7 | Pending |
 | FEAT-04 | Phase 9 | Pending |
-| SEO-02 | Phase 5 | Pending |
+| SEO-02 | Phase 5 (Keyword-Map), Phasen 6–8 (Titel/H1/Description) | In Progress |
 | SEO-03 | Phase 8 | Pending |
 | SEO-04 | Phase 8 | Pending |
 | SEO-05 | Phase 8 | Pending |
 | SEO-06 | Phase 8 | Pending |
 | SEO-07 | Phase 5 | Complete |
-| SEO-08 | Phase 5 | Pending |
+| SEO-08 | Phase 5 (Linkplan), laufend bis Phase 10 (≥15 Refdomains) | In Progress |
 | SEO-09 | Phase 8 | Pending |
 | CONTENT-03 | Phase 9 | Pending |
 | CONTENT-04 | Phase 9 | Pending |
@@ -103,7 +103,7 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 
 **Coverage:** 28/28 aktive v2.0-Anforderungen zugeordnet (MEDIA-02 Out of Scope), keine doppelt.
 
-Hinweis: SEO-02 hängt vom DataForSEO-Zugang des Inhabers ab; er wird am 20.10.2026 nachgereicht, deshalb liegt die Keyword-Map vorn in Phase 5, damit Struktur und Texte der folgenden Phasen die richtigen Suchbegriffe nutzen.
+Hinweis: SEO-02, DESIGN-02 und SEO-08 haben in Phase 5 ihre Grundlage (Keyword-Map aus SE Ranking, Designbausteine, Linkplan) und werden in den Phasen 6–8 auf den Seiten umgesetzt bzw. bis Phase 10 gemessen; sie bleiben bis dahin offen.
 
 ## Validated (v1.0, Relaunch 09.09.2026)
 
