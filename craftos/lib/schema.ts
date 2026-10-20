@@ -43,6 +43,9 @@ export function softwareApplicationSchema() {
         price,
         priceCurrency: "EUR",
         valueAddedTaxIncluded: false,
+        // Abo-Preis je Person und Monat (UN/CEFACT „MON“), nicht als Einmalpreis lesbar (LO-02).
+        referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "MON" },
+        unitText: "pro Person und Monat",
       },
       url: site.url + "/preise",
       description:

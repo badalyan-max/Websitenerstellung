@@ -91,6 +91,10 @@ describe("Preise entsprechen origin/release der Web-App", () => {
     expect(offers.price).toBe(p.ADMIN_MONTHLY.toFixed(2));
     expect(offers.priceSpecification?.valueAddedTaxIncluded).toBe(false);
     expect(offers.priceSpecification?.price).toBe(p.ADMIN_MONTHLY.toFixed(2));
+    expect(offers.priceSpecification).toMatchObject({
+      referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "MON" },
+      unitText: "pro Person und Monat",
+    });
   });
 
   it("Literale: keine Lizenzpreise und keine alten Lizenznamen in geprüften Dateien", () => {
