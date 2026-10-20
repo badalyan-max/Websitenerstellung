@@ -3,11 +3,10 @@ import { MessageSquare, FilePenLine, CheckCircle2 } from "lucide-react";
 import { PageHero } from "@/components/ui/PageHero";
 import { TrialCta } from "@/components/ui/TrialCta";
 import { FeatureSnippet } from "@/components/feature-snippet/FeatureSnippet";
-import { upcomingFeatures } from "@/lib/funktionen";
 import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata(
   "Craft AI – Betriebsdaten abfragen und Entwürfe prüfen",
-  "Craft AI hilft bei Fragen zu Betriebsdaten und bereitet Entwürfe vor. Sie prüfen und bestätigen die Übernahme. Weitere Agent-Aktionen folgen.",
+  "Craft AI beantwortet Fragen zu Ihren Betriebsdaten und bereitet Entwürfe vor. Sie prüfen den Inhalt und bestätigen jede Übernahme selbst.",
   "/craft-ai",
 );
 export default function Page() {
@@ -83,31 +82,6 @@ export default function Page() {
               KI-Entwürfe prüfen und übernehmen
             </Link>
           </div>
-        </div>
-      </section>
-      <section className="section-space bg-ink-100">
-        <div className="site-container">
-          <p className="eyebrow">In Vorbereitung</p>
-          <h2 className="section-title">
-            Mehr Unterstützung.
-            <br />
-            Schon demnächst.
-          </h2>
-          <div className="grid md:grid-cols-3 gap-9 mt-10">
-            {upcomingFeatures.map((f) => (
-              <div className="border-t border-ink-300 pt-6" key={f.name}>
-                <p className="text-xs text-primary-800 font-semibold">
-                  {f.when}
-                </p>
-                <h3 className="text-2xl font-semibold mt-4">{f.name}</h3>
-                <p className="mt-4 text-ink-600">{f.text}</p>
-              </div>
-            ))}
-          </div>
-          <p className="text-sm text-ink-500 mt-7">
-            Angekündigte Erweiterungen sind noch nicht als verfügbar zugesagt;
-            die Termine geben den aktuellen Planungsstand wieder.
-          </p>
         </div>
       </section>
       <TrialCta />

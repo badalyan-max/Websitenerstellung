@@ -3,7 +3,7 @@ title: "Craft AI zu Ihren Betriebsdaten befragen"
 description: "So stellen Sie dem KI-Assistenten eine konkrete Frage und prüfen die Antwort anhand der zugehörigen Daten."
 category: "craft-ai"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-20"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["dashboard", "projektverwaltung", "team"]
@@ -39,7 +39,5 @@ Eine Antwort über offene Rechnungen beweist nicht, dass Zahlungseingänge volls
 Fehlt „KI-Assistent“, lassen Sie Lizenz, zentrale KI-Einstellung und persönlichen KI-Zugang prüfen. Ein neues Browserfenster schafft keine zusätzliche Berechtigung.
 
 Bei einem Kontingent- oder Verbindungsfehler lesen Sie die Meldung und verwenden Sie den angebotenen Wiederholungsweg erst nach Klärung.
-
-Telefon-Agent, offener MCP-Server und erweiterte Agent-Aktionen sind als „Demnächst“ für September beziehungsweise Anfang Oktober 2026 geplant. Sie gehören nicht zu dieser bereits vorhandenen Chat-Anleitung.
 
 Die [Projektverwaltung](/funktionen/projektverwaltung) liefert den Datenzusammenhang; [KI-Entwürfe prüfen](/hilfe/ki-entwurf-pruefen-uebernehmen) erklärt bestätigungspflichtige Vorschläge.

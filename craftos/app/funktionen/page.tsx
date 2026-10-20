@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { funktionen, upcomingFeatures } from "@/lib/funktionen";
+import { funktionen } from "@/lib/funktionen";
 import { PageHero } from "@/components/ui/PageHero";
 import { TrialCta } from "@/components/ui/TrialCta";
 import { pageMetadata } from "@/lib/metadata";
@@ -39,7 +39,6 @@ export default function Page() {
                   {f.platforms
                     .map((p) => (p === "web" ? "Web-App" : "Mobile-App"))
                     .join(" · ")}
-                  {f.tier === "launch" ? " · In Prüfung" : ""}
                 </span>
                 <ArrowUpRight size={19} className="mt-5" />
               </Link>
@@ -57,27 +56,6 @@ export default function Page() {
             <Link href="/preise" className="text-link mt-4">
               Preise und Lizenzumfang ansehen
             </Link>
-          </div>
-        </div>
-      </section>
-      <section className="section-space bg-ink-100">
-        <div className="site-container">
-          <p className="eyebrow">Die nächsten Erweiterungen</p>
-          <h2 className="section-title">Demnächst in CraftOS.</h2>
-          <p className="section-intro">
-            Diese Funktionen befinden sich in Vorbereitung; die Zeitangaben
-            beschreiben den aktuellen Planungsstand.
-          </p>
-          <div className="grid md:grid-cols-3 gap-8 mt-10">
-            {upcomingFeatures.map((f) => (
-              <div className="border-t border-ink-300 pt-6" key={f.name}>
-                <p className="text-xs text-primary-800 font-semibold">
-                  {f.when}
-                </p>
-                <h3 className="text-2xl font-semibold mt-4">{f.name}</h3>
-                <p className="text-ink-600 text-sm mt-3">{f.text}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>

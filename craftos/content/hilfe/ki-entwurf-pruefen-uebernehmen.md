@@ -3,7 +3,7 @@ title: "Einen KI-Entwurf prüfen und bewusst übernehmen"
 description: "So kontrollieren Sie vorgeschlagene Daten, bestätigen einen geeigneten Entwurf und öffnen das Ergebnis im richtigen Modul."
 category: "craft-ai"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-20"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["angebote", "plantafel", "baudokumentation", "zeiterfassung"]
@@ -41,6 +41,6 @@ Bei unklarer Projektzuordnung bestätigen Sie nicht vorsorglich den ersten Treff
 
 Bleibt die Rückmeldung nach „Bestätigen“ aus, prüfen Sie zunächst das Zielmodul, bevor Sie einen zweiten Vorschlag erzeugen. So vermeiden Sie Doppelanlagen.
 
-Rechnungen werden nicht durch eine bloße Chatnachricht autonom festgeschrieben oder verbucht. Nutzen Sie dafür den regulären geprüften Modulablauf. Zusätzliche Agent-Aktionen sind für September beziehungsweise Anfang Oktober 2026 geplant.
+Rechnungen werden nicht durch eine bloße Chatnachricht autonom festgeschrieben oder verbucht. Nutzen Sie dafür den regulären geprüften Modulablauf.
 
 Die [Anleitung zur Datenabfrage](/hilfe/craft-ai-betriebsdaten-fragen) erklärt den Einstieg; [Rechnung fertigstellen](/hilfe/rechnung-fertigstellen) zeigt einen getrennten verbindlichen Abschluss.

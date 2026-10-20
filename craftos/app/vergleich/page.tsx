@@ -14,7 +14,6 @@ import { TrialCta } from "@/components/ui/TrialCta";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { pageMetadata } from "@/lib/metadata";
 import { site } from "@/lib/site";
-import { upcomingFeatures } from "@/lib/funktionen";
 import {
   comparisonCheckedAt,
   comparisonCheckedLabel,
@@ -513,35 +512,6 @@ export default function ComparisonPage() {
               belastbare Aussage trifft. Daraus lässt sich weder eine fehlende
               Funktion noch eine angekündigte Entwicklung ableiten.
             </p>
-          </div>
-        </section>
-
-        <section
-          className="section-space"
-          id="ausblick"
-          aria-labelledby="roadmap-heading"
-        >
-          <div className="site-container">
-            <p className="eyebrow">Ausblick bei CraftOS</p>
-            <h2 className="section-title" id="roadmap-heading">
-              Diese Erweiterungen
-              <br />
-              sind angekündigt.
-            </h2>
-            <p className={styles.intro}>
-              Diese Erweiterungen sind geplant und werden hier nicht als bereits
-              nutzbare Funktionen dargestellt. Der heutige Leistungsumfang steht
-              auf den jeweiligen Funktionsseiten.
-            </p>
-            <div className={styles.roadmapGrid}>
-              {upcomingFeatures.map((feature) => (
-                <article className={styles.roadmapItem} key={feature.name}>
-                  <p className={styles.planned}>{feature.when}</p>
-                  <h3>{feature.name}</h3>
-                  <p>{feature.text}</p>
-                </article>
-              ))}
-            </div>
           </div>
         </section>
 

@@ -662,21 +662,3 @@ export const funktionen: Funktion[] = definitions.map((d) => ({
 export function getFunktion(slug: string): Funktion | undefined {
   return funktionen.find((f) => f.slug === slug);
 }
-export const upcomingFeatures = [
-  {
-    name: "Telefon-Agent",
-    text: "Anrufe aufnehmen, Anliegen erfassen und die weitere Bearbeitung im Betrieb vorbereiten.",
-    when: "Geplant: September / Anfang Oktober 2026",
-  },
-  {
-    name: "Offener MCP-Server",
-    text: "Externe KI-Assistenten mit den freigegebenen CraftOS-Funktionen verbinden.",
-    when: "Geplant: September / Anfang Oktober 2026",
-  },
-  {
-    name: "Weitere Agent-Aktionen",
-    text: "Craft AI soll nach Ihrer Bestätigung zusätzliche Aufgaben im System ausführen können.",
-    when: "Geplant: September 2026",
-  },
-];
-export const vision = upcomingFeatures;

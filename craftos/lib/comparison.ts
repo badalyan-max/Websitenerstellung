@@ -255,12 +255,7 @@ export const featureComparisons: FeatureComparison[] = [
   },
   {
     feature: "KI-Telefonempfang",
-    craftos: {
-      text: "Angekündigt",
-      detail:
-        "Telefon-Agent geplant für September / Anfang Oktober 2026; noch keine verfügbare Leistung.",
-      href: "#ausblick",
-    },
+    craftos: { text: "Nein" },
     craftnote: {
       text: "Hier nicht bewertet",
       detail:

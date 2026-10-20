@@ -1,11 +1,23 @@
 import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { pageMetadata } from "@/lib/metadata";
-import { funktionen, upcomingFeatures } from "@/lib/funktionen";
-import { site } from "@/lib/site";
+import { funktionen } from "@/lib/funktionen";
+import { annualSavingPercent, site, tarife } from "@/lib/site";
+const euro = new Intl.NumberFormat("de-DE", {
+  style: "currency",
+  currency: "EUR",
+});
+const saving = Math.round(annualSavingPercent);
+function lizenz(id: (typeof tarife)[number]["id"]) {
+  const tarif = tarife.find((t) => t.id === id);
+  if (!tarif) throw new Error("Unbekannte Lizenz: " + id);
+  return tarif;
+}
+const voll = lizenz("voll");
+const app = lizenz("app");
 export const metadata = pageMetadata(
   "Fakten über CraftOS: Funktionen, Lizenzen und Verfügbarkeit",
-  "Überprüfbare Produktinformationen zu CraftOS: Web-App, Mobile-App, Lizenzen, 10 Testtage, GoBD-Unterstützung und angekündigte Erweiterungen.",
+  "Überprüfbare Produktinformationen zu CraftOS: Web-App, Mobile-App, Lizenzen, 10 Testtage, GoBD-Unterstützung und klar benannte Grenzen.",
   "/fakten-ueber-craftos",
 );
 export default function Page() {
@@ -29,12 +41,12 @@ export default function Page() {
                 "Web-App im Browser und Mobile-App. iOS im App Store und Android bei Google Play.",
               ],
               [
-                "Voll-Lizenz",
-                "29,95 € netto pro Person und Monat oder 299,50 € netto pro Jahr (rund 17 % günstiger). Web-App und Mobile-App für dieselbe Person sind enthalten.",
+                voll.name,
+                `${euro.format(voll.monat)} netto pro Person und Monat oder ${euro.format(voll.jahr)} netto pro Jahr (rund ${saving} % günstiger). Web-App und Mobile-App für dieselbe Person sind enthalten.`,
               ],
               [
-                "App-Lizenz",
-                "9,95 € netto pro Person und Monat oder 99,50 € netto pro Jahr (rund 17 % günstiger). Ergänzung für Mitarbeitende auf der Baustelle; der Betrieb benötigt mindestens eine Voll-Lizenz.",
+                app.name,
+                `${euro.format(app.monat)} netto pro Person und Monat oder ${euro.format(app.jahr)} netto pro Jahr (rund ${saving} % günstiger). Ergänzung für Mitarbeitende auf der Baustelle; der Betrieb benötigt mindestens eine ${voll.name}.`,
               ],
               [
                 "Testphase",
@@ -90,27 +102,16 @@ export default function Page() {
                 className="border-b border-ink-200 py-4 text-link"
               >
                 {f.name}
-                {f.tier === "launch" ? " · In Prüfung" : ""}
               </Link>
             ))}
           </div>
-          <h2 className="text-3xl font-semibold mt-14">
-            Angekündigte Erweiterungen
-          </h2>
-          <ul className="mt-6 space-y-4">
-            {upcomingFeatures.map((f) => (
-              <li key={f.name}>
-                <strong>{f.name}</strong>: {f.when}. {f.text}
-              </li>
-            ))}
-          </ul>
           <p className="notice mt-10">
             Portal-Onlinezahlungen werden nicht als verfügbar angeboten.
             DATANORM-v5-Kompatibilität, automatische ELSTER-Übermittlung und
             vollständig autonome Buchhaltung werden nicht zugesagt.
           </p>
           <p className="text-sm text-ink-600 mt-8">
-            Stand: 9. September 2026.{" "}
+            Stand: 20. Oktober 2026.{" "}
             <Link className="text-link" href="/gobd">
               GoBD im Detail
             </Link>{" "}

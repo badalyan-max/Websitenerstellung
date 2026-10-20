@@ -31,6 +31,12 @@ for (const url of urls) {
     title,
     hasH1: /<h1\b/.test(body),
     oldTrial: /14 Tage (kostenlos|testen)/i.test(body),
+    // Gleiches Muster wie tests/announcements.test.ts (content) und live-check.mjs:
+    // „Stand: Oktober 2026“ ist legitim, nur „… 2026 geplant“ ist eine Ankündigung.
+    announcement:
+      /Geplant:|Demnächst in CraftOS|Telefon-Agent|MCP-Server|(September|Oktober|November) 2026 geplant/.test(
+        body,
+      ),
   });
 }
 const badLinks = [];
@@ -75,7 +81,12 @@ console.log(
     {
       routes: results.length,
       failures: results.filter(
-        (x) => x.status !== 200 || !x.canonical || !x.hasH1 || x.oldTrial,
+        (x) =>
+          x.status !== 200 ||
+          !x.canonical ||
+          !x.hasH1 ||
+          x.oldTrial ||
+          x.announcement,
       ),
       badLinks,
       unknown,
@@ -88,4 +99,4 @@ console.log(
   ),
 );
 
-if(results.some(x=>x.status!==200||!x.canonical||!x.hasH1||x.oldTrial)||badLinks.length||unknown.some(x=>x.status!==404)||og.some(x=>x.status!==200))process.exitCode=1;
+if(results.some(x=>x.status!==200||!x.canonical||!x.hasH1||x.oldTrial||x.announcement)||badLinks.length||unknown.some(x=>x.status!==404)||og.some(x=>x.status!==200))process.exitCode=1;

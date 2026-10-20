@@ -418,33 +418,8 @@
   margin: 20px 0 0;
   max-width: 860px;
 }
-.roadmapGrid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: 40px;
-  gap: 32px;
-}
-.roadmapItem {
-  border-top: 2px solid #dedee3;
-  padding-top: 24px;
-}
-.planned {
-  font-size: 13px;
-  color: #805008;
-  margin: 0 0 18px;
-  line-height: 1.6;
-}
-.roadmapItem h3 {
-  font-size: 25px;
-  margin: 0 0 14px;
-}
-.roadmapItem > p:last-child {
-  font-size: 16px;
-  color: #51515c;
-  margin: 0;
-}
 .sourceSection {
-  background: #f5f5f6;
+  background: #fff;
   border-top: 1px solid #dedee3;
 }
 .sourcesLayout {
@@ -544,10 +519,6 @@
   .providerNotes {
     grid-template-columns: 1fr;
     gap: 16px;
-  }
-  .roadmapGrid {
-    grid-template-columns: 1fr;
-    gap: 28px;
   }
   .sourcesLayout {
     grid-template-columns: 1fr;
