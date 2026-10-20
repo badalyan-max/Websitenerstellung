@@ -1,0 +1,114 @@
+/* Funktionskarte v2 – UI-SPEC §5. Flach: kein Schatten, kein Verlauf, keine Skalierung. */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #dedee3;
+  border-radius: var(--radius-tile, 16px);
+  transition: border-color 0.15s ease;
+}
+.card:focus-within {
+  outline: 3px solid #bb7609;
+  outline-offset: 4px;
+}
+.stage {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  padding: 24px 24px 0;
+  background: #f7f3eb;
+  border-bottom: 1px solid var(--color-line-warm, #e7dcc9);
+}
+.stage[data-visual="icon"] {
+  align-items: center;
+  padding: 24px;
+}
+.hex {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 98px;
+  height: 112px;
+  color: #784b10;
+}
+.hexShape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: #fff;
+  stroke: #e7dcc9;
+  stroke-width: 2;
+}
+.hexIcon {
+  position: relative;
+}
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+}
+.title {
+  margin: 16px 0 0;
+  font-family: var(--font-display, var(--font-clash, sans-serif));
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: #17171c;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: transparent;
+  text-underline-offset: 5px;
+  transition: text-decoration-color 0.15s ease;
+}
+.benefit {
+  margin: 8px 0 0;
+  max-width: 45ch;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #62626e;
+}
+.link {
+  margin-top: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #17171c;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+/* Gestreckter Klickbereich: die ganze Karte führt zur Funktionsseite */
+.link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+.link:focus-visible {
+  outline: none;
+}
+@media (hover: hover) {
+  .card:hover {
+    border-color: #99600b;
+  }
+  .card:hover .title {
+    text-decoration-color: currentColor;
+  }
+  .card:hover .link {
+    color: #99600b;
+  }
+}
+@media (min-width: 768px) {
+  .body {
+    padding: 24px;
+  }
+}

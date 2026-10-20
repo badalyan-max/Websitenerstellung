@@ -1,0 +1,126 @@
+/* Vergleichstabelle v2 – UI-SPEC §7. Flach, neutral: keine roten Kreuze, keine grünen Haken. */
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.hint {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #62626e;
+}
+.scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  border: 1px solid #dedee3;
+  border-radius: var(--radius-tile, 16px);
+  background: #fff;
+}
+.scroll:focus-visible {
+  outline: 3px solid #bb7609;
+  outline-offset: 4px;
+}
+.table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+  font-size: 16px;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+  color: #17171c;
+}
+.caption {
+  padding: 16px;
+  text-align: left;
+  font-family: var(--font-display, var(--font-clash, sans-serif));
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: #17171c;
+  border-bottom: 1px solid #dedee3;
+}
+.table th,
+.table td {
+  height: 56px;
+  padding: 16px;
+  vertical-align: middle;
+  border-bottom: 1px solid #dedee3;
+}
+.table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.table thead th {
+  background: #f7f3eb;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #17171c;
+}
+.table tbody th {
+  font-weight: 400;
+}
+.table [data-highlight="true"] {
+  background: #f7f3eb;
+}
+.table thead th[data-highlight="true"] {
+  box-shadow: inset 0 3px 0 #f2af38;
+}
+.mark {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+.mark[data-value="ja"] {
+  color: #17171c;
+}
+.mark[data-value="nein"] {
+  color: #777782;
+}
+td[data-highlight="true"] .mark[data-value="ja"] {
+  background: #ffefcc;
+}
+.partial {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #62626e;
+}
+.text {
+  white-space: nowrap;
+}
+.note {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #62626e;
+}
+@media (max-width: 767px) {
+  .rowHead {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    min-width: 152px;
+    background: #fff;
+  }
+  .table thead .rowHead {
+    background: #f7f3eb;
+  }
+}
+@media (min-width: 768px) {
+  .hint {
+    display: none;
+  }
+  .table {
+    min-width: 0;
+  }
+}

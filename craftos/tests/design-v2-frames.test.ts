@@ -77,6 +77,7 @@ describe("ComparisonTable", () => {
     expect(region).toContain(`aria-label="${tabelle.caption}"`);
     expect(region).toContain('tabindex="0"');
     expect(html).not.toContain(" · ");
+    expectStatic(html, "ComparisonTable");
   });
 
   it("wirft bei mehr als 4 Wertspalten oder mehr als 12 Zeilen", () => {
@@ -121,6 +122,7 @@ describe("FeatureCard", () => {
     expect(html).toContain("Web-App");
     expect(html).toContain("Mobile-App");
     expect(html).not.toMatch(/[→↗›»]/);
+    expectStatic(html, "FeatureCard");
   });
 });
 

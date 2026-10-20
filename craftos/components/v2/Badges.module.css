@@ -1,0 +1,46 @@
+/* Plattform- und Lizenz-Badges v2 – UI-SPEC §8. Nicht interaktiv, flach. */
+.group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.group > li {
+  display: flex;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 28px;
+  padding: 4px 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-badge, 6px);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.badge > svg {
+  flex: none;
+}
+.badge[data-kind="platform"] {
+  background: #fff;
+  border-color: #dedee3;
+  color: #393941;
+}
+.badge[data-kind="license"] {
+  background: #fff4d9;
+  color: #784b10;
+}
+:where([data-tone="dark"], [data-surface="dark"]) .badge[data-kind="platform"] {
+  background: #ffffff14;
+  border-color: transparent;
+  color: #f4f4f5;
+}
+:where([data-tone="dark"], [data-surface="dark"]) .badge[data-kind="license"] {
+  background: #f2af381f;
+  color: #ffd06a;
+}

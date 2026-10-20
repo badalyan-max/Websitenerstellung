@@ -1,0 +1,46 @@
+/* Bild und Kennzeichnung v2 – UI-SPEC §9. Bilder ohne Schatten (Schatten nur an Geräterahmen). */
+.figure {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+}
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-tile, 16px);
+}
+.caption {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #62626e;
+}
+.captionText {
+  max-width: 60ch;
+}
+
+/* Kennzeichnung (IllustrationLabel), auch in Geräterahmen verwendet */
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #62626e;
+  text-align: left;
+}
+.label > svg {
+  flex: none;
+}
+:where([data-tone="dark"], [data-surface="dark"]) .label,
+:where([data-tone="dark"], [data-surface="dark"]) .caption {
+  color: #bcbcc6;
+}
