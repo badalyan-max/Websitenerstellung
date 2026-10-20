@@ -9,6 +9,7 @@ import snapshot from "@/docs/product-pricing-snapshot.json";
 import * as siteModule from "@/lib/site";
 import { buildLlmsTxt } from "@/lib/llms";
 import { softwareApplicationSchema } from "@/lib/schema";
+import { productBasis } from "@/lib/product-register";
 
 const { tarife, creditPakete, site } = siteModule;
 const root = path.resolve(import.meta.dirname, "..");
@@ -105,6 +106,7 @@ describe("Preise entsprechen origin/release der Web-App", () => {
       "components/preise/PricingTable.tsx",
       "lib/llms.ts",
       "lib/schema.ts",
+      "app/fakten-ueber-craftos/page.tsx",
     ];
     const preis = /29[,.]95|9[,.]95|299[,.]50|99[,.]50|24[,.]96|8[,.]29|0[,.]99|9[,.]90/;
     const funde: string[] = [];
@@ -117,6 +119,12 @@ describe("Preise entsprechen origin/release der Web-App", () => {
         });
     }
     expect(funde).toEqual([]);
+  });
+
+  it("Register und Preis-Snapshot nutzen denselben Web-Commit", () => {
+    expect(productBasis.web.ref).toBe(snapshot.source.ref);
+    expect(productBasis.web.commit).toBe(snapshot.source.commit);
+    expect(productBasis.web.tag).toBe(snapshot.source.tag);
   });
 });
 

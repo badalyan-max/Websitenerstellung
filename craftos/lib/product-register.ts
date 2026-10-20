@@ -9,11 +9,11 @@ import { site, tarife } from "./site";
  * dient ausschließlich der internen Abgrenzung.
  */
 export const productBasis = {
-  checkedAt: "2026-10-20",
+  checkedAt: "2026-10-21",
   web: {
     ref: "origin/release",
-    tag: "v4.0.0-test.238",
-    commit: "07cf0645517b81fa39c8644e3c9c84904f789bc4",
+    tag: "v4.0.0-test.239",
+    commit: "535206b42aace73bb53b2796c5072cea78ac10fd",
   },
   mobile: {
     ref: "origin/release",

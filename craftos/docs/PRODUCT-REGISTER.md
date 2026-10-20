@@ -1,6 +1,6 @@
 # Produktregister und Veröffentlichungsabgleich
 
-Stand: 20. Oktober 2026 (Release-Abgleich Phase 5).
+Stand: 21. Oktober 2026 (Release-Abgleich Phase 5; Web-Basis am 21.10. vor dem Rollout auf v4.0.0-test.239 nachgezogen).
 
 Die maschinenlesbare Grundlage liegt in `lib/product-register.ts`. Sie verbindet die zentralen Funktionsbeschreibungen mit Plattformen, Zugriff, Lizenzzuordnung, Implementierungsstatus und internen Prüfbelegen. Preise und 10 Testtage werden aus `lib/site.ts` bezogen. Ratgeber und Hilfeartikel referenzieren dieselben Funktions-Slugs. Interne Belegpfade werden nicht an Suchkomponenten im Browser übertragen.
 
@@ -10,7 +10,7 @@ Maßgeblich ist ausschließlich der Produktions-Release `origin/release` beider 
 
 | Produkt | Ref | Release-Tag | Commit |
 |---|---|---|---|
-| Web-App (`craft-connect-buddy`) | `origin/release` | `v4.0.0-test.238` | `07cf0645517b81fa39c8644e3c9c84904f789bc4` |
+| Web-App (`craft-connect-buddy`) | `origin/release` | `v4.0.0-test.239` | `535206b42aace73bb53b2796c5072cea78ac10fd` |
 | Mobile-App (`craftos-mobile`) | `origin/release` | `mobile-v1.0.0-test.93` | `5610a06415361f5c5a01c90258352ed7f49b7bab` |
 
 Jeder Belegpfad im Register (`features[].evidence`, `liveExtras[].evidence`) und jeder Sprachordner aus `mobileLocales` wird von `tests/product-register.test.ts` per `git cat-file -e <commit>:<pfad>` gegen diese Commits geprüft, sobald beide Repositories lokal vorliegen (Pfade über `CRAFTOS_WEB_REPO` und `CRAFTOS_MOBILE_REPO` überschreibbar). Lokale Arbeitsstände oder Feature-Branches sind keine Grundlage mehr.
