@@ -21,7 +21,7 @@ craftos.eu wird klar gegliedert und optisch ansprechend: weniger Fließtext, Kac
 
 ## Phases
 
-- [ ] **Phase 5: Produktwahrheit, Keyword-Map und Designbausteine** - Live-Stand korrigiert, Suchbegriffe je Seite festgelegt, v2-Bausteine bereit
+- [x] **Phase 5: Produktwahrheit, Keyword-Map und Designbausteine** - Live-Stand korrigiert, Suchbegriffe je Seite festgelegt, v2-Bausteine bereit (completed 2026-10-20)
 - [ ] **Phase 6: Startseite, Navigation und Funktionsübersicht** - Startseite klar gegliedert, Funktionsmenü und nach Ablauf gruppierte Übersicht
 - [ ] **Phase 7: Funktionsdetailseiten und Mobile-App-Seite** - Einheitliche, kurze Detailseiten mit visuellem Element für jede Live-Funktion
 - [ ] **Phase 8: SEO und KI-Sichtbarkeit** - Alternativen-Seiten, Preis-Antwortblock, Metadaten nach Keyword-Map, Breadcrumbs, OG-Grafiken
@@ -62,7 +62,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 05-08-PLAN.md — Phasen-Gate, Ship-Gate über Gesamtdiff, Push, IndexNow, Live-Prüfung, Etappenmessung – Welle 3
+- [x] 05-08-PLAN.md — Phasen-Gate, Ship-Gate über Gesamtdiff, Push, IndexNow, Live-Prüfung, Etappenmessung – Welle 3
 
 **UI hint**: yes
 
@@ -146,7 +146,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 5. Produktwahrheit, Keyword-Map und Designbausteine | 7/8 | In Progress|  |
+| 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete   | 2026-10-20 |
 | 6. Startseite, Navigation und Funktionsübersicht | 0/TBD | Not started | - |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 0/TBD | Not started | - |
 | 8. SEO und KI-Sichtbarkeit | 0/TBD | Not started | - |

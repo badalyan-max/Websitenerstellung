@@ -15,14 +15,14 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 - [ ] **DESIGN-01**: Besucher erfassen auf der Startseite ohne Scrollen, was CraftOS ist, sehen eine Produktdarstellung und finden „10 Tage testen“; jeder Abschnitt hat höchstens eine Überschrift, einen Satz Einleitung und visuelle Elemente statt Fließtextblöcke.
 - [ ] **DESIGN-02**: Ein Designsystem v2 (Tokens, Bildrahmen für Desktop und Phone mit vereinfachter UI, Kachel-/Bento-Raster, Schrittfolge, Kennzahlen, Funktionskarte mit visuellem Element, Vergleichstabelle) wird auf allen Seiten einheitlich genutzt; Marke (Amber, Clash Display, General Sans, Logo) bleibt.
 - [ ] **DESIGN-03**: Besucher finden über ein Menü mit Funktionsgruppen, Kurzbeschreibungen und Vorschaubildern jede Funktion in höchstens zwei Klicks, auf Desktop und Mobil.
-- [ ] **DESIGN-04**: Bewegung ist dezent (Hover, Einblenden einzelner Elemente, Videos), es gibt keine globale Scroll-Animation, und bei „reduzierte Bewegung“ bleiben alle Inhalte statisch sichtbar.
+- [x] **DESIGN-04**: Bewegung ist dezent (Hover, Einblenden einzelner Elemente, Videos), es gibt keine globale Scroll-Animation, und bei „reduzierte Bewegung“ bleiben alle Inhalte statisch sichtbar.
 - [ ] **DESIGN-05**: Jede Seite besteht die Barrierefreiheitsprüfung (axe ohne ernsthafte Verstöße, Kontrast ≥ 4,5:1, Tastaturbedienung) bei 360, 390, 768, 1024 und 1440 px.
 
 ### Medien (MEDIA)
 
 - [ ] **MEDIA-01**: Jede Live-Funktion hat ein visuelles Element (vereinfachte, im Code gebaute UI-Darstellung im Geräterahmen, Icon-Grafik, Ablaufdiagramm oder vorhandenes Foto); detailgetreue Screenshots sind nicht nötig.
-- [ ] **MEDIA-03**: Vereinfachte Darstellungen zeigen nur Funktionen, die live sind, und erfinden keine Bedienelemente oder Zahlen, die das Produkt nicht hat; KI-generierte Szenen sind als „Darstellung“ gekennzeichnet.
-- [ ] **MEDIA-04**: Bilder halten ein Budget ein (Bild ≤ 150 KB AVIF/WebP je Ansicht) und verursachen keinen Layout-Shift.
+- [x] **MEDIA-03**: Vereinfachte Darstellungen zeigen nur Funktionen, die live sind, und erfinden keine Bedienelemente oder Zahlen, die das Produkt nicht hat; KI-generierte Szenen sind als „Darstellung“ gekennzeichnet.
+- [x] **MEDIA-04**: Bilder halten ein Budget ein (Bild ≤ 150 KB AVIF/WebP je Ansicht) und verursachen keinen Layout-Shift.
 
 ### Funktionen (FEAT)
 
@@ -77,12 +77,12 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 | DESIGN-01 | Phase 6 | Pending |
 | DESIGN-02 | Phase 5 | Pending |
 | DESIGN-03 | Phase 6 | Pending |
-| DESIGN-04 | Phase 5 | Pending |
+| DESIGN-04 | Phase 5 | Complete |
 | DESIGN-05 | Phase 10 | Pending |
 | MEDIA-01 | Phase 7 | Pending |
 | MEDIA-02 | – | Out of Scope |
-| MEDIA-03 | Phase 5 | Pending |
-| MEDIA-04 | Phase 5 | Pending |
+| MEDIA-03 | Phase 5 | Complete |
+| MEDIA-04 | Phase 5 | Complete |
 | FEAT-01 | Phase 6 | Pending |
 | FEAT-02 | Phase 7 | Pending |
 | FEAT-03 | Phase 7 | Pending |
