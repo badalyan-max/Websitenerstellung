@@ -56,11 +56,6 @@ export default async function Page({
                 {p === "web" ? "Web-App" : "Mobile-App"}
               </span>
             ))}
-            {f.tier === "launch" && (
-              <span className="text-sm font-semibold text-primary-800">
-                In Prüfung
-              </span>
-            )}
           </div>
           <div
             className={

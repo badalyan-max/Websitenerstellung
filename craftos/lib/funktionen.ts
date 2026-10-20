@@ -65,7 +65,6 @@ interface Definition {
   help: string;
   related: string[];
   demo?: DemoScene;
-  upcoming?: boolean;
 }
 const definitions: Definition[] = [
   {
@@ -404,8 +403,9 @@ const definitions: Definition[] = [
     title: "Wissen, was da ist. Und wohin es gegangen ist.",
     intro:
       "Bestände, Lagerorte und Bewegungen nachvollziehbar verwalten. Auftragsbezogene Entnahmen verbinden das Material mit den Kosten des Projekts.",
-    platforms: ["web"],
-    access: "Büro- und Admin-Zugänge mit den eingerichteten Lagerrechten.",
+    platforms: ["web", "mobile"],
+    access:
+      "Büro- und Admin-Zugänge mit den eingerichteten Lagerrechten. In der Mobile-App scannen berechtigte Mitarbeitende Artikel per Barcode, sehen den Bestand ihrer freigegebenen Lager und buchen Ausgabe, Rücknahme oder Bewegung.",
     points: [
       [
         "Lagerorte abbilden",
@@ -508,9 +508,9 @@ const definitions: Definition[] = [
     title: "Das Team weiß, was zu tun ist.",
     intro:
       "Leistungen und Materialbedarf aus dem Dokument für die Ausführung bereitstellen, ohne Verkaufspreise und mit direktem Projektbezug.",
-    platforms: ["web"],
+    platforms: ["web", "mobile"],
     access:
-      "Berechtigte Büro- und Admin-Zugänge erstellen und verwalten die Arbeitsanweisungen in der Web-App.",
+      "Berechtigte Büro- und Admin-Zugänge erstellen und verwalten die Arbeitsanweisungen in der Web-App. In der Mobile-App sieht das Team die Arbeitsschritte des Projekts mit Anleitung, Material und Werkzeug und hakt erledigte Schritte ab.",
     points: [
       [
         "Leistungen weitergeben",
@@ -530,7 +530,7 @@ const definitions: Definition[] = [
       "Prüfen Sie die abgeleiteten Leistungen und den Materialbedarf.",
       "Stellen Sie die Arbeitsanweisung für die Ausführung bereit.",
     ],
-    note: "Arbeitsanweisungen erstellen und verwalten Sie in der Web-App. Eine Materialliste allein bucht noch keine Lagerentnahme.",
+    note: "Arbeitsanweisungen erstellen und verwalten Sie in der Web-App; die Mobile-App zeigt die Arbeitsschritte auf der Baustelle. Eine Materialliste allein bucht noch keine Lagerentnahme.",
     help: "projektdateien-ordner",
     related: ["angebote", "projektverwaltung", "lager"],
   },
@@ -607,11 +607,10 @@ const definitions: Definition[] = [
     icon: Globe,
     title: "Ein gemeinsamer Ort für Ihre Kunden.",
     intro:
-      "Angebote, Dokumente und Kommunikation im Browser. Der vollständige Einladungs- und Zugangsablauf befindet sich noch in Prüfung.",
+      "Angebote, Rechnungen, Termine und Nachrichten im Browser. Sie laden Ihre Kunden per E-Mail ein, der Kunde sieht nur die für ihn freigegebenen Projekte und Dokumente.",
     platforms: ["web"],
     access:
-      "Separater Kundenbereich; die allgemeine Freigabe des vollständigen Zugangsablaufs steht noch aus.",
-    upcoming: true,
+      "Separater Kundenbereich mit eigenem Login; Einladung und Zugang verwalten berechtigte Büro- und Admin-Zugänge im Kundenstamm.",
     points: [
       [
         "Dokumente im Browser",
@@ -622,16 +621,16 @@ const definitions: Definition[] = [
         "Der Portalablauf unterstützt Annahme und Ablehnung mit optionaler Rückmeldung.",
       ],
       [
-        "Verfügbarkeit transparent",
-        "Der vollständige Zugangsablauf ist noch nicht allgemein als abgenommen ausgewiesen.",
+        "Projekte, Termine und Nachrichten",
+        "Kunden sehen ihre Projekte und Termine und schreiben Ihnen direkt zum Projekt.",
       ],
     ],
     steps: [
-      "Klären Sie mit dem Support, ob der Portalzugang für Ihren Betrieb freigegeben ist.",
+      "Hinterlegen Sie die E-Mail-Adresse im Kundenstamm und laden Sie den Kunden ins Portal ein.",
       "Stellen Sie die vorgesehenen Dokumente und Projektinformationen bereit.",
-      "Der Kunde sieht die freigegebenen Informationen im Browser.",
+      "Der Kunde meldet sich an und sieht die freigegebenen Informationen im Browser.",
     ],
-    note: "Onlinezahlungen im Portal sind deaktiviert. Zahlungen erfolgen nach den Angaben auf der Rechnung.",
+    note: "Rechnungen aus dem Portal begleicht der Kunde per Überweisung auf das Konto, das auf dem Rechnungs-PDF steht.",
     help: "kunden-ansprechpartner-anlegen",
     related: ["angebote", "rechnungen", "projektverwaltung"],
   },
@@ -640,7 +639,7 @@ export const funktionen: Funktion[] = definitions.map((d) => ({
   slug: d.slug,
   name: d.name,
   icon: d.icon,
-  tier: d.upcoming ? "launch" : "heute",
+  tier: "heute",
   kurz: d.intro,
   heroTitle: d.title,
   heroIntro: d.intro,
@@ -658,7 +657,7 @@ export const funktionen: Funktion[] = definitions.map((d) => ({
   helpSlug: d.help,
   related: d.related,
   demo: d.demo,
-  checkedAt: "2026-09-09",
+  checkedAt: "2026-10-20",
 }));
 export function getFunktion(slug: string): Funktion | undefined {
   return funktionen.find((f) => f.slug === slug);

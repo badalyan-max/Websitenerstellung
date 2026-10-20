@@ -26,7 +26,7 @@ Der lokale Produktabgleich erfolgte gegen Web main 179cef5 und Mobile master 9e6
 | Beleg | Mobil Foto auslesen, erkannte Angaben prüfen und speichern; im Web unter Eingangsrechnungen weiterbearbeiten. | Mobiles Speichern ist keine endgültige Kontierungs-/GoBD-Prüfung und keine autonome Verbuchung. |
 | Bericht und Rechnung | Mobil einen Bericht unterschreiben; im Web Leistungen in einen Entwurf übernehmen und erst nach Prüfung fertigstellen. | Ohne Unterschrift ist der mobile Bericht ein nicht abrechenbarer Entwurf. Die Übernahme selbst stellt keine Rechnung fertig. |
 | Craft AI | Mobile Zeitdaten speichern; diese im Web mit Craft AI abfragen. | Kein nativer mobiler KI-Chat und keine schreibende Agentaktion im Beispiel. |
-| Lager | Im Web Bestand 24, Entnahme 6, Rückbuchung 2, verbleibend 20 darstellen. | Die native App besitzt im geprüften Stand keine Lagerbuchung; Materialzeilen im mobilen Bericht verändern keinen Lagerbestand. |
+| Lager | Im Web Bestand 24, Entnahme 6, Rückbuchung 2, verbleibend 20 darstellen. | Die Mobile-App hat seit dem Release-Abgleich vom 20.10.2026 einen Lager-Scan mit Ausgabe, Rücknahme und Bewegung (`src/features/inventory/screens/InventoryScanScreen.tsx` @ `origin/release` 5610a064). Materialzeilen im mobilen Bericht verändern dagegen keinen Lagerbestand. |
 
 Die Quellenprüfung erfolgte ausschließlich lesend gegen die tatsächlichen App-Repositories. Die ergänzenden Standortbelege und Voraussetzungen stehen in `GPS-PRODUCT-EVIDENCE.md`. Zeit, Belege und Unterschriften verwenden fiktive Daten; die Animation ruft keine Produkt-API auf und übermittelt keine Standorte.
 

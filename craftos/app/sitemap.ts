@@ -4,6 +4,17 @@ import { funktionen } from "@/lib/funktionen";
 import { gewerke } from "@/lib/gewerke";
 import { getContentList } from "@/lib/content";
 import { categories } from "@/lib/content-types";
+/** Letzte inhaltliche Änderung je Kernseite; Standard ist der Relaunch-Stand. */
+const pageUpdated: Record<string, string> = {
+  "": "2026-10-20",
+  "/funktionen": "2026-10-20",
+  "/craft-ai": "2026-10-20",
+  "/vergleich": "2026-10-20",
+  "/fakten-ueber-craftos": "2026-10-20",
+  "/preise": "2026-10-20",
+  "/app": "2026-10-20",
+  "/gewerke": "2026-10-20",
+};
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = [
     ...(await getContentList("blog")),
@@ -27,7 +38,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/rechner/angebotskalkulation",
   ];
   return [
-    ...pages.map((p) => ({ url: site.url + p, lastModified: "2026-09-09" })),
+    ...pages.map((p) => ({
+      url: site.url + p,
+      lastModified: pageUpdated[p] ?? "2026-09-09",
+    })),
     ...["/agb", "/datenschutz", "/impressum"].map((p) => ({
       url: site.url + p,
     })),
