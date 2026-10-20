@@ -1,0 +1,54 @@
+{
+  "source": {
+    "repo": "craft-connect-buddy",
+    "ref": "origin/release",
+    "tag": "v4.0.0-test.238",
+    "commit": "07cf0645517b81fa39c8644e3c9c84904f789bc4",
+    "readAt": "2026-10-20T21:18:41.121Z"
+  },
+  "mobileSource": {
+    "repo": "craftos-mobile",
+    "ref": "origin/release",
+    "tag": "mobile-v1.0.0-test.93",
+    "commit": "5610a06415361f5c5a01c90258352ed7f49b7bab"
+  },
+  "pricing": {
+    "ADMIN_MONTHLY": 29.95,
+    "BUERO_MONTHLY": 29.95,
+    "APP_MONTHLY": 9.95,
+    "ADMIN_YEARLY": 299.5,
+    "BUERO_YEARLY": 299.5,
+    "APP_YEARLY": 99.5,
+    "YEARLY_DISCOUNT_PERCENT": 17,
+    "ADMIN_FREE_CREDITS": 150,
+    "ORG_STORAGE_BASE_GB": 50,
+    "EXTRA_STORAGE_GB": 50,
+    "EXTRA_STORAGE_PRICE_MONTHLY": 0.99,
+    "EXTRA_STORAGE_PRICE_YEARLY": 9.9
+  },
+  "vatRate": 0.19,
+  "creditPackages": [
+    {
+      "amount": 10,
+      "bonus": 0,
+      "bonusPercent": 0
+    },
+    {
+      "amount": 25,
+      "bonus": 2.5,
+      "bonusPercent": 10
+    },
+    {
+      "amount": 50,
+      "bonus": 7.5,
+      "bonusPercent": 15
+    },
+    {
+      "amount": 100,
+      "bonus": 20,
+      "bonusPercent": 20
+    }
+  ],
+  "trialDays": 10,
+  "netPrices": true
+}

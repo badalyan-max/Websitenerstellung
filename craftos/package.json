@@ -15,7 +15,9 @@
     "test": "vitest run",
     "test:e2e": "playwright test --config tests/e2e/playwright.config.cjs",
     "test:deployment": "node scripts/check-deployment-build.mjs",
-    "indexnow": "node scripts/indexnow-submit.mjs"
+    "indexnow": "node scripts/indexnow-submit.mjs",
+    "sync:product": "node scripts/sync-product-snapshot.mjs",
+    "sync:product:check": "node scripts/sync-product-snapshot.mjs --check"
   },
   "keywords": [
     "handwerkersoftware",
