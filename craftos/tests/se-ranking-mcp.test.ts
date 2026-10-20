@@ -173,3 +173,29 @@ describe('Schlüssel nie in Fehlertexten (MD-02)', () => {
     expect(src).toMatch(/Netzwerkfehler bei \$\{method\} \$\{endpoint\}: \$\{redact\(err\?\.message, apiKey\)\}/)
   })
 })
+
+describe('Antwortzuordnung per JSON-RPC-ID (LO-12)', () => {
+  const sse = (...msgs: unknown[]) =>
+    new Response(msgs.map((m) => `event: message\ndata: ${JSON.stringify(m)}\n\n`).join(''), {
+      status: 200,
+      headers: { 'content-type': 'text/event-stream' },
+    })
+
+  it('nimmt aus einem SSE-Stream nur die Nachricht mit passender id', async () => {
+    const { client } = setup([
+      (b) =>
+        sse(
+          { jsonrpc: '2.0', method: 'notifications/progress', params: { progress: 1 } },
+          { jsonrpc: '2.0', id: 999, result: { content: [{ type: 'text', text: '{"fremd":true}' }] } },
+          { jsonrpc: '2.0', id: b.id, result: { content: [{ type: 'text', text: '{"eigen":true}' }] } },
+        ),
+    ])
+    expect(await client.callTool('PROJECT_listKeywords', { site_id: 1 })).toEqual({ eigen: true })
+  })
+
+  it('wirft, wenn keine Antwort zur id passt, statt eine fremde zu übernehmen', async () => {
+    const { client } = setup([() => json(200, { jsonrpc: '2.0', id: 999, result: { content: [] } })])
+    const err = await fail(client.callTool('PROJECT_listKeywords', { site_id: 1 }))
+    expect(err.message).toMatch(/Keine Antwort mit passender ID/)
+  })
+})

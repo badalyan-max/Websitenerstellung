@@ -76,7 +76,9 @@ function parseRpc(text, id) {
     }
     if (buf.length) candidates.push(JSON.parse(buf.join("\n")));
   }
-  return candidates.find((c) => c && c.id === id) ?? candidates.find((c) => c && ("result" in c || "error" in c));
+  // Nur die Antwort mit passender id zählt; Fortschrittsmeldungen, Server-Requests oder Antworten auf andere
+  // Aufrufe im selben Stream werden ignoriert (LO-12).
+  return candidates.find((c) => c && c.id === id && ("result" in c || "error" in c));
 }
 
 // Entfernt den Schlüssel aus beliebigem Text (Fehlermeldungen des Servers), damit er nie im Log landet.
@@ -229,7 +231,7 @@ export function createClient({
     } catch {
       throw new McpError(`Antwort auf ${label} nicht lesbar: ${redact(text, apiKey).slice(0, 200)}`, { kind: "parse" });
     }
-    if (!msg) throw new McpError(`Leere Antwort auf ${label}`, { kind: "parse" });
+    if (!msg) throw new McpError(`Keine Antwort mit passender ID (${id}) auf ${label}`, { kind: "parse" });
     if (msg.error)
       throw new McpError(`JSON-RPC-Fehler ${msg.error.code} bei ${label}: ${redact(msg.error.message, apiKey)}`, {
         code: msg.error.code,
