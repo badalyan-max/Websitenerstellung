@@ -56,7 +56,38 @@ Stand: 20.10.2026. Quelle: Audit craftos.eu, Bestandsaufnahmen Web-App (`origin/
 - Rechtstexte ohne Inhaberfreigabe ändern (Datenschutzabschnitt liegt als Entwurf vor).
 
 ## Traceability
-(wird vom Roadmapper gefüllt)
+| Requirement | Phase | Status |
+|-------------|-------|--------|
+| PROD-02 | Phase 5 | Pending |
+| PROD-03 | Phase 5 | Pending |
+| PROD-04 | Phase 5 | Pending |
+| DESIGN-01 | Phase 6 | Pending |
+| DESIGN-02 | Phase 5 | Pending |
+| DESIGN-03 | Phase 6 | Pending |
+| DESIGN-04 | Phase 5 | Pending |
+| DESIGN-05 | Phase 10 | Pending |
+| MEDIA-01 | Phase 5 | Pending |
+| MEDIA-02 | Phase 7 | Pending |
+| MEDIA-03 | Phase 5 | Pending |
+| MEDIA-04 | Phase 5 | Pending |
+| FEAT-01 | Phase 6 | Pending |
+| FEAT-02 | Phase 7 | Pending |
+| FEAT-03 | Phase 7 | Pending |
+| FEAT-04 | Phase 9 | Pending |
+| SEO-02 | Phase 10 | Pending |
+| SEO-03 | Phase 8 | Pending |
+| SEO-04 | Phase 8 | Pending |
+| SEO-05 | Phase 8 | Pending |
+| SEO-06 | Phase 8 | Pending |
+| CONTENT-03 | Phase 9 | Pending |
+| CONTENT-04 | Phase 9 | Pending |
+| QA-04 | Phase 10 | Pending |
+| QA-05 | Phase 10 | Pending |
+| QA-06 | Phase 10 | Pending |
+
+**Coverage:** 26/26 v2.0-Anforderungen zugeordnet, keine ohne Phase, keine doppelt.
+
+Hinweis: SEO-02 hängt vom DataForSEO-Zugang des Inhabers ab (Phase 10).
 
 ## Validated (v1.0, Relaunch 09.09.2026)
 UI-01, PROD-01, DEMO-01, CONTENT-01, CONTENT-02, CALC-01, SEO-01, QA-01, QA-02, QA-03 – siehe `craftos/docs/RELAUNCH-ABNAHME.md`.
