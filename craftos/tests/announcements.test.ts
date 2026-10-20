@@ -67,6 +67,8 @@ describe("keine Ankündigungen nicht-live Funktionen", () => {
   });
   it("Vergleich zeigt beim KI-Telefonempfang für CraftOS ein neutrales Nein", () => {
     const row = featureComparisons.find((r) => r.feature === "KI-Telefonempfang");
+    // Umbenannte oder entfernte Zeile darf den Test nicht still grün machen (LO-08).
+    expect(row, "Vergleichszeile KI-Telefonempfang fehlt").toBeDefined();
     if (!row) return;
     expect(row.craftos.text).toBe("Nein");
     expect(row.craftos.detail).toBeUndefined();

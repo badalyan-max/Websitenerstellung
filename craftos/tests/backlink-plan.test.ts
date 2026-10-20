@@ -39,7 +39,8 @@ const KOSTEN = ["kostenlos", "nur bezahlt", "unbekannt"];
 const DR_QUELLEN = ["backlink-gap", "befund", null];
 
 const read = <T,>(file: string): T => JSON.parse(fs.readFileSync(file, "utf8")) as T;
-const register = fs.existsSync(REGISTER) ? read<Entry[]>(REGISTER) : [];
+// Fehlendes Register ist ein Fehler, keine leere Prüfung (LO-08).
+const register = read<Entry[]>(REGISTER);
 const gap = read<GapRow[]>(GAP);
 // Der Gap-Rohsatz führt Domains teils mit „www.“; das Register führt die Basisdomain.
 const bare = (d: string) => d.toLowerCase().replace(/^www\./, "");
