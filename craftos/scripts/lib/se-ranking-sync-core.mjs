@@ -162,95 +162,149 @@ export async function check(client, soll, { reportDir, datum = today(), log = co
 }
 
 // ---------- --apply ----------
+// Eigene Protokolldatei dieses Laufs atomar aktualisieren (Temp-Datei + rename), nie eine fremde überschreiben.
+function rewriteJson(file, data) {
+  const tmp = `${file}.tmp`;
+  fs.writeFileSync(tmp, JSON.stringify(data, null, 2) + "\n");
+  fs.renameSync(tmp, file);
+}
+const entry = (e, extra = {}) => ({ keyword: e.keyword, url: e.url, status: e.status, phase: e.phase, ...extra });
+
+// Das Protokoll wird vor der ersten Änderung angelegt und nach jeder Mutation fortgeschrieben. Bricht der Lauf
+// ab (Netzwerk, Timeout, 5xx, JSON-RPC-Fehler), wird der Projektstand neu gelesen und der Abbruch protokolliert,
+// damit die bereits geänderten Einträge samt vorher-URLs im Repo nachvollziehbar bleiben (HI-02).
 /** @param {any} client @param {any[]} soll @param {RunOptions} opts */
 export async function apply(client, soll, { reportDir, datum = today(), log = console.log }) {
   const ist = await readProject(client);
   const d = diff(soll, ist);
-  const hinzugefuegt = [];
-  const zielseiteAngeglichen = [];
-  const limits = [];
-  let abbruch = null;
+  const protokoll = {
+    datum,
+    projekt: SITE_ID,
+    status: "laufend",
+    abgebrochen: null,
+    hinzugefuegt: [],
+    zielseiteAngeglichen: [],
+    limits: [],
+    fehlgeschlagen: [],
+    unbestaetigt: [], // an PROJECT_addKeywords übergeben, Übernahme noch nicht durch Neulesen bestätigt
+    verifikation: null,
+  };
+  const { hinzugefuegt, zielseiteAngeglichen, limits, fehlgeschlagen } = protokoll;
+  const file = writeJsonUnique(reportDir, `${datum}-projektabgleich-apply`, protokoll);
+  const save = () => rewriteJson(file, protokoll);
+  log(`Protokoll: ${path.basename(file)}`);
+  let abbruch = null; // Projektlimit: restliche Einträge werden als Limit geführt
+  let fehler = null; // jeder andere Fehler: Lauf stoppt, restliche Einträge bleiben offen
 
-  // 1. Zielseiten bestehender Projekt-Keywords angleichen (verbraucht kein Keyword-Kontingent).
   const updates = [...d.zielseiteAbweichend].sort(applyOrder);
-  for (let i = 0; i < updates.length; i++) {
-    const u = updates[i];
-    if (abbruch) {
-      limits.push({ keyword: u.keyword, url: u.url, status: u.status, phase: u.phase, art: "zielseite", fehler: abbruch });
-      continue;
-    }
-    try {
-      await client.callTool("PROJECT_updateKeyword", {
-        site_id: SITE_ID,
-        keyword_id: u.id,
-        keyword: u.keyword,
-        target_url: u.url,
-      });
-      zielseiteAngeglichen.push({ keyword: u.keyword, vorher: u.istUrl, nachher: u.url, status: u.status, phase: u.phase });
-    } catch (err) {
-      if (!isLimitError(err)) throw err;
-      abbruch = err.message;
-      limits.push({ keyword: u.keyword, url: u.url, status: u.status, phase: u.phase, art: "zielseite", fehler: abbruch });
-    }
-  }
-
-  // 2. Fehlende Keywords in Paketen hinzufügen: bestehend vor geplant, geplant nach Phase aufsteigend.
   const adds = [...d.fehlend].sort(applyOrder);
-  for (let i = 0; i < adds.length; i += ADD_CHUNK) {
-    const chunk = adds.slice(i, i + ADD_CHUNK);
-    if (abbruch) {
-      for (const a of chunk)
-        limits.push({ keyword: a.keyword, url: a.url, status: a.status, phase: a.phase, art: "fehlend", fehler: abbruch });
-      continue;
+  try {
+    // 1. Zielseiten bestehender Projekt-Keywords angleichen (verbraucht kein Keyword-Kontingent).
+    for (const u of updates) {
+      if (fehler) break;
+      if (abbruch) {
+        limits.push(entry(u, { art: "zielseite", fehler: abbruch }));
+        continue;
+      }
+      try {
+        await client.callTool("PROJECT_updateKeyword", {
+          site_id: SITE_ID,
+          keyword_id: u.id,
+          keyword: u.keyword,
+          target_url: u.url,
+        });
+        zielseiteAngeglichen.push({ keyword: u.keyword, vorher: u.istUrl, nachher: u.url, status: u.status, phase: u.phase });
+      } catch (err) {
+        if (isLimitError(err)) {
+          abbruch = err.message;
+          limits.push(entry(u, { art: "zielseite", fehler: abbruch }));
+        } else fehler = err;
+      }
+      save();
     }
-    try {
-      await client.callTool("PROJECT_addKeywords", {
-        site_id: SITE_ID,
-        keywords: chunk.map((a) => ({ keyword: a.keyword, target_url: a.url })),
-      });
-    } catch (err) {
-      if (!isLimitError(err)) throw err;
-      abbruch = err.message;
-      for (const a of chunk)
-        limits.push({ keyword: a.keyword, url: a.url, status: a.status, phase: a.phase, art: "fehlend", fehler: abbruch });
+
+    // 2. Fehlende Keywords in Paketen hinzufügen: bestehend vor geplant, geplant nach Phase aufsteigend.
+    for (let i = 0; i < adds.length && !fehler; i += ADD_CHUNK) {
+      const chunk = adds.slice(i, i + ADD_CHUNK);
+      if (abbruch) {
+        for (const a of chunk) limits.push(entry(a, { art: "fehlend", fehler: abbruch }));
+        continue;
+      }
+      try {
+        await client.callTool("PROJECT_addKeywords", {
+          site_id: SITE_ID,
+          keywords: chunk.map((a) => ({ keyword: a.keyword, target_url: a.url })),
+        });
+        protokoll.unbestaetigt.push(...chunk.map((a) => entry(a)));
+      } catch (err) {
+        if (isLimitError(err)) {
+          abbruch = err.message;
+          for (const a of chunk) limits.push(entry(a, { art: "fehlend", fehler: abbruch }));
+        } else {
+          fehler = err;
+          // Ein Timeout kann trotzdem übernommen worden sein: Paket bis zur Verifikation als unbestätigt führen.
+          protokoll.unbestaetigt.push(...chunk.map((a) => entry(a)));
+        }
+      }
+      save();
     }
+  } catch (err) {
+    fehler = err; // unerwarteter Fehler (z. B. Dateisystem) – trotzdem verifizieren und protokollieren
+  }
+  if (fehler) {
+    protokoll.status = "abgebrochen";
+    protokoll.abgebrochen = fehler.message;
+    save();
   }
 
-  // 3. Ergebnis gegen den tatsächlichen Projektstand prüfen (Teilübernahmen eines Pakets erkennen).
-  const nachher = diff(soll, await readProject(client));
-  const offenNachher = new Map([...nachher.fehlend, ...nachher.zielseiteAbweichend].map((e) => [e.keyword, e]));
-  for (const a of adds)
-    if (!offenNachher.has(a.keyword) && !limits.some((l) => l.keyword === a.keyword))
-      hinzugefuegt.push({ keyword: a.keyword, url: a.url, status: a.status, phase: a.phase });
-  // Bereits als Limit erfasste Einträge, die doch übernommen wurden, wieder austragen.
-  for (let i = limits.length - 1; i >= 0; i--) {
-    if (!offenNachher.has(limits[i].keyword)) {
-      const l = limits.splice(i, 1)[0];
-      if (l.art === "fehlend") hinzugefuegt.push({ keyword: l.keyword, url: l.url, status: l.status, phase: l.phase });
-    }
+  // 3. Ergebnis gegen den tatsächlichen Projektstand prüfen (Teilübernahmen eines Pakets erkennen) –
+  //    auch nach einem Abbruch, damit der tatsächliche Stand im Protokoll steht.
+  let nachherIst = null;
+  try {
+    nachherIst = await readProject(client);
+  } catch (err) {
+    protokoll.verifikation = `Projektstand nach dem Lauf nicht lesbar: ${err.message}`;
   }
-  for (const [kw, e] of offenNachher) {
-    if (limits.some((l) => l.keyword === kw)) continue;
-    limits.push({
-      keyword: kw,
-      url: e.url,
-      status: e.status,
-      phase: e.phase,
-      art: e.istUrl === undefined ? "fehlend" : "zielseite",
-      fehler: abbruch ?? "nach --apply nicht im Projekt übernommen (Server meldete keinen Fehler)",
-    });
+  if (nachherIst) {
+    const nachher = diff(soll, nachherIst);
+    const offenNachher = new Map([...nachher.fehlend, ...nachher.zielseiteAbweichend].map((e) => [e.keyword, e]));
+    protokoll.unbestaetigt = [];
+    for (const a of adds)
+      if (!offenNachher.has(a.keyword) && !limits.some((l) => l.keyword === a.keyword)) hinzugefuegt.push(entry(a));
+    // Bereits als Limit erfasste Einträge, die doch übernommen wurden, wieder austragen.
+    for (let i = limits.length - 1; i >= 0; i--) {
+      if (!offenNachher.has(limits[i].keyword)) {
+        const l = limits.splice(i, 1)[0];
+        if (l.art === "fehlend") hinzugefuegt.push(entry(l));
+      }
+    }
+    // Als angeglichen gemeldete Zielseiten, die doch noch abweichen, sind fehlgeschlagen.
+    for (let i = zielseiteAngeglichen.length - 1; i >= 0; i--)
+      if (offenNachher.has(zielseiteAngeglichen[i].keyword)) zielseiteAngeglichen.splice(i, 1);
+    for (const [kw, e] of offenNachher) {
+      if (limits.some((l) => l.keyword === kw)) continue;
+      const art = e.istUrl === undefined ? "fehlend" : "zielseite";
+      if (fehler) fehlgeschlagen.push(entry(e, { art, fehler: `Lauf abgebrochen: ${fehler.message}` }));
+      else
+        limits.push(entry(e, { art, fehler: abbruch ?? "nach --apply nicht im Projekt übernommen (Server meldete keinen Fehler)" }));
+    }
+    protokoll.verifikation = `Projektstand neu gelesen: ${nachherIst.keywords.length} Keywords, ${offenNachher.size} Soll-Einträge offen`;
   }
 
   const order = (x) => soll.findIndex((s) => s.keyword === x.keyword);
   hinzugefuegt.sort((a, b) => order(a) - order(b));
   limits.sort((a, b) => applyOrder(a, b) || order(a) - order(b));
-  const protokoll = { datum, projekt: SITE_ID, hinzugefuegt, zielseiteAngeglichen, limits };
-  const file = writeJsonUnique(reportDir, `${datum}-projektabgleich-apply`, protokoll);
+  fehlgeschlagen.sort((a, b) => applyOrder(a, b) || order(a) - order(b));
+  if (!fehler) protokoll.status = nachherIst ? "abgeschlossen" : "unvollstaendig";
+  save();
   log(`geschrieben: ${path.basename(file)}`);
   log(
     `hinzugefügt ${hinzugefuegt.length}, Zielseite angeglichen ${zielseiteAngeglichen.length}, Limits ${limits.length}` +
-      ` (bestehend ${limits.filter((l) => l.status === "bestehend").length}, geplant ${limits.filter((l) => l.status === "geplant").length})`,
+      ` (bestehend ${limits.filter((l) => l.status === "bestehend").length}, geplant ${limits.filter((l) => l.status === "geplant").length})` +
+      `, fehlgeschlagen ${fehlgeschlagen.length}`,
   );
   if (limits.length) log("Projektlimit erreicht – Entscheidung Inhaber (Tarif) nötig");
-  return { code: 0, file, protokoll };
+  if (fehler) log(`Abbruch: ${fehler.message} – Teilprotokoll in ${path.basename(file)}`);
+  if (!nachherIst) log(protokoll.verifikation);
+  return { code: fehler || !nachherIst ? 1 : 0, file, protokoll };
 }

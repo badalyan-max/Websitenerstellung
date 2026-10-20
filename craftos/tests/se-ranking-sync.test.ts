@@ -109,3 +109,74 @@ describe('Berichte ohne Überschreiben (HI-01)', () => {
     expect(path.basename(r2.file)).toBe('2026-10-21-projektabgleich-2.json')
   })
 })
+
+describe('Protokoll auch bei Abbruch (HI-02)', () => {
+  const start = (): Kw[] => [
+    { id: 1, name: 'handwerkersoftware', link: 'https://craftos.eu/vergleich' },
+    { id: 2, name: 'bautagebuch app', link: 'https://craftos.eu/blog/digitale-bautagesberichte' },
+  ]
+
+  it('schreibt das Protokoll nach jeder Mutation fort und hält den Abbruch samt vorher-URL fest', async () => {
+    let updates = 0
+    let zwischenstand: { zielseiteAngeglichen: unknown[] } | null = null
+    const p = fakeProject(start(), {
+      PROJECT_updateKeyword: (a) => {
+        updates++
+        if (updates === 2) {
+          const f = fs.readdirSync(dir).find((x) => x.includes('-apply'))!
+          zwischenstand = readJson(path.join(dir, f))
+          throw new Error('Netzwerkfehler bei tools/call: fetch failed')
+        }
+        p.keywords.find((k) => k.id === a.keyword_id)!.link = String(a.target_url)
+        return { success: true }
+      },
+    })
+    const r = await apply(p, soll, { reportDir: dir, datum: '2026-10-21', log: silent })
+    expect(zwischenstand!.zielseiteAngeglichen).toHaveLength(1)
+    const prot = readJson(r.file)
+    expect(r.code).toBe(1)
+    expect(prot.status).toBe('abgebrochen')
+    expect(prot.abgebrochen).toMatch(/fetch failed/)
+    expect(prot.zielseiteAngeglichen).toEqual([
+      expect.objectContaining({ keyword: 'handwerkersoftware', vorher: 'https://craftos.eu/vergleich', nachher: 'https://craftos.eu/' }),
+    ])
+    // Das fehlgeschlagene Update und das nicht mehr versuchte Hinzufügen bleiben offen, nicht als Limit.
+    expect(prot.limits).toEqual([])
+    expect(prot.fehlgeschlagen.map((f: { keyword: string }) => f.keyword).sort()).toEqual(['bautagebuch app', 'gaeb software'])
+    expect(prot.verifikation).toMatch(/neu gelesen/)
+    expect(p.calls.filter((c) => c.name === 'PROJECT_addKeywords')).toHaveLength(0)
+  })
+
+  it('erkennt ein trotz Timeout übernommenes Paket beim Neulesen als hinzugefügt', async () => {
+    const p = fakeProject(start(), {
+      PROJECT_addKeywords: (a) => {
+        for (const k of a.keywords as { keyword: string; target_url: string }[])
+          p.keywords.push({ id: 99, name: k.keyword, link: k.target_url })
+        throw new Error('Zeitüberschreitung bei PROJECT_addKeywords')
+      },
+    })
+    const r = await apply(p, soll, { reportDir: dir, datum: '2026-10-21', log: silent })
+    const prot = readJson(r.file)
+    expect(prot.status).toBe('abgebrochen')
+    expect(prot.hinzugefuegt.map((h: { keyword: string }) => h.keyword)).toEqual(['gaeb software'])
+    expect(prot.unbestaetigt).toEqual([])
+    expect(prot.fehlgeschlagen).toEqual([])
+  })
+
+  it('führt gesendete Pakete als unbestätigt, wenn der Projektstand danach nicht lesbar ist', async () => {
+    let reads = 0
+    const p = fakeProject(start(), {
+      PROJECT_listKeywords: () => {
+        reads++
+        if (reads > 1) throw new Error('HTTP 503 bei tools/call')
+        return { data: p.keywords.map((k) => ({ ...k })) }
+      },
+    })
+    const r = await apply(p, soll, { reportDir: dir, datum: '2026-10-21', log: silent })
+    const prot = readJson(r.file)
+    expect(r.code).toBe(1)
+    expect(prot.status).toBe('unvollstaendig')
+    expect(prot.verifikation).toMatch(/nicht lesbar/)
+    expect(prot.unbestaetigt.map((u: { keyword: string }) => u.keyword)).toEqual(['gaeb software'])
+  })
+})
