@@ -17,7 +17,7 @@ const voll = lizenz("voll");
 const app = lizenz("app");
 export const metadata = pageMetadata(
   "Fakten über CraftOS: Funktionen, Lizenzen und Verfügbarkeit",
-  "Überprüfbare Produktinformationen zu CraftOS: Web-App, Mobile-App, Lizenzen, 10 Testtage, GoBD-Unterstützung und klar benannte Grenzen.",
+  `Überprüfbare Produktinformationen zu CraftOS: Web-App, Mobile-App, Lizenzen, ${site.trialDays} Testtage, GoBD-Unterstützung und klar benannte Grenzen.`,
   "/fakten-ueber-craftos",
 );
 export default function Page() {

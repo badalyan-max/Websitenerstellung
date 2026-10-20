@@ -118,8 +118,9 @@ describe("Preise entsprechen origin/release der Web-App", () => {
 
 // Testphasen-Scan: jede Tagesangabe im Testkontext muss snapshot.trialDays entsprechen.
 const zahlwoerter: Record<string, number> = { sieben: 7, zehn: 10, vierzehn: 14, dreißig: 30 };
-const tagesLiteral = /(?<![\p{L}\d.,])(\d+|sieben|zehn|vierzehn|dreißig)(?:\s*-\s*|\s*)(?:Tagen?|tägig)(?![\p{L}])/giu;
-const tagesTemplate = /\$?\{[^{}]*trialDays\}\s*(?:-\s*)?(?:Tagen?|tägig)(?![\p{L}])/gu;
+// Komposita wie „Testtage“ zählen mit (LO-01).
+const tagesLiteral = /(?<![\p{L}\d.,])(\d+|sieben|zehn|vierzehn|dreißig)(?:\s*-\s*|\s*)(?:(?:Test)?Tagen?|tägig)(?![\p{L}])/giu;
+const tagesTemplate = /\$?\{[^{}]*trialDays\}\s*(?:-\s*)?(?:(?:Test)?[Tt]agen?|tägig)(?![\p{L}])/gu;
 const testKontext = /test|kostenlos|ohne zahlungs/i;
 
 function satzFenster(text: string, start: number, end: number): string {
