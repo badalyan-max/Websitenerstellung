@@ -1,0 +1,596 @@
+{
+  "total": 36,
+  "keywords": [
+    {
+      "keyword": "kalkulationssoftware handwerk",
+      "cpc": 7.82,
+      "difficulty": 24,
+      "volume": 170,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für fliesenleger",
+      "cpc": 7.55,
+      "difficulty": 7,
+      "volume": 170,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads"
+      ],
+      "relevance": 35,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für maler",
+      "cpc": 9.25,
+      "difficulty": 7,
+      "volume": 170,
+      "competition": 0.51,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software fliesenleger",
+      "cpc": 7.55,
+      "difficulty": 7,
+      "volume": 170,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 87,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "maler software",
+      "cpc": 7.92,
+      "difficulty": 10,
+      "volume": 140,
+      "competition": 0.55,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationsprogramm",
+      "cpc": 3.49,
+      "difficulty": 6,
+      "volume": 140,
+      "competition": 0.76,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für trockenbau",
+      "cpc": 8.05,
+      "difficulty": 6,
+      "volume": 140,
+      "competition": 0.94,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationssoftware",
+      "cpc": 4.65,
+      "difficulty": 9,
+      "volume": 110,
+      "competition": 0.68,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationsprogramm handwerk",
+      "cpc": 7.77,
+      "difficulty": 12,
+      "volume": 110,
+      "competition": 0.93,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "sander und doll preise",
+      "cpc": 1.23,
+      "difficulty": 14,
+      "volume": 110,
+      "competition": 0.36,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationsprogramm für handwerker",
+      "cpc": 7.77,
+      "difficulty": 21,
+      "volume": 110,
+      "competition": 0.93,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungsprogramm fliesenleger",
+      "cpc": 4.5,
+      "difficulty": 7,
+      "volume": 90,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 55,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "fliesenleger rechnungsprogramm",
+      "cpc": 4.5,
+      "difficulty": 7,
+      "volume": 90,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "tads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 49,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungsprogramm für fliesenleger",
+      "cpc": 4.5,
+      "difficulty": 7,
+      "volume": 90,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 48,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bodenleger software",
+      "cpc": 6.27,
+      "difficulty": 6,
+      "volume": 70,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 35,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für raumausstatter",
+      "cpc": 7.35,
+      "difficulty": 6,
+      "volume": 70,
+      "competition": 0.64,
+      "serp_features": [
+        "reviews",
+        "video",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "musterrechnung fliesenleger",
+      "cpc": 1.36,
+      "difficulty": 8,
+      "volume": 70,
+      "competition": 0.26,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "tads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für bodenleger",
+      "cpc": 6.27,
+      "difficulty": 6,
+      "volume": 70,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 32,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software bodenleger",
+      "cpc": 6.27,
+      "difficulty": 6,
+      "volume": 70,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 35,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "fliesenleger rechnung",
+      "cpc": 1.95,
+      "difficulty": 7,
+      "volume": 50,
+      "competition": 0.31,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 14,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnung fliesenleger",
+      "cpc": 1.95,
+      "difficulty": 8,
+      "volume": 50,
+      "competition": 0.31,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images"
+      ],
+      "relevance": 22,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "fliesen verlegemuster programm",
+      "cpc": 0,
+      "difficulty": 6,
+      "volume": 50,
+      "competition": 0.32,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker pro",
+      "cpc": 2.3,
+      "difficulty": 36,
+      "volume": 50,
+      "competition": 0.76,
+      "serp_features": [
+        "reviews",
+        "sitelinks",
+        "video",
+        "people_also_ask",
+        "tads",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I",
+        "N"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "fliesenplaner app",
+      "cpc": 0.23,
+      "difficulty": 9,
+      "volume": 40,
+      "competition": 0.35,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "fliesen verlegemuster app",
+      "cpc": 0,
+      "difficulty": 7,
+      "volume": 40,
+      "competition": 0.15,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "ceram software",
+      "cpc": 0.77,
+      "difficulty": 13,
+      "volume": 30,
+      "competition": 0.5,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "related_searches"
+      ],
+      "relevance": 34,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "fliesenleger programme",
+      "cpc": 0,
+      "difficulty": 7,
+      "volume": 30,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 50,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "fliesen erkennen app",
+      "cpc": 0,
+      "difficulty": 9,
+      "volume": 30,
+      "competition": 0.06,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerkersoftware fliesenleger",
+      "cpc": 10.64,
+      "difficulty": 8,
+      "volume": 30,
+      "competition": 0.81,
+      "serp_features": [
+        "local_pack",
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 58,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationsprogramm kostenlos handwerk",
+      "cpc": 3.29,
+      "difficulty": 21,
+      "volume": 20,
+      "competition": 0.94,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

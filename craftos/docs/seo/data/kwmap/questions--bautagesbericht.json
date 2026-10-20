@@ -1,0 +1,35 @@
+{
+  "total": 3,
+  "keywords": [
+    {
+      "keyword": "was ist ein bautagesbericht",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "wer schreibt bautagesbericht",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "sind bautagesberichte pflicht",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    }
+  ]
+}

@@ -1,0 +1,604 @@
+{
+  "total": 297,
+  "keywords": [
+    {
+      "keyword": "lexware handwerk",
+      "cpc": 5.06,
+      "difficulty": 24,
+      "volume": 480,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "tads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker software",
+      "cpc": 9.13,
+      "difficulty": 33,
+      "volume": 410,
+      "competition": 0.92,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 48,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerkersoftware für kleinbetriebe",
+      "cpc": 5.73,
+      "difficulty": 7,
+      "volume": 390,
+      "competition": 0.98,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 32,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "das programm login",
+      "cpc": 2.38,
+      "difficulty": 41,
+      "volume": 260,
+      "competition": 0.14,
+      "serp_features": [
+        "reviews",
+        "video",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "branchensoftware",
+      "cpc": 8.5,
+      "difficulty": 12,
+      "volume": 210,
+      "competition": 0.34,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "knowledge_graph",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 15,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerkersoftware elektro",
+      "cpc": 9.43,
+      "difficulty": 31,
+      "volume": 210,
+      "competition": 0.75,
+      "serp_features": [
+        "local_pack",
+        "reviews",
+        "video",
+        "people_also_ask",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "angebotssoftware",
+      "cpc": 11.47,
+      "difficulty": 8,
+      "volume": 210,
+      "competition": 0.53,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 14,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für angebote",
+      "cpc": 11.47,
+      "difficulty": 9,
+      "volume": 210,
+      "competition": 0.53,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungssoftware handwerk",
+      "cpc": 9.32,
+      "difficulty": 18,
+      "volume": 210,
+      "competition": 0.82,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 21,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "buchhaltung für handwerker",
+      "cpc": 3.93,
+      "difficulty": 19,
+      "volume": 210,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "angebot software",
+      "cpc": 11.47,
+      "difficulty": 8,
+      "volume": 210,
+      "competition": 0.53,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "buchhaltung handwerk",
+      "cpc": 3.93,
+      "difficulty": 8,
+      "volume": 210,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "programme für handwerker",
+      "cpc": 8.41,
+      "difficulty": 36,
+      "volume": 210,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 46,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker rechnungssoftware",
+      "cpc": 9.32,
+      "difficulty": 24,
+      "volume": 210,
+      "competition": 0.82,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 22,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "elektro handwerkersoftware",
+      "cpc": 9.43,
+      "difficulty": 8,
+      "volume": 210,
+      "competition": 0.75,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker buchhaltung",
+      "cpc": 3.93,
+      "difficulty": 12,
+      "volume": 210,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 14,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "b&o handwerkerkopplung",
+      "cpc": 0,
+      "difficulty": 22,
+      "volume": 210,
+      "competition": 0,
+      "serp_features": [
+        "reviews",
+        "video",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "angebots software",
+      "cpc": 11.47,
+      "difficulty": 8,
+      "volume": 210,
+      "competition": 0.53,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 13,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungssoftware für handwerker",
+      "cpc": 9.32,
+      "difficulty": 18,
+      "volume": 210,
+      "competition": 0.82,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 21,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "angebote software",
+      "cpc": 11.47,
+      "difficulty": 8,
+      "volume": 210,
+      "competition": 0.53,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "buchhaltung handwerker",
+      "cpc": 3.93,
+      "difficulty": 12,
+      "volume": 210,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 12,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerk programm",
+      "cpc": 8.41,
+      "difficulty": 35,
+      "volume": 210,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 42,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "programm für handwerker",
+      "cpc": 8.41,
+      "difficulty": 29,
+      "volume": 210,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 46,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungssoftware handwerker",
+      "cpc": 9.32,
+      "difficulty": 18,
+      "volume": 210,
+      "competition": 0.82,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 19,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker programme",
+      "cpc": 8.41,
+      "difficulty": 29,
+      "volume": 210,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 44,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationssoftware handwerk",
+      "cpc": 7.82,
+      "difficulty": 24,
+      "volume": 170,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 45,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "angebot handwerker",
+      "cpc": 1.26,
+      "difficulty": 6,
+      "volume": 170,
+      "competition": 0.35,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "angebot handwerk",
+      "cpc": 1.26,
+      "difficulty": 7,
+      "volume": 170,
+      "competition": 0.35,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerk plattform",
+      "cpc": 0.8,
+      "difficulty": 49,
+      "volume": 170,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker kalkulationssoftware",
+      "cpc": 7.82,
+      "difficulty": 30,
+      "volume": 170,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 45,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

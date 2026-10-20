@@ -1,0 +1,24 @@
+{
+  "total": 1,
+  "keywords": [
+    {
+      "keyword": "ist eine pdf-rechnung eine e-rechnung",
+      "cpc": 0.84,
+      "difficulty": 48,
+      "volume": 10,
+      "competition": 0.38,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "find_results_on",
+        "sge",
+        "related_searches"
+      ],
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

@@ -1,0 +1,605 @@
+{
+  "total": 91,
+  "keywords": [
+    {
+      "keyword": "branchensoftware",
+      "cpc": 8.5,
+      "difficulty": 12,
+      "volume": 210,
+      "competition": 0.34,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "knowledge_graph",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 13,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "schreiners büro",
+      "cpc": 2.55,
+      "difficulty": 6,
+      "volume": 210,
+      "competition": 0.28,
+      "serp_features": [
+        "reviews",
+        "video",
+        "gmb",
+        "related_searches"
+      ],
+      "relevance": 26,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "pinncalc",
+      "cpc": 1.52,
+      "difficulty": 22,
+      "volume": 210,
+      "competition": 0.42,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "gmb",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "schreiner software",
+      "cpc": 4.22,
+      "difficulty": 20,
+      "volume": 210,
+      "competition": 0.49,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 67,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für schreiner",
+      "cpc": 4.22,
+      "difficulty": 19,
+      "volume": 210,
+      "competition": 0.49,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 68,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "schreinersoftware",
+      "cpc": 4.22,
+      "difficulty": 7,
+      "volume": 210,
+      "competition": 0.49,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 68,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software schreiner",
+      "cpc": 4.22,
+      "difficulty": 20,
+      "volume": 210,
+      "competition": 0.49,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 73,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "möbelbau cad",
+      "cpc": 1.08,
+      "difficulty": 19,
+      "volume": 140,
+      "competition": 0.44,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 15,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "cad für möbel",
+      "cpc": 1.08,
+      "difficulty": 8,
+      "volume": 140,
+      "competition": 0.44,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "möbel cad",
+      "cpc": 1.08,
+      "difficulty": 10,
+      "volume": 140,
+      "competition": 0.44,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "cad für möbelbau",
+      "cpc": 1.08,
+      "difficulty": 19,
+      "volume": 140,
+      "competition": 0.44,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 14,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "cad möbelbau",
+      "cpc": 1.08,
+      "difficulty": 14,
+      "volume": 140,
+      "competition": 0.44,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 14,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zeichenprogramm für schreiner",
+      "cpc": 1.41,
+      "difficulty": 19,
+      "volume": 90,
+      "competition": 0.91,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 43,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zeichenprogramm schreiner",
+      "cpc": 1.41,
+      "difficulty": 19,
+      "volume": 90,
+      "competition": 0.91,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 44,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zeichenprogramm tischler",
+      "cpc": 1.28,
+      "difficulty": 19,
+      "volume": 90,
+      "competition": 0.91,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 35,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "tischler zeichenprogramm",
+      "cpc": 1.28,
+      "difficulty": 19,
+      "volume": 90,
+      "competition": 0.91,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 41,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "möbel software",
+      "cpc": 1.27,
+      "difficulty": 11,
+      "volume": 90,
+      "competition": 0.93,
+      "serp_features": [
+        "reviews",
+        "video",
+        "images",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "möbelbau software",
+      "cpc": 1.27,
+      "difficulty": 14,
+      "volume": 90,
+      "competition": 0.93,
+      "serp_features": [
+        "reviews",
+        "video",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 15,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für möbelbau",
+      "cpc": 1.27,
+      "difficulty": 14,
+      "volume": 90,
+      "competition": 0.93,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 14,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software möbelbau",
+      "cpc": 1.27,
+      "difficulty": 14,
+      "volume": 90,
+      "competition": 0.93,
+      "serp_features": [
+        "reviews",
+        "video",
+        "images",
+        "tads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 16,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "schreiner zeichenprogramm",
+      "cpc": 1.41,
+      "difficulty": 20,
+      "volume": 90,
+      "competition": 0.91,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 49,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zeichenprogramme für tischler",
+      "cpc": 1.28,
+      "difficulty": 20,
+      "volume": 90,
+      "competition": 0.91,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 33,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zeichenprogramm für möbel kostenlos",
+      "cpc": 0.59,
+      "difficulty": 8,
+      "volume": 70,
+      "competition": 0.63,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "cad spanke",
+      "cpc": 0,
+      "difficulty": 9,
+      "volume": 70,
+      "competition": 0.04,
+      "serp_features": [
+        "reviews",
+        "sitelinks",
+        "video",
+        "people_also_ask",
+        "gmb",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "L",
+        "N"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "cad möbelbau kostenlos",
+      "cpc": 0.73,
+      "difficulty": 17,
+      "volume": 70,
+      "competition": 0.25,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zeichenprogramm tischler kostenlos",
+      "cpc": 0.84,
+      "difficulty": 26,
+      "volume": 50,
+      "competition": 0.6,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 18,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "tischler zeichenprogramm kostenlos",
+      "cpc": 0.84,
+      "difficulty": 22,
+      "volume": 50,
+      "competition": 0.6,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 25,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zeichenprogramm für möbel",
+      "cpc": 0.97,
+      "difficulty": 8,
+      "volume": 50,
+      "competition": 0.94,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "branchensoftware tischler",
+      "cpc": 6,
+      "difficulty": 6,
+      "volume": 50,
+      "competition": 0.53,
+      "serp_features": [
+        "reviews",
+        "video",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 71,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zeichenprogramm möbel",
+      "cpc": 0.97,
+      "difficulty": 9,
+      "volume": 50,
+      "competition": 0.94,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "tads",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

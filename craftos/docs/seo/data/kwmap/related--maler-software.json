@@ -1,0 +1,603 @@
+{
+  "total": 47,
+  "keywords": [
+    {
+      "keyword": "malistor",
+      "cpc": 1.21,
+      "difficulty": 10,
+      "volume": 170,
+      "competition": 0.5,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "tads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 27,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationssoftware handwerk",
+      "cpc": 7.82,
+      "difficulty": 24,
+      "volume": 170,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "malersoftware",
+      "cpc": 9.25,
+      "difficulty": 12,
+      "volume": 170,
+      "competition": 0.51,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "gmb",
+        "related_searches"
+      ],
+      "relevance": 29,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "fliesenleger software",
+      "cpc": 7.55,
+      "difficulty": 7,
+      "volume": 170,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für maler",
+      "cpc": 9.25,
+      "difficulty": 7,
+      "volume": 170,
+      "competition": 0.51,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 88,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "malistor cloud",
+      "cpc": 5.15,
+      "difficulty": 7,
+      "volume": 170,
+      "competition": 0.13,
+      "serp_features": [
+        "reviews",
+        "video",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 28,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "malwr download",
+      "cpc": 0.64,
+      "difficulty": 7,
+      "volume": 170,
+      "competition": 0.21,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 15,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für trockenbau",
+      "cpc": 8.05,
+      "difficulty": 6,
+      "volume": 140,
+      "competition": 0.94,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker software kostenlos",
+      "cpc": 2.86,
+      "difficulty": 19,
+      "volume": 110,
+      "competition": 0.87,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungsprogramm maler",
+      "cpc": 10.24,
+      "difficulty": 7,
+      "volume": 110,
+      "competition": 0.76,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 61,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerkersoftware für mac",
+      "cpc": 12.06,
+      "difficulty": 14,
+      "volume": 110,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "knowledge_graph",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker kalkulationsprogramm",
+      "cpc": 7.77,
+      "difficulty": 21,
+      "volume": 110,
+      "competition": 0.93,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "maler rechnungsprogramm",
+      "cpc": 10.24,
+      "difficulty": 7,
+      "volume": 110,
+      "competition": 0.76,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 67,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungsprogramm für maler",
+      "cpc": 10.24,
+      "difficulty": 7,
+      "volume": 110,
+      "competition": 0.76,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 48,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationsprogramm für handwerker",
+      "cpc": 7.77,
+      "difficulty": 21,
+      "volume": 110,
+      "competition": 0.93,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "maler und lackierer software",
+      "cpc": 10.96,
+      "difficulty": 10,
+      "volume": 70,
+      "competition": 0.34,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 56,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für maler und lackierer",
+      "cpc": 10.96,
+      "difficulty": 10,
+      "volume": 70,
+      "competition": 0.34,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "tads",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 60,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "maler app",
+      "cpc": 2.17,
+      "difficulty": 8,
+      "volume": 70,
+      "competition": 0.53,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "related_searches"
+      ],
+      "relevance": 26,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software maler und lackierer",
+      "cpc": 10.96,
+      "difficulty": 10,
+      "volume": 70,
+      "competition": 0.34,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 60,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerkersoftware maler",
+      "cpc": 11.4,
+      "difficulty": 10,
+      "volume": 50,
+      "competition": 0.57,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 58,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "lorey computer",
+      "cpc": 2.06,
+      "difficulty": 10,
+      "volume": 50,
+      "competition": 0.23,
+      "serp_features": [
+        "reviews",
+        "sitelinks",
+        "people_also_ask",
+        "images",
+        "gmb",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "L",
+        "N"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "maler programm",
+      "cpc": 7.59,
+      "difficulty": 10,
+      "volume": 50,
+      "competition": 0.84,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 58,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationsprogramm maler",
+      "cpc": 4.13,
+      "difficulty": 8,
+      "volume": 40,
+      "competition": 0.79,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 52,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für malerbetriebe",
+      "cpc": 4.07,
+      "difficulty": 7,
+      "volume": 40,
+      "competition": 0.82,
+      "serp_features": [
+        "featured_snippets",
+        "reviews",
+        "video",
+        "people_also_ask",
+        "related_searches"
+      ],
+      "relevance": 57,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "maler kalkulationsprogramm",
+      "cpc": 4.13,
+      "difficulty": 8,
+      "volume": 40,
+      "competition": 0.79,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 63,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnung malerarbeiten",
+      "cpc": 1.31,
+      "difficulty": 9,
+      "volume": 40,
+      "competition": 0.4,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software malerhandwerk",
+      "cpc": 7.45,
+      "difficulty": 7,
+      "volume": 40,
+      "competition": 0.64,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 56,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software malerbetrieb",
+      "cpc": 4.07,
+      "difficulty": 34,
+      "volume": 40,
+      "competition": 0.82,
+      "serp_features": [
+        "featured_snippets",
+        "local_pack",
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 66,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungsprogramm maler und lackierer",
+      "cpc": 7.51,
+      "difficulty": 7,
+      "volume": 30,
+      "competition": 0.43,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 42,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungsprogramm für maler und lackierer",
+      "cpc": 7.51,
+      "difficulty": 8,
+      "volume": 30,
+      "competition": 0.43,
+      "serp_features": [
+        "reviews",
+        "video",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 47,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

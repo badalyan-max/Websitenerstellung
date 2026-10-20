@@ -1,0 +1,266 @@
+{
+  "total": 53,
+  "keywords": [
+    {
+      "keyword": "kann man gegen eine mahnung widerspruch einlegen",
+      "cpc": 0,
+      "difficulty": 13,
+      "volume": 20,
+      "competition": 0,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "wann mahnung nach zahlungserinnerung",
+      "cpc": 0,
+      "difficulty": 17,
+      "volume": 20,
+      "competition": 0.03,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "wie schreibt man eine nette mahnung",
+      "cpc": 0,
+      "difficulty": 22,
+      "volume": 10,
+      "competition": 0,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "ist eine mahnung per email rechtskräftig",
+      "cpc": 0,
+      "difficulty": 7,
+      "volume": 10,
+      "competition": 0.03,
+      "serp_features": [
+        "reviews",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "wann ist eine mahnung ungültig",
+      "cpc": 0,
+      "difficulty": 8,
+      "volume": 10,
+      "competition": 0,
+      "serp_features": [
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "wie schreibt man eine mahnung an den arbeitgeber",
+      "cpc": 0,
+      "difficulty": 18,
+      "volume": 10,
+      "competition": 0,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "wann kommt die erste mahnung vom finanzamt",
+      "cpc": 0,
+      "difficulty": 16,
+      "volume": 10,
+      "competition": 0,
+      "serp_features": [
+        "people_also_ask",
+        "images",
+        "related_searches"
+      ],
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "wie viel mahngebühren bei erster mahnung",
+      "cpc": 0,
+      "difficulty": 16,
+      "volume": 10,
+      "competition": 0.13,
+      "serp_features": [
+        "reviews",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "wie viele mahnungen bis letzte mahnung",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "welche frist bei 1 mahnung",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "wann bekommt man bei amazon eine mahnung",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "wie hoch darf die 2 mahnung sein",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "wann gilt eine mahnung als zugestellt",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "ist zahlungserinnerung 1 mahnung",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "ist eine zahlungsaufforderung schon eine mahnung",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "wie lange ist eine rechnung ohne mahnung gültig",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "welche fristen bei mahnung",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "wie kann ich eine mahnung schreiben",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "wie widerspreche ich einer mahnung",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "wie teuer darf eine mahnung sein",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    }
+  ]
+}

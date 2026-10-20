@@ -1,0 +1,1036 @@
+{
+  "budget": 30000,
+  "unitsEstimatedTotal": 12834,
+  "subscriptionBefore": {
+    "units_left": 78093,
+    "units_limit": 100000,
+    "expiration": "2026-11-03 17:22:59",
+    "checkedAt": "2026-10-20T20:44:29.309Z"
+  },
+  "subscriptionAfter": {
+    "units_left": 65459,
+    "units_limit": 100000,
+    "expiration": "2026-11-03 17:22:59",
+    "checkedAt": "2026-10-20T20:48:26.065Z"
+  },
+  "files": [
+    {
+      "file": "related--handwerkersoftware.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "handwerkersoftware",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:44:32.911Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--handwerker-app.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "handwerker app",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:44:36.833Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--bautagebuch-app.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "bautagebuch app",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:44:38.398Z",
+      "unitsEstimated": 190,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--aufmass-app.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "aufmaß app",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:44:41.986Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--zeiterfassung-handwerk.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "zeiterfassung handwerk",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:44:44.554Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--baustellen-app.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "baustellen app",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:44:47.479Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--rechnungssoftware-handwerker.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "rechnungssoftware handwerker",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:44:50.195Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--angebotssoftware-handwerk.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "angebotssoftware handwerk",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:44:52.495Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--plantafel-handwerk.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "plantafel handwerk",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:44:55.064Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--lagerverwaltung-handwerk.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "lagerverwaltung handwerk",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:44:56.046Z",
+      "unitsEstimated": 0,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--e-rechnung-handwerk.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "e-rechnung handwerk",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:44:59.081Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--buchhaltung-handwerker.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "buchhaltung handwerker",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:01.476Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--digitale-bauakte.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "digitale bauakte",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:04.398Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--auftragsverwaltung-software.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "auftragsverwaltung software",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:07.149Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--gaeb-software.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "gaeb software",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:09.035Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--nachkalkulation-handwerk.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "nachkalkulation handwerk",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:11.641Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--kundenportal-handwerk.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "kundenportal handwerk",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:11.708Z",
+      "unitsEstimated": 0,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--maengelmanagement-app.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "mängelmanagement app",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:15.648Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--bauphasen-planen.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "bauphasen planen",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:15.714Z",
+      "unitsEstimated": 0,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--arbeitsabschnitte-bau.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "arbeitsabschnitte bau",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:17.324Z",
+      "unitsEstimated": 0,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--eingangsrechnungen-erfassen.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "eingangsrechnungen erfassen",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:21.318Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--handwerker-ki.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "handwerker ki",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:21.386Z",
+      "unitsEstimated": 0,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--gobd-handwerk.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "gobd handwerk",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:25.044Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--stundenverrechnungssatz.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "stundenverrechnungssatz",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:27.339Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--angebotskalkulation.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "angebotskalkulation",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:29.813Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--elektriker-software.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "elektriker software",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:32.044Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--shk-software.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "shk software",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:34.107Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--maler-software.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "maler software",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:36.141Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--fliesenleger-software.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "fliesenleger software",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:38.368Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--trockenbau-software.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "trockenbau software",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:40.340Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--tischler-software.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "tischler software",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:42.823Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--dachdecker-software.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "dachdecker software",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:45.330Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--zimmerer-software.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "zimmerer software",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:47.388Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--galabau-software.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "galabau software",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:49.593Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--metallbau-software.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "metallbau software",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:51.718Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--bauunternehmen-software.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "bauunternehmen software",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:53.872Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "related--handwerkersoftware-vergleich.json",
+      "endpoint": "GET /v1/keywords/related",
+      "params": {
+        "source": "de",
+        "keyword": "handwerkersoftware vergleich",
+        "limit": 30,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:55.994Z",
+      "unitsEstimated": 300,
+      "httpStatus": 200
+    },
+    {
+      "file": "questions--aufmass.json",
+      "endpoint": "GET /v1/keywords/questions",
+      "params": {
+        "source": "de",
+        "keyword": "aufmaß",
+        "limit": 20
+      },
+      "fetchedAt": "2026-10-20T20:45:58.120Z",
+      "unitsEstimated": 110,
+      "httpStatus": 200
+    },
+    {
+      "file": "questions--bautagebuch.json",
+      "endpoint": "GET /v1/keywords/questions",
+      "params": {
+        "source": "de",
+        "keyword": "bautagebuch",
+        "limit": 20
+      },
+      "fetchedAt": "2026-10-20T20:46:00.364Z",
+      "unitsEstimated": 130,
+      "httpStatus": 200
+    },
+    {
+      "file": "questions--schlussrechnung.json",
+      "endpoint": "GET /v1/keywords/questions",
+      "params": {
+        "source": "de",
+        "keyword": "schlussrechnung",
+        "limit": 20
+      },
+      "fetchedAt": "2026-10-20T20:46:02.438Z",
+      "unitsEstimated": 90,
+      "httpStatus": 200
+    },
+    {
+      "file": "questions--leistungszeitraum.json",
+      "endpoint": "GET /v1/keywords/questions",
+      "params": {
+        "source": "de",
+        "keyword": "leistungszeitraum",
+        "limit": 20
+      },
+      "fetchedAt": "2026-10-20T20:46:04.001Z",
+      "unitsEstimated": 0,
+      "httpStatus": 200
+    },
+    {
+      "file": "questions--regiebericht.json",
+      "endpoint": "GET /v1/keywords/questions",
+      "params": {
+        "source": "de",
+        "keyword": "regiebericht",
+        "limit": 20
+      },
+      "fetchedAt": "2026-10-20T20:46:05.579Z",
+      "unitsEstimated": 0,
+      "httpStatus": 200
+    },
+    {
+      "file": "questions--bautagesbericht.json",
+      "endpoint": "GET /v1/keywords/questions",
+      "params": {
+        "source": "de",
+        "keyword": "bautagesbericht",
+        "limit": 20
+      },
+      "fetchedAt": "2026-10-20T20:46:07.820Z",
+      "unitsEstimated": 30,
+      "httpStatus": 200
+    },
+    {
+      "file": "questions--bedenkenanzeige.json",
+      "endpoint": "GET /v1/keywords/questions",
+      "params": {
+        "source": "de",
+        "keyword": "bedenkenanzeige",
+        "limit": 20
+      },
+      "fetchedAt": "2026-10-20T20:46:09.368Z",
+      "unitsEstimated": 0,
+      "httpStatus": 200
+    },
+    {
+      "file": "questions--abschlagsrechnung.json",
+      "endpoint": "GET /v1/keywords/questions",
+      "params": {
+        "source": "de",
+        "keyword": "abschlagsrechnung",
+        "limit": 20
+      },
+      "fetchedAt": "2026-10-20T20:46:10.935Z",
+      "unitsEstimated": 0,
+      "httpStatus": 200
+    },
+    {
+      "file": "questions--e-rechnung.json",
+      "endpoint": "GET /v1/keywords/questions",
+      "params": {
+        "source": "de",
+        "keyword": "e-rechnung",
+        "limit": 20
+      },
+      "fetchedAt": "2026-10-20T20:46:13.093Z",
+      "unitsEstimated": 10,
+      "httpStatus": 200
+    },
+    {
+      "file": "questions--gobd.json",
+      "endpoint": "GET /v1/keywords/questions",
+      "params": {
+        "source": "de",
+        "keyword": "gobd",
+        "limit": 20
+      },
+      "fetchedAt": "2026-10-20T20:46:15.266Z",
+      "unitsEstimated": 110,
+      "httpStatus": 200
+    },
+    {
+      "file": "questions--stundenverrechnungssatz.json",
+      "endpoint": "GET /v1/keywords/questions",
+      "params": {
+        "source": "de",
+        "keyword": "stundenverrechnungssatz",
+        "limit": 20
+      },
+      "fetchedAt": "2026-10-20T20:46:17.263Z",
+      "unitsEstimated": 10,
+      "httpStatus": 200
+    },
+    {
+      "file": "questions--nachkalkulation.json",
+      "endpoint": "GET /v1/keywords/questions",
+      "params": {
+        "source": "de",
+        "keyword": "nachkalkulation",
+        "limit": 20
+      },
+      "fetchedAt": "2026-10-20T20:46:18.811Z",
+      "unitsEstimated": 0,
+      "httpStatus": 200
+    },
+    {
+      "file": "questions--mahnung.json",
+      "endpoint": "GET /v1/keywords/questions",
+      "params": {
+        "source": "de",
+        "keyword": "mahnung",
+        "limit": 20
+      },
+      "fetchedAt": "2026-10-20T20:46:21.033Z",
+      "unitsEstimated": 200,
+      "httpStatus": 200
+    },
+    {
+      "file": "questions--abnahmeprotokoll.json",
+      "endpoint": "GET /v1/keywords/questions",
+      "params": {
+        "source": "de",
+        "keyword": "abnahmeprotokoll",
+        "limit": 20
+      },
+      "fetchedAt": "2026-10-20T20:46:23.107Z",
+      "unitsEstimated": 40,
+      "httpStatus": 200
+    },
+    {
+      "file": "questions--handwerkersoftware.json",
+      "endpoint": "GET /v1/keywords/questions",
+      "params": {
+        "source": "de",
+        "keyword": "handwerkersoftware",
+        "limit": 20
+      },
+      "fetchedAt": "2026-10-20T20:46:24.636Z",
+      "unitsEstimated": 0,
+      "httpStatus": 200
+    },
+    {
+      "file": "longtail--handwerkersoftware.json",
+      "endpoint": "GET /v1/keywords/longtail",
+      "params": {
+        "source": "de",
+        "keyword": "handwerkersoftware",
+        "limit": 100
+      },
+      "fetchedAt": "2026-10-20T20:46:27.249Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "longtail--handwerker-app.json",
+      "endpoint": "GET /v1/keywords/longtail",
+      "params": {
+        "source": "de",
+        "keyword": "handwerker app",
+        "limit": 100
+      },
+      "fetchedAt": "2026-10-20T20:46:32.829Z",
+      "unitsEstimated": 83,
+      "httpStatus": 200
+    },
+    {
+      "file": "longtail--bautagebuch.json",
+      "endpoint": "GET /v1/keywords/longtail",
+      "params": {
+        "source": "de",
+        "keyword": "bautagebuch",
+        "limit": 100
+      },
+      "fetchedAt": "2026-10-20T20:46:35.807Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "longtail--aufmass.json",
+      "endpoint": "GET /v1/keywords/longtail",
+      "params": {
+        "source": "de",
+        "keyword": "aufmaß",
+        "limit": 100
+      },
+      "fetchedAt": "2026-10-20T20:46:38.892Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "longtail--zeiterfassung-handwerk.json",
+      "endpoint": "GET /v1/keywords/longtail",
+      "params": {
+        "source": "de",
+        "keyword": "zeiterfassung handwerk",
+        "limit": 100
+      },
+      "fetchedAt": "2026-10-20T20:46:41.845Z",
+      "unitsEstimated": 14,
+      "httpStatus": 200
+    },
+    {
+      "file": "longtail--rechnung-handwerker.json",
+      "endpoint": "GET /v1/keywords/longtail",
+      "params": {
+        "source": "de",
+        "keyword": "rechnung handwerker",
+        "limit": 100
+      },
+      "fetchedAt": "2026-10-20T20:46:44.829Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "longtail--plantafel.json",
+      "endpoint": "GET /v1/keywords/longtail",
+      "params": {
+        "source": "de",
+        "keyword": "plantafel",
+        "limit": 100
+      },
+      "fetchedAt": "2026-10-20T20:46:47.888Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "longtail--baustellen-app.json",
+      "endpoint": "GET /v1/keywords/longtail",
+      "params": {
+        "source": "de",
+        "keyword": "baustellen app",
+        "limit": 100
+      },
+      "fetchedAt": "2026-10-20T20:46:52.893Z",
+      "unitsEstimated": 17,
+      "httpStatus": 200
+    },
+    {
+      "file": "longtail--angebot-handwerker.json",
+      "endpoint": "GET /v1/keywords/longtail",
+      "params": {
+        "source": "de",
+        "keyword": "angebot handwerker",
+        "limit": 100
+      },
+      "fetchedAt": "2026-10-20T20:46:56.019Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "longtail--e-rechnung.json",
+      "endpoint": "GET /v1/keywords/longtail",
+      "params": {
+        "source": "de",
+        "keyword": "e-rechnung",
+        "limit": 100
+      },
+      "fetchedAt": "2026-10-20T20:46:58.841Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "domain-keywords--streit-software.de.json",
+      "endpoint": "GET /v1/domain/keywords",
+      "params": {
+        "source": "de",
+        "domain": "streit-software.de",
+        "limit": 1000,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:47:00.928Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "domain-keywords--hero-software.de.json",
+      "endpoint": "GET /v1/domain/keywords",
+      "params": {
+        "source": "de",
+        "domain": "hero-software.de",
+        "limit": 1000,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:47:03.361Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "domain-keywords--plancraft.com.json",
+      "endpoint": "GET /v1/domain/keywords",
+      "params": {
+        "source": "de",
+        "domain": "plancraft.com",
+        "limit": 1000,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:47:05.446Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "domain-keywords--craftnote.de.json",
+      "endpoint": "GET /v1/domain/keywords",
+      "params": {
+        "source": "de",
+        "domain": "craftnote.de",
+        "limit": 1000,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:47:07.524Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "domain-keywords--das-programm.io.json",
+      "endpoint": "GET /v1/domain/keywords",
+      "params": {
+        "source": "de",
+        "domain": "das-programm.io",
+        "limit": 1000,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:47:09.665Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "domain-keywords--openhandwerk.de.json",
+      "endpoint": "GET /v1/domain/keywords",
+      "params": {
+        "source": "de",
+        "domain": "openhandwerk.de",
+        "limit": 1000,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:47:11.779Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "domain-keywords--label-software.de.json",
+      "endpoint": "GET /v1/domain/keywords",
+      "params": {
+        "source": "de",
+        "domain": "label-software.de",
+        "limit": 1000,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:47:13.867Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "domain-keywords--tooltime.de.json",
+      "endpoint": "GET /v1/domain/keywords",
+      "params": {
+        "source": "de",
+        "domain": "tooltime.de",
+        "limit": 1000,
+        "filter[volume][from]": 20
+      },
+      "fetchedAt": "2026-10-20T20:47:15.656Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "comparison--streit-software.de.json",
+      "endpoint": "GET /v1/domain/keywords/comparison",
+      "params": {
+        "source": "de",
+        "domain": "streit-software.de",
+        "compare": "craftos.eu",
+        "diff": 1,
+        "limit": 1000
+      },
+      "fetchedAt": "2026-10-20T20:47:17.987Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "comparison--hero-software.de.json",
+      "endpoint": "GET /v1/domain/keywords/comparison",
+      "params": {
+        "source": "de",
+        "domain": "hero-software.de",
+        "compare": "craftos.eu",
+        "diff": 1,
+        "limit": 1000
+      },
+      "fetchedAt": "2026-10-20T20:47:20.220Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "comparison--craftnote.de.json",
+      "endpoint": "GET /v1/domain/keywords/comparison",
+      "params": {
+        "source": "de",
+        "domain": "craftnote.de",
+        "compare": "craftos.eu",
+        "diff": 1,
+        "limit": 1000
+      },
+      "fetchedAt": "2026-10-20T20:47:22.552Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "comparison--das-programm.io.json",
+      "endpoint": "GET /v1/domain/keywords/comparison",
+      "params": {
+        "source": "de",
+        "domain": "das-programm.io",
+        "compare": "craftos.eu",
+        "diff": 1,
+        "limit": 1000
+      },
+      "fetchedAt": "2026-10-20T20:47:24.834Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "comparison--openhandwerk.de.json",
+      "endpoint": "GET /v1/domain/keywords/comparison",
+      "params": {
+        "source": "de",
+        "domain": "openhandwerk.de",
+        "compare": "craftos.eu",
+        "diff": 1,
+        "limit": 1000
+      },
+      "fetchedAt": "2026-10-20T20:47:27.128Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "comparison--label-software.de.json",
+      "endpoint": "GET /v1/domain/keywords/comparison",
+      "params": {
+        "source": "de",
+        "domain": "label-software.de",
+        "compare": "craftos.eu",
+        "diff": 1,
+        "limit": 1000
+      },
+      "fetchedAt": "2026-10-20T20:47:29.416Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "comparison--tooltime.de.json",
+      "endpoint": "GET /v1/domain/keywords/comparison",
+      "params": {
+        "source": "de",
+        "domain": "tooltime.de",
+        "compare": "craftos.eu",
+        "diff": 1,
+        "limit": 1000
+      },
+      "fetchedAt": "2026-10-20T20:47:31.239Z",
+      "unitsEstimated": 100,
+      "httpStatus": 200
+    },
+    {
+      "file": "export--candidates-1.json",
+      "endpoint": "POST /v1/keywords/export",
+      "params": {
+        "source": "de",
+        "keywordCount": 5000
+      },
+      "fetchedAt": "2026-10-20T20:48:23.838Z",
+      "unitsEstimated": 100,
+      "httpStatus": 201
+    },
+    {
+      "file": "export--candidates-2.json",
+      "endpoint": "POST /v1/keywords/export",
+      "params": {
+        "source": "de",
+        "keywordCount": 548
+      },
+      "fetchedAt": "2026-10-20T20:48:25.925Z",
+      "unitsEstimated": 100,
+      "httpStatus": 201
+    }
+  ],
+  "unrecordedCalls": [
+    {
+      "endpoint": "POST /v1/keywords/export",
+      "params": {
+        "source": "de",
+        "keywordCount": 5000
+      },
+      "fetchedAt": "2026-10-20T20:48:18.196Z",
+      "unitsEstimated": 100,
+      "httpStatus": 201,
+      "reason": "Antwort HTTP 201 wurde vom Skript als Fehler behandelt und nicht gespeichert; Aufruf wurde abgerechnet und danach mit korrigierter Statusprüfung wiederholt."
+    }
+  ]
+}

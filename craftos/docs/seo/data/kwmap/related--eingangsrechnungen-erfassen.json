@@ -1,0 +1,619 @@
+{
+  "total": 117,
+  "keywords": [
+    {
+      "keyword": "eingangsrechnung",
+      "cpc": 2.88,
+      "difficulty": 9,
+      "volume": 910,
+      "competition": 0.17,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 59,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "ausgangsrechnung",
+      "cpc": 1.13,
+      "difficulty": 9,
+      "volume": 610,
+      "competition": 0.09,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungseingang",
+      "cpc": 3.54,
+      "difficulty": 7,
+      "volume": 590,
+      "competition": 0.23,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 18,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "eingangsrechnungen",
+      "cpc": 2.88,
+      "difficulty": 9,
+      "volume": 440,
+      "competition": 0.17,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 66,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungsausgang",
+      "cpc": 1.94,
+      "difficulty": 8,
+      "volume": 260,
+      "competition": 0.09,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "was sind eingangsrechnungen",
+      "cpc": 0.33,
+      "difficulty": 9,
+      "volume": 260,
+      "competition": 0.12,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 31,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "was ist eine eingangsrechnung",
+      "cpc": 0.33,
+      "difficulty": 9,
+      "volume": 260,
+      "competition": 0.12,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 53,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "was ist eingangsrechnung",
+      "cpc": 0.33,
+      "difficulty": 9,
+      "volume": 260,
+      "competition": 0.12,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 52,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "ausgangsrechnungen",
+      "cpc": 3.21,
+      "difficulty": 9,
+      "volume": 260,
+      "competition": 0.12,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "eingangsrechnungen buchen",
+      "cpc": 1.07,
+      "difficulty": 10,
+      "volume": 210,
+      "competition": 0.47,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 43,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "eingangsrechnung buchen",
+      "cpc": 1.07,
+      "difficulty": 9,
+      "volume": 210,
+      "competition": 0.47,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 47,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "buchen einer eingangsrechnung",
+      "cpc": 1.07,
+      "difficulty": 9,
+      "volume": 210,
+      "competition": 0.47,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 35,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "buchen von eingangsrechnungen",
+      "cpc": 1.07,
+      "difficulty": 9,
+      "volume": 210,
+      "competition": 0.47,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 34,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "buchung eingangsrechnung",
+      "cpc": 1.07,
+      "difficulty": 9,
+      "volume": 210,
+      "competition": 0.47,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 35,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "buchung einer eingangsrechnung",
+      "cpc": 1.07,
+      "difficulty": 9,
+      "volume": 210,
+      "competition": 0.47,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 36,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "buchen eingangsrechnung",
+      "cpc": 1.07,
+      "difficulty": 9,
+      "volume": 210,
+      "competition": 0.47,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 33,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "wareneingangsrechnung buchen",
+      "cpc": 1.07,
+      "difficulty": 8,
+      "volume": 210,
+      "competition": 0.47,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 18,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungsausgangsbuch",
+      "cpc": 1.98,
+      "difficulty": 8,
+      "volume": 170,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungseingangsbuch",
+      "cpc": 2.88,
+      "difficulty": 8,
+      "volume": 170,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "eingangsrechnung ausgangsrechnung",
+      "cpc": 5.02,
+      "difficulty": 8,
+      "volume": 170,
+      "competition": 0.09,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 35,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "eingangsrechnungen ausgangsrechnungen",
+      "cpc": 5.02,
+      "difficulty": 8,
+      "volume": 170,
+      "competition": 0.09,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 44,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "ausgangsrechnung buchen",
+      "cpc": 0.9,
+      "difficulty": 7,
+      "volume": 140,
+      "competition": 0.2,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "was ist eine ausgangsrechnung",
+      "cpc": 0.1,
+      "difficulty": 8,
+      "volume": 140,
+      "competition": 0.1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "digitale rechnungsverarbeitung",
+      "cpc": 9.15,
+      "difficulty": 14,
+      "volume": 140,
+      "competition": 0.63,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "ausgangsrechnungen buchen",
+      "cpc": 0.9,
+      "difficulty": 7,
+      "volume": 140,
+      "competition": 0.2,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungseingang definition",
+      "cpc": 2.26,
+      "difficulty": 12,
+      "volume": 140,
+      "competition": 0.09,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 37,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungsausgang definition",
+      "cpc": 2.26,
+      "difficulty": 8,
+      "volume": 140,
+      "competition": 0.09,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungseingang und ausgang",
+      "cpc": 1.47,
+      "difficulty": 8,
+      "volume": 140,
+      "competition": 0.2,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 32,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungsverarbeitung",
+      "cpc": 8.57,
+      "difficulty": 13,
+      "volume": 90,
+      "competition": 0.44,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "buchungssätze eingangsrechnung",
+      "cpc": 0.79,
+      "difficulty": 9,
+      "volume": 90,
+      "competition": 0.35,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 27,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

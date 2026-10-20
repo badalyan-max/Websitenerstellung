@@ -1,0 +1,606 @@
+{
+  "total": 150,
+  "keywords": [
+    {
+      "keyword": "handwerker software",
+      "cpc": 9.13,
+      "difficulty": 33,
+      "volume": 410,
+      "competition": 0.92,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "myhammer handwerker finden",
+      "cpc": 0.59,
+      "difficulty": 29,
+      "volume": 390,
+      "competition": 0.65,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "logo handwerker",
+      "cpc": 0.68,
+      "difficulty": 9,
+      "volume": 360,
+      "competition": 0.14,
+      "serp_features": [
+        "images",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "myhammer app",
+      "cpc": 0.59,
+      "difficulty": 23,
+      "volume": 260,
+      "competition": 0.53,
+      "serp_features": [
+        "reviews",
+        "people_also_ask",
+        "gmb",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mein handwerker",
+      "cpc": 0.83,
+      "difficulty": 29,
+      "volume": 260,
+      "competition": 0.67,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "gmb",
+        "related_searches"
+      ],
+      "relevance": 14,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "app baustelle",
+      "cpc": 3.98,
+      "difficulty": 28,
+      "volume": 260,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "tads",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "myhandwerker",
+      "cpc": 1,
+      "difficulty": 21,
+      "volume": 260,
+      "competition": 0.25,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "das programm login",
+      "cpc": 2.38,
+      "difficulty": 41,
+      "volume": 260,
+      "competition": 0.14,
+      "serp_features": [
+        "reviews",
+        "video",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "programme für handwerker",
+      "cpc": 8.41,
+      "difficulty": 36,
+      "volume": 210,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerk programm",
+      "cpc": 8.41,
+      "difficulty": 35,
+      "volume": 210,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "programm für handwerker",
+      "cpc": 8.41,
+      "difficulty": 29,
+      "volume": 210,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationssoftware handwerk",
+      "cpc": 7.82,
+      "difficulty": 24,
+      "volume": 170,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerk plattform",
+      "cpc": 0.8,
+      "difficulty": 49,
+      "volume": 170,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker kalkulationssoftware",
+      "cpc": 7.82,
+      "difficulty": 30,
+      "volume": 170,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "plattform für handwerker",
+      "cpc": 0.8,
+      "difficulty": 40,
+      "volume": 170,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mein handwerker app",
+      "cpc": 0.66,
+      "difficulty": 15,
+      "volume": 170,
+      "competition": 0.66,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "knowledge_graph",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 14,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mein handwerker-app",
+      "cpc": 0.66,
+      "difficulty": 16,
+      "volume": 170,
+      "competition": 0.66,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "gmb",
+        "related_searches"
+      ],
+      "relevance": 13,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker app zeiterfassung",
+      "cpc": 4.57,
+      "difficulty": 13,
+      "volume": 140,
+      "competition": 0.87,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 15,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "buchhaltungssoftware handwerk",
+      "cpc": 6.53,
+      "difficulty": 36,
+      "volume": 140,
+      "competition": 0.98,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "plattform handwerker",
+      "cpc": 1.36,
+      "difficulty": 50,
+      "volume": 140,
+      "competition": 0.15,
+      "serp_features": [
+        "local_pack",
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "find_results_on",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "blauarbeit app",
+      "cpc": 0.9,
+      "difficulty": 16,
+      "volume": 140,
+      "competition": 0.62,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 16,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bürosoftware handwerk",
+      "cpc": 9.83,
+      "difficulty": 27,
+      "volume": 140,
+      "competition": 0.64,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bürosoftware für handwerker",
+      "cpc": 9.83,
+      "difficulty": 28,
+      "volume": 140,
+      "competition": 0.64,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "tads",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zeiterfassung app handwerk",
+      "cpc": 4.57,
+      "difficulty": 12,
+      "volume": 140,
+      "competition": 0.87,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "buchhaltungssoftware handwerker",
+      "cpc": 6.53,
+      "difficulty": 47,
+      "volume": 140,
+      "competition": 0.98,
+      "serp_features": [
+        "local_pack",
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mobile zeiterfassung handwerker",
+      "cpc": 7.96,
+      "difficulty": 12,
+      "volume": 140,
+      "competition": 0.59,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "meinhandwerker",
+      "cpc": 1.77,
+      "difficulty": 20,
+      "volume": 140,
+      "competition": 0.63,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "gmb",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mobile zeiterfassung für handwerker",
+      "cpc": 7.96,
+      "difficulty": 12,
+      "volume": 140,
+      "competition": 0.59,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "meine handwerker",
+      "cpc": 1.77,
+      "difficulty": 30,
+      "volume": 140,
+      "competition": 0.63,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "gmb",
+        "related_searches"
+      ],
+      "relevance": 12,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mein handwerk",
+      "cpc": 1.77,
+      "difficulty": 35,
+      "volume": 140,
+      "competition": 0.63,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "gmb",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    }
+  ]
+}

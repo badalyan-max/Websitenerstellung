@@ -1,0 +1,598 @@
+{
+  "total": 41,
+  "keywords": [
+    {
+      "keyword": "plancraft app",
+      "cpc": 2.85,
+      "difficulty": 15,
+      "volume": 170,
+      "competition": 0.61,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "auftragsplanung",
+      "cpc": 3.47,
+      "difficulty": 7,
+      "volume": 140,
+      "competition": 0.56,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "buchhaltungssoftware handwerker",
+      "cpc": 6.53,
+      "difficulty": 47,
+      "volume": 140,
+      "competition": 0.98,
+      "serp_features": [
+        "local_pack",
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "plantafel werkstatt",
+      "cpc": 1.11,
+      "difficulty": 7,
+      "volume": 110,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 12,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "werkstatt plantafel",
+      "cpc": 1.11,
+      "difficulty": 6,
+      "volume": 110,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "images",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "plantafel für werkstatt",
+      "cpc": 1.11,
+      "difficulty": 5,
+      "volume": 110,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "tads",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "plantafel software",
+      "cpc": 7.23,
+      "difficulty": 24,
+      "volume": 90,
+      "competition": 0.51,
+      "serp_features": [
+        "reviews",
+        "video",
+        "gmb",
+        "related_searches"
+      ],
+      "relevance": 47,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handicraft software",
+      "cpc": 3.61,
+      "difficulty": 6,
+      "volume": 70,
+      "competition": 0.6,
+      "serp_features": [
+        "reviews",
+        "video",
+        "images",
+        "tads",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für kleine handwerksbetriebe",
+      "cpc": 5.19,
+      "difficulty": 36,
+      "volume": 50,
+      "competition": 0.91,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "plantafel digital",
+      "cpc": 2.45,
+      "difficulty": 18,
+      "volume": 50,
+      "competition": 0.93,
+      "serp_features": [
+        "reviews",
+        "video",
+        "images",
+        "bads",
+        "gmb",
+        "related_searches"
+      ],
+      "relevance": 38,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "plancraft logo",
+      "cpc": 0,
+      "difficulty": 14,
+      "volume": 50,
+      "competition": 0.03,
+      "serp_features": [
+        "reviews",
+        "video",
+        "related_searches",
+        "image_in_block"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "auftragsplanung software",
+      "cpc": 5.53,
+      "difficulty": 5,
+      "volume": 40,
+      "competition": 0.36,
+      "serp_features": [
+        "reviews",
+        "video",
+        "tads",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "digitale plantafel kostenlos",
+      "cpc": 2.48,
+      "difficulty": 12,
+      "volume": 40,
+      "competition": 0.66,
+      "serp_features": [
+        "reviews",
+        "video",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 46,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "elektronische plantafel",
+      "cpc": 2.44,
+      "difficulty": 17,
+      "volume": 40,
+      "competition": 0.83,
+      "serp_features": [
+        "reviews",
+        "video",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 32,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker tool",
+      "cpc": 6.51,
+      "difficulty": 53,
+      "volume": 40,
+      "competition": 0.81,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "tads",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "plancraft plantafel",
+      "cpc": 2.9,
+      "difficulty": 11,
+      "volume": 40,
+      "competition": 0.54,
+      "serp_features": [
+        "reviews",
+        "video",
+        "images",
+        "tads",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 27,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "plantafel elektronisch",
+      "cpc": 2.44,
+      "difficulty": 13,
+      "volume": 40,
+      "competition": 0.83,
+      "serp_features": [
+        "reviews",
+        "video",
+        "images",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 28,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software auftragsplanung",
+      "cpc": 5.53,
+      "difficulty": 6,
+      "volume": 40,
+      "competition": 0.36,
+      "serp_features": [
+        "reviews",
+        "video",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "win plantafel",
+      "cpc": 1.71,
+      "difficulty": 10,
+      "volume": 30,
+      "competition": 0.6,
+      "serp_features": [
+        "reviews",
+        "sitelinks",
+        "video",
+        "images",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 16,
+      "intents": [
+        "I",
+        "N"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "plancraft login",
+      "cpc": 4.08,
+      "difficulty": 14,
+      "volume": 30,
+      "competition": 0.06,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "plantafel software kostenlos",
+      "cpc": 3.91,
+      "difficulty": 21,
+      "volume": 30,
+      "competition": 0.5,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 27,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "planbar365",
+      "cpc": 5.37,
+      "difficulty": 14,
+      "volume": 30,
+      "competition": 0.16,
+      "serp_features": [
+        "reviews",
+        "video",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "win-plantafel",
+      "cpc": 1.71,
+      "difficulty": 14,
+      "volume": 30,
+      "competition": 0.6,
+      "serp_features": [
+        "reviews",
+        "sitelinks",
+        "video",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 16,
+      "intents": [
+        "I",
+        "N"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "einsatzplanung handwerk",
+      "cpc": 6.66,
+      "difficulty": 8,
+      "volume": 30,
+      "competition": 0.7,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches",
+        "image_in_block"
+      ],
+      "relevance": 15,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "terminplaner handwerk",
+      "cpc": 4.25,
+      "difficulty": 6,
+      "volume": 20,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 13,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "plantafel produktion",
+      "cpc": 4.54,
+      "difficulty": 8,
+      "volume": 20,
+      "competition": 0.77,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 17,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "plantafeln produktion",
+      "cpc": 4.54,
+      "difficulty": 8,
+      "volume": 20,
+      "competition": 0.77,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 16,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "win plantafel 2",
+      "cpc": 2.64,
+      "difficulty": 3,
+      "volume": 20,
+      "competition": 0.63,
+      "serp_features": [
+        "reviews",
+        "video",
+        "images",
+        "related_searches"
+      ],
+      "relevance": 13,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "terminplaner handwerker kostenlos",
+      "cpc": 2.14,
+      "difficulty": 6,
+      "volume": 20,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker terminplaner",
+      "cpc": 4.25,
+      "difficulty": 7,
+      "volume": 20,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

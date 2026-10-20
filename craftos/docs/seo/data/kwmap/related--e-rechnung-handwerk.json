@@ -1,0 +1,607 @@
+{
+  "total": 215,
+  "keywords": [
+    {
+      "keyword": "erechnung",
+      "cpc": 1.26,
+      "difficulty": 98,
+      "volume": 4400,
+      "competition": 0.74,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "knowledge_graph",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "e rechnung erstellen",
+      "cpc": 2.29,
+      "difficulty": 48,
+      "volume": 660,
+      "competition": 0.95,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "digitale rechnungen",
+      "cpc": 1.61,
+      "difficulty": 47,
+      "volume": 590,
+      "competition": 0.75,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnung digital",
+      "cpc": 1.61,
+      "difficulty": 56,
+      "volume": 590,
+      "competition": 0.75,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "find_results_on",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "digitale rechnung",
+      "cpc": 1.61,
+      "difficulty": 47,
+      "volume": 590,
+      "competition": 0.75,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "e rechnung beispiel",
+      "cpc": 1.15,
+      "difficulty": 18,
+      "volume": 590,
+      "competition": 0.57,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "e rechnung programm",
+      "cpc": 3.5,
+      "difficulty": 26,
+      "volume": 590,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 15,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "e-rechnung-beispiel",
+      "cpc": 1.15,
+      "difficulty": 18,
+      "volume": 590,
+      "competition": 0.57,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnung software",
+      "cpc": 9.18,
+      "difficulty": 48,
+      "volume": 480,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software rechnungen",
+      "cpc": 9.18,
+      "difficulty": 48,
+      "volume": 480,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software rechnung",
+      "cpc": 9.18,
+      "difficulty": 35,
+      "volume": 480,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "e rechnung software kostenlos",
+      "cpc": 1.76,
+      "difficulty": 19,
+      "volume": 480,
+      "competition": 0.97,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 14,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnung schreiben software",
+      "cpc": 7.82,
+      "difficulty": 48,
+      "volume": 390,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software rechnung schreiben",
+      "cpc": 7.82,
+      "difficulty": 48,
+      "volume": 390,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnung online erstellen kostenlos",
+      "cpc": 3.43,
+      "difficulty": 14,
+      "volume": 320,
+      "competition": 0.79,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "online rechnung erstellen kostenlos",
+      "cpc": 3.43,
+      "difficulty": 14,
+      "volume": 320,
+      "competition": 0.79,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "online rechnungen erstellen kostenlos",
+      "cpc": 3.43,
+      "difficulty": 18,
+      "volume": 320,
+      "competition": 0.79,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnung kostenlos online erstellen",
+      "cpc": 3.43,
+      "difficulty": 14,
+      "volume": 320,
+      "competition": 0.79,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "x rechnungen erstellen",
+      "cpc": 2.37,
+      "difficulty": 42,
+      "volume": 320,
+      "competition": 0.76,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kostenlos online rechnung erstellen",
+      "cpc": 3.43,
+      "difficulty": 14,
+      "volume": 320,
+      "competition": 0.79,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "tads",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnung erstellen online kostenlos",
+      "cpc": 3.43,
+      "difficulty": 14,
+      "volume": 320,
+      "competition": 0.79,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "tads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnung online kostenlos erstellen",
+      "cpc": 3.43,
+      "difficulty": 14,
+      "volume": 320,
+      "competition": 0.79,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kostenlos rechnung erstellen online",
+      "cpc": 3.43,
+      "difficulty": 14,
+      "volume": 320,
+      "competition": 0.79,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "tads",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "x-rechnungen erstellen",
+      "cpc": 2.37,
+      "difficulty": 42,
+      "volume": 320,
+      "competition": 0.76,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "e rechnung kostenlos erstellen",
+      "cpc": 2.19,
+      "difficulty": 30,
+      "volume": 320,
+      "competition": 0.78,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "x rechnung erstellen",
+      "cpc": 2.37,
+      "difficulty": 38,
+      "volume": 320,
+      "competition": 0.76,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software rechnungserstellung",
+      "cpc": 6.72,
+      "difficulty": 49,
+      "volume": 260,
+      "competition": 0.93,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungsprogramm einmalig kaufen",
+      "cpc": 2.54,
+      "difficulty": 10,
+      "volume": 260,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "bads"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "e rechnung schreiben",
+      "cpc": 3.11,
+      "difficulty": 46,
+      "volume": 260,
+      "competition": 0.96,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnung erstellen programm",
+      "cpc": 8.5,
+      "difficulty": 49,
+      "volume": 210,
+      "competition": 0.97,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

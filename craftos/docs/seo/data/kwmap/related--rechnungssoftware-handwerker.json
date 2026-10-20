@@ -1,0 +1,604 @@
+{
+  "total": 387,
+  "keywords": [
+    {
+      "keyword": "rechnungssoftware",
+      "cpc": 11.03,
+      "difficulty": 48,
+      "volume": 590,
+      "competition": 0.99,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kostenlose rechnungsprogramme",
+      "cpc": 3.69,
+      "difficulty": 11,
+      "volume": 590,
+      "competition": 0.91,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungsprogramm kleinunternehmer kostenlos",
+      "cpc": 3.38,
+      "difficulty": 12,
+      "volume": 590,
+      "competition": 0.95,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungsprogramm für kleinunternehmer kostenlos",
+      "cpc": 3.38,
+      "difficulty": 12,
+      "volume": 590,
+      "competition": 0.95,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungsprogramm kostenlos für kleinunternehmer",
+      "cpc": 3.38,
+      "difficulty": 12,
+      "volume": 590,
+      "competition": 0.95,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kostenlos rechnungsprogramm",
+      "cpc": 3.69,
+      "difficulty": 11,
+      "volume": 590,
+      "competition": 0.91,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kostenloses rechnungsprogramm kleinunternehmer",
+      "cpc": 3.38,
+      "difficulty": 12,
+      "volume": 590,
+      "competition": 0.95,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnung software",
+      "cpc": 9.18,
+      "difficulty": 48,
+      "volume": 480,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "lexware handwerk",
+      "cpc": 5.06,
+      "difficulty": 24,
+      "volume": 480,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "tads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungseingang software",
+      "cpc": 9.18,
+      "difficulty": 11,
+      "volume": 480,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software rechnungen",
+      "cpc": 9.18,
+      "difficulty": 48,
+      "volume": 480,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für rechnungen",
+      "cpc": 9.18,
+      "difficulty": 49,
+      "volume": 480,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungen software",
+      "cpc": 9.18,
+      "difficulty": 40,
+      "volume": 480,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software rechnung",
+      "cpc": 9.18,
+      "difficulty": 35,
+      "volume": 480,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 12,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker software",
+      "cpc": 9.13,
+      "difficulty": 33,
+      "volume": 410,
+      "competition": 0.92,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 22,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software rechnungen schreiben",
+      "cpc": 7.82,
+      "difficulty": 49,
+      "volume": 390,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungen schreiben software",
+      "cpc": 7.82,
+      "difficulty": 49,
+      "volume": 390,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnung schreiben software",
+      "cpc": 7.82,
+      "difficulty": 48,
+      "volume": 390,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 13,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software zum rechnungen schreiben",
+      "cpc": 7.82,
+      "difficulty": 49,
+      "volume": 390,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerkersoftware für kleinbetriebe",
+      "cpc": 5.73,
+      "difficulty": 7,
+      "volume": 390,
+      "competition": 0.98,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 23,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für rechnung schreiben",
+      "cpc": 7.82,
+      "difficulty": 49,
+      "volume": 390,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software rechnung schreiben",
+      "cpc": 7.82,
+      "difficulty": 48,
+      "volume": 390,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungen schreiben programm kostenlos",
+      "cpc": 3.52,
+      "difficulty": 11,
+      "volume": 320,
+      "competition": 0.92,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnung schreiben programm kostenlos",
+      "cpc": 3.52,
+      "difficulty": 12,
+      "volume": 320,
+      "competition": 0.92,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "programm rechnungen schreiben kostenlos",
+      "cpc": 3.52,
+      "difficulty": 11,
+      "volume": 320,
+      "competition": 0.92,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "programm zum rechnungen schreiben kostenlos",
+      "cpc": 3.52,
+      "difficulty": 12,
+      "volume": 320,
+      "competition": 0.92,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungen schreiben kostenloses programm",
+      "cpc": 3.52,
+      "difficulty": 12,
+      "volume": 320,
+      "competition": 0.92,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "programme für rechnungen schreiben kostenlos",
+      "cpc": 3.52,
+      "difficulty": 11,
+      "volume": 320,
+      "competition": 0.92,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für rechnungserstellung",
+      "cpc": 6.72,
+      "difficulty": 49,
+      "volume": 260,
+      "competition": 0.93,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software zur rechnungserstellung",
+      "cpc": 6.72,
+      "difficulty": 49,
+      "volume": 260,
+      "competition": 0.93,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

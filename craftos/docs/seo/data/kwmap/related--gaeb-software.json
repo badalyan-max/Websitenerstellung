@@ -1,0 +1,599 @@
+{
+  "total": 263,
+  "keywords": [
+    {
+      "keyword": "gaeb",
+      "cpc": 0.88,
+      "difficulty": 55,
+      "volume": 1000,
+      "competition": 0.34,
+      "serp_features": [
+        "people_also_ask",
+        "images",
+        "sge"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gaeb format",
+      "cpc": 0.35,
+      "difficulty": 17,
+      "volume": 590,
+      "competition": 0.32,
+      "serp_features": [
+        "reviews",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 21,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gaeb konverter",
+      "cpc": 1.05,
+      "difficulty": 20,
+      "volume": 590,
+      "competition": 0.56,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 44,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gaeb formate",
+      "cpc": 0.35,
+      "difficulty": 12,
+      "volume": 590,
+      "competition": 0.32,
+      "serp_features": [
+        "reviews",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 18,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gaeb konvertieren",
+      "cpc": 1.05,
+      "difficulty": 17,
+      "volume": 590,
+      "competition": 0.56,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 36,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gaeb-konverter",
+      "cpc": 1.05,
+      "difficulty": 20,
+      "volume": 590,
+      "competition": 0.56,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 44,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gaeb-formate",
+      "cpc": 0.35,
+      "difficulty": 12,
+      "volume": 590,
+      "competition": 0.32,
+      "serp_features": [
+        "reviews",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 21,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gaebkonverter",
+      "cpc": 1.05,
+      "difficulty": 20,
+      "volume": 590,
+      "competition": 0.56,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 45,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gaeb online",
+      "cpc": 0.48,
+      "difficulty": 25,
+      "volume": 480,
+      "competition": 0.55,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 36,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "x83 datei",
+      "cpc": 1.33,
+      "difficulty": 12,
+      "volume": 480,
+      "competition": 0.28,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 22,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gaeb-online",
+      "cpc": 0.48,
+      "difficulty": 25,
+      "volume": 480,
+      "competition": 0.55,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 35,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "x83-datei",
+      "cpc": 1.33,
+      "difficulty": 17,
+      "volume": 480,
+      "competition": 0.28,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 18,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gaebonline",
+      "cpc": 0.48,
+      "difficulty": 21,
+      "volume": 480,
+      "competition": 0.55,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 31,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gaeb datei öffnen",
+      "cpc": 1.64,
+      "difficulty": 21,
+      "volume": 390,
+      "competition": 0.75,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 32,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gap datei öffnen",
+      "cpc": 1.64,
+      "difficulty": 21,
+      "volume": 390,
+      "competition": 0.75,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 44,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gaeb-datei öffnen",
+      "cpc": 1.64,
+      "difficulty": 21,
+      "volume": 390,
+      "competition": 0.75,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 41,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "d83 datei",
+      "cpc": 1.52,
+      "difficulty": 13,
+      "volume": 320,
+      "competition": 0.26,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 20,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gaeb konverter kostenlos",
+      "cpc": 0.47,
+      "difficulty": 15,
+      "volume": 320,
+      "competition": 0.31,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 14,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "x83 dateien öffnen",
+      "cpc": 0.66,
+      "difficulty": 17,
+      "volume": 320,
+      "competition": 0.66,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge"
+      ],
+      "relevance": 30,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "datei d83",
+      "cpc": 1.52,
+      "difficulty": 13,
+      "volume": 320,
+      "competition": 0.26,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 13,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kostenloser gaeb konverter",
+      "cpc": 0.47,
+      "difficulty": 13,
+      "volume": 320,
+      "competition": 0.31,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 38,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "wingaeb",
+      "cpc": 2.98,
+      "difficulty": 13,
+      "volume": 320,
+      "competition": 0.24,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "gmb",
+        "related_searches"
+      ],
+      "relevance": 25,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "x83 datei öffnen",
+      "cpc": 0.66,
+      "difficulty": 16,
+      "volume": 320,
+      "competition": 0.66,
+      "serp_features": [
+        "reviews",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 18,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "d83-datei",
+      "cpc": 1.52,
+      "difficulty": 13,
+      "volume": 320,
+      "competition": 0.26,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 22,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gaeb-konverter kostenlos",
+      "cpc": 0.47,
+      "difficulty": 20,
+      "volume": 320,
+      "competition": 0.31,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 49,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "geab",
+      "cpc": 0.65,
+      "difficulty": 16,
+      "volume": 260,
+      "competition": 0.02,
+      "serp_features": [
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gaeb online viewer",
+      "cpc": 0.35,
+      "difficulty": 27,
+      "volume": 260,
+      "competition": 0.64,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 18,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gaeb viewer online",
+      "cpc": 0.35,
+      "difficulty": 24,
+      "volume": 260,
+      "competition": 0.64,
+      "serp_features": [
+        "reviews",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 38,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gaeb x83",
+      "cpc": 0.33,
+      "difficulty": 14,
+      "volume": 210,
+      "competition": 0.45,
+      "serp_features": [
+        "reviews",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 17,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "pdf in gaeb umwandeln",
+      "cpc": 0.44,
+      "difficulty": 8,
+      "volume": 210,
+      "competition": 0.38,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 29,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

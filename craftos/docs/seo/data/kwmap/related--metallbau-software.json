@@ -1,0 +1,604 @@
+{
+  "total": 63,
+  "keywords": [
+    {
+      "keyword": "zeichnung metallbau",
+      "cpc": 1.03,
+      "difficulty": 15,
+      "volume": 210,
+      "competition": 0.08,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "metallbau zeichnungen",
+      "cpc": 1.03,
+      "difficulty": 4,
+      "volume": 210,
+      "competition": 0.08,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "knowledge_graph",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für metallbau",
+      "cpc": 5.05,
+      "difficulty": 13,
+      "volume": 140,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 85,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software metallbau",
+      "cpc": 5.05,
+      "difficulty": 13,
+      "volume": 140,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 72,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "metabau software",
+      "cpc": 5.05,
+      "difficulty": 12,
+      "volume": 140,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 20,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "netsoft metall",
+      "cpc": 3.9,
+      "difficulty": 13,
+      "volume": 90,
+      "competition": 0.47,
+      "serp_features": [
+        "reviews",
+        "sitelinks",
+        "video",
+        "images",
+        "bads",
+        "gmb",
+        "related_searches"
+      ],
+      "relevance": 14,
+      "intents": [
+        "L",
+        "N"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zeichenprogramm metallbau kostenlos",
+      "cpc": 0.86,
+      "difficulty": 17,
+      "volume": 90,
+      "competition": 0.51,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "tads",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 15,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "megacad metall 3d",
+      "cpc": 0.96,
+      "difficulty": 7,
+      "volume": 90,
+      "competition": 0.34,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "metallbau zeichenprogramm kostenlos",
+      "cpc": 0.86,
+      "difficulty": 17,
+      "volume": 90,
+      "competition": 0.51,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "metallbau cad",
+      "cpc": 1.03,
+      "difficulty": 8,
+      "volume": 70,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 17,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "metall cad",
+      "cpc": 1.03,
+      "difficulty": 9,
+      "volume": 70,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "cad metallbau",
+      "cpc": 1.03,
+      "difficulty": 11,
+      "volume": 70,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 17,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "cad metall",
+      "cpc": 1.03,
+      "difficulty": 8,
+      "volume": 70,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "gmb",
+        "related_searches"
+      ],
+      "relevance": 16,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "cad für metallbau",
+      "cpc": 1.03,
+      "difficulty": 9,
+      "volume": 70,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "related_searches"
+      ],
+      "relevance": 14,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "megacad 3d",
+      "cpc": 1.27,
+      "difficulty": 11,
+      "volume": 50,
+      "competition": 0.33,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "tads",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "cad programme metallbau",
+      "cpc": 1,
+      "difficulty": 16,
+      "volume": 50,
+      "competition": 0.89,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 18,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "cad-programme metallbau",
+      "cpc": 1,
+      "difficulty": 9,
+      "volume": 50,
+      "competition": 0.89,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 14,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "cad-programm metallbau",
+      "cpc": 1,
+      "difficulty": 11,
+      "volume": 50,
+      "competition": 0.89,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 18,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "metallbau cad programm",
+      "cpc": 1,
+      "difficulty": 7,
+      "volume": 50,
+      "competition": 0.89,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 14,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zeichenprogramm metallbau",
+      "cpc": 1.07,
+      "difficulty": 8,
+      "volume": 40,
+      "competition": 0.82,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 22,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "stahlbau software",
+      "cpc": 2.32,
+      "difficulty": 7,
+      "volume": 40,
+      "competition": 0.95,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 19,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "cad software metallbau",
+      "cpc": 1.62,
+      "difficulty": 9,
+      "volume": 40,
+      "competition": 0.89,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 20,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "metallbau kalkulation",
+      "cpc": 1.65,
+      "difficulty": 7,
+      "volume": 40,
+      "competition": 0.44,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge"
+      ],
+      "relevance": 20,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulation metallbau",
+      "cpc": 1.65,
+      "difficulty": 7,
+      "volume": 40,
+      "competition": 0.44,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge"
+      ],
+      "relevance": 18,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "cad programme metallbau kostenlos",
+      "cpc": 0,
+      "difficulty": 25,
+      "volume": 40,
+      "competition": 0.23,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "hicad metallbau",
+      "cpc": 0.82,
+      "difficulty": 15,
+      "volume": 40,
+      "competition": 0.49,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "metallbau cad kostenlos",
+      "cpc": 1.04,
+      "difficulty": 17,
+      "volume": 40,
+      "competition": 0.49,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "cad für metallbau kostenlos",
+      "cpc": 1.04,
+      "difficulty": 18,
+      "volume": 40,
+      "competition": 0.49,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "metall zeichenprogramm",
+      "cpc": 1.52,
+      "difficulty": 19,
+      "volume": 40,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 12,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "metallbau cad software",
+      "cpc": 1.62,
+      "difficulty": 9,
+      "volume": 40,
+      "competition": 0.89,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 18,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

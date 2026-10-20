@@ -1,0 +1,590 @@
+{
+  "total": 157,
+  "keywords": [
+    {
+      "keyword": "app bautagebuch",
+      "cpc": 2.31,
+      "difficulty": 7,
+      "volume": 590,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 28,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "baustelle app",
+      "cpc": 3.98,
+      "difficulty": 8,
+      "volume": 260,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 80,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "baustellen-app",
+      "cpc": 3.98,
+      "difficulty": 15,
+      "volume": 260,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 100,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "app baustelle",
+      "cpc": 3.98,
+      "difficulty": 28,
+      "volume": 260,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "tads",
+        "related_searches"
+      ],
+      "relevance": 54,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bautagebuch digital",
+      "cpc": 3.45,
+      "difficulty": 13,
+      "volume": 210,
+      "competition": 0.78,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "baustellendokumentation",
+      "cpc": 5.12,
+      "difficulty": 10,
+      "volume": 210,
+      "competition": 0.57,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 12,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "digitales bautagebuch",
+      "cpc": 3.45,
+      "difficulty": 7,
+      "volume": 210,
+      "competition": 0.78,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "123erfasst app",
+      "cpc": 3.01,
+      "difficulty": 15,
+      "volume": 170,
+      "competition": 0.65,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bausoftware kostenlos",
+      "cpc": 1.95,
+      "difficulty": 12,
+      "volume": 170,
+      "competition": 0.41,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "123 erfasst app",
+      "cpc": 3.01,
+      "difficulty": 19,
+      "volume": 170,
+      "competition": 0.65,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "baustellentagebuch",
+      "cpc": 1.65,
+      "difficulty": 12,
+      "volume": 170,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mein handwerker app",
+      "cpc": 0.66,
+      "difficulty": 15,
+      "volume": 170,
+      "competition": 0.66,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "knowledge_graph",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "123erfasst-app",
+      "cpc": 3.01,
+      "difficulty": 15,
+      "volume": 170,
+      "competition": 0.65,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bautagebuch app kostenlos",
+      "cpc": 1.53,
+      "difficulty": 6,
+      "volume": 140,
+      "competition": 0.79,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 19,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bautagebuch software",
+      "cpc": 5.81,
+      "difficulty": 7,
+      "volume": 140,
+      "competition": 0.95,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bau app",
+      "cpc": 3.42,
+      "difficulty": 20,
+      "volume": 140,
+      "competition": 0.51,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 28,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauleiter app",
+      "cpc": 3.55,
+      "difficulty": 7,
+      "volume": 140,
+      "competition": 0.69,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 37,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "baumanagement software",
+      "cpc": 4.62,
+      "difficulty": 16,
+      "volume": 140,
+      "competition": 0.66,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauleitung software",
+      "cpc": 3.95,
+      "difficulty": 15,
+      "volume": 140,
+      "competition": 0.83,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge"
+      ],
+      "relevance": 13,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauleiter software",
+      "cpc": 3.95,
+      "difficulty": 15,
+      "volume": 140,
+      "competition": 0.83,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 16,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software bautagebuch",
+      "cpc": 5.81,
+      "difficulty": 7,
+      "volume": 140,
+      "competition": 0.95,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "app für bauleiter",
+      "cpc": 3.55,
+      "difficulty": 7,
+      "volume": 140,
+      "competition": 0.69,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge"
+      ],
+      "relevance": 36,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauleitung app",
+      "cpc": 3.55,
+      "difficulty": 8,
+      "volume": 140,
+      "competition": 0.69,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 36,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauleiter apps",
+      "cpc": 3.55,
+      "difficulty": 7,
+      "volume": 140,
+      "competition": 0.69,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 43,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bau apps",
+      "cpc": 3.42,
+      "difficulty": 8,
+      "volume": 140,
+      "competition": 0.51,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 46,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bau-app",
+      "cpc": 3.42,
+      "difficulty": 9,
+      "volume": 140,
+      "competition": 0.51,
+      "serp_features": [
+        "people_also_ask",
+        "images",
+        "sge"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "apps für bauleiter",
+      "cpc": 3.55,
+      "difficulty": 7,
+      "volume": 140,
+      "competition": 0.69,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 38,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für bauleitung",
+      "cpc": 3.95,
+      "difficulty": 15,
+      "volume": 140,
+      "competition": 0.83,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 21,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für bauleiter",
+      "cpc": 3.95,
+      "difficulty": 15,
+      "volume": 140,
+      "competition": 0.83,
+      "serp_features": [
+        "reviews",
+        "video",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 17,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software bauleitung",
+      "cpc": 3.95,
+      "difficulty": 15,
+      "volume": 140,
+      "competition": 0.83,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 15,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

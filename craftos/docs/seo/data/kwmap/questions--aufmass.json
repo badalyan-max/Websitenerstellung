@@ -1,0 +1,138 @@
+{
+  "total": 11,
+  "keywords": [
+    {
+      "keyword": "was ist ein aufmaß nach vob",
+      "cpc": 0,
+      "difficulty": 15,
+      "volume": 10,
+      "competition": 0.12,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "wie muss ein aufmaß nach vob aussehen",
+      "cpc": 0,
+      "difficulty": 7,
+      "volume": 10,
+      "competition": 0.18,
+      "serp_features": [
+        "reviews",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "wie erstellt man ein aufmaß",
+      "cpc": 1.3,
+      "difficulty": 8,
+      "volume": 10,
+      "competition": 0.64,
+      "serp_features": [
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "was darf beim aufmaß übermessen werden",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "wann wird ein aufmaß erstellt",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "was gehört zu einem aufmaß",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "wie mache ich ein aufmaß",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "was ist ein aufmaß bei fenster",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "was bedeutet aufmaß in der rechnung",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "was ist aufmaß fenster",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "wird nach aufmaß abgerechnet",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    }
+  ]
+}

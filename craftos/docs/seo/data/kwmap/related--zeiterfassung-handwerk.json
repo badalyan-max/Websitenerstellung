@@ -1,0 +1,599 @@
+{
+  "total": 95,
+  "keywords": [
+    {
+      "keyword": "zeiterfassung app",
+      "cpc": 3.58,
+      "difficulty": 87,
+      "volume": 3100,
+      "competition": 0.78,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zeiterfassung im handwerk",
+      "cpc": 7.38,
+      "difficulty": 7,
+      "volume": 390,
+      "competition": 0.89,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 81,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker zeiterfassung",
+      "cpc": 7.38,
+      "difficulty": 12,
+      "volume": 390,
+      "competition": 0.89,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 93,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zeiterfassung für handwerker",
+      "cpc": 7.38,
+      "difficulty": 12,
+      "volume": 390,
+      "competition": 0.89,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 98,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mobile zeiterfassung",
+      "cpc": 3.18,
+      "difficulty": 6,
+      "volume": 320,
+      "competition": 0.77,
+      "serp_features": [
+        "reviews",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches",
+        "image_in_block"
+      ],
+      "relevance": 13,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mobile arbeitszeiterfassung",
+      "cpc": 3.18,
+      "difficulty": 6,
+      "volume": 320,
+      "competition": 0.77,
+      "serp_features": [
+        "reviews",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zeiterfassung mobile",
+      "cpc": 3.18,
+      "difficulty": 6,
+      "volume": 320,
+      "competition": 0.77,
+      "serp_features": [
+        "reviews",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mitarbeiter-zeiterfassung app",
+      "cpc": 3.78,
+      "difficulty": 38,
+      "volume": 210,
+      "competition": 0.79,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "app für arbeitsstunden",
+      "cpc": 1.65,
+      "difficulty": 24,
+      "volume": 170,
+      "competition": 0.4,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "digitaler stundenzettel",
+      "cpc": 2.2,
+      "difficulty": 7,
+      "volume": 170,
+      "competition": 0.78,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "arbeitsstunden app",
+      "cpc": 1.65,
+      "difficulty": 26,
+      "volume": 170,
+      "competition": 0.4,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "digitale zeiterfassung app",
+      "cpc": 4.02,
+      "difficulty": 32,
+      "volume": 170,
+      "competition": 0.85,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker app zeiterfassung",
+      "cpc": 4.57,
+      "difficulty": 13,
+      "volume": 140,
+      "competition": 0.87,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 58,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mobile zeiterfassung handwerk",
+      "cpc": 7.96,
+      "difficulty": 12,
+      "volume": 140,
+      "competition": 0.59,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 70,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "arbeitszeiterfassung app android kostenlos",
+      "cpc": 0.88,
+      "difficulty": 14,
+      "volume": 140,
+      "competition": 0.63,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zeiterfassung app handwerk",
+      "cpc": 4.57,
+      "difficulty": 12,
+      "volume": 140,
+      "competition": 0.87,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 70,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mobile zeiterfassung handwerker",
+      "cpc": 7.96,
+      "difficulty": 12,
+      "volume": 140,
+      "competition": 0.59,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 69,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mobile zeiterfassung für handwerker",
+      "cpc": 7.96,
+      "difficulty": 12,
+      "volume": 140,
+      "competition": 0.59,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 71,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zeiterfassung für kleinbetriebe app",
+      "cpc": 3.24,
+      "difficulty": 25,
+      "volume": 140,
+      "competition": 0.93,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 12,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zeiterfassung app handwerker",
+      "cpc": 4.57,
+      "difficulty": 13,
+      "volume": 140,
+      "competition": 0.87,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 68,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zeiterfassungs app handwerk",
+      "cpc": 4.57,
+      "difficulty": 13,
+      "volume": 140,
+      "competition": 0.87,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 67,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zeiterfassung app android",
+      "cpc": 1.56,
+      "difficulty": 16,
+      "volume": 110,
+      "competition": 0.66,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "stundenzettel handwerk",
+      "cpc": 1.71,
+      "difficulty": 6,
+      "volume": 110,
+      "competition": 0.99,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 19,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "stundenzettel handwerker",
+      "cpc": 1.71,
+      "difficulty": 7,
+      "volume": 110,
+      "competition": 0.99,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 17,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "android app zeiterfassung",
+      "cpc": 1.56,
+      "difficulty": 16,
+      "volume": 110,
+      "competition": 0.66,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zeiterfassung android app",
+      "cpc": 1.56,
+      "difficulty": 17,
+      "volume": 110,
+      "competition": 0.66,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "android zeiterfassung app",
+      "cpc": 1.56,
+      "difficulty": 16,
+      "volume": 110,
+      "competition": 0.66,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "android apps zeiterfassung",
+      "cpc": 1.56,
+      "difficulty": 9,
+      "volume": 110,
+      "competition": 0.66,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "app zeiterfassung android",
+      "cpc": 1.56,
+      "difficulty": 16,
+      "volume": 110,
+      "competition": 0.66,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "stundenzettel für handwerker",
+      "cpc": 1.71,
+      "difficulty": 6,
+      "volume": 110,
+      "competition": 0.99,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

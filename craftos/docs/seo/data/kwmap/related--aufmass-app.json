@@ -1,0 +1,598 @@
+{
+  "total": 125,
+  "keywords": [
+    {
+      "keyword": "aufmaß",
+      "cpc": 3.31,
+      "difficulty": 81,
+      "volume": 4400,
+      "competition": 0.11,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "knowledge_graph",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "app aufmaß",
+      "cpc": 2.18,
+      "difficulty": 11,
+      "volume": 590,
+      "competition": 0.68,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 91,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "app für aufmaß",
+      "cpc": 2.18,
+      "difficulty": 11,
+      "volume": 590,
+      "competition": 0.68,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 91,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "vermessungsapp",
+      "cpc": 0.28,
+      "difficulty": 18,
+      "volume": 390,
+      "competition": 0.03,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "raum ausmessen app",
+      "cpc": 0.24,
+      "difficulty": 10,
+      "volume": 320,
+      "competition": 0.42,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "räume ausmessen app",
+      "cpc": 0.24,
+      "difficulty": 10,
+      "volume": 320,
+      "competition": 0.42,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "app zum ausmessen von räumen",
+      "cpc": 0.24,
+      "difficulty": 10,
+      "volume": 320,
+      "competition": 0.42,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "app raum ausmessen",
+      "cpc": 0.24,
+      "difficulty": 10,
+      "volume": 320,
+      "competition": 0.42,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "aufmaß erstellen",
+      "cpc": 2.35,
+      "difficulty": 8,
+      "volume": 210,
+      "competition": 0.5,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 29,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "digitales aufmaß",
+      "cpc": 1.74,
+      "difficulty": 9,
+      "volume": 210,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 28,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bosch measureon",
+      "cpc": 0,
+      "difficulty": 13,
+      "volume": 210,
+      "competition": 0.24,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bosch measure on",
+      "cpc": 0,
+      "difficulty": 13,
+      "volume": 210,
+      "competition": 0.24,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "erstellung von aufmaßen",
+      "cpc": 2.35,
+      "difficulty": 15,
+      "volume": 210,
+      "competition": 0.5,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "aufmaße erstellen",
+      "cpc": 2.35,
+      "difficulty": 7,
+      "volume": 210,
+      "competition": 0.5,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 27,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "erstellen von aufmaßen",
+      "cpc": 2.35,
+      "difficulty": 7,
+      "volume": 210,
+      "competition": 0.5,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 19,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "aufmaß digital",
+      "cpc": 1.74,
+      "difficulty": 10,
+      "volume": 210,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 39,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "aufmaße",
+      "cpc": 2.83,
+      "difficulty": 15,
+      "volume": 170,
+      "competition": 0.11,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "knowledge_graph",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "aufmaß app kostenlos",
+      "cpc": 1.22,
+      "difficulty": 11,
+      "volume": 170,
+      "competition": 0.68,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 64,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "lasermessgerät app",
+      "cpc": 0,
+      "difficulty": 14,
+      "volume": 140,
+      "competition": 0.04,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "aufmaß software",
+      "cpc": 3.32,
+      "difficulty": 11,
+      "volume": 110,
+      "competition": 0.69,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 47,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "raum vermessen app",
+      "cpc": 0.27,
+      "difficulty": 10,
+      "volume": 110,
+      "competition": 0.48,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "measureon",
+      "cpc": 0,
+      "difficulty": 13,
+      "volume": 110,
+      "competition": 0.02,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches",
+        "image_in_block"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software aufmaß",
+      "cpc": 3.32,
+      "difficulty": 11,
+      "volume": 110,
+      "competition": 0.69,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 44,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "app zum vermessen von räumen",
+      "cpc": 0.27,
+      "difficulty": 10,
+      "volume": 110,
+      "competition": 0.48,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 16,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "app raum vermessen",
+      "cpc": 0.27,
+      "difficulty": 10,
+      "volume": 110,
+      "competition": 0.48,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "aufmaß app fenster",
+      "cpc": 2.17,
+      "difficulty": 13,
+      "volume": 110,
+      "competition": 0.49,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 32,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "aufmaß-app fenster",
+      "cpc": 2.17,
+      "difficulty": 13,
+      "volume": 110,
+      "competition": 0.49,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 30,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "fenster aufmaß app",
+      "cpc": 2.17,
+      "difficulty": 13,
+      "volume": 110,
+      "competition": 0.49,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 32,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "fenster-aufmaß-app",
+      "cpc": 2.17,
+      "difficulty": 13,
+      "volume": 110,
+      "competition": 0.49,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 31,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "räume vermessen app",
+      "cpc": 0.27,
+      "difficulty": 10,
+      "volume": 110,
+      "competition": 0.48,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

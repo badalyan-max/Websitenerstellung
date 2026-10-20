@@ -1,0 +1,563 @@
+{
+  "total": 43,
+  "keywords": [
+    {
+      "keyword": "bauportal",
+      "cpc": 1.05,
+      "difficulty": 30,
+      "volume": 810,
+      "competition": 0.28,
+      "serp_features": [
+        "video",
+        "people_also_ask",
+        "images",
+        "tads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 12,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "digitaler bauantrag",
+      "cpc": 1.2,
+      "difficulty": 18,
+      "volume": 480,
+      "competition": 0.05,
+      "serp_features": [
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 21,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauanträge stellen",
+      "cpc": 0.87,
+      "difficulty": 19,
+      "volume": 390,
+      "competition": 0.41,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauen online",
+      "cpc": 0.88,
+      "difficulty": 25,
+      "volume": 320,
+      "competition": 0.03,
+      "serp_features": [
+        "video",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 13,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bau online",
+      "cpc": 0.88,
+      "difficulty": 25,
+      "volume": 320,
+      "competition": 0.03,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauenonline",
+      "cpc": 0.88,
+      "difficulty": 7,
+      "volume": 320,
+      "competition": 0.03,
+      "serp_features": [
+        "video",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauantrag online",
+      "cpc": 1.99,
+      "difficulty": 17,
+      "volume": 260,
+      "competition": 0.25,
+      "serp_features": [
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 18,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauanträge online",
+      "cpc": 1.99,
+      "difficulty": 25,
+      "volume": 260,
+      "competition": 0.25,
+      "serp_features": [
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 17,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauakte online",
+      "cpc": 2.13,
+      "difficulty": 16,
+      "volume": 260,
+      "competition": 0.08,
+      "serp_features": [
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 24,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "digitale baugenehmigung",
+      "cpc": 0,
+      "difficulty": 35,
+      "volume": 210,
+      "competition": 0.03,
+      "serp_features": [
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 23,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "virtuelles bauamt",
+      "cpc": 1.1,
+      "difficulty": 28,
+      "volume": 210,
+      "competition": 0.02,
+      "serp_features": [
+        "reviews",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauantrag online bayern",
+      "cpc": 0,
+      "difficulty": 26,
+      "volume": 210,
+      "competition": 0.04,
+      "serp_features": [
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauanträge einsehen",
+      "cpc": 0,
+      "difficulty": 26,
+      "volume": 90,
+      "competition": 0.03,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "digitales bauamt",
+      "cpc": 0,
+      "difficulty": 29,
+      "volume": 90,
+      "competition": 0.01,
+      "serp_features": [
+        "reviews",
+        "video",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 15,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "digitaler bauantrag hessen",
+      "cpc": 0,
+      "difficulty": 16,
+      "volume": 90,
+      "competition": 0.03,
+      "serp_features": [
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "digitaler bauantrag münchen",
+      "cpc": 0,
+      "difficulty": 13,
+      "volume": 90,
+      "competition": 0.04,
+      "serp_features": [
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauantrag einreichen",
+      "cpc": 0.98,
+      "difficulty": 24,
+      "volume": 70,
+      "competition": 0.25,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "online bauantrag",
+      "cpc": 1.84,
+      "difficulty": 22,
+      "volume": 70,
+      "competition": 0.27,
+      "serp_features": [
+        "video",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauakte online einsehen",
+      "cpc": 1.11,
+      "difficulty": 18,
+      "volume": 70,
+      "competition": 0.1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "baugenehmigung online",
+      "cpc": 1.07,
+      "difficulty": 30,
+      "volume": 50,
+      "competition": 0.28,
+      "serp_features": [
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauonline",
+      "cpc": 0,
+      "difficulty": 18,
+      "volume": 50,
+      "competition": 0.02,
+      "serp_features": [
+        "reviews",
+        "video",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "digitale baudokumentation",
+      "cpc": 5.14,
+      "difficulty": 7,
+      "volume": 50,
+      "competition": 0.73,
+      "serp_features": [
+        "reviews",
+        "video",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauantrag digital einreichen",
+      "cpc": 0,
+      "difficulty": 30,
+      "volume": 50,
+      "competition": 0.07,
+      "serp_features": [
+        "video",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 13,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "was ist eine bauakte",
+      "cpc": 0,
+      "difficulty": 17,
+      "volume": 50,
+      "competition": 0,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "baugenehmigung online einsehen",
+      "cpc": 0,
+      "difficulty": 26,
+      "volume": 50,
+      "competition": 0.03,
+      "serp_features": [
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 16,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauantrag erstellen",
+      "cpc": 1.42,
+      "difficulty": 22,
+      "volume": 40,
+      "competition": 0.51,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauantrag online einsehen",
+      "cpc": 0,
+      "difficulty": 21,
+      "volume": 40,
+      "competition": 0.04,
+      "serp_features": [
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 12,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauanträge online einsehen",
+      "cpc": 0,
+      "difficulty": 31,
+      "volume": 40,
+      "competition": 0.04,
+      "serp_features": [
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 16,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauantrag online bw",
+      "cpc": 0,
+      "difficulty": 29,
+      "volume": 40,
+      "competition": 0.06,
+      "serp_features": [
+        "video",
+        "people_also_ask",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauantrag online einreichen",
+      "cpc": 0,
+      "difficulty": 30,
+      "volume": 30,
+      "competition": 0.1,
+      "serp_features": [
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 12,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

@@ -1,0 +1,612 @@
+{
+  "total": 190,
+  "keywords": [
+    {
+      "keyword": "lexware handwerk",
+      "cpc": 5.06,
+      "difficulty": 24,
+      "volume": 480,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "tads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "lexware für handwerker",
+      "cpc": 5.06,
+      "difficulty": 16,
+      "volume": 480,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "tads",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "lexware handwerker",
+      "cpc": 5.06,
+      "difficulty": 25,
+      "volume": 480,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker software",
+      "cpc": 9.13,
+      "difficulty": 33,
+      "volume": 410,
+      "competition": 0.92,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 20,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerkersoftware für kleinbetriebe",
+      "cpc": 5.73,
+      "difficulty": 7,
+      "volume": 390,
+      "competition": 0.98,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 20,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "branchensoftware",
+      "cpc": 8.5,
+      "difficulty": 12,
+      "volume": 210,
+      "competition": 0.34,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "knowledge_graph",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungssoftware handwerk",
+      "cpc": 9.32,
+      "difficulty": 18,
+      "volume": 210,
+      "competition": 0.82,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 42,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "buchhaltung für handwerker",
+      "cpc": 3.93,
+      "difficulty": 19,
+      "volume": 210,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 70,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "buchhaltung handwerk",
+      "cpc": 3.93,
+      "difficulty": 8,
+      "volume": 210,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 65,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "programme für handwerker",
+      "cpc": 8.41,
+      "difficulty": 36,
+      "volume": 210,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 20,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker rechnungssoftware",
+      "cpc": 9.32,
+      "difficulty": 24,
+      "volume": 210,
+      "competition": 0.82,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 39,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker buchhaltung",
+      "cpc": 3.93,
+      "difficulty": 12,
+      "volume": 210,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 77,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungssoftware für handwerker",
+      "cpc": 9.32,
+      "difficulty": 18,
+      "volume": 210,
+      "competition": 0.82,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 34,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerk programm",
+      "cpc": 8.41,
+      "difficulty": 35,
+      "volume": 210,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 20,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "programm für handwerker",
+      "cpc": 8.41,
+      "difficulty": 29,
+      "volume": 210,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 23,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungssoftware handwerker",
+      "cpc": 9.32,
+      "difficulty": 18,
+      "volume": 210,
+      "competition": 0.82,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 42,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker programme",
+      "cpc": 8.41,
+      "difficulty": 29,
+      "volume": 210,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 18,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationssoftware handwerk",
+      "cpc": 7.82,
+      "difficulty": 24,
+      "volume": 170,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 29,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker kalkulationssoftware",
+      "cpc": 7.82,
+      "difficulty": 30,
+      "volume": 170,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 26,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "buchhaltungssoftware handwerk",
+      "cpc": 6.53,
+      "difficulty": 36,
+      "volume": 140,
+      "competition": 0.98,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 47,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bürosoftware handwerk",
+      "cpc": 9.83,
+      "difficulty": 27,
+      "volume": 140,
+      "competition": 0.64,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 32,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bürosoftware für handwerker",
+      "cpc": 9.83,
+      "difficulty": 28,
+      "volume": 140,
+      "competition": 0.64,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "tads",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 21,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "lexware handwerk plus",
+      "cpc": 4.16,
+      "difficulty": 26,
+      "volume": 140,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "find_results_on",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "buchhaltungssoftware handwerker",
+      "cpc": 6.53,
+      "difficulty": 47,
+      "volume": 140,
+      "competition": 0.98,
+      "serp_features": [
+        "local_pack",
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 41,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungsprogramm für handwerker testsieger",
+      "cpc": 3.78,
+      "difficulty": 28,
+      "volume": 140,
+      "competition": 0.99,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "find_results_on",
+        "related_searches"
+      ],
+      "relevance": 30,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "buchhaltungssoftware für handwerker",
+      "cpc": 6.53,
+      "difficulty": 30,
+      "volume": 140,
+      "competition": 0.98,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "tads",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 38,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker buchhaltungssoftware",
+      "cpc": 6.53,
+      "difficulty": 29,
+      "volume": 140,
+      "competition": 0.98,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 39,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationsprogramm",
+      "cpc": 3.49,
+      "difficulty": 6,
+      "volume": 140,
+      "competition": 0.76,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "lexware handwerker plus",
+      "cpc": 4.16,
+      "difficulty": 24,
+      "volume": 140,
+      "competition": 1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "find_results_on",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software trockenbau",
+      "cpc": 8.05,
+      "difficulty": 6,
+      "volume": 140,
+      "competition": 0.94,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

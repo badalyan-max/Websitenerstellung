@@ -1,0 +1,583 @@
+{
+  "total": 38,
+  "keywords": [
+    {
+      "keyword": "baustellen-app",
+      "cpc": 3.98,
+      "difficulty": 15,
+      "volume": 260,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "baustellen app",
+      "cpc": 3.98,
+      "difficulty": 15,
+      "volume": 260,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "app baustelle",
+      "cpc": 3.98,
+      "difficulty": 28,
+      "volume": 260,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "tads",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauleiter app",
+      "cpc": 3.55,
+      "difficulty": 7,
+      "volume": 140,
+      "competition": 0.69,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mängelmanagement",
+      "cpc": 3.47,
+      "difficulty": 8,
+      "volume": 140,
+      "competition": 0.57,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 54,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauleitung app",
+      "cpc": 3.55,
+      "difficulty": 8,
+      "volume": 140,
+      "competition": 0.69,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bauleiter apps",
+      "cpc": 3.55,
+      "difficulty": 7,
+      "volume": 140,
+      "competition": 0.69,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bau apps",
+      "cpc": 3.42,
+      "difficulty": 8,
+      "volume": 140,
+      "competition": 0.51,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "baudokumentation app",
+      "cpc": 4.11,
+      "difficulty": 7,
+      "volume": 90,
+      "competition": 0.76,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "baustellendokumentation app",
+      "cpc": 6.26,
+      "difficulty": 10,
+      "volume": 90,
+      "competition": 0.75,
+      "serp_features": [
+        "reviews",
+        "video",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "baustellenmanagement software",
+      "cpc": 6,
+      "difficulty": 8,
+      "volume": 50,
+      "competition": 0.73,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bautagesberichte app",
+      "cpc": 3.75,
+      "difficulty": 7,
+      "volume": 50,
+      "competition": 0.84,
+      "serp_features": [
+        "reviews",
+        "video",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mängelmanagement bau",
+      "cpc": 2.51,
+      "difficulty": 8,
+      "volume": 50,
+      "competition": 0.73,
+      "serp_features": [
+        "reviews",
+        "video",
+        "images",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 57,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mängelmanagement software",
+      "cpc": 3.99,
+      "difficulty": 7,
+      "volume": 50,
+      "competition": 0.85,
+      "serp_features": [
+        "reviews",
+        "video",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 70,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "app mängelmanagement",
+      "cpc": 4.45,
+      "difficulty": 7,
+      "volume": 40,
+      "competition": 0.66,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 81,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "app baustellendokumentation",
+      "cpc": 4.04,
+      "difficulty": 10,
+      "volume": 40,
+      "competition": 0.79,
+      "serp_features": [
+        "reviews",
+        "video",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "digitales mängelmanagement",
+      "cpc": 0,
+      "difficulty": 7,
+      "volume": 30,
+      "competition": 0.18,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 59,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "baustellenbericht app",
+      "cpc": 3.81,
+      "difficulty": 15,
+      "volume": 30,
+      "competition": 0.8,
+      "serp_features": [
+        "reviews",
+        "video",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "app für baustellendokumentation",
+      "cpc": 4.33,
+      "difficulty": 11,
+      "volume": 30,
+      "competition": 0.83,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "tads",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "baustellen doku app",
+      "cpc": 4.62,
+      "difficulty": 10,
+      "volume": 30,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "tads",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "baumanagement app",
+      "cpc": 3.74,
+      "difficulty": 16,
+      "volume": 30,
+      "competition": 0.83,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "beste app für baustelle",
+      "cpc": 3.76,
+      "difficulty": 9,
+      "volume": 30,
+      "competition": 0.84,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mängelmanagement im bauwesen",
+      "cpc": 2.81,
+      "difficulty": 7,
+      "volume": 20,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 34,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mängelmanagement bauwesen",
+      "cpc": 2.81,
+      "difficulty": 8,
+      "volume": 20,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 49,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mängel app",
+      "cpc": 0,
+      "difficulty": 24,
+      "volume": 20,
+      "competition": 0.36,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mängelliste bau",
+      "cpc": 1.4,
+      "difficulty": 8,
+      "volume": 20,
+      "competition": 0.42,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "app baudokumentation",
+      "cpc": 0,
+      "difficulty": 8,
+      "volume": 20,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "app baustellendoku",
+      "cpc": 0,
+      "difficulty": 10,
+      "volume": 20,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "baumängel app",
+      "cpc": 2.82,
+      "difficulty": 8,
+      "volume": 20,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 54,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "baustellen app dokumentation",
+      "cpc": 0,
+      "difficulty": 8,
+      "volume": 20,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

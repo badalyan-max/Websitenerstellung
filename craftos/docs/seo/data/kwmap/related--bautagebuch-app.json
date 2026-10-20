@@ -1,0 +1,375 @@
+{
+  "total": 19,
+  "keywords": [
+    {
+      "keyword": "app bautagebuch",
+      "cpc": 2.31,
+      "difficulty": 7,
+      "volume": 590,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bautagebuch digital",
+      "cpc": 3.45,
+      "difficulty": 13,
+      "volume": 210,
+      "competition": 0.78,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "digitales bautagebuch",
+      "cpc": 3.45,
+      "difficulty": 7,
+      "volume": 210,
+      "competition": 0.78,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bautagebuch app kostenlos",
+      "cpc": 1.53,
+      "difficulty": 6,
+      "volume": 140,
+      "competition": 0.79,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bautagebuch software",
+      "cpc": 5.81,
+      "difficulty": 7,
+      "volume": 140,
+      "competition": 0.95,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software bautagebuch",
+      "cpc": 5.81,
+      "difficulty": 7,
+      "volume": 140,
+      "competition": 0.95,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kostenloses bautagebuch",
+      "cpc": 1.82,
+      "difficulty": 11,
+      "volume": 70,
+      "competition": 0.79,
+      "serp_features": [
+        "reviews",
+        "video",
+        "tads",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bautagesberichte app",
+      "cpc": 3.75,
+      "difficulty": 7,
+      "volume": 50,
+      "competition": 0.84,
+      "serp_features": [
+        "reviews",
+        "video",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "digitales bautagebuch kostenlos",
+      "cpc": 1.94,
+      "difficulty": 17,
+      "volume": 50,
+      "competition": 0.76,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "tads",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bautagebuch online",
+      "cpc": 4.36,
+      "difficulty": 7,
+      "volume": 40,
+      "competition": 0.79,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bautagebuch app für handwerker",
+      "cpc": 3.87,
+      "difficulty": 14,
+      "volume": 40,
+      "competition": 0.56,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "online bautagebuch",
+      "cpc": 4.36,
+      "difficulty": 12,
+      "volume": 40,
+      "competition": 0.79,
+      "serp_features": [
+        "reviews",
+        "video",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "digitales bautagebuch app",
+      "cpc": 3.21,
+      "difficulty": 7,
+      "volume": 30,
+      "competition": 0.82,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "baustellentagebuch app",
+      "cpc": 3.82,
+      "difficulty": 7,
+      "volume": 30,
+      "competition": 0.8,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für bautagebuch",
+      "cpc": 0,
+      "difficulty": 13,
+      "volume": 20,
+      "competition": 0,
+      "serp_features": [
+        "reviews",
+        "video",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bautagebuch app für architekten",
+      "cpc": 3.65,
+      "difficulty": 8,
+      "volume": 20,
+      "competition": 0.73,
+      "serp_features": [
+        "reviews",
+        "video",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bautagebuch app für bauherren kostenlos",
+      "cpc": 1.27,
+      "difficulty": 6,
+      "volume": 20,
+      "competition": 0.79,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "tads",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bautagebuch digital kostenlos",
+      "cpc": 2.29,
+      "difficulty": 17,
+      "volume": 20,
+      "competition": 0.77,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "bautagebuch elektronisch",
+      "cpc": 3.63,
+      "difficulty": 13,
+      "volume": 20,
+      "competition": 0.89,
+      "serp_features": [
+        "reviews",
+        "video",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

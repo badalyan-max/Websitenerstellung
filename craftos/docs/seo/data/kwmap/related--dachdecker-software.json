@@ -1,0 +1,611 @@
+{
+  "total": 55,
+  "keywords": [
+    {
+      "keyword": "software für dachdecker",
+      "cpc": 7.76,
+      "difficulty": 12,
+      "volume": 320,
+      "competition": 0.55,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge"
+      ],
+      "relevance": 98,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software dachdecker",
+      "cpc": 7.76,
+      "difficulty": 12,
+      "volume": 320,
+      "competition": 0.55,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 97,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zimmerer software",
+      "cpc": 3.42,
+      "difficulty": 7,
+      "volume": 140,
+      "competition": 0.37,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zimmerei software",
+      "cpc": 3.42,
+      "difficulty": 17,
+      "volume": 140,
+      "competition": 0.37,
+      "serp_features": [
+        "local_pack",
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für zimmerer",
+      "cpc": 3.42,
+      "difficulty": 7,
+      "volume": 140,
+      "competition": 0.37,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software zimmerei",
+      "cpc": 3.42,
+      "difficulty": 12,
+      "volume": 140,
+      "competition": 0.37,
+      "serp_features": [
+        "local_pack",
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads"
+      ],
+      "relevance": 10,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationsprogramm dachdecker",
+      "cpc": 11.29,
+      "difficulty": 12,
+      "volume": 110,
+      "competition": 0.78,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 73,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "dachdecker kalkulationsprogramm",
+      "cpc": 11.29,
+      "difficulty": 12,
+      "volume": 110,
+      "competition": 0.78,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 77,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationsprogramm für dachdecker",
+      "cpc": 11.29,
+      "difficulty": 12,
+      "volume": 110,
+      "competition": 0.78,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 73,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "smart dach",
+      "cpc": 2.18,
+      "difficulty": 13,
+      "volume": 110,
+      "competition": 0.68,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zimmerer zeichenprogramm kostenlos",
+      "cpc": 1.13,
+      "difficulty": 16,
+      "volume": 110,
+      "competition": 0.63,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationsprogramme dachdecker",
+      "cpc": 11.29,
+      "difficulty": 26,
+      "volume": 110,
+      "competition": 0.78,
+      "serp_features": [
+        "local_pack",
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "tads",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 55,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "3d dachcad",
+      "cpc": 1.52,
+      "difficulty": 7,
+      "volume": 90,
+      "competition": 0.45,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "smartdach",
+      "cpc": 1.11,
+      "difficulty": 11,
+      "volume": 70,
+      "competition": 0.64,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "tads",
+        "related_searches"
+      ],
+      "relevance": 24,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "friedrich datentechnik",
+      "cpc": 0,
+      "difficulty": 13,
+      "volume": 70,
+      "competition": 0.07,
+      "serp_features": [
+        "reviews",
+        "sitelinks",
+        "video",
+        "people_also_ask",
+        "gmb",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "L",
+        "N"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "dachdecker programm",
+      "cpc": 4.87,
+      "difficulty": 19,
+      "volume": 70,
+      "competition": 0.75,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 78,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "dachdecker programme",
+      "cpc": 4.87,
+      "difficulty": 19,
+      "volume": 70,
+      "competition": 0.75,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "tads",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 75,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "dachdecker rechnungsprogramm",
+      "cpc": 10.07,
+      "difficulty": 11,
+      "volume": 50,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 53,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungsprogramm für dachdecker",
+      "cpc": 10.07,
+      "difficulty": 8,
+      "volume": 50,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video"
+      ],
+      "relevance": 56,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "dachdecker apps",
+      "cpc": 2.95,
+      "difficulty": 15,
+      "volume": 50,
+      "competition": 0.52,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 43,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungsprogramm dachdecker",
+      "cpc": 10.07,
+      "difficulty": 8,
+      "volume": 50,
+      "competition": 0.9,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 52,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mein dachdecker app",
+      "cpc": 2.45,
+      "difficulty": 21,
+      "volume": 50,
+      "competition": 0.36,
+      "serp_features": [
+        "reviews",
+        "sitelinks",
+        "video",
+        "people_also_ask",
+        "bads",
+        "gmb",
+        "related_searches"
+      ],
+      "relevance": 15,
+      "intents": [
+        "L",
+        "N"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "dachprofi24",
+      "cpc": 2.5,
+      "difficulty": 17,
+      "volume": 50,
+      "competition": 0.38,
+      "serp_features": [
+        "reviews",
+        "people_also_ask",
+        "bads",
+        "gmb",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mein dachdecker-app",
+      "cpc": 2.45,
+      "difficulty": 21,
+      "volume": 50,
+      "competition": 0.36,
+      "serp_features": [
+        "reviews",
+        "sitelinks",
+        "video",
+        "people_also_ask",
+        "tads",
+        "gmb",
+        "related_searches"
+      ],
+      "relevance": 15,
+      "intents": [
+        "L",
+        "N"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulation dachdecker",
+      "cpc": 2.07,
+      "difficulty": 12,
+      "volume": 40,
+      "competition": 0.7,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 15,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mein dachdecker",
+      "cpc": 4.39,
+      "difficulty": 20,
+      "volume": 40,
+      "competition": 0.3,
+      "serp_features": [
+        "reviews",
+        "sitelinks",
+        "images",
+        "tads",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I",
+        "N"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "dachdecker wetter app",
+      "cpc": 1.67,
+      "difficulty": 11,
+      "volume": 40,
+      "competition": 0.13,
+      "serp_features": [
+        "reviews",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 15,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "dachdecker-wetter-app",
+      "cpc": 1.67,
+      "difficulty": 11,
+      "volume": 40,
+      "competition": 0.13,
+      "serp_features": [
+        "reviews",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 15,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "jk dachsoftware",
+      "cpc": 0,
+      "difficulty": 9,
+      "volume": 40,
+      "competition": 0.19,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "knowledge_graph",
+        "tads",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "dachdecker kalkulation",
+      "cpc": 2.07,
+      "difficulty": 12,
+      "volume": 40,
+      "competition": 0.7,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 24,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

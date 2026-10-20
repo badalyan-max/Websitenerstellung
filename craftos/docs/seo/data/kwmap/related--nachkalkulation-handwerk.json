@@ -1,0 +1,600 @@
+{
+  "total": 47,
+  "keywords": [
+    {
+      "keyword": "nachkalkuliert",
+      "cpc": 1.73,
+      "difficulty": 9,
+      "volume": 590,
+      "competition": 0.09,
+      "serp_features": [
+        "reviews",
+        "video",
+        "sge"
+      ],
+      "relevance": 28,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "nachkalkulieren",
+      "cpc": 1.73,
+      "difficulty": 7,
+      "volume": 590,
+      "competition": 0.09,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge"
+      ],
+      "relevance": 32,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "nachberechnung",
+      "cpc": 0,
+      "difficulty": 10,
+      "volume": 480,
+      "competition": 0.01,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "vorkalkulation berechnen",
+      "cpc": 1.1,
+      "difficulty": 11,
+      "volume": 260,
+      "competition": 0.39,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationssoftware handwerk",
+      "cpc": 7.82,
+      "difficulty": 24,
+      "volume": 170,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationsprogramm",
+      "cpc": 3.49,
+      "difficulty": 6,
+      "volume": 140,
+      "competition": 0.76,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "vor und nachkalkulation",
+      "cpc": 0,
+      "difficulty": 7,
+      "volume": 110,
+      "competition": 0.06,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 18,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationssoftware",
+      "cpc": 4.65,
+      "difficulty": 9,
+      "volume": 110,
+      "competition": 0.68,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationssoftware kostenlos",
+      "cpc": 2,
+      "difficulty": 6,
+      "volume": 110,
+      "competition": 0.25,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationsprogramm handwerk",
+      "cpc": 7.77,
+      "difficulty": 12,
+      "volume": 110,
+      "competition": 0.93,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "vor- und nachkalkulation",
+      "cpc": 0,
+      "difficulty": 7,
+      "volume": 110,
+      "competition": 0.06,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 17,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationsprogramm für handwerker",
+      "cpc": 7.77,
+      "difficulty": 21,
+      "volume": 110,
+      "competition": 0.93,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulation handwerk",
+      "cpc": 2.22,
+      "difficulty": 8,
+      "volume": 90,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 18,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulation im handwerk",
+      "cpc": 2.22,
+      "difficulty": 8,
+      "volume": 90,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 18,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "handwerker kalkulation",
+      "cpc": 2.22,
+      "difficulty": 8,
+      "volume": 90,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "mads"
+      ],
+      "relevance": 16,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulieren im handwerk",
+      "cpc": 2.22,
+      "difficulty": 7,
+      "volume": 90,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 19,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulation für handwerker",
+      "cpc": 2.22,
+      "difficulty": 7,
+      "volume": 90,
+      "competition": 0.86,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 23,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "nachrechnen",
+      "cpc": 0,
+      "difficulty": 18,
+      "volume": 70,
+      "competition": 0,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationsprogramme",
+      "cpc": 4.52,
+      "difficulty": 7,
+      "volume": 50,
+      "competition": 0.67,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationsprogramm kostenlos",
+      "cpc": 1.53,
+      "difficulty": 38,
+      "volume": 50,
+      "competition": 0.79,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "arbeitskalkulation",
+      "cpc": 0,
+      "difficulty": 8,
+      "volume": 50,
+      "competition": 0.1,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "image_in_block"
+      ],
+      "relevance": 14,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "mitkalkulation",
+      "cpc": 0,
+      "difficulty": 17,
+      "volume": 50,
+      "competition": 0.03,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "auftragskalkulation",
+      "cpc": 3.4,
+      "difficulty": 7,
+      "volume": 40,
+      "competition": 0.27,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "vorkalkulation nachkalkulation",
+      "cpc": 0,
+      "difficulty": 8,
+      "volume": 40,
+      "competition": 0.08,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "tads",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 27,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "nachzukalkulieren",
+      "cpc": 0,
+      "difficulty": 9,
+      "volume": 40,
+      "competition": 0,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulation handwerk pdf",
+      "cpc": 1.44,
+      "difficulty": 8,
+      "volume": 40,
+      "competition": 0.64,
+      "serp_features": [
+        "reviews",
+        "images",
+        "related_searches"
+      ],
+      "relevance": 14,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulation handwerk excel-vorlage",
+      "cpc": 1.72,
+      "difficulty": 7,
+      "volume": 40,
+      "competition": 0.51,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "tads",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 13,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "wieviel aufschlag auf einkaufspreis handwerk",
+      "cpc": 0,
+      "difficulty": 9,
+      "volume": 40,
+      "competition": 0.06,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulation nachkalkulation",
+      "cpc": 0,
+      "difficulty": 7,
+      "volume": 40,
+      "competition": 0.08,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 27,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "nachlaufkosten",
+      "cpc": 0,
+      "difficulty": 8,
+      "volume": 40,
+      "competition": 0.03,
+      "serp_features": [
+        "reviews",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

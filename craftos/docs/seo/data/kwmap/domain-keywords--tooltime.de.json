@@ -1,0 +1,28 @@
+[
+  {
+    "block_type": null,
+    "block_position": 2,
+    "keyword": "tooltime.de",
+    "position": 2,
+    "prev_pos": null,
+    "volume": 320,
+    "cpc": 3.89,
+    "competition": 0.4,
+    "url": "https://www.tooltime.de/",
+    "difficulty": 17,
+    "total_sites": null,
+    "traffic": 35,
+    "traffic_percent": 97.22,
+    "price": 136.15,
+    "serp_features": [
+      "reviews",
+      "video",
+      "people_also_ask",
+      "knowledge_graph",
+      "sge"
+    ],
+    "intents": [
+      "I"
+    ]
+  }
+]

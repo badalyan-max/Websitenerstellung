@@ -1,0 +1,587 @@
+{
+  "total": 52,
+  "keywords": [
+    {
+      "keyword": "auftragsabwicklung",
+      "cpc": 1.42,
+      "difficulty": 9,
+      "volume": 590,
+      "competition": 0.15,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "knowledge_graph",
+        "sge"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "auftragsmanagement",
+      "cpc": 7,
+      "difficulty": 9,
+      "volume": 390,
+      "competition": 0.35,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 34,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "auftragsbearbeitung",
+      "cpc": 3.17,
+      "difficulty": 14,
+      "volume": 320,
+      "competition": 0.27,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 27,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "business software",
+      "cpc": 8,
+      "difficulty": 41,
+      "volume": 210,
+      "competition": 0.4,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "knowledge_graph",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "auftragsverwaltung",
+      "cpc": 4.79,
+      "difficulty": 9,
+      "volume": 210,
+      "competition": 0.52,
+      "serp_features": [
+        "reviews",
+        "people_also_ask",
+        "images",
+        "knowledge_graph",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 37,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "businesssoftware",
+      "cpc": 8,
+      "difficulty": 41,
+      "volume": 210,
+      "competition": 0.4,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software auftragsverwaltung",
+      "cpc": 8.45,
+      "difficulty": 9,
+      "volume": 170,
+      "competition": 0.49,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 82,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für auftragsverwaltung",
+      "cpc": 8.45,
+      "difficulty": 9,
+      "volume": 170,
+      "competition": 0.49,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 83,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "auftragserfassung",
+      "cpc": 6.44,
+      "difficulty": 10,
+      "volume": 140,
+      "competition": 0.41,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software auftragsbearbeitung",
+      "cpc": 9.17,
+      "difficulty": 14,
+      "volume": 110,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 62,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für auftragsbearbeitung",
+      "cpc": 9.17,
+      "difficulty": 7,
+      "volume": 110,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 60,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "auftragsbearbeitung software",
+      "cpc": 9.17,
+      "difficulty": 8,
+      "volume": 110,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 71,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "auftragsabwicklung software",
+      "cpc": 12.6,
+      "difficulty": 8,
+      "volume": 90,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 58,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software auftragsabwicklung",
+      "cpc": 12.6,
+      "difficulty": 8,
+      "volume": 90,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 51,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "auftragsbeschaffung",
+      "cpc": 1.66,
+      "difficulty": 8,
+      "volume": 70,
+      "competition": 0.26,
+      "serp_features": [
+        "reviews",
+        "video",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "auftragsmanager",
+      "cpc": 1.1,
+      "difficulty": 8,
+      "volume": 70,
+      "competition": 0.2,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 13,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "auftragsverwaltungssoftware",
+      "cpc": 8.52,
+      "difficulty": 9,
+      "volume": 70,
+      "competition": 0.25,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge"
+      ],
+      "relevance": 78,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "auftragsmanagement-software",
+      "cpc": 9.11,
+      "difficulty": 8,
+      "volume": 70,
+      "competition": 0.71,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "tads",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 64,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "druckauftragsverwaltung",
+      "cpc": 0,
+      "difficulty": 7,
+      "volume": 50,
+      "competition": 0.18,
+      "serp_features": [
+        "reviews",
+        "video",
+        "sge"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "aufträge erfassen",
+      "cpc": 3.91,
+      "difficulty": 11,
+      "volume": 50,
+      "competition": 0.54,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "mads"
+      ],
+      "relevance": 23,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "auftrags app",
+      "cpc": 5.44,
+      "difficulty": 12,
+      "volume": 50,
+      "competition": 0.72,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "tads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "app für aufträge",
+      "cpc": 5.44,
+      "difficulty": 19,
+      "volume": 50,
+      "competition": 0.72,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "online auftrag",
+      "cpc": 1.02,
+      "difficulty": 22,
+      "volume": 50,
+      "competition": 0.61,
+      "serp_features": [
+        "reviews",
+        "video",
+        "sge"
+      ],
+      "relevance": 12,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "auftragsplanung software",
+      "cpc": 5.53,
+      "difficulty": 5,
+      "volume": 40,
+      "competition": 0.36,
+      "serp_features": [
+        "reviews",
+        "video",
+        "tads",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "auftragssoftware",
+      "cpc": 7.42,
+      "difficulty": 14,
+      "volume": 40,
+      "competition": 0.82,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "tads",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 49,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "auftragswesen",
+      "cpc": 7.71,
+      "difficulty": 5,
+      "volume": 40,
+      "competition": 0.44,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "tads",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "auftragserfassung app",
+      "cpc": 0,
+      "difficulty": 19,
+      "volume": 40,
+      "competition": 0.56,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "app für auftragserfassung",
+      "cpc": 0,
+      "difficulty": 19,
+      "volume": 40,
+      "competition": 0.56,
+      "serp_features": [
+        "reviews",
+        "video",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software auftragsplanung",
+      "cpc": 5.53,
+      "difficulty": 6,
+      "volume": 40,
+      "competition": 0.36,
+      "serp_features": [
+        "reviews",
+        "video",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software auftragsbearbeitung kleinunternehmen",
+      "cpc": 7.32,
+      "difficulty": 8,
+      "volume": 30,
+      "competition": 0.93,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

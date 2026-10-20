@@ -1,0 +1,146 @@
+{
+  "total": 13,
+  "keywords": [
+    {
+      "keyword": "wie sieht ein bautagebuch aus",
+      "cpc": 1.19,
+      "difficulty": 13,
+      "volume": 20,
+      "competition": 0.85,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "welche funktion erfüllt das bautagebuch",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "ist das führen eines bautagebuches pflicht",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "welche bautagebuch app",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "wie erstellt man ein bautagebuch",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "wer muss das bautagebuch unterschreiben",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "warum bautagebuch",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "was muss in einem bautagebuch stehen",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "was passiert wenn man kein bautagebuch hat",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "was gehört alles in ein bautagebuch",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "ist man verpflichtet ein bautagebuch zu führen",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "wie muss ein bautagebuch aussehen",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    },
+    {
+      "keyword": "wer muss das bautagebuch führen",
+      "cpc": 0,
+      "difficulty": 0,
+      "volume": 0,
+      "competition": 0,
+      "serp_features": [],
+      "intents": [],
+      "history_trend": null
+    }
+  ]
+}

@@ -1,0 +1,615 @@
+{
+  "total": 114,
+  "keywords": [
+    {
+      "keyword": "dachdecker software",
+      "cpc": 7.76,
+      "difficulty": 12,
+      "volume": 320,
+      "competition": 0.55,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für dachdecker",
+      "cpc": 7.76,
+      "difficulty": 12,
+      "volume": 320,
+      "competition": 0.55,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software dachdecker",
+      "cpc": 7.76,
+      "difficulty": 12,
+      "volume": 320,
+      "competition": 0.55,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zimmerei software",
+      "cpc": 3.42,
+      "difficulty": 17,
+      "volume": 140,
+      "competition": 0.37,
+      "serp_features": [
+        "local_pack",
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 59,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software für zimmerer",
+      "cpc": 3.42,
+      "difficulty": 7,
+      "volume": 140,
+      "competition": 0.37,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 82,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software zimmerei",
+      "cpc": 3.42,
+      "difficulty": 12,
+      "volume": 140,
+      "competition": 0.37,
+      "serp_features": [
+        "local_pack",
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads"
+      ],
+      "relevance": 63,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "sema software preis",
+      "cpc": 1.3,
+      "difficulty": 16,
+      "volume": 110,
+      "competition": 0.34,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 14,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationsprogramm dachdecker",
+      "cpc": 11.29,
+      "difficulty": 12,
+      "volume": 110,
+      "competition": 0.78,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "software holzbau",
+      "cpc": 2.03,
+      "difficulty": 21,
+      "volume": 110,
+      "competition": 0.63,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 37,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "dachdecker kalkulationsprogramm",
+      "cpc": 11.29,
+      "difficulty": 12,
+      "volume": 110,
+      "competition": 0.78,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationsprogramm für dachdecker",
+      "cpc": 11.29,
+      "difficulty": 12,
+      "volume": 110,
+      "competition": 0.78,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "holzbausoftware",
+      "cpc": 2.03,
+      "difficulty": 18,
+      "volume": 110,
+      "competition": 0.63,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 44,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "holzbau software",
+      "cpc": 2.03,
+      "difficulty": 21,
+      "volume": 110,
+      "competition": 0.63,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 40,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zimmerer zeichenprogramm kostenlos",
+      "cpc": 1.13,
+      "difficulty": 16,
+      "volume": 110,
+      "competition": 0.63,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 38,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "zeichenprogramm zimmerer kostenlos",
+      "cpc": 1.13,
+      "difficulty": 16,
+      "volume": 110,
+      "competition": 0.63,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 32,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "kalkulationsprogramme dachdecker",
+      "cpc": 11.29,
+      "difficulty": 26,
+      "volume": 110,
+      "competition": 0.78,
+      "serp_features": [
+        "local_pack",
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "tads",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "L",
+        "C"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "sema cad",
+      "cpc": 1.15,
+      "difficulty": 15,
+      "volume": 90,
+      "competition": 0.17,
+      "serp_features": [
+        "reviews",
+        "sitelinks",
+        "video",
+        "people_also_ask",
+        "images",
+        "knowledge_graph",
+        "related_searches"
+      ],
+      "relevance": 15,
+      "intents": [
+        "I",
+        "N"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "sema holzbausoftware",
+      "cpc": 1.81,
+      "difficulty": 15,
+      "volume": 90,
+      "competition": 0.26,
+      "serp_features": [
+        "reviews",
+        "sitelinks",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "related_searches"
+      ],
+      "relevance": 17,
+      "intents": [
+        "I",
+        "N"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "holzbau software kostenlos",
+      "cpc": 1.09,
+      "difficulty": 7,
+      "volume": 90,
+      "competition": 0.73,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "related_searches"
+      ],
+      "relevance": 13,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "holzbausoftware kostenlos",
+      "cpc": 1.09,
+      "difficulty": 14,
+      "volume": 90,
+      "competition": 0.73,
+      "serp_features": [
+        "reviews",
+        "video",
+        "images",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 27,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "technisches zeichnen holzbau",
+      "cpc": 0,
+      "difficulty": 21,
+      "volume": 90,
+      "competition": 0,
+      "serp_features": [
+        "reviews",
+        "video",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 6,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "liberta holzhausplaner free",
+      "cpc": 1.45,
+      "difficulty": 6,
+      "volume": 90,
+      "competition": 0.18,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "related_searches"
+      ],
+      "relevance": 12,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "sema holzbau",
+      "cpc": 0,
+      "difficulty": 17,
+      "volume": 70,
+      "competition": 0.16,
+      "serp_features": [
+        "reviews",
+        "sitelinks",
+        "video",
+        "people_also_ask",
+        "images",
+        "related_searches"
+      ],
+      "relevance": 13,
+      "intents": [
+        "I",
+        "N"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "abbundprogramm kostenlos",
+      "cpc": 1.36,
+      "difficulty": 6,
+      "volume": 70,
+      "competition": 0.56,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 30,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "cad holz",
+      "cpc": 1.1,
+      "difficulty": 14,
+      "volume": 70,
+      "competition": 0.63,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "cad holzbau",
+      "cpc": 1.1,
+      "difficulty": 13,
+      "volume": 70,
+      "competition": 0.63,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 17,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "sema zeichenprogramm",
+      "cpc": 1.22,
+      "difficulty": 13,
+      "volume": 70,
+      "competition": 0.26,
+      "serp_features": [
+        "reviews",
+        "sitelinks",
+        "video",
+        "people_also_ask",
+        "images",
+        "knowledge_graph",
+        "related_searches"
+      ],
+      "relevance": 12,
+      "intents": [
+        "I",
+        "N"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "sema holz",
+      "cpc": 0,
+      "difficulty": 16,
+      "volume": 70,
+      "competition": 0.16,
+      "serp_features": [
+        "reviews",
+        "sitelinks",
+        "video",
+        "people_also_ask",
+        "related_searches"
+      ],
+      "relevance": 10,
+      "intents": [
+        "I",
+        "N"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "abbundprogramme kostenlos",
+      "cpc": 1.36,
+      "difficulty": 5,
+      "volume": 70,
+      "competition": 0.56,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 27,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "holzkonstruktion planen app kostenlos",
+      "cpc": 1.13,
+      "difficulty": 7,
+      "volume": 70,
+      "competition": 0.21,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

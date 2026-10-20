@@ -1,0 +1,615 @@
+{
+  "total": 125,
+  "keywords": [
+    {
+      "keyword": "gobd",
+      "cpc": 0.48,
+      "difficulty": 46,
+      "volume": 920,
+      "competition": 0.28,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "knowledge_graph",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 20,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd konform",
+      "cpc": 0.69,
+      "difficulty": 46,
+      "volume": 660,
+      "competition": 0.54,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 29,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd bedeutung",
+      "cpc": 0.11,
+      "difficulty": 46,
+      "volume": 590,
+      "competition": 0.44,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 18,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd abkürzung",
+      "cpc": 0.1,
+      "difficulty": 46,
+      "volume": 390,
+      "competition": 0.25,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 15,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd konforme archivierung",
+      "cpc": 2.51,
+      "difficulty": 18,
+      "volume": 390,
+      "competition": 0.78,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd konform archivieren",
+      "cpc": 2.51,
+      "difficulty": 19,
+      "volume": 390,
+      "competition": 0.78,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd-konforme archivierung",
+      "cpc": 2.51,
+      "difficulty": 18,
+      "volume": 390,
+      "competition": 0.78,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 11,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd-konform archivieren",
+      "cpc": 2.51,
+      "difficulty": 19,
+      "volume": 390,
+      "competition": 0.78,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 9,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd konforme rechnungen",
+      "cpc": 1.64,
+      "difficulty": 21,
+      "volume": 320,
+      "competition": 0.83,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 20,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd konform rechnung",
+      "cpc": 1.64,
+      "difficulty": 20,
+      "volume": 320,
+      "competition": 0.83,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 16,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd konforme rechnung",
+      "cpc": 1.64,
+      "difficulty": 16,
+      "volume": 320,
+      "competition": 0.83,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "find_results_on",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 15,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd-konforme rechnung",
+      "cpc": 1.64,
+      "difficulty": 17,
+      "volume": 320,
+      "competition": 0.83,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 17,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd grundsätze",
+      "cpc": 0.21,
+      "difficulty": 55,
+      "volume": 260,
+      "competition": 0.44,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "knowledge_graph",
+        "bads",
+        "find_results_on",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 16,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd-grundsätze",
+      "cpc": 0.21,
+      "difficulty": 62,
+      "volume": 260,
+      "competition": 0.44,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "knowledge_graph",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 15,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "was ist gobd",
+      "cpc": 0.16,
+      "difficulty": 36,
+      "volume": 210,
+      "competition": 0.4,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 17,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd-konformität",
+      "cpc": 0.76,
+      "difficulty": 46,
+      "volume": 140,
+      "competition": 0.56,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 23,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd daten",
+      "cpc": 0.4,
+      "difficulty": 46,
+      "volume": 140,
+      "competition": 0.25,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 22,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd aktuelle fassung",
+      "cpc": 0.71,
+      "difficulty": 44,
+      "volume": 140,
+      "competition": 0.14,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge"
+      ],
+      "relevance": 16,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd konformität",
+      "cpc": 0.76,
+      "difficulty": 46,
+      "volume": 140,
+      "competition": 0.56,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 25,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd pdf",
+      "cpc": 1.64,
+      "difficulty": 35,
+      "volume": 110,
+      "competition": 0.19,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 15,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd archivierung",
+      "cpc": 2.78,
+      "difficulty": 23,
+      "volume": 90,
+      "competition": 0.74,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "find_results_on",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 8,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd zertifizierung",
+      "cpc": 2.03,
+      "difficulty": 16,
+      "volume": 90,
+      "competition": 0.35,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "images",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 18,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "was bedeutet gobd",
+      "cpc": 0.12,
+      "difficulty": 46,
+      "volume": 90,
+      "competition": 0.44,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "find_results_on",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 20,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd rechnungen",
+      "cpc": 1.73,
+      "difficulty": 22,
+      "volume": 90,
+      "competition": 0.73,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "find_results_on",
+        "sge",
+        "related_searches",
+        "mads"
+      ],
+      "relevance": 20,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "archivierung gobd",
+      "cpc": 2.78,
+      "difficulty": 16,
+      "volume": 90,
+      "competition": 0.74,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 7,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd-zertifizierung",
+      "cpc": 2.03,
+      "difficulty": 16,
+      "volume": 90,
+      "competition": 0.35,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 19,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd-zertifiziert",
+      "cpc": 2.03,
+      "difficulty": 16,
+      "volume": 90,
+      "competition": 0.35,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 22,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd zertifiziert",
+      "cpc": 2.03,
+      "difficulty": 16,
+      "volume": 90,
+      "competition": 0.35,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 21,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "rechnungen gobd",
+      "cpc": 1.73,
+      "difficulty": 21,
+      "volume": 90,
+      "competition": 0.73,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 16,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    },
+    {
+      "keyword": "gobd software",
+      "cpc": 2.4,
+      "difficulty": 22,
+      "volume": 70,
+      "competition": 0.99,
+      "serp_features": [
+        "reviews",
+        "video",
+        "people_also_ask",
+        "bads",
+        "sge",
+        "related_searches"
+      ],
+      "relevance": 21,
+      "intents": [
+        "I"
+      ],
+      "history_trend": null
+    }
+  ]
+}

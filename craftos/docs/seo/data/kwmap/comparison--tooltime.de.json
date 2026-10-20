@@ -1,0 +1,45 @@
+[
+  {
+    "keyword": "tooltime.de",
+    "volume": 320,
+    "cpc": 3.89,
+    "competition": 0.4,
+    "difficulty": 17,
+    "total_sites": 0,
+    "intents": [
+      "I"
+    ],
+    "serp_features": [
+      "reviews",
+      "video",
+      "people_also_ask",
+      "knowledge_graph",
+      "sge"
+    ],
+    "position": 2,
+    "url": "https://www.tooltime.de/",
+    "price": 136.15,
+    "traffic": 35
+  },
+  {
+    "keyword": "gewährleistung bei handwerksleistungen",
+    "volume": 10,
+    "cpc": 0,
+    "competition": 0,
+    "difficulty": 15,
+    "total_sites": 0,
+    "intents": [
+      "I"
+    ],
+    "serp_features": [
+      "featured_snippets",
+      "reviews",
+      "people_also_ask",
+      "images"
+    ],
+    "position": 2,
+    "url": "https://www.tooltime.de/blog/gewaehrleistung-im-handwerk",
+    "price": 0,
+    "traffic": 1
+  }
+]
