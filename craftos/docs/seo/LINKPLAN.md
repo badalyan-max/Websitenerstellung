@@ -185,3 +185,5 @@ node scripts/seo-report.mjs --etappe <name>
 ```
 
 Das Skript vergleicht Positionen, KI-Share-of-Voice und verweisende Domains mit dem Ausgangsstand vom 20.10.2026 und gleicht die Domains mit Status „live“ aus diesem Register mit den verweisenden Domains in SE Ranking ab. Jede Etappe erhält eigene Dateien (`docs/seo/reports/<Datum>-messbericht-<etappe>.md` und `<Datum>-raw-<etappe>-*.json`); vorhandene Berichte werden nie überschrieben. Etappen: `ausgangsstand` (Phase 5, nach dem Projektabgleich), `rollout-phase05` (Plan 05-08), danach je Phase.
+
+Erster Bericht: `reports/2026-10-21-messbericht-ausgangsstand.md` (12 verweisende Domains, alle Spam; Share of Voice CraftOS 0,02 %; 126 Hauptkeywords der Keyword-Map im Projekt 13094375, davon 98 am 21.10.2026 neu aufgenommen und noch ohne erste Messung).
