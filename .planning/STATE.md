@@ -1,10 +1,10 @@
 ---
 gsd_state_version: 1.0
 milestone: v2.0
-milestone_name: Produktstand, Redesign und Sichtbarkeit
+milestone_name: – Überblick
 status: planning
-last_updated: "2026-10-20T14:23:35.714Z"
-last_activity: 2026-10-20
+last_updated: "2026-10-20T14:34:10.976Z"
+last_activity: 2026-10-20 — Roadmap v2.0 erstellt (6 Phasen, 26/26 Anforderungen zugeordnet)
 progress:
   total_phases: 6
   completed_phases: 0
