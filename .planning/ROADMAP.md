@@ -57,7 +57,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 05-06-PLAN.md — Medienbudget, Galerie-Kennzeichnung, Musterseite /styleguide (noindex), E2E – Welle 2
+- [x] 05-06-PLAN.md — Medienbudget, Galerie-Kennzeichnung, Musterseite /styleguide (noindex), E2E – Welle 2
 - [ ] 05-07-PLAN.md — Linkplan mit Statusregister und Browser-Prompts, SE-Ranking-Projektabgleich, Messbericht – Welle 2
 
 **Wave 3** *(blocked on Wave 2 completion)*
@@ -146,7 +146,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 5. Produktwahrheit, Keyword-Map und Designbausteine | 5/8 | In Progress|  |
+| 5. Produktwahrheit, Keyword-Map und Designbausteine | 6/8 | In Progress|  |
 | 6. Startseite, Navigation und Funktionsübersicht | 0/TBD | Not started | - |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 0/TBD | Not started | - |
 | 8. SEO und KI-Sichtbarkeit | 0/TBD | Not started | - |
