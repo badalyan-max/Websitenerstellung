@@ -1,4 +1,4 @@
-import { site } from "./site";
+import { site, tarife } from "./site";
 // Abgrenzung zu gleichnamigen Produkten für Suchmaschinen und KI-Suchen
 const brandName = "CraftOS Handwerkersoftware";
 const storeUrls = [site.iosUrl, site.androidUrl];
@@ -18,6 +18,8 @@ export function organizationSchema() {
   };
 }
 export function softwareApplicationSchema() {
+  const voll = tarife.find((t) => t.id === "voll")!;
+  const price = voll.monat.toFixed(2);
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -33,9 +35,15 @@ export function softwareApplicationSchema() {
     publisher: { "@id": site.url + "/#organization" },
     offers: {
       "@type": "Offer",
-      name: "Voll-Lizenz inklusive Web-App und Mobile-App",
-      price: "29.95",
+      name: `${voll.name} (${voll.produktlizenz}) inklusive Web-App und Mobile-App`,
+      price,
       priceCurrency: "EUR",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price,
+        priceCurrency: "EUR",
+        valueAddedTaxIncluded: false,
+      },
       url: site.url + "/preise",
       description:
         "Netto pro Person und Monat. Mindestens eine Voll-Lizenz pro Betrieb. Zusatzlizenzen und KI-Verbrauch gesondert.",

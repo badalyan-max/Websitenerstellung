@@ -1,7 +1,15 @@
 // Erzeugt /llms.txt aus denselben Daten wie die Website, damit Preise und Seiten nie auseinanderlaufen.
 import { funktionen } from "./funktionen";
 import { gewerke } from "./gewerke";
-import { site, speicherPool, tarife, zahlung } from "./site";
+import {
+  creditPakete,
+  extraSpeicher,
+  site,
+  speicherPool,
+  startCredits,
+  tarife,
+  zahlung,
+} from "./site";
 
 const euro = (value: number) => value.toFixed(2).replace(".", ",") + " €";
 const link = (name: string, path: string, note?: string) =>
@@ -10,8 +18,11 @@ const link = (name: string, path: string, note?: string) =>
 export function buildLlmsTxt(): string {
   const lizenzen = tarife.map(
     (t) =>
-      `- ${t.name}: ${euro(t.monat)} netto pro Person und Monat oder ${euro(t.jahr)} im Jahr. ${t.fuer}.`,
+      `- ${t.name}${t.id === "voll" ? ` (${t.produktlizenz})` : ""}: ${euro(t.monat)} netto pro Person und Monat oder ${euro(t.jahr)} netto im Jahr. ${t.fuer}.`,
   );
+  const pakete = creditPakete
+    .map((c) => `${euro(c.preis)}${c.bonus > 0 ? ` (+${c.bonus} % Bonus)` : ""}`)
+    .join(", ");
   return [
     "# CraftOS Handwerkersoftware",
     "",
@@ -23,6 +34,8 @@ export function buildLlmsTxt(): string {
     `- Testphase: ${zahlung.trial}`,
     `- Zahlung: ${zahlung.sepa} oder ${zahlung.karte}. ${zahlung.jahresrabatt}.`,
     `- Speicher: ${speicherPool}`,
+    `- Extra-Speicher: ${euro(extraSpeicher.monat)} netto pro Monat je ${extraSpeicher.gb} GB oder ${euro(extraSpeicher.jahr)} netto im Jahr`,
+    `- KI-Credits: einmalig ${startCredits} Credits Startguthaben, danach im Voraus gekaufte Credit-Pakete (netto): ${pakete}. Kein Monatskontingent, keine Nachabrechnung.`,
     `- Mobile-App: iOS ${site.iosUrl}, Android ${site.androidUrl}`,
     `- Kontakt: ${site.email}`,
     `- Stand der Angaben: ${site.checkedAt}`,

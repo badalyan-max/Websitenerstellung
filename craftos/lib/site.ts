@@ -14,7 +14,7 @@ export const site = {
   androidUrl:
     "https://play.google.com/store/apps/details?id=com.despia.craftos",
   trialDays: 10,
-  checkedAt: "2026-09-09",
+  checkedAt: "2026-10-20",
 } as const;
 export const nav = [
   { label: "Produkt", href: "/funktionen" },
@@ -24,11 +24,18 @@ export const nav = [
   { label: "Hilfe", href: "/hilfe" },
 ] as const;
 export const speicherPool = "50 GB Speicher-Pool pro Betrieb";
+// Preise, Speicher und Credits entsprechen src/lib/constants.ts und src/lib/subscription/pricing.ts
+// der Web-App (origin/release); geprüft durch tests/pricing-parity.test.ts gegen docs/product-pricing-snapshot.json.
+/** Zusätzlicher Speicher je Block, netto. */
+export const extraSpeicher = { gb: 50, monat: 0.99, jahr: 9.9 } as const;
+/** Einmaliges KI-Startguthaben einer neuen Organisation (kein Monatskontingent). */
+export const startCredits = 150;
 export const annualSavingPercent = 100 * (1 - 10 / 12);
 export const tarife = [
   {
     id: "app",
     name: "App-Lizenz",
+    produktlizenz: "App",
     monat: 9.95,
     jahr: 99.5,
     badge: null,
@@ -44,6 +51,7 @@ export const tarife = [
   {
     id: "voll",
     name: "Voll-Lizenz",
+    produktlizenz: "Admin oder Büro",
     monat: 29.95,
     jahr: 299.5,
     badge: "Web-App + Mobile-App inklusive",
@@ -61,7 +69,7 @@ export const zahlung = {
   sepa: "SEPA-Lastschrift",
   karte: "Kreditkarte",
   jahresrabatt: "Jährliches Abo: rund 17 % günstiger als 12 Monatszahlungen",
-  trial: "10 Tage kostenlos testen. Ohne Zahlungsdaten.",
+  trial: `${site.trialDays} Tage kostenlos testen. Ohne Zahlungsdaten.`,
 } as const;
 export const creditPakete = [
   { preis: 10, bonus: 0, guthaben: 10 },
