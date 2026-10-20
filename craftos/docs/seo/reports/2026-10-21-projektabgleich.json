@@ -1,0 +1,284 @@
+{
+  "datum": "2026-10-21",
+  "projekt": 13094375,
+  "soll": {
+    "gesamt": 126,
+    "bestehend": 107,
+    "geplant": 19
+  },
+  "projektKeywords": 151,
+  "fehlend": [],
+  "zielseiteAbweichend": [],
+  "zusaetzlich": [
+    {
+      "keyword": "craftview software gmbh",
+      "url": null
+    },
+    {
+      "keyword": "handwerker software",
+      "url": "https://craftos.eu/"
+    },
+    {
+      "keyword": "craftos",
+      "url": "https://craftos.eu/"
+    },
+    {
+      "keyword": "craftos handwerkersoftware",
+      "url": "https://craftos.eu/"
+    },
+    {
+      "keyword": "software handwerksbetrieb",
+      "url": "https://craftos.eu/"
+    },
+    {
+      "keyword": "handwerkersoftware kostenlos",
+      "url": "https://craftos.eu/preise"
+    },
+    {
+      "keyword": "handwerkersoftware kleinbetriebe",
+      "url": "https://craftos.eu/blog/handwerkersoftware-einzelunternehmen"
+    },
+    {
+      "keyword": "tooltime alternative",
+      "url": "https://craftos.eu/vergleich"
+    },
+    {
+      "keyword": "handwerker app kostenlos",
+      "url": "https://craftos.eu/app"
+    },
+    {
+      "keyword": "baudokumentation app",
+      "url": "https://craftos.eu/funktionen/baudokumentation"
+    },
+    {
+      "keyword": "digitale bauakte",
+      "url": "https://craftos.eu/blog/digitale-projektakte"
+    },
+    {
+      "keyword": "mobile zeiterfassung handwerker",
+      "url": "https://craftos.eu/funktionen/zeiterfassung"
+    },
+    {
+      "keyword": "einsatzplanung handwerk",
+      "url": "https://craftos.eu/funktionen/plantafel"
+    },
+    {
+      "keyword": "angebotssoftware handwerk",
+      "url": "https://craftos.eu/funktionen/angebote"
+    },
+    {
+      "keyword": "kalkulationssoftware bau",
+      "url": "https://craftos.eu/funktionen/angebote"
+    },
+    {
+      "keyword": "rechnungsprogramm handwerker",
+      "url": "https://craftos.eu/funktionen/rechnungen"
+    },
+    {
+      "keyword": "e-rechnung handwerker",
+      "url": "https://craftos.eu/funktionen/e-rechnung"
+    },
+    {
+      "keyword": "lagerverwaltung handwerk",
+      "url": "https://craftos.eu/funktionen/lager"
+    },
+    {
+      "keyword": "schlussrechnung",
+      "url": "https://craftos.eu/blog/abschlagsrechnung-schlussrechnung"
+    },
+    {
+      "keyword": "handwerkerrechnung schreiben",
+      "url": "https://craftos.eu/blog/handwerkerrechnung-schreiben"
+    },
+    {
+      "keyword": "gobd handwerk",
+      "url": "https://craftos.eu/gobd"
+    },
+    {
+      "keyword": "maler software",
+      "url": "https://craftos.eu/gewerke/maler"
+    },
+    {
+      "keyword": "schreiner software",
+      "url": "https://craftos.eu/gewerke/tischler-schreiner"
+    },
+    {
+      "keyword": "tischler software",
+      "url": "https://craftos.eu/gewerke/tischler-schreiner"
+    },
+    {
+      "keyword": "zimmerei software",
+      "url": "https://craftos.eu/gewerke/zimmerer"
+    }
+  ],
+  "wettbewerberAnzahl": 5,
+  "wettbewerber": [
+    {
+      "name": "Plancraft.com",
+      "url": "http://plancraft.com"
+    },
+    {
+      "name": "ToolTime.de",
+      "url": "http://tooltime.de"
+    },
+    {
+      "name": "openHandwerk.de",
+      "url": "http://openhandwerk.de"
+    },
+    {
+      "name": "Meisterwerk.app",
+      "url": "http://meisterwerk.app"
+    },
+    {
+      "name": "HERO Software",
+      "url": "https://hero-software.de"
+    }
+  ],
+  "aiEngines": [
+    {
+      "id": 203632,
+      "name": "chatgpt"
+    },
+    {
+      "id": 204127,
+      "name": "perplexity"
+    },
+    {
+      "id": 204130,
+      "name": "gemini"
+    },
+    {
+      "id": 204133,
+      "name": "google_ai_overview"
+    },
+    {
+      "id": 204136,
+      "name": "google_ai_mode"
+    }
+  ],
+  "aiPrompts": [
+    {
+      "engine": "chatgpt",
+      "llmId": 203632,
+      "groupId": 94132,
+      "prompt": "Welche hochwertigen Handwerksprodukte sind für Profis und Hobbyhandwerker empfehlenswert?"
+    },
+    {
+      "engine": "chatgpt",
+      "llmId": 203632,
+      "groupId": 94132,
+      "prompt": "Wo finde ich die besten DIY-Projekte für Modeaccessoires?"
+    },
+    {
+      "engine": "chatgpt",
+      "llmId": 203632,
+      "groupId": 94132,
+      "prompt": "Wo finde ich qualitativ hochwertige Möbel für mein Wohnzimmer?"
+    },
+    {
+      "engine": "chatgpt",
+      "llmId": 203632,
+      "groupId": 94132,
+      "prompt": "Wo kann ich die besten Bastelmaterialien für mein nächstes Projekt kaufen?"
+    },
+    {
+      "engine": "chatgpt",
+      "llmId": 203632,
+      "groupId": 94132,
+      "prompt": "Wo finde ich die besten personalisierten Geschenke für besondere Anlässe?"
+    },
+    {
+      "engine": "chatgpt",
+      "llmId": 203632,
+      "groupId": 94132,
+      "prompt": "Wo kann ich hochwertige Werkzeuge für mein Projekt kaufen?"
+    },
+    {
+      "engine": "chatgpt",
+      "llmId": 203632,
+      "groupId": 94132,
+      "prompt": "Welche Marken bieten hochwertige Materialien für DIY-Mode an?"
+    },
+    {
+      "engine": "chatgpt",
+      "llmId": 203632,
+      "groupId": 94132,
+      "prompt": "Ich suche nach stilvollen Dekorationen für mein Zuhause. Wo sollte ich schauen?"
+    },
+    {
+      "engine": "chatgpt",
+      "llmId": 203632,
+      "groupId": 94132,
+      "prompt": "Ich suche nach qualitativ hochwertigem Bastelbedarf für Kinder, habt ihr Empfehlungen?"
+    },
+    {
+      "engine": "chatgpt",
+      "llmId": 203632,
+      "groupId": 94132,
+      "prompt": "Kann mir jemand tolle Ideen für individuelle Geschenke empfehlen?"
+    },
+    {
+      "engine": "chatgpt",
+      "llmId": 203632,
+      "groupId": 94132,
+      "prompt": "Welche Handwerkersoftware ist die beste für kleine Betriebe?"
+    },
+    {
+      "engine": "chatgpt",
+      "llmId": 203632,
+      "groupId": 94132,
+      "prompt": "beste Handwerkersoftware 2026"
+    },
+    {
+      "engine": "chatgpt",
+      "llmId": 203632,
+      "groupId": 94132,
+      "prompt": "Handwerkersoftware Vergleich"
+    },
+    {
+      "engine": "chatgpt",
+      "llmId": 203632,
+      "groupId": 94132,
+      "prompt": "Alternative zu Plancraft"
+    },
+    {
+      "engine": "chatgpt",
+      "llmId": 203632,
+      "groupId": 94132,
+      "prompt": "günstige Handwerkersoftware mit App für Mitarbeiter"
+    },
+    {
+      "engine": "chatgpt",
+      "llmId": 203632,
+      "groupId": 94132,
+      "prompt": "Was ist CraftOS?"
+    },
+    {
+      "engine": "perplexity",
+      "llmId": 204127,
+      "groupId": 94132,
+      "prompt": "Welche Handwerkersoftware ist die beste für kleine Betriebe?"
+    },
+    {
+      "engine": "perplexity",
+      "llmId": 204127,
+      "groupId": 94132,
+      "prompt": "Alternative zu HERO Software"
+    },
+    {
+      "engine": "google_ai_overview",
+      "llmId": 204133,
+      "groupId": 94132,
+      "prompt": "handwerkersoftware"
+    },
+    {
+      "engine": "google_ai_overview",
+      "llmId": 204133,
+      "groupId": 94132,
+      "prompt": "handwerker app"
+    }
+  ],
+  "limits": [],
+  "limitsQuelle": "docs/seo/reports/2026-10-21-projektabgleich-apply.json",
+  "offenOhneLimit": []
+}

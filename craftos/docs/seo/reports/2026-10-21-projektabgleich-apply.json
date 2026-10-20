@@ -1,0 +1,653 @@
+{
+  "datum": "2026-10-21",
+  "projekt": 13094375,
+  "hinzugefuegt": [
+    {
+      "keyword": "software für handwerksbetriebe",
+      "url": "https://craftos.eu/funktionen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "branchensoftware handwerk",
+      "url": "https://craftos.eu/gewerke",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "ki im handwerk",
+      "url": "https://craftos.eu/craft-ai",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "handwerkersoftware preise",
+      "url": "https://craftos.eu/preise",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "gobd konforme software",
+      "url": "https://craftos.eu/gobd",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "handwerk blog",
+      "url": "https://craftos.eu/blog",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "kalkulationsrechner",
+      "url": "https://craftos.eu/rechner",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "angebotskalkulation",
+      "url": "https://craftos.eu/rechner/angebotskalkulation",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "kennzahlen handwerksbetrieb",
+      "url": "https://craftos.eu/funktionen/dashboard",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "angebotssoftware",
+      "url": "https://craftos.eu/funktionen/angebote",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "e-rechnung handwerk",
+      "url": "https://craftos.eu/funktionen/e-rechnung",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "buchhaltung handwerk",
+      "url": "https://craftos.eu/funktionen/buchhaltung",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "eingangsrechnungen digitalisieren",
+      "url": "https://craftos.eu/funktionen/eingangsrechnungen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "lagerverwaltung app",
+      "url": "https://craftos.eu/funktionen/lager",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "arbeitsanweisung erstellen",
+      "url": "https://craftos.eu/funktionen/arbeitsanweisungen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "mitarbeiter app handwerk",
+      "url": "https://craftos.eu/funktionen/team",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "kundenportal software",
+      "url": "https://craftos.eu/funktionen/kundenportal",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "software für maler",
+      "url": "https://craftos.eu/gewerke/maler",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "software für schreiner",
+      "url": "https://craftos.eu/gewerke/tischler-schreiner",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "zimmerer software",
+      "url": "https://craftos.eu/gewerke/zimmerer",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "bauunternehmen software",
+      "url": "https://craftos.eu/gewerke/bauunternehmen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "hausmeister software",
+      "url": "https://craftos.eu/gewerke/allrounder",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "kalkulation handwerk",
+      "url": "https://craftos.eu/blog/kategorie/kalkulation",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "belege digitalisieren",
+      "url": "https://craftos.eu/blog/kategorie/belege",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "projektmanagement bau",
+      "url": "https://craftos.eu/blog/kategorie/projekte",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "baustellenkommunikation",
+      "url": "https://craftos.eu/blog/kategorie/team",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "angebot erstellen software",
+      "url": "https://craftos.eu/hilfe/kategorie/angebote",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "rechnung erstellen software",
+      "url": "https://craftos.eu/hilfe/kategorie/rechnungen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "belege erfassen",
+      "url": "https://craftos.eu/hilfe/kategorie/belege",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "bauprojekt planen",
+      "url": "https://craftos.eu/hilfe/kategorie/projekte",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "zeiterfassung app",
+      "url": "https://craftos.eu/hilfe/kategorie/zeiten",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "lagerbestand verwalten",
+      "url": "https://craftos.eu/hilfe/kategorie/lager",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "baustellendokumentation",
+      "url": "https://craftos.eu/hilfe/kategorie/baudokumentation",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "aufmaß erstellen",
+      "url": "https://craftos.eu/blog/aufmass-angebot-mengen-abzuege",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "baustellenplanung",
+      "url": "https://craftos.eu/blog/baustellen-einsatzplanung",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "belege für steuerberater vorbereiten",
+      "url": "https://craftos.eu/blog/datev-export-vorbereiten",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "bautagesbericht",
+      "url": "https://craftos.eu/blog/digitale-bautagesberichte",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "digitale projektakte",
+      "url": "https://craftos.eu/blog/digitale-projektakte",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "eingangsrechnungen verwalten",
+      "url": "https://craftos.eu/blog/eingangsrechnungen-digital-organisieren",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "angebot handwerker",
+      "url": "https://craftos.eu/blog/handwerkerangebot-erstellen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "handwerkerrechnung",
+      "url": "https://craftos.eu/blog/handwerkerrechnung-schreiben",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "software für kleine handwerksbetriebe",
+      "url": "https://craftos.eu/blog/handwerkersoftware-einzelunternehmen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "nachkalkulation",
+      "url": "https://craftos.eu/blog/nachkalkulation-handwerk",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "offene posten",
+      "url": "https://craftos.eu/blog/offene-posten-liquiditaet",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "offline zeiterfassung",
+      "url": "https://craftos.eu/blog/offline-baustellen-app",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "projektzeiterfassung",
+      "url": "https://craftos.eu/blog/projektbezogene-zeiterfassung",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "zuschlagskalkulation handwerk",
+      "url": "https://craftos.eu/blog/tiefenkalkulation-handwerk",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "urlaubsplanung mitarbeiter",
+      "url": "https://craftos.eu/blog/urlaub-abwesenheiten-einsatzplanung",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "zahlungserinnerung muster",
+      "url": "https://craftos.eu/blog/zahlungserinnerung-mahnung-handwerk",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "bauabnahme protokoll",
+      "url": "https://craftos.eu/hilfe/abnahme-dokumentieren",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "abschlagsrechnung muster",
+      "url": "https://craftos.eu/hilfe/abschlagsrechnung-erstellen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "angebot erstellen",
+      "url": "https://craftos.eu/hilfe/angebot-entwurf-anlegen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "handwerker angebot in rechnung stellen",
+      "url": "https://craftos.eu/hilfe/angebot-in-rechnung-uebernehmen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "leistungsverzeichnis vorlage",
+      "url": "https://craftos.eu/hilfe/angebotspositionen-leistungsvorlagen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "artikelstammdaten",
+      "url": "https://craftos.eu/hilfe/artikel-stammdaten-anlegen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "bautagesbericht vorlage",
+      "url": "https://craftos.eu/hilfe/bautagesbericht-erstellen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "beleg kontieren",
+      "url": "https://craftos.eu/hilfe/beleg-kontieren-zuordnen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "beleg hochladen",
+      "url": "https://craftos.eu/hilfe/beleg-scannen-pruefen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "ki fragen stellen",
+      "url": "https://craftos.eu/hilfe/craft-ai-betriebsdaten-fragen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "datev export",
+      "url": "https://craftos.eu/hilfe/datev-export-erstellen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "zugferd rechnung erstellen",
+      "url": "https://craftos.eu/hilfe/e-rechnung-herunterladen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "briefpapier rechnung",
+      "url": "https://craftos.eu/hilfe/firmenprofil-einrichten",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "gaeb datei öffnen",
+      "url": "https://craftos.eu/hilfe/gaeb-importieren",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "inventur lager",
+      "url": "https://craftos.eu/hilfe/inventur-durchfuehren",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "kundenverwaltung",
+      "url": "https://craftos.eu/hilfe/kunden-ansprechpartner-anlegen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "lagerplatzverwaltung",
+      "url": "https://craftos.eu/hilfe/lagerorte-lagerplaetze-einrichten",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "mängelliste",
+      "url": "https://craftos.eu/hilfe/mangel-erfassen-bearbeiten",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "materialentnahmeschein",
+      "url": "https://craftos.eu/hilfe/material-entnehmen-zurueckbuchen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "offline synchronisierung",
+      "url": "https://craftos.eu/hilfe/mobile-offline-synchronisierung",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "stempeluhr app",
+      "url": "https://craftos.eu/hilfe/mobilen-timer-bedienen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "einsatzplanung",
+      "url": "https://craftos.eu/hilfe/plantafel-einsatz-planen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "ressourcenplanung",
+      "url": "https://craftos.eu/hilfe/planung-mitarbeiter-ressourcen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "preise kalkulieren",
+      "url": "https://craftos.eu/hilfe/position-tiefenkalkulieren",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "bauphasen",
+      "url": "https://craftos.eu/hilfe/projekt-phasen-anlegen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "ordnerstruktur projekte",
+      "url": "https://craftos.eu/hilfe/projektdateien-ordner",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "aufmaß raum",
+      "url": "https://craftos.eu/hilfe/raumaufmass-angebot-uebernehmen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "rechnung korrigieren",
+      "url": "https://craftos.eu/hilfe/rechnung-fertigstellen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "storno rechnung",
+      "url": "https://craftos.eu/hilfe/rechnung-stornieren",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "zugriffsrechte",
+      "url": "https://craftos.eu/hilfe/rollen-zugriffsrechte-einstellen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "schlussrechnung muster",
+      "url": "https://craftos.eu/hilfe/schlussrechnung-erstellen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "urlaub beantragen",
+      "url": "https://craftos.eu/hilfe/urlaub-beantragen-bearbeiten",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "wareneingang buchen",
+      "url": "https://craftos.eu/hilfe/wareneingang-buchen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "zahlungseingang",
+      "url": "https://craftos.eu/hilfe/zahlungen-erfassen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "stundenzettel excel",
+      "url": "https://craftos.eu/hilfe/zeiten-pruefen-exportieren",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "tooltime",
+      "url": "https://craftos.eu/vergleich/tooltime-alternative",
+      "status": "geplant",
+      "phase": 8
+    },
+    {
+      "keyword": "bauzeitenplan software",
+      "url": "https://craftos.eu/funktionen/terminplanung",
+      "status": "geplant",
+      "phase": 7
+    },
+    {
+      "keyword": "zahlungsabgleich",
+      "url": "https://craftos.eu/funktionen/bankabgleich",
+      "status": "geplant",
+      "phase": 7
+    },
+    {
+      "keyword": "datenimport",
+      "url": "https://craftos.eu/funktionen/datenuebernahme",
+      "status": "geplant",
+      "phase": 7
+    },
+    {
+      "keyword": "mängelmanagement",
+      "url": "https://craftos.eu/funktionen/maengelmanagement",
+      "status": "geplant",
+      "phase": 7
+    },
+    {
+      "keyword": "leistungszeitraum rechnung",
+      "url": "https://craftos.eu/hilfe/leistungszeitraum-rechnung",
+      "status": "geplant",
+      "phase": 9
+    },
+    {
+      "keyword": "regiebericht",
+      "url": "https://craftos.eu/hilfe/regiebericht",
+      "status": "geplant",
+      "phase": 9
+    },
+    {
+      "keyword": "bedenkenanzeige",
+      "url": "https://craftos.eu/hilfe/bedenkenanzeige",
+      "status": "geplant",
+      "phase": 9
+    },
+    {
+      "keyword": "mängelanzeige",
+      "url": "https://craftos.eu/blog/maengelanzeige",
+      "status": "geplant",
+      "phase": 9
+    },
+    {
+      "keyword": "reverse charge rechnungsstellung",
+      "url": "https://craftos.eu/blog/reverse-charge-bauleistungen",
+      "status": "geplant",
+      "phase": 9
+    },
+    {
+      "keyword": "materialliste vorlage",
+      "url": "https://craftos.eu/blog/materialliste-vorlage",
+      "status": "geplant",
+      "phase": 9
+    },
+    {
+      "keyword": "gaeb formate",
+      "url": "https://craftos.eu/blog/gaeb-formate",
+      "status": "geplant",
+      "phase": 9
+    },
+    {
+      "keyword": "bauablaufplan",
+      "url": "https://craftos.eu/blog/bauablaufplan",
+      "status": "geplant",
+      "phase": 9
+    },
+    {
+      "keyword": "arbeitszeitnachweis vorlagen",
+      "url": "https://craftos.eu/blog/arbeitszeitnachweis-vorlage",
+      "status": "geplant",
+      "phase": 9
+    }
+  ],
+  "zielseiteAngeglichen": [
+    {
+      "keyword": "bautagebuch app",
+      "vorher": "https://craftos.eu/blog/digitale-bautagesberichte",
+      "nachher": "https://craftos.eu/funktionen/baudokumentation",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "beste handwerkersoftware",
+      "vorher": "https://craftos.eu/vergleich",
+      "nachher": "https://craftos.eu/blog/handwerkersoftware-auswaehlen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "baustellen app",
+      "vorher": "https://craftos.eu/app",
+      "nachher": "https://craftos.eu/blog/web-app-baustellen-app",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "gaeb software",
+      "vorher": "https://craftos.eu/funktionen/angebote",
+      "nachher": "https://craftos.eu/funktionen/gaeb",
+      "status": "geplant",
+      "phase": 7
+    },
+    {
+      "keyword": "mahnwesen software",
+      "vorher": "https://craftos.eu/blog/zahlungserinnerung-mahnung-handwerk",
+      "nachher": "https://craftos.eu/funktionen/mahnwesen",
+      "status": "geplant",
+      "phase": 7
+    },
+    {
+      "keyword": "plancraft alternative",
+      "vorher": "https://craftos.eu/vergleich",
+      "nachher": "https://craftos.eu/vergleich/plancraft-alternative",
+      "status": "geplant",
+      "phase": 8
+    },
+    {
+      "keyword": "craftnote alternative",
+      "vorher": "https://craftos.eu/vergleich",
+      "nachher": "https://craftos.eu/vergleich/craftnote-alternative",
+      "status": "geplant",
+      "phase": 8
+    },
+    {
+      "keyword": "hero software alternative",
+      "vorher": "https://craftos.eu/vergleich",
+      "nachher": "https://craftos.eu/vergleich/hero-alternative",
+      "status": "geplant",
+      "phase": 8
+    }
+  ],
+  "limits": []
+}
