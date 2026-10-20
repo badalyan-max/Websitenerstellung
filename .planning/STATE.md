@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-last_updated: "2026-10-20T20:38:04.628Z"
-last_activity: 2026-10-20 — Roadmap v2.0 erstellt (6 Phasen, 26/26 Anforderungen zugeordnet)
+last_updated: "2026-10-20T21:05:14.679Z"
+last_activity: 2026-10-20 -- Phase 5 execution started
 progress:
   total_phases: 6
   completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
+  total_plans: 8
+  completed_plans: 1
   percent: 0
 ---
 
@@ -20,7 +20,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-10-20)
 
 **Core value:** Besucher verstehen den Produktablauf anhand lesbarer Beispiele und direkter App-Aufnahmen und können die richtige Funktion und Anleitung schnell finden.
-**Current focus:** Phase 5 – Produktwahrheit, Keyword-Map und Designbausteine
+**Current focus:** Phase 5 — Produktwahrheit, Keyword-Map und Designbausteine
 
 ## Vorheriger Milestone v1.0 (abgeschlossen)
 
@@ -28,10 +28,10 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 
 ## Current Position
 
-Phase: 5 of 10 (Produktwahrheit, Keyword-Map und Designbausteine) – Milestone v2.0 umfasst Phasen 5–10
-Plan: —
+Phase: 5 (Produktwahrheit, Keyword-Map und Designbausteine) — EXECUTING
+Plan: 2 of 8
 Status: Ready to execute
-Last activity: 2026-10-20 — Roadmap v2.0 erstellt (6 Phasen, 26/26 Anforderungen zugeordnet)
+Last activity: 2026-10-20 -- Phase 5 execution started
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -43,6 +43,8 @@ Progress: [░░░░░░░░░░] 0%
 - Milestone v2.0: Produktfakten nur aus `origin/release` (Web v4.0.0-test.238, Mobile mobile-v1.0.0-test.93).
 - 20.10.2026 Umfangsänderung (Inhaber): keine detailgetreuen Screenshots, kein Demo-Betrieb, keine Videos (MEDIA-02 Out of Scope); Seite strukturierter und schöner mit vereinfachten Darstellungen; SEO-02 (Keyword-Map) nach Phase 5 vorgezogen, Quelle SE Ranking Data API.
 - Roadmap v2.0: Übergreifende QA (DESIGN-05, QA-04, QA-05, QA-06) wird in Phase 10 abschließend nachgewiesen; jede Phase hält die Seite grün.
+- [Phase 05]: 05-01: Keyword-Auswahlregel – höchstes Volumen unter pageCandidates mit KD ≤ 30, Abweichungen nur mit reason; Zahlen nur aus Exportobjekt (SE Ranking DE)
+- [Phase 05]: 05-01: 15 Seiten ohne belegtes Suchvolumen bleiben ohne Hauptkeyword statt geschätzter Begriffe; Kannibalisierungsschutz über Begriffe statt Intent-Codes (DE fast nur I)
 
 ### Pending Todos
 
@@ -52,3 +54,9 @@ None yet.
 
 - SE-Ranking-Test endet am 03.11.2026 – Keyword-Map und Rohdatenabzug vorher abschließen. MCP `se-ranking` braucht OAuth-Anmeldung des Inhabers (`/mcp`).
 - Offen beim Inhaber: Datenschutzabschnitt Webanalyse, Portale/Bewertungen, Search-Console-Exporte.
+
+## Performance Metrics
+
+| Phase | Plan | Duration | Notes |
+|-------|------|----------|-------|
+| Phase 05 P01 | 27min | 3 tasks | 90 files |
