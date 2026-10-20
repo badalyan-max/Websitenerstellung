@@ -13,7 +13,7 @@ Phasen 1–4 (Produktgrundlage und Gestaltung, Produkterlebnis, Wissen und Werkz
 
 craftos.eu wird klar gegliedert und optisch ansprechend: weniger Fließtext, Kacheln, Schritte, Kennzahlen und vereinfachte Produktdarstellungen statt Textwänden; dazu korrekter Produktstand und SEO/GEO auf Basis echter Keyword-Daten.
 
-**Umfangsänderung (Inhaberentscheidung 20.10.2026):** Keine detailgetreuen Screenshots, kein Demo-Betrieb, keine Aufnahme-Pipeline, keine Bildschirmvideos. „Rom nicht neu erfinden“: bestehende Seiten und Bausteine (Geräterahmen und Szenen aus `components/feature-snippet`, Icons, vorhandene Fotos) werden strukturierter und schöner eingesetzt. SEO bleibt voller Bestandteil; die Keyword-Map kommt nach vorn, weil der Inhaber einen SEO-Tool-Zugang (SE Ranking API, `SE_RANKING_API_KEY` in `.env`) bereitgestellt hat; DataForSEO bleibt optional.
+**Umfangsänderung (Inhaberentscheidung 20.10.2026):** Keine detailgetreuen Screenshots, kein Demo-Betrieb, keine Aufnahme-Pipeline, keine Bildschirmvideos. „Rom nicht neu erfinden“: bestehende Seiten und Bausteine (Geräterahmen und Szenen aus `components/feature-snippet`, Icons, vorhandene Fotos) werden strukturierter und schöner eingesetzt. SEO bleibt voller Bestandteil und nutzt SE Ranking vollständig (Keyword-Recherche, Ranking- und KI-Tracking, Backlink-Lücke, Website-Audit; Befund: `craftos/docs/seo/SE-RANKING-BEFUND-2026-10-20.md`); die Keyword-Map kommt nach vorn, weil der Inhaber einen SEO-Tool-Zugang (SE Ranking API, `SE_RANKING_API_KEY` in `.env`) bereitgestellt hat; DataForSEO bleibt optional.
 
 **Rollout-Regel (Inhaberentscheidung 20.10.2026):** Jede Phase endet in einem auslieferbaren Live-Stand: Ship-Gate → Push auf `main` → IndexNow-Meldung → Live-Prüfung → Kontrolle von `trial_click`/`ai_visit` in Vercel Analytics. Prüfungen laufen ausschließlich lokal, nie über GitHub Actions. Übergreifende Qualität (QA-04, QA-05, QA-06, DESIGN-05) wird in Phase 10 abschließend nachgewiesen; jede Phase hält die Seite grün.
 
@@ -33,13 +33,15 @@ craftos.eu wird klar gegliedert und optisch ansprechend: weniger Fließtext, Kac
 ### Phase 5: Produktwahrheit, Keyword-Map und Designbausteine
 **Goal**: Besucher sehen ausschließlich live verfügbare Funktionen mit korrekten Preisen, jede Seite hat ein datenbasiertes Hauptkeyword, und die Bausteine für die strukturierte Neugestaltung stehen bereit.
 **Depends on**: Phase 4 (v1.0 abgeschlossen); SEO-02 auf den SEO-Tool-Zugang in `.env`
-**Requirements**: PROD-02, PROD-03, PROD-04, SEO-02, DESIGN-02, DESIGN-04, MEDIA-03, MEDIA-04
+**Requirements**: PROD-02, PROD-03, PROD-04, SEO-02, SEO-07, SEO-08, DESIGN-02, DESIGN-04, MEDIA-03, MEDIA-04
 **Success Criteria** (what must be TRUE):
   1. Das Produktregister nennt für jede beworbene Funktion Release-Tag, Commit und Belegpfad aus `origin/release`; keine Seite, `llms.txt` oder kein Schema stellt eine nicht-live Funktion als verfügbar dar, und der Abschnitt „Demnächst“ trägt keine vergangenen Termine mehr.
   2. Preise, Lizenzarten, Netto-Hinweis, 10-Tage-Test und Credits sind überall identisch mit `src/lib/constants.ts` der Web-App; ein automatischer Test schlägt bei Abweichung fehl.
   3. Eine Keyword-Map aus echten Tooldaten (Suchvolumen DE, Schwierigkeit, Intent, rankende Wettbewerber; Quelle je Zahl genannt) ordnet jeder bestehenden und geplanten Seite genau ein Hauptkeyword zu und nennt Lücken (neue Seiten mit Nachfrage); ohne Zugang bleibt das Kriterium offen und wird nicht geschätzt.
   4. Die v2-Bausteine (Kachel-/Bento-Raster, Schrittfolge, Kennzahlen, Funktionskarte mit visuellem Element, Geräterahmen Desktop/Phone mit vereinfachter UI, Vergleichstabelle) nutzen Amber, Clash Display, General Sans und Logo, sind auf einer nicht indexierten Musterseite prüfbar und bewegen sich nur dezent; bei „reduzierte Bewegung“ bleibt alles statisch sichtbar.
   5. Eine Budgetprüfung lehnt Bilder über 150 KB ab, alle Medien haben feste Abmessungen ohne Layout-Shift, und der korrigierte Stand ist nach Ship-Gate live mit IndexNow-Meldung.
+  6. Das SE-Ranking-Projekt trackt alle Hauptkeywords der Keyword-Map mit Zielseite plus die KI-Prompts; ein Messbericht-Skript bzw. eine feste Abfrage vergleicht Positionen, KI-Share-of-Voice und verweisende Domains mit dem Ausgangsstand vom 20.10.2026.
+  7. Eine priorisierte Linkliste mit Statusregister und kopierfertigen Browser-Prompts für Portale, Fachmedien und Verzeichnisse liegt vor; die ersten Einträge (Bewertungs- und Vergleichsportale) sind an den Inhaber übergeben.
 **Plans**: TBD
 **UI hint**: yes
 
@@ -69,12 +71,13 @@ craftos.eu wird klar gegliedert und optisch ansprechend: weniger Fließtext, Kac
 ### Phase 8: SEO und KI-Sichtbarkeit
 **Goal**: Suchmaschinen und KI-Suchen finden auf craftos.eu zitierfähige Antworten zu Preisen, Alternativen und Funktionen, und jede Seite hat saubere Metadaten nach der Keyword-Map, Breadcrumbs und eine eigene OG-Grafik.
 **Depends on**: Phase 7
-**Requirements**: SEO-03, SEO-04, SEO-05, SEO-06
+**Requirements**: SEO-03, SEO-04, SEO-05, SEO-06, SEO-09
 **Success Criteria** (what must be TRUE):
   1. Die vier Alternativen-Seiten (plancraft, Craftnote, HERO, ToolTime) sind mit belegten, datierten Wettbewerberangaben, FAQPage- und BreadcrumbList-Schema live und vom Vergleich und Footer verlinkt.
   2. Die Preisseite beginnt mit einem zitierfähigen Antwortsatz und einer Preistabelle, deren Werte mit dem Produktregister übereinstimmen.
   3. Jede Seite hat einen eindeutigen Titel ≤ 60 Zeichen mit ihrem Hauptkeyword, eine Description mit 120–155 Zeichen, genau eine H1, sichtbare Breadcrumbs mit Schema und eine individuelle OG-Grafik; ein automatischer Test findet keine doppelten Titel.
   4. Zentrale Seiten haben unter jeder Frage-Überschrift eine Antwort in höchstens 300 Zeichen; `llms.txt`, Sitemap und IndexNow-Meldung werden bei jedem Release aktualisiert.
+  5. Jede getrackte KI-Frage und jede Content-Lücke mit KD < 20 aus der Keyword-Map hat eine zitierfähige Zielseite oder einen Abschnitt mit Antwort zuerst, belegten Fakten und FAQPage-Schema.
 **Plans**: TBD
 **UI hint**: yes
 
@@ -98,7 +101,7 @@ craftos.eu wird klar gegliedert und optisch ansprechend: weniger Fließtext, Kac
   1. Jede Seite besteht bei 360, 390, 768, 1024 und 1440 px die Barrierefreiheitsprüfung (axe ohne ernsthafte Verstöße, Kontrast ≥ 4,5:1, vollständige Tastaturbedienung).
   2. Lighthouse mobil (Labordaten) erreicht auf Startseite, Funktions-, Gewerke-, Vergleichs- und Ratgeber-Vorlage Performance ≥ 95 und LCP < 2,5 s; Unit-, Browser-, Routen- und visuelle Prüfungen sind angepasst und lokal grün.
   3. Für jede Etappe (Phasen 5–10) ist dokumentiert, dass sie einzeln nach Ship-Gate live ging, IndexNow gemeldet, die Live-Seite geprüft und `trial_click`/`ai_visit` kontrolliert wurde.
-  4. Ein erneuter `/audit craftos.eu` nach der letzten Etappe zeigt keine offenen technischen oder On-Page-Fehler; die Positionen der Keyword-Map werden als Ausgangswert festgehalten.
+  4. Ein erneuter `/audit craftos.eu` und ein SE-Ranking-Website-Audit nach der letzten Etappe zeigen keine offenen technischen oder On-Page-Fehler; ein Abschlussbericht vergleicht Positionen, KI-Share-of-Voice und verweisende Domains mit dem Ausgangsstand vom 20.10.2026.
 **Plans**: TBD
 
 ## Progress

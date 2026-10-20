@@ -33,6 +33,9 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 - [ ] **SEO-04**: Die Preisseite beginnt mit einem zitierfähigen Antwortsatz und einer Preistabelle.
 - [ ] **SEO-05**: Alle Seiten haben Titel ≤ 60 Zeichen, Descriptions 120–155 Zeichen, sichtbare Breadcrumbs mit Schema, eine individuelle OG-Grafik und genau eine H1; keine doppelten Titel.
 - [ ] **SEO-06**: Zentrale Seiten haben unter jeder Frage-Überschrift eine Antwort in höchstens 300 Zeichen; `llms.txt`, Sitemap und IndexNow-Meldung werden mit jedem Release aktualisiert.
+- [ ] **SEO-07**: SE Ranking misst den Fortschritt: Projekt craftos.eu mit allen Hauptkeywords der Keyword-Map und Zielseiten, 5 Wettbewerbern und AI Result Tracker (ChatGPT, Perplexity, Gemini, Google AI Overview/AI Mode); Ausgangswerte vom 20.10.2026 sind dokumentiert (`craftos/docs/seo/SE-RANKING-BEFUND-2026-10-20.md`), nach jeder Etappe werden Positionen, KI-Share-of-Voice und verweisende Domains verglichen.
+- [ ] **SEO-08**: CraftOS gewinnt echte Verweise und Portalpräsenz: priorisierte Linkliste aus der SE-Ranking-Backlink-Lücke (Bewertungsportale, Fachmedien, Verzeichnisse, Kammern, Großhandel), je Eintrag ein kopierfertiger Browser-Prompt für den Inhaber und ein Statusregister; Ziel bis Meilensteinende: mindestens 15 neue seriöse verweisende Domains, sichtbar in SE Ranking. Spam-Backlinks werden beobachtet, Disavow nur bei nachweisbarem Schaden.
+- [ ] **SEO-09**: Für jede getrackte KI-Frage und jede Content-Lücke mit KD < 20 gibt es eine zitierfähige Zielseite oder einen Abschnitt (Antwort zuerst, Fakten mit Quelle und Datum, FAQPage-Schema), u. a. „beste Handwerkersoftware für kleine Betriebe“, Aufmaß-App, Bautagebuch-App, Zeiterfassung Handwerk, Gewerke-Software, Schlussrechnung, Leistungszeitraum, Regiebericht.
 
 ### Inhalte (CONTENT)
 - [ ] **CONTENT-03**: Die 24 Ratgeber und 40 Hilfeartikel sind gegen den aktuellen Produktstand geprüft, korrigiert und klar gegliedert (Antwort zuerst, Schritte, Zwischenüberschriften).
@@ -79,13 +82,16 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 | SEO-04 | Phase 8 | Pending |
 | SEO-05 | Phase 8 | Pending |
 | SEO-06 | Phase 8 | Pending |
+| SEO-07 | Phase 5 | Pending |
+| SEO-08 | Phase 5 | Pending |
+| SEO-09 | Phase 8 | Pending |
 | CONTENT-03 | Phase 9 | Pending |
 | CONTENT-04 | Phase 9 | Pending |
 | QA-04 | Phase 10 | Pending |
 | QA-05 | Phase 10 | Pending |
 | QA-06 | Phase 10 | Pending |
 
-**Coverage:** 25/25 aktive v2.0-Anforderungen zugeordnet (MEDIA-02 Out of Scope), keine doppelt.
+**Coverage:** 28/28 aktive v2.0-Anforderungen zugeordnet (MEDIA-02 Out of Scope), keine doppelt.
 
 Hinweis: SEO-02 hängt vom DataForSEO-Zugang des Inhabers ab; er wird am 20.10.2026 nachgereicht, deshalb liegt die Keyword-Map vorn in Phase 5, damit Struktur und Texte der folgenden Phasen die richtigen Suchbegriffe nutzen.
 

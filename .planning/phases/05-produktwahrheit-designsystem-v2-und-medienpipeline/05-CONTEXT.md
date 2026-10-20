@@ -24,6 +24,7 @@ Die Website stellt ausschließlich live verfügbare Funktionen mit korrekten Pre
 ### SEO-Daten
 - **D-05:** Keyword-Quelle ist die SE Ranking Data API (`SE_RANKING_API_KEY` in `.env`, Header `Authorization: Token …`, Basis `https://api.seranking.com/v1`, JSON-Body bei POST, Ratenlimit beachten). Testzugang bis 03.11.2026 mit 100.000 Units – Keyword-Map vorher abschließen und Rohdaten lokal sichern. Der MCP-Server `se-ranking` ist eingetragen, braucht aber OAuth-Anmeldung des Inhabers per `/mcp`.
 - **D-06:** Erstbefund 20.10.2026 (SE Ranking, DE): craftos.eu 1 Keyword in den Top 100, Traffic ≈ 0. Wettbewerber-Keywords: streit-software.de 38.873, hero-software.de 17.805, plancraft.com 4.607, craftnote.de 4.376, das-programm.io 3.400, openhandwerk.de 2.590, label-software.de 1.385. Größte erreichbare Begriffe (Volumen/KD): handwerkersoftware 1.300/55, bautagebuch app 590/7, aufmaß app 590/12, handwerker software 410/33, zeiterfassung handwerk 390/12, handwerker stundensatz 320/6, baustellen app 260/15, rechnungssoftware handwerker 210/18, shk software 210/7, digitale bauakte 170/7, auftragsverwaltung software 170/9, gaeb software 140/18, maler/trockenbau software 140/≤10. Wettbewerber-Marken (plancraft 9.900, hero software 5.400, tooltime 4.400, craftnote 3.100) sind Grundlage für Alternativen-Seiten. plancraft gewinnt viel Volumen über Hilfeartikel (Schlussrechnung, Leistungszeitraum, Regiebericht, Bautagesbericht, Aufmaß).
+- **D-07a (Inhaber 20.10.2026: „volles Potenzial von SE Ranking ausnutzen“):** SE Ranking wird vollständig genutzt, nicht nur für Keywords. Befund und Einrichtung: `craftos/docs/seo/SE-RANKING-BEFUND-2026-10-20.md`, Rohdaten `craftos/docs/seo/data/`. Eingerichtet: Projekt 13094375 (Google DE, täglich, 52 Keywords mit Zielseite, Wettbewerber Plancraft/ToolTime/openHandwerk/Meisterwerk/HERO – Testlimit 5), AI Result Tracker (Marke CraftOS; ChatGPT 203632, Perplexity 204127, Gemini 204130, AI Overview 204133, AI Mode 204136; 10 Prompts = Testlimit). MCP-Tools `mcp__se-ranking__*` (DATA/PROJECT/LOCAL; SEV nicht freigeschaltet) bzw. Node-Skripte gegen `https://api.seranking.com/mcp` mit Header `X-Api-Key` aus `.env`. Nach Fertigstellung der Keyword-Map werden die Projekt-Keywords und Zielseiten daran angeglichen (SEO-07). Backlink-Lücke → priorisierte Linkliste mit Browser-Prompts für den Inhaber (SEO-08), Start schon in Phase 5.
 - **D-07:** Je Seite genau ein Hauptkeyword; Lücken mit Nachfrage und niedriger Schwierigkeit (KD < 20) werden als neue Seiten oder Abschnitte für Phasen 6–9 vorgemerkt.
 
 ### Aus Meilenstein-Entscheidungen übernommen
@@ -47,7 +48,8 @@ Die Website stellt ausschließlich live verfügbare Funktionen mit korrekten Pre
 
 ### Meilenstein und Anforderungen
 - `.planning/PROJECT.md` — Meilenstein v2.0, Produktfakten, nicht-live Funktionen, Lizenznamen
-- `.planning/REQUIREMENTS.md` — PROD-02..04, SEO-02, DESIGN-02, DESIGN-04, MEDIA-03, MEDIA-04
+- `.planning/REQUIREMENTS.md` — PROD-02..04, SEO-02, SEO-07, SEO-08, DESIGN-02, DESIGN-04, MEDIA-03, MEDIA-04
+- `craftos/docs/seo/SE-RANKING-BEFUND-2026-10-20.md` — SE-Ranking-Ausgangsstand, Backlink-Lücke, KI-Quellen, Audit, Kontoeinrichtung
 - `.planning/ROADMAP.md` §Phase 5 — Erfolgskriterien
 
 ### Produktwahrheit (immer `git show origin/release:<pfad>`, lokale Branches sind veraltet)
