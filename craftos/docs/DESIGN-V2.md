@@ -145,6 +145,53 @@ hat {n} von {max} Zeichen – Satz kürzen.“).
 
 ## Teil B (Plan 05-05) und Musterseite (Plan 05-06)
 
-<!-- Plan 05-06 trägt hier die Kaskadenergebnisse aus Plan 05-05 (FeatureCard, ComparisonTable,
-Badges, IllustrationLabel, MediaFigure, BrowserFrame, PhoneFrame, DevicePair, Mini-UI) sowie für
-/styleguide und MobileAppGallery ein. -->
+### 7. Kaskade Teil B (Plan 05-05, 20.10.2026)
+
+1. **frontend-design:** Es gab kein Skill-Werkzeug. Deshalb wurde die neueste Leitlinie
+   (`a0b04d9ddcca`) nur gelesen und nicht kopiert. Der UI-SPEC legt die Richtung fest, daher wurden
+   die zwei Durchgänge nur auf die freien Achsen angewendet. Der erste Durchgang verteilte die
+   Gewichte: Geräterahmen als einzige Stelle mit Schatten, alles andere flach. Der zweite Durchgang
+   war ein Abgleich mit generischen Mustern:
+   - **Verworfen:** ein zweiter Link im Kartentitel, damit es nur einen Tabstopp je Karte gibt;
+     „→“ an Kartenlinks; „·“-Ketten in Tabellenunterschriften (die Altseite `/vergleich` nutzt sie
+     noch); farbige Ja/Nein-Symbole; Monospace in der Mini-UI.
+   - **Beibehalten:** Das Sechseck erscheint als Umriss nur im Icon-Motiv der Funktionskarte ohne
+     Szene. Es wird nicht als Dekor verwendet.
+2. **ui-ux-pro-max** (`search.py "saas comparison table device mockup trust" --domain ux`, zusätzlich
+   `"accessibility screen reader table"`, `"images layout shift"`, `"feature card badge"` mit
+   `--domain ux`):
+   - **Übernommen:**
+     - „Table Handling“: horizontaler Scrollbereich statt überlaufender Tabelle, als `role="region"`
+       mit `tabindex="0"` und fester erster Spalte unter 768 px.
+     - „Screen Reader“ und „Heading Hierarchy“: echte `table`/`caption`/`th scope`, Karten-`h3`.
+     - „Content Jumping“: feste `aspect-ratio` für Bühne, Browser und Phone sowie `width`/`height`
+       an Bildern.
+     - „Alt Text“: `alt` ist Pflicht in `MediaFigure`.
+   - **Verworfen:** die alternative „Card layout“ für Tabellen. Sie verliert den Spaltenvergleich und
+     widerspricht dem UI-SPEC.
+   - **Ohne Treffer:** `"feature card badge"`.
+3. **21st.dev:** `21st_magic_component_inspiration` war für „comparison table“, „device mockup“,
+   „feature card“ und „badge“ nicht verfügbar. Es wurden keine Ergebnisse erfunden und kein
+   builder/refiner eingesetzt.
+4. **Context7:** Weder MCP-Werkzeug noch `ctx7`-CLI waren verfügbar. Ersatzweise wurde die
+   offizielle Next.js-16-Doku in `node_modules/next/dist/docs/01-app/03-api-reference/02-components/image.md`
+   geprüft:
+   - `width`/`height` reservieren das Seitenverhältnis.
+   - `sizes` erzeugt ein volles `srcset`.
+   - **`priority` ist seit Next.js 16 abgekündigt.** `MediaFigure` behält die UI-SPEC-Prop
+     `priority`, übersetzt sie aber in `loading="eager"` und `fetchPriority="high"`, wie die Doku
+     empfiehlt.
+
+### 8. Bausteine Teil B (Plan 05-05)
+
+| Baustein | Semantik | Regeln im Code |
+|---|---|---|
+| `ComparisonTable` | `div role="region"` (aria-label = Caption, `tabindex="0"`) → `table` mit `caption`, `th scope="col"`/`"row"` | max. 4 Wertspalten / 12 Zeilen, höchstens 1 hervorgehobene Spalte, `note` Pflicht, Zeilenbeschriftung ≤ 48 und Zelltext ≤ 24 Zeichen; Ja/Nein als `Check`/`Minus` mit `sr-only`-Text |
+| `PlatformBadge` / `LicenseBadge` / `BadgeGroup` / `PlatformBadges` | `ul aria-label` → `li` → `span` | feste Texte „Web-App“, „Mobile-App“, „Voll-Lizenz“, „App-Lizenz“; dunkel über `data-tone`/`data-surface="dark"` am Vorfahren |
+| `FeatureCard` | `article` → Bühne 4:3, Badges, `h3`, `p`, ein gestreckter Link „Mehr zu {name}“ | nur `tier === "heute"` und nur in `funktionen[].platforms` belegte Plattformen; Titel 32, Nutzen 100 |
+| `IllustrationLabel` / `FrameCaption` | `span` mit `Info`-Icon; `figcaption` mit `sr-only`-Satz + Kennzeichnung | Texte wörtlich; Beschreibung ≤ 140 Zeichen |
+| `MediaFigure` | `figure` → `next/image` → optional `figcaption` | `src`/`alt`/`width`/`height`/`sizes` Pflicht, Bildunterschrift ≤ 90 Zeichen |
+| `BrowserFrame` / `PhoneFrame` / `DevicePair` | `figure` mit `data-evidence`; Gerät `aria-hidden="true"` + `inert`; `figcaption` | Beleg Pflicht (Fehlertext „… evidence fehlt – Belegpfad aus origin/release angeben.“), Tabs exakt „Einsätze, Zeiten, Projekte, Mehr“, `DevicePair` mit genau einer Kennzeichnung und Beleg je Gerät |
+| Mini-UI (`MiniList`, `MiniRow`, `MiniStat`, `MiniStatus`, `MiniWeek`, `MiniTimer`) | `ul`/`li` bzw. `div`/`span`, keine fokussierbaren Elemente | `MINI_BUDGET` = 24 Zeichen je Zeile, 5 Zeilen je Liste; Statusnamen nur „Entwurf“, „Offen“, „Gesendet“, „Bezahlt“, „Überfällig“, „Storniert“ (Beleg `web:src/pages/Dokumente.tsx`) |
+
+<!-- Plan 05-06 ergänzt hier die Ergebnisse für /styleguide und MobileAppGallery. -->
