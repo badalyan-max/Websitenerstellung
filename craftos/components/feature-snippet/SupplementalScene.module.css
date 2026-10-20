@@ -39,7 +39,8 @@
 .planSheet > small { display: block; margin-top: 5px; color: var(--color-ink-400); font-size: 6px; text-align: center; }
 .offerPanel { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .documentMeta { display: flex; justify-content: space-between; align-items: center; gap: 7px; min-height: 19px; color: var(--color-ink-500); font-size: 9px; }
-.documentMeta > span:last-child { padding: 3px 6px; border-radius: 4px; background: var(--color-ink-50); }
+/* Feste Mindestbreite: Der Statuswechsel nach der Hydration ändert nur den Text, nicht die Lage (kein Layout-Shift, MEDIA-04). */
+.documentMeta > span:last-child { min-width: 80px; text-align: center; padding: 3px 6px; border-radius: 4px; background: var(--color-ink-50); }
 .documentMeta > [data-ready="true"] { background: var(--color-primary-100) !important; color: var(--color-primary-800); }
 .positions { border-top: 1px solid var(--color-ink-100); }
 .position { display: flex; justify-content: space-between; align-items: center; gap: 7px; min-height: 36px; padding-block: 5px; border-bottom: 1px solid var(--color-ink-100); }
