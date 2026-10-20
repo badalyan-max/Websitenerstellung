@@ -1,7 +1,11 @@
 import { createElement } from "react";
 import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
+import { FileCheck2, ScanLine } from "lucide-react";
+import { BentoGrid, BentoTile, TileIcon, type BentoTileProps } from "@/components/v2/BentoGrid";
 import { CtaBand } from "@/components/v2/CtaBand";
+import { FaqList } from "@/components/v2/FaqList";
+import { StepFlow, type Step } from "@/components/v2/StepFlow";
 import { KeyFacts, type KeyFact } from "@/components/v2/KeyFacts";
 import { SectionHeader } from "@/components/v2/SectionHeader";
 import { site } from "@/lib/site";
@@ -121,5 +125,139 @@ describe("Bewegungsfreiheit Teil A (DESIGN-04)", () => {
       renderToString(createElement(CtaBand, { title: "Machen Sie Platz für Ihr Handwerk.", text: "Ohne Zahlungsdaten." })),
       "CtaBand",
     );
+  });
+});
+
+const sizes: BentoTileProps["size"][] = ["lg", "sm", "sm", "md", "wide", "sm", "md", "sm"];
+function tiles(n: number) {
+  return Array.from({ length: n }, (_, i) =>
+    createElement(BentoTile, {
+      key: i,
+      size: sizes[i],
+      surface: i === 0 ? "dark" : "warm",
+      title: `Kachel ${i + 1}`,
+      text: "Ein Satz Nutzen.",
+      visual: createElement(TileIcon, { icon: i % 2 ? FileCheck2 : ScanLine }),
+      href: i === 1 ? "/funktionen/e-rechnung" : undefined,
+    }),
+  );
+}
+function grid(n: number) {
+  return renderToString(createElement(BentoGrid, { label: "Kernfunktionen" }, ...tiles(n)));
+}
+
+const steps: Step[] = [
+  { title: "Angebot", text: "Aufmaß übernehmen und Angebot schreiben." },
+  { title: "Planung", text: "Einsätze auf der Plantafel verteilen." },
+  { title: "Baustelle", text: "Zeiten und Fotos direkt vor Ort erfassen." },
+  { title: "Rechnung", text: "Rechnung aus dem Angebot erzeugen." },
+  { title: "Buchhaltung", text: "Belege und Zahlungen abgleichen." },
+  { title: "Team", text: "Urlaub und Abwesenheiten planen." },
+  { title: "Archiv", text: "Unterlagen ablegen." },
+];
+
+const faqs = [
+  { q: "Brauche ich für den Test eine Zahlungsmethode?", a: "Nein. Sie testen CraftOS 10 Tage kostenlos." },
+  { q: "Was kostet die App-Lizenz?", a: "Die App-Lizenz kostet 9,95 € netto im Monat." },
+  { q: "Wie werden KI-Funktionen abgerechnet?", a: "Über im Voraus gekaufte Credits." },
+  { q: "Läuft CraftOS auf dem Smartphone?", a: "Ja, über die Mobile-App." },
+  { q: "Gibt es eine Web-App?", a: "Ja." },
+  { q: "Kann ich kündigen?", a: "Ja." },
+  { q: "Gibt es E-Rechnungen?", a: "Ja." },
+  { q: "Gibt es eine Plantafel?", a: "Ja." },
+  { q: "Gibt es Aufmaß?", a: "Ja." },
+];
+
+describe("BentoGrid", () => {
+  it("rendert ul role=list mit li > article > h3 je Kachel", () => {
+    const html = grid(5);
+    expect(html).toMatch(/<ul\b[^>]*role="list"[^>]*aria-label="Kernfunktionen"/);
+    expect(count(html, /<li\b[^>]*>\s*<article\b/g)).toBe(5);
+    expect(count(html, /<h3\b/g)).toBe(5);
+    expect(html).toMatch(/<h3\b[^>]*><a\b[^>]*href="\/funktionen\/e-rechnung"/);
+  });
+
+  it("wirft bei 2 und bei 8 Kacheln den Fehlertext", () => {
+    expect(() => grid(2)).toThrow("BentoGrid: mindestens 3 Kacheln erforderlich – Inhalte in lib/… ergänzen.");
+    expect(() => grid(8)).toThrow("BentoGrid: höchstens 7 Kacheln erlaubt – Inhalte in lib/… kürzen.");
+  });
+
+  it("verweigert gleichförmige Raster und mehr als eine dunkle Kachel", () => {
+    const gleich = ["a", "b", "c"].map((t) =>
+      createElement(BentoTile, { key: t, size: "sm", title: t, text: "Satz.", visual: createElement(TileIcon, { icon: ScanLine }) }),
+    );
+    expect(() => renderToString(createElement(BentoGrid, null, ...gleich))).toThrow(
+      "BentoGrid: mindestens zwei verschiedene Kachelgrößen erforderlich – size variieren.",
+    );
+    const dunkel = (["lg", "sm", "md"] as const).map((size) =>
+      createElement(BentoTile, { key: size, size, surface: "dark", title: size, text: "Satz.", visual: createElement(TileIcon, { icon: ScanLine }) }),
+    );
+    expect(() => renderToString(createElement(BentoGrid, null, ...dunkel))).toThrow(
+      "BentoGrid: höchstens 1 dunkle Kachel je Raster erlaubt – surface anpassen.",
+    );
+  });
+
+  it("schließt Kacheln ohne visual per Typ aus", () => {
+    const props = { size: "sm", title: "Nur Text", text: "Reine Textkacheln sind unzulässig." } as const;
+    // @ts-expect-error visual ist Pflicht – reine Textkacheln sind unzulässig
+    const ohneVisual: BentoTileProps = props;
+    expect(ohneVisual.title).toBe("Nur Text");
+  });
+});
+
+describe("StepFlow", () => {
+  it("rendert ol mit 3–6 li und aria-hidden-Knoten", () => {
+    for (const n of [3, 6]) {
+      const html = renderToString(createElement(StepFlow, { steps: steps.slice(0, n), label: "Arbeitsablauf" }));
+      expect(count(html, /<ol\b/g)).toBe(1);
+      expect(html).toMatch(/<ol\b[^>]*aria-label="Arbeitsablauf"/);
+      expect(count(html, /<li\b/g)).toBe(n);
+      expect(count(html, /<h3\b/g)).toBe(n);
+      expect(count(html, /aria-hidden="true"[^>]*>\d<\/span>/g)).toBe(n);
+    }
+  });
+
+  it("wirft außerhalb von 3–6 Schritten", () => {
+    expect(() => renderToString(createElement(StepFlow, { steps: steps.slice(0, 2), label: "Ablauf" }))).toThrow(
+      "StepFlow: mindestens 3 Schritte erforderlich – Inhalte in lib/… ergänzen.",
+    );
+    expect(() => renderToString(createElement(StepFlow, { steps, label: "Ablauf" }))).toThrow(
+      "StepFlow: höchstens 6 Schritte erlaubt – Inhalte in lib/… kürzen.",
+    );
+  });
+});
+
+describe("FaqList", () => {
+  it("rendert details/summary für 3–8 Fragen", () => {
+    const html = renderToString(createElement(FaqList, { items: faqs.slice(0, 3) }));
+    expect(count(html, /<details\b/g)).toBe(3);
+    expect(count(html, /<summary\b/g)).toBe(3);
+    expect(html).toContain("Brauche ich für den Test eine Zahlungsmethode?");
+    const mitH3 = renderToString(createElement(FaqList, { items: faqs.slice(0, 3), headingLevel: 3 }));
+    expect(count(mitH3, /<summary\b[^>]*>[\s\S]*?<h3\b/g)).toBe(3);
+    expect(() => renderToString(createElement(FaqList, { items: faqs.slice(0, 2) }))).toThrow(
+      "FaqList: mindestens 3 Fragen erforderlich – Inhalte in lib/… ergänzen.",
+    );
+    expect(() => renderToString(createElement(FaqList, { items: faqs }))).toThrow(
+      "FaqList: höchstens 8 Fragen erlaubt – Inhalte in lib/… kürzen.",
+    );
+  });
+
+  it("verlangt, dass jede Frage mit „?“ endet", () => {
+    const ohneFrage = [...faqs.slice(0, 2), { q: "Preise und Lizenzen", a: "Siehe Preisseite." }];
+    expect(() => renderToString(createElement(FaqList, { items: ohneFrage }))).toThrow(
+      "FaqList: Frage ‚Preise und Lizenzen‘ endet nicht mit „?“ – als direkte Frage formulieren.",
+    );
+  });
+});
+
+describe("Bewegungsfreiheit Teil A, Raster und Listen (DESIGN-04)", () => {
+  it("kein Markup von BentoGrid, StepFlow und FaqList startet unsichtbar", () => {
+    expectStatic(grid(5), "BentoGrid");
+    expectStatic(
+      renderToString(createElement(StepFlow, { steps: steps.slice(0, 4), label: "Ablauf", tone: "amber" })),
+      "StepFlow",
+    );
+    expectStatic(renderToString(createElement(FaqList, { items: faqs.slice(0, 3) })), "FaqList");
   });
 });
