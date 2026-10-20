@@ -678,15 +678,22 @@ Nicht anwendbar (keine Umbenennungs-/Migrationsphase). Einziger externer Zustand
 | A8 | `origin/release` entspricht dem Produktionsstand beider Apps | Produktwahrheit | Falsche Live-Einstufung |
 | A9 | Titel/H1/Description werden in Phase 5 nur als Zielwerte in der Map hinterlegt, Umsetzung in Phasen 6–8 | Keyword-Map | SEO-02-Text („Titel, H1 und Description folgen ihr“) wäre in Phase 5 nur teilweise erfüllt |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Kundenportal live?** Code: Einladung, Portal-Seiten ohne Flag, Onlinezahlung aus. Empfehlung: Inhaber fragen; bis dahin `tier: "launch"` belassen.
+   **RESOLVED (D-11):** Kundenportal gilt als live (`tier: "heute"`), Onlinezahlung wird nicht beworben – umgesetzt in Plan 05-02 Task 1.
 2. **„Bauphase“ oder „Arbeitsabschnitt“?** Mobile hat am 19.10.2026 umgestellt, Web uneinheitlich; Website nutzt „Phasen“ (z. B. `content/hilfe/projekt-phasen-anlegen.md`). Empfehlung: Inhaber entscheidet; Keyword-Daten zu beiden Begriffen abfragen.
+   **RESOLVED (D-13):** „Bauphasen“ ist Hauptbegriff, „Arbeitsabschnitte“ Nebenbegriff (Mobile) – umgesetzt in Plan 05-01 (Seeds/Map) und Plan 05-02 (liveExtras-Name).
 3. **Ankündigungen behalten oder streichen?** Empfehlung: Telefon-Agent und MCP-Server als „In Entwicklung“ ohne Datum; „Weitere Agent-Aktionen“ entweder ebenso oder streichen (Inhaber).
+   **RESOLVED (D-12):** Vollständig streichen, keine Umformulierung, kein Abschnitt „Demnächst“ – umgesetzt in Plan 05-02 Task 2 (Test, Routen-Audit-Flag).
 4. **Titel/H1 jetzt anpassen?** Empfehlung: Map enthält Zielwerte; Anwendung in Phasen 6–8 (SEO-05 in Phase 8), um Doppelarbeit beim Redesign zu vermeiden. REQUIREMENTS-Text SEO-02 auf SE Ranking korrigieren.
+   **RESOLVED (D-14, D-05):** Zielwerte nur in der Keyword-Map (Plan 05-01), Anwendung in Phasen 6–8; SEO-02 gilt nach Phase 5 als „Phase 5 Grundlage, Umsetzung Phasen 6–8“.
 5. **DESIGN-02 „Videoplayer“** steht im Requirement, Videos sind Out of Scope. Empfehlung: Requirement-Text anpassen, kein Baustein.
+   **RESOLVED (D-01, neuer DESIGN-02-Text):** Kein Videoplayer-Baustein; die Musterseite vermerkt „Videoplayer: entfällt“ (Plan 05-06). DESIGN-02 gilt nach Phase 5 als „Phase 5 Grundlage, Umsetzung Phasen 6–8“.
 6. **Ungenutzte Großdateien in `public/`** (Screenshots Juli, Store-Motive, Mockup-Master, JPG-Fotos): verschieben (nicht ausgeliefert) oder löschen? Empfehlung: in `craftos/media-src/` verschieben, Fotos für Phase 6+ konvertiert in `public/` behalten.
+   **RESOLVED (D-15):** Ungenutzte Großdateien bleiben unverändert in `public/` (Löschregel); nur ausgelieferte Bilder werden konvertiert und geprüft – Plan 05-06 Task 1.
 7. **„Vorhersagen“ bewerben?** Im Web-Sidebar sichtbar; Umfang/KI-Kosten nicht geprüft. Empfehlung: im Register als live führen, Bewerbung erst nach Prüfung in Phase 7.
+   **RESOLVED (Plan 05-02):** Im Register unter liveExtras mit `advertised: false`; keine Bewerbung in Phase 5, Prüfung in Phase 7.
 
 ## Environment Availability
 

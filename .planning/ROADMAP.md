@@ -42,16 +42,17 @@ craftos.eu wird klar gegliedert und optisch ansprechend: weniger Fließtext, Kac
   5. Eine Budgetprüfung lehnt Bilder über 150 KB ab, alle Medien haben feste Abmessungen ohne Layout-Shift, und der korrigierte Stand ist nach Ship-Gate live mit IndexNow-Meldung.
   6. Das SE-Ranking-Projekt trackt alle Hauptkeywords der Keyword-Map mit Zielseite plus die KI-Prompts; ein Messbericht-Skript bzw. eine feste Abfrage vergleicht Positionen, KI-Share-of-Voice und verweisende Domains mit dem Ausgangsstand vom 20.10.2026.
   7. Eine priorisierte Linkliste mit Statusregister und kopierfertigen Browser-Prompts für Portale, Fachmedien und Verzeichnisse liegt vor; die ersten Einträge (Bewertungs- und Vergleichsportale) sind an den Inhaber übergeben.
-**Plans**: 7 plans (3 Wellen)
+**Plans**: 8 plans (3 Wellen)
 
 Plans:
-- [ ] 05-01-PLAN.md — Keyword-Map aus SE-Ranking-Daten (Skript, Rohdaten ≤ 30.000 Units, Map, Test) – Welle 1
-- [ ] 05-02-PLAN.md — Produktregister auf origin/release, Kundenportal live, Ankündigungen entfernt – Welle 1
+- [ ] 05-01-PLAN.md — Keyword-Map aus SE-Ranking-Daten (Skript, seitenspezifische Kandidaten, Rohdaten ≤ 30.000 Units, Map, Test) – Welle 1
+- [ ] 05-02-PLAN.md — Produktregister auf origin/release, Kundenportal live, Ankündigungen entfernt, Routen-Audit-Flag – Welle 1
 - [ ] 05-03-PLAN.md — Preis-Snapshot, Paritätstest, Extra-Speicher und Credits überall abgeleitet – Welle 1
-- [ ] 05-04-PLAN.md — Designsystem-v2-Bausteine (Tokens, Raster, Schritte, Kennzahlen, Karten, Rahmen, Tabelle, FAQ, CTA) – Welle 1
-- [ ] 05-05-PLAN.md — Musterseite /styleguide (noindex), Medienbudget, Galerie-Kennzeichnung, E2E – Welle 2
-- [ ] 05-06-PLAN.md — Linkplan mit Statusregister und Browser-Prompts, SE-Ranking-Projektabgleich, Messbericht – Welle 2
-- [ ] 05-07-PLAN.md — Phasen-Gate, Ship-Gate, Push, IndexNow, Live-Prüfung, Etappenmessung – Welle 3
+- [ ] 05-04-PLAN.md — Designsystem v2 Teil A (Kaskade, Tokens, Budgets, SectionHeader, Bento, Schritte, Kennzahlen, FAQ, CTA) – Welle 1
+- [ ] 05-05-PLAN.md — Designsystem v2 Teil B (Vergleichstabelle, Badges, Funktionskarte, Kennzeichnung, Medien, Geräterahmen, Mini-UI) – Welle 1
+- [ ] 05-06-PLAN.md — Medienbudget, Galerie-Kennzeichnung, Musterseite /styleguide (noindex), E2E – Welle 2
+- [ ] 05-07-PLAN.md — Linkplan mit Statusregister und Browser-Prompts, SE-Ranking-Projektabgleich, Messbericht – Welle 2
+- [ ] 05-08-PLAN.md — Phasen-Gate, Ship-Gate über Gesamtdiff, Push, IndexNow, Live-Prüfung, Etappenmessung – Welle 3
 **UI hint**: yes
 
 ### Phase 6: Startseite, Navigation und Funktionsübersicht
