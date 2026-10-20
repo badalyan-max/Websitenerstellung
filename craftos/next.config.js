@@ -19,6 +19,11 @@ const nextConfig = {
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
         ],
       },
+      // Interne Musterseite: zusätzlich zu metadata.robots nicht indexieren (nicht per robots.txt sperren).
+      {
+        source: '/styleguide',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+      },
     ]
   },
 }

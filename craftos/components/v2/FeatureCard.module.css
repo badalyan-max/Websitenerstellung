@@ -24,6 +24,21 @@
   background: #f7f3eb;
   border-bottom: 1px solid var(--color-line-warm, #e7dcc9);
 }
+/* Szene im Geräterahmen: Das Gerät ist unten angeschnitten, die Kennzeichnung (figcaption des Rahmens)
+   bleibt als Leiste an der Bühnenunterkante sichtbar (MEDIA-03 – Kennzeichnung nie abgeschnitten). */
+.stage[data-visual="scene"] {
+  position: relative;
+}
+.stage[data-visual="scene"] figcaption {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 8px 16px;
+  background: #f7f3eb;
+  border-top: 1px solid var(--color-line-warm, #e7dcc9);
+  pointer-events: none;
+}
 .stage[data-visual="icon"] {
   align-items: center;
   padding: 24px;

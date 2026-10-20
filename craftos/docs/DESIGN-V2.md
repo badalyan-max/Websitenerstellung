@@ -194,4 +194,44 @@ hat {n} von {max} Zeichen – Satz kürzen.“).
 | `BrowserFrame` / `PhoneFrame` / `DevicePair` | `figure` mit `data-evidence`; Gerät `aria-hidden="true"` + `inert`; `figcaption` | Beleg Pflicht (Fehlertext „… evidence fehlt – Belegpfad aus origin/release angeben.“), Tabs exakt „Einsätze, Zeiten, Projekte, Mehr“, `DevicePair` mit genau einer Kennzeichnung und Beleg je Gerät |
 | Mini-UI (`MiniList`, `MiniRow`, `MiniStat`, `MiniStatus`, `MiniWeek`, `MiniTimer`) | `ul`/`li` bzw. `div`/`span`, keine fokussierbaren Elemente | `MINI_BUDGET` = 24 Zeichen je Zeile, 5 Zeilen je Liste; Statusnamen nur „Entwurf“, „Offen“, „Gesendet“, „Bezahlt“, „Überfällig“, „Storniert“ (Beleg `web:src/pages/Dokumente.tsx`) |
 
-<!-- Plan 05-06 ergänzt hier die Ergebnisse für /styleguide und MobileAppGallery. -->
+### 9. Übertrag „Design-Kaskade Teil B“ und Vermerk /preise
+
+- **Design-Kaskade Teil B:** Der Nachweis aus `05-05-SUMMARY.md` (Abschnitt „Design-Kaskade Teil B“) steht vollständig in §7 oben. Plan 05-06 übernimmt ihn unverändert und trifft für die Musterseite keine neuen Stilentscheidungen.
+- **Design-Kaskade /preise (Übertrag aus `05-03-SUMMARY.md`):** Plan 05-03 ergänzte auf der bestehenden Preisseite ohne Redesign (D-03) einen kompakten Block für Credit-Pakete.
+  - *frontend-design:* Leitlinie gelesen (kein Skill-Werkzeug). Flacher Block im KeyFacts-Muster: Raster aus 1-px-Linien `ink-200`, Beträge in `tabular-nums`, keine Eyebrow, keine Pfeile, keine Animation; `section` mit `aria-labelledby` und `h2`, Paketliste als `ul`, Netto-Hinweis darunter.
+  - *ui-ux-pro-max:* `"saas pricing credits add-on" --domain ux` ohne Treffer; `"pricing table list" --domain ux` übernommen (2 × 2 unter 768 px, 4 Spalten ab 768 px); `"pricing" --domain landing` (Karten mit Schatten, farbige Tarife) verworfen.
+  - *21st.dev:* nicht verfügbar, nicht aufgerufen.
+  - *Sichtprüfung:* Dev-Server, 390 und 1440 px, kein Überlauf.
+
+### 10. Kaskade MobileAppGallery (Plan 05-06, Task 1, 21.10.2026)
+
+Auftrag: nur Pfade und Kennzeichnung ändern, kein Redesign (D-03).
+
+1. **frontend-design:** Kein Skill-Werkzeug verfügbar. Die Leitlinie (`claude-plugins-official/frontend-design/*/skills/frontend-design/SKILL.md`, alle Cache-Stände inhaltsgleich) wurde gelesen und nicht kopiert. Angewendet wurde der Abschnitt zum Schreiben: Benennung aus Nutzersicht, ein Satz je Aufgabe, Satzschreibung. **Ergebnis:** „Aktuelle Appaufnahme“ ersetzt durch die Kennzeichnung „Darstellung, KI-gestaltet: App-Aufnahme vom 9. September 2026 im Handy-Mockup.“ bzw. „Originalaufnahme der Mobile-App vom 9. September 2026.“ (UI-SPEC §9, D-04). Layout, Farben und Umschalter bleiben unverändert.
+2. **ui-ux-pro-max** (`search.py "image gallery caption label" --domain ux`): **Übernommen:** „Image Optimization“ (WebP/AVIF in passender Größe statt Original-PNG), „Image Scaling“ (Bestand `width: min(100%, 360px)` bleibt). **Nicht relevant:** „Input Labels“ (Formulare).
+3. **21st.dev:** `21st_magic_component_inspiration` („image gallery toggle“) stand nicht als Werkzeug zur Verfügung. Nichts erfunden, kein builder/refiner.
+4. **Context7:** nicht verfügbar; keine neue API genutzt (`next/image` mit `unoptimized` im `picture` wie bisher).
+
+### 11. Kaskade /styleguide (Plan 05-06, Task 2, 21.10.2026)
+
+1. **frontend-design:** Leitlinie gelesen (wie §10). Die Richtung legt der UI-SPEC fest („Werkbank-Präzision“, Blöcke 0–13). Der Durchgang betraf nur die freien Achsen der Musterseite:
+   - Blockköpfe als Label 14/600 General Sans in `ink-500`, ohne Sperrung und Großbuchstaben. Die globale h1–h4-Regel setzt sonst Clash Display mit −0,025 em; deshalb setzen die Blockköpfe die Schrift ausdrücklich.
+   - Flächenrhythmus Weiß / `#F7F3EB`, dunkle Varianten nur als eingefasste Fläche (Radius 24 px), Blockabstand 64 px ab 768 px (48 px darunter).
+   - Tokens als Muster (Farbfelder mit Hex und Rolle, vier Schriftgrößen, Abstandsleiste 4–64 px, Ausnahme 96 px gestrichelt in `primary-700`, Radien 6/16/24 px).
+   - **Verworfen:** Nummerierung der Blöcke („01 / 02“) – die Blöcke sind kein Ablauf; Eyebrows über den Blockköpfen; Amber für die Abstandsleisten (Amber ist reserviert).
+2. **ui-ux-pro-max / 21st.dev:** keine neuen Stilentscheidungen; es gelten die Ergebnisse aus §2/§3 und §7.
+3. **Context7:** MCP-Werkzeug und `ctx7`-CLI nicht verfügbar. Ersatzweise wurde die mitgelieferte Next.js-16-Doku geprüft: `node_modules/next/dist/docs/01-app/03-api-reference/04-functions/generate-metadata.md` (`robots: { index: false, follow: false }` rendert `<meta name="robots" content="noindex, nofollow">`; Metadaten werden je Schlüssel flach zusammengeführt, deshalb ersetzt das Seiten-`robots` die `googleBot`-Angaben des Root-Layouts vollständig) und `05-config/01-next-config-js/headers.md` (zusätzlicher Eintrag `source: "/styleguide"` mit `X-Robots-Tag`).
+4. **DataForSEO / Keyword-Schritte:** entfallen begründet – interne noindex-Seite ohne Suchziel.
+
+**Kein JSON-LD auf /styleguide:** noindex/nofollow, nicht in Sitemap und llms.txt, kein Suchziel; Schema-Pflicht der Projekt-CLAUDE.md gilt für indexierbare Seiten. Die Seite ist zusätzlich nicht verlinkt und nicht per `robots.txt` gesperrt, damit Suchmaschinen das `noindex` lesen können.
+
+**Inhalte:** ausschließlich in `lib/styleguide-content.ts`. Preise über `Intl.NumberFormat` aus `tarife`, Testphase aus `site.trialDays`, Credits aus `startCredits`, „21“ aus `mobileLocales.length`, Stand aus `productBasis.checkedAt`. Rahmenbelege stammen aus dem Produktregister (`tests/styleguide.test.ts`). Das Werkstattfoto ist laut `docs/MEDIA.md` KI-generiert und trägt auf der Musterseite deshalb „Darstellung, KI-gestaltet“ statt der UI-SPEC-Platzhalterzeile „Kein KI-Bild hinterlegt …“.
+
+**Korrekturen an Bausteinen aus der Sichtprüfung:**
+
+| Baustein | Befund | Behebung |
+|---|---|---|
+| `ComparisonTable` | 360–390 px: Seite 51 px breiter als das Fenster, weil die absolut positionierten `sr-only`-Texte („Ja“/„Nein“) dem nicht positionierten Scrollbereich entkamen | `.scroll { position: relative; }` |
+| `FeatureCard` | Die 4:3-Bühne schnitt die `figcaption` des Geräterahmens ab, die Kennzeichnung war unsichtbar (MEDIA-03) | Kennzeichnung als Leiste an der Bühnenunterkante (`position: absolute`, warme Fläche, `pointer-events: none`) |
+
+**Sichtprüfung** (Dev-Server, Chromium, `reducedMotion: "reduce"`): Breiten 360, 375, 390, 768, 1024 und 1440 px ohne horizontalen Seitenscroll (einziger Scrollbereich ist die Vergleichstabelle), `document.getAnimations()` = 0, axe (wcag2a/2aa/21aa) ohne Verstöße, `sr-only` kommt im ausgelieferten CSS an (`position: absolute`, 1 px).

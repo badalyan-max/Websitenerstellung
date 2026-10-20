@@ -13,6 +13,9 @@
   color: #62626e;
 }
 .scroll {
+  /* Positioniert, damit absolut positionierte sr-only-Texte in den Zellen im Scrollbereich bleiben
+     und keinen horizontalen Seitenscroll erzeugen (Prüfung /styleguide bei 360 px). */
+  position: relative;
   max-width: 100%;
   overflow-x: auto;
   overscroll-behavior-x: contain;
