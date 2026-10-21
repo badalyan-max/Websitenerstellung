@@ -1,6 +1,10 @@
 // Archive: Retired universal product demo; retained as behavioral reference and excluded from the public website suite.
 /* eslint-disable @typescript-eslint/no-require-imports -- Standalone CommonJS runner supports an explicit Playwright installation in another worktree. */
 const { test, expect } = require(process.env.CRAFTOS_PLAYWRIGHT_PATH || '@playwright/test')
+// Demo derzeit auf keiner Seite eingebunden – Entscheidung in Phase 7 (06-REVIEW WR-03). Seit Phase 6 bindet
+// keine Route components/product-demo mehr ein; die Datei steht nicht in testMatch und wird zusätzlich hier
+// übersprungen, damit ein manueller Lauf keine bestehende Abdeckung vortäuscht.
+test.skip(() => true, 'Demo derzeit auf keiner Seite eingebunden – Entscheidung in Phase 7')
 
 const scenes = [
   { id: 'dashboard', steps: 3 },
