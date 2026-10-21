@@ -29,6 +29,7 @@ import { planungInhalte } from "./planung";
 import { baustelleInhalte } from "./baustelle";
 import { rechnungInhalte } from "./rechnung";
 import { teamInhalte } from "./team";
+import { buchhaltungInhalte } from "./buchhaltung";
 
 /**
  * Builder der Funktionsdetailseiten (Phase 7, 07-UI-SPEC „Vorlage Detailseite“; D-02, D-03, D-04, D-19, D-23).
@@ -40,14 +41,15 @@ import { teamInhalte } from "./team";
  */
 
 /**
- * Inhaltsmodule je Slug aus den Gruppenmodulen (lib/funktionsdetails/{gruppe}.ts). 07-05: Angebot,
- * Planung, Baustelle; 07-06 ergänzt Rechnung, Buchhaltung und Team.
+ * Inhaltsmodule je Slug aus den Gruppenmodulen (lib/funktionsdetails/{gruppe}.ts): alle 22 Detailfunktionen in
+ * der Gruppenreihenfolge Angebot, Planung, Baustelle (07-05), Rechnung, Buchhaltung, Team (07-06).
  */
 export const INHALTE: Readonly<Record<string, FunktionsdetailInhalt>> = {
   ...angebotInhalte,
   ...planungInhalte,
   ...baustelleInhalte,
   ...rechnungInhalte,
+  ...buchhaltungInhalte,
   ...teamInhalte,
 };
 
