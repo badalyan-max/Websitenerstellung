@@ -81,7 +81,7 @@ test.describe('styleguide', () => {
       expect(LABELS.some((label) => text.includes(label)), `Rahmen ${i} ohne Kennzeichnung`).toBe(true)
     }
     const evidence = await page.locator('[data-evidence]').evaluateAll((els) => els.map((el) => el.getAttribute('data-evidence')))
-    expect(evidence.every((e) => /^(web|mobile):\S+/.test(e))).toBe(true)
+    expect(evidence.every((e) => /^(web|app):[^\s/]+$/.test(e))).toBe(true)
     const tabs = await page.locator('[data-frame="phone"]').first().locator('[data-tab]').evaluateAll((els) => els.map((el) => el.getAttribute('data-tab')))
     expect(tabs).toEqual(['Einsätze', 'Zeiten', 'Projekte', 'Mehr'])
     const ki = page.locator('[data-block="MediaFigure"] figure')

@@ -267,12 +267,12 @@ export default function StyleguidePage() {
           <DevicePair
             browser={{
               title: frameContent.pair.browser.title,
-              evidence: frameContent.pair.browser.evidence,
+              evidence: frameContent.pair.browser.screen,
               children: <SceneContent scene={frameContent.pair.browser} />,
             }}
             phone={{
               title: frameContent.pair.phone.title,
-              evidence: frameContent.pair.phone.evidence,
+              evidence: frameContent.pair.phone.screen,
               activeTab: frameContent.pair.phone.activeTab,
               children: <SceneContent scene={frameContent.pair.phone} />,
             }}

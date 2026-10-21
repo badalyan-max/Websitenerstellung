@@ -29,7 +29,10 @@ export function SceneContent({ scene }: { scene: FrameScene }) {
   );
 }
 
-/** Szene im passenden Geräterahmen (BrowserFrame bzw. PhoneFrame). */
+/**
+ * Szene im passenden Geräterahmen (BrowserFrame bzw. PhoneFrame). Als Beleg geht nur
+ * scene.screen (Kurzform) ins HTML; scene.evidence bleibt intern (06-UI-SPEC E3).
+ */
 export function Frame({
   visual,
   width,
@@ -42,7 +45,7 @@ export function Frame({
   const { scene } = visual;
   if (visual.kind === "browser") {
     return (
-      <BrowserFrame title={scene.title} evidence={scene.evidence} description={scene.description} tone={tone}>
+      <BrowserFrame title={scene.title} evidence={scene.screen} description={scene.description} tone={tone}>
         <SceneContent scene={scene} />
       </BrowserFrame>
     );
@@ -50,7 +53,7 @@ export function Frame({
   return (
     <PhoneFrame
       title={scene.title}
-      evidence={scene.evidence}
+      evidence={scene.screen}
       description={scene.description}
       activeTab={scene.activeTab}
       width={width}

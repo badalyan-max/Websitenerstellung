@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { BatteryFull, CalendarDays, Clock3, FolderOpen, MoreHorizontal, Signal, Wifi } from "lucide-react";
 import { assertTextBudget } from "./budgets";
+import { assertScreenEvidence } from "./evidence";
 import { FrameCaption } from "./IllustrationLabel";
 import { MINI_BUDGET } from "./mini/limits";
 import s from "./Frames.module.css";
@@ -22,7 +23,7 @@ export interface PhoneFrameProps {
   title: string;
   /** Mini-UI */
   children: ReactNode;
-  /** Pflicht: Belegpfad am Release, z. B. "mobile:src/features/time-tracking/screens/TimeTrackingScreen.tsx". */
+  /** Pflicht: Kurzform web:<Bildschirm> bzw. app:<Bildschirm>, z. B. "app:Zeiterfassung"; voller Beleg nur in lib/scenes.ts. */
   evidence: string;
   /** Screenreadersatz ≤ 140 Zeichen: was zeigt die Ansicht? */
   description: string;
@@ -50,9 +51,7 @@ export function PhoneDevice({
   width = 194,
   owner = "PhoneFrame",
 }: PhoneDeviceProps) {
-  if (!evidence.trim()) {
-    throw new Error(`${owner}: evidence fehlt – Belegpfad aus origin/release angeben.`);
-  }
+  assertScreenEvidence(owner, evidence);
   assertTextBudget("mini.row", title, MINI_BUDGET.row);
   return (
     <div className={s.phone} data-frame="phone" data-width={width} aria-hidden="true" inert>

@@ -5,7 +5,9 @@ import { PhoneDevice, type PhoneTab } from "./PhoneFrame";
 import s from "./Frames.module.css";
 
 export interface DevicePairProps {
+  /** evidence: Kurzform web:<Bildschirm> bzw. app:<Bildschirm>; voller Beleg nur in lib/scenes.ts. */
   browser: { title: string; evidence: string; children: ReactNode };
+  /** evidence: Kurzform web:<Bildschirm> bzw. app:<Bildschirm>; voller Beleg nur in lib/scenes.ts. */
   phone: { title: string; evidence: string; activeTab?: PhoneTab; children: ReactNode };
   /** Ein Screenreadersatz ≤ 140 Zeichen für beide Geräte. */
   description: string;

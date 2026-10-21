@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { CraftOSMark } from "@/components/CraftOSLogo";
 import { assertTextBudget } from "./budgets";
+import { assertScreenEvidence } from "./evidence";
 import { FrameCaption } from "./IllustrationLabel";
 import { MINI_BUDGET } from "./mini/limits";
 import s from "./Frames.module.css";
@@ -10,7 +11,7 @@ export interface BrowserFrameProps {
   title: string;
   /** Mini-UI */
   children: ReactNode;
-  /** Pflicht: Belegpfad am Release, z. B. "web:src/pages/Plantafel.tsx". */
+  /** Pflicht: Kurzform web:<Bildschirm> bzw. app:<Bildschirm>, z. B. "web:Plantafel"; voller Beleg nur in lib/scenes.ts. */
   evidence: string;
   /** Screenreadersatz ≤ 140 Zeichen: was zeigt die Ansicht? */
   description: string;
@@ -31,9 +32,7 @@ export interface BrowserDeviceProps {
  * Illustration: aria-hidden und inert, damit nichts fokussierbar oder vorgelesen wird.
  */
 export function BrowserDevice({ title, children, evidence, owner = "BrowserFrame" }: BrowserDeviceProps) {
-  if (!evidence.trim()) {
-    throw new Error(`${owner}: evidence fehlt – Belegpfad aus origin/release angeben.`);
-  }
+  assertScreenEvidence(owner, evidence);
   assertTextBudget("mini.row", title, MINI_BUDGET.row);
   return (
     <div className={s.browser} data-frame="browser" aria-hidden="true" inert>
