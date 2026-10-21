@@ -99,10 +99,11 @@ const evidence: Record<string, string[]> = {
     "src/api/defects.ts",
     "src/lib/besichtigung.ts",
   ],
-  team: ["src/pages/Mitarbeiter.tsx"],
+  team: ["src/pages/Mitarbeiter.tsx", "src/lib/subscription/roles.ts"],
   nachkalkulation: [
     "src/lib/calculationUtils.ts",
     "src/pages/ProjectDetail.tsx",
+    "src/components/projects/ProjectControllingTab.tsx",
   ],
   kundenportal: [
     "src/api/customerPortal.ts",
@@ -124,6 +125,7 @@ const evidence: Record<string, string[]> = {
   "e-rechnung": [
     "supabase/functions/generate-einvoice/index.ts",
     "supabase/migrations/20260710190000_documents_e_invoice_pdf_writeonce.sql",
+    "src/components/documents/EInvoiceDownloadDialog.tsx",
   ],
   arbeitsanweisungen: ["src/api/workInstructions.ts"],
   // Phase 7 (D-07, Pattern 4): bisher liveExtras, jetzt eigene Detailfunktionen.
@@ -162,6 +164,7 @@ const mobileEvidence: Record<string, string[]> = {
     "src/features/projects/screens/ProjectDetailScreen.tsx",
     "src/features/projects/screens/ProjectFilesScreen.tsx",
     "src/features/projects/screens/CreateProjectScreen.tsx",
+    "src/features/projects/screens/ProjectsScreen.tsx",
   ],
   angebote: ["src/features/documents/screens/DocumentSignScreen.tsx"],
   eingangsrechnungen: [
@@ -186,6 +189,7 @@ const mobileEvidence: Record<string, string[]> = {
   ],
   baudokumentation: [
     "src/features/construction-reports/screens/DailyReportScreen.tsx",
+    "src/features/construction-reports/screens/ConstructionReportsScreen.tsx",
     "src/features/defects/screens/DefectsScreen.tsx",
     "src/features/defects/screens/DefectDetailScreen.tsx",
     "src/features/acceptance/screens/AcceptanceScreen.tsx",
