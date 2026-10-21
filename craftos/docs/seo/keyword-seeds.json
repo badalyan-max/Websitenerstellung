@@ -221,6 +221,8 @@
     "/funktionen/mahnwesen": ["mahnwesen software", "mahnprogramm", "mahnwesen handwerk"],
     "/funktionen/terminplanung": ["bauzeitenplan software", "terminplanung handwerk", "arbeitsabschnitte bau"],
     "/funktionen/bankabgleich": ["bankabgleich software", "zahlungsabgleich", "offene posten abgleichen"],
+    "/funktionen/datenuebernahme": ["datenimport", "daten importieren"],
+    "/funktionen/maengelmanagement": ["mängelmanagement", "mängelmanagement app"],
     "/hilfe/leistungszeitraum-rechnung": ["leistungszeitraum rechnung", "leistungszeitraum", "leistungsdatum rechnung"],
     "/hilfe/regiebericht": ["regiebericht", "regiebericht vorlage", "regiebericht muster"],
     "/hilfe/bedenkenanzeige": ["bedenkenanzeige", "bedenkenanzeige vob", "bedenkenanzeige muster"]

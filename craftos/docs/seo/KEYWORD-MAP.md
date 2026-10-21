@@ -4,7 +4,7 @@ Quelle aller Zahlen: SE Ranking Data API, Datenbank Deutschland (`source=de`), A
 
 Maschinenlesbare Fassung: `docs/seo/keyword-map.json`, typisiert über `lib/keyword-map.ts`. Dauerhafter Schutz: `tests/keyword-map.test.ts` (Vollständigkeit, Kannibalisierung, Provenienz). Diese Datei wird aus der JSON-Datei abgeleitet; bei Änderungen zuerst die JSON-Datei anpassen und den Test laufen lassen.
 
-**Stand:** 125 bestehende Pfade (alle URLs aus `app/sitemap.ts`) und 19 geplante Seiten; 126 Einträge mit Hauptkeyword, 18 begründete Ausnahmen ohne Hauptkeyword.
+**Stand:** 131 bestehende Pfade (alle URLs aus `app/sitemap.ts`) und 13 geplante Seiten; 126 Einträge mit Hauptkeyword, 18 begründete Ausnahmen ohne Hauptkeyword. Letzte Änderung 21.10.2026 (Phase 7, siehe § 6 „Änderungshinweise“).
 
 ## 1. Methode
 
@@ -65,7 +65,7 @@ Kontingent laut `/v1/account/subscription`: vor dem Lauf 78.093 Units, danach 65
 | `/datenschutz` | bestehend | – (Rechtsseite) | – | – | – | – | – |
 | `/impressum` | bestehend | – (Rechtsseite) | – | – | – | – | – |
 
-### Funktionsseiten (16)
+### Funktionsseiten (22)
 
 | Pfad | Status | Hauptkeyword | Volumen | KD | Intent | Wettbewerber (Position) | Quelle |
 |---|---|---|---|---|---|---|---|
@@ -85,6 +85,12 @@ Kontingent laut `/v1/account/subscription`: vor dem Lauf 78.093 Units, danach 65
 | `/funktionen/team` | bestehend | mitarbeiter app handwerk | 10 | 24 | I | openhandwerk.de (32), label-software.de (56) | `export--candidates-1.json` |
 | `/funktionen/nachkalkulation` | bestehend | nachkalkulation handwerk | 40 | 7 | I | streit-software.de (1), plancraft.com (11), openhandwerk.de (25) +2 | `export--candidates-1.json` |
 | `/funktionen/kundenportal` | bestehend | kundenportal software | 110 | 13 | I | – | `export--candidates-1.json` |
+| `/funktionen/gaeb` | bestehend | gaeb software | 140 | 18 | I | das-programm.io (30) | `export--candidates-1.json` |
+| `/funktionen/mahnwesen` | bestehend | mahnwesen software | 40 | 8 | I | openhandwerk.de (27) | `export--candidates-1.json` |
+| `/funktionen/terminplanung` | bestehend | bauzeitenplan software | 140 | 12 | I | streit-software.de (3), craftnote.de (37) | `export--candidates-1.json` |
+| `/funktionen/bankabgleich` | bestehend | zahlungsabgleich | 20 | 8 | I | – | `export--candidates-1.json` |
+| `/funktionen/datenuebernahme` | bestehend | datenimport | 90 | 8 | I | das-programm.io (8) | `export--candidates-1.json` |
+| `/funktionen/maengelmanagement` | bestehend | mängelmanagement | 140 | 8 | I | – | `export--candidates-2.json` |
 
 ### Gewerkeseiten (12)
 
@@ -197,7 +203,7 @@ Kontingent laut `/v1/account/subscription`: vor dem Lauf 78.093 Units, danach 65
 | `/hilfe/zeiteintrag-erfassen-korrigieren` | bestehend | – (keine Daten) | – | – | – | – | – |
 | `/hilfe/zeiten-pruefen-exportieren` | bestehend | stundenzettel excel | 320 | 9 | I | – | `export--candidates-1.json` |
 
-### Geplante Seiten (19)
+### Geplante Seiten (13)
 
 | Pfad | Zielphase | Hauptkeyword | Volumen | KD | Intent | Wettbewerber (Position) | Quelle |
 |---|---|---|---|---|---|---|---|
@@ -205,12 +211,6 @@ Kontingent laut `/v1/account/subscription`: vor dem Lauf 78.093 Units, danach 65
 | `/vergleich/craftnote-alternative` | 8 | craftnote alternative | 30 | 6 | I | craftnote.de (5), openhandwerk.de (36) | `export--candidates-1.json` |
 | `/vergleich/hero-alternative` | 8 | hero software alternative | 10 | 15 | I | – | `export--candidates-1.json` |
 | `/vergleich/tooltime-alternative` | 8 | tooltime | 4.400 | 78 | L, C | – | `export--candidates-1.json` |
-| `/funktionen/gaeb` | 7 | gaeb software | 140 | 18 | I | das-programm.io (30) | `export--candidates-1.json` |
-| `/funktionen/mahnwesen` | 7 | mahnwesen software | 40 | 8 | I | openhandwerk.de (27) | `export--candidates-1.json` |
-| `/funktionen/terminplanung` | 7 | bauzeitenplan software | 140 | 12 | I | streit-software.de (3), craftnote.de (37) | `export--candidates-1.json` |
-| `/funktionen/bankabgleich` | 7 | zahlungsabgleich | 20 | 8 | I | – | `export--candidates-1.json` |
-| `/funktionen/datenuebernahme` | 7 | datenimport | 90 | 8 | I | das-programm.io (8) | `export--candidates-1.json` |
-| `/funktionen/maengelmanagement` | 7 | mängelmanagement | 140 | 8 | I | – | `export--candidates-2.json` |
 | `/hilfe/leistungszeitraum-rechnung` | 9 | leistungszeitraum rechnung | 390 | 8 | I | plancraft.com (24) | `export--candidates-1.json` |
 | `/hilfe/regiebericht` | 9 | regiebericht | 390 | 4 | I | plancraft.com (8), openhandwerk.de (26), craftnote.de (33) | `export--candidates-1.json` |
 | `/hilfe/bedenkenanzeige` | 9 | bedenkenanzeige | 390 | 7 | I | plancraft.com (24) | `export--candidates-1.json` |
@@ -297,6 +297,8 @@ Weitere geplante Einträge unterhalb der Lückenschwelle, aber als Seite vorgeme
 | 7 | `/funktionen/mahnwesen` | mahnwesen software | 40 | 8 | live, aber noch ohne Seite (RESEARCH Tabelle B) |
 | 7 | `/funktionen/bankabgleich` | zahlungsabgleich | 20 | 8 | live, aber noch ohne Seite (RESEARCH Tabelle B) |
 
+**Umgesetzt (21.10.2026, Phase 7):** Die Einträge mit Zielphase 7 in beiden Tabellen oben (`/funktionen/gaeb`, `/funktionen/terminplanung`, `/funktionen/maengelmanagement`, `/funktionen/datenuebernahme`, `/funktionen/mahnwesen`, `/funktionen/bankabgleich`) sind als Detailseiten angelegt und stehen in der Map als `bestehend` (§ 2 „Funktionsseiten“). Die Zeilen bleiben hier als Nachweis der Lückenanalyse stehen.
+
 **Bewusst nicht vorgemerkt:** „ki telefonassistent handwerk“ (140/5, `domain-keywords--hero-software.de.json`) – ein Telefon-Agent ist in CraftOS nicht live und wird nicht angekündigt (D-12). Begriffe mit hoher Schwierigkeit wie „stundenzettel vorlage“ (6.600/79), „rechnung schreiben“ (8.000/90) oder „zuschlagskalkulation“ (910/13) werden nicht als eigene Seiten vorgemerkt; „zuschlagskalkulation“ ist Nebenbegriff von `/blog/tiefenkalkulation-handwerk`, „stundenzettel vorlage“ von `/blog/arbeitszeitnachweis-vorlage`.
 
 ## 4. Regeln gegen Kannibalisierung
@@ -331,15 +333,15 @@ Die Zielwerte werden in Phase 5 nur festgelegt, nicht in die Seiten übernommen.
 | `/funktionen/angebote` | Angebotssoftware mit Kalkulation fürs Handwerk \| CraftOS | Angebotssoftware, die bis zur letzten Position passt | Angebotssoftware für Handwerker: Leistungen beschreiben, Mengen aus dem Aufmaß übernehmen und Material, Lohn und Zuschläge nachvollziehbar kalkulieren. |
 | `/funktionen/rechnungen` | Rechnungssoftware Handwerker: prüfbar abrechnen \| CraftOS | Rechnungssoftware: von der Arbeit zur prüfbaren Rechnung | Rechnungssoftware für Handwerker: Rechnungen, Abschläge und Schlussrechnungen erstellen, Zahlungen zuordnen und jeden Entwurf vor dem Fertigstellen prüfen. |
 | `/funktionen/e-rechnung` | E-Rechnung Handwerk: XRechnung und ZUGFeRD \| CraftOS | E-Rechnung im Handwerk mit XRechnung und ZUGFeRD | E-Rechnung im Handwerk: XRechnung und ZUGFeRD aus CraftOS erzeugen und elektronische Eingangsrechnungen einlesen – strukturiert und im Dokumentablauf. |
-| `/funktionen/buchhaltung` | Buchhaltung Handwerk: vorbereitet für DATEV \| CraftOS | Buchhaltung im Handwerk: sauber vorbereitet für die Steuerberatung | Buchhaltung im Handwerk vorbereiten: Belege prüfen, Buchungen nachvollziehen und Daten mit Belegbezug für DATEV und Ihre Steuerberatung exportieren. |
+| `/funktionen/buchhaltung` | Buchhaltung Handwerk: vorbereitet für DATEV \| CraftOS | Buchhaltung im Handwerk: vorbereitet für die Steuerberatung | Buchhaltung im Handwerk vorbereiten: Belege prüfen, Buchungen nachvollziehen und Daten mit Belegbezug für DATEV und Ihre Steuerberatung exportieren. |
 | `/funktionen/eingangsrechnungen` | Eingangsrechnungen digitalisieren mit Belegscan \| CraftOS | Eingangsrechnungen digitalisieren und prüfen | Eingangsrechnungen digitalisieren: Belege aufnehmen, erkannte Angaben kontrollieren und Ausgaben einem Projekt zuordnen. Gespeichert wird nach Prüfung. |
 | `/funktionen/plantafel` | Plantafel-Software für die Einsatzplanung \| CraftOS | Plantafel-Software: wer macht was und wann | Plantafel-Software für Handwerksbetriebe: Team und Einsätze planen, Einsatzorte auf der Karte sehen und Änderungen direkt in die Mobile-App übertragen. |
 | `/funktionen/zeiterfassung` | Zeiterfassung Handwerk: App mit Projektbezug \| CraftOS | Zeiterfassung im Handwerk: die Zeit landet beim Projekt | Zeiterfassung im Handwerk per App: Timer starten, Projekt in der Nähe zuordnen und die Stunden im Büro für Auswertung und Nachkalkulation nutzen. |
 | `/funktionen/lager` | Lagerverwaltung-App für Handwerker \| CraftOS | Lagerverwaltung per App: wissen, was da ist | Lagerverwaltung-App für Handwerksbetriebe: Bestände, Lagerorte und Bewegungen nachvollziehen und Entnahmen direkt den Kosten des Projekts zuordnen. |
-| `/funktionen/baudokumentation` | Bautagebuch-App für die Baudokumentation \| CraftOS | Bautagebuch-App: was auf der Baustelle passiert, bleibt im Projekt | Bautagebuch-App für Handwerker: Arbeiten, Fotos und Mängel beim Projekt festhalten, Berichte mobil unterschreiben lassen und im Büro wiederfinden. |
+| `/funktionen/baudokumentation` | Bautagebuch-App für die Baudokumentation \| CraftOS | Bautagebuch-App: Berichte, Fotos und Abnahmen im Projekt | Bautagebuch-App für Handwerker: Arbeiten, Fotos und Mängel beim Projekt festhalten, Berichte mobil unterschreiben lassen und im Büro wiederfinden. |
 | `/funktionen/aufmass` | Aufmaß-App: Räume erfassen, Angebot erstellen \| CraftOS | Aufmaß-App: aus Maßen werden Positionen | Aufmaß-App für Handwerker: Räume, Flächen und Abzüge erfassen und geprüfte Mengen für Boden, Wand und Decke direkt ins Angebot übernehmen. |
 | `/funktionen/arbeitsanweisungen` | Arbeitsanweisung erstellen fürs Team \| CraftOS | Arbeitsanweisungen erstellen: das Team weiß, was zu tun ist | Arbeitsanweisung erstellen aus Angebot oder Auftrag: Leistungen und Materialbedarf ohne Verkaufspreise und mit Projektbezug an das Team weitergeben. |
-| `/funktionen/team` | Mitarbeiter-App Handwerk: Team und Rechte \| CraftOS | Team und Rechte: jeder Zugang passt zur Aufgabe | Mitarbeiter-App im Handwerk: Mitarbeitende einladen, Zugänge zuweisen und Rechte passend zur Arbeit vergeben – Büro und Baustelle auf einer Grundlage. |
+| `/funktionen/team` | Mitarbeiter-App Handwerk: Team und Rechte \| CraftOS | Mitarbeiter-App und Rechte: jeder Zugang passt zur Aufgabe | Mitarbeiter-App im Handwerk: Mitarbeitende einladen, Zugänge zuweisen und Rechte passend zur Arbeit vergeben – Büro und Baustelle auf einer Grundlage. |
 | `/funktionen/nachkalkulation` | Nachkalkulation Handwerk: Ist-Kosten im Blick \| CraftOS | Nachkalkulation: was hat der Auftrag wirklich gekostet? | Nachkalkulation im Handwerk: geplante und tatsächliche Kosten für Lohn, Material und Leistungen vergleichen und Abweichungen je Auftrag sichtbar machen. |
 | `/funktionen/kundenportal` | Kundenportal-Software für Handwerksbetriebe \| CraftOS | Kundenportal: ein gemeinsamer Ort für Ihre Kunden | Kundenportal-Software für Handwerker: Angebote, Dokumente und Kommunikation für Ihre Kunden im Browser bereitstellen – mit Einladung und eigenem Zugang. |
 | `/gewerke/elektriker` | Elektriker-Software für Elektrobetriebe \| CraftOS | Elektriker-Software für Angebot, Einsatz und Abrechnung | Elektriker-Software von CraftOS: Angebote kalkulieren, Einsätze planen, Zeiten und Material erfassen und Rechnungen erstellen – für Elektrobetriebe. |
@@ -427,10 +429,10 @@ Die Zielwerte werden in Phase 5 nur festgelegt, nicht in die Seiten übernommen.
 | `/vergleich/tooltime-alternative` | ToolTime oder CraftOS? Der Vergleich \| CraftOS | ToolTime-Alternative: CraftOS im Vergleich | ToolTime oder CraftOS? Der sachliche Vergleich von Funktionen, Mobile-App, E-Rechnung und Preisen – mit Quellen, Prüfdatum und Hinweisen zum Umstieg. |
 | `/funktionen/gaeb` | GAEB-Software: Import, Export, DATANORM \| CraftOS | GAEB-Software für Ausschreibung und Angebot | GAEB-Software in CraftOS: Leistungsverzeichnisse importieren, Angebote kalkulieren und als GAEB exportieren sowie Artikel per DATANORM übernehmen. |
 | `/funktionen/mahnwesen` | Mahnwesen-Software für Handwerker \| CraftOS | Mahnwesen: offene Rechnungen konsequent nachfassen | Mahnwesen-Software für Handwerker: Zahlungserinnerungen und Mahnstufen einstellen, Mahnhistorie je Rechnung sehen und offene Posten im Blick behalten. |
-| `/funktionen/terminplanung` | Bauzeitenplan-Software mit Bauphasen \| CraftOS | Terminplanung mit Bauphasen und Abhängigkeiten | Bauzeitenplan-Software in CraftOS: Bauphasen und Arbeitsabschnitte im Gantt-Plan terminieren, Abhängigkeiten setzen und mit der Plantafel verbinden. |
-| `/funktionen/bankabgleich` | Zahlungsabgleich mit Bankumsätzen \| CraftOS | Bankabgleich: Zahlungen automatisch zuordnen | Zahlungsabgleich in CraftOS: Bankumsätze einlesen, Zahlungseingänge Rechnungen zuordnen und Ausgaben mit Eingangsrechnungen abgleichen. |
-| `/funktionen/datenuebernahme` | Datenimport beim Umstieg auf CraftOS \| CraftOS | Datenübernahme beim Umstieg auf CraftOS | Datenimport beim Wechsel zu CraftOS: vorhandene Stammdaten aus Ihrer bisherigen Software übernehmen und vor dem Start des Echtbetriebs in Ruhe prüfen. |
-| `/funktionen/maengelmanagement` | Mängelmanagement für Handwerk und Bau \| CraftOS | Mängelmanagement von der Erfassung bis zur Prüfung | Mängelmanagement in CraftOS: Mängel mit Foto und Ort erfassen, Fristen und Zuständige festlegen und die Behebung bis zur Abnahme lückenlos nachverfolgen. |
+| `/funktionen/terminplanung` | Bauzeitenplan-Software mit Bauphasen \| CraftOS | Bauzeitenplan mit Arbeitsabschnitten und Abhängigkeiten | Bauzeitenplan-Software in CraftOS: Bauphasen und Arbeitsabschnitte im Gantt-Plan terminieren, Abhängigkeiten setzen und mit der Plantafel verbinden. |
+| `/funktionen/bankabgleich` | Zahlungsabgleich mit Bankumsätzen \| CraftOS | Zahlungsabgleich: Bankumsätze nachvollziehbar zuordnen | Zahlungsabgleich in CraftOS: Bankumsätze einlesen, Zahlungseingänge Rechnungen zuordnen und Ausgaben mit Eingangsrechnungen abgleichen. |
+| `/funktionen/datenuebernahme` | Datenimport beim Umstieg auf CraftOS \| CraftOS | Datenimport beim Umstieg auf CraftOS | Datenimport beim Wechsel zu CraftOS: vorhandene Stammdaten aus Ihrer bisherigen Software übernehmen und vor dem Start des Echtbetriebs in Ruhe prüfen. |
+| `/funktionen/maengelmanagement` | Mängelmanagement für Handwerk und Bau \| CraftOS | Mängelmanagement von der Erfassung bis zur Prüfung | Mängelmanagement in CraftOS: Mängel mit Foto und Ort erfassen, Fristen und Zuständige festlegen und die Behebung bis zur Prüfung nachverfolgen. |
 | `/hilfe/leistungszeitraum-rechnung` | Leistungszeitraum Rechnung: richtig angeben \| CraftOS | Leistungszeitraum und Leistungsdatum auf der Rechnung | Leistungszeitraum auf der Rechnung richtig angeben: wann ein Leistungsdatum genügt, wann ein Zeitraum nötig ist und welche Pflichtangaben gelten. |
 | `/hilfe/regiebericht` | Regiebericht: Vorlage und Abrechnung \| CraftOS | Regiebericht schreiben und abrechnen | Regiebericht im Handwerk: Stundenlohnarbeiten und Material nachvollziehbar dokumentieren, vom Auftraggeber bestätigen lassen und sauber abrechnen. |
 | `/hilfe/bedenkenanzeige` | Bedenkenanzeige nach VOB: Muster und Ablauf \| CraftOS | Bedenkenanzeige schreiben und dokumentieren | Bedenkenanzeige nach VOB/B: wann Handwerker sie schreiben sollten, was hineingehört und wie Sie Versand und Antwort im Projekt dokumentieren. |
@@ -440,3 +442,25 @@ Die Zielwerte werden in Phase 5 nur festgelegt, nicht in die Seiten übernommen.
 | `/blog/gaeb-formate` | GAEB-Formate erklärt: X81 bis X86 \| CraftOS | GAEB-Formate verstehen: welche Datei wofür? | GAEB-Formate einfach erklärt: was X81, X83, X84 und X86 bedeuten, welche Phase der Ausschreibung sie abbilden und wie Sie GAEB-Dateien öffnen. |
 | `/blog/bauablaufplan` | Bauablaufplan erstellen: Phasen und Termine \| CraftOS | Bauablaufplan und Bauzeitenplan erstellen | Bauablaufplan erstellen: Bauphasen festlegen, Abhängigkeiten und Puffer planen und den Bauzeitenplan im Handwerksbetrieb aktuell halten. |
 | `/blog/arbeitszeitnachweis-vorlage` | Arbeitszeitnachweis-Vorlagen fürs Handwerk \| CraftOS | Arbeitszeitnachweis: Vorlage oder App? | Arbeitszeitnachweis-Vorlagen im Handwerk: welche Angaben Pflicht sind, wann Papier reicht und wie eine App den Nachweis mit Projektbezug erstellt. |
+
+## 6. Änderungshinweise
+
+### 21.10.2026 – Phase 7 (Funktionsdetailseiten, D-08, D-22)
+
+Statuswechsel und Sitemap-Aufnahme im selben Commit (Pitfall 2): `/funktionen/gaeb`, `/funktionen/mahnwesen`, `/funktionen/terminplanung`, `/funktionen/bankabgleich`, `/funktionen/datenuebernahme` und `/funktionen/maengelmanagement` wechseln von `geplant` (Zielphase 7) zu `bestehend`; das Feld `phase` entfällt wie bei allen bestehenden Einträgen. Hauptkeywords, Zahlen und Titel bleiben unverändert; das SE-Ranking-Projekt trackt diese Keywords bereits mit der Ziel-URL.
+
+Geänderte Zielwerte (07-UI-SPEC „SEO-Vertrag“; Länge in Zeichen):
+
+| Pfad | Feld | Bisher | Neu | Grund |
+|---|---|---|---|---|
+| `/funktionen/team` | H1 | Team und Rechte: jeder Zugang passt zur Aufgabe | Mitarbeiter-App und Rechte: jeder Zugang passt zur Aufgabe (58) | D-22: H1 enthält das Kopfwort des Hauptkeywords („mitarbeiter“) |
+| `/funktionen/terminplanung` | H1 | Terminplanung mit Bauphasen und Abhängigkeiten | Bauzeitenplan mit Arbeitsabschnitten und Abhängigkeiten (55) | D-22: Kopfwort „bauzeitenplan“; D-20: Produktbegriff „Arbeitsabschnitte“ („Bauphasen“ bleibt im Title und in der Description als Suchbegriff) |
+| `/funktionen/bankabgleich` | H1 | Bankabgleich: Zahlungen automatisch zuordnen | Zahlungsabgleich: Bankumsätze nachvollziehbar zuordnen (54) | D-22: Kopfwort „zahlungsabgleich“; „automatisch“ ist unbelegt (KI-Vorschläge nur auf Anforderung gegen Credits) |
+| `/funktionen/datenuebernahme` | H1 | Datenübernahme beim Umstieg auf CraftOS | Datenimport beim Umstieg auf CraftOS (36) | D-22: Kopfwort „datenimport“ |
+| `/funktionen/buchhaltung` | H1 | Buchhaltung im Handwerk: sauber vorbereitet für die Steuerberatung (66) | Buchhaltung im Handwerk: vorbereitet für die Steuerberatung (59) | H1 ≤ 60 Zeichen (07-UI-SPEC F4) |
+| `/funktionen/baudokumentation` | H1 | Bautagebuch-App: was auf der Baustelle passiert, bleibt im Projekt (66) | Bautagebuch-App: Berichte, Fotos und Abnahmen im Projekt (56) | H1 ≤ 60 Zeichen; Mängel haben eine eigene Seite |
+| `/funktionen/maengelmanagement` | Description | … und die Behebung bis zur Abnahme lückenlos nachverfolgen. | Mängelmanagement in CraftOS: Mängel mit Foto und Ort erfassen, Fristen und Zuständige festlegen und die Behebung bis zur Prüfung nachverfolgen. (143) | „lückenlos“ ist unbelegt (Überclaim, Pitfall 8) |
+
+`docs/seo/keyword-seeds.json` führt für `/funktionen/datenuebernahme` („datenimport“, „daten importieren“) und `/funktionen/maengelmanagement` („mängelmanagement“, „mängelmanagement app“) jetzt pageCandidates, weil `tests/keyword-seeds.test.ts` für jeden Sitemap-Pfad Kandidaten verlangt. Es sind genau Haupt- und Nebenbegriff der Map; beide stehen bereits in `export--candidates-1.json` bzw. `export--candidates-2.json`, ein neuer API-Abruf war nicht nötig (§ 1 „Export“ nennt den Stand vom 20.10.2026 mit 373 pageCandidates).
+
+Absicherung: `tests/keyword-map.test.ts` („Phase 7 (D-08, D-22)“) prüft Status, Sitemap-Aufnahme, die neuen Werte, H1 ≤ 60, die Kopfwort-Regel und dass Zielwerte der Funktionsseiten weder „automatisch“ noch „lückenlos“ enthalten.

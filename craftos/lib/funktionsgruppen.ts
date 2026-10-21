@@ -1,24 +1,18 @@
 import "server-only";
 import {
-  BellRing,
   Calculator,
   CalendarDays,
-  CalendarRange,
   Camera,
   ClipboardCheck,
   Contact,
-  FileInput,
   FileText,
   HardHat,
-  Import,
-  Landmark,
   Languages,
   MessagesSquare,
   NotebookPen,
   Receipt,
   ScanBarcode,
   Signature,
-  TriangleAlert,
   Users,
   type LucideIcon,
 } from "lucide-react";
@@ -36,7 +30,7 @@ import { getProductRegister, mobileLocales } from "./product-register";
  * Gruppenmodell der Funktionen (Phase 6, D-05, D-07, D-08, D-09, D-15, D-18).
  *
  * Einzige Quelle für Mega-Menü, Startseite und /funktionen: sechs Arbeitsablauf-Gruppen mit allen
- * Live-Funktionen – den 16 Detailseiten aus lib/funktionen.ts und den beworbenen Zusatzfunktionen
+ * Live-Funktionen – den 22 Detailseiten aus lib/funktionen.ts und den 8 beworbenen Zusatzfunktionen
  * (`liveExtras` mit `advertised: true`) aus dem Produktregister. Name, Icon, Plattformen und
  * Nutzensatz der Detailfunktionen werden nie doppelt gepflegt, sondern aus `input.funktionen`
  * übernommen; Plattformen der Zusatzfunktionen kommen immer aus dem Registereintrag.
@@ -159,16 +153,23 @@ const GRUPPEN: Record<GruppenId, GruppenKopf> = {
  * - Projekt-Chat → Team: Es geht um Kommunikation im Team und mit dem Projekt.
  * - Datenübernahme → Team: Sie gehört zur Einrichtung des Betriebs.
  * - Craft AI steht in keiner Gruppe, sondern nur als Link in der Fußleiste des Mega-Menüs (D-15).
+ *
+ * Phase 7 (D-07, 07-RESEARCH „Zuordnung“): Die sechs Zusatzfunktionen mit eigener Detailseite wandern
+ * in die Detailzuordnung – GAEB → Angebot, Terminplanung → Planung, Mängelmanagement → Baustelle,
+ * Mahnwesen → Rechnung, Bankabgleich → Buchhaltung, Datenübernahme → Team. Die 8 verbleibenden
+ * Zusatzfunktionen behalten ihre Gruppe (Angebot 3, Baustelle 3, Team 2) und verweisen auf die
+ * Detailseite, die sie beschreibt; „21 Sprachen“ verweist auf die Seite /app (D-21, kind „seite“).
+ * Rechnung, Planung und Buchhaltung haben danach keine Zusatzfunktion mehr (keine Liste, kein Platzhalter).
  */
 
 /** Detailfunktionen (Slugs aus lib/funktionen.ts) je Gruppe; Reihenfolge = Anzeigereihenfolge. */
 const DETAIL_ZUORDNUNG: Record<GruppenId, readonly string[]> = {
-  angebot: ["angebote", "aufmass", "kundenportal"],
-  planung: ["plantafel", "projektverwaltung", "arbeitsanweisungen"],
-  baustelle: ["zeiterfassung", "baudokumentation", "lager"],
-  rechnung: ["rechnungen", "e-rechnung"],
-  buchhaltung: ["buchhaltung", "eingangsrechnungen", "nachkalkulation", "dashboard"],
-  team: ["team"],
+  angebot: ["angebote", "aufmass", "kundenportal", "gaeb"],
+  planung: ["plantafel", "projektverwaltung", "arbeitsanweisungen", "terminplanung"],
+  baustelle: ["zeiterfassung", "baudokumentation", "lager", "maengelmanagement"],
+  rechnung: ["rechnungen", "e-rechnung", "mahnwesen"],
+  buchhaltung: ["buchhaltung", "eingangsrechnungen", "nachkalkulation", "dashboard", "bankabgleich"],
+  team: ["team", "datenuebernahme"],
 };
 
 const sprachenName = `${mobileLocales.length} Sprachen in der Mobile-App`;
@@ -179,20 +180,14 @@ const sprachenName = `${mobileLocales.length} Sprachen in der Mobile-App`;
  * „Vorhersagen“ ist nicht beworben und hat deshalb keine id.
  */
 export const REGISTER_IDS: Record<string, string> = {
-  "GAEB-Import/-Export und DATANORM-Import": "gaeb-datanorm",
   "Angebotsunterschrift online": "angebotsunterschrift",
   Besichtigung: "besichtigung",
   "Kunden in der App": "kunden-app",
-  "Terminplanung mit Bauphasen (in der Mobile-App: Arbeitsabschnitte)": "terminplanung",
-  Mängel: "maengel",
   "Abnahme und Teilabnahme": "abnahme",
   Bautagesbericht: "bautagesbericht",
   "Lager-Scan und Wareneingang": "lager-scan",
-  Mahnwesen: "mahnwesen",
-  "Bankabgleich und Zahlungseingänge": "bankabgleich",
   "Projekt-Chat und Nachrichten": "projekt-chat",
   [sprachenName]: "sprachen",
-  Datenübernahme: "datenuebernahme",
 };
 
 interface ZusatzDefinition {
@@ -202,95 +197,57 @@ interface ZusatzDefinition {
   icon: LucideIcon;
   /** Genau ein Satz ≤ 100 Zeichen, belegt durch Register- und Releasebelege (06-UI-SPEC) */
   benefit: string;
-  /** Linkziel nur auf bestehende Routen der Sitemap; ohne Ziel kein Link und kein Platzhalter (D-09) */
+  /**
+   * Linkziel nur auf bestehende Routen der Sitemap; ohne Ziel kein Link und kein Platzhalter (D-09).
+   * Seit Phase 7 hat jede Zusatzfunktion ein Ziel: die Detailseite, die sie beschreibt (label = Name der
+   * Zielfunktion), bzw. /app für die App-Sprachen (D-21).
+   */
   target?: ZusatzZiel;
 }
 
 /** Zusatzfunktionen je id; Reihenfolge innerhalb einer Gruppe = Reihenfolge dieser Tabelle. */
 const ZUSATZ: Record<string, ZusatzDefinition> = {
-  "gaeb-datanorm": {
-    gruppe: "angebot",
-    name: "GAEB und DATANORM",
-    icon: FileInput,
-    benefit: "Leistungsverzeichnisse per GAEB importieren und exportieren, Artikel per DATANORM einlesen.",
-    target: {
-      href: "/hilfe/gaeb-importieren",
-      kind: "hilfe",
-      label: "Ein GAEB-Leistungsverzeichnis in ein Angebot importieren",
-    },
-  },
   angebotsunterschrift: {
     gruppe: "angebot",
     name: "Angebotsunterschrift online",
     icon: Signature,
     benefit: "Kunden nehmen Ihr Angebot online an und unterschreiben es oder senden eine Ablehnung.",
+    target: { href: "/funktionen/angebote", kind: "funktion", label: "Angebote & Kalkulation" },
   },
   besichtigung: {
     gruppe: "angebot",
     name: "Besichtigung",
     icon: Camera,
     benefit: "Fotos, Videos und Sprachnotizen der Besichtigung gesammelt im Projekt ablegen.",
+    target: { href: "/funktionen/aufmass", kind: "funktion", label: "Aufmaß" },
   },
   "kunden-app": {
     gruppe: "angebot",
     name: "Kunden in der App",
     icon: Contact,
     benefit: "Kundendaten unterwegs in der Mobile-App nachschlagen und bearbeiten.",
-  },
-  terminplanung: {
-    gruppe: "planung",
-    name: "Terminplanung mit Bauphasen",
-    icon: CalendarRange,
-    benefit: "Bauphasen im Zeitplan anlegen und Abhängigkeiten zwischen den Phasen sehen.",
-    target: { href: "/hilfe/projekt-phasen-anlegen", kind: "hilfe", label: "Ein Projekt mit Phasen anlegen" },
-  },
-  maengel: {
-    gruppe: "baustelle",
-    name: "Mängel",
-    icon: TriangleAlert,
-    benefit: "Mängel mit Foto erfassen und über Status und Zuständigkeit bis zur Erledigung verfolgen.",
-    target: {
-      href: "/hilfe/mangel-erfassen-bearbeiten",
-      kind: "hilfe",
-      label: "Einen Mangel erfassen und bis zur Prüfung bearbeiten",
-    },
+    target: { href: "/funktionen/projektverwaltung", kind: "funktion", label: "Projektverwaltung" },
   },
   abnahme: {
     gruppe: "baustelle",
     name: "Abnahme und Teilabnahme",
     icon: ClipboardCheck,
     benefit: "Abnahmen und Teilabnahmen vor Ort protokollieren und unterschreiben lassen.",
-    target: {
-      href: "/hilfe/abnahme-dokumentieren",
-      kind: "hilfe",
-      label: "Eine Abnahme mit Prüfpunkten und Ergebnis dokumentieren",
-    },
+    target: { href: "/funktionen/baudokumentation", kind: "funktion", label: "Baudokumentation" },
   },
   bautagesbericht: {
     gruppe: "baustelle",
     name: "Bautagesbericht",
     icon: NotebookPen,
     benefit: "Leistungen, Personal und weitere Angaben des Tages in der Mobile-App als Bericht festhalten.",
-    target: { href: "/hilfe/bautagesbericht-erstellen", kind: "hilfe", label: "Einen Bautagesbericht erstellen" },
+    target: { href: "/funktionen/baudokumentation", kind: "funktion", label: "Baudokumentation" },
   },
   "lager-scan": {
     gruppe: "baustelle",
     name: "Lager-Scan und Wareneingang",
     icon: ScanBarcode,
     benefit: "Artikel per Barcode scannen und Wareneingänge am Lager buchen.",
-    target: { href: "/hilfe/wareneingang-buchen", kind: "hilfe", label: "Einen Wareneingang ins Lager buchen" },
-  },
-  mahnwesen: {
-    gruppe: "rechnung",
-    name: "Mahnwesen",
-    icon: BellRing,
-    benefit: "Zahlungserinnerungen mit Fristen, Stufen und Vorlagen einrichten, auf Wunsch automatisch.",
-  },
-  bankabgleich: {
-    gruppe: "buchhaltung",
-    name: "Bankabgleich & Zahlungen",
-    icon: Landmark,
-    benefit: "Bankdatei importieren und Umsätze mit Belegen und erfassten Zahlungen verbinden.",
+    target: { href: "/funktionen/lager", kind: "funktion", label: "Lager & Material" },
   },
   "projekt-chat": {
     gruppe: "team",
@@ -304,14 +261,12 @@ const ZUSATZ: Record<string, ZusatzDefinition> = {
     name: sprachenName,
     icon: Languages,
     benefit: `Mitarbeitende nutzen die Mobile-App in einer von ${mobileLocales.length} Sprachen.`,
-  },
-  datenuebernahme: {
-    gruppe: "team",
-    name: "Datenübernahme",
-    icon: Import,
-    benefit: "Bestehende Daten aus Dateien prüfen, zuordnen und kontrolliert in CraftOS übernehmen.",
+    target: { href: "/app", kind: "seite", label: "Mobile-App" },
   },
 };
+
+/** Schlüssel aller Zusatzfunktionen; der Paritätstest prüft sie gegen die beworbenen Registereinträge. */
+export const ZUSATZ_IDS: readonly string[] = Object.keys(ZUSATZ);
 
 /** Fußleiste des Mega-Menüs „Funktionen“ (Reihenfolge verbindlich, Craft AI nur hier – D-15). */
 export const menuFooterLinks: readonly { label: string; href: string }[] = [

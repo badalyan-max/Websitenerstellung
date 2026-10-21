@@ -126,6 +126,35 @@ const evidence: Record<string, string[]> = {
     "supabase/migrations/20260710190000_documents_e_invoice_pdf_writeonce.sql",
   ],
   arbeitsanweisungen: ["src/api/workInstructions.ts"],
+  // Phase 7 (D-07, Pattern 4): bisher liveExtras, jetzt eigene Detailfunktionen.
+  gaeb: [
+    "src/lib/gaeb/gaebParser.ts",
+    "src/components/DocumentEditor/GAEBImportDialog.tsx",
+    "src/components/DocumentEditor/GAEBExportDialog.tsx",
+    "src/components/documents/DatanormImportDialog.tsx",
+    "src/api/datanormCatalogs.ts",
+  ],
+  mahnwesen: [
+    "src/pages/settings/MahnwesenSettings.tsx",
+    "src/api/reminders.ts",
+    "src/components/invoices/ReminderHistory.tsx",
+    "supabase/functions/send-invoice-reminders/index.ts",
+  ],
+  terminplanung: [
+    "src/components/plantafel/ProjectGanttView.tsx",
+    "src/components/plantafel/GanttDependencyLayer.tsx",
+    "src/api/projectPhases.ts",
+  ],
+  bankabgleich: [
+    "src/pages/Bankumsaetze.tsx",
+    "src/pages/Zahlungseingaenge.tsx",
+    "src/components/eingangsrechnungen/ExpensePaymentReconciliationPanel.tsx",
+  ],
+  datenuebernahme: ["src/pages/Datenimport.tsx"],
+  maengelmanagement: [
+    "src/components/projects/bauakte/DefectsBoard.tsx",
+    "src/api/defects.ts",
+  ],
 };
 const mobileEvidence: Record<string, string[]> = {
   dashboard: ["src/features/dashboard/screens/DashboardScreen.tsx"],
@@ -173,6 +202,15 @@ const mobileEvidence: Record<string, string[]> = {
   arbeitsanweisungen: [
     "src/features/work-steps/components/WorkStepsSection.tsx",
   ],
+  // D-20: geplant wird im Web, die App zeigt die Arbeitsabschnitte im Projekt und am Einsatz.
+  terminplanung: [
+    "src/features/projects/components/ProjectPhaseSummary.tsx",
+    "src/features/assignments/components/AssignmentPhaseLine.tsx",
+  ],
+  maengelmanagement: [
+    "src/features/defects/screens/DefectsScreen.tsx",
+    "src/features/defects/screens/DefectDetailScreen.tsx",
+  ],
 };
 
 const web = (...paths: string[]): Evidence[] =>
@@ -180,44 +218,17 @@ const web = (...paths: string[]): Evidence[] =>
 const mobile = (...paths: string[]): Evidence[] =>
   paths.map((path) => ({ repository: "mobile", path }));
 
-/** Live am Release, aber (noch) ohne eigene Funktionsseite. */
+/**
+ * Live am Release, aber ohne eigene Funktionsseite. Die sechs Einträge GAEB/DATANORM, Mahnwesen,
+ * Terminplanung, Bankabgleich, Datenübernahme und Mängel sind seit Phase 7 Detailfunktionen
+ * (Belege oben in `evidence`/`mobileEvidence`, D-07).
+ */
 const liveExtras: {
   name: string;
   platforms: ProductPlatform[];
   evidence: Evidence[];
   advertised: boolean;
 }[] = [
-  {
-    name: "Mahnwesen",
-    platforms: ["web"],
-    evidence: web(
-      "src/pages/settings/MahnwesenSettings.tsx",
-      "src/api/reminders.ts",
-      "src/components/invoices/ReminderHistory.tsx",
-      "supabase/functions/send-invoice-reminders/index.ts",
-    ),
-    advertised: true,
-  },
-  {
-    name: "Bankabgleich und Zahlungseingänge",
-    platforms: ["web"],
-    evidence: web(
-      "src/pages/Bankumsaetze.tsx",
-      "src/pages/Zahlungseingaenge.tsx",
-      "src/components/eingangsrechnungen/ExpensePaymentReconciliationPanel.tsx",
-    ),
-    advertised: true,
-  },
-  {
-    name: "Terminplanung mit Bauphasen (in der Mobile-App: Arbeitsabschnitte)",
-    platforms: ["web"],
-    evidence: web(
-      "src/components/plantafel/ProjectGanttView.tsx",
-      "src/components/plantafel/GanttDependencyLayer.tsx",
-      "src/api/projectPhases.ts",
-    ),
-    advertised: true,
-  },
   {
     name: "Abnahme und Teilabnahme",
     platforms: ["web", "mobile"],
@@ -229,24 +240,6 @@ const liveExtras: {
         "src/features/acceptance/screens/AcceptanceProtocolDetailScreen.tsx",
       ),
     ],
-    advertised: true,
-  },
-  {
-    name: "GAEB-Import/-Export und DATANORM-Import",
-    platforms: ["web"],
-    evidence: web(
-      "src/lib/gaeb/gaebParser.ts",
-      "src/components/DocumentEditor/GAEBImportDialog.tsx",
-      "src/components/DocumentEditor/GAEBExportDialog.tsx",
-      "src/components/documents/DatanormImportDialog.tsx",
-      "src/api/datanormCatalogs.ts",
-    ),
-    advertised: true,
-  },
-  {
-    name: "Datenübernahme",
-    platforms: ["web"],
-    evidence: web("src/pages/Datenimport.tsx"),
     advertised: true,
   },
   {
@@ -284,18 +277,6 @@ const liveExtras: {
         "src/features/construction-reports/screens/DailyReportScreen.tsx",
       ),
       ...web("src/components/projects/bauakte/ConstructionReportsSection.tsx"),
-    ],
-    advertised: true,
-  },
-  {
-    name: "Mängel",
-    platforms: ["web", "mobile"],
-    evidence: [
-      ...web("src/components/projects/bauakte/DefectsBoard.tsx"),
-      ...mobile(
-        "src/features/defects/screens/DefectsScreen.tsx",
-        "src/features/defects/screens/DefectDetailScreen.tsx",
-      ),
     ],
     advertised: true,
   },

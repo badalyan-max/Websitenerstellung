@@ -15,6 +15,12 @@ import {
   ScanLine,
   FileCheck2,
   ClipboardList,
+  FileInput,
+  BellRing,
+  CalendarRange,
+  Landmark,
+  Import,
+  TriangleAlert,
   type LucideIcon,
 } from "lucide-react";
 
@@ -668,6 +674,252 @@ const definitions: Definition[] = [
     note: "Rechnungen aus dem Portal begleicht der Kunde per Überweisung auf das Konto, das auf dem Rechnungs-PDF steht.",
     help: "kunden-ansprechpartner-anlegen",
     related: ["angebote", "rechnungen", "projektverwaltung"],
+  },
+  // Phase 7 (D-07): sechs live und beworbene Funktionen, bisher Zusatzfunktionen im Produktregister.
+  // Texte wörtlich aus 07-UI-SPEC („Seitentexte“, „Abschnitt 4 – Kernpunkte“, „Ablaufschritte“);
+  // title = H1-Zielwert der Keyword-Map, note = Text der Grenze-Kachel.
+  {
+    slug: "gaeb",
+    name: "GAEB und DATANORM",
+    benefit:
+      "Leistungsverzeichnisse per GAEB importieren und exportieren, Artikel per DATANORM einlesen.",
+    icon: FileInput,
+    title: "GAEB-Software für Ausschreibung und Angebot",
+    intro:
+      "Leistungsverzeichnisse als GAEB X83 importieren, Angebote als X84 abgeben und Artikel per DATANORM einlesen.",
+    platforms: ["web"],
+    access:
+      "Admin- und Büro-Zugänge mit Zugriff auf Dokumente nutzen GAEB und DATANORM in der Web-App.",
+    points: [
+      [
+        "X83 mit Positionsvorschau",
+        "Leistungsverzeichnisse einlesen und Positionen in der Vorschau gezielt auswählen.",
+      ],
+      [
+        "X84 Angebotsabgabe",
+        "Der Export setzt eine vollständig importierte Original-X83 voraus.",
+      ],
+      [
+        "DATANORM-Kataloge",
+        "Kataloge einlesen und fehlerhafte Zeilen prüfen; DATANORM v5 ist nicht pauschal zugesagt.",
+      ],
+      [
+        "Universalimport erkennt GAEB",
+        "Der Universalimport erkennt GAEB-Dateien an ihrer Dateiendung.",
+      ],
+    ],
+    steps: [
+      "Leistungsverzeichnis als X83 einlesen und Positionen in der Vorschau wählen.",
+      "Die übernommenen Positionen wie gewohnt mit Preisen kalkulieren.",
+      "Nach Preisbestätigung die Angebotsabgabe als X84 erzeugen.",
+      "Lieferantenkatalog per DATANORM einlesen und fehlerhafte Zeilen prüfen.",
+    ],
+    note: "GAEB 90 und GAEB 2000 werden nicht unterstützt, Dateien sind bis 5 MiB in UTF-8 möglich.",
+    help: "gaeb-importieren",
+    related: ["angebote", "aufmass"],
+  },
+  {
+    slug: "mahnwesen",
+    name: "Mahnwesen",
+    benefit:
+      "Zahlungserinnerungen mit Fristen, Stufen und Vorlagen einrichten, auf Wunsch automatisch.",
+    icon: BellRing,
+    title: "Mahnwesen: offene Rechnungen konsequent nachfassen",
+    intro:
+      "Fristen, Gebühren und Vorlagen je Stufe festlegen und überfällige Rechnungen auf Wunsch automatisch mahnen.",
+    platforms: ["web"],
+    access:
+      "Admin- und Büro-Zugänge mit Zugriff auf die Einstellungen; Fristen, Gebühren und Stufen ändert nur der Inhaber des Betriebs.",
+    points: [
+      [
+        "Drei Stufen",
+        "Auf die Zahlungserinnerung folgen die erste und die zweite Mahnung.",
+      ],
+      [
+        "Fristen in Tagen",
+        "Je Stufe legen Sie fest, ab wie vielen Tagen überfällig gemahnt wird.",
+      ],
+      [
+        "Gebühr und Verzugszins",
+        "Mahngebühr und jährlichen Verzugszinssatz hinterlegen.",
+      ],
+      [
+        "Vorlagen mit Platzhaltern",
+        "Betreff und Text je Stufe mit elf Platzhaltern vorbereiten.",
+      ],
+      [
+        "Mahnverlauf je Rechnung",
+        "An jeder Rechnung sehen, welche Stufe wann verschickt wurde.",
+      ],
+    ],
+    steps: [
+      "Je Stufe festlegen, nach wie vielen Tagen überfällig gemahnt wird.",
+      "Betreff und Text je Stufe mit Platzhaltern vorbereiten.",
+      "Überfällige Rechnungen werden täglich eine Stufe nach der anderen gemahnt.",
+      "Im Mahnverlauf jeder Rechnung sehen, wann welche Stufe verschickt wurde.",
+    ],
+    note: "Abschlags- und Schlussrechnungen mahnt die Automatik nicht.",
+    help: "zahlungen-erfassen",
+    related: ["rechnungen", "bankabgleich"],
+  },
+  {
+    slug: "terminplanung",
+    name: "Terminplanung",
+    benefit:
+      "Arbeitsabschnitte im Projektplan terminieren und Abhängigkeiten zwischen ihnen sehen.",
+    icon: CalendarRange,
+    title: "Bauzeitenplan mit Arbeitsabschnitten und Abhängigkeiten",
+    intro:
+      "Arbeitsabschnitte im Projektplan terminieren, Abhängigkeiten setzen und den Stand in der Mobile-App zeigen.",
+    platforms: ["web", "mobile"],
+    access:
+      "Admin- und Büro-Zugänge planen in der Web-App; das Team sieht die Arbeitsabschnitte in der Mobile-App im Projekt und am Einsatz.",
+    points: [
+      [
+        "Arbeitsabschnitte mit Zeitraum",
+        "Abschnitte für jedes Projekt mit Zeitraum anlegen und benennen.",
+      ],
+      [
+        "Abhängigkeiten mit Versatz",
+        "Pfeile zeigen, welcher Abschnitt folgt, auch mit Versatz in Arbeitstagen.",
+      ],
+      [
+        "Projektplan in der Plantafel",
+        "Die Ansicht Projektplan zeigt alle Projekte über die Zeit.",
+      ],
+      [
+        "Warnung bei Überschreitung",
+        "Ragt ein Arbeitsabschnitt über den Projektzeitraum hinaus, weist CraftOS darauf hin.",
+      ],
+    ],
+    steps: [
+      "Im Projektreiter Terminplanung Arbeitsabschnitte mit Zeitraum anlegen.",
+      "Festlegen, welcher Abschnitt folgt, auch mit Versatz in Arbeitstagen.",
+      "In der Plantafel-Ansicht Projektplan alle Projekte über die Zeit sehen.",
+      "Das Team sieht die Arbeitsabschnitte im Projekt und am Einsatz.",
+    ],
+    note: "Die Mobile-App zeigt Arbeitsabschnitte mit Status an, geändert wird die Planung in der Web-App.",
+    help: "projekt-phasen-anlegen",
+    related: ["plantafel", "projektverwaltung"],
+  },
+  {
+    slug: "bankabgleich",
+    name: "Bankabgleich",
+    benefit:
+      "Bankdatei importieren und Umsätze mit Belegen und erfassten Zahlungen verbinden.",
+    icon: Landmark,
+    title: "Zahlungsabgleich: Bankumsätze nachvollziehbar zuordnen",
+    intro:
+      "Bankdatei als CSV, camt.053 oder PDF importieren und Umsätze mit Belegen und erfassten Zahlungen verbinden.",
+    platforms: ["web"],
+    access:
+      "Finanzbereich: Admin; Büro-Zugänge nur mit Finanzfreigabe (Rolle Büro-Leitung).",
+    points: [
+      [
+        "Bankdatei importieren",
+        "CSV oder camt.053 bis 2 MiB und PDF-Kontoauszüge bis 10 MiB einlesen.",
+      ],
+      [
+        "Zuordnungsstatus",
+        "Jeder Umsatz zeigt, ob er zugeordnet ist oder noch offen.",
+      ],
+      [
+        "Dubletten-Hinweis",
+        "Mögliche Dubletten werden zur Prüfung markiert.",
+      ],
+      [
+        "Zahlungen an Rechnungen",
+        "Zahlungseingänge erfassen Sie direkt an der Rechnung und verbinden sie mit dem Umsatz.",
+      ],
+    ],
+    steps: [
+      "Kontoauszug als CSV, camt.053 oder PDF hochladen.",
+      "Mögliche Dubletten werden zur Prüfung markiert.",
+      "Jeden Umsatz mit Belegen und erfassten Zahlungen verbinden.",
+      "Auf Wunsch Zuordnungsvorschläge der KI gegen Credits anfordern.",
+    ],
+    note: "KI-Vorschläge kommen nur auf Ihre Anforderung und kosten Credits, die Zuordnung entscheiden Sie selbst.",
+    help: "zahlungen-erfassen",
+    related: ["buchhaltung", "rechnungen", "mahnwesen"],
+  },
+  {
+    slug: "datenuebernahme",
+    name: "Datenübernahme",
+    benefit:
+      "Bestehende Daten aus Dateien prüfen, zuordnen und kontrolliert in CraftOS übernehmen.",
+    icon: Import,
+    title: "Datenimport beim Umstieg auf CraftOS",
+    intro:
+      "Kunden, Projekte und Stammdaten aus Dateien prüfen, zuordnen und kontrolliert in CraftOS übernehmen.",
+    platforms: ["web"],
+    access: "Datenimport: Admin oder Büro-Leitung.",
+    points: [
+      [
+        "Anleitungen für 10 Anbieter",
+        "Exportanleitungen etwa für Craftnote, plancraft, HERO und TAIFUN erleichtern den Umstieg.",
+      ],
+      [
+        "Gängige Dateiformate",
+        "CSV, TSV, TXT und XLSX lassen sich einlesen.",
+      ],
+      [
+        "Kostenlose Import-KI",
+        "Für die Import-KI hinterlegen Sie keine Zahlungsdaten.",
+      ],
+    ],
+    steps: [
+      "Daten aus der bisherigen Software nach Anleitung exportieren.",
+      "CSV- oder Excel-Datei im Assistenten hochladen.",
+      "Die kostenlose Import-KI schlägt Zuordnungen vor, Sie prüfen sie.",
+      "Kunden, Projekte oder Stammdaten nach Ihrer Prüfung übernehmen.",
+    ],
+    note: "Je Datei gelten höchstens 10 MiB und 25.000 Zeilen, den Import starten Admin oder Büro-Leitung.",
+    help: "artikel-stammdaten-anlegen",
+    related: ["team", "buchhaltung"],
+  },
+  {
+    slug: "maengelmanagement",
+    name: "Mängelmanagement",
+    benefit:
+      "Mängel mit Foto erfassen und über Status und Zuständigkeit bis zur Erledigung verfolgen.",
+    icon: TriangleAlert,
+    title: "Mängelmanagement von der Erfassung bis zur Prüfung",
+    intro:
+      "Mängel mit Foto, Ort und Frist erfassen, Zuständige festlegen und den Status bis zur Prüfung verfolgen.",
+    platforms: ["web", "mobile"],
+    access:
+      "Admin- und Büro-Zugänge bearbeiten Mängel in der Bauakte; in der Mobile-App arbeiten Mitarbeitende mit Projektzugriff.",
+    points: [
+      [
+        "Ort, Priorität und Frist",
+        "Jeder Mangel erhält Ort, Priorität von niedrig bis kritisch und ein Datum zum Erledigen.",
+      ],
+      [
+        "Zuständige festlegen",
+        "Mitarbeiter oder Nachunternehmer als zuständig eintragen.",
+      ],
+      [
+        "Vorher und Nachher",
+        "Fotos vor und nach der Behebung am Mangel ablegen.",
+      ],
+      [
+        "Erinnerung bei Fälligkeit",
+        "Die App erinnert mit „Mangel fällig“ und listet überfällige Mängel gesondert.",
+      ],
+      [
+        "Offene Mängel in der Abnahme",
+        "Das Abnahmeprotokoll zeigt die Zahl offener Mängel.",
+      ],
+    ],
+    steps: [
+      "Mangel mit Titel, Ort und Vorher-Foto in der App oder im Web anlegen.",
+      "Priorität, Frist und zuständige Person oder Nachunternehmer festlegen.",
+      "Nachher-Foto ergänzen und den Status auf Behoben setzen.",
+      "Behobene Mängel prüfen; offene Mängel zeigt das Abnahmeprotokoll.",
+    ],
+    note: "Foto-Uploads benötigen eine Verbindung zum Internet.",
+    help: "mangel-erfassen-bearbeiten",
+    related: ["baudokumentation", "projektverwaltung"],
   },
 ];
 export const funktionen: Funktion[] = definitions.map((d) => ({

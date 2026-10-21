@@ -26,7 +26,10 @@ describe("publication basis", () => {
   });
   it("links every advertised platform to source evidence", () => {
     const register = getProductRegister();
-    expect(register.features).toHaveLength(16);
+    expect(register.features).toHaveLength(22);
+    // Jede Detailfunktion hat mindestens einen Release-Beleg (T-07-04).
+    for (const feature of register.features)
+      expect(feature.evidence.length, feature.slug).toBeGreaterThan(0);
     for (const feature of register.features) {
       for (const platform of feature.platforms)
         expect(
@@ -41,9 +44,9 @@ describe("publication basis", () => {
       true,
     );
   });
-  it("führt Lager und Arbeitsanweisungen mit Mobile-Beleg", () => {
+  it("führt Lager, Arbeitsanweisungen, Terminplanung und Mängelmanagement mit Mobile-Beleg", () => {
     const register = getProductRegister();
-    for (const slug of ["lager", "arbeitsanweisungen"]) {
+    for (const slug of ["lager", "arbeitsanweisungen", "terminplanung", "maengelmanagement"]) {
       const feature = register.features.find((f) => f.slug === slug);
       expect(feature?.platforms, slug).toContain("mobile");
       expect(
@@ -51,6 +54,40 @@ describe("publication basis", () => {
         slug,
       ).toBe(true);
     }
+  });
+  it("die sechs neuen Detailfunktionen tragen ihre Belege als Funktion, nicht mehr in liveExtras (D-07, Pattern 4)", () => {
+    const register = getProductRegister();
+    const slugs = register.features.map((f) => f.slug);
+    for (const slug of ["gaeb", "mahnwesen", "terminplanung", "bankabgleich", "datenuebernahme", "maengelmanagement"])
+      expect(slugs, slug).toContain(slug);
+    const namen = register.liveExtras.map((x) => x.name);
+    for (const alt of [
+      "GAEB-Import/-Export und DATANORM-Import",
+      "Mahnwesen",
+      "Terminplanung mit Bauphasen (in der Mobile-App: Arbeitsabschnitte)",
+      "Bankabgleich und Zahlungseingänge",
+      "Datenübernahme",
+      "Mängel",
+    ])
+      expect(namen, alt).not.toContain(alt);
+    const pfade = (slug: string, repo: "web" | "mobile") =>
+      register.features
+        .find((f) => f.slug === slug)
+        ?.evidence.filter((e) => e.repository === repo)
+        .map((e) => e.path) ?? [];
+    expect(pfade("terminplanung", "mobile")).toEqual([
+      "src/features/projects/components/ProjectPhaseSummary.tsx",
+      "src/features/assignments/components/AssignmentPhaseLine.tsx",
+    ]);
+    expect(pfade("maengelmanagement", "mobile")).toEqual([
+      "src/features/defects/screens/DefectsScreen.tsx",
+      "src/features/defects/screens/DefectDetailScreen.tsx",
+    ]);
+    expect(pfade("gaeb", "web")).toContain("src/components/DocumentEditor/GAEBImportDialog.tsx");
+    expect(pfade("mahnwesen", "web")).toContain("src/pages/settings/MahnwesenSettings.tsx");
+    expect(pfade("bankabgleich", "web")).toContain("src/pages/Bankumsaetze.tsx");
+    expect(pfade("datenuebernahme", "web")).toContain("src/pages/Datenimport.tsx");
+    expect(register.liveExtras.filter((x) => x.advertised)).toHaveLength(8);
   });
   it("führt 21 App-Sprachen, Zusatzfunktionen und nicht-live Funktionen getrennt", () => {
     const register = getProductRegister();

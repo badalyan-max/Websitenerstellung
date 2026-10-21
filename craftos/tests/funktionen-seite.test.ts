@@ -1,7 +1,7 @@
 /**
  * Funktionsübersicht `/funktionen` (Phase 6, Plan 06-05; FEAT-01, D-07, D-08, D-09, D-10, D-11, D-18):
  * Seitenkopf mit Keyword-H1 und Sprungnavigation, sechs Gruppenabschnitte aus getFunktionsgruppen(),
- * 16 Detailkarten + 14 Zusatzfunktionen, CtaBand sowie BreadcrumbList- und ItemList-JSON-LD.
+ * 22 Detailkarten + 8 Zusatzfunktionen (Phase 7, D-07), CtaBand sowie BreadcrumbList- und ItemList-JSON-LD.
  */
 import { createElement } from "react";
 import { renderToString } from "react-dom/server";
@@ -95,12 +95,12 @@ describe("Funktionsübersicht /funktionen", () => {
     }
   });
 
-  it("30 Funktionen: 16 Detailkarten mit Visual und 14 Zusatzfunktionen je Gruppe in Modellreihenfolge", () => {
+  it("30 Funktionen: 22 Detailkarten mit Visual und 8 Zusatzfunktionen je Gruppe in Modellreihenfolge", () => {
     const erwartet = gruppen.flatMap((g) => [...g.details.map((d) => d.slug), ...g.extras.map((x) => x.id)]);
     expect(erwartet).toHaveLength(30);
     expect(all(/data-funktion="([^"]+)"/g)).toEqual(erwartet);
     const details = gruppen.flatMap((g) => g.details);
-    expect(details).toHaveLength(16);
+    expect(details).toHaveLength(22);
     expect(all(/>(Mehr zu [^<]+)</g).map(decode)).toEqual(details.map((d) => `Mehr zu ${d.name}`));
     for (const d of details) {
       const li = eintrag(d.slug);
@@ -110,14 +110,15 @@ describe("Funktionsübersicht /funktionen", () => {
       expect(decode(li)).toContain(d.benefit);
     }
     expect(html.match(/>Weitere Funktionen<\/h3>/g)).toHaveLength(gruppen.filter((g) => g.extras.length > 0).length);
-    expect(gruppen.filter((g) => g.extras.length > 0)).toHaveLength(6);
+    expect(gruppen.filter((g) => g.extras.length > 0).map((g) => g.id)).toEqual(["angebot", "baustelle", "team"]);
   });
 
-  it("Zusatzfunktionen verlinken nur mit Ziel (7 mit Link, 7 ohne)", () => {
+  it("Zusatzfunktionen verlinken nur mit Ziel (8 mit Link, 0 ohne)", () => {
     const extras = gruppen.flatMap((g) => g.extras);
-    expect(extras).toHaveLength(14);
+    expect(extras).toHaveLength(8);
     const mitZiel = extras.filter((x) => x.target);
-    expect(mitZiel).toHaveLength(7);
+    expect(mitZiel).toHaveLength(8);
+    expect(extras.filter((x) => !x.target)).toHaveLength(0);
     for (const x of extras) {
       const li = eintrag(x.id);
       if (x.target) {
@@ -129,7 +130,7 @@ describe("Funktionsübersicht /funktionen", () => {
     }
   });
 
-  it("JSON-LD: BreadcrumbList Start → Funktionen und ItemList mit 16 Detailseiten", () => {
+  it("JSON-LD: BreadcrumbList Start → Funktionen und ItemList mit 22 Detailseiten", () => {
     const daten = jsonLd();
     const crumbs = daten.find((d) => d["@type"] === "BreadcrumbList") as {
       itemListElement: { position: number; name: string; item: string }[];
@@ -145,7 +146,7 @@ describe("Funktionsübersicht /funktionen", () => {
     };
     expect(list?.name).toBe("Funktionen von CraftOS");
     const details = gruppen.flatMap((g) => g.details);
-    expect(list.itemListElement).toHaveLength(16);
+    expect(list.itemListElement).toHaveLength(22);
     list.itemListElement.forEach((item, n) => {
       expect(item.position).toBe(n + 1);
       expect(item.name).toBe(details[n].name);

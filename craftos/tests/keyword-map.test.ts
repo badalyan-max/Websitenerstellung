@@ -183,6 +183,40 @@ describe("Keyword-Map", () => {
     expect(arbeitsabschnitte.length, "Rohdaten zu arbeitsabschnitte bau").toBeGreaterThan(0);
   });
 
+  it("Phase 7 (D-08, D-22): neue Detailseiten bestehend und in der Sitemap, bereinigte Zielwerte laut 07-UI-SPEC", async () => {
+    const sitemapPaths = new Set((await sitemap()).map((e) => toPath(e.url)));
+    for (const slug of ["gaeb", "mahnwesen", "terminplanung", "bankabgleich", "datenuebernahme", "maengelmanagement"]) {
+      const e = keywordMap.find((k) => k.path === `/funktionen/${slug}`);
+      expect(e?.status, slug).toBe("bestehend");
+      expect(e && "phase" in e, `${slug}: kein Feld phase bei bestehenden Seiten`).toBe(false);
+      expect(sitemapPaths.has(`/funktionen/${slug}`), slug).toBe(true);
+    }
+    const h1: Record<string, string> = {
+      "/funktionen/team": "Mitarbeiter-App und Rechte: jeder Zugang passt zur Aufgabe",
+      "/funktionen/terminplanung": "Bauzeitenplan mit Arbeitsabschnitten und Abhängigkeiten",
+      "/funktionen/bankabgleich": "Zahlungsabgleich: Bankumsätze nachvollziehbar zuordnen",
+      "/funktionen/datenuebernahme": "Datenimport beim Umstieg auf CraftOS",
+      "/funktionen/buchhaltung": "Buchhaltung im Handwerk: vorbereitet für die Steuerberatung",
+      "/funktionen/baudokumentation": "Bautagebuch-App: Berichte, Fotos und Abnahmen im Projekt",
+    };
+    for (const [p, wert] of Object.entries(h1)) {
+      const e = keywordMap.find((k) => k.path === p);
+      expect(e?.target?.h1, p).toBe(wert);
+      expect(Array.from(wert).length, `${p}: H1 ≤ 60`).toBeLessThanOrEqual(60);
+      // Kopfwort-Regel (07-UI-SPEC SEO-Vertrag): H1 enthält das erste Wort des Hauptkeywords.
+      expect(norm(wert), `${p}: Kopfwort`).toContain(norm(e!.primary!.keyword.split(" ")[0]));
+    }
+    const maengel = keywordMap.find((k) => k.path === "/funktionen/maengelmanagement");
+    expect(maengel?.target?.description).toBe(
+      "Mängelmanagement in CraftOS: Mängel mit Foto und Ort erfassen, Fristen und Zuständige festlegen und die Behebung bis zur Prüfung nachverfolgen.",
+    );
+    // Überclaims (Pitfall 8, T-07-06): „automatisch“ und „lückenlos“ nicht in den Zielwerten der Funktionsseiten.
+    for (const k of keywordMap.filter((x) => x.path.startsWith("/funktionen/"))) {
+      const werte = [k.target?.title, k.target?.h1, k.target?.description].join(" ");
+      expect(werte, k.path).not.toMatch(/lückenlos|automatisch/i);
+    }
+  });
+
   it("Phase-6-Seiten folgen den Zielwerten (D-12)", async () => {
     for (const seite of PHASE6_SEITEN) {
       const eintrag = keywordMap.find((k) => k.path === seite.path);

@@ -82,8 +82,10 @@ describe("navigation: Zielprüfung", () => {
     const routes = await sitemapPfade();
     const extras = gruppen.flatMap((g) => g.extras.flatMap((x) => (x.target ? [x.target.href] : [])));
     // 06-REVIEW WR-04: Ziele werden auf /funktionen als Link gerendert; ein umbenannter Hilfeartikel muss hier auffallen.
-    expect(extras.length).toBeGreaterThan(0);
-    expect(extras.filter((href) => href.startsWith("/hilfe/")).length).toBeGreaterThanOrEqual(6);
+    // Phase 7 (07-UI-SPEC Zusatzliste, D-21): 7 Ziele auf Funktions-Detailseiten, „21 Sprachen“ auf /app.
+    expect(extras).toHaveLength(8);
+    expect(extras.filter((href) => href.startsWith("/funktionen/")).length).toBe(7);
+    expect(extras.filter((href) => href === "/app")).toHaveLength(1);
     for (const href of extras) expect(routes.has(href), href).toBe(true);
     expect(checkNavigationTargets(extras, routes)).toEqual([]);
   });
@@ -113,8 +115,8 @@ describe("navigation: MegaMenu (Server-Rendering)", () => {
     for (const g of gruppen) expect(alle.find((l) => l.href === g.anchorHref)?.text).toBe(g.label);
   });
 
-  it("enthält jede der 16 Detailfunktionen genau einmal mit dem Funktionsnamen als Linktext", () => {
-    expect(funktionen).toHaveLength(16);
+  it("enthält jede der 22 Detailfunktionen genau einmal mit dem Funktionsnamen als Linktext", () => {
+    expect(funktionen).toHaveLength(22);
     for (const f of funktionen) {
       const treffer = alle.filter((l) => l.href === `/funktionen/${f.slug}`);
       expect(treffer, f.slug).toHaveLength(1);

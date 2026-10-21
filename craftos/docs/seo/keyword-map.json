@@ -681,7 +681,7 @@
     ],
     "target": {
       "title": "Buchhaltung Handwerk: vorbereitet für DATEV | CraftOS",
-      "h1": "Buchhaltung im Handwerk: sauber vorbereitet für die Steuerberatung",
+      "h1": "Buchhaltung im Handwerk: vorbereitet für die Steuerberatung",
       "description": "Buchhaltung im Handwerk vorbereiten: Belege prüfen, Buchungen nachvollziehen und Daten mit Belegbezug für DATEV und Ihre Steuerberatung exportieren."
     }
   },
@@ -876,7 +876,7 @@
     "competitors": [],
     "target": {
       "title": "Bautagebuch-App für die Baudokumentation | CraftOS",
-      "h1": "Bautagebuch-App: was auf der Baustelle passiert, bleibt im Projekt",
+      "h1": "Bautagebuch-App: Berichte, Fotos und Abnahmen im Projekt",
       "description": "Bautagebuch-App für Handwerker: Arbeiten, Fotos und Mängel beim Projekt festhalten, Berichte mobil unterschreiben lassen und im Büro wiederfinden."
     }
   },
@@ -988,7 +988,7 @@
     ],
     "target": {
       "title": "Mitarbeiter-App Handwerk: Team und Rechte | CraftOS",
-      "h1": "Team und Rechte: jeder Zugang passt zur Aufgabe",
+      "h1": "Mitarbeiter-App und Rechte: jeder Zugang passt zur Aufgabe",
       "description": "Mitarbeiter-App im Handwerk: Mitarbeitende einladen, Zugänge zuweisen und Rechte passend zur Arbeit vergeben – Büro und Baustelle auf einer Grundlage."
     }
   },
@@ -3984,8 +3984,7 @@
   },
   {
     "path": "/funktionen/gaeb",
-    "status": "geplant",
-    "phase": 7,
+    "status": "bestehend",
     "primary": {
       "keyword": "gaeb software",
       "volume": 140,
@@ -4019,8 +4018,7 @@
   },
   {
     "path": "/funktionen/mahnwesen",
-    "status": "geplant",
-    "phase": 7,
+    "status": "bestehend",
     "primary": {
       "keyword": "mahnwesen software",
       "volume": 40,
@@ -4053,8 +4051,7 @@
   },
   {
     "path": "/funktionen/terminplanung",
-    "status": "geplant",
-    "phase": 7,
+    "status": "bestehend",
     "primary": {
       "keyword": "bauzeitenplan software",
       "volume": 140,
@@ -4087,14 +4084,13 @@
     ],
     "target": {
       "title": "Bauzeitenplan-Software mit Bauphasen | CraftOS",
-      "h1": "Terminplanung mit Bauphasen und Abhängigkeiten",
+      "h1": "Bauzeitenplan mit Arbeitsabschnitten und Abhängigkeiten",
       "description": "Bauzeitenplan-Software in CraftOS: Bauphasen und Arbeitsabschnitte im Gantt-Plan terminieren, Abhängigkeiten setzen und mit der Plantafel verbinden."
     }
   },
   {
     "path": "/funktionen/bankabgleich",
-    "status": "geplant",
-    "phase": 7,
+    "status": "bestehend",
     "primary": {
       "keyword": "zahlungsabgleich",
       "volume": 20,
@@ -4116,14 +4112,13 @@
     "competitors": [],
     "target": {
       "title": "Zahlungsabgleich mit Bankumsätzen | CraftOS",
-      "h1": "Bankabgleich: Zahlungen automatisch zuordnen",
+      "h1": "Zahlungsabgleich: Bankumsätze nachvollziehbar zuordnen",
       "description": "Zahlungsabgleich in CraftOS: Bankumsätze einlesen, Zahlungseingänge Rechnungen zuordnen und Ausgaben mit Eingangsrechnungen abgleichen."
     }
   },
   {
     "path": "/funktionen/datenuebernahme",
-    "status": "geplant",
-    "phase": 7,
+    "status": "bestehend",
     "primary": {
       "keyword": "datenimport",
       "volume": 90,
@@ -4151,14 +4146,13 @@
     ],
     "target": {
       "title": "Datenimport beim Umstieg auf CraftOS | CraftOS",
-      "h1": "Datenübernahme beim Umstieg auf CraftOS",
+      "h1": "Datenimport beim Umstieg auf CraftOS",
       "description": "Datenimport beim Wechsel zu CraftOS: vorhandene Stammdaten aus Ihrer bisherigen Software übernehmen und vor dem Start des Echtbetriebs in Ruhe prüfen."
     }
   },
   {
     "path": "/funktionen/maengelmanagement",
-    "status": "geplant",
-    "phase": 7,
+    "status": "bestehend",
     "primary": {
       "keyword": "mängelmanagement",
       "volume": 140,
@@ -4181,7 +4175,7 @@
     "target": {
       "title": "Mängelmanagement für Handwerk und Bau | CraftOS",
       "h1": "Mängelmanagement von der Erfassung bis zur Prüfung",
-      "description": "Mängelmanagement in CraftOS: Mängel mit Foto und Ort erfassen, Fristen und Zuständige festlegen und die Behebung bis zur Abnahme lückenlos nachverfolgen."
+      "description": "Mängelmanagement in CraftOS: Mängel mit Foto und Ort erfassen, Fristen und Zuständige festlegen und die Behebung bis zur Prüfung nachverfolgen."
     }
   },
   {

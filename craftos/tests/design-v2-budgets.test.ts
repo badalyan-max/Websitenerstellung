@@ -142,7 +142,10 @@ describe("Textbudgets der Musterseite", () => {
   });
 });
 
-/** Nutzensätze der 16 Detailfunktionen, wörtlich aus 06-UI-SPEC „FeatureCard-Raster“. */
+/**
+ * Nutzensätze der 22 Detailfunktionen, wörtlich aus 06-UI-SPEC „FeatureCard-Raster“ (16) und
+ * 07-UI-SPEC „Namen und Nutzensätze der neuen Funktionen“ (6).
+ */
 const ERWARTETE_NUTZENSAETZE: Record<string, string> = {
   angebote: "Positionen mit Lohn, Material und Zuschlägen kalkulieren und als PDF mit Briefpapier ausgeben.",
   aufmass: "Räume, Flächen und Abzüge vor Ort erfassen und die Mengen ins Angebot übernehmen.",
@@ -160,6 +163,12 @@ const ERWARTETE_NUTZENSAETZE: Record<string, string> = {
   nachkalkulation: "Geplante und tatsächliche Kosten je Projekt vergleichen und Abweichungen erkennen.",
   dashboard: "Projekte, offene Beträge, Angebote und Aufgaben auf einen Blick sehen.",
   team: "Mitarbeitende einladen und Zugänge und Rechte passend zur Aufgabe vergeben.",
+  gaeb: "Leistungsverzeichnisse per GAEB importieren und exportieren, Artikel per DATANORM einlesen.",
+  mahnwesen: "Zahlungserinnerungen mit Fristen, Stufen und Vorlagen einrichten, auf Wunsch automatisch.",
+  terminplanung: "Arbeitsabschnitte im Projektplan terminieren und Abhängigkeiten zwischen ihnen sehen.",
+  bankabgleich: "Bankdatei importieren und Umsätze mit Belegen und erfassten Zahlungen verbinden.",
+  datenuebernahme: "Bestehende Daten aus Dateien prüfen, zuordnen und kontrolliert in CraftOS übernehmen.",
+  maengelmanagement: "Mängel mit Foto erfassen und über Status und Zuständigkeit bis zur Erledigung verfolgen.",
 };
 
 describe("Phase-6-Budgets und Satzprüfung", () => {
@@ -203,8 +212,8 @@ describe("Phase-6-Budgets und Satzprüfung", () => {
     expect(() => assertOneSentence("FeatureList", "Mahnwesen", "Genau ein Satz.")).not.toThrow();
   });
 
-  it("jede der 16 Detailfunktionen hat genau einen belegten Nutzensatz mit höchstens 100 Zeichen", () => {
-    expect(funktionen).toHaveLength(16);
+  it("jede der 22 Detailfunktionen hat genau einen belegten Nutzensatz mit höchstens 100 Zeichen", () => {
+    expect(funktionen).toHaveLength(22);
     expect(Object.keys(ERWARTETE_NUTZENSAETZE).sort()).toEqual(funktionen.map((f) => f.slug).sort());
     const problems: string[] = [];
     for (const f of funktionen) {
