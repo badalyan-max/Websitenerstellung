@@ -303,6 +303,48 @@ const ERWARTET: Record<string, Erwartung> = {
     snippet: null,
     zusatz: [],
   },
+  // Gruppe Planung (07-05 Task 2)
+  plantafel: {
+    pflichtfrage: "Zeigt die Karte, wo meine Mitarbeitenden gerade sind?",
+    verwandt: ["terminplanung", "projektverwaltung", "zeiterfassung"],
+    anordnung: "md·sm·sm·md·sm·sm",
+    webRollen: BUERO,
+    mobileRollen: MOBIL,
+    sekundaer: { label: HILFE, href: "/hilfe/plantafel-einsatz-planen" },
+    snippet: "planung",
+    zusatz: [],
+  },
+  projektverwaltung: {
+    pflichtfrage: "Sehen Mitarbeitende in der App alle Projekte?",
+    verwandt: ["terminplanung", "arbeitsanweisungen", "baudokumentation"],
+    anordnung: "md·sm·sm·wide·wide",
+    webRollen: BUERO,
+    mobileRollen: MOBIL,
+    sekundaer: { label: HILFE, href: "/hilfe/projektdateien-ordner" },
+    snippet: null,
+    zusatz: ["kunden-app", "projekt-chat"],
+  },
+  arbeitsanweisungen: {
+    pflichtfrage: "Sieht das Team in der Arbeitsanweisung die Verkaufspreise?",
+    verwandt: ["projektverwaltung", "angebote", "lager"],
+    anordnung: "md·sm·sm·wide·wide",
+    webRollen: BUERO,
+    mobileRollen: MOBIL,
+    sekundaer: ALLE,
+    snippet: null,
+    zusatz: [],
+  },
+  terminplanung: {
+    pflichtfrage: "Kann mein Team den Bauzeitenplan in der App sehen?",
+    verwandt: ["plantafel", "projektverwaltung"],
+    anordnung: "md·sm·sm·wide·wide",
+    webRollen: BUERO,
+    mobileRollen: MOBIL,
+    sekundaer: { label: HILFE, href: "/hilfe/projekt-phasen-anlegen" },
+    snippet: null,
+    zusatz: [],
+    panelSatz: { web: "Geplant wird im Web", mobile: "Arbeitsabschnitte" },
+  },
 };
 
 /** Normierung wie tests/keyword-map.test.ts (Kopfwort-Regel). */
