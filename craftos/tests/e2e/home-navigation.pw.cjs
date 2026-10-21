@@ -520,8 +520,10 @@ test('Funktionsübersicht: Sprunglinks, reduzierte Bewegung, Kurzform-Belege und
   }
 
   const figures = await page.locator('figure[data-figure]').evaluateAll((els) => els.map((el) => el.textContent))
-  expect(figures).toHaveLength(5)
+  // 07-03 (D-05): alle 22 Detailkarten zeigen eine Szene im Rahmen, keine reine Icon-Karte mehr
+  expect(figures).toHaveLength(22)
   for (const text of figures) expect(text).toContain(FRAME_LABEL)
+  await expect(page.locator('[data-visual="icon"]')).toHaveCount(0)
   const evidence = await page.locator('[data-evidence]').evaluateAll((els) => els.map((el) => el.getAttribute('data-evidence')))
   expect(evidence.length).toBeGreaterThan(0)
   for (const e of evidence) expect(e).toMatch(/^(web|app):[^\s/]+$/)

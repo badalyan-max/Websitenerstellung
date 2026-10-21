@@ -106,8 +106,26 @@ describe("Funktionsübersicht /funktionen", () => {
       const li = eintrag(d.slug);
       expect(li, `${d.slug}: Link`).toContain(`href="${d.href}"`);
       const visual = li.match(/data-visual="(scene|icon)"/)?.[1];
-      expect(visual, `${d.slug}: Visual`).toBe(cardScenes[d.slug] ? "scene" : "icon");
+      expect(visual, `${d.slug}: Visual`).toBe("scene");
       expect(decode(li)).toContain(d.benefit);
+    }
+  });
+
+  it("jede der 22 Detailkarten zeigt ihre Karten-Szene im Rahmen mit Kennzeichnung, keine ein reines Icon (D-05)", () => {
+    const details = gruppen.flatMap((g) => g.details);
+    expect(details).toHaveLength(22);
+    expect(html).not.toContain('data-visual="icon"');
+    for (const d of details) {
+      const li = eintrag(d.slug);
+      const card = cardScenes[d.slug];
+      expect(card, `${d.slug}: cardScenes`).toBeDefined();
+      const figures = [...li.matchAll(/<figure\b[^>]*>[\s\S]*?<\/figure>/g)].map((m) => m[0]);
+      expect(figures, `${d.slug}: genau ein Rahmen`).toHaveLength(1);
+      const figure = figures[0];
+      expect(figure, `${d.slug}: Kurzform`).toContain(`data-evidence="${card!.scene.screen}"`);
+      expect(figure, `${d.slug}: Rahmenart`).toContain(`data-figure="${card!.kind}"`);
+      expect(figure.match(/data-evidence="([^"]+)"/)?.[1], d.slug).toMatch(/^(web|app):[^\s/]+$/);
+      expect(text(figure), `${d.slug}: Kennzeichnung`).toContain("Vereinfachte Darstellung mit Beispieldaten");
     }
     expect(html.match(/>Weitere Funktionen<\/h3>/g)).toHaveLength(gruppen.filter((g) => g.extras.length > 0).length);
     expect(gruppen.filter((g) => g.extras.length > 0).map((g) => g.id)).toEqual(["angebot", "baustelle", "team"]);

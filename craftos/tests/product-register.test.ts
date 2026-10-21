@@ -157,6 +157,7 @@ describe.skipIf(!fs.existsSync(WEB) || !fs.existsSync(MOBILE))(
           missing.push(item.repository + ":" + item.path);
       expect(missing).toEqual([]);
       expect(all.length).toBeGreaterThan(80);
-    });
+      // Ein git-Aufruf je Beleg (über 130); unter Volllast der Suite reichen 5 s nicht (07-03).
+    }, 30_000);
   },
 );
