@@ -21,6 +21,8 @@ import {
 } from "@/components/v2/mini/MiniUi";
 import { MINI_BUDGET } from "@/components/v2/mini/limits";
 import { PhoneFrame as BestandPhoneFrame } from "@/components/feature-snippet/DeviceFrame";
+import StyleguidePage from "@/app/styleguide/page";
+import { allScenes, cardScenes } from "@/lib/scenes";
 
 /** Kinder als createElement-Argumente: typisierte Hüllen (react/no-children-prop, siehe 05-04). */
 const Phone = PhoneFrame as FunctionComponent<Omit<PhoneFrameProps, "children">>;
@@ -206,14 +208,14 @@ function plantafel() {
 
 const phoneProps = {
   title: "Zeiterfassung",
-  evidence: "mobile:src/features/time-tracking/screens/TimeTrackingScreen.tsx",
+  evidence: "app:Zeiterfassung",
   description: "Zeiterfassung in der Mobile-App mit zwei gebuchten Einsätzen des Tages.",
   activeTab: "Zeiten" as const,
 };
 
 const browserProps = {
   title: "Plantafel",
-  evidence: "web:src/pages/Plantafel.tsx",
+  evidence: "web:Plantafel",
   description: "Plantafel der Web-App mit Einsätzen in der Wochenansicht.",
 };
 
@@ -248,7 +250,7 @@ describe("PhoneFrame", () => {
 describe("BrowserFrame", () => {
   it("rendert CraftOSMark statt C-Platzhalter, Fensterleiste, Beleg und Kennzeichnung", () => {
     const html = renderToString(createElement(Browser, browserProps, plantafel()));
-    expect(html).toMatch(/<figure\b[^>]*data-evidence="web:src\/pages\/Plantafel\.tsx"/);
+    expect(html).toMatch(/<figure\b[^>]*data-evidence="web:Plantafel"/);
     expect(html).toContain('aria-label="CraftOS"');
     expect(html).toMatch(/<svg\b[^>]*viewBox="0 0 1024 1024"/);
     expect(html).not.toMatch(/>C<\/span>/);
@@ -281,9 +283,106 @@ describe("DevicePair", () => {
     );
     expect(count(html, /<figure\b/g)).toBe(1);
     expect(count(html, new RegExp(KENNZEICHNUNG, "g"))).toBe(1);
-    expect(html).toContain(`data-evidence="${browserProps.evidence}"`);
-    expect(html).toContain(`data-evidence="${phoneProps.evidence}"`);
+    expect(html).toContain('data-evidence="web:Plantafel"');
+    expect(html).toContain('data-evidence="app:Zeiterfassung"');
     expectStatic(html, "DevicePair");
+  });
+});
+
+describe("Kurzform-Belege (E3)", () => {
+  const KURZFORM = /^(web|app):[^\s/]+$/;
+  const pairProps = (browserEvidence: string, phoneEvidence: string) => ({
+    description: "Plantafel im Büro und Zeiterfassung auf der Baustelle mit denselben Einsätzen.",
+    browser: { title: browserProps.title, evidence: browserEvidence, children: plantafel() },
+    phone: { title: phoneProps.title, evidence: phoneEvidence, activeTab: "Zeiten" as const, children: zeitenAnsicht() },
+  });
+
+  it("schreibt die Kurzform unverändert als data-evidence", () => {
+    expect(renderToString(createElement(Browser, browserProps, plantafel()))).toContain('data-evidence="web:Plantafel"');
+    expect(renderToString(createElement(Phone, phoneProps, zeitenAnsicht()))).toContain(
+      'data-evidence="app:Zeiterfassung"',
+    );
+  });
+
+  it("BrowserFrame wirft bei vollem Belegpfad", () => {
+    expect(() =>
+      renderToString(createElement(Browser, { ...browserProps, evidence: "web:src/pages/Plantafel.tsx" }, plantafel())),
+    ).toThrow(
+      "BrowserFrame: evidence muss die Kurzform web:<Bildschirm> oder app:<Bildschirm> haben – vollen Belegpfad nur in lib/scenes.ts führen.",
+    );
+  });
+
+  it("PhoneFrame wirft bei vollem Belegpfad und bei altem Präfix mobile:", () => {
+    const text =
+      "PhoneFrame: evidence muss die Kurzform web:<Bildschirm> oder app:<Bildschirm> haben – vollen Belegpfad nur in lib/scenes.ts führen.";
+    expect(() =>
+      renderToString(
+        createElement(
+          Phone,
+          { ...phoneProps, evidence: "mobile:src/features/time-tracking/screens/TimeTrackingScreen.tsx" },
+          zeitenAnsicht(),
+        ),
+      ),
+    ).toThrow(text);
+    expect(() =>
+      renderToString(createElement(Phone, { ...phoneProps, evidence: "mobile:Zeiterfassung" }, zeitenAnsicht())),
+    ).toThrow(text);
+    expect(() =>
+      renderToString(createElement(Phone, { ...phoneProps, evidence: "app:Zeit erfassung" }, zeitenAnsicht())),
+    ).toThrow(text);
+  });
+
+  it("DevicePair wirft bei vollem Belegpfad mit eigenem owner", () => {
+    const text =
+      "DevicePair: evidence muss die Kurzform web:<Bildschirm> oder app:<Bildschirm> haben – vollen Belegpfad nur in lib/scenes.ts führen.";
+    expect(() =>
+      renderToString(createElement(DevicePair, pairProps("web:src/pages/Plantafel.tsx", "app:Zeiterfassung"))),
+    ).toThrow(text);
+    expect(() =>
+      renderToString(
+        createElement(
+          DevicePair,
+          pairProps("web:Plantafel", "mobile:src/features/time-tracking/screens/TimeTrackingScreen.tsx"),
+        ),
+      ),
+    ).toThrow(text);
+  });
+
+  it("leerer Beleg wirft weiterhin den Bestandstext", () => {
+    expect(() => renderToString(createElement(DevicePair, pairProps("", "app:Zeiterfassung")))).toThrow(
+      "DevicePair: evidence fehlt – Belegpfad aus origin/release angeben.",
+    );
+  });
+
+  it("jede Szene in lib/scenes.ts hat eine Kurzform passend zum Präfix des vollen Belegs", () => {
+    expect(allScenes).toHaveLength(6);
+    for (const scene of allScenes) {
+      expect(scene.screen, scene.title).toMatch(KURZFORM);
+      const prefix = scene.evidence.split(":")[0];
+      expect(["web", "mobile"], scene.title).toContain(prefix);
+      expect(scene.screen.startsWith(prefix === "web" ? "web:" : "app:"), scene.title).toBe(true);
+    }
+    expect(allScenes.map((scene) => scene.screen).sort()).toEqual(
+      ["app:Aufmaß", "app:Einsätze", "app:Mängel", "app:Zeiterfassung", "web:Plantafel", "web:Rechnungen"].sort(),
+    );
+  });
+
+  it("cardScenes ordnet genau die fünf Funktionen mit belegter Szene zu", () => {
+    expect(Object.keys(cardScenes).sort()).toEqual(
+      ["aufmass", "baudokumentation", "plantafel", "rechnungen", "zeiterfassung"].sort(),
+    );
+    expect(cardScenes.plantafel?.kind).toBe("browser");
+    expect(cardScenes.rechnungen?.kind).toBe("browser");
+    expect(cardScenes.aufmass?.kind).toBe("phone");
+  });
+
+  it("die Musterseite liefert nur Kurzform-Belege aus", () => {
+    const html = renderToString(createElement(StyleguidePage));
+    expect(html).not.toContain('data-evidence="web:src');
+    expect(html).not.toContain('data-evidence="mobile:');
+    const values = [...html.matchAll(/data-evidence="([^"]*)"/g)].map((m) => m[1]);
+    expect(values.length).toBeGreaterThanOrEqual(10);
+    for (const value of values) expect(value).toMatch(KURZFORM);
   });
 });
 
