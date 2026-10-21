@@ -25,6 +25,8 @@ export interface BentoTileProps {
   href?: string;
   /** PlatformBadge/LicenseBadge-Gruppe, nicht interaktiv. */
   badges?: ReactNode;
+  /** id einer Zusatzfunktion (lib/funktionsgruppen.ts) → data-zusatz; Kennung für Tests (07-UI-SPEC Abschnitt 4). */
+  zusatz?: string;
 }
 
 /** Kachel-Raster v2 (UI-SPEC §2): Hierarchie über Größe, Fläche und Radius statt Einheitskarten. */
@@ -58,6 +60,7 @@ export function BentoTile({
   visualPosition = "top",
   href,
   badges,
+  zusatz,
 }: BentoTileProps) {
   const large = size === "lg" || size === "wide";
   assertTextBudget("bentoTile.title", title, TEXT_BUDGET.bentoTile.title);
@@ -72,6 +75,7 @@ export function BentoTile({
         data-surface={surface}
         data-visual={large && visualPosition === "end" ? "end" : "top"}
         data-linked={href ? "true" : undefined}
+        data-zusatz={zusatz}
       >
         <div className={s.body}>
           <h3 className={s.title}>

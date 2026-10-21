@@ -1,0 +1,103 @@
+/* Plattformen und Rollen – 07-UI-SPEC F2 (Abschnitt 3). Flache Panels auf Weiß über der warmen
+   Abschnittsfläche: 1 px ink-200, Radius 16, kein Schatten. Raster 1 Spalte < 768, 2 Spalten ab 768;
+   ein einzelnes Web-Panel nimmt ab 1024 px höchstens die halbe Breite ein. */
+.raster {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+}
+.panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #dedee3;
+  border-radius: 16px;
+  background: #fff;
+  color: #17171c;
+}
+.kopf {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+.icon {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #ffefcc;
+  color: #784b10;
+}
+.titel {
+  margin: 16px 0 0;
+  font-family: var(--font-display, var(--font-clash, sans-serif));
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: #17171c;
+}
+.rollen {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.rolle {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.rollenIcon {
+  flex: none;
+  margin-top: 4px;
+  color: #777782;
+}
+.name {
+  font-weight: 600;
+  color: #17171c;
+}
+.zusatz {
+  /* Abstand zum Namen über das Leerzeichen im Markup (≈ 4 px bei 16 px) */
+  font-weight: 400;
+  color: #62626e;
+}
+.satz {
+  margin: 16px 0 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #62626e;
+}
+/* Lizenzgruppe 16 px über dem Panelende; margin-top: auto hält sie bei ungleich hohen Panels unten. */
+.lizenzen {
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+@media (min-width: 768px) {
+  .raster {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .panel {
+    padding: 24px;
+  }
+  /* Web-only: bis 1023 px volle Breite, ab 1024 px eine der zwei Spalten (max. 50 %) */
+  .raster[data-panels="1"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .raster,
+  .raster[data-panels="1"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+  }
+}
