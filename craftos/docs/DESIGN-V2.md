@@ -305,3 +305,51 @@ ausschließlich im UI-SPEC; hier werden keine neuen Werte festgelegt.
 samt Typen in `lib/scenes.ts` (neues Pflichtfeld `screen` mit der Kurzform, dazu `cardScenes` für
 /funktionen), `SceneContent` und `Frame` in `components/v2/SceneContent.tsx`. `lib/styleguide-content.ts`
 re-exportiert die bisherigen Namen, die Musterseite bleibt unverändert.
+
+## 13. Kaskade Hauptnavigation (Plan 06-03, 21.10.2026)
+
+Verbindlich sind 05-UI-SPEC und 06-UI-SPEC, Abschnitt „Seite 2: Hauptnavigation“ (WAI-APG „Disclosure
+Navigation Menu with Top-Level Links“, Esc mit Fokusrückgabe, Hover nur per Maus ab 1121 px, Klick nach
+Hover hält offen, Pfeil runter fokussiert den ersten Panel-Link, 44-px-Ziele, Drawer-Maße). Hier werden keine
+neuen Werte festgelegt; die Umsetzung steht in `components/layout/HeaderShell.tsx`, `Header.tsx`,
+`MegaMenu.tsx` und den zugehörigen CSS-Modulen.
+
+1. **frontend-design:** Kein Skill-Werkzeug in dieser Sitzung. Gelesen (nicht kopiert):
+   `C:/Users/badal/.claude/plugins/cache/claude-plugins-official/frontend-design/e68e375d2286/skills/frontend-design/SKILL.md`
+   (byte-identisch mit `a0b04d9ddcca`, per `cmp` geprüft). Angewendet:
+   - *Strukturmittel tragen Information:* Icon-Feld nur am Gruppenkopf (eine Bildsprache mit `StepFlow`),
+     Trennlinien nur zwischen Hauptpunkten im Drawer, warme Fußleiste markiert die übergreifenden Links;
+     keine Überschriften, Nummern oder Vorschaubilder im Panel (D-17).
+   - *Bewegung nur als Antwort auf Nutzeraktion:* einzig die Chevron-Drehung (150 ms) und Hover-Flächen
+     unter `@media (hover: hover)`; Panels und Drawer erscheinen ohne Ein-/Ausblendung, unter
+     `prefers-reduced-motion: reduce` ganz ohne Übergang.
+   - *Schreiben aus Nutzersicht:* Schalter heißen zustandsunabhängig „Untermenü {Hauptpunkt}“, Linktexte
+     der Funktionen sind die Funktionsnamen (D-11).
+2. **ui-ux-pro-max** (ausgeführt am 21.10.2026, lokal):
+   ```
+   py -3.12 -X utf8 c:/Projekte/ai-agent-tools/skills/ui-ux-pro-max/scripts/search.py "mega menu disclosure navigation keyboard mobile drawer" --domain ux
+   ```
+   Treffer: Keyboard Navigation (High: Tab-Reihenfolge = Sichtreihenfolge, keine Fallen), Mobile Keyboards
+   (Medium, für Navigation ohne Belang), Skip Links (Medium). Übernommen: DOM-Reihenfolge Link → Schalter →
+   Panel → nächster Hauptpunkt, Esc ohne Fokusfalle; der bestehende Sprunglink „Zum Inhalt“
+   (`app/layout.tsx`) bleibt vor dem Header und überspringt das Mega-Menü.
+3. **21st.dev:** `21st_magic_component_inspiration` stand in dieser Sitzung **nicht** als Werkzeug zur
+   Verfügung; es wurden keine Referenzen abgerufen oder behauptet, builder und refiner nicht verwendet.
+4. **Context7:** MCP-Werkzeug in dieser Sitzung nicht verfügbar. Ersatz: mitgelieferte Doku
+   `craftos/node_modules/next/dist/docs/01-app/01-getting-started/05-server-and-client-components.md`
+   (Server Components als Slot einer Client-Hülle) und `…/02-components/link.md` (`prefetch={false}` an
+   Panel-Links).
+
+**Sichtprüfung (Playwright-Screenshots, nicht eingecheckt):** Mega-Menü offen bei 1440 und 1121 px,
+Gewerke- und Hilfe-Panel bei 1440 px, Drawer bei 390 und 768 px (zweispaltige Gruppen), ohne JavaScript bei
+390 und 1440 px. Befund und Korrektur: Bei 1121 px lief der Logo-Schriftzug unter „Funktionen“, und mit
+Windows-Scrollleiste brachen die Store-Links um; das Logo nimmt jetzt seine Inhaltsbreite ein, und zwischen
+1121 und 1250 px betragen die Lücken der Hauptpunkte 12 px statt 16 px (CTA-Innenabstand 16 px).
+
+**Abweichungen (je ein Satz Begründung):**
+
+| # | Abweichung | Begründung |
+|---|---|---|
+| N1 | Nur das Mega-Menü ist am Header zentriert, das Gewerke-Panel (570 px) hängt wie im Bestand an seinem Hauptpunkt | Ein zentriertes Gewerke-Panel läge nicht unter dem Hauptpunkt, sodass die Maus beim Weg ins Panel das `<li>` verließe und es schlösse (WCAG 1.4.13). |
+| N2 | Hauptpunkt-Lücke 12 px statt 16 px zwischen 1121 und 1250 px | Mit klassischer Scrollleiste (15 px, `scrollbar-gutter: stable`) reichte die Breite sonst nicht für eine Kopfzeile ohne Umbruch. |
+| N3 | Gruppentitel- und Fußleistenlinks im weißen Panel mit 8 px Innenabstand und −8 px Außenabstand | So erhalten sie die Hover-Fläche `#F7F3EB` aus dem UI-SPEC, ohne dass der Text aus der Flucht rückt. |
