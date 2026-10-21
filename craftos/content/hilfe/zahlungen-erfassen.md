@@ -6,7 +6,7 @@ publishedAt: "2026-09-09"
 updatedAt: "2026-09-09"
 author: "CraftOS Redaktion"
 draft: false
-relatedFeatures: ["rechnungen", "buchhaltung"]
+relatedFeatures: ["bankabgleich", "rechnungen", "buchhaltung"]
 relatedArticles: ["/blog/offene-posten-liquiditaet", "/hilfe/schlussrechnung-erstellen"]
 sources: []
 platforms: ["web"]

@@ -6,7 +6,7 @@ publishedAt: "2026-09-09"
 updatedAt: "2026-09-09"
 author: "CraftOS Redaktion"
 draft: false
-relatedFeatures: ["rechnungen", "buchhaltung"]
+relatedFeatures: ["mahnwesen", "rechnungen", "buchhaltung"]
 relatedArticles: ["/hilfe/zahlungen-erfassen", "/blog/offene-posten-liquiditaet"]
 sources: [{"url": "https://www.gesetze-im-internet.de/bgb/__286.html", "label": "§ 286 BGB: Verzug des Schuldners", "checkedAt": "2026-09-09"}]
 platforms: ["web"]

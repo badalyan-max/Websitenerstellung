@@ -6,7 +6,7 @@ publishedAt: "2026-09-09"
 updatedAt: "2026-09-09"
 author: "CraftOS Redaktion"
 draft: false
-relatedFeatures: ["baudokumentation", "rechnungen"]
+relatedFeatures: ["maengelmanagement", "baudokumentation", "rechnungen"]
 relatedArticles: ["/hilfe/mangel-erfassen-bearbeiten", "/hilfe/schlussrechnung-erstellen"]
 sources: []
 platforms: ["web", "mobile"]

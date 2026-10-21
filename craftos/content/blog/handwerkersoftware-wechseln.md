@@ -6,7 +6,7 @@ publishedAt: "2026-09-09"
 updatedAt: "2026-09-09"
 author: "CraftOS Redaktion"
 draft: false
-relatedFeatures: ["projektverwaltung", "team", "angebote"]
+relatedFeatures: ["datenuebernahme", "projektverwaltung", "team", "angebote"]
 relatedArticles: ["/blog/handwerkersoftware-auswaehlen", "/hilfe/firmenprofil-einrichten"]
 sources: []
 platforms: ["web", "mobile"]

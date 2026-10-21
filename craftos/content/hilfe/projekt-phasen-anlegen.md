@@ -6,7 +6,7 @@ publishedAt: "2026-09-09"
 updatedAt: "2026-09-09"
 author: "CraftOS Redaktion"
 draft: false
-relatedFeatures: ["projektverwaltung", "plantafel"]
+relatedFeatures: ["terminplanung", "projektverwaltung", "plantafel"]
 relatedArticles: ["/hilfe/plantafel-einsatz-planen", "/hilfe/projektdateien-ordner"]
 sources: []
 platforms: ["web", "mobile"]

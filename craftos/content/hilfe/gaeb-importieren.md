@@ -6,7 +6,7 @@ publishedAt: "2026-09-09"
 updatedAt: "2026-09-09"
 author: "CraftOS Redaktion"
 draft: false
-relatedFeatures: ["angebote"]
+relatedFeatures: ["gaeb", "angebote"]
 relatedArticles: ["/hilfe/angebotspositionen-leistungsvorlagen"]
 sources: []
 platforms: ["web"]

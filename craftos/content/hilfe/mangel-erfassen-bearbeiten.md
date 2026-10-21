@@ -6,7 +6,7 @@ publishedAt: "2026-09-09"
 updatedAt: "2026-09-09"
 author: "CraftOS Redaktion"
 draft: false
-relatedFeatures: ["baudokumentation", "projektverwaltung"]
+relatedFeatures: ["maengelmanagement", "baudokumentation", "projektverwaltung"]
 relatedArticles: ["/hilfe/abnahme-dokumentieren"]
 sources: []
 platforms: ["web", "mobile"]
