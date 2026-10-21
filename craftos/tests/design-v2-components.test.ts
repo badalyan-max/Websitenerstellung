@@ -109,6 +109,8 @@ describe("CtaBand", () => {
     const primary = html.match(/<a\b[^>]*class="[^"]*v2-btn-cta[^"]*"[^>]*>[\s\S]*?<\/a>/)?.[0];
     expect(primary).toBeDefined();
     expect(primary).toContain(`href="${site.ctaUrl}"`);
+    // Einheitlich mit Hero- und Header-CTA (06-REVIEW IN-06).
+    expect(primary).toContain('data-track="trial"');
     expect(primary).toContain("10 Tage kostenlos testen");
     expect(html, "Altklasse .btn-cta").not.toMatch(/class="(?:[^"]*\s)?btn-cta[\s"]/);
     const secondary = html.match(/<a\b[^>]*href="\/preise"[^>]*>([\s\S]*?)<\/a>/);

@@ -38,7 +38,7 @@ export function CtaBand({ title, text, secondary = defaultSecondary }: CtaBandPr
           <p className={s.text}>{text}</p>
         </div>
         <div className={s.actions}>
-          <a href={site.ctaUrl} className={`v2-btn-cta ${s.primary}`}>
+          <a href={site.ctaUrl} className={`v2-btn-cta ${s.primary}`} data-track="trial">
             {buttonLabel}
             <ArrowUpRight size={16} aria-hidden="true" />
           </a>

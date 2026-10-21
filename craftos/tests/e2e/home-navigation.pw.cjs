@@ -126,7 +126,7 @@ test('Menü: Drawer öffnet mit aufgeklappten Funktionen, sperrt den Scroll ohne
   expect(appLinks.length).toBeGreaterThanOrEqual(2)
   for (const entry of appLinks) {
     if (entry.text === 'Anmelden') expect(entry.track).toBe('login')
-    else expect(entry.track, entry.text).not.toBe('login')
+    else expect(entry.track, entry.text).toBe('trial')
   }
   expect(appLinks.filter((e) => e.text === 'Anmelden')).toHaveLength(1)
   expect(appLinks.some((e) => /^\d+ Tage testen$/.test(e.text))).toBe(true)

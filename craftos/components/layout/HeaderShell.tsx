@@ -289,7 +289,7 @@ export function HeaderShell({ items }: { items: HeaderNavItem[] }) {
             <a href={site.appUrl} className={styles.login} data-track="login">
               Anmelden
             </a>
-            <a href={site.ctaUrl} className={`v2-btn-cta ${styles.cta}`}>
+            <a href={site.ctaUrl} className={`v2-btn-cta ${styles.cta}`} data-track="trial">
               {`${site.trialDays} Tage testen`} <ArrowUpRight size={16} aria-hidden="true" />
             </a>
           </div>
