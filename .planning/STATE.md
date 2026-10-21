@@ -3,13 +3,14 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-last_updated: "2026-10-21T17:07:55.850Z"
-last_activity: 2026-10-21
+stopped_at: Completed 07-02-PLAN.md
+last_updated: "2026-10-21T17:31:43.970Z"
+last_activity: 2026-10-21 – 07-02 Funktionsmodell 22 + 8, Keyword-Map-Status und Zielwerte, interne Links, E2E 22/8 abgeschlossen
 progress:
   total_phases: 6
   completed_phases: 2
   total_plans: 23
-  completed_plans: 15
+  completed_plans: 16
   percent: 33
 ---
 
@@ -29,14 +30,14 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 7
-Plan: 2 of 9 (07-01 abgeschlossen)
+Plan: 3 of 9 (07-01, 07-02 abgeschlossen)
 Status: In progress
-Last activity: 2026-10-21 – 07-01 Bausteinergänzungen F3–F5, D-13, Schema-Helfer abgeschlossen
+Last activity: 2026-10-21 – 07-02 Funktionsmodell 22 + 8, Keyword-Map-Status und Zielwerte, interne Links, E2E 22/8 abgeschlossen
 
-Progress: [███████░░░] 65% (15/23 Pläne des Milestones; Phase 7: 1/9)
+Progress: [███████░░░] 70% (16/23 Pläne des Milestones; Phase 7: 2/9)
 
-Last session: 2026-10-21
-Stopped at: Completed 07-01-PLAN.md
+Last session: 2026-10-21T17:31:37.482Z
+Stopped at: Completed 07-02-PLAN.md
 Resume file: None
 
 ## Accumulated Context
@@ -80,6 +81,9 @@ Resume file: None
 - [Phase 07]: 07-01: MiniStatusName um 16 am Release belegte Namen erweitert (MINI_STATUS_BELEGE, MINI_STATUS_TON); Farben nur über data-tone neutral/positiv/hervorgehoben, Bestandsfarben unverändert; Belegtest am gepinnten productBasis-Commit
 - [Phase 07]: 07-01: KeyFacts-Quellen nur als Kurzform site:/register: (Laufzeitprüfung), keine internen Modulnamen in data-source
 - [Phase 07]: 07-01: webPageSchema ohne isPartOf (Layout hat keinen WebSite-Knoten); mobileApplicationSchema mit eigener @id /app#mobile-app, App-Lizenz netto, ohne Bewertungen
+- [Phase 07]: 07-02: Sechs live Funktionen (gaeb, mahnwesen, terminplanung, bankabgleich, datenuebernahme, maengelmanagement) sind Detailfunktionen; Belege in evidence/mobileEvidence, liveExtras mit 8 beworbenen Einträgen
+- [Phase 07]: 07-02: Alle 8 Zusatzfunktionen haben ein Ziel (7 Detailseiten mit Funktionsname als label, 21 Sprachen -> /app kind seite); ZUSATZ_IDS gegen beworbene Registereinträge getestet
+- [Phase 07]: 07-02: Keyword-Map: sechs Pfade bestehend im selben Commit wie Sitemap; H1/Description laut 07-UI-SPEC SEO-Vertrag bereinigt (KEYWORD-MAP.md § 6); pageCandidates für datenuebernahme und maengelmanagement ergänzt
 
 ### Pending Todos
 
@@ -108,3 +112,4 @@ None yet.
 | Phase 06 P05 | 32min | 2 tasks | 12 files |
 | Phase 06 P06 | 35min | 2 tasks | 10 files |
 | Phase 07 P01 | 25min | 2 tasks | 14 files |
+| Phase 07 P02 | 19min | 3 tasks | 21 files |

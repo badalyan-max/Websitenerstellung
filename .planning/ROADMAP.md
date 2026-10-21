@@ -125,7 +125,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 07-02-PLAN.md — Sechs neue Detailfunktionen im Modell (Register → funktionen → Gruppen), Keyword-Map-Status und Zielwerte, Paritäten 22/8/30, interne Links, Menü-E2E
+- [x] 07-02-PLAN.md — Sechs neue Detailfunktionen im Modell (Register → funktionen → Gruppen), Keyword-Map-Status und Zielwerte, Paritäten 22/8/30, interne Links, Menü-E2E
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
@@ -210,7 +210,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
 | 6. Startseite, Navigation und Funktionsübersicht | 6/6 | Complete    | 2026-10-21 |
-| 7. Funktionsdetailseiten und Mobile-App-Seite | 1/9 | In Progress|  |
+| 7. Funktionsdetailseiten und Mobile-App-Seite | 2/9 | In Progress|  |
 | 8. SEO und KI-Sichtbarkeit | 0/TBD | Not started | - |
 | 9. Gewerke und Wissensinhalte | 0/TBD | Not started | - |
 | 10. Abschlussaudit | 0/TBD | Not started | - |
