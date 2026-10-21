@@ -60,8 +60,15 @@ function Illustration({ variant, example, className }: { variant: SnippetVariant
 
   useEffect(() => {
     if (!running) return;
+    const node = root.current;
     const timer = setTimeout(() => setPhase((current) => (current + 1) % phaseDuration.length), phaseDuration[phase]);
-    return () => clearTimeout(timer);
+    // Beobachtbarer Timer-Zustand für Browser-Tests mit eingefrorener Uhr: Die Bereinigung läuft erst nach dem
+    // Commit von data-running, "cleared" belegt, dass kein alter Timer mehr aussteht.
+    node?.setAttribute("data-timer", `armed-${phase}`);
+    return () => {
+      clearTimeout(timer);
+      node?.setAttribute("data-timer", "cleared");
+    };
   }, [phase, running]);
 
   // Measure the actual target in its current layout, including on mobile.

@@ -246,7 +246,8 @@ test('Funktionsillustration: Pause bleibt dauerhaft erhalten und Fortsetzen star
   await activate(illustration.getByRole('button', { name: 'Animation pausieren', exact: true }), testInfo)
   const phase = await illustration.getAttribute('data-phase')
   await expect(illustration).toHaveAttribute('data-running', 'false')
-  await page.waitForTimeout(50)
+  // Effekt-Bereinigung (clearTimeout) abwarten, bevor die eingefrorene Uhr weiterläuft.
+  await expect(illustration).toHaveAttribute('data-timer', 'cleared')
   await page.clock.runFor(25_000)
   await expect(illustration).toHaveAttribute('data-phase', phase)
   await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight))
@@ -266,8 +267,8 @@ test('Funktionsillustration: außerhalb des Viewports bleibt der automatische Ab
   await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight))
   await expect(illustration).toHaveAttribute('data-running', 'false')
   // Das Attribut wechselt beim Commit, die Effekt-Bereinigung (clearTimeout) läuft erst danach in einer
-  // eigenen Browser-Aufgabe; ohne diese Wartezeit kann runFor den alten Timer noch auslösen (WebKit-Flake).
-  await page.waitForTimeout(50)
+  // eigenen Browser-Aufgabe; ohne diese Bedingung kann runFor den alten Timer noch auslösen (WebKit-Flake).
+  await expect(illustration).toHaveAttribute('data-timer', 'cleared')
   const phase = await illustration.getAttribute('data-phase')
   await page.clock.runFor(25_000)
   await expect(illustration).toHaveAttribute('data-phase', phase)
