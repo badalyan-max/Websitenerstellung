@@ -5,7 +5,10 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import { createElement } from "react";
+import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
+import Home from "@/app/page";
 import { TEXT_BUDGET, charCount, sentenceCount } from "@/components/v2/budgets";
 import { euro, germanDate } from "@/lib/format";
 import { getFunktionsgruppen } from "@/lib/funktionsgruppen";
@@ -135,5 +138,50 @@ describe("Startseiteninhalte", () => {
     expect(source).not.toMatch(/\d\s*€/);
     expect(source).not.toContain("10 Tage");
     expect(source).toContain("getFunktionsgruppen");
+  });
+});
+
+describe("Startseite gerendert", () => {
+  const html = renderToString(createElement(Home));
+  const sectionIds = [...html.matchAll(/data-home-section="([^"]+)"/g)].map((m) => m[1]);
+
+  it("genau ein H1 mit ungetrenntem Keyword", () => {
+    expect(html.match(/<h1[\s>]/g)).toHaveLength(1);
+    expect(html).toMatch(/<span[^>]*data-keyword=""[^>]*>Handwerkersoftware,<\/span>/);
+  });
+
+  it("sieben Abschnitte in der Reihenfolge HOME_SECTION_IDS, je höchstens eine H2", () => {
+    expect(sectionIds).toEqual([...home.HOME_SECTION_IDS]);
+    const starts = sectionIds.map((id) => html.indexOf(`data-home-section="${id}"`));
+    starts.forEach((start, i) => {
+      const chunk = html.slice(start, starts[i + 1] ?? html.length);
+      expect((chunk.match(/<h2[\s>]/g) ?? []).length, sectionIds[i]).toBeLessThanOrEqual(1);
+    });
+  });
+
+  it("FAQPage-JSON-LD enthält genau die fünf sichtbaren Fragen", () => {
+    const blocks = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
+    const faq = blocks.filter((b) => b["@type"] === "FAQPage");
+    expect(faq).toHaveLength(1);
+    const names = faq[0].mainEntity.map((q: { name: string }) => q.name);
+    expect(names).toEqual(home.faqContent.map((f) => f.q));
+    for (const item of home.faqContent) expect(html).toContain(item.q);
+    // Organization/SoftwareApplication kommen aus dem Layout, nicht aus der Seite.
+    expect(blocks.some((b) => b["@type"] === "Organization" || b["@type"] === "SoftwareApplication")).toBe(false);
+  });
+
+  it("Produktdarstellung: DevicePair compact, Kurzform-Belege, Kennzeichnung je Rahmen", () => {
+    expect(html).toMatch(/data-figure="pair"[^>]*data-layout="compact"/);
+    expect(html).not.toContain('data-evidence="web:src');
+    expect(html).not.toContain('data-evidence="mobile:');
+    expect((html.match(/Vereinfachte Darstellung mit Beispieldaten/g) ?? []).length).toBeGreaterThanOrEqual(5);
+  });
+
+  it("CTA auf site.ctaUrl ohne Login-Tracking; keine Altbausteine", () => {
+    expect(html).toContain(`href="${site.ctaUrl}"`);
+    expect(html).toMatch(new RegExp(`<a href="${site.ctaUrl.replace(/[.]/g, "\.")}"[^>]*data-track="trial"`));
+    expect(html).not.toContain('data-track="login"');
+    expect(html).not.toContain("produktdemo");
+    expect(html).not.toContain("data-feature-snippet");
   });
 });

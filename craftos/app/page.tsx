@@ -1,306 +1,169 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
-import {
-  ArrowUpRight,
-  Check,
-  ShieldCheck,
-  Smartphone,
-  Monitor,
-} from "lucide-react";
-import { Hero } from "@/components/home/Hero";
-import { FeatureSnippet } from "@/components/feature-snippet/FeatureSnippet";
-import { PricingTable } from "@/components/preise/PricingTable";
-import { Faq } from "@/components/ui/Faq";
-import { TrialCta } from "@/components/ui/TrialCta";
-import { funktionen } from "@/lib/funktionen";
-import { pageMetadata } from "@/lib/metadata";
+import { HomeHero } from "@/components/home/HomeHero";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { StoreLinks } from "@/components/ui/StoreLinks";
+import { PlatformBadges } from "@/components/v2/Badges";
+import { BentoGrid, BentoTile, TileIcon } from "@/components/v2/BentoGrid";
+import { ComparisonTable } from "@/components/v2/ComparisonTable";
+import { CtaBand } from "@/components/v2/CtaBand";
+import { FaqList } from "@/components/v2/FaqList";
+import { KeyFacts } from "@/components/v2/KeyFacts";
+import { Frame } from "@/components/v2/SceneContent";
+import { SectionHeader } from "@/components/v2/SectionHeader";
+import { StepFlow } from "@/components/v2/StepFlow";
+import { getFunktion } from "@/lib/funktionen";
+import {
+  appsContent,
+  bentoContent,
+  comparisonContent,
+  faqContent,
+  homeMetadata,
+  homeSections,
+  keyFactsContent,
+  stepContent,
+  type HomeSectionId,
+} from "@/lib/home-content";
+import { pageMetadata } from "@/lib/metadata";
 import { faqSchema } from "@/lib/schema";
-import { site, tarife } from "@/lib/site";
-const euro = new Intl.NumberFormat("de-DE", {
-  style: "currency",
-  currency: "EUR",
-});
-const voll = tarife.find((t) => t.id === "voll")!;
-const app = tarife.find((t) => t.id === "app")!;
-export const metadata = pageMetadata(
-  "CraftOS – Handwerkersoftware für Büro & Baustelle",
-  `CraftOS verbindet Angebote, Rechnungen, Plantafel, Zeiten und Lager. Voll-Lizenz inklusive Mobile-App. ${site.trialDays} Tage kostenlos testen.`,
-  "/",
-);
-const faqs = [
-  {
-    q: "Ist die Handy-App in der Voll-Lizenz enthalten?",
-    a: `Ja. Die ${voll.name} für ${euro.format(voll.monat)} netto pro Person und Monat umfasst die Web-App und die Mobile-App für dieselbe Person. Für Mitarbeitende auf der Baustelle gibt es ergänzende ${app.name}en für ${euro.format(app.monat)} netto monatlich.`,
-  },
-  {
-    q: "Wie lange kann ich CraftOS kostenlos testen?",
-    a: `Sie können CraftOS ${site.trialDays} Tage ohne Zahlungsdaten testen. Ein kostenpflichtiges Abonnement wählen Sie aktiv in der App; den Zahlungsbeginn sehen Sie im Checkout.`,
-  },
-  {
-    q: "Kostet die Plantafel zusätzlich?",
-    a: "Die Plantafel gehört zum Funktionsumfang der Voll-Lizenz. Auch Angebote, Rechnungen, Projekte, Lager und Nachkalkulation benötigen kein separates Modul-Abo. KI-Verbrauch und zusätzlicher Speicher werden gesondert abgerechnet.",
-  },
-  {
-    q: "Wie unterstützt CraftOS die GoBD-Konformität?",
-    a: "CraftOS unterstützt GoBD-gerechte Abläufe durch Festschreibung von Rechnungen, geschützte Beleginhalte, Dokumentversionen und nachvollziehbare Stornierungen. Eingangsbelege werden geprüft und gesperrt; Änderungen werden protokolliert. Dazu gehören weiterhin Ihre vollständige Belegerfassung, Verfahrensdokumentation und Aufbewahrungsorganisation.",
-  },
-  {
-    q: "Kann ich auf der Baustelle ohne Internet arbeiten?",
-    a: "Bereits geladene Daten und ausgewählte Texteingaben sowie Zeiteinträge können mobil offline nutzbar sein. Fotos, KI und noch nicht geladene Inhalte benötigen eine Verbindung. Prüfen Sie vor dem Einsatz und danach den Synchronisierungsstatus.",
-  },
-];
+
+/**
+ * Startseite (06-UI-SPEC „Seite 1: Startseite“; D-02, D-03, D-04, D-10, D-19): Hero und genau sieben
+ * Abschnitte aus v2-Bausteinen, jeder mit höchstens einer H2. Texte und Werte aus lib/home-content.ts;
+ * Organization/SoftwareApplication-JSON-LD kommen unverändert aus app/layout.tsx, hier nur FAQPage
+ * für die sichtbaren Fragen.
+ */
+export const metadata = pageMetadata(homeMetadata.title, homeMetadata.description, "/");
+
+const SURFACE = {
+  white: "bg-white",
+  warm: "bg-[#f7f3eb]",
+  amber: "bg-[#f2af38]",
+} as const;
+
+function HomeSection({
+  id,
+  surface,
+  className = "",
+  children,
+}: {
+  id: Exclude<HomeSectionId, "abschluss">;
+  surface: keyof typeof SURFACE;
+  className?: string;
+  children: ReactNode;
+}) {
+  return (
+    <section
+      data-home-section={id}
+      aria-labelledby={`${id}-titel`}
+      className={`${SURFACE[surface]} py-12 md:py-16 lg:py-24 ${className}`}
+    >
+      <div className="site-container">{children}</div>
+    </section>
+  );
+}
+
+function TextLink({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <Link href={href} className="text-link min-h-11 text-base text-ink-900">
+      {children}
+    </Link>
+  );
+}
+
+function platformsOf(slug: string) {
+  const funktion = getFunktion(slug);
+  if (!funktion) throw new Error(`Startseite: Funktion ${slug} fehlt in lib/funktionen.ts.`);
+  return funktion.platforms;
+}
+
 export default function Home() {
+  const s = homeSections;
   return (
     <>
-      <Hero />
-      <section className="home-flow">
-        <div className="site-container">
-          <p className="eyebrow">Vom Auftrag bis zum Zahlungseingang</p>
-          <h2 className="section-title">
-            Ein Ablauf.
-            <br />
-            Alles bleibt zusammen.
-          </h2>
-          <div className="flow-grid grid md:grid-cols-4 gap-8 mt-12">
-            {[
-              [
-                "01",
-                "Sauber anbieten",
-                "Aufmaß und Mengen erfassen. Material, Arbeit und Kosten kalkulieren.",
-                "/funktionen/angebote",
-              ],
-              [
-                "02",
-                "Verlässlich planen",
-                "Team und Ressourcen einteilen. Einsätze bei Änderungen verschieben.",
-                "/funktionen/plantafel",
-              ],
-              [
-                "03",
-                "Vor Ort festhalten",
-                "Zeiten, Fotos und Leistungen direkt dem Projekt zuordnen.",
-                "/app",
-              ],
-              [
-                "04",
-                "Klar abrechnen",
-                "Rechnung prüfen und festschreiben. Zahlungen und Kosten verfolgen.",
-                "/funktionen/rechnungen",
-              ],
-            ].map(([n, t, p, h]) => (
-              <Link
-                href={h}
-                key={n}
-                className="flow-item border-t border-ink-200 pt-6 group"
-              >
-                <span className="flow-number font-display text-4xl text-ink-300">
-                  {n}
-                </span>
-                <h3 className="text-xl font-semibold mt-5 group-hover:text-primary-800">
-                  {t}
-                </h3>
-                <p className="text-sm text-ink-600 mt-3">{p}</p>
-                <ArrowUpRight className="mt-5" size={20} />
-              </Link>
-            ))}
+      <HomeHero />
+
+      <HomeSection id="kennzahlen" surface="white">
+        <SectionHeader id="kennzahlen-titel" title={s.kennzahlen.title} lead={s.kennzahlen.lead} align="center" />
+        <KeyFacts facts={keyFactsContent.facts} note={keyFactsContent.note} />
+      </HomeSection>
+
+      {/* Einzige Amber-Fläche der Seite; Lead dunkel statt ink-500 (Kontrast auf Amber). */}
+      <HomeSection id="ablauf" surface="amber" className="[&_header>p]:text-[#46381f]">
+        <SectionHeader id="ablauf-titel" title={s.ablauf.title} lead={s.ablauf.lead} />
+        <StepFlow steps={stepContent} tone="amber" label="Arbeitsablauf in CraftOS" />
+      </HomeSection>
+
+      <HomeSection id="kernfunktionen" surface="white">
+        <SectionHeader id="kernfunktionen-titel" title={s.kernfunktionen.title} lead={s.kernfunktionen.lead} />
+        <BentoGrid label="Kernfunktionen">
+          {bentoContent.map((tile) => {
+            const dark = tile.surface === "dark";
+            return (
+              <BentoTile
+                key={tile.slug}
+                size={tile.size}
+                surface={tile.surface}
+                title={tile.title}
+                text={tile.text}
+                href={tile.href}
+                visualPosition={tile.visualPosition}
+                badges={<PlatformBadges platforms={platformsOf(tile.slug)} tone={dark ? "dark" : "light"} />}
+                visual={
+                  tile.visual.kind === "icon" ? (
+                    <TileIcon icon={tile.visual.icon} />
+                  ) : (
+                    <Frame visual={tile.visual} width={160} tone={dark ? "dark" : "light"} />
+                  )
+                }
+              />
+            );
+          })}
+        </BentoGrid>
+        <p className="mt-8">
+          <TextLink href={s.kernfunktionen.link.href}>{s.kernfunktionen.link.label}</TextLink>
+        </p>
+      </HomeSection>
+
+      <HomeSection id="apps" surface="warm">
+        <div className="grid gap-8 lg:grid-cols-[7fr_5fr] lg:items-center lg:gap-x-12 lg:gap-y-0">
+          <div className="lg:col-start-1 lg:row-start-1 lg:self-end lg:[&>header]:mb-6">
+            <SectionHeader id="apps-titel" title={s.apps.title} lead={s.apps.lead} />
+          </div>
+          <div className="flex justify-center lg:col-start-2 lg:row-span-2 lg:row-start-1">
+            <Frame visual={{ kind: "phone", scene: appsContent.scene }} width={240} />
+          </div>
+          <div className="grid justify-items-start gap-4 lg:col-start-1 lg:row-start-2 lg:self-start">
+            <StoreLinks />
+            <TextLink href={s.apps.link.href}>{s.apps.link.label}</TextLink>
           </div>
         </div>
-      </section>
-      <section className="bg-ink-100 section-space home-collaboration">
-        <div className="site-container split-section">
-          <div>
-            <p className="eyebrow">Büro und Baustelle verbunden</p>
-            <h2 className="section-title">
-              Gute Arbeit kennt
-              <br />
-              keinen Schreibtisch.
-            </h2>
-            <p className="section-intro">
-              Im Büro behalten Sie den Überblick. Draußen hat Ihr Team die
-              Informationen für den nächsten Handgriff dabei.
-            </p>
-            <ul className="rule-list">
-              <li>
-                <Monitor />
-                <span>
-                  <strong>Web-App:</strong> Aufträge kalkulieren, Einsätze
-                  planen und Zahlen prüfen.
-                </span>
-              </li>
-              <li>
-                <Smartphone />
-                <span>
-                  <strong>Mobile-App:</strong> Zeiten, Aufmaße und Leistungen
-                  dort erfassen, wo sie entstehen.
-                </span>
-              </li>
-              <li>
-                <Check />
-                <span>
-                  <strong>Beides inklusive:</strong> Eine Voll-Lizenz enthält
-                  auch die Handy-App für dieselbe Person.
-                </span>
-              </li>
-            </ul>
-            <Link href="/app" className="text-link">
-              Die Mobile-App kennenlernen <ArrowUpRight size={18} />
-            </Link>
-          </div>
-          <div className="min-w-0">
-            <FeatureSnippet variant="planung" />
-            <Link href="/app#app-ansichten" className="text-link mt-5">
-              Echte App-Ansichten ansehen <ArrowUpRight size={18} />
-            </Link>
-          </div>
+      </HomeSection>
+
+      <HomeSection id="preise" surface="white">
+        <SectionHeader id="preise-titel" title={s.preise.title} lead={s.preise.lead} />
+        <ComparisonTable
+          caption={comparisonContent.caption}
+          columns={comparisonContent.columns}
+          rows={comparisonContent.rows}
+          note={comparisonContent.note}
+        />
+        <p className="mt-8">
+          <TextLink href={s.preise.link.href}>{s.preise.link.label}</TextLink>
+        </p>
+      </HomeSection>
+
+      <HomeSection id="faq" surface="warm">
+        <div className="grid gap-y-0 lg:grid-cols-[5fr_7fr] lg:gap-x-12">
+          <SectionHeader id="faq-titel" title={s.faq.title} lead={s.faq.lead} />
+          <FaqList items={faqContent} headingLevel={3} />
         </div>
-      </section>
-      <section className="section-space home-features">
-        <div className="site-container">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
-            <div>
-              <p className="eyebrow">Ihr Werkzeug fürs Büro</p>
-              <h2 className="section-title">
-                Was Ihr Betrieb braucht.
-                <br />
-                In einem System.
-              </h2>
-            </div>
-            <Link href="/funktionen" className="text-link">
-              Alle Funktionen <ArrowUpRight size={18} />
-            </Link>
-          </div>
-          <div className="feature-grid">
-            {[
-              "angebote",
-              "rechnungen",
-              "plantafel",
-              "zeiterfassung",
-              "lager",
-              "buchhaltung",
-            ].map((slug) => {
-              const f = funktionen.find((x) => x.slug === slug)!;
-              return (
-                <Link
-                  href={"/funktionen/" + slug}
-                  key={slug}
-                  className="feature-link"
-                >
-                  <f.icon size={26} strokeWidth={1.5} />
-                  <h3>{f.name}</h3>
-                  <p>{f.kurz}</p>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-      <section className="home-gobd">
-        <div className="site-container">
-          <div className="soft-panel grid gap-7 md:grid-cols-[auto_1fr_auto] items-center">
-            <ShieldCheck
-              size={44}
-              strokeWidth={1.3}
-              className="text-primary-800"
-            />
-            <div>
-              <h2 className="text-3xl font-semibold">
-                GoBD: nachvollziehbar statt nachträglich verändert.
-              </h2>
-              <p className="mt-4 max-w-3xl text-ink-600">
-                Festgeschriebene Rechnungen, geschützte Beleginhalte,
-                Dokumentversionen und protokollierte Änderungen unterstützen
-                Ihre GoBD-konformen Abläufe.
-              </p>
-            </div>
-            <Link href="/gobd" className="btn-secondary">
-              Das deckt CraftOS ab <ArrowUpRight size={16} />
-            </Link>
-          </div>
-        </div>
-      </section>
-      <section className="section-space bg-ink-100" id="preise">
-        <div className="site-container">
-          <p className="eyebrow">Ein klarer Preis pro Person</p>
-          <h2 className="section-title">
-            Alle Kernmodule.
-            <br />
-            Ohne Modul-Puzzle.
-          </h2>
-          <p className="section-intro mb-10">
-            Angebote, Rechnungen, Plantafel und Lager sind in der Voll-Lizenz
-            enthalten. Die Mobile-App ebenfalls.
-          </p>
-          <PricingTable />
-          <Link href="/vergleich" className="text-link mt-8">
-            CraftOS im sachlichen Vergleich <ArrowUpRight size={18} />
-          </Link>
-        </div>
-      </section>
-      <section className="section-space">
-        <div className="site-container split-section">
-          <div>
-            <p className="eyebrow">Wissen, das Sie weiterbringt</p>
-            <h2 className="section-title">
-              Besser kalkulieren.
-              <br />
-              Sicherer entscheiden.
-            </h2>
-            <p className="section-intro">
-              Praktische Ratgeber, konkrete Anleitungen und kostenlose Rechner
-              helfen Ihnen beim nächsten Schritt.
-            </p>
-            <Link href="/blog" className="text-link mt-6">
-              Alle Ratgeber ansehen <ArrowUpRight size={18} />
-            </Link>
-          </div>
-          <div className="border-t border-ink-200">
-            {[
-              [
-                "Stundensatz berechnen",
-                "Wie viel muss eine verrechenbare Stunde einbringen?",
-                "/rechner/stundensatz",
-              ],
-              [
-                "Angebot und Marge prüfen",
-                "Kosten, Gewinn und Aufschlag klar auseinanderhalten.",
-                "/rechner/angebotskalkulation",
-              ],
-              [
-                "Die erste Rechnung fertigstellen",
-                "Vom Entwurf zur festgeschriebenen Rechnung.",
-                "/hilfe/rechnung-fertigstellen",
-              ],
-            ].map(([t, p, h]) => (
-              <Link
-                href={h}
-                key={h}
-                className="block py-7 border-b border-ink-200"
-              >
-                <h3 className="text-2xl font-semibold flex justify-between gap-4">
-                  {t}
-                  <ArrowUpRight size={22} />
-                </h3>
-                <p className="mt-2 text-ink-600 text-sm">{p}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="section-space bg-ink-100">
-        <div className="site-container grid lg:grid-cols-[.7fr_1fr] gap-12">
-          <div>
-            <p className="eyebrow">Gut zu wissen</p>
-            <h2 className="section-title">
-              Ihre Fragen.
-              <br />
-              Klare Antworten.
-            </h2>
-          </div>
-          <Faq items={faqs} />
-        </div>
-      </section>
-      <JsonLd data={faqSchema(faqs)} />
-      <TrialCta />
+        <JsonLd data={faqSchema(faqContent)} />
+      </HomeSection>
+
+      <div data-home-section="abschluss">
+        <CtaBand title={s.abschluss.title} text={s.abschluss.text} secondary={s.abschluss.secondary} />
+      </div>
     </>
   );
 }

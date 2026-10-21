@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 describe("brand signals", () => {
   it("names the brand in the homepage title", () => {
     expect(metadata.title).toBe(
-      "CraftOS – Handwerkersoftware für Büro & Baustelle",
+      "Handwerkersoftware für Büro und Baustelle | CraftOS",
     );
   });
   it("disambiguates the organization", () => {

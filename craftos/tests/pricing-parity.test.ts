@@ -100,7 +100,8 @@ describe("Preise entsprechen origin/release der Web-App", () => {
 
   it("Literale: keine Lizenzpreise und keine alten Lizenznamen in geprüften Dateien", () => {
     const files = [
-      "components/home/Hero.tsx",
+      "components/home/HomeHero.tsx",
+      "lib/home-content.ts",
       "app/preise/page.tsx",
       "app/page.tsx",
       "components/preise/PricingTable.tsx",
