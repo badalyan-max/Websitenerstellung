@@ -257,3 +257,34 @@
     margin-left: -48px;
   }
 }
+
+/* DevicePair layout="compact" (06-UI-SPEC E1): Phone 160 px; unter 768 px rechts unten über dem Browser
+   statt darunter gestapelt, ab 768 px wie default nebeneinander (48 px Überlappung, 24 px Versatz).
+   Statisch, keine Bewegung. */
+.pairFigure[data-layout="compact"] .pair {
+  align-items: stretch;
+  gap: 0;
+}
+.pairFigure[data-layout="compact"] .pairBrowser {
+  width: 100%;
+}
+.pairFigure[data-layout="compact"] .pairPhone {
+  align-self: flex-end;
+  margin-top: -64px;
+  margin-right: 16px;
+  z-index: 1;
+}
+@media (min-width: 768px) {
+  .pairFigure[data-layout="compact"] .pair {
+    align-items: flex-start;
+  }
+  .pairFigure[data-layout="compact"] .pairBrowser {
+    width: auto;
+  }
+  .pairFigure[data-layout="compact"] .pairPhone {
+    align-self: auto;
+    margin-top: 24px;
+    margin-right: 0;
+    margin-left: -48px;
+  }
+}

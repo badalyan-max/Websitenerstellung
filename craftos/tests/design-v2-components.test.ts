@@ -310,7 +310,7 @@ describe("FeatureList (E2)", () => {
     expect(links).toHaveLength(1);
     expect(links[0]).toContain('href="/hilfe/test-anleitung"');
     expect(links[0]).toContain("Eintrag mit Ziel");
-    const describedBy = links[0].match(/aria-describedby="([^"]+)"/)?.[1];
+    const describedBy = (links[0] ?? "").match(/aria-describedby="([^"]+)"/)?.[1];
     expect(describedBy).toBeDefined();
     expect(count(html, new RegExp(`id="${describedBy}"`, "g"))).toBe(1);
     expect(html).toMatch(new RegExp(`id="${describedBy}"[^>]*>Anleitung in der Hilfe<`));

@@ -1,0 +1,110 @@
+/* Kompaktliste Zusatzfunktionen – 06-UI-SPEC E2. Flach: Liste mit Trennlinien, keine Karten,
+   kein Schatten, keine Bühne. Icon-Feld 40 × 40 (Abweichung A5). */
+.root {
+  min-width: 0;
+}
+.title {
+  margin: 0 0 16px;
+  font-family: var(--font-display, var(--font-clash, sans-serif));
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: #17171c;
+}
+.list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  min-width: 0;
+  padding-block: 16px;
+  border-top: 1px solid #dedee3;
+}
+.item:focus-within {
+  outline: 3px solid #bb7609;
+  outline-offset: 4px;
+}
+.iconField {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #ffefcc;
+  color: #784b10;
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.name {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #17171c;
+}
+.link {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: transparent;
+  text-underline-offset: 5px;
+}
+/* Gestreckter Klickbereich: die ganze Zeile führt zum Ziel – ein Tabstopp je Zeile */
+.link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.link:focus-visible {
+  outline: none;
+}
+.benefit {
+  margin: 4px 0 0;
+  max-width: 60ch;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #62626e;
+}
+.hint {
+  margin: 4px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #62626e;
+}
+@media (min-width: 1024px) {
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 24px;
+  }
+}
+@media (hover: hover) {
+  .link {
+    transition: text-decoration-color 0.15s ease;
+  }
+  .item[data-linked="true"]:hover .link {
+    text-decoration-color: currentColor;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition: none;
+  }
+}

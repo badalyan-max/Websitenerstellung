@@ -12,16 +12,27 @@ export interface DevicePairProps {
   /** Ein Screenreadersatz ≤ 140 Zeichen für beide Geräte. */
   description: string;
   tone?: "light" | "dark";
+  /**
+   * Lage (06-UI-SPEC E1): "default" wie bisher; "compact" mit 160-px-Phone, das unter 768 px rechts
+   * unten über dem Browser liegt statt darunter gestapelt (Hero oberhalb der Falz, D-20).
+   */
+  layout?: "default" | "compact";
 }
 
 /**
  * Browser und Phone überlappend (UI-SPEC §6, DevicePair): ab 768 px nebeneinander mit 48 px Überlappung
- * und 24 px Versatz, darunter gestapelt. Statisch – kein Umschalten, Reduced Motion sieht identisch aus.
- * Genau eine Kennzeichnung für beide Geräte; jeder Rahmen trägt seinen eigenen Beleg.
+ * und 24 px Versatz, darunter gestapelt bzw. in der Lage compact überlagert. Statisch – kein Umschalten,
+ * Reduced Motion sieht identisch aus. Genau eine Kennzeichnung für beide Geräte; jeder Rahmen trägt
+ * seinen eigenen Beleg.
  */
-export function DevicePair({ browser, phone, description, tone = "light" }: DevicePairProps) {
+export function DevicePair({ browser, phone, description, tone = "light", layout = "default" }: DevicePairProps) {
   return (
-    <figure className={`${s.figure} ${s.pairFigure}`} data-tone={tone} data-figure="pair">
+    <figure
+      className={`${s.figure} ${s.pairFigure}`}
+      data-tone={tone}
+      data-figure="pair"
+      data-layout={layout}
+    >
       <div className={s.pair}>
         <div className={s.pairBrowser} data-evidence={browser.evidence}>
           <BrowserDevice title={browser.title} evidence={browser.evidence} owner="DevicePair">
@@ -29,7 +40,13 @@ export function DevicePair({ browser, phone, description, tone = "light" }: Devi
           </BrowserDevice>
         </div>
         <div className={s.pairPhone} data-evidence={phone.evidence}>
-          <PhoneDevice title={phone.title} evidence={phone.evidence} activeTab={phone.activeTab} owner="DevicePair">
+          <PhoneDevice
+            title={phone.title}
+            evidence={phone.evidence}
+            activeTab={phone.activeTab}
+            width={layout === "compact" ? 160 : undefined}
+            owner="DevicePair"
+          >
             {phone.children}
           </PhoneDevice>
         </div>
