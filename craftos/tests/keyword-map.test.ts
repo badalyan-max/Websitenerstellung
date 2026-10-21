@@ -2,6 +2,9 @@ import { describe, it, expect } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import type { Metadata } from "next";
+import { createElement, type ReactElement } from "react";
+import { renderToString } from "react-dom/server";
 import sitemap from "@/app/sitemap";
 import { keywordMap } from "@/lib/keyword-map";
 import seeds from "@/docs/seo/keyword-seeds.json";
@@ -21,6 +24,12 @@ const norm = (k: string) =>
     .replace(/ü/g, "ue")
     .replace(/[\s-]+/g, "");
 const toPath = (url: string) => new URL(url).pathname.replace(/\/$/, "") || "/";
+
+/** Seiten, deren Title, H1 und Description in Phase 6 auf die Keyword-Map-Ziele umgestellt sind (D-12). Plan 06-05 ergänzt /funktionen. */
+type SeitenModul = { default: () => ReactElement; metadata: Metadata };
+const PHASE6_SEITEN: { path: string; modul: () => Promise<SeitenModul> }[] = [
+  { path: "/", modul: () => import("@/app/page") },
+];
 
 type Row = Record<string, unknown>;
 const rawCache = new Map<string, unknown>();
@@ -171,5 +180,30 @@ describe("Keyword-Map", () => {
     expect(e!.secondary.some((s) => s.startsWith("arbeitsabschnitte")), e!.path).toBe(true);
     const arbeitsabschnitte = exportFiles.flatMap((f) => rowsFor(f, "arbeitsabschnitte bau"));
     expect(arbeitsabschnitte.length, "Rohdaten zu arbeitsabschnitte bau").toBeGreaterThan(0);
+  });
+
+  it("Phase-6-Seiten folgen den Zielwerten (D-12)", async () => {
+    for (const seite of PHASE6_SEITEN) {
+      const eintrag = keywordMap.find((k) => k.path === seite.path);
+      expect(eintrag?.primary && eintrag.target, `${seite.path}: Eintrag mit Zielwerten`).toBeTruthy();
+      const { target, primary } = eintrag!;
+      const mod = await seite.modul();
+      const titel = String(mod.metadata.title);
+      // Die Root-Seite erbt kein Title-Template und trägt den vollständigen Title.
+      const gerendert = seite.path === "/" ? titel : `${titel} | CraftOS`;
+      expect(gerendert, `${seite.path}: Title`).toBe(target!.title);
+      expect(mod.metadata.description, `${seite.path}: Description`).toBe(target!.description);
+      const html = renderToString(createElement(mod.default));
+      const h1Match = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);
+      expect(h1Match, `${seite.path}: H1 vorhanden`).toBeTruthy();
+      const h1 = h1Match![1]
+        .replace(/<[^>]+>/g, "")
+        .replace(/&amp;/g, "&")
+        .replace(/\s+/g, " ")
+        .trim();
+      expect(h1, `${seite.path}: H1`).toBe(target!.h1);
+      expect(norm(gerendert), `${seite.path}: Title enthält Hauptkeyword`).toContain(norm(primary!.keyword));
+      expect(norm(h1), `${seite.path}: H1 enthält Hauptkeyword`).toContain(norm(primary!.keyword));
+    }
   });
 });

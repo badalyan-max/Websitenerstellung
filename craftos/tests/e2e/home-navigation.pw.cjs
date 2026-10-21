@@ -160,12 +160,8 @@ test('Menü: CLS bleibt 0 beim Öffnen und reduzierte Bewegung läuft ohne Anima
   const supported = await page.evaluate(() => window.__navShiftSupported)
   if (supported) expect(await page.evaluate(() => window.__navShift)).toBe(0)
   else testInfo.annotations.push({ type: 'hinweis', description: `${browserName} meldet keine layout-shift-Einträge; nur Animationen geprüft.` })
-  // Geprüft wird die Navigation (Header samt Panels und Drawer). Die alte Startseite enthält bis Plan 06-04
-  // noch FeatureSnippet-Szenen mit einer eigenen tab-size-Transition (WebKit); sie entfallen dort (D-04).
-  const running = await page.evaluate(() => document.getAnimations().filter((a) => {
-    const el = a.effect && a.effect.target
-    return el && el.closest && el.closest('header')
-  }).map((a) => {
+  // Seit Plan 06-04 hat die Startseite keine FeatureSnippet-Szenen mehr (D-04): geprüft wird die ganze Seite.
+  const running = await page.evaluate(() => document.getAnimations().map((a) => {
     const el = a.effect && a.effect.target
     const where = el ? `${el.tagName.toLowerCase()}${el.id ? '#' + el.id : ''}.${String(el.className).split(' ')[0]}` : '?'
     return `${a.constructor.name} ${a.animationName || a.transitionProperty || ''} @ ${where}`
@@ -222,4 +218,117 @@ test('axe: Menü offen ohne serious/critical (Mega-Menü 1440, Drawer 390)', asy
     await expect(page.locator('#navigation-funktionen')).toBeVisible()
   }
   expect(await severeAxe(page)).toEqual([])
+})
+
+// Startseite oberhalb der Falz (Plan 06-04, 06-UI-SPEC „Above-the-fold-Lagen“; D-02, D-20, ROADMAP-Kriterium 1).
+const FOLD_VIEWPORTS = [
+  { width: 360, height: 640 },
+  { width: 390, height: 844 },
+  { width: 768, height: 1024 },
+  { width: 1024, height: 768 },
+  { width: 1440, height: 900 },
+]
+const FRAME_LABEL = 'Vereinfachte Darstellung mit Beispieldaten'
+
+async function measureHero(page) {
+  return page.evaluate(() => {
+    const box = (el) => {
+      if (!el) return null
+      const r = el.getBoundingClientRect()
+      return { top: r.top, bottom: r.bottom, left: r.left, right: r.right, width: r.width, height: r.height }
+    }
+    const hero = document.querySelector('[data-home-hero]')
+    const h1 = hero.querySelector('h1')
+    const keyword = h1.querySelector('[data-keyword]')
+    const pair = hero.querySelector('figure[data-figure="pair"]')
+    const cta = hero.querySelector('a.v2-btn-cta')
+    const style = getComputedStyle(h1)
+    return {
+      h1: box(h1),
+      lead: box(h1.nextElementSibling),
+      cta: box(cta),
+      pair: box(pair),
+      browser: box(pair.querySelector('[data-frame="browser"]')),
+      phone: box(pair.querySelector('[data-frame="phone"]')),
+      label: box(pair.querySelector('[data-illustration-label]')),
+      fontSize: parseFloat(style.fontSize),
+      lineHeight: parseFloat(style.lineHeight),
+      keywordRects: keyword.getClientRects().length,
+      keywordText: keyword.textContent,
+      keywordWidth: keyword.getBoundingClientRect().width,
+      overflow: document.documentElement.scrollWidth - window.innerWidth,
+      ctaHref: cta.getAttribute('href'),
+      ctaTrack: cta.getAttribute('data-track'),
+    }
+  })
+}
+
+test('Above the fold: H1, Lead, CTA und Produkt sind in 360, 390, 768, 1024 und 1440 px ohne Scrollen sichtbar', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.use.hasTouch, 'Die Breiten werden im Desktop-Projekt per setViewportSize geprüft.')
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  const report = []
+  for (const vp of FOLD_VIEWPORTS) {
+    await page.setViewportSize(vp)
+    await page.goto('/')
+    await page.evaluate(() => document.fonts.ready)
+    const m = await measureHero(page)
+    const at = `${vp.width}×${vp.height}`
+    report.push(`${at}: H1 ${Math.round(m.h1.bottom)}, Lead ${Math.round(m.lead.bottom)}, CTA ${Math.round(m.cta.bottom)}, Paar ab ${Math.round(m.pair.top)}, Browser bis ${Math.round(m.browser.bottom)}, Phone ${Math.round(m.phone.top)}–${Math.round(m.phone.bottom)}, Kennzeichnung bis ${Math.round(m.label.bottom)}, H1 ${m.fontSize}px/${Math.round(m.h1.height / m.lineHeight)} Zeilen`)
+
+    for (const key of ['h1', 'lead', 'cta']) {
+      expect(m[key].top, `${at}: ${key} oben`).toBeGreaterThanOrEqual(0)
+      expect(m[key].bottom, `${at}: ${key} unten`).toBeLessThanOrEqual(vp.height)
+    }
+    expect(m.keywordText, at).toBe('Handwerkersoftware,')
+    expect(m.keywordRects, `${at}: Keyword in einem Stück`).toBe(1)
+    expect(m.keywordWidth, `${at}: Keyword passt in die H1`).toBeLessThanOrEqual(m.h1.width + 0.5)
+    expect(m.overflow, `${at}: kein horizontaler Scroll`).toBeLessThanOrEqual(1)
+    expect(m.ctaHref, at).toMatch(/^https:\/\/app\.craftos\.eu/)
+    expect(m.ctaTrack, at).toBe('trial')
+
+    if (vp.width === 360) {
+      expect(m.fontSize, '360: H1 28 px').toBe(28)
+      expect(m.h1.height, '360: H1 höchstens 3 Zeilen').toBeLessThanOrEqual(3 * m.lineHeight + 1)
+      expect(m.pair.top, '360: Produkt beginnt bis 460 px').toBeLessThanOrEqual(460)
+    } else if (vp.width === 390) {
+      expect(m.browser.bottom, '390: Browserrahmen vollständig').toBeLessThanOrEqual(vp.height)
+      expect(m.phone.top, '390: Phone beginnt oberhalb der Falz').toBeLessThan(vp.height)
+    } else {
+      expect(m.browser.bottom, `${at}: Browser vollständig`).toBeLessThanOrEqual(vp.height)
+      expect(m.phone.bottom, `${at}: Phone vollständig`).toBeLessThanOrEqual(vp.height)
+      if (vp.width === 1440) expect(m.label.bottom, '1440: Kennzeichnung sichtbar').toBeLessThanOrEqual(vp.height)
+    }
+  }
+  testInfo.annotations.push({ type: 'Above the fold', description: report.join(' | ') })
+  console.log(`[${testInfo.project.name}] ${report.join('\n  ')}`)
+})
+
+test('Above the fold: Startseite ruhig und gekennzeichnet (keine Animation, Kurzform-Belege, axe in fünf Breiten)', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.use.hasTouch, 'Die Breiten werden im Desktop-Projekt per setViewportSize geprüft.')
+  test.setTimeout(120_000)
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto('/')
+  await page.waitForLoadState('networkidle')
+  expect(await page.evaluate(() => document.getAnimations().length)).toBe(0)
+
+  const figures = await page.locator('figure[data-figure]').evaluateAll((els) => els.map((el) => ({
+    kind: el.getAttribute('data-figure'),
+    text: el.textContent,
+  })))
+  expect(figures.length).toBeGreaterThanOrEqual(5)
+  for (const f of figures) expect(f.text, f.kind).toContain(FRAME_LABEL)
+
+  const evidence = await page.locator('[data-evidence]').evaluateAll((els) => els.map((el) => el.getAttribute('data-evidence')))
+  expect(evidence.length).toBeGreaterThan(0)
+  for (const e of evidence) expect(e).toMatch(/^(web|app):[^\s/]+$/)
+
+  const loginInContent = await page.locator('main [data-track="login"]').count()
+  expect(loginInContent).toBe(0)
+
+  for (const vp of FOLD_VIEWPORTS) {
+    await page.setViewportSize(vp)
+    await page.goto('/')
+    await page.waitForLoadState('networkidle')
+    expect(await severeAxe(page), `axe ${vp.width}×${vp.height}`).toEqual([])
+  }
 })
