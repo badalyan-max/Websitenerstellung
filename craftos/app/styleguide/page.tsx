@@ -3,7 +3,6 @@ import type { CSSProperties, ReactNode } from "react";
 import { PageHero } from "@/components/ui/PageHero";
 import { BadgeGroup, LicenseBadge, PlatformBadge, PlatformBadges } from "@/components/v2/Badges";
 import { BentoGrid, BentoTile, TileIcon } from "@/components/v2/BentoGrid";
-import { BrowserFrame } from "@/components/v2/BrowserFrame";
 import { ComparisonTable } from "@/components/v2/ComparisonTable";
 import { CtaBand } from "@/components/v2/CtaBand";
 import { DevicePair } from "@/components/v2/DevicePair";
@@ -11,8 +10,7 @@ import { FaqList } from "@/components/v2/FaqList";
 import { FeatureCard } from "@/components/v2/FeatureCard";
 import { KeyFacts } from "@/components/v2/KeyFacts";
 import { MediaFigure } from "@/components/v2/MediaFigure";
-import { MiniList, MiniRow, MiniStatus, MiniTimer, MiniWeek } from "@/components/v2/mini/MiniUi";
-import { PhoneFrame } from "@/components/v2/PhoneFrame";
+import { Frame, SceneContent } from "@/components/v2/SceneContent";
 import { SectionHeader } from "@/components/v2/SectionHeader";
 import { StepFlow } from "@/components/v2/StepFlow";
 import { getFunktion } from "@/lib/funktionen";
@@ -34,8 +32,6 @@ import {
   stepContent,
   tokenSwatches,
   typeSamples,
-  type FrameScene,
-  type Visual,
 } from "@/lib/styleguide-content";
 
 /**
@@ -87,58 +83,6 @@ function DarkPanel({ children }: { children: ReactNode }) {
     <div data-tone="dark" className="mt-8 rounded-[24px] bg-ink-950 p-6 md:p-8">
       {children}
     </div>
-  );
-}
-
-function SceneContent({ scene }: { scene: FrameScene }) {
-  return (
-    <>
-      {scene.timer ? <MiniTimer label={scene.timer.label} value={scene.timer.value} /> : null}
-      {scene.week ? <MiniWeek entries={scene.week} /> : null}
-      {scene.rows ? (
-        <MiniList>
-          {scene.rows.map((row, index) => (
-            <MiniRow
-              key={index}
-              primary={row.primary}
-              secondary={row.secondary}
-              value={row.value}
-              status={row.status ? <MiniStatus status={row.status} /> : undefined}
-            />
-          ))}
-        </MiniList>
-      ) : null}
-    </>
-  );
-}
-
-function Frame({
-  visual,
-  width,
-  tone = "light",
-}: {
-  visual: Extract<Visual, { kind: "browser" | "phone" }>;
-  width?: 160 | 194 | 240;
-  tone?: "light" | "dark";
-}) {
-  const { scene } = visual;
-  if (visual.kind === "browser") {
-    return (
-      <BrowserFrame title={scene.title} evidence={scene.evidence} description={scene.description} tone={tone}>
-        <SceneContent scene={scene} />
-      </BrowserFrame>
-    );
-  }
-  return (
-    <PhoneFrame
-      title={scene.title}
-      evidence={scene.evidence}
-      description={scene.description}
-      activeTab={scene.activeTab}
-      width={width}
-    >
-      <SceneContent scene={scene} />
-    </PhoneFrame>
   );
 }
 

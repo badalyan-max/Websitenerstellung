@@ -235,3 +235,73 @@ Auftrag: nur Pfade und Kennzeichnung ändern, kein Redesign (D-03).
 | `FeatureCard` | Die 4:3-Bühne schnitt die `figcaption` des Geräterahmens ab, die Kennzeichnung war unsichtbar (MEDIA-03) | Kennzeichnung als Leiste an der Bühnenunterkante (`position: absolute`, warme Fläche, `pointer-events: none`) |
 
 **Sichtprüfung** (Dev-Server, Chromium, `reducedMotion: "reduce"`): Breiten 360, 375, 390, 768, 1024 und 1440 px ohne horizontalen Seitenscroll (einziger Scrollbereich ist die Vergleichstabelle), `document.getAnimations()` = 0, axe (wcag2a/2aa/21aa) ohne Verstöße, `sr-only` kommt im ausgelieferten CSS an (`position: absolute`, 1 px).
+
+---
+
+## 12. Kaskade Phase 6 (Plan 06-02, 21.10.2026)
+
+Verbindliche Vorgabe ist der freigegebene UI-Designvertrag
+`.planning/phases/06-startseite-navigation-und-funktions-bersicht/06-UI-SPEC.md` (aufbauend auf
+05-UI-SPEC). Dieser Abschnitt weist nach, dass die Kaskade vor den neuen Bausteinen der Phase 6
+(E1 `DevicePair` compact, E2 `FeatureList`, E3 Kurzform-Belege) gelaufen ist. Konkrete Werte stehen
+ausschließlich im UI-SPEC; hier werden keine neuen Werte festgelegt.
+
+1. **frontend-design:** Kein Skill-Werkzeug in dieser Sitzung. Gelesen (nicht kopiert):
+   `C:/Users/badal/.claude/plugins/cache/claude-plugins-official/frontend-design/e68e375d2286/skills/frontend-design/SKILL.md`
+   (byte-identisch mit dem Phase-5-Stand `a0b04d9ddcca`, per `cmp` geprüft). Angewendet auf die freien
+   Achsen der Bausteine:
+   - *Kühnheit an einer Stelle:* Die Kompaktlage des Geräterahmens (E1) bleibt das einzige markante
+     Element im Hero; `FeatureList` ist bewusst flach (Liste mit 1-px-Linien, keine Karte, kein Schatten,
+     keine Bühne), damit sie sich klar von den Detailkarten abhebt.
+   - *Strukturmittel tragen Information:* Plattform-Badges nur bei belegten Plattformen, Zielhinweis nur
+     bei echtem Ziel; ohne Ziel kein Link und kein Platzhalter.
+   - *Bewegung nur als Antwort auf Nutzeraktion:* Hover-Unterstrich 150 ms unter `@media (hover: hover)`,
+     unter `prefers-reduced-motion: reduce` ohne Übergang; keine Einblendungen.
+   - *Schreiben aus Nutzersicht:* Zielhinweise „Anleitung in der Hilfe“ bzw. „Beschrieben unter {Name}“
+     benennen, was hinter dem Link liegt.
+2. **ui-ux-pro-max** (ausgeführt am 21.10.2026, lokal):
+   ```
+   py -3.12 -X utf8 c:/Projekte/ai-agent-tools/skills/ui-ux-pro-max/scripts/search.py "saas mega menu navigation feature overview" --domain ux
+   py -3.12 -X utf8 c:/Projekte/ai-agent-tools/skills/ui-ux-pro-max/scripts/search.py "saas landing page hero handwerk software" --domain ux
+   ```
+   Treffer: Sticky Navigation (Medium), Breadcrumbs (Low), Back Button (High, mobil) bzw. Image
+   Optimization (High), Active State (Medium). Sie decken sich mit der Tabelle in 06-UI-SPEC.md,
+   Abschnitt „2. ui-ux-pro-max“; Übernahmen und Verwerfungen gelten unverändert von dort
+   (übernommen: Sticky-Ausgleich über `scroll-margin-top`, vorhersagbare Zurück-Taste ohne `pushState`,
+   keine Rasterbilder im Hero, aktiver Navigationszustand; sichtbarer Breadcrumb verworfen, nur
+   BreadcrumbList-Schema).
+3. **21st.dev:** `21st_magic_component_inspiration` stand dem Ausführenden in dieser Sitzung **nicht**
+   als Werkzeug zur Verfügung; die Suchen „mega menu“, „saas hero device mockup“ und „feature list
+   compact“ wurden deshalb nicht ausgeführt. Es wurden keine Referenzen abgerufen oder behauptet; builder
+   und refiner wurden nicht verwendet.
+4. **Context7:** MCP-Werkzeug in dieser Sitzung nicht verfügbar, `ctx7`-CLI nicht installiert. Ersatz ist
+   die mitgelieferte Doku `craftos/node_modules/next/dist/docs`:
+   `01-app/03-api-reference/04-functions/generate-metadata.md` (Title-Template gilt nicht für die
+   Root-Seite), `01-app/03-api-reference/02-components/link.md` (`next/link`, `prefetch`) und
+   `01-app/01-getting-started/05-server-and-client-components.md` (Server Components als Kinder einer
+   Client-Hülle; `SceneContent`, `Frame` und `FeatureList` bleiben Server Components ohne `"use client"`).
+
+**Ergänzungen (je ein Satz Begründung):**
+
+| # | Ergänzung | Begründung |
+|---|---|---|
+| E1 | `DevicePair layout="compact"` mit Phone 160 px, unter 768 px rechts unten über dem Browser | Bei 360 × 640 muss die Produktdarstellung oberhalb der Falz beginnen, was der bisherige Stapel nicht schafft (D-20). |
+| E2 | `FeatureList` für die Zusatzfunktionen ohne Detailseite | `FeatureCard` verlinkt immer auf eine Detailseite und wäre für Zusatzfunktionen irreführend (D-18). |
+| E3 | `data-evidence` nur noch als Kurzform `web:<Bildschirm>` bzw. `app:<Bildschirm>` | Interne Quellpfade gehören nicht ins öffentliche HTML; der volle Beleg bleibt in `lib/scenes.ts` (D-16, LO-05). |
+
+**Abweichungen zu 05-UI-SPEC (je ein Satz Begründung, Details in 06-UI-SPEC.md):**
+
+| # | Abweichung | Begründung |
+|---|---|---|
+| A1 | Display 48 px erst ab 1200 px (Formel unverändert) | Die Formel `clamp(32px, 4vw, 48px)` ergibt bei 1024 px nur 40,96 px, die alte Beschreibung war in sich widersprüchlich. |
+| A2 | H1 der Startseite unter 400 px 28 px | „Handwerkersoftware,“ ist bei 32 px breiter als der 324-px-Container und darf nicht getrennt werden. |
+| A3 | Amber-Liste umfasst das Header-Logo | Das Logo mit Amber-Sechseck steht seit vor Phase 5 auf jeder Seite und ist als Marke gesperrt. |
+| A4 | Header und mobiler Drawer dunkel `#101014` | Beide sind Navigationsebenen über dem Inhalt und verletzen den Flächenrhythmus der Inhaltsabschnitte nicht. |
+| A5 | Icon-Feld 40 × 40 mit 20-px-Icon in Menü und `FeatureList` | Listen- und Navigationszeilen sind dichter als Kacheln, und 40 px liegt weiter auf dem 8-px-Raster. |
+| A6 | `FeatureCard`-Raster und `FeatureList` in einem Abschnitt je Gruppe | Eine Trennung würde je Gruppe eine zweite H2 erzeugen und die Gruppenanker zerreißen. |
+| A7 | Schatten zusätzlich an Navigationspanels | Die Panels sind eine funktionale Überlagerungsebene und kein dekoratives Element. |
+
+**Extraktion ohne Sichtänderung:** `euro`/`germanDate` liegen jetzt in `lib/format.ts`, die sechs Szenen
+samt Typen in `lib/scenes.ts` (neues Pflichtfeld `screen` mit der Kurzform, dazu `cardScenes` für
+/funktionen), `SceneContent` und `Frame` in `components/v2/SceneContent.tsx`. `lib/styleguide-content.ts`
+re-exportiert die bisherigen Namen, die Musterseite bleibt unverändert.

@@ -17,25 +17,26 @@ import {
 } from "lucide-react";
 import type { KeyFact } from "@/components/v2/KeyFacts";
 import type { ComparisonColumn, ComparisonRow } from "@/components/v2/ComparisonTable";
-import type { MiniStatusName, MiniWeekEntry } from "@/components/v2/mini/MiniUi";
-import type { PhoneTab } from "@/components/v2/PhoneFrame";
 import type { Step } from "@/components/v2/StepFlow";
+import { euro, germanDate } from "@/lib/format";
 import { getFunktion, type ProductPlatform } from "@/lib/funktionen";
 import { mobileLocales, productBasis } from "@/lib/product-register";
+import {
+  aufmassScene,
+  einsaetzeScene,
+  maengelScene,
+  plantafelScene,
+  rechnungenScene,
+  zeitenScene,
+  type Visual,
+} from "@/lib/scenes";
 import { creditUmrechnung, site, startCredits, tarife } from "@/lib/site";
 
+/** Formatierer und Szenentypen leben in lib/format.ts bzw. lib/scenes.ts; Re-Export hält bestehende Importe gültig. */
+export { euro, germanDate };
+export type { FrameScene, MiniRowContent, Visual } from "@/lib/scenes";
+
 const NBSP = " ";
-
-/** Preis aus tarife, deutsch formatiert (Komma, geschütztes Leerzeichen vor dem Eurozeichen). */
-export function euro(value: number): string {
-  return new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(value);
-}
-
-/** ISO-Datum → „20.10.2026“. */
-export function germanDate(iso: string): string {
-  const [year, month, day] = iso.split("-");
-  return `${day}.${month}.${year}`;
-}
 
 function tarif(id: "voll" | "app") {
   const entry = tarife.find((t) => t.id === id);
@@ -54,106 +55,6 @@ const app = tarif("app");
 /** Stand der Produkt- und Preisprüfung (Produktregister, origin/release). */
 export const standDatum = germanDate(productBasis.checkedAt);
 const trial = `${site.trialDays}${NBSP}Tage`;
-
-// ---------------------------------------------------------------------------
-// Mini-UI-Szenen (vereinfachte Produktoberflächen, Beispieldaten)
-// ---------------------------------------------------------------------------
-
-export interface MiniRowContent {
-  primary: string;
-  secondary?: string;
-  value?: string;
-  status?: MiniStatusName;
-}
-
-export interface FrameScene {
-  /** Seitentitel in der Web-App bzw. Mobile-App (Mini-Budget 24 Zeichen). */
-  title: string;
-  /** Beleg am Release, Form "web:<pfad>" bzw. "mobile:<pfad>". */
-  evidence: string;
-  /** Screenreadersatz ≤ 140 Zeichen. */
-  description: string;
-  activeTab?: PhoneTab;
-  rows?: MiniRowContent[];
-  week?: MiniWeekEntry[];
-  timer?: { label: string; value: string };
-}
-
-export type Visual =
-  | { kind: "icon"; icon: LucideIcon }
-  | { kind: "browser"; scene: FrameScene }
-  | { kind: "phone"; scene: FrameScene };
-
-const plantafelScene: FrameScene = {
-  title: "Plantafel",
-  evidence: "web:src/pages/Plantafel.tsx",
-  description: "Wochenansicht der Plantafel mit Einsätzen auf drei Baustellen von Montag bis Freitag.",
-  week: [
-    { day: 0, label: "Bad Bergmann", span: 3 },
-    { day: 3, label: "Bäckerei Krause", span: 2 },
-    { day: 0, label: "Dach Schulte", lane: 1, span: 2 },
-    { day: 2, label: "Aufmaß Weber", lane: 1 },
-    { day: 1, label: "Bad Bergmann", lane: 2, span: 2 },
-  ],
-};
-
-const zeitenScene: FrameScene = {
-  title: "Zeiterfassung",
-  evidence: "mobile:src/features/time-tracking/screens/TimeTrackingScreen.tsx",
-  description: "Zeiterfassung in der Mobile-App mit laufendem Timer und den Zeiteinträgen des Tages.",
-  activeTab: "Zeiten",
-  timer: { label: "Bad Bergmann", value: "02:15:00" },
-  rows: [
-    { primary: "Arbeit", secondary: "Bad Bergmann", value: "4 Std. 30 Min." },
-    { primary: "Fahrt", secondary: "Bad Bergmann", value: "30 Min." },
-  ],
-};
-
-const maengelScene: FrameScene = {
-  title: "Mängel",
-  evidence: "mobile:src/features/defects/screens/DefectsScreen.tsx",
-  description: "Mängelliste in der Mobile-App mit drei erfassten Mängeln aus zwei Projekten.",
-  activeTab: "Projekte",
-  rows: [
-    { primary: "Silikonfuge Dusche", secondary: "Bad Bergmann" },
-    { primary: "Fliese gesprungen", secondary: "Bad Bergmann" },
-    { primary: "Türzarge beschädigt", secondary: "Bäckerei Krause" },
-  ],
-};
-
-const aufmassScene: FrameScene = {
-  title: "Aufmaß",
-  evidence: "mobile:src/features/room-measurements/screens/RoomMeasurementsScreen.tsx",
-  description: "Raumaufmaß in der Mobile-App mit Boden- und Wandfläche sowie einem Abzug für die Tür.",
-  activeTab: "Projekte",
-  rows: [
-    { primary: "Bad, Boden", value: "6,4 m²" },
-    { primary: "Bad, Wand", value: "21,8 m²" },
-    { primary: "Abzug Tür", value: "−1,6 m²" },
-  ],
-};
-
-const rechnungenScene: FrameScene = {
-  title: "Rechnungen",
-  evidence: "web:src/pages/Rechnungen.tsx",
-  description: "Rechnungsliste der Web-App mit drei Rechnungen in den Status Gesendet, Bezahlt und Offen.",
-  rows: [
-    { primary: "RE-2026-041", secondary: "Bäckerei Krause", status: "Gesendet" },
-    { primary: "RE-2026-040", secondary: "Bad Bergmann", status: "Bezahlt" },
-    { primary: "RE-2026-039", secondary: "Dach Schulte", status: "Offen" },
-  ],
-};
-
-const einsaetzeScene: FrameScene = {
-  title: "Einsätze",
-  evidence: "mobile:src/features/assignments/screens/AssignmentsListScreen.tsx",
-  description: "Einsatzliste in der Mobile-App mit den zugewiesenen Einsätzen der Woche.",
-  activeTab: "Einsätze",
-  rows: [
-    { primary: "Bad Bergmann", secondary: "Mo–Mi", value: "07:00" },
-    { primary: "Bäckerei Krause", secondary: "Do–Fr", value: "07:30" },
-  ],
-};
 
 // ---------------------------------------------------------------------------
 // Block 0 und 1: Kopf und Tokens
