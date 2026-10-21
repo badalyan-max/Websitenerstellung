@@ -1,0 +1,20 @@
+{
+  "vorher": {
+    "subscription_info": {
+      "status": "active",
+      "start_date": "2026-10-20 17:22:59",
+      "expiraton_date": "2026-11-03 17:22:59",
+      "units_limit": 100000,
+      "units_left": 50035
+    }
+  },
+  "nachher": {
+    "subscription_info": {
+      "status": "active",
+      "start_date": "2026-10-20 17:22:59",
+      "expiraton_date": "2026-11-03 17:22:59",
+      "units_limit": 100000,
+      "units_left": 50035
+    }
+  }
+}

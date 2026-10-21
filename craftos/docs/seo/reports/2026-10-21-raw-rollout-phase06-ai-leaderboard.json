@@ -1,0 +1,306 @@
+{
+  "unavailable": [
+    {
+      "engine": "perplexity",
+      "domain": "craftos.eu",
+      "reason": "no_data"
+    },
+    {
+      "engine": "ai-mode",
+      "domain": "craftos.eu",
+      "reason": "no_data"
+    },
+    {
+      "engine": "gemini",
+      "domain": "openhandwerk.de",
+      "reason": "no_data"
+    }
+  ],
+  "sov_components": [
+    "brand_presence",
+    "link_presence"
+  ],
+  "partial": true,
+  "request_metadata": {
+    "source": "de",
+    "engines": [
+      "chatgpt",
+      "perplexity",
+      "gemini",
+      "ai-overview",
+      "ai-mode"
+    ],
+    "primary": "craftos.eu",
+    "competitors": [
+      "plancraft.com",
+      "hero-software.de",
+      "craftnote.de",
+      "openhandwerk.de",
+      "tooltime.de",
+      "das-programm.io",
+      "streit-software.de"
+    ],
+    "scope_applied": "base_domain",
+    "scope_requested": "base_domain"
+  },
+  "leaderboard": [
+    {
+      "brand_origin": "request",
+      "brand_presence": 477,
+      "domain": "streit-software.de",
+      "rank": 1,
+      "is_primary_target": false,
+      "share_of_voice": 0.4163,
+      "link_presence": 6368,
+      "brand": "Streit"
+    },
+    {
+      "brand_origin": "request",
+      "brand_presence": 1132,
+      "domain": "hero-software.de",
+      "rank": 2,
+      "is_primary_target": false,
+      "share_of_voice": 0.3243,
+      "link_presence": 2213,
+      "brand": "HERO"
+    },
+    {
+      "brand_origin": "request",
+      "brand_presence": 509,
+      "domain": "tooltime.de",
+      "rank": 3,
+      "is_primary_target": false,
+      "share_of_voice": 0.0947,
+      "link_presence": 1,
+      "brand": "ToolTime"
+    },
+    {
+      "brand_origin": "request",
+      "brand_presence": 295,
+      "domain": "das-programm.io",
+      "rank": 4,
+      "is_primary_target": false,
+      "share_of_voice": 0.0669,
+      "link_presence": 234,
+      "brand": "Das Programm"
+    },
+    {
+      "brand_origin": "request",
+      "brand_presence": 157,
+      "domain": "plancraft.com",
+      "rank": 5,
+      "is_primary_target": false,
+      "share_of_voice": 0.0492,
+      "link_presence": 389,
+      "brand": "Plancraft"
+    },
+    {
+      "brand_origin": "request",
+      "brand_presence": 97,
+      "domain": "craftnote.de",
+      "rank": 6,
+      "is_primary_target": false,
+      "share_of_voice": 0.0356,
+      "link_presence": 341,
+      "brand": "Craftnote"
+    },
+    {
+      "brand_origin": "request",
+      "brand_presence": 22,
+      "domain": "openhandwerk.de",
+      "rank": 7,
+      "is_primary_target": false,
+      "share_of_voice": 0.0129,
+      "link_presence": 172,
+      "brand": "openHandwerk"
+    },
+    {
+      "brand_origin": "request",
+      "brand_presence": 1,
+      "domain": "craftos.eu",
+      "rank": 8,
+      "is_primary_target": true,
+      "share_of_voice": 0.0002,
+      "link_presence": 1,
+      "brand": "CraftOS"
+    }
+  ],
+  "results": {
+    "streit-software.de": {
+      "chatgpt": {
+        "brand_presence": 140,
+        "link_presence": 56
+      },
+      "gemini": {
+        "brand_presence": 26,
+        "link_presence": 455
+      },
+      "perplexity": {
+        "brand_presence": 12,
+        "link_presence": 358
+      },
+      "ai-overview": {
+        "brand_presence": 268,
+        "link_presence": 4721
+      },
+      "ai-mode": {
+        "brand_presence": 31,
+        "link_presence": 778
+      }
+    },
+    "craftnote.de": {
+      "chatgpt": {
+        "brand_presence": 14,
+        "link_presence": 48
+      },
+      "gemini": {
+        "brand_presence": 11,
+        "link_presence": 7
+      },
+      "perplexity": {
+        "brand_presence": 4,
+        "link_presence": 18
+      },
+      "ai-overview": {
+        "brand_presence": 64,
+        "link_presence": 258
+      },
+      "ai-mode": {
+        "brand_presence": 4,
+        "link_presence": 10
+      }
+    },
+    "craftos.eu": {
+      "chatgpt": {
+        "brand_presence": null,
+        "link_presence": 1
+      },
+      "gemini": {
+        "brand_presence": 0,
+        "link_presence": null
+      },
+      "perplexity": {
+        "brand_presence": null,
+        "link_presence": null
+      },
+      "ai-overview": {
+        "brand_presence": 1,
+        "link_presence": null
+      },
+      "ai-mode": {
+        "brand_presence": null,
+        "link_presence": null
+      }
+    },
+    "plancraft.com": {
+      "chatgpt": {
+        "brand_presence": 11,
+        "link_presence": 18
+      },
+      "gemini": {
+        "brand_presence": 9,
+        "link_presence": 12
+      },
+      "perplexity": {
+        "brand_presence": 3,
+        "link_presence": 7
+      },
+      "ai-overview": {
+        "brand_presence": 131,
+        "link_presence": 330
+      },
+      "ai-mode": {
+        "brand_presence": 3,
+        "link_presence": 22
+      }
+    },
+    "tooltime.de": {
+      "chatgpt": {
+        "brand_presence": 11,
+        "link_presence": 1
+      },
+      "gemini": {
+        "brand_presence": 6,
+        "link_presence": null
+      },
+      "perplexity": {
+        "brand_presence": 3,
+        "link_presence": null
+      },
+      "ai-overview": {
+        "brand_presence": 473,
+        "link_presence": null
+      },
+      "ai-mode": {
+        "brand_presence": 16,
+        "link_presence": 0
+      }
+    },
+    "hero-software.de": {
+      "chatgpt": {
+        "brand_presence": 147,
+        "link_presence": 21
+      },
+      "gemini": {
+        "brand_presence": 41,
+        "link_presence": 21
+      },
+      "perplexity": {
+        "brand_presence": 17,
+        "link_presence": 56
+      },
+      "ai-overview": {
+        "brand_presence": 804,
+        "link_presence": 2023
+      },
+      "ai-mode": {
+        "brand_presence": 123,
+        "link_presence": 92
+      }
+    },
+    "openhandwerk.de": {
+      "chatgpt": {
+        "brand_presence": 4,
+        "link_presence": 4
+      },
+      "gemini": {
+        "brand_presence": null,
+        "link_presence": null
+      },
+      "perplexity": {
+        "brand_presence": null,
+        "link_presence": 2
+      },
+      "ai-overview": {
+        "brand_presence": 18,
+        "link_presence": 165
+      },
+      "ai-mode": {
+        "brand_presence": 0,
+        "link_presence": 1
+      }
+    },
+    "das-programm.io": {
+      "chatgpt": {
+        "brand_presence": 10,
+        "link_presence": 2
+      },
+      "gemini": {
+        "brand_presence": 7,
+        "link_presence": 4
+      },
+      "perplexity": {
+        "brand_presence": 0,
+        "link_presence": 2
+      },
+      "ai-overview": {
+        "brand_presence": 267,
+        "link_presence": 212
+      },
+      "ai-mode": {
+        "brand_presence": 11,
+        "link_presence": 14
+      }
+    }
+  }
+}
