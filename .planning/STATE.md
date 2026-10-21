@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-stopped_at: Completed 07-04-PLAN.md
-last_updated: "2026-10-21T18:44:49.917Z"
-last_activity: "2026-10-21 – 07-04 Detailvorlage: prüfender Builder lib/funktionsdetails, FunktionsKopf, PlattformRollen, FunktionsDetail mit JSON-LD; Kartenrahmen /funktionen ohne angeschnittene Zeilen"
+stopped_at: Completed 07-05-PLAN.md
+last_updated: "2026-10-21T19:02:35.989Z"
+last_activity: "2026-10-21 – 07-05 Inhalte Angebot, Planung, Baustelle: zwölf geprüfte Inhaltsmodule (angebot.ts, planung.ts, baustelle.ts), sieben Zusatzfunktionen als Kachel, Wortregel-Ausnahme für Nein-Antworten"
 progress:
   total_phases: 6
   completed_phases: 2
   total_plans: 23
-  completed_plans: 18
+  completed_plans: 19
   percent: 33
 ---
 
@@ -30,14 +30,14 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 7
-Plan: 5 of 9 (07-01 bis 07-04 abgeschlossen)
+Plan: 6 of 9 (07-01 bis 07-05 abgeschlossen)
 Status: Ready to execute
-Last activity: 2026-10-21 – 07-04 Detailvorlage: prüfender Builder lib/funktionsdetails, FunktionsKopf, PlattformRollen, FunktionsDetail mit JSON-LD; Kartenrahmen /funktionen ohne angeschnittene Zeilen
+Last activity: 2026-10-21 – 07-05 Inhalte Angebot, Planung, Baustelle: zwölf geprüfte Inhaltsmodule (angebot.ts, planung.ts, baustelle.ts), sieben Zusatzfunktionen als Kachel, Wortregel-Ausnahme für Nein-Antworten
 
-Progress: [████████░░] 78% (18/23 Pläne des Milestones; Phase 7: 4/9)
+Progress: [████████░░] 83% (19/23 Pläne des Milestones; Phase 7: 5/9)
 
-Last session: 2026-10-21T18:44:49.908Z
-Stopped at: Completed 07-04-PLAN.md
+Last session: 2026-10-21T19:02:35.980Z
+Stopped at: Completed 07-05-PLAN.md
 Resume file: None
 
 ## Accumulated Context
@@ -89,6 +89,8 @@ Resume file: None
 - [Phase 07]: 07-04: Builder lib/funktionsdetails (server-only) prüft Inhalte gegen alle 07-UI-SPEC-Regeln; genau eine Grenze-Kachel je Seite – angebote braucht in 07-05 eine Grenze-Kachel (fehlt in UI-SPEC-Tabelle)
 - [Phase 07]: 07-04: FeatureSnippet mit optionalem headingLevel (Standard 2), Detailvorlage nutzt h3 – eine H2 je Abschnitt
 - [Phase 07]: 07-04: Kartenrahmen auf /funktionen: Frame karte zeigt höchstens 2 Zeilen je Browser-Szene, 1024–1119 px nur 1 (umbrechende Kennzeichnung); Kopf-Visual unverändert
+- [Phase 07]: 07-05: angebote führt die Grenze-Kachel „DATANORM v5 nicht pauschal zugesagt“ statt „Dokumente ausgeben“ (Anordnung md·sm·sm·wide·wide bleibt)
+- [Phase 07]: 07-05: Wortregel erlaubt „automatisch“ in einer FAQ-Frage, deren Antwort mit „Nein“ beginnt
 
 ### Pending Todos
 
@@ -120,3 +122,4 @@ None yet.
 | Phase 07 P02 | 19min | 3 tasks | 21 files |
 | Phase 07 P03 | 55min | 2 tasks | 7 files |
 | Phase 07 P04 | 45min | 3 tasks | 19 files |
+| Phase 07 P05 | 15min | 3 tasks | 5 files |

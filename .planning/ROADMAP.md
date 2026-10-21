@@ -137,7 +137,7 @@ Plans:
 
 **Wave 5** *(blocked on Wave 4 completion)*
 
-- [ ] 07-05-PLAN.md — Inhalte Angebot, Planung, Baustelle (12 Detailseiten)
+- [x] 07-05-PLAN.md — Inhalte Angebot, Planung, Baustelle (12 Detailseiten)
 
 **Wave 6** *(blocked on Wave 5 completion)*
 
@@ -210,7 +210,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
 | 6. Startseite, Navigation und Funktionsübersicht | 6/6 | Complete    | 2026-10-21 |
-| 7. Funktionsdetailseiten und Mobile-App-Seite | 4/9 | In Progress|  |
+| 7. Funktionsdetailseiten und Mobile-App-Seite | 5/9 | In Progress|  |
 | 8. SEO und KI-Sichtbarkeit | 0/TBD | Not started | - |
 | 9. Gewerke und Wissensinhalte | 0/TBD | Not started | - |
 | 10. Abschlussaudit | 0/TBD | Not started | - |
