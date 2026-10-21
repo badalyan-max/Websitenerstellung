@@ -121,7 +121,7 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 07-01-PLAN.md — Bausteinergänzungen: Budgets F4, Statusnamen F3 mit Release-Beleg, KeyFacts-Kurzform (D-13), Zielart „seite“ (F5), webPageSchema/mobileApplicationSchema
+- [x] 07-01-PLAN.md — Bausteinergänzungen: Budgets F4, Statusnamen F3 mit Release-Beleg, KeyFacts-Kurzform (D-13), Zielart „seite“ (F5), webPageSchema/mobileApplicationSchema
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -210,7 +210,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
 | 6. Startseite, Navigation und Funktionsübersicht | 6/6 | Complete    | 2026-10-21 |
-| 7. Funktionsdetailseiten und Mobile-App-Seite | 0/9 | Planned | - |
+| 7. Funktionsdetailseiten und Mobile-App-Seite | 1/9 | In Progress|  |
 | 8. SEO und KI-Sichtbarkeit | 0/TBD | Not started | - |
 | 9. Gewerke und Wissensinhalte | 0/TBD | Not started | - |
 | 10. Abschlussaudit | 0/TBD | Not started | - |

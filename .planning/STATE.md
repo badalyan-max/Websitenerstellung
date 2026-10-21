@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-last_updated: "2026-10-21T15:18:44.731Z"
+last_updated: "2026-10-21T17:07:55.850Z"
 last_activity: 2026-10-21
 progress:
   total_phases: 6
   completed_phases: 2
-  total_plans: 14
-  completed_plans: 14
+  total_plans: 23
+  completed_plans: 15
   percent: 33
 ---
 
@@ -20,7 +20,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-10-20)
 
 **Core value:** Besucher verstehen den Produktablauf anhand lesbarer Beispiele und direkter App-Aufnahmen und können die richtige Funktion und Anleitung schnell finden.
-**Current focus:** Phase 6 — Startseite, Navigation und Funktionsübersicht
+**Current focus:** Phase 7 — Funktionsdetailseiten und Mobile-App-Seite
 
 ## Vorheriger Milestone v1.0 (abgeschlossen)
 
@@ -29,11 +29,15 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 7
-Plan: Not started
-Status: Ready to execute
-Last activity: 2026-10-21
+Plan: 2 of 9 (07-01 abgeschlossen)
+Status: In progress
+Last activity: 2026-10-21 – 07-01 Bausteinergänzungen F3–F5, D-13, Schema-Helfer abgeschlossen
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [███████░░░] 65% (15/23 Pläne des Milestones; Phase 7: 1/9)
+
+Last session: 2026-10-21
+Stopped at: Completed 07-01-PLAN.md
+Resume file: None
 
 ## Accumulated Context
 
@@ -73,6 +77,9 @@ Progress: [░░░░░░░░░░] 0%
 - [Phase 06]: 06-05: /funktionen = FunktionenHead + 6 Gruppenabschnitte (FeatureCard-Raster + FeatureList je Gruppe) + CtaBand; ItemList nur mit den 16 Detailseiten; PageHero, TrialCta und .feature-grid entfallen
 - [Phase 06]: 06-05: BentoTile lg mit Browserrahmen füllt Breite und freie Höhe (mind. 16:10), Text am Kachelboden; wide-Visual mittig in seiner Spalte
 - [Phase 06]: Phase 6 live (dpl_GmDkQJyqGHfhYnHjutYXibqCyxFq): live-check prueft Title/H1/Description aus keyword-map.json und Detail-Slugs aus der Sitemap; DESIGN-02 und SEO-02 bleiben bis Phasen 7–8 offen
+- [Phase 07]: 07-01: MiniStatusName um 16 am Release belegte Namen erweitert (MINI_STATUS_BELEGE, MINI_STATUS_TON); Farben nur über data-tone neutral/positiv/hervorgehoben, Bestandsfarben unverändert; Belegtest am gepinnten productBasis-Commit
+- [Phase 07]: 07-01: KeyFacts-Quellen nur als Kurzform site:/register: (Laufzeitprüfung), keine internen Modulnamen in data-source
+- [Phase 07]: 07-01: webPageSchema ohne isPartOf (Layout hat keinen WebSite-Knoten); mobileApplicationSchema mit eigener @id /app#mobile-app, App-Lizenz netto, ohne Bewertungen
 
 ### Pending Todos
 
@@ -100,3 +107,4 @@ None yet.
 | Phase 06 P04 | 22min | 3 tasks | 13 files |
 | Phase 06 P05 | 32min | 2 tasks | 12 files |
 | Phase 06 P06 | 35min | 2 tasks | 10 files |
+| Phase 07 P01 | 25min | 2 tasks | 14 files |
