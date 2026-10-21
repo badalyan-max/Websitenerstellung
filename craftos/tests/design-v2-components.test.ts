@@ -374,6 +374,12 @@ describe("FeatureList (E2)", () => {
     const hover = css.match(/@media \(hover: hover\)\s*\{[\s\S]*?\n\}/)?.[0] ?? "";
     expect(hover).toMatch(/transition:[^;]*0?\.15s|transition:[^;]*150ms/);
     expect(css).toMatch(/@media \(prefers-reduced-motion: reduce\)\s*\{[\s\S]*transition:\s*none/);
-    expect(css).toMatch(/:focus-within\s*\{[^}]*outline:\s*3px solid #bb7609/);
+    // Fokusrahmen nur bei Tastaturfokus (:focus-visible), nicht beim Mausklick (06-REVIEW WR-01).
+    expect(css).toMatch(/\.item:has\(\.link:focus-visible\)\s*\{[^}]*outline:\s*3px solid #bb7609/);
+    expect(css).not.toMatch(/:focus-within/);
+    // Verlinkte Namen sind dauerhaft unterstrichen, nicht erst beim Überfahren (WCAG 1.4.1).
+    const linkRegel = css.match(/\n\.link\s*\{[^}]*\}/)?.[0] ?? "";
+    expect(linkRegel).toMatch(/text-decoration:\s*underline/);
+    expect(linkRegel).not.toMatch(/transparent/);
   });
 });
