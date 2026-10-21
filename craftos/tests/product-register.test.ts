@@ -5,6 +5,7 @@ import {
   getProductRegister,
   productBasis,
   mobileLocales,
+  mobileOffline,
 } from "@/lib/product-register";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -112,6 +113,17 @@ describe("publication basis", () => {
         ).toBe(true);
     }
   });
+  it("führt Offline als belegten Registereintrag mit Limitation (07-07, D-23)", () => {
+    const register = getProductRegister();
+    expect(mobileOffline.evidence.map((e) => `${e.repository}:${e.path}`)).toEqual([
+      "mobile:src/shared/hooks/useOfflineQueueSync.ts",
+      "mobile:src/shared/hooks/useOfflineMutation.ts",
+      "mobile:src/shared/components/SyncStatusBadge.tsx",
+      "mobile:src/shared/components/OfflineIndicator.tsx",
+    ]);
+    expect(register.limitations).toContain(mobileOffline.limitation);
+    expect(mobileOffline.limitation).toBe("Keine vollständige Offline-Zusage");
+  });
   it("uses the individual article image for both sharing formats", () => {
     const result = pageMetadata(
       "Rechnung schreiben",
@@ -147,6 +159,8 @@ describe.skipIf(!fs.existsSync(WEB) || !fs.existsSync(MOBILE))(
       const all = [
         ...register.features.flatMap((f) => f.evidence),
         ...register.liveExtras.flatMap((x) => x.evidence),
+        // 07-07 (D-23): Offline-Erfassung der Mobile-App mit Belegen am Mobile-Release
+        ...mobileOffline.evidence,
         ...mobileLocales.map((code) => ({
           repository: "mobile" as const,
           path: `src/shared/i18n/locales/${code}`,
