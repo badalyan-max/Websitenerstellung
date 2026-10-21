@@ -24,6 +24,7 @@ import {
   type VerwandtEintrag,
   type Zielwerte,
 } from "./types";
+import { angebotInhalte } from "./angebot";
 
 /**
  * Builder der Funktionsdetailseiten (Phase 7, 07-UI-SPEC „Vorlage Detailseite“; D-02, D-03, D-04, D-19, D-23).
@@ -35,10 +36,12 @@ import {
  */
 
 /**
- * Inhaltsmodule je Slug. Leer bis 07-05/07-06 die Gruppenmodule (lib/funktionsdetails/{gruppe}.ts)
- * hier zusammenführen.
+ * Inhaltsmodule je Slug aus den Gruppenmodulen (lib/funktionsdetails/{gruppe}.ts). 07-05: Angebot,
+ * Planung, Baustelle; 07-06 ergänzt Rechnung, Buchhaltung und Team.
  */
-export const INHALTE: Readonly<Record<string, FunktionsdetailInhalt>> = {};
+export const INHALTE: Readonly<Record<string, FunktionsdetailInhalt>> = {
+  ...angebotInhalte,
+};
 
 /** FeatureSnippet nur auf diesen 8 Detailseiten, als einziges animiertes Element im Ablauf (D-19). */
 export const SNIPPET_VARIANTE: Readonly<Record<string, SnippetVariante>> = {
@@ -133,29 +136,46 @@ function kopfSzenen(visual: KopfVisual): FrameScene[] {
   return visual.kind === "pair" ? [visual.browser, visual.phone] : [visual.scene];
 }
 
+/** Textfeld für die Wortregeln; `frageMitNein` = FAQ-Frage, deren Antwort mit „Nein“ beginnt. */
+interface Textfeld {
+  text: string;
+  frageMitNein?: true;
+}
+
 /** Alle Textfelder außer der H1 (die H1 kommt aus der Keyword-Map). */
-function textfelder(inhalt: FunktionsdetailInhalt): string[] {
+function textfelder(inhalt: FunktionsdetailInhalt): Textfeld[] {
   const abschnitte = [inhalt.ablauf, inhalt.rollen, inhalt.kernpunkte, inhalt.faq];
-  return [
+  const texte = [
     inhalt.lead,
     inhalt.secondary.label,
     ...abschnitte.flatMap((a) => [a.title, a.lead]),
     ...inhalt.ablauf.steps.flatMap((s) => [s.title, s.text]),
     ...inhalt.rollen.panels.flatMap((p) => [p.satz, ...p.rollen.map((r) => r.zusatz ?? "")]),
     ...inhalt.kernpunkte.tiles.flatMap((t) => [t.title, t.text]),
-    ...inhalt.faq.items.flatMap((f) => [f.q, f.a]),
+  ];
+  return [
+    ...texte.map((text): Textfeld => ({ text })),
+    ...inhalt.faq.items.flatMap((f): Textfeld[] => [
+      /^Nein\b/.test(f.a.trim()) ? { text: f.q, frageMitNein: true } : { text: f.q },
+      { text: f.a },
+    ]),
   ];
 }
 
-function pruefeWortregeln(slug: string, texte: readonly string[]): void {
-  for (const text of texte) {
+/**
+ * Wortregeln (Pitfall 7/8, D-20, D-23): verbotene Überclaims nie; „automatisch“ nur mit „auf Wunsch“ im selben
+ * Feld. Ausnahme: eine FAQ-Frage darf „automatisch“ enthalten, wenn ihre Antwort mit „Nein“ beginnt
+ * (z. B. „Werden Maße automatisch gemessen?“); die Antwort selbst unterliegt weiter der Regel.
+ */
+function pruefeWortregeln(slug: string, felder: readonly Textfeld[]): void {
+  for (const { text, frageMitNein } of felder) {
     const klein = text.toLowerCase();
     for (const wort of VERBOTENE_WOERTER) {
       if (klein.includes(wort.toLowerCase())) {
         throw new Error(`Funktionsdetail: ${slug} enthält ‚${wort}‘ – Formulierung laut 07-UI-SPEC ändern.`);
       }
     }
-    if (klein.includes("automatisch") && !klein.includes("auf wunsch")) {
+    if (klein.includes("automatisch") && !klein.includes("auf wunsch") && !frageMitNein) {
       throw new Error(`Funktionsdetail: ${slug} enthält ‚automatisch‘ – Formulierung laut 07-UI-SPEC ändern.`);
     }
   }
