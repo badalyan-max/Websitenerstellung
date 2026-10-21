@@ -133,7 +133,7 @@ Plans:
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
-- [ ] 07-04-PLAN.md — Detailvorlage: Inhaltstypen und prüfender Builder, FunktionsKopf, PlattformRollen, FunktionsDetail mit JSON-LD, Kaskade DESIGN-V2 § 16
+- [x] 07-04-PLAN.md — Detailvorlage: Inhaltstypen und prüfender Builder, FunktionsKopf, PlattformRollen, FunktionsDetail mit JSON-LD, Kaskade DESIGN-V2 § 16
 
 **Wave 5** *(blocked on Wave 4 completion)*
 
@@ -210,7 +210,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
 | 6. Startseite, Navigation und Funktionsübersicht | 6/6 | Complete    | 2026-10-21 |
-| 7. Funktionsdetailseiten und Mobile-App-Seite | 3/9 | In Progress|  |
+| 7. Funktionsdetailseiten und Mobile-App-Seite | 4/9 | In Progress|  |
 | 8. SEO und KI-Sichtbarkeit | 0/TBD | Not started | - |
 | 9. Gewerke und Wissensinhalte | 0/TBD | Not started | - |
 | 10. Abschlussaudit | 0/TBD | Not started | - |

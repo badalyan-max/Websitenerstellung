@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-stopped_at: Completed 07-03-PLAN.md
-last_updated: "2026-10-21T17:56:23.990Z"
-last_activity: 2026-10-21 – 07-03 Szenenkatalog MEDIA-01: kopfVisuals für 22 Funktionen, abgeleitete cardScenes, 3 App-Kachel-Szenen, /funktionen mit 22 Szenen-Karten
+stopped_at: Completed 07-04-PLAN.md
+last_updated: "2026-10-21T18:44:49.917Z"
+last_activity: "2026-10-21 – 07-04 Detailvorlage: prüfender Builder lib/funktionsdetails, FunktionsKopf, PlattformRollen, FunktionsDetail mit JSON-LD; Kartenrahmen /funktionen ohne angeschnittene Zeilen"
 progress:
   total_phases: 6
   completed_phases: 2
   total_plans: 23
-  completed_plans: 17
+  completed_plans: 18
   percent: 33
 ---
 
@@ -30,14 +30,14 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 7
-Plan: 4 of 9 (07-01 bis 07-03 abgeschlossen)
+Plan: 5 of 9 (07-01 bis 07-04 abgeschlossen)
 Status: Ready to execute
-Last activity: 2026-10-21 – 07-03 Szenenkatalog MEDIA-01: kopfVisuals für 22 Funktionen, abgeleitete cardScenes, 3 App-Kachel-Szenen, /funktionen mit 22 Szenen-Karten
+Last activity: 2026-10-21 – 07-04 Detailvorlage: prüfender Builder lib/funktionsdetails, FunktionsKopf, PlattformRollen, FunktionsDetail mit JSON-LD; Kartenrahmen /funktionen ohne angeschnittene Zeilen
 
-Progress: [███████░░░] 74% (17/23 Pläne des Milestones; Phase 7: 3/9)
+Progress: [████████░░] 78% (18/23 Pläne des Milestones; Phase 7: 4/9)
 
-Last session: 2026-10-21T17:56:23.981Z
-Stopped at: Completed 07-03-PLAN.md
+Last session: 2026-10-21T18:44:49.908Z
+Stopped at: Completed 07-04-PLAN.md
 Resume file: None
 
 ## Accumulated Context
@@ -86,6 +86,9 @@ Resume file: None
 - [Phase 07]: 07-02: Keyword-Map: sechs Pfade bestehend im selben Commit wie Sitemap; H1/Description laut 07-UI-SPEC SEO-Vertrag bereinigt (KEYWORD-MAP.md § 6); pageCandidates für datenuebernahme und maengelmanagement ergänzt
 - [Phase 07]: 07-03: cardScenes wird aus kopfVisuals abgeleitet (Paar → Browser-Szene) und bleibt FrameVisual { kind, scene }; ein Katalog für Kopf, Karten und /app
 - [Phase 07]: 07-03: Kundenportal-Szene zeigt die Portal-Rechnungsansicht (CustomerInvoice.tsx, Rechnungsdetails), weil die Startansicht am Release keine Belegliste hat; Belegscan mit Release-Feldname Nettobetrag (€)
+- [Phase 07]: 07-04: Builder lib/funktionsdetails (server-only) prüft Inhalte gegen alle 07-UI-SPEC-Regeln; genau eine Grenze-Kachel je Seite – angebote braucht in 07-05 eine Grenze-Kachel (fehlt in UI-SPEC-Tabelle)
+- [Phase 07]: 07-04: FeatureSnippet mit optionalem headingLevel (Standard 2), Detailvorlage nutzt h3 – eine H2 je Abschnitt
+- [Phase 07]: 07-04: Kartenrahmen auf /funktionen: Frame karte zeigt höchstens 2 Zeilen je Browser-Szene, 1024–1119 px nur 1 (umbrechende Kennzeichnung); Kopf-Visual unverändert
 
 ### Pending Todos
 
@@ -116,3 +119,4 @@ None yet.
 | Phase 07 P01 | 25min | 2 tasks | 14 files |
 | Phase 07 P02 | 19min | 3 tasks | 21 files |
 | Phase 07 P03 | 55min | 2 tasks | 7 files |
+| Phase 07 P04 | 45min | 3 tasks | 19 files |
