@@ -5,8 +5,11 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import { createElement } from "react";
+import { renderToString } from "react-dom/server";
 import { Calculator, Copy, FileInput, FileOutput, BookOpen, Import, Info, Ruler, Signature } from "lucide-react";
 import { describe, expect, it } from "vitest";
+import { FunktionsDetail } from "@/components/funktionen/FunktionsDetail";
 import { getFunktion, type Funktion } from "@/lib/funktionen";
 import {
   INHALTE,
@@ -20,6 +23,7 @@ import type { FunktionsdetailInhalt, Kernpunkt, RolleName } from "@/lib/funktion
 import { getFunktionsgruppen } from "@/lib/funktionsgruppen";
 import { keywordMap } from "@/lib/keyword-map";
 import { angebotScene, cardScenes, kopfVisuals } from "@/lib/scenes";
+import { site } from "@/lib/site";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
 const gruppen = getFunktionsgruppen();
@@ -524,5 +528,111 @@ describe("getFunktionsdetail und Inhaltstabelle", () => {
       const quelltext = fs.readFileSync(path.join(dir, datei), "utf8");
       expect(quelltext, datei).not.toMatch(/€|10 Tage/);
     }
+  });
+});
+
+describe("Vorlage gerendert", () => {
+  const detail = baue(angeboteInhalt());
+  const html = renderToString(createElement(FunktionsDetail, { detail }));
+  const gaebHtml = renderToString(createElement(FunktionsDetail, { detail: baue(gaebInhalt()) }));
+  const ids = [...html.matchAll(/data-abschnitt="([^"]+)"/g)].map((m) => m[1]);
+  const starts = ids.map((id) => html.indexOf(`data-abschnitt="${id}"`));
+  const abschnitt = (id: string) => {
+    const i = ids.indexOf(id);
+    return html.slice(starts[i], starts[i + 1] ?? html.length);
+  };
+  const jsonLd = (h: string) =>
+    [...h.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
+
+  it("sieben Abschnitte in fester Folge, je höchstens eine H2, genau eine H1", () => {
+    expect(ids).toEqual(["kopf", "ablauf", "rollen", "kernpunkte", "faq", "verwandt", "cta"]);
+    for (const id of ids) {
+      expect((abschnitt(id).match(/<h2[\s>]/g) ?? []).length, id).toBeLessThanOrEqual(1);
+    }
+    expect(html.match(/<h1[\s>]/g)).toHaveLength(1);
+    expect((gaebHtml.match(/data-abschnitt="/g) ?? []).length).toBe(7);
+  });
+
+  it("Ablauf mit StepFlow und FeatureSnippet in figure mit Kennzeichnung (angebote)", () => {
+    const ablauf = abschnitt("ablauf");
+    expect(ablauf).toContain('aria-labelledby="ablauf-titel"');
+    expect(ablauf).toMatch(/<ol[^>]*aria-label="So entsteht ein Angebot"/);
+    const figure = ablauf.match(/<figure[^>]*data-figure="snippet"[\s\S]*<\/figure>/);
+    expect(figure).not.toBeNull();
+    expect(figure![0]).toContain('data-feature-snippet="angebot"');
+    expect(figure![0]).toContain("Vereinfachte Darstellung mit Beispieldaten");
+    expect(html.match(/data-feature-snippet=/g)).toHaveLength(1);
+  });
+
+  it("ohne snippet (gaeb) weder Snippet-figure noch FeatureSnippet-Markup", () => {
+    expect(gaebHtml).not.toContain('data-figure="snippet"');
+    expect(gaebHtml).not.toContain("data-feature-snippet");
+  });
+
+  it("Rollen-Abschnitt auf warmer Fläche mit PlattformRollen", () => {
+    const rollen = abschnitt("rollen");
+    expect(rollen).toMatch(/^data-abschnitt="rollen"[^>]*class="[^"]*bg-\[#f7f3eb\]/);
+    expect((rollen.match(/<article/g) ?? []).length).toBe(2);
+    expect(rollen).toContain("Im Büro");
+  });
+
+  it("Kacheln: data-zusatz an der Zusatz-Kachel, Grenze-Kachel weiß, übrige warm", () => {
+    const kern = abschnitt("kernpunkte");
+    expect(kern).toContain('data-zusatz="angebotsunterschrift"');
+    const flaechen = [...kern.matchAll(/<article[^>]*data-surface="([a-z]+)"/g)].map((m) => m[1]);
+    expect(flaechen).toEqual(["warm", "warm", "warm", "warm", "white"]);
+    expect(kern).toMatch(/<ul role="list" aria-label="Was die Angebotssoftware abdeckt"/);
+  });
+
+  it("verwandt: je Eintrag li data-verwandt mit FeatureCard „Mehr zu {Name}“ und Rahmen; kein data-funktion", () => {
+    const verwandt = abschnitt("verwandt");
+    expect([...verwandt.matchAll(/<li[^>]*data-verwandt="([^"]+)"/g)].map((m) => m[1])).toEqual(detail.verwandt.map((v) => v.slug));
+    for (const v of detail.verwandt) {
+      expect(verwandt).toContain(`Mehr zu ${v.name}`.replace(/&/g, "&amp;"));
+      expect(verwandt).toContain(`data-evidence="${v.scene.screen}"`);
+    }
+    expect(verwandt).toContain("Passende Funktionen");
+    expect(html).not.toContain("data-funktion=");
+  });
+
+  it("JSON-LD: ein FAQPage aus den sichtbaren Fragen, BreadcrumbList mit 3 Ebenen, WebPage, kein HowTo", () => {
+    const blocks = jsonLd(html);
+    const faq = blocks.filter((b) => b["@type"] === "FAQPage");
+    expect(faq).toHaveLength(1);
+    expect(faq[0].mainEntity.map((q: { name: string }) => q.name)).toEqual(detail.faq.items.map((f) => f.q));
+    for (const item of detail.faq.items) expect(abschnitt("faq")).toContain(item.q);
+    const crumbs = blocks.filter((b) => b["@type"] === "BreadcrumbList");
+    expect(crumbs).toHaveLength(1);
+    expect(crumbs[0].itemListElement.map((e: { name: string }) => e.name)).toEqual(["Start", "Funktionen", detail.name]);
+    const webPage = blocks.filter((b) => b["@type"] === "WebPage");
+    expect(webPage).toHaveLength(1);
+    expect(webPage[0]["@id"]).toBe(`${site.url}/funktionen/angebote#webpage`);
+    expect(webPage[0].description).toBe(detail.meta.description);
+    expect(blocks.some((b) => b["@type"] === "HowTo")).toBe(false);
+    expect(blocks.some((b) => b["@type"] === "Organization" || b["@type"] === "SoftwareApplication")).toBe(false);
+  });
+
+  it("CtaBand mit festem Titel und /preise; alle CTA-Links auf site.ctaUrl ohne Login-Tracking", () => {
+    const cta = abschnitt("cta");
+    expect(cta).toContain("Machen Sie Platz für Ihr Handwerk.");
+    expect(cta).toMatch(/<a[^>]*href="\/preise"[^>]*>Preise ansehen/);
+    const ctaLinks = [...html.matchAll(/<a[^>]*href="([^"]+)"[^>]*>/g)].filter((m) => m[1] === site.ctaUrl).map((m) => m[0]);
+    expect(ctaLinks.length).toBeGreaterThanOrEqual(2);
+    for (const link of ctaLinks) expect(link).toContain('data-track="trial"');
+    expect(html).not.toContain('data-track="login"');
+  });
+
+  it("Rahmenbelege nur in Kurzform", () => {
+    const belege = [...html.matchAll(/data-evidence="([^"]+)"/g)].map((m) => m[1]);
+    expect(belege.length).toBeGreaterThanOrEqual(4);
+    for (const beleg of belege) expect(beleg).toMatch(/^(web|app):[^\s/]+$/);
+  });
+
+  it("FunktionsDetail ist synchron, ohne use client und ohne product-demo", () => {
+    const quelltext = fs.readFileSync(path.join(ROOT, "components/funktionen/FunktionsDetail.tsx"), "utf8");
+    expect(quelltext).not.toContain("use client");
+    expect(quelltext).not.toMatch(/async function FunktionsDetail|export async/);
+    expect(quelltext).not.toContain("product-demo");
+    expect(html).not.toContain("produktdemo");
   });
 });
