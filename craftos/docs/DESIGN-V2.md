@@ -353,3 +353,78 @@ Windows-Scrollleiste brachen die Store-Links um; das Logo nimmt jetzt seine Inha
 | N1 | Nur das Mega-Menü ist am Header zentriert, das Gewerke-Panel (570 px) hängt wie im Bestand an seinem Hauptpunkt | Ein zentriertes Gewerke-Panel läge nicht unter dem Hauptpunkt, sodass die Maus beim Weg ins Panel das `<li>` verließe und es schlösse (WCAG 1.4.13). |
 | N2 | Hauptpunkt-Lücke 12 px statt 16 px zwischen 1121 und 1250 px | Mit klassischer Scrollleiste (15 px, `scrollbar-gutter: stable`) reichte die Breite sonst nicht für eine Kopfzeile ohne Umbruch. |
 | N3 | Gruppentitel- und Fußleistenlinks im weißen Panel mit 8 px Innenabstand und −8 px Außenabstand | So erhalten sie die Hover-Fläche `#F7F3EB` aus dem UI-SPEC, ohne dass der Text aus der Flucht rückt. |
+
+## 14. Kaskade Startseite (Plan 06-04, 21.10.2026)
+
+Verbindlich sind 05-UI-SPEC und 06-UI-SPEC, Abschnitt „Seite 1: Startseite“ (Hero mit Keyword-H1 und
+`DevicePair` compact, danach genau sieben Abschnitte: Kennzahlen, Arbeitsablauf, Kernfunktionen,
+Web-App + Mobile-App, Preis-Kurzfassung, FAQ, Abschluss). Hier werden keine neuen Werte festgelegt; die
+Umsetzung steht in `components/home/HomeHero.tsx` (+ `.module.css`), `app/page.tsx` und
+`lib/home-content.ts`. Inhaberwunsch „viel strukturierter, viel schöner, wenig Text“: jeder Abschnitt ist
+ein Kopf mit einem Satz plus genau ein Baustein; Fließtext, GoBD-Box, Ratgeber-Block, alte Preistabelle
+und beide animierten Szenen sind entfallen (Inhalte bleiben auf `/gobd`, `/blog`, `/preise`, Hilfe).
+
+1. **frontend-design:** Kein Skill-Werkzeug in dieser Sitzung. Gelesen (nicht kopiert):
+   `C:/Users/badal/.claude/plugins/cache/claude-plugins-official/frontend-design/e68e375d2286/skills/frontend-design/SKILL.md`
+   (byte-identisch mit `054417d0fc68`, per `cmp` geprüft). Angewendet:
+   - *Hero zeigt das Charakteristische:* die Produktdarstellung (Plantafel im Browser, Einsätze im Phone)
+     statt Kennzahl-mit-Verlauf; der 72-px-Linienraster bleibt als Bauplan-Motiv, der Amber-Verlauf entfällt.
+   - *Kühnheit an einer Stelle:* einzige vollflächige Amber-Fläche ist der Arbeitsablauf; alle übrigen
+     Abschnitte wechseln ruhig zwischen Weiß und Warm.
+   - *Struktur trägt Information:* Nummern nur in der echten Abfolge (`StepFlow`), Plattform-Badges nur aus
+     `funktionen[].platforms`, keine Eyebrows, keine angehängten Pfeile an Textlinks.
+   - *Bewegung nur als Antwort:* keine Einblendungen, keine Szenenanimation; einzige Bewegung bleiben
+     Hover-Unterstrich, CTA-Anhebung und die FAQ-Plusdrehung.
+2. **ui-ux-pro-max** (ausgeführt am 21.10.2026, lokal):
+   ```
+   py -3.12 -X utf8 c:/Projekte/ai-agent-tools/skills/ui-ux-pro-max/scripts/search.py "construction trades saas software homepage" --design-system -p "CraftOS"
+   py -3.12 -X utf8 c:/Projekte/ai-agent-tools/skills/ui-ux-pro-max/scripts/search.py "saas landing page homepage sections bento key facts faq" --domain ux
+   py -3.12 -X utf8 c:/Projekte/ai-agent-tools/skills/ui-ux-pro-max/scripts/search.py "above the fold hero cta layout shift" --domain ux
+   ```
+   Übernommen: Muster „Hero + Features + CTA, CTA above fold“, Content Jumping (High: Platz reservieren →
+   statische Rahmen mit festen Seitenverhältnissen, CLS 0), Image Optimization (keine Rasterbilder im Hero).
+   Verworfen: vorgeschlagener Stil Glassmorphism, Palette Blau/Orange und Plus Jakarta Sans – sie
+   widersprechen den gesperrten Tokens aus 05-UI-SPEC (Clash Display/General Sans, Amber `#F2AF38`).
+3. **21st.dev:** `21st_magic_component_inspiration` stand in dieser Sitzung **nicht** als Werkzeug zur
+   Verfügung; es wurden keine Referenzen abgerufen oder behauptet, builder und refiner nicht verwendet.
+4. **Context7:** MCP-Werkzeug nicht verfügbar, `ctx7`-CLI nicht installiert. Ersatz:
+   `craftos/node_modules/next/dist/docs/01-app/03-api-reference/04-functions/generate-metadata.md`
+   („`title.template` defined in `layout.js` will not apply to a `title` defined in a `page.js` of the same
+   route segment“) – deshalb trägt `/` den vollständigen Title „Handwerkersoftware für Büro und Baustelle |
+   CraftOS“.
+
+**SEO-Prüfung:** Title, H1 („Handwerkersoftware, die Büro und Baustelle verbindet“) und Description
+(153 Zeichen) entsprechen der Keyword-Map (`tests/keyword-map.test.ts`, Fall „Phase-6-Seiten folgen den
+Zielwerten“); FAQPage-JSON-LD enthält genau die fünf sichtbaren Fragen (dasselbe Array wie `FaqList`);
+Organization/SoftwareApplication mit Netto-Preis kommen unverändert aus `app/layout.tsx`.
+
+**Sichtprüfung (Playwright-Screenshots, nicht eingecheckt):** Ganzseite in Chromium und WebKit bei 360,
+390, 768, 1024 und 1440 px sowie abschnittsweise. Befunde und Korrekturen:
+- Der Lead auf der Amber-Fläche war `#62626E` (≈ 3,7:1), weil Tailwind-Utilities in `@layer utilities` gegen
+  die unlayered CSS-Module verlieren; jetzt `#46381F` per unlayered Regel in `app/globals.css`.
+- Die Amber-Bühne der `StepFlow` lag mit eigenem Innenabstand auf der Amber-Fläche, die Schritte rückten
+  32 px aus der Flucht des Kopfs; auf der Startseite jetzt ohne Innenabstand.
+- Der Browserrahmen der dunklen Bento-Kachel schrumpfte auf seine Mindestbreite (280 px) und schnitt die
+  dritte Rechnungszeile ab; er füllt jetzt die Kachelbreite. (Die Musterseite `/styleguide` zeigt dasselbe
+  Verhalten in Block 3; dort unverändert gelassen.)
+- Hero-Lead mit `text-wrap: pretty` gegen einzelne Zeilenreste.
+
+**Above-the-fold-Messung (E2E „Above the fold:“, Chromium, Unterkante in px):**
+
+| Viewport | H1 | Lead | CTA | Produkt ab | Browser bis | Phone | Kennzeichnung bis |
+|---|---|---|---|---|---|---|---|
+| 360 × 640 | 191 | 279 | 351 | 435 | 629 | 565–903 | 930 |
+| 390 × 844 | 191 | 279 | 351 | 435 | 647 | 583–921 | 949 |
+| 768 × 1024 | 193 | 265 | 345 | 377 | 738 | 401–740 | 767 |
+| 1024 × 768 | 285 | 385 | 465 | 139 | 349 | 163–501 | 529 |
+| 1440 × 900 | 347 | 419 | 499 | 149 | 464 | 173–511 | 539 |
+
+WebKit weicht um höchstens 23 px ab (Phone-Höhe), alle Kriterien erfüllt.
+
+**Abweichungen (je ein Satz Begründung):**
+
+| # | Abweichung | Begründung |
+|---|---|---|
+| H1 | Bei 390 px gilt 28 px statt 32 px für das H1 | Das UI-SPEC widerspricht sich („< 400 px: 28 px“ vs. „390 px nutzt 32 px“); umgesetzt ist die im Plan verbindlich genannte Grenze 400 px, die bei 390 px 10 px mehr Reserve für das ungetrennte Keyword lässt. |
+| H2 | Abschnitt „Abschluss“ ist ein `div[data-home-section]` um das `CtaBand` | `CtaBand` rendert selbst die `section` mit `aria-labelledby`; eine zweite `section` darum würde verschachtelte Landmarken erzeugen. |
+| H3 | Kennzahl „10 Tage“ mit geschütztem Leerzeichen | Wie auf der Musterseite, damit Zahl und Einheit in der Kennzahlen-Leiste nie umbrechen. |
