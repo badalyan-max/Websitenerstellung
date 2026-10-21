@@ -220,10 +220,18 @@ export function HeaderShell({ items }: { items: HeaderNavItem[] }) {
                   onBlur={(event) => {
                     // Ohne Ziel (Klick auf nicht fokussierbare Fläche, WebKit beim Linkklick) nicht schließen:
                     // Außenklicks schließen über pointerdown, sonst verschwände das Panel vor dem Klick.
+                    // Verlässt der Fokus dagegen das Dokument (Adressleiste, Tab-Wechsel), schließen, damit das
+                    // Panel bei der Rückkehr nicht den Inhalt überdeckt.
+                    if (isMobile()) return;
                     const next = event.relatedTarget;
-                    if (!isMobile() && next && !event.currentTarget.contains(next)) {
-                      setExpanded((cur) => (cur.includes(item.id) ? [] : cur));
+                    const closeItem = () => setExpanded((cur) => (cur.includes(item.id) ? [] : cur));
+                    if (next) {
+                      if (!event.currentTarget.contains(next)) closeItem();
+                      return;
                     }
+                    window.setTimeout(() => {
+                      if (!document.hasFocus()) closeItem();
+                    }, 0);
                   }}
                 >
                   <div className={styles.row}>
