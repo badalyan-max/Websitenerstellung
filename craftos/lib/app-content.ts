@@ -96,7 +96,8 @@ export const appSections = {
   },
   material: {
     title: "Material, Belege und Kommunikation",
-    lead: "Artikel scannen, Belege fotografieren und Rückfragen im Projekt-Chat klären, ohne ins Büro zu fahren.",
+    // Belege nur mit Finanzfreigabe (07-UI-SPEC B11): Detailseite eingangsrechnungen, Mobile-Panel nur Voll-Lizenz.
+    lead: "Artikel scannen, Belege mit Finanzfreigabe fotografieren und Rückfragen im Projekt-Chat klären, ohne ins Büro zu fahren.",
   },
   faq: {
     title: "Häufige Fragen zur Handwerker-App",
@@ -238,7 +239,9 @@ export const appTiles: Readonly<Record<"zeit" | "dokumentieren" | "material", Ap
       size: "md",
       surface: "warm",
       title: "Beleg scannen",
-      text: "Beleg fotografieren, erkannte Angaben prüfen und die Ausgabe einem Projekt zuordnen.",
+      // 07-UI-SPEC B11: Belegscan nur mit Voll-Lizenz und Finanzfreigabe (eingangsrechnungen, Mobile-Panel ["voll"];
+      // Web-Release FEATURE_ACCESS.finanzen.app = false). Geprüft in tests/app-seite.test.ts gegen die Detailseite.
+      text: "Mit Voll-Lizenz und Finanzfreigabe Belege fotografieren, prüfen und Projekten zuordnen.",
       visual: { kind: "phone", scene: belegScene, width: 160 },
       href: "/funktionen/eingangsrechnungen",
     },

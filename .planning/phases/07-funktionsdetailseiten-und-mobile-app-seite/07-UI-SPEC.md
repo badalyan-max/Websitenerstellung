@@ -444,7 +444,7 @@ Flächenrhythmus: Kopf dunkel → Weiß → Warm → Weiß → Warm → Weiß �
 | 2 | Kennzahlen | Warm | `KeyFacts` (3), `SectionHeader align="center"` | „Das Wichtigste zur Mobile-App“ | „Die App gibt es für iPhone, iPad und Android, in der Voll-Lizenz ist sie für dieselbe Person enthalten.“ |
 | 3 | Vor Ort dokumentieren | Weiß | `BentoGrid` (6: lg·sm·sm·md·md·md) | „Die Baustelle in der App dokumentieren“ | „Aufmaß, Fotos, Berichte, Mängel und Abnahmen landen im richtigen Projekt.“ |
 | 4 | Offline vorbereiten | Warm | `StepFlow tone="light"` (4) + Textlink „Offline-Nutzung vorbereiten“ → `/hilfe/mobile-offline-synchronisierung` | „Vorbereitet bei schwachem Empfang“ | „Geladene Daten bleiben verfügbar; Karten, Routen, Fotos, KI und neue Downloads brauchen eine Verbindung.“ |
-| 5 | Material, Belege, Team | Weiß | `BentoGrid` (4: lg·sm·sm·md) | „Material, Belege und Kommunikation“ | „Artikel scannen, Belege fotografieren und Rückfragen im Projekt-Chat klären, ohne ins Büro zu fahren.“ |
+| 5 | Material, Belege, Team | Weiß | `BentoGrid` (4: lg·sm·sm·md) | „Material, Belege und Kommunikation“ | „Artikel scannen, Belege mit Finanzfreigabe fotografieren und Rückfragen im Projekt-Chat klären, ohne ins Büro zu fahren.“ (B11) |
 | 6 | FAQ | Warm | `FaqList` (5) + FAQPage | „Häufige Fragen zur Handwerker-App“ | „Kurze Antworten zu Lizenz, Arbeit ohne Empfang, Sprachen und Geräten.“ |
 | 7 | Abschluss | dunkel | `CtaBand` | Titel „Ihr Team auf der Baustelle verbinden“ | Satz „Ohne Zahlungsdaten – Sie entscheiden nach dem Test.“ |
 
@@ -465,7 +465,7 @@ Flächenrhythmus: Kopf dunkel → Weiß → Warm → Weiß → Warm → Weiß �
 | 5 | lg | Lager-Scan | „Artikel per Barcode scannen, den Bestand freigegebener Lager sehen und Ausgabe oder Rücknahme buchen.“ | Phone `app:Lager` 194 | `/funktionen/lager` |
 | 5 | sm | Kunden in der App | „Kundendaten unterwegs in der Mobile-App nachschlagen und bearbeiten.“ | `Contact` | `/funktionen/projektverwaltung` |
 | 5 | sm | Projekt-Chat und Nachrichten | „Rückfragen im Projekt-Chat klären und Direktnachrichten im Posteingang lesen.“ | `MessagesSquare` | `/funktionen/projektverwaltung` |
-| 5 | md | Beleg scannen | „Beleg fotografieren, erkannte Angaben prüfen und die Ausgabe einem Projekt zuordnen.“ | Phone `app:Belegscan` 160 | `/funktionen/eingangsrechnungen` |
+| 5 | md | Beleg scannen | „Mit Voll-Lizenz und Finanzfreigabe Belege fotografieren, prüfen und Projekten zuordnen.“ (B11) | Phone `app:Belegscan` 160 | `/funktionen/eingangsrechnungen` |
 
 Abdeckung FEAT-03 (15 Punkte + Kunden): Zeiterfassung, Einsätze/Navigation, Aufmaß, Baudoku (Fotos und Projektdateien), Besichtigung, Bautagesbericht, Mängel, Abnahme mit Unterschrift, Arbeitsschritte, Urlaub, Lager-Scan, Belegscan, Chat, Kunden als Kacheln; Offline als Kennzahl + Abschnitt 4; 21 Sprachen als Kennzahl. Vitest `tests/app-seite.test.ts` prüft die Liste gegen das Register.
 
@@ -621,6 +621,7 @@ Unverändert aus [05]/[06]: „Sie“, Satzschreibung, aktive Verben, keine Ausr
 | B8 | Bestand `/app` | QR-Codes ab 768 px | QR-Codes ab 1024 px | Zwischen 768 und 1023 px ist der Kopf einspaltig; QR würde das Phone unter die Falz schieben. |
 | B9 | `keyword-map.json` | 6 H1-Zielwerte, 1 Description | wie Tabelle im SEO-Vertrag | D-22 (4 Werte) plus zwei H1 > 60 Zeichen (F4) und „lückenlos“ (Pitfall 8). |
 | B10 | Abschnitt 4 und /app-Kacheln (lg · Phone 194) | `lg`-Kachel mit Phone fest 194 px, Visual oben | ab 1024 px: Phone-Breite folgt der freien Kachelhöhe (160–320 px, Proportion 194:410); Kachel mit Seitenverhältnis ab 4:5 zeigt Phone und Text nebeneinander, hohe Kachel Phone über dem Text; die Kachel übernimmt die Höhe ihrer zwei Rasterzeilen (Mindesthöhe 450 px). Unter 1024 px unverändert 194 px | Nachtrag 07-08 (Freigabe Orchestrator). Gemessen vorher (Playwright, Chromium/WebKit): /app 171–220 px Leerraum in den lg-Kacheln, lager bis 104 px und baudokumentation bis 81 px in den Nachbarkacheln, weil das feste Phone die Rasterzeilen vorgab bzw. nicht füllte. Nachher höchstens 25 px in den betroffenen Rastern (768/1024/1440), kein Rahmen abgeschnitten, kein gekürzter Titel; E2E „Detailseite: große Kacheln mit Phone ohne Leerstreifen (B10)“ sichert höchstens 48 px. Budgets und Kennzeichnung unverändert. |
+| B11 | /app Abschnitt 5 (Lead und Kachel „Beleg scannen“) | Lead „Artikel scannen, Belege fotografieren …“; Kachel „Beleg fotografieren, erkannte Angaben prüfen und die Ausgabe einem Projekt zuordnen.“ | Lead „Artikel scannen, Belege mit Finanzfreigabe fotografieren …“; Kachel „Mit Voll-Lizenz und Finanzfreigabe Belege fotografieren, prüfen und Projekten zuordnen.“ (87 Zeichen) | Nachtrag Code-Review 07 (WR-01): Neben der Kennzahl „App-Lizenz pro Monat“ war der Belegscan vorbehaltlos zugesagt. Belege: Detailseite `eingangsrechnungen` Mobile-Panel `lizenzen: ["voll"]` mit Satz „nur mit der Finanzfreigabe Ihrer Rolle“, `funktionen.ts` access „eine App-Lizenz allein gibt keinen pauschalen Zugriff auf Belege“, `tarife` (Belege nur bei der Voll-Lizenz), Web-Release `FEATURE_ACCESS.finanzen.app = false`. Vitest `tests/app-seite.test.ts` prüft jede /app-Kachel gegen das Mobile-Panel ihrer Detailseite. |
 
 ---
 

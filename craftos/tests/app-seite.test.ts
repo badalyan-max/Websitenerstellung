@@ -13,7 +13,7 @@ import sitemap from "@/app/sitemap";
 import { TEXT_BUDGET, charCount, sentenceCount } from "@/components/v2/budgets";
 import { KEY_FACT_SOURCE } from "@/components/v2/KeyFacts";
 import { euro, germanDate } from "@/lib/format";
-import { ERLAUBTE_ANORDNUNGEN, zielwerte } from "@/lib/funktionsdetails";
+import { ERLAUBTE_ANORDNUNGEN, getFunktionsdetail, zielwerte } from "@/lib/funktionsdetails";
 import { getProductRegister, mobileLocales, mobileOffline, productBasis } from "@/lib/product-register";
 import { site, tarife } from "@/lib/site";
 import * as app from "@/lib/app-content";
@@ -138,6 +138,24 @@ describe("Inhalte", () => {
     }
     const screens = [app.appKopf.visual.scene, ...phones].map((s) => s.screen);
     expect(new Set(screens).size).toBe(screens.length);
+  });
+
+  it("Kacheln folgen Plattform und Lizenzen ihrer Detailseite; fehlt die App-Lizenz, nennt der Text den Vorbehalt (WR-01, B11)", () => {
+    const lizenzName = { voll: tarif("voll").name, app: tarif("app").name } as const;
+    let mitVorbehalt = 0;
+    for (const tile of alleKacheln()) {
+      expect(tile.href, tile.title).toMatch(/^\/funktionen\/[a-z0-9-]+$/);
+      const detail = getFunktionsdetail(tile.href.slice("/funktionen/".length));
+      const mobil = detail.rollen.panels.find((p) => p.platform === "mobile");
+      expect(mobil, `${tile.title}: ${tile.href} hat kein Mobile-Panel`).toBeDefined();
+      if (mobil!.lizenzen.includes("app")) continue;
+      mitVorbehalt += 1;
+      for (const lizenz of mobil!.lizenzen) expect(tile.text, `${tile.title}: ${lizenzName[lizenz]}`).toContain(lizenzName[lizenz]);
+      if (mobil!.satz.includes("Finanzfreigabe")) expect(tile.text, tile.title).toContain("Finanzfreigabe");
+    }
+    // Belegscan (eingangsrechnungen) ist mobil nur in der Voll-Lizenz enthalten; der Abschnitts-Lead nennt die Freigabe.
+    expect(mitVorbehalt).toBeGreaterThanOrEqual(1);
+    expect(app.appSections.material.lead).toContain("Belege mit Finanzfreigabe");
   });
 
   it("jedes Kachel-href steht in der Sitemap", async () => {
