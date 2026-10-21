@@ -11,7 +11,7 @@ import { Calculator, Copy, FileInput, FileOutput, BookOpen, Import, Info, Ruler,
 import { describe, expect, it } from "vitest";
 import sitemap from "@/app/sitemap";
 import { FunktionsDetail } from "@/components/funktionen/FunktionsDetail";
-import { getFunktion, type Funktion } from "@/lib/funktionen";
+import { funktionen, getFunktion, type Funktion } from "@/lib/funktionen";
 import {
   INHALTE,
   SNIPPET_VARIANTE,
@@ -457,6 +457,61 @@ const ERWARTET: Record<string, Erwartung> = {
     snippet: null,
     zusatz: [],
   },
+  // Gruppe Buchhaltung (07-06 Task 2)
+  buchhaltung: {
+    pflichtfrage: "Reicht CraftOS die Steuererklärung bei ELSTER ein?",
+    pflichtAntwort: "Nein",
+    verwandt: ["bankabgleich", "eingangsrechnungen", "rechnungen"],
+    anordnung: "md·sm·sm·wide",
+    webRollen: ["Admin", "Büro-Leitung"],
+    mobileRollen: null,
+    sekundaer: { label: HILFE, href: "/hilfe/datev-export-erstellen" },
+    snippet: null,
+    zusatz: [],
+    hrefs: { "Keine ELSTER-Einreichung": "/gobd" },
+  },
+  eingangsrechnungen: {
+    pflichtfrage: "Verbraucht das Auslesen von Belegen Credits?",
+    verwandt: ["buchhaltung", "e-rechnung", "nachkalkulation"],
+    anordnung: "md·sm·sm·wide",
+    webRollen: ["Admin", "Büro-Leitung"],
+    mobileRollen: [],
+    sekundaer: { label: HILFE, href: "/hilfe/beleg-scannen-pruefen" },
+    snippet: "beleg",
+    zusatz: [],
+    hrefs: { "KI-Auslesen mit Verbindung und Credits": "/gobd" },
+    panelSatz: { mobile: "Finanzfreigabe" },
+  },
+  nachkalkulation: {
+    pflichtfrage: "Woher kommen die Ist-Kosten in der Nachkalkulation?",
+    verwandt: ["dashboard", "eingangsrechnungen"],
+    anordnung: "md·sm·sm·wide",
+    webRollen: ["Admin", "Büro-Leitung"],
+    mobileRollen: null,
+    sekundaer: ALLE,
+    snippet: null,
+    zusatz: [],
+  },
+  dashboard: {
+    pflichtfrage: "Welche Kennzahlen zeigt das Dashboard?",
+    verwandt: ["nachkalkulation", "buchhaltung"],
+    anordnung: "md·sm·sm·wide",
+    webRollen: BUERO,
+    mobileRollen: null,
+    sekundaer: ALLE,
+    snippet: "dashboard",
+    zusatz: [],
+  },
+  bankabgleich: {
+    pflichtfrage: "Brauche ich für den Zahlungsabgleich eine Bankverbindung?",
+    verwandt: ["buchhaltung", "rechnungen", "mahnwesen"],
+    anordnung: "md·sm·sm·wide·wide",
+    webRollen: ["Admin", "Büro-Leitung"],
+    mobileRollen: null,
+    sekundaer: ALLE,
+    snippet: null,
+    zusatz: [],
+  },
 };
 
 /** Alle Textfelder eines Inhaltsmoduls außer den FAQ-Fragen (für Wort- und Satzregeln je Seite). */
@@ -826,6 +881,36 @@ describe("getFunktionsdetail und Inhaltstabelle", () => {
     expect(inhalt.rollen.panels[0].rollen.map((r) => r.name)).toEqual(["Admin", "Büro-Leitung"]);
     const texte = JSON.stringify(inhalt);
     for (const fakt of ["10 MiB", "25.000 Zeilen", "XLSX", "Zahlungsdaten"]) expect(texte).toContain(fakt);
+  });
+
+  it("INHALTE deckt alle 22 Slugs aus lib/funktionen.ts ab", () => {
+    expect(Object.keys(INHALTE).sort()).toEqual(funktionen.map((f) => f.slug).sort());
+    expect(Object.keys(INHALTE)).toHaveLength(22);
+  });
+
+  it("bankabgleich: kein „automatisch“, „Online-Banking“ oder „Bankverbindung herstellen“; Pflichtantwort nennt den Dateiimport", () => {
+    expect(Object.hasOwn(INHALTE, "bankabgleich")).toBe(true);
+    const inhalt = INHALTE.bankabgleich;
+    const texte = JSON.stringify(inhalt);
+    expect(texte).not.toMatch(/automatisch|Online-Banking|Bankverbindung herstellen/i);
+    const antwort = inhalt.faq.items.find((f) => f.q === "Brauche ich für den Zahlungsabgleich eine Bankverbindung?")!.a;
+    const ersterSatz = antwort.split(/(?<=[.!?])\s+/)[0];
+    for (const format of ["CSV", "camt.053", "PDF"]) expect(ersterSatz, ersterSatz).toContain(format);
+    expect(ersterSatz).toMatch(/Datei/);
+  });
+
+  it("Finanzseiten: Web-Panels nur Admin und Büro-Leitung; Grenze-Kacheln von buchhaltung und eingangsrechnungen → /gobd", () => {
+    for (const slug of ["buchhaltung", "eingangsrechnungen", "nachkalkulation", "bankabgleich"]) {
+      expect(Object.hasOwn(INHALTE, slug), slug).toBe(true);
+      const web = INHALTE[slug].rollen.panels.find((p) => p.platform === "web")!;
+      for (const rolle of web.rollen) expect(["Admin", "Büro-Leitung"], `${slug}: ${rolle.name}`).toContain(rolle.name);
+    }
+    for (const slug of ["buchhaltung", "eingangsrechnungen", "rechnungen", "e-rechnung"]) {
+      expect(INHALTE[slug].kernpunkte.tiles.find((t) => t.grenze)?.href, slug).toBe("/gobd");
+    }
+    for (const slug of ["buchhaltung", "eingangsrechnungen", "nachkalkulation", "dashboard", "bankabgleich"]) {
+      expect(JSON.stringify(INHALTE[slug]), slug).not.toMatch(/automatisch|lückenlos|Online-Banking/i);
+    }
   });
 
   it("Rechnungsseiten ohne „lückenlos“ und „Online-Banking“; e-rechnung sagt keine Empfängerakzeptanz zu", () => {
