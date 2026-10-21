@@ -5,12 +5,15 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import { createElement } from "react";
+import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
+import AppPage, { metadata } from "@/app/app/page";
 import sitemap from "@/app/sitemap";
 import { TEXT_BUDGET, charCount, sentenceCount } from "@/components/v2/budgets";
 import { KEY_FACT_SOURCE } from "@/components/v2/KeyFacts";
 import { euro, germanDate } from "@/lib/format";
-import { ERLAUBTE_ANORDNUNGEN } from "@/lib/funktionsdetails";
+import { ERLAUBTE_ANORDNUNGEN, zielwerte } from "@/lib/funktionsdetails";
 import { getProductRegister, mobileLocales, mobileOffline, productBasis } from "@/lib/product-register";
 import { site, tarife } from "@/lib/site";
 import * as app from "@/lib/app-content";
@@ -230,12 +233,116 @@ describe("Inhalte", () => {
     expect(source.match(/register:mobileOffline/g)).toHaveLength(1);
   });
 
-  it("Registereintrag mobileOffline: vier Mobile-Belege und Limitation aus dem Register", () => {
-    expect(mobileOffline.name).toBe("Offline-Erfassung in der Mobile-App");
+  it("Registereintrag mobileOffline: vier Mobile-Belege und Limitation aus dem Register", () => {    expect(mobileOffline.name).toBe("Offline-Erfassung in der Mobile-App");
     expect(mobileOffline.evidence).toHaveLength(4);
     expect(mobileOffline.evidence.every((e) => e.repository === "mobile")).toBe(true);
     expect(mobileOffline.limitation).toBe("Keine vollständige Offline-Zusage");
     expect(getProductRegister().limitations).toContain(mobileOffline.limitation);
     expect(site.iosUrl).toMatch(/^https:\/\/apps\.apple\.com\//);
+  });
+});
+
+describe("gerendert", () => {
+  const z = zielwerte("/app");
+  const html = renderToString(createElement(AppPage));
+  const abschnitte = [...html.matchAll(/data-abschnitt="([^"]+)"/g)].map((m) => m[1]);
+  const jsonLd = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)].map((m) => JSON.parse(m[1]));
+  const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const text = (fragment: string) =>
+    fragment
+      .replace(/<[^>]+>/g, "")
+      .replace(/&amp;/g, "&")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  it("Metadaten folgen der Keyword-Map (D-10)", () => {
+    expect(metadata.title).toBe(z.titleOhneMarke);
+    expect(metadata.description).toBe(z.description);
+    expect(metadata.alternates?.canonical).toBe(`${site.url}/app`);
+  });
+
+  it("Abschnitte exakt in der Folge APP_SECTION_IDS, je höchstens eine H2", () => {
+    expect(abschnitte).toEqual([...app.APP_SECTION_IDS]);
+    const starts = abschnitte.map((id) => html.indexOf(`data-abschnitt="${id}"`));
+    starts.forEach((start, i) => {
+      const chunk = html.slice(start, starts[i + 1] ?? html.length);
+      expect((chunk.match(/<h2[\s>]/g) ?? []).length, abschnitte[i]).toBeLessThanOrEqual(1);
+    });
+  });
+
+  it("genau eine H1 = Zielwert, Kopfwort ungetrennt, StoreLinks und zwei QR-Codes", () => {
+    const h1 = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/g) ?? [];
+    expect(h1).toHaveLength(1);
+    expect(text(h1[0])).toBe(z.h1);
+    expect(html).toMatch(/<span[^>]*data-keyword=""[^>]*>Handwerker-App<\/span>/);
+    const kopf = html.slice(html.indexOf('data-abschnitt="kopf"'), html.indexOf('data-abschnitt="zeit"'));
+    expect(kopf).toContain(`href="${site.iosUrl}"`);
+    expect(kopf).toContain(`href="${site.androidUrl}"`);
+    expect(kopf).toContain('alt="QR-Code zum App Store"');
+    expect(kopf).toContain('alt="QR-Code zum Google Play Store"');
+    expect(kopf).toContain('data-figure="phone"');
+    expect(kopf).toContain('data-evidence="app:Einsätze"');
+  });
+
+  it("jede Rahmen-figure ist gekennzeichnet, Belege und Quellen nur in Kurzform", () => {
+    const figures = html.match(/<figure\b[\s\S]*?<\/figure>/g) ?? [];
+    // Kopf-Phone plus neun Phone-Kacheln
+    expect(figures.length).toBeGreaterThanOrEqual(10);
+    for (const figure of figures) expect(figure).toContain("Vereinfachte Darstellung mit Beispieldaten");
+    const evidence = [...html.matchAll(/data-evidence="([^"]*)"/g)].map((m) => m[1]);
+    expect(evidence.length).toBeGreaterThanOrEqual(10);
+    for (const e of evidence) expect(e).toMatch(KURZFORM);
+    const sources = [...html.matchAll(/data-source="([^"]*)"/g)].map((m) => m[1]);
+    expect(sources).toEqual(["register:mobileLocales", "register:mobileOffline", "site:tarif-app-monat"]);
+    for (const s of sources) expect(s).toMatch(/^(site|register):[A-Za-z0-9.-]+$/);
+    expect(html).not.toContain("mobile:src");
+    expect(html).not.toContain("web:src");
+  });
+
+  it("Kacheln, Kennzahlen, Offline-Ablauf mit Textlink und FAQ sind sichtbar", () => {
+    for (const tile of alleKacheln()) expect(html, tile.title).toContain(tile.title);
+    for (const step of app.offlineSteps) expect(html, step.title).toContain(step.title);
+    expect(html).toContain('href="/hilfe/mobile-offline-synchronisierung"');
+    expect(html).toContain("Offline-Nutzung vorbereiten");
+    expect(html).toContain("teilweise nutzbar, später synchronisiert");
+    expect(html).toContain(app.appSections.cta.title);
+    expect(html).toContain('href="/preise"');
+  });
+
+  it("JSON-LD: eine FAQPage aus der sichtbaren FAQ, BreadcrumbList Start → Mobile-App, eine MobileApplication ohne Bewertungen", () => {
+    const faq = jsonLd.filter((b) => b["@type"] === "FAQPage");
+    expect(faq).toHaveLength(1);
+    expect(faq[0].mainEntity.map((q: { name: string }) => q.name)).toEqual(app.appFaq.map((f) => f.q));
+    for (const item of app.appFaq) expect(html).toContain(item.q);
+
+    const crumbs = jsonLd.filter((b) => b["@type"] === "BreadcrumbList");
+    expect(crumbs).toHaveLength(1);
+    expect(crumbs[0].itemListElement.map((i: { name: string; item: string }) => [i.name, i.item])).toEqual([
+      ["Start", `${site.url}/`],
+      ["Mobile-App", `${site.url}/app`],
+    ]);
+
+    const apps = jsonLd.filter((b) => b["@type"] === "MobileApplication");
+    expect(apps).toHaveLength(1);
+    expect(apps[0]["@id"]).toBe(`${site.url}/app#mobile-app`);
+    expect(apps[0].offers.price).toBe(tarif("app").monat.toFixed(2));
+    expect("aggregateRating" in apps[0]).toBe(false);
+    expect("review" in apps[0]).toBe(false);
+    expect(jsonLd.some((b) => b["@type"] === "Organization" || b["@type"] === "SoftwareApplication")).toBe(false);
+  });
+
+  it("keine Altbausteine, kein Link /craft-ai, CTA auf site.ctaUrl ohne Login-Tracking", () => {
+    expect(html).not.toContain("images/mobile/current/");
+    expect(html).not.toContain('id="app-ansichten"');
+    expect(html).not.toContain("data-feature-snippet");
+    expect(html).not.toContain("Jetzt Ihren Betrieb anlegen");
+    expect(html).not.toMatch(/class="[^"]*(?<![\w-])btn-cta/);
+    expect(html).not.toContain('href="/craft-ai"');
+    const ctas = [...html.matchAll(new RegExp(`<a href="${escapeRe(site.ctaUrl)}"[^>]*>`, "g"))].map((m) => m[0]);
+    expect(ctas.length).toBeGreaterThanOrEqual(2);
+    for (const a of ctas) expect(a).toContain('data-track="trial"');
+    expect(html).not.toContain('data-track="login"');
+    const source = fs.readFileSync(path.resolve(import.meta.dirname, "../app/app/page.tsx"), "utf8");
+    expect(source).not.toMatch(/MobileAppGallery|FeatureSnippet|TrialCta/);
   });
 });

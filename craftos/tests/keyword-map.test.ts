@@ -25,11 +25,15 @@ const norm = (k: string) =>
     .replace(/[\s-]+/g, "");
 const toPath = (url: string) => new URL(url).pathname.replace(/\/$/, "") || "/";
 
-/** Seiten, deren Title, H1 und Description in Phase 6 auf die Keyword-Map-Ziele umgestellt sind (D-12). Plan 06-05 ergänzt /funktionen. */
+/**
+ * Statische Seiten, deren Title, H1 und Description auf die Keyword-Map-Ziele umgestellt sind (D-12).
+ * Plan 06-05 ergänzt /funktionen, Plan 07-07 die Mobile-App-Seite /app (07 D-10).
+ */
 type SeitenModul = { default: () => ReactElement; metadata: Metadata };
 const PHASE6_SEITEN: { path: string; modul: () => Promise<SeitenModul> }[] = [
   { path: "/", modul: () => import("@/app/page") },
   { path: "/funktionen", modul: () => import("@/app/funktionen/page") },
+  { path: "/app", modul: () => import("@/app/app/page") },
 ];
 
 type Row = Record<string, unknown>;
@@ -249,7 +253,7 @@ describe("Keyword-Map", () => {
     expect(leer).toEqual({});
   });
 
-  it("Phase-6-Seiten folgen den Zielwerten (D-12)", async () => {
+  it("statische Seiten (/, /funktionen, /app) folgen den Zielwerten (D-12, 07 D-10)", async () => {
     for (const seite of PHASE6_SEITEN) {
       const eintrag = keywordMap.find((k) => k.path === seite.path);
       expect(eintrag?.primary && eintrag.target, `${seite.path}: Eintrag mit Zielwerten`).toBeTruthy();
