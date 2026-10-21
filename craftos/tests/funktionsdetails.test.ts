@@ -3,7 +3,6 @@
  * Builder und Vorlage werden mit Fremddaten geprüft: Die Fixtures stehen nur hier, nicht im Produktcode.
  * Die echten Inhalte (lib/funktionsdetails/{gruppe}.ts) folgen in 07-05/07-06 und laufen dann über ERWARTET.
  */
-import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { createElement } from "react";
@@ -34,6 +33,7 @@ import {
   type FrameScene,
 } from "@/lib/scenes";
 import { site } from "@/lib/site";
+import { pruefeReleaseStand, releaseDatei as releaseDateiAm, releaseSuite } from "./release-repos";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
 const gruppen = getFunktionsgruppen();
@@ -1109,18 +1109,25 @@ describe("Route /funktionen/[slug] rendert die v2-Vorlage (D-04, D-19)", () => {
 });
 
 /**
- * Rollen gegen den Web-Release (D-02 (3), T-07-17): nur lesend per `git show origin/release:<pfad>`.
- * Übersprungen wird nur, wenn das Web-Repo auf diesem Rechner fehlt.
+ * Rollen gegen den Web-Release (D-02 (3), T-07-17): nur lesend am Release-Commit aus productBasis
+ * (tests/release-repos.ts, WR-07). Fehlt das Web-Repo, steht der Skip mit Grund im Suite-Namen und im Log;
+ * mit CI=true oder CRAFTOS_REQUIRE_RELEASE=1 schlägt die Suite stattdessen fehl.
  */
-const WEB_REPO = "C:/Projekte/craft-connect-buddy";
-const webRepoDa = fs.existsSync(path.join(WEB_REPO, ".git"));
-function releaseDatei(pfad: string): string {
-  return execFileSync("git", ["-C", WEB_REPO, "show", `origin/release:${pfad}`], { encoding: "utf8" });
-}
+const rollenSuite = releaseSuite("Rollen gegen Release (D-02 (3))", ["web"]);
+const releaseDatei = (pfad: string) => releaseDateiAm("web", pfad);
 
-describe.skipIf(!webRepoDa)("Rollen gegen Release (D-02 (3))", () => {
+describe.skipIf(rollenSuite.skip)(rollenSuite.titel, () => {
   const webRollen = (slug: string) =>
     INHALTE[slug].rollen.panels.find((p) => p.platform === "web")!.rollen.map((r) => r.name);
+
+  it("Web-Repo vorhanden, Release-Commit aus productBasis lokal und in origin/release enthalten", () => {
+    pruefeReleaseStand("web");
+  });
+
+  it("Kundenportal: Kunden haben keine Lizenzstufe (LicenseType nur admin, buero, app) und einen eigenen Login (B13)", () => {
+    expect(releaseDatei("src/types/license.ts")).toMatch(/export type LicenseType = 'admin' \| 'buero' \| 'app';/);
+    expect(releaseDatei("src/pages/portal/CustomerLogin.tsx")).toContain("Kundenportal");
+  });
 
   it("die fünf Preset-Namen stehen in roles.ts; Büro-Leitung mit, Büro-Projektleitung ohne Finanzschalter", () => {
     const roles = releaseDatei("src/lib/subscription/roles.ts");

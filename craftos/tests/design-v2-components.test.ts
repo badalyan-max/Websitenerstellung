@@ -1,4 +1,3 @@
-import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { createElement, type FunctionComponent } from "react";
@@ -14,11 +13,9 @@ import { KeyFacts, type KeyFact } from "@/components/v2/KeyFacts";
 import { SectionHeader } from "@/components/v2/SectionHeader";
 import { MINI_STATUS_BELEGE, MINI_STATUS_TON, MiniStatus, type MiniStatusName } from "@/components/v2/mini/MiniUi";
 import { MINI_BUDGET } from "@/components/v2/mini/limits";
-import { productBasis } from "@/lib/product-register";
+import { pruefeReleaseStand, releaseDatei, releaseSuite } from "./release-repos";
 import { site } from "@/lib/site";
 
-const WEB_REPO = process.env.CRAFTOS_WEB_REPO || "C:/Projekte/craft-connect-buddy";
-const MOBILE_REPO = process.env.CRAFTOS_MOBILE_REPO || "C:/Projekte/CraftOS - Mobile/craftos-mobile";
 
 /** Inhalte dürfen nie auf eine Einblendung warten (DESIGN-04, T-05-15). */
 function expectStatic(html: string, name: string) {
@@ -186,13 +183,20 @@ describe("MiniStatus (07-UI-SPEC F3)", () => {
   });
 });
 
-describe.skipIf(!fs.existsSync(WEB_REPO) || !fs.existsSync(MOBILE_REPO))("MiniStatus-Belege am Release-Commit", () => {
+// WR-07: Pfade, sichtbarer Skip mit Grund und Pflichtmodus (CI / CRAFTOS_REQUIRE_RELEASE=1) aus tests/release-repos.ts.
+const miniStatusSuite = releaseSuite("MiniStatus-Belege am Release-Commit", ["web", "mobile"]);
+
+describe.skipIf(miniStatusSuite.skip)(miniStatusSuite.titel, () => {
   function release(beleg: string): string {
     const [repository, file] = beleg.split(/:(.+)/);
-    const repo = repository === "web" ? WEB_REPO : MOBILE_REPO;
-    const commit = repository === "web" ? productBasis.web.commit : productBasis.mobile.commit;
-    return execFileSync("git", ["-C", repo, "show", `${commit}:${file}`], { encoding: "utf8" });
+    if (repository !== "web" && repository !== "mobile") throw new Error(`Beleg ${beleg} ohne web:/mobile:-Präfix.`);
+    return releaseDatei(repository, file);
   }
+
+  it("beide Repos vorhanden, Release-Commits aus productBasis lokal und in origin/release enthalten", () => {
+    pruefeReleaseStand("web");
+    pruefeReleaseStand("mobile");
+  });
 
   it("jeder der 16 neuen Namen steht wörtlich in seiner Release-Datei", () => {
     const fehlend: string[] = [];
