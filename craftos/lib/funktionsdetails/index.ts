@@ -341,6 +341,7 @@ export function buildFunktionsdetail(input: {
       platforms: eintrag.platforms,
       href: eintrag.href,
       scene: karte.scene,
+      rahmen: karte.kind,
     };
   });
 

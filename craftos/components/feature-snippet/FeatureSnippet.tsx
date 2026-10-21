@@ -21,11 +21,13 @@ const content: Record<SnippetVariant, { title: string; summary: string }> = {
 };
 const phaseDuration = [1200, 900, 1500, 1000, 1700, 1000, 1800, 3000];
 
-export function FeatureSnippet({ variant, example, className = "" }: { variant: SnippetVariant; example?: SnippetExample; className?: string }) {
-  return <Illustration key={`${variant}:${example?.id ?? "default"}`} variant={variant} example={example} className={className} />;
+/** headingLevel 3 nur innerhalb eines Abschnitts mit eigener H2 (Funktionsdetailseiten, 07-04); Standard 2 wie im Bestand. */
+export function FeatureSnippet({ variant, example, className = "", headingLevel = 2 }: { variant: SnippetVariant; example?: SnippetExample; className?: string; headingLevel?: 2 | 3 }) {
+  return <Illustration key={`${variant}:${example?.id ?? "default"}`} variant={variant} example={example} className={className} headingLevel={headingLevel} />;
 }
 
-function Illustration({ variant, example, className }: { variant: SnippetVariant; example?: SnippetExample; className: string }) {
+function Illustration({ variant, example, className, headingLevel }: { variant: SnippetVariant; example?: SnippetExample; className: string; headingLevel: 2 | 3 }) {
+  const Heading = headingLevel === 3 ? "h3" : "h2";
   const root = useRef<HTMLElement>(null);
   const surface = useRef<HTMLDivElement>(null);
   const cursor = useRef<HTMLDivElement>(null);
@@ -105,7 +107,7 @@ function Illustration({ variant, example, className }: { variant: SnippetVariant
   return <section ref={root} className={`${s.snippet} ${className}`} aria-labelledby={`${id}-title`}
     data-feature-snippet={variant} data-feature-illustration="true" data-snippet-example={matchingExample?.id}
     data-phase={shownPhase} data-stage={stage} data-running={running} data-reduced-motion={reduced}>
-    <header className={s.header}><h2 id={`${id}-title`}>{c.title}</h2><span>So funktioniert’s</span></header>
+    <header className={s.header}><Heading id={`${id}-title`}>{c.title}</Heading><span>So funktioniert’s</span></header>
     <div ref={surface} className={s.surface} aria-hidden="true">
       <IllustrationScene variant={variant} example={matchingExample} stage={stage} phase={shownPhase} reduced={reduced} />
       <div ref={cursor} className={s.cursor} data-illustration-cursor="true" data-visible={!reduced && shownPhase > 0 && shownPhase < 7} aria-hidden="true">

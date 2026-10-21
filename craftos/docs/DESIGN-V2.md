@@ -480,3 +480,93 @@ der Software für Handwerksbetriebe“ (Keyword-Span `nowrap`), Description 148 
 |---|---|---|
 | F1 | Raster und `FeatureList` stehen im selben Gruppenabschnitt (A6) | Eine Gruppe ist ein Anker und eine Landmarke; getrennte Abschnitte würden die Zwei-Klick-Zuordnung verdoppeln. |
 | F2 | H1 des Seitenkopfs mit `max-width: 20ch` | Hält die H1 bei 1440 px auf zwei Zeilen mit dem Keyword in der zweiten Zeile, statt einer überlangen ersten Zeile. |
+
+## 16. Kaskade Funktionsdetailseiten und /app (§ 16, Plan 07-04, 21.10.2026)
+
+Verbindlich sind 05-UI-SPEC, 06-UI-SPEC und 07-UI-SPEC („Vorlage Detailseite“, F1–F5, Abweichungen B1–B9).
+Umsetzung in Plan 07-04 (die Route `/funktionen/[slug]` wird erst in 07-06 umgestellt, `/app` in 07-07):
+
+- `lib/funktionsdetails/types.ts` und `lib/funktionsdetails/index.ts` (server-only): Inhaltstypen, Builder
+  `buildFunktionsdetail` mit den 07-UI-SPEC-Fehlertexten, `zielwerte(path)` aus `keyword-map.json`,
+  `getFunktionsdetailAus`/`getFunktionsdetail`, `INHALTE` (bis 07-05/07-06 leer), `SNIPPET_VARIANTE` (D-19),
+  `ERLAUBTE_ANORDNUNGEN`, `VERWANDT_KOPF`, `CTA_DETAIL`.
+- `components/funktionen/FunktionsKopf.tsx` (+ `.module.css`, F1), `components/funktionen/PlattformRollen.tsx`
+  (+ `.module.css`, F2), `components/funktionen/FunktionsDetail.tsx` (synchrone Server Component der Vorlage).
+- `components/v2/BentoGrid.tsx`: `BentoTile` mit optionalem `zusatz` → `data-zusatz` (Muster `data-linked`).
+- `components/feature-snippet/FeatureSnippet.tsx`: optionales `headingLevel` (Standard 2 wie bisher); die
+  Detailvorlage rendert die Snippet-Überschrift als h3, damit der Ablauf-Abschnitt genau eine H2 behält.
+
+1. **frontend-design:** Kein Skill-Werkzeug in dieser Sitzung; gelesen (nicht kopiert):
+   `C:/Users/badal/.claude/plugins/cache/claude-plugins-official/frontend-design/e68e375d2286/skills/frontend-design/SKILL.md`
+   (per `cmp` byte-identisch mit den neun weiteren Cache-Ständen, darunter `a0b04d9ddcca`). Angewendet:
+   - *Mit dem Charakteristischsten öffnen:* Der Kopf zeigt die vereinfachte Oberfläche der Funktion selbst
+     (Browser, Phone oder Paar aus `kopfVisuals`), kein Kennzahlen-Hero und kein generisches Icon.
+   - *Kühnheit an einer Stelle:* einziges markantes Element je Seite ist der Geräterahmen im dunklen Kopf mit
+     3-px-Amber-Unterkante; das 72-px-Linienraster bleibt der Startseite vorbehalten; Ablauf `tone="light"`,
+     Panels und Kacheln flach ohne Schatten.
+   - *Struktur trägt Information:* Eyebrow nur im Kopf (echter Gruppenname), Abschnittsköpfe ohne Eyebrow;
+     Nummern nur im StepFlow (echte Abfolge); Rollen als Textliste mit dekorativem Personen-Icon, nicht als Badges.
+   - *Ein orchestrierter Moment:* höchstens ein animiertes Element je Seite (`FeatureSnippet`, nur 8 Seiten).
+   - *Texte aus Nutzersicht:* CTA überall „{trialDays} Tage kostenlos testen“, Sekundärlink nur in zwei festen
+     Formulierungen; Fehlertexte nennen Problem und Abhilfe.
+2. **ui-ux-pro-max** (ausgeführt am 21.10.2026, lokal):
+   ```
+   py -3.12 -X utf8 c:/Projekte/ai-agent-tools/skills/ui-ux-pro-max/scripts/search.py "saas feature detail page product tour" --domain ux
+   py -3.12 -X utf8 c:/Projekte/ai-agent-tools/skills/ui-ux-pro-max/scripts/search.py "role permissions panel list cards" --domain ux
+   py -3.12 -X utf8 c:/Projekte/ai-agent-tools/skills/ui-ux-pro-max/scripts/search.py "text truncation overflow card content" --domain ux
+   ```
+   - „Image Optimization“ (High): übernommen – im Kopf keine Rasterbilder, die Produktoberfläche ist Code-UI;
+     QR-Codes als SVG mit `width`/`height` 96 (CLS 0).
+   - „Active State“ (Medium): bereits erfüllt durch die Navigation aus Phase 6 (Bereich „Funktionen“).
+   - „role permissions panel“: keine Treffer; Vertrag ausschließlich aus 07-UI-SPEC Abschnitt 3.
+   - „Overflow Hidden – Test all content fits within containers“ (Medium): übernommen für die Kartenrahmen auf
+     `/funktionen` (Befund aus 07-03, Abschnitt „Kartenrahmen“ unten); „Truncate with ellipsis and expand option“
+     verworfen – die Mini-UI ist Illustration (aria-hidden, inert), ein Aufklapp-Element wäre neue Client-Interaktion (D-15).
+3. **21st.dev:** `21st_magic_component_inspiration` stand in dieser Sitzung nicht als Werkzeug zur Verfügung;
+   keine Referenzen abgerufen oder behauptet, builder und refiner nicht verwendet.
+4. **Context7:** weder MCP-Werkzeug noch `ctx7`-CLI verfügbar. Ersatz: `craftos/node_modules/next/dist/docs`
+   (Title-Template, `params` als Promise) – für 07-04 keine neue API-Frage; `next/image` mit SVG-Quelle wie im
+   Bestand `app/app/page.tsx`.
+5. **SEO-Check:** H1 = `target.h1` aus `keyword-map.json` (der Builder wirft, wenn das Kopfwort fehlt), Kopfwort im
+   `nowrap`-Span, genau eine H1; je Abschnitt höchstens eine H2; JSON-LD `BreadcrumbList` (Start → Funktionen →
+   Name), `FAQPage` aus demselben Array wie die sichtbare `FaqList`, `WebPage` mit `@id …/funktionen/{slug}#webpage`;
+   kein `HowTo`, kein `Organization`/`SoftwareApplication` im Seiten-HTML (kommen aus dem Layout).
+
+**Neue Bausteine F1–F5:**
+
+| # | Baustein | Stand |
+|---|---|---|
+| F1 | `FunktionsKopf` | Eyebrow, Keyword-H1, Kurznutzen (1 Satz ≤ 110), CTA + Sekundärlink, Kopf-Visual (Browser volle Spaltenbreite bzw. max. 640 px ab 768 px, Phone 240 zentriert, Paar `DevicePair compact`); `/app`-Variante mit `StoreLinks` 24 px unter dem CTA und QR-Codes 96 × 96 ab 1024 px; Budgets und Kopfwort beim Rendern geprüft. |
+| F2 | `PlattformRollen` | `article` je belegter Plattform (Weiß, 1 px ink-200, Radius 16, Innenabstand 16/24), Icon-Feld 48 × 48, `PlatformBadge`, h3 „Im Büro“/„Auf der Baustelle“, `<ul aria-label="Rollen">`, Satz, Lizenzgruppe „Enthalten in“; Raster 1/2 Spalten, Web-only ab 1024 px eine Spalte (50 %). |
+| F3 | `MiniStatusName` + Tonklassen | in 07-01 umgesetzt. |
+| F4 | `TEXT_BUDGET.pageHead` + `count.detailSteps`/`count.related` | in 07-01 umgesetzt; Builder und FunktionsKopf nutzen sie. |
+| F5 | `ZusatzZiel.kind` „seite“ | in 07-02 umgesetzt. |
+
+**Abweichungen B1–B9 (aus 07-UI-SPEC, hier umgesetzt bzw. vorbereitet):**
+
+| # | Abweichung | Begründung / Stand |
+|---|---|---|
+| B1 | H1 jedes `FunktionsKopf` unter 400 px 28 px | Gemessen „Eingangsrechnungen“ 328,0 px und „Auftragsverwaltung:“ 324,6 px bei 32 px gegen 324-px-Container; umgesetzt in `FunktionsKopf.module.css`. |
+| B2 | Rollen als Textliste mit den fünf Release-Presets und „Kunde“ | D-02 (3); als Badge sprengten sie das 16-Zeichen-Budget; der Builder prüft jeden Namen gegen `RolleName`. |
+| B3 | „Arbeitsabschnitte“ statt „Bauphasen“ | D-20; der Builder sperrt „Bauphase“ in allen Textfeldern außer der H1. |
+| B4 | `ZusatzZiel.kind` „seite“ | D-21; 07-02. |
+| B5 | Abschnittsfolge Kopf → Ablauf → Rollen → Kernpunkte → FAQ → Verwandt → CTA | D-02/D-09; kein Baustein zweimal hintereinander; `FunktionsDetail` rendert genau diese Folge. |
+| B6 | KeyFacts-Wert „Offline“ mit Pflicht-Einschränkung | D-09/D-23; folgt in 07-07 (`/app`). |
+| B7 | `FeatureSnippet` bleibt auf 8 Detailseiten im Ablauf | D-19; `SNIPPET_VARIANTE`, `figure data-figure="snippet"` mit Kennzeichnung, Überschrift als h3. |
+| B8 | QR-Codes ab 1024 px | `hidden lg:flex` im FunktionsKopf; zwischen 768 und 1023 px würde der QR-Block das Phone unter die Falz schieben. |
+| B9 | sechs H1-Zielwerte und eine Description in `keyword-map.json` | D-22, F4, Pitfall 8; in 07-02 umgesetzt. |
+
+**D-13:** `data-source` und `data-evidence` tragen auf öffentlichen Seiten nur Kurzformen (`site:…`/`register:…`
+bzw. `web:…`/`app:…`); die inhaltlich gleiche Prüfung gegen Register und Release läuft in Vitest über die vollen
+Belege in `lib/scenes.ts` und `lib/product-register.ts`.
+
+**D-19:** `FeatureSnippet` erscheint nur auf `dashboard`, `angebote`, `plantafel`, `rechnungen`,
+`eingangsrechnungen`, `zeiterfassung`, `lager` und `aufmass` (Varianten `dashboard`, `angebot`, `planung`,
+`rechnung`, `beleg`, `zeit`, `lager`, `aufmass`); alle übrigen Seiten zeigen nur statische v2-Szenen.
+
+**Hinweis für 07-05:** Die Kacheltabelle für `angebote` im 07-UI-SPEC enthält keine Grenze-Kachel, obwohl
+`funktionen.ts` eine Einschränkung nennt (keine pauschale DATANORM-v5-Zusage). Der Builder verlangt genau eine
+Grenze-Kachel (D-04); das Inhaltsmodul muss daher eine Kachel als Grenze führen.
+
+**Vermerk Phase 10:** `components/product-demo`, `MobileAppGallery` und die zwei übersprungenen Specs bleiben
+unverändert bis zur Inhaberfreigabe; `FunktionsDetail` importiert `components/product-demo` nicht.

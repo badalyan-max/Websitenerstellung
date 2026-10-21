@@ -110,6 +110,8 @@ export interface VerwandtEintrag {
   href: string;
   /** Karten-Szene der Zielseite (cardScenes, bei Paar die Browser-Szene). */
   scene: FrameScene;
+  /** Rahmenart der Karten-Szene (cardScenes[slug].kind). */
+  rahmen: "browser" | "phone";
 }
 
 /** Ergebnis des Builders: alles, was die Vorlage FunktionsDetail rendert. */

@@ -295,6 +295,7 @@ describe("buildFunktionsdetail – Gutfall (Fremddaten angebote)", () => {
       expect(v.platforms).toEqual(f.platforms);
       expect(v.href).toBe(`/funktionen/${v.slug}`);
       expect(v.scene).toBe(cardScenes[v.slug]!.scene);
+      expect(v.rahmen).toBe(cardScenes[v.slug]!.kind);
     }
   });
 
