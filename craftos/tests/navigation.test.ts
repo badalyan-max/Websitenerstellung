@@ -141,7 +141,7 @@ describe("navigation: MegaMenu (Server-Rendering)", () => {
 });
 
 describe("navigation: ActiveLink", () => {
-  const render = (href: string) => renderToString(createElement(ActiveLink, { href }, "Ziel"));
+  const render = (href: string) => renderToString(createElement(ActiveLink, { href } as Parameters<typeof ActiveLink>[0], "Ziel"));
 
   it("setzt aria-current bei exakter Übereinstimmung, auch mit abschließendem Schrägstrich im Pfad", () => {
     pfad.value = "/funktionen/zeiterfassung";

@@ -1,0 +1,232 @@
+/*
+ * Mega-Menü „Funktionen“ und Link-Panels (06-UI-SPEC „Seite 2: Hauptnavigation“).
+ * Ab 1121 px: weißes Panel (Fläche, Rahmen und Schatten liegen am Panel-Container in Header.module.css).
+ * Bis 1120 px: Inhalt des dunklen Drawers. Gewichte nur 400/600; Amber nur als Icon-Farbe im Drawer.
+ */
+.menu,
+.groups,
+.details,
+.footer,
+.linkList {
+  margin: 0;
+  padding: 0;
+}
+.groups,
+.details,
+.footer,
+.linkList {
+  list-style: none;
+}
+
+/* ---------- Desktop (≥ 1121 px): weißes Panel ---------- */
+.groups {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 24px;
+  row-gap: 32px;
+  padding: 32px;
+}
+.head {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #ffefcc;
+  color: #784b10;
+}
+.headText {
+  min-width: 0;
+}
+.groupLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #17171c;
+  /* Innenabstand für Hover-/Aktuell-Fläche, Text bleibt bündig */
+  margin-inline: -8px;
+  padding-inline: 8px;
+  border-radius: 6px;
+}
+.description {
+  margin: 4px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #62626e;
+}
+/* Einzug 48 px bis zum Linktext (40 px Liste + 8 px Innenabstand) = bündig mit dem Gruppentitel */
+.details {
+  margin-top: 16px;
+  padding-left: 40px;
+  display: grid;
+  gap: 0;
+}
+.link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #17171c;
+}
+.link[aria-current="page"],
+.groupLink[aria-current="page"],
+.footerLink[aria-current="page"] {
+  background: #f7f3eb;
+  font-weight: 600;
+}
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 24px;
+  padding: 16px 32px;
+  background: #f7f3eb;
+}
+.footerLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #17171c;
+  margin-inline: -8px;
+  padding-inline: 8px;
+  border-radius: 6px;
+}
+
+/* Link-Panels (Gewerke, Wissen, Hilfe) im weißen Panel */
+.linkList {
+  display: grid;
+  gap: 2px;
+  padding: 8px;
+}
+.linkList[data-columns="2"] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.linkList[data-columns="2"] > li:first-child {
+  grid-column: 1 / -1;
+}
+.linkList[data-columns="2"] > li:first-child .link {
+  font-weight: 600;
+}
+
+.menu a:focus-visible,
+.linkList a:focus-visible {
+  outline: 3px solid #bb7609;
+  outline-offset: 4px;
+}
+
+@media (hover: hover) {
+  .link,
+  .footerLink,
+  .groupLink {
+    transition: background-color 150ms ease;
+  }
+  .link:hover,
+  .groupLink:hover,
+  .footerLink:hover {
+    background: #f7f3eb;
+  }
+}
+
+/* ---------- Drawer (≤ 1120 px): dunkle Fläche ---------- */
+@media (max-width: 1120px) {
+  .groups {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 16px;
+    padding: 8px 0 16px;
+  }
+  .icon {
+    width: 24px;
+    height: 24px;
+    margin-top: 12px;
+    border-radius: 0;
+    background: transparent;
+    color: #f2af38;
+  }
+  .groupLink {
+    display: flex;
+    min-height: 48px;
+    padding-block: 8px;
+    color: #f4f4f5;
+  }
+  .description {
+    margin-top: 4px;
+    color: #bcbcc6;
+  }
+  /* Einzug 32 px bis zum Linktext (16 px Liste + 16 px Innenabstand) = bündig mit dem Gruppentitel */
+  .details {
+    margin-top: 4px;
+    padding-left: 16px;
+  }
+  .link {
+    min-height: 48px;
+    padding: 8px 16px;
+    border-radius: 0;
+    color: #f4f4f5;
+  }
+  .link[aria-current="page"],
+  .groupLink[aria-current="page"],
+  .footerLink[aria-current="page"] {
+    background: transparent;
+    box-shadow: inset 2px 0 0 #f4f4f5;
+  }
+  .footer {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px 0 16px;
+    background: transparent;
+    border-top: 1px solid #2c2c34;
+  }
+  .footerLink {
+    display: flex;
+    min-height: 48px;
+    font-size: 16px;
+    color: #f4f4f5;
+  }
+  .linkList {
+    padding: 0 0 12px 16px;
+  }
+  .linkList[data-columns="2"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .linkList[data-columns="2"] > li:first-child .link {
+    font-weight: 600;
+  }
+  @media (hover: hover) {
+    .link:hover,
+    .groupLink:hover,
+    .footerLink:hover {
+      background: #242429;
+    }
+  }
+}
+@media (min-width: 640px) and (max-width: 1120px) {
+  .groups {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link,
+  .footerLink,
+  .groupLink {
+    transition: none;
+  }
+}
