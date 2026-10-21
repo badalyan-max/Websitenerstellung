@@ -9,7 +9,8 @@ import { StoreLinks } from "@/components/ui/StoreLinks";
 import styles from "./Header.module.css";
 
 /**
- * Einzige Client-Insel der Hauptnavigation (Phase 6, D-06, D-13, D-17).
+ * Einzige zustandsbehaftete Client-Insel der Hauptnavigation (Phase 6, D-06, D-13, D-17); daneben ist nur
+ * `ActiveLink` als zustandsloses Client-Blatt für `aria-current` in den Panels eingebunden.
  *
  * Muster: WAI-APG „Disclosure Navigation Menu with Top-Level Links“ – je Hauptpunkt ein echter Link und,
  * falls es ein Panel gibt, ein separater Schalter „Untermenü {Hauptpunkt}“. Die Panels werden auf dem Server
