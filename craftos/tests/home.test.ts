@@ -67,11 +67,12 @@ describe("Startseiteninhalte", () => {
   });
 
   it("Kennzahlen stammen aus site.ts, tarife und Produktregister", () => {
+    // Kurzform-Schlüssel (07 D-13): site:trialDays → site.trialDays, site:tarif-…-monat → tarife, register:… → Produktregister
     const expected: Record<string, string> = {
-      "site.trialDays": `${site.trialDays}${NBSP}Tage`,
-      "tarife.voll.monat": euro(tarif("voll").monat),
-      "tarife.app.monat": euro(tarif("app").monat),
-      "product-register: mobileLocales": String(mobileLocales.length),
+      "site:trialDays": `${site.trialDays}${NBSP}Tage`,
+      "site:tarif-voll-monat": euro(tarif("voll").monat),
+      "site:tarif-app-monat": euro(tarif("app").monat),
+      "register:mobileLocales": String(mobileLocales.length),
     };
     const { facts, note } = home.keyFactsContent;
     expect(facts.map((f) => f.source)).toEqual(Object.keys(expected));
@@ -144,6 +145,14 @@ describe("Startseiteninhalte", () => {
 describe("Startseite gerendert", () => {
   const html = renderToString(createElement(Home));
   const sectionIds = [...html.matchAll(/data-home-section="([^"]+)"/g)].map((m) => m[1]);
+
+  it("data-source nur in Kurzform, keine internen Modulnamen im HTML (07 D-13)", () => {
+    const sources = [...html.matchAll(/data-source="([^"]*)"/g)].map((m) => m[1]);
+    expect(sources).toHaveLength(4);
+    for (const source of sources) expect(source).toMatch(/^(site|register):[A-Za-z0-9.-]+$/);
+    expect(html).not.toContain('data-source="tarife');
+    expect(html).not.toContain('data-source="product-register');
+  });
 
   it("genau ein H1 mit ungetrenntem Keyword", () => {
     expect(html.match(/<h1[\s>]/g)).toHaveLength(1);

@@ -32,10 +32,10 @@ function count(html: string, pattern: RegExp) {
 }
 
 const facts: KeyFact[] = [
-  { value: "10 Tage", label: "kostenlos testen", source: "site.trialDays" },
-  { value: "29,95 €", label: "Voll-Lizenz pro Monat", source: "tarife.voll.monat" },
-  { value: "9,95 €", label: "App-Lizenz pro Monat", source: "tarife.app.monat" },
-  { value: "21", label: "Sprachen in der Mobile-App", source: "product-register: mobile i18n" },
+  { value: "10 Tage", label: "kostenlos testen", source: "site:trialDays" },
+  { value: "29,95 €", label: "Voll-Lizenz pro Monat", source: "site:tarif-voll-monat" },
+  { value: "9,95 €", label: "App-Lizenz pro Monat", source: "site:tarif-app-monat" },
+  { value: "21", label: "Sprachen in der Mobile-App", source: "register:mobileLocales" },
 ];
 const note = "Preise netto zzgl. USt. Stand: 20.10.2026.";
 
@@ -94,11 +94,22 @@ describe("KeyFacts", () => {
     );
   });
 
+  it("wirft bei Quellen ohne Kurzform site:… oder register:… (07 D-13)", () => {
+    for (const bad of ["tarife.voll.monat", "product-register: mobileLocales", "site.trialDays", "site:", "web:src/x"]) {
+      const falsch = [...facts.slice(0, 3), { value: "29,95 €", label: "Voll-Lizenz", source: bad }];
+      expect(() => renderToString(createElement(KeyFacts, { facts: falsch, note })), bad).toThrow(
+        `KeyFacts: Quelle ‚${bad}‘ ist keine Kurzform site:… oder register:… – Schlüssel angeben.`,
+      );
+    }
+    const html = renderToString(createElement(KeyFacts, { facts, note }));
+    expect(html).toContain('data-source="site:tarif-voll-monat"');
+  });
+
   it("wirft bei 2 und bei 5 Fakten", () => {
     expect(() => renderToString(createElement(KeyFacts, { facts: facts.slice(0, 2), note }))).toThrow(
       "KeyFacts: mindestens 3 Fakten erforderlich – Inhalte in lib/… ergänzen.",
     );
-    const fuenf = [...facts, { value: "50 GB", label: "Speicher", source: "tarife.speicher" }];
+    const fuenf = [...facts, { value: "50 GB", label: "Speicher", source: "site:speicher" }];
     expect(() => renderToString(createElement(KeyFacts, { facts: fuenf, note }))).toThrow(
       "KeyFacts: höchstens 4 Fakten erlaubt – Inhalte in lib/… kürzen.",
     );
@@ -434,6 +445,13 @@ describe("FeatureList (E2)", () => {
     ]);
     expect(html).toContain("Beschrieben unter Projektverwaltung");
     expect(html).toContain('href="/funktionen/projektverwaltung"');
+    expect(html).not.toContain("Anleitung in der Hilfe");
+  });
+
+  it("Ziel vom Typ seite nennt die Zielseite wie funktion (07-UI-SPEC F5, D-21)", () => {
+    const html = render([{ ...mitZiel, target: { href: "/app", kind: "seite", label: "Mobile-App" } }]);
+    expect(html).toContain("Beschrieben unter Mobile-App");
+    expect(html).toContain('href="/app"');
     expect(html).not.toContain("Anleitung in der Hilfe");
   });
 

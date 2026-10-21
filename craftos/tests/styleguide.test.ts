@@ -87,11 +87,12 @@ describe("styleguide: Produktwahrheit", () => {
   });
 
   it("jeder KeyFact-Wert entspricht dem formatierten Wert seiner Quelle", () => {
+    // Kurzform-Schlüssel (07 D-13)
     const expected: Record<string, string> = {
-      "site.trialDays": `${site.trialDays}${NBSP}Tage`,
-      "tarife.voll.monat": euro(tarif("voll").monat),
-      "tarife.app.monat": euro(tarif("app").monat),
-      "product-register: mobileLocales": String(mobileLocales.length),
+      "site:trialDays": `${site.trialDays}${NBSP}Tage`,
+      "site:tarif-voll-monat": euro(tarif("voll").monat),
+      "site:tarif-app-monat": euro(tarif("app").monat),
+      "register:mobileLocales": String(mobileLocales.length),
     };
     const { facts, note } = content.keyFactsContent;
     expect(facts.map((f) => f.source).sort()).toEqual(Object.keys(expected).sort());
@@ -114,6 +115,15 @@ describe("styleguide: Produktwahrheit", () => {
 });
 
 describe("styleguide: Seite", () => {
+  it("data-source nur in Kurzform, keine internen Modulnamen im HTML (07 D-13)", () => {
+    const html = renderToString(createElement(StyleguidePage));
+    const sources = [...html.matchAll(/data-source="([^"]*)"/g)].map((m) => m[1]);
+    expect(sources.length).toBeGreaterThanOrEqual(4);
+    for (const source of sources) expect(source).toMatch(/^(site|register):[A-Za-z0-9.-]+$/);
+    expect(html).not.toContain('data-source="tarife');
+    expect(html).not.toContain('data-source="product-register');
+  });
+
   it("rendert alle Blöcke 0–13 in UI-SPEC-Reihenfolge ohne JSON-LD", () => {
     const html = renderToString(createElement(StyleguidePage));
     const blocks = [
