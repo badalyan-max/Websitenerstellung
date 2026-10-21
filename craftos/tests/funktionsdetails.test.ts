@@ -1029,6 +1029,22 @@ describe("getFunktionsdetail und Inhaltstabelle", () => {
     }
   });
 
+  it("funktionen.ts: Stammtexte der sechs Phase-7-Funktionen folgen den Wortregeln, Grenze-Satz = Grenze-Kachel (WR-06)", () => {
+    for (const slug of ["gaeb", "mahnwesen", "terminplanung", "bankabgleich", "datenuebernahme", "maengelmanagement"]) {
+      const f = getFunktion(slug)!;
+      for (const text of [f.kurz, f.heroIntro, f.benefit, f.access, ...f.notes]) {
+        expect(text, slug).not.toMatch(/lückenlos|vollständig offline|online-banking|bauphase/i);
+        if (/automatisch/i.test(text)) expect(text, slug).toMatch(/auf Wunsch/i);
+      }
+      const grenze = INHALTE[slug].kernpunkte.tiles.find((t) => t.grenze)!;
+      expect(f.notes, slug).toEqual([grenze.text]);
+    }
+    // Ungelesene Seitentexte gibt es in lib/funktionen.ts nicht mehr (WR-06).
+    for (const f of funktionen) {
+      for (const feld of ["heroTitle", "bullets", "steps"]) expect(Object.hasOwn(f, feld), `${f.slug}.${feld}`).toBe(false);
+    }
+  });
+
   it("jeder Hilfe-Link (Sekundärlink und Kacheln) hat einen Artikel in content/hilfe (WR-05)", () => {
     const fehlend: string[] = [];
     for (const slug of Object.keys(INHALTE)) {
