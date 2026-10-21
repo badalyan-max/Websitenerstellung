@@ -23,7 +23,14 @@ import {
 import type { FunktionsdetailInhalt, Kernpunkt, RolleName } from "@/lib/funktionsdetails/types";
 import { getFunktionsgruppen } from "@/lib/funktionsgruppen";
 import { keywordMap } from "@/lib/keyword-map";
-import { angebotScene, cardScenes, kopfVisuals, type FrameScene } from "@/lib/scenes";
+import {
+  abnahmeScene,
+  angebotScene,
+  cardScenes,
+  kopfVisuals,
+  lagerAppScene,
+  type FrameScene,
+} from "@/lib/scenes";
 import { site } from "@/lib/site";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
@@ -256,6 +263,8 @@ interface Erwartung {
   hrefs?: Record<string, string>;
   /** Text, den der Satz des jeweiligen Panels enthalten muss (D-20). */
   panelSatz?: { web?: string; mobile?: string };
+  /** Anfang der Antwort auf die Pflichtfrage (z. B. „Nein“). */
+  pflichtAntwort?: string;
 }
 const HILFE = "Anleitung in der Hilfe";
 const ALLE = { label: "Alle Funktionen ansehen", href: "/funktionen" };
@@ -344,6 +353,51 @@ const ERWARTET: Record<string, Erwartung> = {
     snippet: null,
     zusatz: [],
     panelSatz: { web: "Geplant wird im Web", mobile: "Arbeitsabschnitte" },
+  },
+  // Gruppe Baustelle (07-05 Task 3)
+  zeiterfassung: {
+    pflichtfrage: "Erfasst die App dauerhaft den Standort?",
+    pflichtAntwort: "Nein",
+    verwandt: ["plantafel", "baudokumentation"],
+    anordnung: "md·sm·sm·wide·wide",
+    webRollen: BUERO,
+    mobileRollen: ["Mobil-Teammitglied", "Mobil-Teamleitung"],
+    sekundaer: { label: HILFE, href: "/hilfe/mobilen-timer-bedienen" },
+    snippet: "zeit",
+    zusatz: [],
+  },
+  baudokumentation: {
+    pflichtfrage: "Was gehört in ein Bautagebuch?",
+    verwandt: ["maengelmanagement", "projektverwaltung", "rechnungen"],
+    anordnung: "lg·sm·sm·md·md·md",
+    webRollen: BUERO,
+    mobileRollen: MOBIL,
+    sekundaer: { label: HILFE, href: "/hilfe/bautagesbericht-erstellen" },
+    snippet: null,
+    zusatz: ["abnahme", "bautagesbericht"],
+    phone: { title: "Abnahme und Teilabnahme", scene: abnahmeScene, width: 194 },
+    hrefs: { Mängel: "/funktionen/maengelmanagement" },
+  },
+  lager: {
+    pflichtfrage: "Kann mein Team Artikel in der App per Barcode buchen?",
+    verwandt: ["arbeitsanweisungen", "zeiterfassung"],
+    anordnung: "lg·sm·sm·md·wide",
+    webRollen: BUERO,
+    mobileRollen: [],
+    sekundaer: { label: HILFE, href: "/hilfe/material-entnehmen-zurueckbuchen" },
+    snippet: "lager",
+    zusatz: ["lager-scan"],
+    phone: { title: "Lager-Scan und Wareneingang", scene: lagerAppScene, width: 194 },
+  },
+  maengelmanagement: {
+    pflichtfrage: "Wie erinnert CraftOS an fällige Mängel?",
+    verwandt: ["baudokumentation", "projektverwaltung"],
+    anordnung: "md·sm·sm·md·sm·sm",
+    webRollen: BUERO,
+    mobileRollen: MOBIL,
+    sekundaer: { label: HILFE, href: "/hilfe/mangel-erfassen-bearbeiten" },
+    snippet: null,
+    zusatz: [],
   },
 };
 
@@ -630,6 +684,10 @@ describe("getFunktionsdetail und Inhaltstabelle", () => {
       expect(erwartung, `ERWARTET-Eintrag für ${slug}`).toBeDefined();
       const detail = getFunktionsdetail(slug);
       expect(detail.faq.items.map((f) => f.q), slug).toContain(erwartung.pflichtfrage);
+      if (erwartung.pflichtAntwort) {
+        const antwort = detail.faq.items.find((f) => f.q === erwartung.pflichtfrage)?.a ?? "";
+        expect(antwort.startsWith(erwartung.pflichtAntwort), `${slug}: ${antwort}`).toBe(true);
+      }
       expect(detail.verwandt.map((v) => v.slug), slug).toEqual(erwartung.verwandt);
       expect(detail.kernpunkte.tiles.map((t) => t.size).join("·"), slug).toBe(erwartung.anordnung);
       const web = detail.rollen.panels.find((p) => p.platform === "web");
@@ -652,6 +710,12 @@ describe("getFunktionsdetail und Inhaltstabelle", () => {
       if (erwartung.panelSatz?.web) expect(web?.satz, slug).toContain(erwartung.panelSatz.web);
       if (erwartung.panelSatz?.mobile) expect(mobile?.satz, slug).toContain(erwartung.panelSatz.mobile);
     }
+  });
+
+  it("Statusnamen „In Arbeit“/„In Bearbeitung“ kommen in den maengelmanagement-Texten nicht vor (Pitfall 7)", () => {
+    expect(Object.hasOwn(INHALTE, "maengelmanagement")).toBe(true);
+    const texte = JSON.stringify(INHALTE.maengelmanagement);
+    expect(texte).not.toMatch(/In Arbeit|In Bearbeitung/i);
   });
 
   it("jede ERWARTET-Zeile hat ein Inhaltsmodul in INHALTE", () => {
