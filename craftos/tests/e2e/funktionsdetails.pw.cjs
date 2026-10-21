@@ -245,6 +245,73 @@ test('Detailseite: ohne JavaScript sind H1, CTA, FAQ-Fragen und alle Abschnitte 
   }
 })
 
+// B10 (07-08): Große Kacheln mit Phone füllen ihre zwei Rasterzeilen; weder die Kachel noch ihre Nachbarn
+// behalten einen Leerstreifen über 48 px (vorher bis 220 px auf /app, rund 100 px auf lager).
+const B10_PATHS = ['/funktionen/lager', '/funktionen/baudokumentation', '/app']
+const B10_MAX_LEER = 48
+
+test('Detailseite: große Kacheln mit Phone ohne Leerstreifen (B10)', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.use.hasTouch, 'Die Breiten werden im Desktop-Projekt per setViewportSize geprüft.')
+  test.setTimeout(90_000)
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  const report = []
+  for (const width of [768, 1024, 1440]) {
+    await page.setViewportSize({ width, height: 900 })
+    for (const path of B10_PATHS) {
+      await page.goto(path)
+      await page.evaluate(() => document.fonts.ready)
+      const groups = await page.evaluate(() => {
+        const measure = (t) => {
+          const cs = getComputedStyle(t)
+          const inner = t.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom)
+          const [body, visual] = t.children
+          const visualHeight = Math.max(0, ...[...visual.children].map((c) => c.getBoundingClientRect().height))
+          const bodyHeight = body.getBoundingClientRect().height
+          const content = cs.display === 'grid' ? Math.max(visualHeight, bodyHeight) : visualHeight + (parseFloat(cs.rowGap) || 0) + bodyHeight
+          const r = t.getBoundingClientRect()
+          const figure = visual.querySelector('figure')
+          const f = figure ? figure.getBoundingClientRect() : null
+          const phone = t.querySelector('[data-frame="phone"]')
+          return {
+            title: t.querySelector('h3').textContent.trim(),
+            top: r.top,
+            bottom: r.bottom,
+            leer: Math.round(inner - content),
+            inside: !f || (f.top >= r.top - 0.5 && f.bottom <= r.bottom + 0.5 && f.left >= r.left - 0.5 && f.right <= r.right + 0.5),
+            phone: phone ? Math.round(phone.getBoundingClientRect().width) : null,
+            // gekürzte Texte im Phone (Auslassungspunkte): Titel und Zeilen müssen ungekürzt bleiben
+            cut: phone ? [...phone.querySelectorAll('*')].filter((el) => getComputedStyle(el).textOverflow === 'ellipsis' && el.scrollWidth > el.clientWidth + 0.5).map((el) => el.textContent.trim()) : [],
+          }
+        }
+        return [...document.querySelectorAll('article[data-size="lg"]')]
+          .filter((lg) => lg.querySelector('[data-frame="phone"]'))
+          .map((lg) => {
+            const self = measure(lg)
+            const neighbours = [...lg.closest('ul').querySelectorAll('article[data-size]')]
+              .filter((t) => t !== lg)
+              .map(measure)
+              .filter((t) => t.top >= self.top - 1 && t.bottom <= self.bottom + 1)
+            return { self, neighbours }
+          })
+      })
+      expect(groups.length, `${path} ${width}: große Kachel mit Phone`).toBeGreaterThan(0)
+      for (const { self, neighbours } of groups) {
+        const at = `${path} ${width}: ${self.title}`
+        expect(self.phone, `${at}: Phone mindestens 160 px`).toBeGreaterThanOrEqual(160)
+        expect(self.cut, `${at}: keine gekürzten Texte im Phone`).toEqual([])
+        for (const t of [self, ...neighbours]) {
+          expect(t.inside, `${at} / ${t.title}: Rahmen in der Kachel`).toBe(true)
+          expect(t.leer, `${at} / ${t.title}: kein Überstand`).toBeGreaterThanOrEqual(-1)
+          expect(t.leer, `${at} / ${t.title}: Leerraum`).toBeLessThanOrEqual(B10_MAX_LEER)
+        }
+        report.push(`${path} ${width}: Phone ${self.phone}, Leerraum ${[self, ...neighbours].map((t) => t.leer).join('/')}`)
+      }
+      expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth), `${path} ${width}: kein Querscroll`).toBeLessThanOrEqual(1)
+    }
+  }
+  testInfo.annotations.push({ type: 'B10', description: report.join(' | ') })
+})
+
 test('App-Seite: Store-Links bei 390 und 1440, QR-Codes erst ab 1024 px', async ({ page }, testInfo) => {
   test.skip(testInfo.project.use.hasTouch, 'Die Breiten werden im Desktop-Projekt per setViewportSize geprüft.')
   const kopf = page.locator('[data-funktions-kopf]')

@@ -184,4 +184,52 @@
   .tile[data-size="wide"][data-visual="end"] .visual {
     justify-content: center;
   }
+  /* B10 (07-08): Große Kachel mit Phone. Die Kachel übernimmt die Höhe ihrer zwei Rasterzeilen, statt sie
+     vorzugeben (size-Container; Mindesthöhe reicht für ein 160-px-Phone). Die Phone-Breite folgt der freien
+     Höhe (160–320 px, Proportion 194:410 bleibt). Breite Kachel (Seitenverhältnis ab 4:5): Phone und Text
+     nebeneinander; hohe Kachel: Phone über dem Text. So bleibt weder in der Kachel noch in den
+     Nachbarkacheln ein Leerstreifen (gemessen vorher bis 220 px, Ziel höchstens 48 px). */
+  .lg:has(.visual [data-figure="phone"]) {
+    container-type: size;
+    min-height: 450px;
+  }
+  .tile[data-size="lg"]:has(.visual [data-figure="phone"]) {
+    /* Platz für die Kennzeichnung unter dem Phone: eine Zeile plus Abstand (WebKit braucht 41 px) */
+    --phone-caption: 44px;
+  }
+  .tile[data-size="lg"] .visual:has([data-figure="phone"]) {
+    container-type: size;
+    flex: 1 1 0;
+    min-height: 0;
+  }
+  .tile[data-size="lg"] .visual [data-figure="phone"] {
+    width: 100%;
+    align-items: center;
+  }
+  .tile[data-size="lg"] .visual [data-frame="phone"] {
+    --phone-w: clamp(160px, min(100cqw, (100cqh - var(--phone-caption, 44px)) * 194 / 410), 320px);
+  }
+  @container (min-aspect-ratio: 4 / 5) {
+    .tile[data-size="lg"]:has(.visual [data-figure="phone"]) {
+      /* schmale Spalte: Kennzeichnung zweizeilig (WebKit braucht 61 px) */
+      --phone-caption: 64px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-rows: minmax(0, 1fr);
+      gap: 32px;
+    }
+    .tile[data-size="lg"]:has(.visual [data-figure="phone"]) .body {
+      align-self: center;
+    }
+  }
+  /* Phone schmaler als 194 px (Visual-Container unter 410 px plus Kennzeichnung bzw. unter 194 px breit):
+     Titel wie im 160-px-Phone mit 12 px und 8 px Innenabstand, damit „Abnahmeprotokolle“ ungekürzt bleibt. */
+  @container (max-height: 473px) or (max-width: 193px) {
+    .tile[data-size="lg"] .visual [data-phone-title] {
+      padding: 0 8px;
+    }
+    .tile[data-size="lg"] .visual [data-phone-title] strong {
+      font-size: 12px;
+    }
+  }
 }

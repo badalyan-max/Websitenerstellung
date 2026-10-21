@@ -65,7 +65,7 @@ export function PhoneDevice({
             <BatteryFull size={13} />
           </span>
         </div>
-        <div className={s.mobileTitle}>
+        <div className={s.mobileTitle} data-phone-title="">
           <strong>{title}</strong>
         </div>
         <div className={s.mobileContent}>{children}</div>

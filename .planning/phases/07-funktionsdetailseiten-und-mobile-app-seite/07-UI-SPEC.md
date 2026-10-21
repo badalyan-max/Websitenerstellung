@@ -620,6 +620,7 @@ Unverändert aus [05]/[06]: „Sie“, Satzschreibung, aktive Verben, keine Ausr
 | B7 | [06] Bewegung | `FeatureSnippet` auf `/` und `/funktionen` entfernt | bleibt auf 8 Detailseiten im Ablauf-Abschnitt, mit Kennzeichnung | D-19 (E2E-Bindung); unterhalb der Falz, nicht LCP. |
 | B8 | Bestand `/app` | QR-Codes ab 768 px | QR-Codes ab 1024 px | Zwischen 768 und 1023 px ist der Kopf einspaltig; QR würde das Phone unter die Falz schieben. |
 | B9 | `keyword-map.json` | 6 H1-Zielwerte, 1 Description | wie Tabelle im SEO-Vertrag | D-22 (4 Werte) plus zwei H1 > 60 Zeichen (F4) und „lückenlos“ (Pitfall 8). |
+| B10 | Abschnitt 4 und /app-Kacheln (lg · Phone 194) | `lg`-Kachel mit Phone fest 194 px, Visual oben | ab 1024 px: Phone-Breite folgt der freien Kachelhöhe (160–320 px, Proportion 194:410); Kachel mit Seitenverhältnis ab 4:5 zeigt Phone und Text nebeneinander, hohe Kachel Phone über dem Text; die Kachel übernimmt die Höhe ihrer zwei Rasterzeilen (Mindesthöhe 450 px). Unter 1024 px unverändert 194 px | Nachtrag 07-08 (Freigabe Orchestrator). Gemessen vorher (Playwright, Chromium/WebKit): /app 171–220 px Leerraum in den lg-Kacheln, lager bis 104 px und baudokumentation bis 81 px in den Nachbarkacheln, weil das feste Phone die Rasterzeilen vorgab bzw. nicht füllte. Nachher höchstens 25 px in den betroffenen Rastern (768/1024/1440), kein Rahmen abgeschnitten, kein gekürzter Titel; E2E „Detailseite: große Kacheln mit Phone ohne Leerstreifen (B10)“ sichert höchstens 48 px. Budgets und Kennzeichnung unverändert. |
 
 ---
 

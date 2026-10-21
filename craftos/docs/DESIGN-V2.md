@@ -483,7 +483,7 @@ der Software für Handwerksbetriebe“ (Keyword-Span `nowrap`), Description 148 
 
 ## 16. Kaskade Funktionsdetailseiten und /app (§ 16, Plan 07-04, 21.10.2026)
 
-Verbindlich sind 05-UI-SPEC, 06-UI-SPEC und 07-UI-SPEC („Vorlage Detailseite“, F1–F5, Abweichungen B1–B9).
+Verbindlich sind 05-UI-SPEC, 06-UI-SPEC und 07-UI-SPEC („Vorlage Detailseite“, F1–F5, Abweichungen B1–B10).
 Umsetzung in Plan 07-04 (die Route `/funktionen/[slug]` wird erst in 07-06 umgestellt, `/app` in 07-07):
 
 - `lib/funktionsdetails/types.ts` und `lib/funktionsdetails/index.ts` (server-only): Inhaltstypen, Builder
@@ -542,7 +542,7 @@ Umsetzung in Plan 07-04 (die Route `/funktionen/[slug]` wird erst in 07-06 umges
 | F4 | `TEXT_BUDGET.pageHead` + `count.detailSteps`/`count.related` | in 07-01 umgesetzt; Builder und FunktionsKopf nutzen sie. |
 | F5 | `ZusatzZiel.kind` „seite“ | in 07-02 umgesetzt. |
 
-**Abweichungen B1–B9 (aus 07-UI-SPEC, hier umgesetzt bzw. vorbereitet):**
+**Abweichungen B1–B10 (aus 07-UI-SPEC, hier umgesetzt bzw. vorbereitet):**
 
 | # | Abweichung | Begründung / Stand |
 |---|---|---|
@@ -555,6 +555,7 @@ Umsetzung in Plan 07-04 (die Route `/funktionen/[slug]` wird erst in 07-06 umges
 | B7 | `FeatureSnippet` bleibt auf 8 Detailseiten im Ablauf | D-19; `SNIPPET_VARIANTE`, `figure data-figure="snippet"` mit Kennzeichnung, Überschrift als h3. |
 | B8 | QR-Codes ab 1024 px | `hidden lg:flex` im FunktionsKopf; zwischen 768 und 1023 px würde der QR-Block das Phone unter die Falz schieben. |
 | B9 | sechs H1-Zielwerte und eine Description in `keyword-map.json` | D-22, F4, Pitfall 8; in 07-02 umgesetzt. |
+| B10 | Große Kachel mit Phone ab 1024 px: Phone-Breite folgt der freien Kachelhöhe (160–320 px), ab Seitenverhältnis 4:5 Phone und Text nebeneinander, sonst Phone über dem Text | Nachtrag 07-08. Vorher (Playwright, Chromium/WebKit, 1024/1440): /app 171–220 px Leerraum in den lg-Kacheln, lager bis 104 px und baudokumentation bis 81 px in den Nachbarkacheln. Umsetzung in `BentoGrid.module.css`: Das Listenelement der lg-Kachel ist ein size-Container (Mindesthöhe 450 px) und gibt die Rasterzeilen nicht mehr vor; das Visual ist ein zweiter size-Container, aus dessen Höhe `--phone-w` berechnet wird (abzüglich 44 px bzw. nebeneinander 64 px für die Kennzeichnung). Ist das Phone schmaler als 194 px, gilt der Titel des 160-px-Phones (12 px, 8 px Innenabstand; Haken `data-phone-title` in `PhoneFrame`). Nachher höchstens 25 px in den betroffenen Rastern bei 768, 1024 und 1440 px, Phones 161–297 px, kein Rahmen abgeschnitten, kein gekürzter Text; E2E „Detailseite: große Kacheln mit Phone ohne Leerstreifen (B10)“ prüft höchstens 48 px. Unter 1024 px unverändert. |
 
 **D-13:** `data-source` und `data-evidence` tragen auf öffentlichen Seiten nur Kurzformen (`site:…`/`register:…`
 bzw. `web:…`/`app:…`); die inhaltlich gleiche Prüfung gegen Register und Release läuft in Vitest über die vollen
