@@ -62,7 +62,8 @@
 html {
   scroll-behavior: auto;
   scroll-padding-top: 100px;
-  scrollbar-gutter: stable;
+  /* Kein globales scrollbar-gutter (D-14, 07-08): Es reservierte auf kurzen Seiten unter Windows eine leere
+     Rinne neben Header und Footer. HeaderShell setzt den Gutter nur während des Scroll-Locks im Drawer. */
 }
 body {
   margin: 0;

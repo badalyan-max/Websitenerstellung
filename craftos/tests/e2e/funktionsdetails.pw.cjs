@@ -312,6 +312,88 @@ test('Detailseite: große Kacheln mit Phone ohne Leerstreifen (B10)', async ({ p
   testInfo.annotations.push({ type: 'B10', description: report.join(' | ') })
 })
 
+// D-14 (IN-07 aus Phase 6): scrollbar-gutter darf auf kurzen Seiten keine leere Rinne neben dunklem Header und
+// Footer reservieren. Headless-Chromium blendet Scrollleisten aus (--hide-scrollbars); für klassische Leisten wie
+// unter Windows startet der Fall deshalb einen eigenen Chromium ohne diesen Schalter. WebKit nutzt den Projektbrowser.
+const GUTTER_PATHS = ['/impressum', '/datenschutz', '/gibt-es-nicht']
+// 1920 × 1080: üblicher Windows-Desktop; dort ist die 404-Seite kürzer als das Fenster (Messung 07-08).
+const GUTTER_VIEWPORTS = [{ width: 1440, height: 900 }, { width: 390, height: 844 }, { width: 1920, height: 1080 }]
+
+test('Gutter: keine leere Rinne ohne Seitenüberlauf (Impressum, Datenschutz, 404)', async ({ browser, browserName, baseURL }, testInfo) => {
+  test.skip(testInfo.project.use.hasTouch, 'Einmal je Engine im Desktop-Projekt.')
+  test.setTimeout(90_000)
+  const { chromium } = require(process.env.CRAFTOS_PLAYWRIGHT_PATH || '@playwright/test')
+  const own = browserName === 'chromium' ? await chromium.launch({ ignoreDefaultArgs: ['--hide-scrollbars'] }) : null
+  const origin = new URL(baseURL).origin
+  const findings = []
+  try {
+    for (const vp of GUTTER_VIEWPORTS) {
+      const context = await (own || browser).newContext({ baseURL, viewport: vp, locale: 'de-DE' })
+      await context.route('**/*', (route) => new URL(route.request().url()).origin === origin ? route.continue() : route.abort())
+      const page = await context.newPage()
+      for (const path of GUTTER_PATHS) {
+        await page.goto(path)
+        await page.evaluate(() => document.fonts.ready)
+        const m = await page.evaluate(() => ({
+          gutter: window.innerWidth - document.documentElement.clientWidth,
+          // Chromium meldet die reservierte Rinne nicht in clientWidth; die Breite des Body-Layouts zeigt sie.
+          layoutGutter: Math.round(window.innerWidth - document.body.getBoundingClientRect().width),
+          overflow: document.documentElement.scrollHeight > window.innerHeight,
+          scrollHeight: document.documentElement.scrollHeight,
+          gutterRule: getComputedStyle(document.documentElement).scrollbarGutter || 'n/a',
+        }))
+        const name = `gutter-${browserName}-${vp.width}${path.replaceAll('/', '_')}.png`
+        await page.screenshot({ path: testInfo.outputPath(name) })
+        const line = `${browserName} ${vp.width}×${vp.height} ${path}: Rinne ${m.gutter} px (Layout ${m.layoutGutter} px), Überlauf ${m.overflow ? 'ja' : 'nein'} (scrollHeight ${m.scrollHeight}), scrollbar-gutter ${m.gutterRule}`
+        testInfo.annotations.push({ type: 'Gutter', description: line })
+        console.log(line)
+        if (!m.overflow && (m.gutter !== 0 || m.layoutGutter !== 0)) findings.push(line)
+      }
+      await context.close()
+    }
+  } finally {
+    if (own) await own.close()
+  }
+  expect(findings, 'leere Rinne ohne Seitenüberlauf').toEqual([])
+})
+
+test('Gutter: Drawer-Scroll-Lock ohne Seitensprung mit klassischen Scrollleisten', async ({ baseURL, browserName }, testInfo) => {
+  test.skip(browserName !== 'chromium' || testInfo.project.use.hasTouch, 'Klassische Scrollleisten nur im eigenen Chromium ohne --hide-scrollbars.')
+  const { chromium } = require(process.env.CRAFTOS_PLAYWRIGHT_PATH || '@playwright/test')
+  const own = await chromium.launch({ ignoreDefaultArgs: ['--hide-scrollbars'] })
+  const origin = new URL(baseURL).origin
+  try {
+    for (const path of ['/impressum', '/gibt-es-nicht']) {
+      const context = await own.newContext({ baseURL, viewport: { width: 390, height: 844 }, locale: 'de-DE' })
+      await context.route('**/*', (route) => new URL(route.request().url()).origin === origin ? route.continue() : route.abort())
+      const page = await context.newPage()
+      await page.goto(path)
+      const state = () => page.evaluate(() => ({
+        body: document.body.getBoundingClientRect().width,
+        header: document.querySelector('header').getBoundingClientRect().width,
+        gutter: document.documentElement.style.scrollbarGutter,
+        overflow: document.documentElement.style.overflow,
+      }))
+      const before = await state()
+      await page.getByRole('button', { name: 'Menü öffnen' }).click()
+      await expect(page.getByRole('button', { name: 'Menü schließen' })).toBeVisible()
+      const open = await state()
+      expect(open.overflow, `${path}: Scroll-Lock aktiv`).toBe('hidden')
+      expect(open.body, `${path}: Seite springt beim Sperren nicht`).toBe(before.body)
+      expect(open.header, `${path}: Header springt beim Sperren nicht`).toBe(before.header)
+      await page.getByRole('button', { name: 'Menü schließen' }).click()
+      await expect(page.getByRole('button', { name: 'Menü öffnen' })).toBeVisible()
+      const closed = await state()
+      expect(closed, `${path}: Zustand nach dem Schließen wie vorher`).toEqual(before)
+      console.log(`Drawer ${path} 390: Body ${before.body} → offen ${open.body} (Gutter „${open.gutter}“) → zu ${closed.body}`)
+      testInfo.annotations.push({ type: 'Gutter', description: `${path} 390: Body ${before.body} → offen ${open.body} (Gutter „${open.gutter}“) → zu ${closed.body}` })
+      await context.close()
+    }
+  } finally {
+    await own.close()
+  }
+})
+
 test('App-Seite: Store-Links bei 390 und 1440, QR-Codes erst ab 1024 px', async ({ page }, testInfo) => {
   test.skip(testInfo.project.use.hasTouch, 'Die Breiten werden im Desktop-Projekt per setViewportSize geprüft.')
   const kopf = page.locator('[data-funktions-kopf]')

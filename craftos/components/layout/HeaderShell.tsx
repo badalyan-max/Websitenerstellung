@@ -91,8 +91,13 @@ export function HeaderShell({ items }: { items: HeaderNavItem[] }) {
     if (!open || !isMobile()) return;
     const root = document.documentElement;
     const previousRootOverflow = root.style.overflow;
+    const previousRootGutter = root.style.scrollbarGutter;
     const scrollX = window.scrollX;
     const scrollY = window.scrollY;
+    // Nur während des Scroll-Locks und nur, wenn eine klassische Scrollleiste gerade Platz belegt: Ihr Platz
+    // bleibt reserviert, damit die Seite beim Sperren nicht seitlich springt (D-14, 07-08; vorher global in
+    // globals.css, dort reservierte es auf kurzen Seiten eine leere Rinne).
+    if (window.innerWidth - root.clientWidth > 0) root.style.scrollbarGutter = "stable";
     root.style.overflow = "hidden";
     // Der Drawer überdeckt die ganze Seite: Inhalt und Fußleiste für Screenreader und Tastatur sperren,
     // damit der virtuelle Cursor keinen verdeckten Inhalt vorliest (06-REVIEW IN-03).
@@ -104,6 +109,7 @@ export function HeaderShell({ items }: { items: HeaderNavItem[] }) {
     return () => {
       for (const el of gesperrt) el.inert = false;
       root.style.overflow = previousRootOverflow;
+      root.style.scrollbarGutter = previousRootGutter;
       if (window.scrollX !== scrollX || window.scrollY !== scrollY) {
         window.scrollTo({ left: scrollX, top: scrollY, behavior: "instant" });
       }
