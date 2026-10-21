@@ -529,6 +529,40 @@ test('Funktionsübersicht: Sprunglinks, reduzierte Bewegung, Kurzform-Belege und
   for (const e of evidence) expect(e).toMatch(/^(web|app):[^\s/]+$/)
 })
 
+// 07-04 (Befund 07-03): In den Browser-Rahmen der Karten ist keine Zeile angeschnitten oder von der
+// Kennzeichnungsleiste verdeckt; jede Karte zeigt mindestens eine vollständige Zeile.
+test('Funktionsübersicht: Browser-Rahmen der Karten zeigen nur vollständige Zeilen in fünf Breiten', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.use.hasTouch, 'Die Breiten werden im Desktop-Projekt per setViewportSize geprüft.')
+  for (const vp of FOLD_VIEWPORTS) {
+    await page.setViewportSize(vp)
+    await page.goto('/funktionen')
+    await page.waitForLoadState('networkidle')
+    const karten = await page.evaluate(() =>
+      [...document.querySelectorAll('li[data-funktion]')].flatMap((li) => {
+        const frame = li.querySelector('[data-frame="browser"]')
+        if (!frame) return []
+        let bottom = frame.getBoundingClientRect().bottom
+        for (let el = frame; el && el !== li; el = el.parentElement) {
+          if (getComputedStyle(el).overflowY !== 'visible') bottom = Math.min(bottom, el.getBoundingClientRect().bottom)
+        }
+        const cap = li.querySelector('figcaption')
+        if (cap && getComputedStyle(cap).position === 'absolute') bottom = Math.min(bottom, cap.getBoundingClientRect().top)
+        const rows = [...frame.querySelectorAll('li')].filter((r) => getComputedStyle(r).display !== 'none')
+        return [{
+          slug: li.getAttribute('data-funktion'),
+          sichtbar: rows.length,
+          angeschnitten: rows.filter((r) => r.getBoundingClientRect().bottom > bottom + 0.5).length,
+        }]
+      }),
+    )
+    expect(karten.length, `Browser-Karten ${vp.width}`).toBeGreaterThanOrEqual(14)
+    for (const k of karten) {
+      expect(k.angeschnitten, `${k.slug} ${vp.width}: angeschnittene Zeilen`).toBe(0)
+      expect(k.sichtbar, `${k.slug} ${vp.width}: mindestens eine Zeile`).toBeGreaterThanOrEqual(1)
+    }
+  }
+})
+
 test('Funktionsübersicht: ohne JavaScript stehen alle 30 Funktionen im Dokument', async ({ browser, baseURL }, testInfo) => {
   test.skip(testInfo.project.use.hasTouch, 'Die Serverausgabe ist unabhängig von Touch.')
   const origin = new URL(baseURL).origin

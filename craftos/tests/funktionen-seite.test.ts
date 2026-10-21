@@ -8,6 +8,7 @@ import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import FunktionenPage, { metadata } from "@/app/funktionen/page";
 import { charCount } from "@/components/v2/budgets";
+import { KARTEN_ZEILEN } from "@/components/v2/SceneContent";
 import { GRUPPEN_REIHENFOLGE, getFunktionsgruppen } from "@/lib/funktionsgruppen";
 import { keywordMap } from "@/lib/keyword-map";
 import { cardScenes } from "@/lib/scenes";
@@ -129,6 +130,21 @@ describe("Funktionsübersicht /funktionen", () => {
     }
     expect(html.match(/>Weitere Funktionen<\/h3>/g)).toHaveLength(gruppen.filter((g) => g.extras.length > 0).length);
     expect(gruppen.filter((g) => g.extras.length > 0).map((g) => g.id)).toEqual(["angebot", "baustelle", "team"]);
+  });
+
+  it("Kartenvariante: Browser-Szenen zeigen höchstens KARTEN_ZEILEN Zeilen, die ersten der Szene (07-04, keine angeschnittene Zeile)", () => {
+    expect(KARTEN_ZEILEN).toBe(2);
+    const browserKarten = gruppen.flatMap((g) => g.details).filter((d) => cardScenes[d.slug]?.kind === "browser");
+    expect(browserKarten.length).toBeGreaterThanOrEqual(14);
+    for (const d of browserKarten) {
+      const li = eintrag(d.slug);
+      const rahmen = li.slice(li.indexOf('data-frame="browser"'), li.indexOf("</figure>"));
+      const rows = cardScenes[d.slug]!.scene.rows ?? [];
+      const sichtbar = rows.slice(0, KARTEN_ZEILEN);
+      expect((rahmen.match(/<li[\s>]/g) ?? []).length, d.slug).toBe(sichtbar.length);
+      for (const row of sichtbar) expect(decode(rahmen), d.slug).toContain(row.primary);
+      for (const row of rows.slice(KARTEN_ZEILEN)) expect(decode(rahmen), d.slug).not.toContain(`>${row.primary}<`);
+    }
   });
 
   it("Zusatzfunktionen verlinken nur mit Ziel (8 mit Link, 0 ohne)", () => {
