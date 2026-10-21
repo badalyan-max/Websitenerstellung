@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ArrowUpRight, ChevronDown } from "lucide-react";
@@ -112,7 +112,9 @@ export function HeaderShell({ items }: { items: HeaderNavItem[] }) {
 
   const anyExpanded = expanded.length > 0;
   const firstExpanded = expanded[0] ?? null;
-  useEffect(() => {
+  // Layout-Effekt: Die Listener hängen im selben Commit, in dem das Panel sichtbar wird. Ein passiver Effekt
+  // liefe nach einer Hover-Öffnung erst in einer späteren Aufgabe, und ein schnelles Esc ginge verloren.
+  useLayoutEffect(() => {
     if (!open && !anyExpanded) return;
     function close() {
       setOpen(false);
