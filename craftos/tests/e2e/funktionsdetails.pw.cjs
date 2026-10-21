@@ -128,6 +128,9 @@ test('Detailseite: axe bei 390 ohne serious/critical auf allen Detailseiten und 
   test.skip(!testInfo.project.use.hasTouch, 'Die 390-px-Prüfung läuft im Touch-Projekt.')
   test.setTimeout(240_000)
   const paths = await sitePaths(request)
+  // Ruhiger Endzustand: Zwischenstände der FeatureSnippet-Animation (gedimmte Schritte) sind dekorativ und
+  // aria-hidden; geprüft wird die statische Darstellung wie bei reduzierter Bewegung und ohne JavaScript.
+  await page.emulateMedia({ reducedMotion: 'reduce' })
   const findings = []
   for (const path of paths) {
     await page.goto(path)
@@ -140,6 +143,7 @@ test('Detailseite: axe bei 390 ohne serious/critical auf allen Detailseiten und 
 test('Detailseite: axe in fünf Breiten (360, 768, 1024, 1440) für Stichprobe und /app', async ({ page }, testInfo) => {
   test.skip(testInfo.project.use.hasTouch, 'Die Breiten werden im Desktop-Projekt per setViewportSize geprüft.')
   test.setTimeout(240_000)
+  await page.emulateMedia({ reducedMotion: 'reduce' })
   const findings = []
   for (const width of [360, 768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 })

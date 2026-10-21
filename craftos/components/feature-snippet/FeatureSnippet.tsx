@@ -21,6 +21,15 @@ const content: Record<SnippetVariant, { title: string; summary: string }> = {
 };
 const phaseDuration = [1200, 900, 1500, 1000, 1700, 1000, 1800, 3000];
 
+/** Endzustand sofort setzen; endlose Animationen lassen sich nicht beenden und werden abgebrochen. */
+function finishAnimation(animation: Animation) {
+  try {
+    animation.finish();
+  } catch {
+    animation.cancel();
+  }
+}
+
 /** headingLevel 3 nur innerhalb eines Abschnitts mit eigener H2 (Funktionsdetailseiten, 07-04); Standard 2 wie im Bestand. */
 export function FeatureSnippet({ variant, example, className = "", headingLevel = 2 }: { variant: SnippetVariant; example?: SnippetExample; className?: string; headingLevel?: 2 | 3 }) {
   return <Illustration key={`${variant}:${example?.id ?? "default"}`} variant={variant} example={example} className={className} headingLevel={headingLevel} />;
@@ -100,9 +109,12 @@ function Illustration({ variant, example, className, headingLevel }: { variant: 
   useEffect(() => {
     root.current?.getAnimations({ subtree: true }).forEach((animation) => {
       if (running) animation.play();
+      // Bei reduzierter Bewegung sofort den Endzustand setzen statt anhalten: WebKit startet bei der Hydration
+      // Übergänge (globale 0,01-ms-Regel); angehalten blieben sie dauerhaft pausiert im DOM (Befund 07-08).
+      else if (reduced) finishAnimation(animation);
       else animation.pause();
     });
-  }, [running, shownPhase]);
+  }, [running, shownPhase, reduced]);
 
   return <section ref={root} className={`${s.snippet} ${className}`} aria-labelledby={`${id}-title`}
     data-feature-snippet={variant} data-feature-illustration="true" data-snippet-example={matchingExample?.id}
