@@ -13,7 +13,8 @@ export function ActiveLink({ href, className, children }: { href: string; classN
   const pfad = pathname && pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
   const current = !href.includes("#") && pfad === href;
   return (
-    <Link href={href} prefetch={false} className={className} aria-current={current ? "page" : undefined}>
+    // tabIndex 0: WebKit nimmt Links sonst nicht in die Tab-Reihenfolge auf (Bestand der Navigation).
+    <Link href={href} prefetch={false} tabIndex={0} className={className} aria-current={current ? "page" : undefined}>
       {children}
     </Link>
   );

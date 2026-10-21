@@ -5,7 +5,8 @@
  */
 .header { position: sticky; top: 0; z-index: 60; flex-shrink: 0; background: #101014; color: #f4f4f5; border-bottom: 1px solid #2c2c34; }
 .inner { position: relative; max-width: 1360px; margin: auto; min-height: 84px; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
-.logo { display: block; flex-shrink: 0; width: 154px; }
+/* Breite aus dem Inhalt (Marke + Schriftzug), damit der Schriftzug nie unter die Hauptpunkte läuft. */
+.logo { display: block; flex-shrink: 0; width: auto; }
 .logo svg { width: 36px; height: 36px; }
 .toggle { display: none; }
 
@@ -41,16 +42,18 @@
 .header button:focus-visible { outline: 3px solid #bb7609; outline-offset: 4px; border-radius: 4px; }
 
 @media (min-width: 1121px) and (max-width: 1250px) {
-  .list { gap: 16px; }
-  .nav, .actions { gap: 14px; }
-  .inner { gap: 18px; padding: 0 24px; }
-  .logo { width: 138px; }
+  /* 06-UI-SPEC nennt 16 px; 12 px, weil Windows-Scrollleisten (scrollbar-gutter) bei 1121 px sonst die Store-Links umbrechen. */
+  .list { gap: 12px; }
+  .nav { gap: 12px; }
+  .actions { gap: 12px; }
+  .inner { gap: 16px; padding: 0 24px; }
+  /* Logo behält seine volle Breite (Schriftzug darf nicht unter „Funktionen“ laufen); der CTA wird schmaler. */
+  .cta { padding-inline: 16px; }
 }
 
 /* ---------- Drawer (≤ 1120 px) ---------- */
 @media (max-width: 1120px) {
   .inner { min-height: 74px; padding: 0 18px; }
-  .logo { width: 138px; }
   .toggle { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; padding: 0; border: 1px solid #454550; border-radius: 6px; background: transparent; color: #f4f4f5; cursor: pointer; }
   .nav { display: none; }
   /* Vollflächig unter dem Header (74 px + 1 px Linie); scrollt intern, die Seite bleibt gesperrt. */

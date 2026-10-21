@@ -202,7 +202,10 @@ export function HeaderShell({ items }: { items: HeaderNavItem[] }) {
                     }
                   }}
                   onBlur={(event) => {
-                    if (!isMobile() && !event.currentTarget.contains(event.relatedTarget)) {
+                    // Ohne Ziel (Klick auf nicht fokussierbare Fläche, WebKit beim Linkklick) nicht schließen:
+                    // Außenklicks schließen über pointerdown, sonst verschwände das Panel vor dem Klick.
+                    const next = event.relatedTarget;
+                    if (!isMobile() && next && !event.currentTarget.contains(next)) {
                       setExpanded((cur) => (cur.includes(item.id) ? [] : cur));
                     }
                   }}
@@ -210,6 +213,7 @@ export function HeaderShell({ items }: { items: HeaderNavItem[] }) {
                   <div className={styles.row}>
                     <Link
                       href={item.href}
+                      tabIndex={0}
                       className={styles.topLink}
                       data-active={inBereich ? "true" : undefined}
                       aria-current={current === item.href ? "page" : undefined}
