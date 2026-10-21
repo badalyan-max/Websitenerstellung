@@ -9,6 +9,7 @@ import {
 import { getFunktion, type Funktion, type ProductPlatform } from "@/lib/funktionen";
 import {
   GRUPPEN_REIHENFOLGE,
+  ZUSATZ_IDS,
   getFunktionsgruppen,
   type Funktionsgruppe,
 } from "@/lib/funktionsgruppen";
@@ -146,11 +147,18 @@ function kopfSzenen(visual: KopfVisual): FrameScene[] {
   return visual.kind === "pair" ? [visual.browser, visual.phone] : [visual.scene];
 }
 
-/** Textfeld für die Wortregeln; `frageMitNein` = FAQ-Frage, deren Antwort mit „Nein“ beginnt. */
+/**
+ * Textfeld für die Wortregeln; `frageMitNein` = FAQ-Frage, deren Antwort mit „Nein“ beginnt; `suchbegriff` = Title
+ * oder Description aus der Keyword-Map, in denen „Bauphasen“ als Suchbegriff zulässig ist (07-UI-SPEC B3).
+ */
 interface Textfeld {
   text: string;
   frageMitNein?: true;
+  suchbegriff?: true;
 }
+
+/** B3: „Bauphasen“ nur in Title/Description als Suchbegriff, sonst „Arbeitsabschnitte“. */
+const SUCHBEGRIFF_ERLAUBT: readonly string[] = ["Bauphase"];
 
 /** Alle Textfelder außer der H1 (die H1 kommt aus der Keyword-Map). */
 function textfelder(inhalt: FunktionsdetailInhalt): Textfeld[] {
@@ -178,9 +186,10 @@ function textfelder(inhalt: FunktionsdetailInhalt): Textfeld[] {
  * (z. B. „Werden Maße automatisch gemessen?“); die Antwort selbst unterliegt weiter der Regel.
  */
 function pruefeWortregeln(slug: string, felder: readonly Textfeld[]): void {
-  for (const { text, frageMitNein } of felder) {
+  for (const { text, frageMitNein, suchbegriff } of felder) {
     const klein = text.toLowerCase();
     for (const wort of VERBOTENE_WOERTER) {
+      if (suchbegriff && SUCHBEGRIFF_ERLAUBT.includes(wort)) continue;
       if (klein.includes(wort.toLowerCase())) {
         throw new Error(`Funktionsdetail: ${slug} enthält ‚${wort}‘ – Formulierung laut 07-UI-SPEC ändern.`);
       }
@@ -192,6 +201,23 @@ function pruefeWortregeln(slug: string, felder: readonly Textfeld[]): void {
 }
 
 const PLATTFORM_REIHENFOLGE: readonly ProductPlatform[] = ["web", "mobile"];
+
+/**
+ * Kachel-Links (WR-05): /funktionen/{slug} nur auf eine bekannte andere Detailseite, /hilfe/{slug} im Slug-Format
+ * (Existenz der Datei prüft tests/funktionsdetails.test.ts, der Builder nutzt kein fs), sonst eine Seite der ersten
+ * Ebene wie /app oder /gobd (Existenz in der Sitemap prüft derselbe Test).
+ */
+function pruefeKachelLink(slug: string, titel: string, href: string, gruppen: readonly Funktionsgruppe[]): void {
+  const funktion = /^\/funktionen\/([a-z0-9-]+)$/.exec(href)?.[1];
+  const gueltig = funktion
+    ? funktion !== slug && gruppeVon(gruppen, funktion) !== undefined
+    : /^\/hilfe\/[a-z0-9-]+$/.test(href) || /^\/[a-z0-9-]+$/.test(href);
+  if (!gueltig) {
+    throw new Error(
+      `Funktionsdetail: Kachel ‚${titel}‘ in ${slug} verlinkt ${href} – nur andere Detailseiten, /hilfe/{slug} oder Seiten wie /app und /gobd.`,
+    );
+  }
+}
 
 /**
  * Baut eine Detailseite aus übergebenen Daten (rein, mit Fremddaten testbar). Prüfreihenfolge laut 07-04-PLAN:
@@ -303,14 +329,21 @@ export function buildFunktionsdetail(input: {
       `Funktionsdetail: Anordnung ${anordnung} ist für ${slug} nicht zulässig – Größenfolge laut 07-UI-SPEC Abschnitt 4 wählen.`,
     );
   }
-  const kopf = kopfSzenen(visual);
+  // Vergleich über die Kurzform `screen`, damit auch eine kopierte oder abgeleitete Kopf-Szene auffällt (WR-05).
+  const kopfScreens = new Set(kopfSzenen(visual).map((szene) => szene.screen));
   for (const tile of tiles) {
     if (tile.size === "lg" && tile.visual.kind !== "phone") {
       throw new Error(`Funktionsdetail: lg-Kachel ‚${tile.title}‘ braucht ein Phone-Visual – Szene angeben oder Größe ändern.`);
     }
-    if (tile.visual.kind === "phone" && kopf.includes(tile.visual.scene)) {
+    if (tile.visual.kind === "phone" && kopfScreens.has(tile.visual.scene.screen)) {
       throw new Error(`Funktionsdetail: Kachel ‚${tile.title}‘ zeigt die Kopf-Szene – eine andere Szene wählen.`);
     }
+    if (tile.zusatz !== undefined && !ZUSATZ_IDS.includes(tile.zusatz)) {
+      throw new Error(
+        `Funktionsdetail: Zusatz ${tile.zusatz} an Kachel ‚${tile.title}‘ ist unbekannt – id aus ZUSATZ_IDS (lib/funktionsgruppen.ts) wählen.`,
+      );
+    }
+    if (tile.href !== undefined) pruefeKachelLink(slug, tile.title, tile.href, gruppen);
   }
   const grenzen = tiles.filter((t) => t.grenze === true).length;
   if (grenzen !== 1) {
@@ -386,8 +419,16 @@ export function buildFunktionsdetail(input: {
     };
   });
 
-  // (8) Wortregeln über alle Textfelder außer der H1
-  pruefeWortregeln(slug, textfelder(inhalt));
+  // (8) Wortregeln über alle Textfelder, Kopfwort, Zielwerte der Keyword-Map und die Nutzensätze der verwandten
+  // Karten (WR-05); Title und Description dürfen „Bauphasen“ als Suchbegriff enthalten (B3).
+  pruefeWortregeln(slug, [
+    ...textfelder(inhalt),
+    { text: inhalt.kopfwort },
+    { text: ziel.h1 },
+    { text: ziel.title, suchbegriff: true },
+    { text: ziel.description, suchbegriff: true },
+    ...verwandt.map((v): Textfeld => ({ text: v.benefit })),
+  ]);
 
   const snippet = Object.hasOwn(SNIPPET_VARIANTE, slug) ? SNIPPET_VARIANTE[slug] : undefined;
   const path = `/funktionen/${slug}`;

@@ -725,6 +725,64 @@ describe("buildFunktionsdetail – Regelverstöße werfen die 07-UI-SPEC-Fehlert
     );
   });
 
+  it("lg-Kachel mit einer Kopie der Kopf-Szene (Vergleich über screen, WR-05)", () => {
+    const inhalt = mitKacheln([
+      kachel("lg", "Große Kachel", { visual: { kind: "phone", scene: { ...angebotScene }, width: 194 } }),
+      kachel("sm", "Klein eins"),
+      kachel("sm", "Klein zwei"),
+      kachel("md", "Mittel"),
+      kachel("wide", "Grenze", { grenze: true }),
+    ]);
+    expect(() => baue(inhalt)).toThrow(
+      "Funktionsdetail: Kachel ‚Große Kachel‘ zeigt die Kopf-Szene – eine andere Szene wählen.",
+    );
+  });
+
+  it("unbekannte Zusatz-id (WR-05)", () => {
+    const inhalt = angeboteInhalt();
+    inhalt.kernpunkte.tiles[3] = { ...inhalt.kernpunkte.tiles[3], zusatz: "angebotsunterschrfit" };
+    expect(() => baue(inhalt)).toThrow(
+      "Funktionsdetail: Zusatz angebotsunterschrfit an Kachel ‚Angebotsunterschrift online‘ ist unbekannt – id aus ZUSATZ_IDS (lib/funktionsgruppen.ts) wählen.",
+    );
+  });
+
+  it("Kachel-Link auf eine unbekannte oder die eigene Detailseite (WR-05)", () => {
+    for (const href of ["/funktionen/angebot", "/funktionen/angebote", "/hilfe/Angebot", "https://example.com"]) {
+      const inhalt = angeboteInhalt();
+      inhalt.kernpunkte.tiles[1] = { ...inhalt.kernpunkte.tiles[1], href };
+      expect(() => baue(inhalt), href).toThrow(
+        `Funktionsdetail: Kachel ‚${inhalt.kernpunkte.tiles[1].title}‘ in angebote verlinkt ${href} – nur andere Detailseiten, /hilfe/{slug} oder Seiten wie /app und /gobd.`,
+      );
+    }
+  });
+
+  it("Wortregeln gelten auch für Title, Description, H1, Kopfwort und verwandte Nutzensätze (WR-05)", () => {
+    const ziel = zielwerte("/funktionen/angebote");
+    const mit = (z: Partial<typeof ziel>, g = gruppen) => () =>
+      buildFunktionsdetail({
+        inhalt: angeboteInhalt(),
+        funktion: getFunktion("angebote")!,
+        ziel: { ...ziel, ...z },
+        gruppen: g,
+        visual: kopfVisuals.angebote,
+      });
+    const fehler = (wort: string) => `Funktionsdetail: angebote enthält ‚${wort}‘ – Formulierung laut 07-UI-SPEC ändern.`;
+    expect(mit({})).not.toThrow();
+    expect(mit({ description: `${ziel.description} Belege lückenlos ablegen.` })).toThrow(fehler("lückenlos"));
+    expect(mit({ title: "Angebote vollständig offline | CraftOS" })).toThrow(fehler("vollständig offline"));
+    expect(mit({ description: `${ziel.description} Zahlungen automatisch abgleichen.` })).toThrow(fehler("automatisch"));
+    expect(mit({ h1: "Angebotssoftware, per Online-Banking" })).toThrow(fehler("Online-Banking"));
+    // B3: „Bauphasen“ ist in Title und Description als Suchbegriff zulässig, in der H1 nicht.
+    expect(mit({ title: "Angebote nach Bauphasen | CraftOS", description: `${ziel.description} Nach Bauphasen gliedern.` })).not.toThrow();
+    expect(mit({ h1: "Angebotssoftware, nach Bauphasen" })).toThrow(fehler("Bauphase"));
+    // Nutzensatz einer verwandten Karte (aufmass ist verwandt mit angebote) kommt aus dem Gruppenmodell.
+    const mitBenefit = gruppen.map((g) => ({
+      ...g,
+      details: g.details.map((d) => (d.slug === "aufmass" ? { ...d, benefit: "Maße lückenlos erfassen." } : d)),
+    }));
+    expect(mit({}, mitBenefit)).toThrow(fehler("lückenlos"));
+  });
+
   it("zwei Grenze-Kacheln", () => {
     const inhalt = angeboteInhalt();
     inhalt.kernpunkte.tiles[3] = { ...inhalt.kernpunkte.tiles[3], zusatz: undefined, grenze: true };
@@ -969,6 +1027,20 @@ describe("getFunktionsdetail und Inhaltstabelle", () => {
         if (tile.href) expect(pfade.has(tile.href), `${slug}: ${tile.title} → ${tile.href}`).toBe(true);
       }
     }
+  });
+
+  it("jeder Hilfe-Link (Sekundärlink und Kacheln) hat einen Artikel in content/hilfe (WR-05)", () => {
+    const fehlend: string[] = [];
+    for (const slug of Object.keys(INHALTE)) {
+      const inhalt = INHALTE[slug];
+      const links = [inhalt.secondary.href, ...inhalt.kernpunkte.tiles.flatMap((t) => (t.href ? [t.href] : []))];
+      for (const href of links.filter((h) => h.startsWith("/hilfe/"))) {
+        const datei = path.join(ROOT, "content/hilfe", `${href.slice("/hilfe/".length)}.md`);
+        if (!fs.existsSync(datei)) fehlend.push(`${slug}: ${href}`);
+      }
+    }
+    expect(fehlend).toEqual([]);
+    expect(Object.values(INHALTE).filter((i) => i.secondary.href.startsWith("/hilfe/")).length).toBeGreaterThan(0);
   });
 
   it("jede Zusatzfunktion mit Ziel auf einer Detailseite mit Inhalt steht dort als Kachel mit passendem zusatz", () => {
