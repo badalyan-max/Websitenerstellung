@@ -179,7 +179,7 @@ describe("Startseite gerendert", () => {
 
   it("CTA auf site.ctaUrl ohne Login-Tracking; keine Altbausteine", () => {
     expect(html).toContain(`href="${site.ctaUrl}"`);
-    expect(html).toMatch(new RegExp(`<a href="${site.ctaUrl.replace(/[.]/g, "\.")}"[^>]*data-track="trial"`));
+    expect(html).toMatch(new RegExp(`<a href="${site.ctaUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"[^>]*data-track="trial"`));
     expect(html).not.toContain('data-track="login"');
     expect(html).not.toContain("produktdemo");
     expect(html).not.toContain("data-feature-snippet");
