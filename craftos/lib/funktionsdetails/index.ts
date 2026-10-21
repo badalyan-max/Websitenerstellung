@@ -25,6 +25,7 @@ import {
   type Zielwerte,
 } from "./types";
 import { angebotInhalte } from "./angebot";
+import { planungInhalte } from "./planung";
 
 /**
  * Builder der Funktionsdetailseiten (Phase 7, 07-UI-SPEC „Vorlage Detailseite“; D-02, D-03, D-04, D-19, D-23).
@@ -41,6 +42,7 @@ import { angebotInhalte } from "./angebot";
  */
 export const INHALTE: Readonly<Record<string, FunktionsdetailInhalt>> = {
   ...angebotInhalte,
+  ...planungInhalte,
 };
 
 /** FeatureSnippet nur auf diesen 8 Detailseiten, als einziges animiertes Element im Ablauf (D-19). */
