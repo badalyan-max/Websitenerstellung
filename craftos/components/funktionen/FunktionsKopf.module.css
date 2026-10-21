@@ -112,6 +112,16 @@
   display: flex;
   justify-content: center;
 }
+/* Das Kopf-Visual zeigt alle Zeilen der Szene (07-04): Der Browserrahmen behält mindestens 16:10, wächst aber
+   mit seinem Inhalt, statt die letzte Zeile anzuschneiden (Befund 07-06 bei 360 px, 13 Browser-Szenen).
+   Die Kartenvariante auf /funktionen bleibt unverändert (KARTEN_ZEILEN). */
+.product[data-visual="browser"] {
+  container-type: inline-size;
+}
+.product[data-visual="browser"] [data-frame="browser"] {
+  aspect-ratio: auto;
+  min-height: calc(100cqw * 10 / 16);
+}
 
 @media (min-width: 400px) {
   .title {

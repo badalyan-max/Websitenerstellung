@@ -47,9 +47,6 @@ export interface Funktion {
     text: string;
     tier?: "heute" | "launch" | "vision";
   }[];
-  faq: { q: string; a: string }[];
-  seoTitle: string;
-  seoDescription: string;
   platforms: ProductPlatform[];
   access: string;
   steps: string[];
@@ -932,12 +929,6 @@ export const funktionen: Funktion[] = definitions.map((d) => ({
   heroTitle: d.title,
   heroIntro: d.intro,
   bullets: d.points.map(([titel, text]) => ({ titel, text })),
-  faq: [
-    { q: "Wie läuft die Nutzung ab?", a: d.steps.join(" ") },
-    { q: "Welchen Zugang benötigen Sie?", a: d.access },
-  ],
-  seoTitle: d.name + " für Handwerksbetriebe",
-  seoDescription: d.intro,
   platforms: d.platforms,
   access: d.access,
   steps: d.steps,

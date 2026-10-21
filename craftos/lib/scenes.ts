@@ -321,9 +321,9 @@ export const projektplanScene: FrameScene = {
   screen: "web:Projektplan",
   description: "Projektplan der Web-App mit drei aufeinanderfolgenden Arbeitsabschnitten in einer Arbeitswoche.",
   week: [
-    { day: 0, label: "Rohinstallation", span: 2 },
+    { day: 0, label: "Rohbau", span: 2 },
     { day: 2, label: "Abdichtung", lane: 1 },
-    { day: 3, label: "Fliesenarbeiten", lane: 2, span: 2 },
+    { day: 3, label: "Fliesen", lane: 2, span: 2 },
   ],
 };
 
@@ -334,9 +334,9 @@ export const arbeitsabschnitteScene: FrameScene = {
   description: "Arbeitsabschnitte eines Projekts in der Mobile-App mit dem Status jedes Abschnitts.",
   activeTab: "Projekte",
   rows: [
-    { primary: "Rohinstallation", status: "Abgeschlossen" },
+    { primary: "Rohbau", status: "Abgeschlossen" },
     { primary: "Abdichtung", status: "In Arbeit" },
-    { primary: "Fliesenarbeiten", status: "Geplant" },
+    { primary: "Fliesen", status: "Geplant" },
   ],
 };
 
