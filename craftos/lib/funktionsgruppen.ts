@@ -190,6 +190,14 @@ export const REGISTER_IDS: Record<string, string> = {
   [sprachenName]: "sprachen",
 };
 
+/**
+ * Nutzensatz „Kunden in der App“ mit Rechtevorbehalt (Code-Review 07 WR-02, 07-UI-SPEC B12), zentral für das
+ * Gruppenmodell, die Kachel auf /funktionen/projektverwaltung und die Kachel auf /app. Beleg Mobile-Release:
+ * `useCustomerCreationAllowed()` erlaubt die Anlage nur Admin- und Büro-Lizenz, sonst Nur-Lesen-Zustand
+ * „Kunden erscheinen hier, sobald sie für dich freigegeben sind“ (CustomersScreen.tsx).
+ */
+export const KUNDEN_APP_TEXT = "Freigegebene Kundendaten unterwegs nachschlagen und je nach Rechten bearbeiten.";
+
 interface ZusatzDefinition {
   gruppe: GruppenId;
   /** Anzeigename ≤ 32 Zeichen; weicht nur dort vom Registernamen ab, wo dieser zu lang ist */
@@ -225,7 +233,7 @@ const ZUSATZ: Record<string, ZusatzDefinition> = {
     gruppe: "angebot",
     name: "Kunden in der App",
     icon: Contact,
-    benefit: "Kundendaten unterwegs in der Mobile-App nachschlagen und bearbeiten.",
+    benefit: KUNDEN_APP_TEXT,
     target: { href: "/funktionen/projektverwaltung", kind: "funktion", label: "Projektverwaltung" },
   },
   abnahme: {

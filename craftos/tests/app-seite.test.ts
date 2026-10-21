@@ -14,6 +14,7 @@ import { TEXT_BUDGET, charCount, sentenceCount } from "@/components/v2/budgets";
 import { KEY_FACT_SOURCE } from "@/components/v2/KeyFacts";
 import { euro, germanDate } from "@/lib/format";
 import { ERLAUBTE_ANORDNUNGEN, getFunktionsdetail, zielwerte } from "@/lib/funktionsdetails";
+import { KUNDEN_APP_TEXT, getFunktionsgruppen } from "@/lib/funktionsgruppen";
 import { getProductRegister, mobileLocales, mobileOffline, productBasis } from "@/lib/product-register";
 import { site, tarife } from "@/lib/site";
 import * as app from "@/lib/app-content";
@@ -156,6 +157,20 @@ describe("Inhalte", () => {
     // Belegscan (eingangsrechnungen) ist mobil nur in der Voll-Lizenz enthalten; der Abschnitts-Lead nennt die Freigabe.
     expect(mitVorbehalt).toBeGreaterThanOrEqual(1);
     expect(app.appSections.material.lead).toContain("Belege mit Finanzfreigabe");
+  });
+
+  it("„Kunden in der App“: derselbe Text mit Rechtevorbehalt auf /app, projektverwaltung und im Gruppenmodell (WR-02, B12)", () => {
+    const appKachel = alleKacheln().find((t) => t.title === "Kunden in der App");
+    const detailKachel = getFunktionsdetail("projektverwaltung").kernpunkte.tiles.find((t) => t.zusatz === "kunden-app");
+    const zusatz = getFunktionsgruppen()
+      .flatMap((g) => g.extras)
+      .find((x) => x.id === "kunden-app");
+    expect(appKachel?.text).toBe(KUNDEN_APP_TEXT);
+    expect(detailKachel?.text).toBe(KUNDEN_APP_TEXT);
+    expect(zusatz?.benefit).toBe(KUNDEN_APP_TEXT);
+    // Mobile-Release: Anlage nur Admin/Büro, sonst Nur-Lesen für freigegebene Kunden.
+    expect(KUNDEN_APP_TEXT).toMatch(/^Freigegebene /);
+    expect(KUNDEN_APP_TEXT).toContain("je nach Rechten");
   });
 
   it("jedes Kachel-href steht in der Sitemap", async () => {

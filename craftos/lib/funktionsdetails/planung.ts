@@ -17,6 +17,7 @@ import {
   TriangleAlert,
   Users,
 } from "lucide-react";
+import { KUNDEN_APP_TEXT } from "@/lib/funktionsgruppen";
 import type { FunktionsdetailInhalt } from "./types";
 
 /**
@@ -195,7 +196,7 @@ export const planungInhalte: Record<string, FunktionsdetailInhalt> = {
         {
           size: "md",
           title: "Kunden in der App",
-          text: "Kundendaten unterwegs in der Mobile-App nachschlagen und bearbeiten.",
+          text: KUNDEN_APP_TEXT,
           visual: { kind: "icon", icon: Contact },
           zusatz: "kunden-app",
         },
@@ -242,10 +243,11 @@ export const planungInhalte: Record<string, FunktionsdetailInhalt> = {
           q: "Wo lege ich Pläne und Fotos zum Projekt ab?",
           a: "Im Projekt unter „Dateien“ legen Sie Ordner und Unterordner an und laden Pläne, Bilder und Unterlagen hoch. In der Mobile-App finden Sie die Ablage unter „Belege & Dateien“, Uploads brauchen eine Internetverbindung.",
         },
-        // Quelle: Register liveExtras „Kunden in der App“ (CustomersScreen.tsx, CustomerEditScreen.tsx).
+        // Quelle: Register liveExtras „Kunden in der App“ (CustomersScreen.tsx, CustomerEditScreen.tsx); Anlage nur
+        // Admin/Büro laut useCustomerCreationAllowed.ts, sonst freigegebene Kunden (Mobile-Release, WR-02).
         {
           q: "Kann ich Kundendaten in der App bearbeiten?",
-          a: "Ja. In der Mobile-App schlagen Sie Kundendaten unterwegs nach und bearbeiten sie im Rahmen Ihrer Rechte.",
+          a: "Ja, im Rahmen Ihrer Rechte. In der Mobile-App schlagen Sie freigegebene Kundendaten unterwegs nach und bearbeiten sie; neue Kunden legen nur Admin- und Büro-Zugänge an.",
         },
         // Quelle: Register liveExtras „Projekt-Chat und Nachrichten“ (ChatScreen.tsx, InboxScreen.tsx,
         // DirectChatScreen.tsx); funktionen.ts projektverwaltung points „Gespräche im Kontext“.

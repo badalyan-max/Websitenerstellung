@@ -13,6 +13,7 @@ import type { KeyFact } from "@/components/v2/KeyFacts";
 import type { Step } from "@/components/v2/StepFlow";
 import { euro, germanDate } from "@/lib/format";
 import type { KernpunktVisual } from "@/lib/funktionsdetails/types";
+import { KUNDEN_APP_TEXT } from "@/lib/funktionsgruppen";
 import { mobileLocales, productBasis } from "@/lib/product-register";
 import {
   abnahmeScene,
@@ -223,7 +224,8 @@ export const appTiles: Readonly<Record<"zeit" | "dokumentieren" | "material", Ap
       size: "sm",
       surface: "warm",
       title: "Kunden in der App",
-      text: "Kundendaten unterwegs in der Mobile-App nachschlagen und bearbeiten.",
+      // Rechtevorbehalt zentral in lib/funktionsgruppen.ts (WR-02, 07-UI-SPEC B12), gleicher Text wie projektverwaltung.
+      text: KUNDEN_APP_TEXT,
       visual: { kind: "icon", icon: Contact },
       href: "/funktionen/projektverwaltung",
     },

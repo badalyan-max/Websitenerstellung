@@ -123,7 +123,7 @@ const ERWARTETE_ZUSATZ: Record<
   "kunden-app": {
     name: "Kunden in der App",
     icon: "Contact",
-    benefit: "Kundendaten unterwegs in der Mobile-App nachschlagen und bearbeiten.",
+    benefit: "Freigegebene Kundendaten unterwegs nachschlagen und je nach Rechten bearbeiten.",
     target: { href: "/funktionen/projektverwaltung", kind: "funktion" },
   },
   abnahme: {
