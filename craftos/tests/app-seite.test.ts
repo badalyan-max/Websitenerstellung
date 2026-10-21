@@ -173,6 +173,12 @@ describe("Inhalte", () => {
     expect(KUNDEN_APP_TEXT).toContain("je nach Rechten");
   });
 
+  it("Sitemap: /app und alle Detailseiten melden den Phase-7-Stand (IN-03)", async () => {
+    const eintraege = (await sitemap()).filter((e) => /^\/(app|funktionen\/[a-z0-9-]+)$/.test(toPath(e.url)));
+    expect(eintraege).toHaveLength(23);
+    for (const e of eintraege) expect(String(e.lastModified) >= "2026-10-21", e.url).toBe(true);
+  });
+
   it("jedes Kachel-href steht in der Sitemap", async () => {
     const pfade = new Set((await sitemap()).map((e) => toPath(e.url)));
     for (const tile of alleKacheln()) expect(pfade.has(tile.href), `${tile.title}: ${tile.href}`).toBe(true);

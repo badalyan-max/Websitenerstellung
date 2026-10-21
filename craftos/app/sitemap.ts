@@ -12,7 +12,7 @@ const pageUpdated: Record<string, string> = {
   "/vergleich": "2026-10-20",
   "/fakten-ueber-craftos": "2026-10-20",
   "/preise": "2026-10-20",
-  "/app": "2026-10-20",
+  "/app": "2026-10-21",
   "/gewerke": "2026-10-20",
 };
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
