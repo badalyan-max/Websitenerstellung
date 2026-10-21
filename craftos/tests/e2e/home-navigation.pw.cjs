@@ -108,6 +108,9 @@ test('Menü: Drawer öffnet mit aufgeklappten Funktionen, sperrt den Scroll ohne
     .toEqual(GROUP_ANCHORS)
   expect(await mainWidth()).toBe(before)
   expect(await page.evaluate(() => document.documentElement.style.overflow)).toBe('hidden')
+  // Drawer ist modal: Inhalt und Fußleiste sind gesperrt, solange er offen ist (06-REVIEW IN-03).
+  const inertState = () => page.evaluate(() => [document.querySelector('main').inert, document.querySelector('body > footer').inert])
+  expect(await inertState()).toEqual([true, true])
 
   const trades = nav.getByRole('button', { name: 'Untermenü Gewerke', exact: true })
   await trades.tap()
@@ -119,6 +122,7 @@ test('Menü: Drawer öffnet mit aufgeklappten Funktionen, sperrt den Scroll ohne
   await expect(nav).toBeHidden()
   await expect(page.getByRole('button', { name: 'Menü öffnen' })).toBeFocused()
   expect(await page.evaluate(() => document.documentElement.style.overflow)).toBe('')
+  expect(await inertState()).toEqual([false, false])
 
   const appLinks = await page.locator('header a').evaluateAll((els, host) => els
     .filter((el) => { try { return new URL(el.href).host === host } catch { return false } })

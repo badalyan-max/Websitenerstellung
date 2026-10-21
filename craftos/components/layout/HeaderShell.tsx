@@ -94,7 +94,15 @@ export function HeaderShell({ items }: { items: HeaderNavItem[] }) {
     const scrollX = window.scrollX;
     const scrollY = window.scrollY;
     root.style.overflow = "hidden";
+    // Der Drawer überdeckt die ganze Seite: Inhalt und Fußleiste für Screenreader und Tastatur sperren,
+    // damit der virtuelle Cursor keinen verdeckten Inhalt vorliest (06-REVIEW IN-03).
+    const header = headerRef.current;
+    const gesperrt = [...(header?.parentElement?.children ?? [])].filter(
+      (el): el is HTMLElement => el instanceof HTMLElement && el !== header && (el.tagName === "MAIN" || el.tagName === "FOOTER") && !el.inert,
+    );
+    for (const el of gesperrt) el.inert = true;
     return () => {
+      for (const el of gesperrt) el.inert = false;
       root.style.overflow = previousRootOverflow;
       if (window.scrollX !== scrollX || window.scrollY !== scrollY) {
         window.scrollTo({ left: scrollX, top: scrollY, behavior: "instant" });
