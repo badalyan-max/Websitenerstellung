@@ -58,7 +58,8 @@ export interface DetailEintrag {
 
 export interface ZusatzZiel {
   href: string;
-  kind: "hilfe" | "funktion";
+  /** "seite" (07-UI-SPEC F5, D-21): eigene Seite wie /app, Hinweis wie bei "funktion". */
+  kind: "hilfe" | "funktion" | "seite";
   label: string;
 }
 

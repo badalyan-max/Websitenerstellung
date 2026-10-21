@@ -14,8 +14,11 @@ export interface FeatureListItem {
   benefit: string;
   /** Nur belegte Plattformen (aus dem Produktregister); leer → keine Badges. */
   platforms: PlatformBadgeProps["platform"][];
-  /** Optionales Ziel; ohne Ziel kein Link und kein Hinweis. label = Name der Zielseite. */
-  target?: { href: string; kind: "hilfe" | "funktion"; label: string };
+  /**
+   * Optionales Ziel; ohne Ziel kein Link und kein Hinweis. label = Name der Zielseite.
+   * kind "seite" (07-UI-SPEC F5) verweist auf eine eigene Seite wie /app und wird wie "funktion" angezeigt.
+   */
+  target?: { href: string; kind: "hilfe" | "funktion" | "seite"; label: string };
 }
 
 export interface FeatureListProps {
@@ -26,6 +29,7 @@ export interface FeatureListProps {
 }
 
 function hinweis(target: NonNullable<FeatureListItem["target"]>): string {
+  // "funktion" und "seite" nennen beide die Zielseite (F5, D-21).
   return target.kind === "hilfe" ? "Anleitung in der Hilfe" : `Beschrieben unter ${target.label}`;
 }
 

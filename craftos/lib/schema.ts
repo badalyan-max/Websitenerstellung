@@ -53,6 +53,63 @@ export function softwareApplicationSchema() {
     },
   };
 }
+/**
+ * WebPage einer Funktionsdetailseite (07 D-11). Verweist per @id auf die globalen Knoten aus
+ * app/layout.tsx (#software, #organization). Kein isPartOf, solange das Layout keinen WebSite-Knoten ausgibt.
+ */
+export function webPageSchema(p: { path: string; name: string; description: string }) {
+  const url = site.url + p.path;
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": url + "#webpage",
+    url,
+    name: p.name,
+    description: p.description,
+    inLanguage: "de-DE",
+    about: { "@id": site.url + "/#software" },
+    publisher: { "@id": site.url + "/#organization" },
+  };
+}
+/**
+ * MobileApplication für /app (07 D-11): eigene @id neben der globalen SoftwareApplication,
+ * Angebot = App-Lizenz netto aus tarife. Keine Bewertungsfelder – Sterne oder Rezensionen werden nie erfunden.
+ */
+export function mobileApplicationSchema() {
+  const app = tarife.find((t) => t.id === "app");
+  if (!app) {
+    throw new Error("lib/schema.ts: Tarif „app“ fehlt in lib/site.ts (tarife) – mobileApplicationSchema braucht die App-Lizenz.");
+  }
+  const price = app.monat.toFixed(2);
+  return {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "@id": site.url + "/app#mobile-app",
+    name: "CraftOS Mobile-App",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "iOS, Android",
+    url: site.url + "/app",
+    inLanguage: "de-DE",
+    sameAs: storeUrls,
+    installUrl: storeUrls,
+    publisher: { "@id": site.url + "/#organization" },
+    offers: {
+      "@type": "Offer",
+      name: `${app.name} (${app.produktlizenz})`,
+      price,
+      priceCurrency: "EUR",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price,
+        priceCurrency: "EUR",
+        valueAddedTaxIncluded: false,
+        referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "MON" },
+        unitText: "pro Person und Monat",
+      },
+      url: site.url + "/preise",
+    },
+  };
+}
 export function faqSchema(items: { q: string; a: string }[]) {
   return {
     "@context": "https://schema.org",

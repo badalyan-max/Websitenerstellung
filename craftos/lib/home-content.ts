@@ -109,10 +109,11 @@ export const homeSections = {
 // Abschnitt 1: Kennzahlen (keine „Anzahl Funktionen“ – Zählweise missverständlich)
 export const keyFactsContent: { facts: KeyFact[]; note: string } = {
   facts: [
-    { value: `${site.trialDays}${NBSP}Tage`, label: "kostenlos testen", source: "site.trialDays" },
-    { value: euro(voll.monat), label: "Voll-Lizenz pro Monat", source: "tarife.voll.monat" },
-    { value: euro(app.monat), label: "App-Lizenz pro Monat", source: "tarife.app.monat" },
-    { value: String(mobileLocales.length), label: "Sprachen in der Mobile-App", source: "product-register: mobileLocales" },
+    // Quellen in Kurzform (07 D-13): site:trialDays = site.trialDays, site:tarif-…-monat = tarife, register:… = Produktregister
+    { value: `${site.trialDays}${NBSP}Tage`, label: "kostenlos testen", source: "site:trialDays" },
+    { value: euro(voll.monat), label: "Voll-Lizenz pro Monat", source: "site:tarif-voll-monat" },
+    { value: euro(app.monat), label: "App-Lizenz pro Monat", source: "site:tarif-app-monat" },
+    { value: String(mobileLocales.length), label: "Sprachen in der Mobile-App", source: "register:mobileLocales" },
   ],
   note: `Preise netto zzgl. USt. Stand: ${germanDate(productBasis.checkedAt)}.`,
 };
