@@ -78,6 +78,16 @@ describe("navigation: Zielprüfung", () => {
     expect(checkNavigationTargets(hrefs, routes)).toEqual([]);
   });
 
+  it("jedes Linkziel der Zusatzfunktionen (extras[].target.href) ist eine Route oder ein Hilfeartikel der Sitemap", async () => {
+    const routes = await sitemapPfade();
+    const extras = gruppen.flatMap((g) => g.extras.flatMap((x) => (x.target ? [x.target.href] : [])));
+    // 06-REVIEW WR-04: Ziele werden auf /funktionen als Link gerendert; ein umbenannter Hilfeartikel muss hier auffallen.
+    expect(extras.length).toBeGreaterThan(0);
+    expect(extras.filter((href) => href.startsWith("/hilfe/")).length).toBeGreaterThanOrEqual(6);
+    for (const href of extras) expect(routes.has(href), href).toBe(true);
+    expect(checkNavigationTargets(extras, routes)).toEqual([]);
+  });
+
   it("meldet ein ungültiges Ziel mit dem UI-SPEC-Fehlertext", async () => {
     const routes = await sitemapPfade();
     expect(checkNavigationTargets(["/gibt-es-nicht"], routes)).toEqual([
