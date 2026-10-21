@@ -167,6 +167,13 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+/* 160-px-Phone (07-07): Release-Titel wie „Meine Urlaubsanträge“ und „Abnahmeprotokolle“ ungekürzt. */
+.phone[data-width="160"] .mobileTitle {
+  padding: 0 8px;
+}
+.phone[data-width="160"] .mobileTitle strong {
+  font-size: 12px;
+}
 .mobileContent {
   display: flex;
   flex: 1;

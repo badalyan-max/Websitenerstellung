@@ -273,7 +273,7 @@ describe("gerendert", () => {
   it("genau eine H1 = Zielwert, Kopfwort ungetrennt, StoreLinks und zwei QR-Codes", () => {
     const h1 = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/g) ?? [];
     expect(h1).toHaveLength(1);
-    expect(text(h1[0])).toBe(z.h1);
+    expect(text(h1[0] ?? "")).toBe(z.h1);
     expect(html).toMatch(/<span[^>]*data-keyword=""[^>]*>Handwerker-App<\/span>/);
     const kopf = html.slice(html.indexOf('data-abschnitt="kopf"'), html.indexOf('data-abschnitt="zeit"'));
     expect(kopf).toContain(`href="${site.iosUrl}"`);
@@ -286,11 +286,13 @@ describe("gerendert", () => {
 
   it("jede Rahmen-figure ist gekennzeichnet, Belege und Quellen nur in Kurzform", () => {
     const figures = html.match(/<figure\b[\s\S]*?<\/figure>/g) ?? [];
-    // Kopf-Phone plus neun Phone-Kacheln
-    expect(figures.length).toBeGreaterThanOrEqual(10);
+    // Kopf-Phone plus alle Phone-Kacheln (07-UI-SPEC: 8)
+    const phoneKacheln = alleKacheln().filter((t) => t.visual.kind === "phone").length;
+    expect(phoneKacheln).toBe(8);
+    expect(figures).toHaveLength(1 + phoneKacheln);
     for (const figure of figures) expect(figure).toContain("Vereinfachte Darstellung mit Beispieldaten");
     const evidence = [...html.matchAll(/data-evidence="([^"]*)"/g)].map((m) => m[1]);
-    expect(evidence.length).toBeGreaterThanOrEqual(10);
+    expect(evidence).toHaveLength(1 + phoneKacheln);
     for (const e of evidence) expect(e).toMatch(KURZFORM);
     const sources = [...html.matchAll(/data-source="([^"]*)"/g)].map((m) => m[1]);
     expect(sources).toEqual(["register:mobileLocales", "register:mobileOffline", "site:tarif-app-monat"]);
