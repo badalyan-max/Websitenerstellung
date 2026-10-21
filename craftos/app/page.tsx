@@ -88,8 +88,8 @@ export default function Home() {
         <KeyFacts facts={keyFactsContent.facts} note={keyFactsContent.note} />
       </HomeSection>
 
-      {/* Einzige Amber-Fläche der Seite; Lead dunkel statt ink-500 (Kontrast auf Amber). */}
-      <HomeSection id="ablauf" surface="amber" className="[&_header>p]:text-[#46381f]">
+      {/* Einzige Amber-Fläche der Seite; Lead-Farbe und Bühnenabstand in app/globals.css. */}
+      <HomeSection id="ablauf" surface="amber">
         <SectionHeader id="ablauf-titel" title={s.ablauf.title} lead={s.ablauf.lead} />
         <StepFlow steps={stepContent} tone="amber" label="Arbeitsablauf in CraftOS" />
       </HomeSection>
@@ -112,6 +112,11 @@ export default function Home() {
                 visual={
                   tile.visual.kind === "icon" ? (
                     <TileIcon icon={tile.visual.icon} />
+                  ) : tile.visual.kind === "browser" ? (
+                    // Browserrahmen füllt die Kachelbreite, sonst schrumpft er auf seine Mindestbreite.
+                    <div className="w-full">
+                      <Frame visual={tile.visual} tone={dark ? "dark" : "light"} />
+                    </div>
                   ) : (
                     <Frame visual={tile.visual} width={160} tone={dark ? "dark" : "light"} />
                   )
@@ -127,7 +132,7 @@ export default function Home() {
 
       <HomeSection id="apps" surface="warm">
         <div className="grid gap-8 lg:grid-cols-[7fr_5fr] lg:items-center lg:gap-x-12 lg:gap-y-0">
-          <div className="lg:col-start-1 lg:row-start-1 lg:self-end lg:[&>header]:mb-6">
+          <div className="lg:col-start-1 lg:row-start-1 lg:self-end">
             <SectionHeader id="apps-titel" title={s.apps.title} lead={s.apps.lead} />
           </div>
           <div className="flex justify-center lg:col-start-2 lg:row-span-2 lg:row-start-1">

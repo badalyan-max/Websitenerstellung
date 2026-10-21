@@ -531,3 +531,16 @@ h4 {
     opacity: 0.07;
   }
 }
+/* Startseite (Plan 06-04): Anpassungen der v2-Bausteine an ihre Abschnittsfläche. Bewusst unlayered,
+   damit sie die CSS-Module der Bausteine überstimmen (Tailwind-Utilities liegen in @layer utilities). */
+[data-home-section="ablauf"] header > p {
+  color: #46381f; /* Lead auf Amber: ink-500 hätte nur ≈ 3,7:1 */
+}
+[data-home-section="ablauf"] div[data-tone="amber"] {
+  padding: 0; /* Die Amber-Bühne liegt auf der Amber-Fläche; Schritte fluchten mit dem Abschnittskopf. */
+}
+@media (min-width: 1024px) {
+  [data-home-section="apps"] header {
+    margin-bottom: 24px; /* StoreLinks 24 px unter dem Kopf (06-UI-SPEC Abschnitt 4) */
+  }
+}
