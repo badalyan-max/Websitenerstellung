@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import path from "node:path";
 import { createElement, type FunctionComponent } from "react";
 import { renderToString } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
@@ -286,6 +288,43 @@ describe("DevicePair", () => {
     expect(html).toContain('data-evidence="web:Plantafel"');
     expect(html).toContain('data-evidence="app:Zeiterfassung"');
     expectStatic(html, "DevicePair");
+  });
+});
+
+describe("DevicePair compact (E1)", () => {
+  const pair = (layout?: "default" | "compact") =>
+    renderToString(
+      createElement(DevicePair, {
+        description: "Plantafel im Büro und Zeiterfassung auf der Baustelle mit denselben Einsätzen.",
+        layout,
+        browser: { title: browserProps.title, evidence: browserProps.evidence, children: plantafel() },
+        phone: { title: phoneProps.title, evidence: phoneProps.evidence, activeTab: "Zeiten", children: zeitenAnsicht() },
+      }),
+    );
+
+  it("compact schreibt data-layout an die figure und setzt das Phone auf 160 px", () => {
+    const html = pair("compact");
+    expect(html.match(/<figure\b[^>]*>/)?.[0]).toContain('data-layout="compact"');
+    expect(html).toMatch(/data-frame="phone"[^>]*data-width="160"/);
+    expect(count(html, /<figure\b/g)).toBe(1);
+    expect(count(html, new RegExp(KENNZEICHNUNG, "g"))).toBe(1);
+    expectStatic(html, "DevicePair compact");
+  });
+
+  it("ohne layout bleibt default mit 194-px-Phone", () => {
+    const html = pair();
+    expect(html.match(/<figure\b[^>]*>/)?.[0]).toContain('data-layout="default"');
+    expect(html).toMatch(/data-frame="phone"[^>]*data-width="194"/);
+    expect(pair("default")).toBe(html);
+  });
+
+  it("CSS legt das Phone in compact unter 768 px rechts unten über den Browser, ohne Animation", () => {
+    const css = fs.readFileSync(path.resolve(import.meta.dirname, "../components/v2/Frames.module.css"), "utf8");
+    expect(css).toContain('[data-layout="compact"]');
+    const compact = css.slice(css.indexOf('[data-layout="compact"]'));
+    expect(compact).toMatch(/\.pairPhone\s*\{[^}]*align-self:\s*flex-end/);
+    expect(compact).toMatch(/margin-top:\s*-64px/);
+    expect(compact).not.toMatch(/animation|transition/);
   });
 });
 

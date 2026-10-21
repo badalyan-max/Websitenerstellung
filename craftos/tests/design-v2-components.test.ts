@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import path from "node:path";
 import { createElement, type FunctionComponent } from "react";
 import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
@@ -5,6 +7,7 @@ import { FileCheck2, ScanLine } from "lucide-react";
 import { BentoGrid, BentoTile, TileIcon, type BentoGridProps, type BentoTileProps } from "@/components/v2/BentoGrid";
 import { CtaBand } from "@/components/v2/CtaBand";
 import { FaqList } from "@/components/v2/FaqList";
+import { FeatureList, type FeatureListItem } from "@/components/v2/FeatureList";
 import { StepFlow, type Step } from "@/components/v2/StepFlow";
 import { KeyFacts, type KeyFact } from "@/components/v2/KeyFacts";
 import { SectionHeader } from "@/components/v2/SectionHeader";
@@ -272,5 +275,105 @@ describe("Bewegungsfreiheit Teil A, Raster und Listen (DESIGN-04)", () => {
       "StepFlow",
     );
     expectStatic(renderToString(createElement(FaqList, { items: faqs.slice(0, 3) })), "FaqList");
+  });
+});
+
+describe("FeatureList (E2)", () => {
+  const mitZiel: FeatureListItem = {
+    id: "eintrag-hilfe",
+    name: "Eintrag mit Ziel",
+    icon: FileCheck2,
+    benefit: "Ein Satz Nutzen mit Ziel in der Hilfe.",
+    platforms: ["web", "mobile"],
+    target: { href: "/hilfe/test-anleitung", kind: "hilfe", label: "Testanleitung" },
+  };
+  const ohneZiel: FeatureListItem = {
+    id: "eintrag-ohne",
+    name: "Eintrag ohne Ziel",
+    icon: ScanLine,
+    benefit: "Ein Satz Nutzen ohne Ziel.",
+    platforms: [],
+  };
+  const render = (items: FeatureListItem[], title = "Weitere Funktionen") =>
+    renderToString(createElement(FeatureList, { items, title }));
+
+  it("rendert h3, eine Liste, zwei Einträge und genau einen Link mit Zielhinweis", () => {
+    const html = render([mitZiel, ohneZiel]);
+    expect(count(html, /<h3\b/g)).toBe(1);
+    expect(html).toMatch(/<h3\b[^>]*>Weitere Funktionen<\/h3>/);
+    expect(count(html, /<ul\b(?![^>]*aria-label="Plattformen")/g)).toBe(1);
+    expect(count(html, /<li\b[^>]*data-funktion="/g)).toBe(2);
+    expect(html).toContain('data-funktion="eintrag-hilfe"');
+    expect(html).toContain('data-funktion="eintrag-ohne"');
+
+    const links = html.match(/<a\b[^>]*>[\s\S]*?<\/a>/g) ?? [];
+    expect(links).toHaveLength(1);
+    expect(links[0]).toContain('href="/hilfe/test-anleitung"');
+    expect(links[0]).toContain("Eintrag mit Ziel");
+    const describedBy = links[0].match(/aria-describedby="([^"]+)"/)?.[1];
+    expect(describedBy).toBeDefined();
+    expect(count(html, new RegExp(`id="${describedBy}"`, "g"))).toBe(1);
+    expect(html).toMatch(new RegExp(`id="${describedBy}"[^>]*>Anleitung in der Hilfe<`));
+  });
+
+  it("Eintrag ohne Ziel hat weder Link noch Hinweis noch Platzhalter", () => {
+    const html = render([mitZiel, ohneZiel]);
+    const start = html.indexOf('data-funktion="eintrag-ohne"');
+    expect(start).toBeGreaterThan(-1);
+    const rest = html.slice(start);
+    expect(rest).not.toContain("<a");
+    expect(rest).not.toContain("Anleitung in der Hilfe");
+    expect(rest).not.toContain("Beschrieben unter");
+    expect(html).not.toMatch(/Seite folgt|bald|demnächst|in Vorbereitung/i);
+  });
+
+  it("Ziel vom Typ funktion nennt die Zielseite", () => {
+    const html = render([
+      { ...mitZiel, target: { href: "/funktionen/projektverwaltung", kind: "funktion", label: "Projektverwaltung" } },
+    ]);
+    expect(html).toContain("Beschrieben unter Projektverwaltung");
+    expect(html).toContain('href="/funktionen/projektverwaltung"');
+    expect(html).not.toContain("Anleitung in der Hilfe");
+  });
+
+  it("Plattform-Badges erscheinen nur bei belegten Plattformen", () => {
+    expect(count(render([mitZiel]), /data-kind="platform"/g)).toBe(2);
+    expect(count(render([ohneZiel]), /data-kind="platform"/g)).toBe(0);
+    expect(render([ohneZiel])).not.toContain('aria-label="Plattformen"');
+  });
+
+  it("Icon-Feld ist dekorativ", () => {
+    const html = render([ohneZiel]);
+    expect(html).toMatch(/<svg\b[^>]*aria-hidden="true"/);
+  });
+
+  it("prüft Satzzahl, Namensbudget und Menge beim Rendern", () => {
+    expect(() => render([{ ...ohneZiel, benefit: "Erster Satz. Zweiter Satz." }])).toThrow(
+      "FeatureList: Nutzen für Eintrag ohne Ziel hat 2 Sätze – genau einen Satz schreiben.",
+    );
+    expect(() => render([{ ...ohneZiel, name: "N".repeat(33) }])).toThrow(
+      "Textbudget überschritten: featureList.name hat 33 von 32 Zeichen – Satz kürzen.",
+    );
+    expect(() => render([{ ...ohneZiel, benefit: `${"B".repeat(100)}.` }])).toThrow(
+      "Textbudget überschritten: featureList.benefit hat 101 von 100 Zeichen – Satz kürzen.",
+    );
+    expect(() => render([])).toThrow("FeatureList: mindestens 1 Einträge erforderlich – Inhalte in lib/… ergänzen.");
+    const acht = Array.from({ length: 8 }, (_, i) => ({ ...ohneZiel, id: `e${i}` }));
+    expect(() => render(acht)).toThrow("FeatureList: höchstens 7 Einträge erlaubt – Inhalte in lib/… kürzen.");
+  });
+
+  it("ist statisch; Übergänge nur unter hover: hover mit 150 ms und Reduced-Motion-Schutz", () => {
+    expectStatic(render([mitZiel, ohneZiel]), "FeatureList");
+    const css = fs.readFileSync(path.resolve(import.meta.dirname, "../components/v2/FeatureList.module.css"), "utf8");
+    expect(css).not.toMatch(/animation|@keyframes/);
+    const ohneHoverBlock = css.replace(/@media \(hover: hover\)\s*\{[\s\S]*?\n\}/g, "").replace(
+      /@media \(prefers-reduced-motion: reduce\)\s*\{[\s\S]*?\n\}/g,
+      "",
+    );
+    expect(ohneHoverBlock).not.toMatch(/transition/);
+    const hover = css.match(/@media \(hover: hover\)\s*\{[\s\S]*?\n\}/)?.[0] ?? "";
+    expect(hover).toMatch(/transition:[^;]*0?\.15s|transition:[^;]*150ms/);
+    expect(css).toMatch(/@media \(prefers-reduced-motion: reduce\)\s*\{[\s\S]*transition:\s*none/);
+    expect(css).toMatch(/:focus-within\s*\{[^}]*outline:\s*3px solid #bb7609/);
   });
 });
