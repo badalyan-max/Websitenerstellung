@@ -223,6 +223,23 @@ const mobile = (...paths: string[]): Evidence[] =>
   paths.map((path) => ({ repository: "mobile", path }));
 
 /**
+ * Offline-Erfassung der Mobile-App (07 D-09, D-23): Offline-Warteschlange, Sync-Status und
+ * Offline-Anzeige am Mobile-Release. Auf der Website nur mit Einschränkung darstellen
+ * (Kennzahl „teilweise nutzbar, später synchronisiert“, FAQ „Teilweise: …“); die Limitation
+ * steht wortgleich in `limitations`.
+ */
+export const mobileOffline: { name: string; evidence: Evidence[]; limitation: string } = {
+  name: "Offline-Erfassung in der Mobile-App",
+  evidence: mobile(
+    "src/shared/hooks/useOfflineQueueSync.ts",
+    "src/shared/hooks/useOfflineMutation.ts",
+    "src/shared/components/SyncStatusBadge.tsx",
+    "src/shared/components/OfflineIndicator.tsx",
+  ),
+  limitation: "Keine vollständige Offline-Zusage",
+};
+
+/**
  * Live am Release, aber ohne eigene Funktionsseite. Die sechs Einträge GAEB/DATANORM, Mahnwesen,
  * Terminplanung, Bankabgleich, Datenübernahme und Mängel sind seit Phase 7 Detailfunktionen
  * (Belege oben in `evidence`/`mobileEvidence`, D-07).
@@ -385,7 +402,7 @@ export function getProductRegister() {
     limitations: [
       "Portal-Onlinezahlungen deaktiviert",
       "DATANORM v5 nicht als geprüft zugesagt",
-      "Keine vollständige Offline-Zusage",
+      mobileOffline.limitation,
       "GPS erfasst einzelne Vorgänge, keine dauerhaften Mitarbeiterstandorte",
       "Automatische Projektzuordnung beim Timerstart benötigt Projektkoordinaten im passenden Radius",
       "Keine autonom verbuchende KI",
