@@ -269,6 +269,13 @@ describe("Funktionsgruppen: 16 Detailfunktionen", () => {
       "Funktionsgruppen: Funktion neue-funktion aus lib/funktionen.ts ist keiner Gruppe zugeordnet – Eintrag in lib/funktionsgruppen.ts ergänzen.",
     );
   });
+
+  it("wirft, wenn ein Slug in lib/funktionen.ts doppelt steht (keine doppelten Menülinks und Keys)", () => {
+    const doppelt = funktionen.find((f) => f.slug === "aufmass")!;
+    expect(() =>
+      buildFunktionsgruppen({ funktionen: [...funktionen, { ...doppelt }], liveExtras: register.liveExtras }),
+    ).toThrow("Funktionsgruppen: Funktion aufmass steht mehrfach in lib/funktionen.ts – doppelten Eintrag entfernen.");
+  });
 });
 
 describe("Funktionsgruppen: 14 beworbene Zusatzfunktionen", () => {
@@ -357,6 +364,14 @@ describe("Funktionsgruppen: 14 beworbene Zusatzfunktionen", () => {
     const liveExtras = [...register.liveExtras, { name: "Unbekannt", platforms: ["web" as const], advertised: true }];
     expect(() => buildFunktionsgruppen({ funktionen, liveExtras })).toThrow(
       "Funktionsgruppen: Unbekannt aus dem Produktregister ist keiner Gruppe zugeordnet – Eintrag in lib/funktionsgruppen.ts ergänzen.",
+    );
+  });
+
+  it("wirft, wenn zwei beworbene Registereinträge auf dieselbe Zusatzfunktion zeigen", () => {
+    const mahnwesen = register.liveExtras.find((x) => x.name === "Mahnwesen")!;
+    const liveExtras = [...register.liveExtras, { ...mahnwesen }];
+    expect(() => buildFunktionsgruppen({ funktionen, liveExtras })).toThrow(
+      "Funktionsgruppen: Zusatzfunktion mahnwesen ist mehreren Einträgen des Produktregisters zugeordnet – REGISTER_IDS in lib/funktionsgruppen.ts korrigieren.",
     );
   });
 

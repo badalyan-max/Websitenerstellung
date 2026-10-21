@@ -327,6 +327,16 @@ interface RegisterEintrag {
   advertised: boolean;
 }
 
+/** Erster Wert, der mehr als einmal vorkommt, sonst undefined. */
+function ersteDoppelung(werte: readonly string[]): string | undefined {
+  const gesehen = new Set<string>();
+  for (const wert of werte) {
+    if (gesehen.has(wert)) return wert;
+    gesehen.add(wert);
+  }
+  return undefined;
+}
+
 function pruefeKopf(id: GruppenId, kopf: GruppenKopf): void {
   assertTextBudget("menuGroup.description", kopf.description, TEXT_BUDGET.menuGroup.description);
   if (sentenceCount(kopf.description) !== 0) {
@@ -345,6 +355,19 @@ export function buildFunktionsgruppen(input: {
   funktionen: Funktion[];
   liveExtras: RegisterEintrag[];
 }): Funktionsgruppe[] {
+  // Doppelte Einträge ergäben doppelte Menülinks, ItemList-Einträge und React-Keys (06-REVIEW IN-04).
+  const doppelteZuordnung = ersteDoppelung(GRUPPEN_REIHENFOLGE.flatMap((id) => DETAIL_ZUORDNUNG[id]));
+  if (doppelteZuordnung) {
+    throw new Error(
+      `Funktionsgruppen: Funktion ${doppelteZuordnung} ist mehreren Gruppen zugeordnet – Zuordnung in lib/funktionsgruppen.ts korrigieren.`,
+    );
+  }
+  const doppelterSlug = ersteDoppelung(input.funktionen.map((f) => f.slug));
+  if (doppelterSlug) {
+    throw new Error(
+      `Funktionsgruppen: Funktion ${doppelterSlug} steht mehrfach in lib/funktionen.ts – doppelten Eintrag entfernen.`,
+    );
+  }
   const zugeordnet = new Set(GRUPPEN_REIHENFOLGE.flatMap((id) => DETAIL_ZUORDNUNG[id]));
   for (const f of input.funktionen) {
     if (!zugeordnet.has(f.slug)) {
@@ -369,6 +392,12 @@ export function buildFunktionsgruppen(input: {
       return { id, def, eintrag: x };
     })
     .sort((a, b) => ids.indexOf(a.id) - ids.indexOf(b.id));
+  const doppelteZusatz = ersteDoppelung(beworben.map((x) => x.id));
+  if (doppelteZusatz) {
+    throw new Error(
+      `Funktionsgruppen: Zusatzfunktion ${doppelteZusatz} ist mehreren Einträgen des Produktregisters zugeordnet – REGISTER_IDS in lib/funktionsgruppen.ts korrigieren.`,
+    );
+  }
   for (const { id, def, eintrag } of beworben) {
     assertTextBudget("featureList.name", def.name, TEXT_BUDGET.featureList.name);
     assertTextBudget("featureList.benefit", def.benefit, TEXT_BUDGET.featureList.benefit);
