@@ -23,6 +23,7 @@ import {
 import type { FunktionsdetailInhalt, Kernpunkt, RolleName } from "@/lib/funktionsdetails/types";
 import { getFunktionsgruppen } from "@/lib/funktionsgruppen";
 import { keywordMap } from "@/lib/keyword-map";
+import { mobileLocales } from "@/lib/product-register";
 import {
   abnahmeScene,
   angebotScene,
@@ -399,7 +400,77 @@ const ERWARTET: Record<string, Erwartung> = {
     snippet: null,
     zusatz: [],
   },
+  // Gruppe Rechnung (07-06 Task 1)
+  rechnungen: {
+    pflichtfrage: "Kann ich eine fertiggestellte Rechnung noch ändern?",
+    verwandt: ["e-rechnung", "mahnwesen", "bankabgleich"],
+    anordnung: "md·sm·sm·wide·wide",
+    webRollen: BUERO,
+    mobileRollen: null,
+    sekundaer: { label: HILFE, href: "/hilfe/rechnung-fertigstellen" },
+    snippet: "rechnung",
+    zusatz: [],
+    hrefs: { "Korrektur nur über Folgebelege": "/gobd" },
+  },
+  "e-rechnung": {
+    pflichtfrage: "Ist eine PDF-Rechnung eine E-Rechnung?",
+    pflichtAntwort: "Nein",
+    verwandt: ["rechnungen", "eingangsrechnungen"],
+    anordnung: "md·sm·sm·wide",
+    webRollen: BUERO,
+    mobileRollen: null,
+    sekundaer: { label: HILFE, href: "/hilfe/e-rechnung-herunterladen" },
+    snippet: null,
+    zusatz: [],
+    hrefs: { "Eine PDF ist keine E-Rechnung": "/gobd" },
+  },
+  mahnwesen: {
+    pflichtfrage: "Wann kommt die Mahnung nach der Zahlungserinnerung?",
+    verwandt: ["rechnungen", "bankabgleich"],
+    anordnung: "md·sm·sm·md·sm·sm",
+    webRollen: ["Admin", "Büro-Leitung"],
+    mobileRollen: null,
+    sekundaer: ALLE,
+    snippet: null,
+    zusatz: [],
+    panelSatz: { web: "Fristen, Gebühren und Stufen ändert nur der Inhaber des Betriebs" },
+  },
+  // Gruppe Team (07-06 Task 1)
+  team: {
+    pflichtfrage: "Was ist der Unterschied zwischen Lizenz und Rolle?",
+    verwandt: ["datenuebernahme", "dashboard"],
+    anordnung: "md·sm·sm·wide·wide",
+    webRollen: ["Admin"],
+    mobileRollen: MOBIL,
+    sekundaer: { label: HILFE, href: "/hilfe/rollen-zugriffsrechte-einstellen" },
+    snippet: null,
+    zusatz: ["sprachen"],
+    hrefs: { [`${mobileLocales.length} Sprachen in der Mobile-App`]: "/app" },
+  },
+  datenuebernahme: {
+    pflichtfrage: "Aus welcher Software kann ich Daten übernehmen?",
+    verwandt: ["team", "buchhaltung"],
+    anordnung: "md·sm·sm·wide",
+    webRollen: ["Admin", "Büro-Leitung"],
+    mobileRollen: null,
+    sekundaer: ALLE,
+    snippet: null,
+    zusatz: [],
+  },
 };
+
+/** Alle Textfelder eines Inhaltsmoduls außer den FAQ-Fragen (für Wort- und Satzregeln je Seite). */
+function texteOhneFragen(inhalt: FunktionsdetailInhalt): string[] {
+  const abschnitte = [inhalt.ablauf, inhalt.rollen, inhalt.kernpunkte, inhalt.faq];
+  return [
+    inhalt.lead,
+    ...abschnitte.flatMap((a) => [a.title, a.lead]),
+    ...inhalt.ablauf.steps.flatMap((s) => [s.title, s.text]),
+    ...inhalt.rollen.panels.flatMap((p) => [p.satz, ...p.rollen.map((r) => r.zusatz ?? "")]),
+    ...inhalt.kernpunkte.tiles.flatMap((t) => [t.title, t.text]),
+    ...inhalt.faq.items.map((f) => f.a),
+  ];
+}
 
 /** Normierung wie tests/keyword-map.test.ts (Kopfwort-Regel). */
 const norm = (k: string) =>
@@ -716,6 +787,53 @@ describe("getFunktionsdetail und Inhaltstabelle", () => {
     expect(Object.hasOwn(INHALTE, "maengelmanagement")).toBe(true);
     const texte = JSON.stringify(INHALTE.maengelmanagement);
     expect(texte).not.toMatch(/In Arbeit|In Bearbeitung/i);
+  });
+
+  it("mahnwesen: Büro-Leitung liest Einstellungen nur, keine Ordinalzahl außerhalb der FAQ-Fragen, „automatisch“ nur mit „auf Wunsch“", () => {
+    expect(Object.hasOwn(INHALTE, "mahnwesen")).toBe(true);
+    const inhalt = INHALTE.mahnwesen;
+    const web = inhalt.rollen.panels.find((p) => p.platform === "web")!;
+    expect(web.rollen).toEqual([{ name: "Admin" }, { name: "Büro-Leitung", zusatz: "Einstellungen nur lesen" }]);
+    for (const text of texteOhneFragen(inhalt)) {
+      expect(text, text).not.toMatch(/(^|\s)\d+\.(\s|$)/);
+      if (/automatisch/i.test(text)) expect(text, text).toMatch(/auf Wunsch/i);
+    }
+    expect(JSON.stringify(inhalt)).toContain("Zahlungserinnerung");
+    expect(JSON.stringify(inhalt)).toMatch(/erste.*Mahnung/);
+    expect(JSON.stringify(inhalt)).toMatch(/zweite Mahnung/);
+    const grenze = inhalt.kernpunkte.tiles.find((t) => t.grenze);
+    expect(grenze?.title).toBe("Nur Rechnungen");
+  });
+
+  it("team: Sprachen-Kachel aus mobileLocales mit Ziel /app, Web-Panel nur Admin", () => {
+    expect(Object.hasOwn(INHALTE, "team")).toBe(true);
+    const inhalt = INHALTE.team;
+    const kachel = inhalt.kernpunkte.tiles.find((t) => t.zusatz === "sprachen");
+    expect(kachel?.href).toBe("/app");
+    expect(kachel?.size).not.toBe("sm");
+    expect(kachel?.title).toContain(String(mobileLocales.length));
+    expect(kachel?.text).toContain(String(mobileLocales.length));
+    const web = inhalt.rollen.panels.find((p) => p.platform === "web")!;
+    expect(web.rollen.map((r) => r.name)).toEqual(["Admin"]);
+    expect(JSON.stringify(inhalt)).toContain("nur der Inhaber");
+  });
+
+  it("datenuebernahme: nur Web-Panel mit Admin und Büro-Leitung, Grenzen aus dem Release", () => {
+    expect(Object.hasOwn(INHALTE, "datenuebernahme")).toBe(true);
+    const inhalt = INHALTE.datenuebernahme;
+    expect(inhalt.rollen.panels.map((p) => p.platform)).toEqual(["web"]);
+    expect(inhalt.rollen.panels[0].rollen.map((r) => r.name)).toEqual(["Admin", "Büro-Leitung"]);
+    const texte = JSON.stringify(inhalt);
+    for (const fakt of ["10 MiB", "25.000 Zeilen", "XLSX", "Zahlungsdaten"]) expect(texte).toContain(fakt);
+  });
+
+  it("Rechnungsseiten ohne „lückenlos“ und „Online-Banking“; e-rechnung sagt keine Empfängerakzeptanz zu", () => {
+    for (const slug of ["rechnungen", "e-rechnung", "mahnwesen", "team", "datenuebernahme"]) {
+      expect(Object.hasOwn(INHALTE, slug), slug).toBe(true);
+      expect(JSON.stringify(INHALTE[slug]), slug).not.toMatch(/lückenlos|Online-Banking/i);
+    }
+    const eRechnung = JSON.stringify(INHALTE["e-rechnung"]);
+    for (const fakt of ["UBL 2.1", "PDF/A-3", "ohne OCR"]) expect(eRechnung).toContain(fakt);
   });
 
   it("jede ERWARTET-Zeile hat ein Inhaltsmodul in INHALTE", () => {
