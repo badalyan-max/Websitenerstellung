@@ -7,7 +7,6 @@ export const site = {
   url: "https://craftos.eu",
   appUrl: "https://app.craftos.eu",
   ctaUrl: "https://app.craftos.eu",
-  demoUrl: "/#produktdemo",
   email: "support@craftos.eu",
   locale: "de_DE",
   iosUrl: "https://apps.apple.com/de/app/craftos/id6757652683",
@@ -16,13 +15,6 @@ export const site = {
   trialDays: 10,
   checkedAt: "2026-10-20",
 } as const;
-export const nav = [
-  { label: "Produkt", href: "/funktionen" },
-  { label: "Gewerke", href: "/gewerke" },
-  { label: "Preise", href: "/preise" },
-  { label: "Wissen", href: "/blog" },
-  { label: "Hilfe", href: "/hilfe" },
-] as const;
 export const speicherPool = "50 GB Speicher-Pool pro Betrieb";
 // Preise, Speicher und Credits entsprechen src/lib/constants.ts und src/lib/subscription/pricing.ts
 // der Web-App (origin/release); geprüft durch tests/pricing-parity.test.ts gegen docs/product-pricing-snapshot.json.
