@@ -94,7 +94,7 @@ Plans:
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
-- [ ] 06-04-PLAN.md — Startseite: Hero oberhalb der Falz, sieben v2-Abschnitte, Keyword-Map-Metadaten, FAQPage
+- [x] 06-04-PLAN.md — Startseite: Hero oberhalb der Falz, sieben v2-Abschnitte, Keyword-Map-Metadaten, FAQPage
 
 **Wave 5** *(blocked on Wave 4 completion)*
 
@@ -172,7 +172,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
-| 6. Startseite, Navigation und Funktionsübersicht | 3/6 | In Progress|  |
+| 6. Startseite, Navigation und Funktionsübersicht | 4/6 | In Progress|  |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 0/TBD | Not started | - |
 | 8. SEO und KI-Sichtbarkeit | 0/TBD | Not started | - |
 | 9. Gewerke und Wissensinhalte | 0/TBD | Not started | - |

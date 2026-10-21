@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-last_updated: "2026-10-21T13:01:52.915Z"
-last_activity: 2026-10-21 — Completed 06-03-PLAN.md
+last_updated: "2026-10-21T13:27:47.341Z"
+last_activity: 2026-10-21 — Completed 06-04-PLAN.md
 progress:
   total_phases: 6
   completed_phases: 1
   total_plans: 14
-  completed_plans: 11
+  completed_plans: 12
   percent: 17
 ---
 
@@ -29,9 +29,9 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 6
-Plan: 3 of 6 complete (06-01 Gruppenmodell, Nutzensätze, Phase-6-Budgets; 06-02 Szenenmodul, Kurzform-Belege, DevicePair compact, FeatureList; 06-03 Hauptnavigation mit Mega-Menü, HeaderShell, Drawer und No-JS-Fallback); next 06-04
-Status: In progress
-Last activity: 2026-10-21 — Completed 06-03-PLAN.md
+Plan: 4 of 6 complete (06-01 Gruppenmodell, Nutzensätze, Phase-6-Budgets; 06-02 Szenenmodul, Kurzform-Belege, DevicePair compact, FeatureList; 06-03 Hauptnavigation mit Mega-Menü, HeaderShell, Drawer und No-JS-Fallback; 06-04 neue Startseite mit Keyword-Hero oberhalb der Falz und sieben v2-Abschnitten); next 06-05
+Status: Ready to execute
+Last activity: 2026-10-21 — Completed 06-04-PLAN.md
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -68,6 +68,8 @@ Progress: [░░░░░░░░░░] 0%
 - [Phase 06]: 06-03: Nur das Mega-Menü „Funktionen“ ist breit und am Header zentriert; Gewerke-Panel (570 px) hängt am Hauptpunkt (WCAG 1.4.13)
 - [Phase 06]: 06-03: onBlur schließt nur bei bekanntem Fokusziel außerhalb; WebKit-Linkklick nach Tastaturöffnung bleibt funktionsfähig
 - [Phase 06]: 06-03: Navigationslinks mit tabIndex 0 (WebKit-Tab); Logo in Inhaltsbreite, 12-px-Lücken zwischen 1121 und 1250 px
+- [Phase 06]: 06-04: Startseite = Hero + 7 v2-Abschnitte, Texte nur in lib/home-content.ts, Werte aus site/tarife/Register; FeatureSnippet, GoBD-Box, Ratgeber-Block und alte PricingTable entfallen auf / (Zielseiten bleiben)
+- [Phase 06]: 06-04: H1 der Startseite unter 400 px 28 px (auch 390 px); Flaechenanpassungen der Bausteine als unlayered CSS ueber data-home-section (Tailwind-Utilities verlieren gegen CSS-Module)
 
 ### Pending Todos
 
@@ -92,3 +94,4 @@ None yet.
 | Phase 06 P01 | 7min | 2 tasks | 6 files |
 | Phase 06 P02 | 14min | 3 tasks | 16 files |
 | Phase 06 P03 | 25min | 3 tasks | 15 files |
+| Phase 06 P04 | 22min | 3 tasks | 13 files |
