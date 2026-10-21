@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { createElement, type FunctionComponent } from "react";
@@ -11,7 +12,13 @@ import { FeatureList, type FeatureListItem } from "@/components/v2/FeatureList";
 import { StepFlow, type Step } from "@/components/v2/StepFlow";
 import { KeyFacts, type KeyFact } from "@/components/v2/KeyFacts";
 import { SectionHeader } from "@/components/v2/SectionHeader";
+import { MINI_STATUS_BELEGE, MINI_STATUS_TON, MiniStatus, type MiniStatusName } from "@/components/v2/mini/MiniUi";
+import { MINI_BUDGET } from "@/components/v2/mini/limits";
+import { productBasis } from "@/lib/product-register";
 import { site } from "@/lib/site";
+
+const WEB_REPO = process.env.CRAFTOS_WEB_REPO || "C:/Projekte/craft-connect-buddy";
+const MOBILE_REPO = process.env.CRAFTOS_MOBILE_REPO || "C:/Projekte/CraftOS - Mobile/craftos-mobile";
 
 /** Inhalte dürfen nie auf eine Einblendung warten (DESIGN-04, T-05-15). */
 function expectStatic(html: string, name: string) {
@@ -95,6 +102,98 @@ describe("KeyFacts", () => {
     expect(() => renderToString(createElement(KeyFacts, { facts: fuenf, note }))).toThrow(
       "KeyFacts: höchstens 4 Fakten erlaubt – Inhalte in lib/… kürzen.",
     );
+  });
+});
+
+/** 07-UI-SPEC „MiniStatusName-Erweiterung (F3)“: Name → Ton. Bestandsfarben bleiben unverändert. */
+const ERWARTETE_TOENE: Record<MiniStatusName, "neutral" | "positiv" | "hervorgehoben"> = {
+  Entwurf: "neutral",
+  Offen: "neutral",
+  Gesendet: "neutral",
+  Bezahlt: "positiv",
+  Überfällig: "hervorgehoben",
+  Storniert: "neutral",
+  Geplant: "neutral",
+  "In Arbeit": "neutral",
+  Abgeschlossen: "positiv",
+  "In Bearbeitung": "neutral",
+  Behoben: "positiv",
+  Geprüft: "positiv",
+  Unterschrieben: "positiv",
+  Ausstehend: "neutral",
+  Genehmigt: "positiv",
+  Abgelehnt: "hervorgehoben",
+  Abgenommen: "positiv",
+  "Abgenommen mit Mängeln": "neutral",
+  Zugeordnet: "positiv",
+  "Noch nicht zugeordnet": "neutral",
+  Text: "neutral",
+  Bedarf: "neutral",
+};
+const BESTANDSNAMEN: MiniStatusName[] = ["Entwurf", "Offen", "Gesendet", "Bezahlt", "Überfällig", "Storniert"];
+const NEUE_NAMEN = (Object.keys(ERWARTETE_TOENE) as MiniStatusName[]).filter((n) => !BESTANDSNAMEN.includes(n));
+
+describe("MiniStatus (07-UI-SPEC F3)", () => {
+  it("kennt 22 Namen, davon 16 neue, jeder mit Beleg web:/mobile: und genau einem Ton", () => {
+    expect(NEUE_NAMEN).toHaveLength(16);
+    expect(Object.keys(MINI_STATUS_BELEGE).sort()).toEqual(Object.keys(ERWARTETE_TOENE).sort());
+    expect(MINI_STATUS_TON).toEqual(ERWARTETE_TOENE);
+    for (const [name, beleg] of Object.entries(MINI_STATUS_BELEGE)) {
+      expect(beleg, name).toMatch(/^(web|mobile):src\/[\w./-]+\.(tsx|json)$/);
+    }
+    for (const name of BESTANDSNAMEN) expect(MINI_STATUS_BELEGE[name]).toBe("web:src/pages/Dokumente.tsx");
+  });
+
+  it("jeder Name passt in das Mini-UI-Zeilenbudget", () => {
+    for (const name of Object.keys(ERWARTETE_TOENE)) {
+      expect(Array.from(name).length, name).toBeLessThanOrEqual(MINI_BUDGET.row);
+    }
+  });
+
+  it("rendert data-status und data-tone", () => {
+    const html = (status: MiniStatusName) => renderToString(createElement(MiniStatus, { status }));
+    const mitMaengeln = html("Abgenommen mit Mängeln");
+    expect(mitMaengeln).toContain('data-status="Abgenommen mit Mängeln"');
+    expect(mitMaengeln).toContain('data-tone="neutral"');
+    expect(html("Genehmigt")).toContain('data-tone="positiv"');
+    expect(html("Abgelehnt")).toContain('data-tone="hervorgehoben"');
+    expect(html("Bezahlt")).toContain('data-tone="positiv"');
+    expect(html("Überfällig")).toContain('data-tone="hervorgehoben"');
+  });
+
+  it("CSS kennt genau die drei Töne mit den Farben aus dem UI-SPEC, keine Einzelselektoren je Status", () => {
+    const css = fs.readFileSync(path.resolve(import.meta.dirname, "../components/v2/mini/MiniUi.module.css"), "utf8");
+    const rule = (tone: string) =>
+      css.match(new RegExp(`\\.status\\[data-tone="${tone}"\\]\\s*\\{([^}]*)\\}`))?.[1]?.toLowerCase() ?? "";
+    expect(rule("neutral")).toContain("background: #ededf0");
+    expect(rule("neutral")).toContain("color: #393941");
+    expect(rule("positiv")).toContain("background: #ffefcc");
+    expect(rule("positiv")).toContain("color: #784b10");
+    expect(rule("hervorgehoben")).toContain("background: #17171c");
+    expect(rule("hervorgehoben")).toContain("color: #fff");
+    expect(css).not.toContain("data-status=");
+  });
+});
+
+describe.skipIf(!fs.existsSync(WEB_REPO) || !fs.existsSync(MOBILE_REPO))("MiniStatus-Belege am Release-Commit", () => {
+  function release(beleg: string): string {
+    const [repository, file] = beleg.split(/:(.+)/);
+    const repo = repository === "web" ? WEB_REPO : MOBILE_REPO;
+    const commit = repository === "web" ? productBasis.web.commit : productBasis.mobile.commit;
+    return execFileSync("git", ["-C", repo, "show", `${commit}:${file}`], { encoding: "utf8" });
+  }
+
+  it("jeder der 16 neuen Namen steht wörtlich in seiner Release-Datei", () => {
+    const fehlend: string[] = [];
+    for (const name of NEUE_NAMEN) {
+      if (!release(MINI_STATUS_BELEGE[name]).includes(name)) fehlend.push(`${name} → ${MINI_STATUS_BELEGE[name]}`);
+    }
+    expect(fehlend).toEqual([]);
+  });
+
+  it("Projektstatus sind zusätzlich in der Mobile-App belegt", () => {
+    const projects = release("mobile:src/shared/i18n/locales/de/projects.json");
+    for (const name of ["Geplant", "In Arbeit", "Abgeschlossen"]) expect(projects, name).toContain(`"${name}"`);
   });
 });
 

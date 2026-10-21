@@ -175,6 +175,16 @@ describe("Phase-6-Budgets und Satzprüfung", () => {
     expect(TEXT_BUDGET.count.bento).toEqual({ min: 3, max: 7 });
   });
 
+  it("Phase 7 (07-UI-SPEC F4): pageHead mit kopfLead, h1, eyebrow; lead für /funktionen unverändert", () => {
+    expect(TEXT_BUDGET.pageHead).toEqual({ lead: 140, kopfLead: 110, h1: 60, eyebrow: 24 });
+    expect(TEXT_BUDGET.count.detailSteps).toEqual({ min: 3, max: 5 });
+    expect(TEXT_BUDGET.count.related).toEqual({ min: 2, max: 3 });
+    expect(() => assertTextBudget("pageHead.kopfLead", "x".repeat(111), TEXT_BUDGET.pageHead.kopfLead)).toThrow(
+      "Textbudget überschritten: pageHead.kopfLead hat 111 von 110 Zeichen – Satz kürzen.",
+    );
+    expect(() => assertTextBudget("pageHead.kopfLead", "x".repeat(110), TEXT_BUDGET.pageHead.kopfLead)).not.toThrow();
+  });
+
   it("zählt Sätze an Satzenden vor Leerraum oder Textende", () => {
     expect(sentenceCount("Ein Satz.")).toBe(1);
     expect(sentenceCount("Erster Satz. Zweiter Satz.")).toBe(2);
