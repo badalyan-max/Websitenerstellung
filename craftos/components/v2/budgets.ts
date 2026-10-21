@@ -16,7 +16,11 @@ export const TEXT_BUDGET = {
   ctaBand: { title: 40, text: 80, button: 28 },
   /** Phase 6 (06-UI-SPEC „Textbudgets“): Hero der Startseite, Seitenkopf /funktionen, Mega-Menü, FeatureList */
   hero: { h1: 60, lead: 110 },
-  pageHead: { lead: 140 },
+  /**
+   * Phase 7 (07-UI-SPEC F4): `lead` bleibt für den Seitenkopf von /funktionen; `kopfLead`, `h1` und
+   * `eyebrow` gelten für den FunktionsKopf der Detailseiten und /app (Above-the-fold 360 × 640).
+   */
+  pageHead: { lead: 140, kopfLead: 110, h1: 60, eyebrow: 24 },
   menuGroup: { description: 60 },
   featureList: { name: 32, benefit: 100 },
   /** Mengen je Baustein */
@@ -29,6 +33,9 @@ export const TEXT_BUDGET = {
     /** Phase 6: Zusatzfunktionen je Gruppe und Startseiten-Abschnitte nach dem Hero */
     featureList: { min: 1, max: 7 },
     homeSections: { min: 6, max: 8 },
+    /** Phase 7 (07-UI-SPEC F4): Ablaufschritte und verwandte Funktionen je Detailseite */
+    detailSteps: { min: 3, max: 5 },
+    related: { min: 2, max: 3 },
   },
 } as const;
 

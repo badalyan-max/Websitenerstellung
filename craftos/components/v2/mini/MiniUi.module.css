@@ -70,11 +70,16 @@
   background: #ededf0;
   color: #393941;
 }
-.status[data-status="Bezahlt"] {
+/* Drei Töne (07-UI-SPEC F3), Zuordnung je Name in MINI_STATUS_TON. Kein Rot, kein Grün. */
+.status[data-tone="neutral"] {
+  background: #ededf0;
+  color: #393941;
+}
+.status[data-tone="positiv"] {
   background: #ffefcc;
   color: #784b10;
 }
-.status[data-status="Überfällig"] {
+.status[data-tone="hervorgehoben"] {
   background: #17171c;
   color: #fff;
 }

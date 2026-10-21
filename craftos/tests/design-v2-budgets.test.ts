@@ -165,7 +165,8 @@ const ERWARTETE_NUTZENSAETZE: Record<string, string> = {
 describe("Phase-6-Budgets und Satzprüfung", () => {
   it("ergänzt die Phase-6-Budgets und lässt den Bestand unverändert", () => {
     expect(TEXT_BUDGET.hero).toEqual({ h1: 60, lead: 110 });
-    expect(TEXT_BUDGET.pageHead).toEqual({ lead: 140 });
+    // Phase 7 ergänzt pageHead um kopfLead/h1/eyebrow (F4, eigener Test unten); lead bleibt 140.
+    expect(TEXT_BUDGET.pageHead.lead).toBe(140);
     expect(TEXT_BUDGET.menuGroup).toEqual({ description: 60 });
     expect(TEXT_BUDGET.featureList).toEqual({ name: 32, benefit: 100 });
     expect(TEXT_BUDGET.count.featureList).toEqual({ min: 1, max: 7 });

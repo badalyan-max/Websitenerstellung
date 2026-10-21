@@ -74,14 +74,98 @@ export function MiniStat({ label, value }: MiniStatProps) {
 }
 
 /**
- * Nur Statusnamen, die im Web-Release existieren
- * (Beleg: web:src/pages/Dokumente.tsx, Dokumentstatus paid/pending/draft/sent/overdue/cancelled).
+ * Nur Statusnamen, die im Produkt-Release existieren (07-UI-SPEC „MiniStatusName-Erweiterung (F3)“).
+ * Jeder Name hat einen Beleg in MINI_STATUS_BELEGE; Vitest prüft die neuen Namen am Release-Commit.
  */
-export type MiniStatusName = "Entwurf" | "Offen" | "Gesendet" | "Bezahlt" | "Überfällig" | "Storniert";
+export type MiniStatusName =
+  // Dokumentstatus paid/pending/draft/sent/overdue/cancelled – web:src/pages/Dokumente.tsx
+  | "Entwurf"
+  | "Offen"
+  | "Gesendet"
+  | "Bezahlt"
+  | "Überfällig"
+  | "Storniert"
+  // Projektstatus – web:src/pages/Dashboard.tsx und mobile:src/shared/i18n/locales/de/projects.json
+  | "Geplant"
+  | "In Arbeit"
+  | "Abgeschlossen"
+  // Mängelstatus – mobile:src/shared/i18n/locales/de/defects.json
+  | "In Bearbeitung"
+  | "Behoben"
+  | "Geprüft"
+  // Bautagebuch/Berichte – mobile:src/shared/i18n/locales/de/construction.json
+  | "Unterschrieben"
+  // Urlaubsanträge – mobile:src/shared/i18n/locales/de/vacation.json
+  | "Ausstehend"
+  | "Genehmigt"
+  | "Abgelehnt"
+  // Abnahmen – mobile:src/shared/i18n/locales/de/acceptance.json
+  | "Abgenommen"
+  | "Abgenommen mit Mängeln"
+  // Bankumsätze – web:src/pages/Bankumsaetze.tsx
+  | "Zugeordnet"
+  | "Noch nicht zugeordnet"
+  // GAEB-Positionskennzeichen (keine Status) – web:src/components/DocumentEditor/GAEBImportDialog.tsx
+  | "Text"
+  | "Bedarf";
+
+/** Release-Beleg je Statusname, Form `web:<pfad>` oder `mobile:<pfad>` (Pfad im jeweiligen Produktrepo). */
+export const MINI_STATUS_BELEGE: Record<MiniStatusName, string> = {
+  Entwurf: "web:src/pages/Dokumente.tsx",
+  Offen: "web:src/pages/Dokumente.tsx",
+  Gesendet: "web:src/pages/Dokumente.tsx",
+  Bezahlt: "web:src/pages/Dokumente.tsx",
+  Überfällig: "web:src/pages/Dokumente.tsx",
+  Storniert: "web:src/pages/Dokumente.tsx",
+  Geplant: "web:src/pages/Dashboard.tsx",
+  "In Arbeit": "web:src/pages/Dashboard.tsx",
+  Abgeschlossen: "web:src/pages/Dashboard.tsx",
+  "In Bearbeitung": "mobile:src/shared/i18n/locales/de/defects.json",
+  Behoben: "mobile:src/shared/i18n/locales/de/defects.json",
+  Geprüft: "mobile:src/shared/i18n/locales/de/defects.json",
+  Unterschrieben: "mobile:src/shared/i18n/locales/de/construction.json",
+  Ausstehend: "mobile:src/shared/i18n/locales/de/vacation.json",
+  Genehmigt: "mobile:src/shared/i18n/locales/de/vacation.json",
+  Abgelehnt: "mobile:src/shared/i18n/locales/de/vacation.json",
+  Abgenommen: "mobile:src/shared/i18n/locales/de/acceptance.json",
+  "Abgenommen mit Mängeln": "mobile:src/shared/i18n/locales/de/acceptance.json",
+  Zugeordnet: "web:src/pages/Bankumsaetze.tsx",
+  "Noch nicht zugeordnet": "web:src/pages/Bankumsaetze.tsx",
+  Text: "web:src/components/DocumentEditor/GAEBImportDialog.tsx",
+  Bedarf: "web:src/components/DocumentEditor/GAEBImportDialog.tsx",
+};
+
+export type MiniStatusTon = "neutral" | "positiv" | "hervorgehoben";
+
+/** Ton je Statusname; Farben in MiniUi.module.css (kein Rot, kein Grün – UI-SPEC [05]). */
+export const MINI_STATUS_TON: Record<MiniStatusName, MiniStatusTon> = {
+  Entwurf: "neutral",
+  Offen: "neutral",
+  Gesendet: "neutral",
+  Bezahlt: "positiv",
+  Überfällig: "hervorgehoben",
+  Storniert: "neutral",
+  Geplant: "neutral",
+  "In Arbeit": "neutral",
+  Abgeschlossen: "positiv",
+  "In Bearbeitung": "neutral",
+  Behoben: "positiv",
+  Geprüft: "positiv",
+  Unterschrieben: "positiv",
+  Ausstehend: "neutral",
+  Genehmigt: "positiv",
+  Abgelehnt: "hervorgehoben",
+  Abgenommen: "positiv",
+  "Abgenommen mit Mängeln": "neutral",
+  Zugeordnet: "positiv",
+  "Noch nicht zugeordnet": "neutral",
+  Text: "neutral",
+  Bedarf: "neutral",
+};
 
 export function MiniStatus({ status }: { status: MiniStatusName }) {
   return (
-    <span className={s.status} data-status={status}>
+    <span className={s.status} data-status={status} data-tone={MINI_STATUS_TON[status]}>
       {status}
     </span>
   );
