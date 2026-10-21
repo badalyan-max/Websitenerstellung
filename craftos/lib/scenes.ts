@@ -346,9 +346,10 @@ export const bankScene: FrameScene = {
   screen: "web:Bankumsätze",
   description: "Bankumsätze der Web-App mit zwei zugeordneten Zahlungen und einem noch offenen Umsatz.",
   rows: [
+    // Beide Status zuerst: Die Kartenvariante zeigt nur die ersten KARTEN_ZEILEN Zeilen (07-04).
     { primary: "+ 2.380,00 €", secondary: "Bäckerei Krause", status: "Zugeordnet" },
-    { primary: "− 184,20 €", secondary: "Baustoff Weber", status: "Zugeordnet" },
     { primary: "+ 960,00 €", secondary: "Bad Bergmann", status: "Noch nicht zugeordnet" },
+    { primary: "− 184,20 €", secondary: "Baustoff Weber", status: "Zugeordnet" },
   ],
 };
 

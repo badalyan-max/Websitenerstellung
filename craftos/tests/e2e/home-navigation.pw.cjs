@@ -531,16 +531,19 @@ test('Funktionsübersicht: Sprunglinks, reduzierte Bewegung, Kurzform-Belege und
 
 // 07-04 (Befund 07-03): In den Browser-Rahmen der Karten ist keine Zeile angeschnitten oder von der
 // Kennzeichnungsleiste verdeckt; jede Karte zeigt mindestens eine vollständige Zeile.
-test('Funktionsübersicht: Browser-Rahmen der Karten zeigen nur vollständige Zeilen in fünf Breiten', async ({ page }, testInfo) => {
+test('Funktionsübersicht: Browser-Rahmen der Karten zeigen nur vollständige Zeilen in fünf Breiten und an der Umbruchgrenze', async ({ page }, testInfo) => {
   test.skip(testInfo.project.use.hasTouch, 'Die Breiten werden im Desktop-Projekt per setViewportSize geprüft.')
-  for (const vp of FOLD_VIEWPORTS) {
+  test.setTimeout(90_000)
+  // 1100/1120: Grenze, ab der die Kennzeichnungsleiste im Dreispaltenraster einzeilig bleibt
+  for (const vp of [...FOLD_VIEWPORTS, { width: 1100, height: 900 }, { width: 1120, height: 900 }]) {
     await page.setViewportSize(vp)
     await page.goto('/funktionen')
     await page.waitForLoadState('networkidle')
     const karten = await page.evaluate(() =>
       [...document.querySelectorAll('li[data-funktion]')].flatMap((li) => {
         const frame = li.querySelector('[data-frame="browser"]')
-        if (!frame) return []
+        // Wochenraster (Plantafel, Projektplan) haben keine Zeilenliste
+        if (!frame || !frame.querySelector('li')) return []
         let bottom = frame.getBoundingClientRect().bottom
         for (let el = frame; el && el !== li; el = el.parentElement) {
           if (getComputedStyle(el).overflowY !== 'visible') bottom = Math.min(bottom, el.getBoundingClientRect().bottom)
@@ -555,7 +558,7 @@ test('Funktionsübersicht: Browser-Rahmen der Karten zeigen nur vollständige Ze
         }]
       }),
     )
-    expect(karten.length, `Browser-Karten ${vp.width}`).toBeGreaterThanOrEqual(14)
+    expect(karten.length, `Browser-Karten mit Zeilen ${vp.width}`).toBeGreaterThanOrEqual(12)
     for (const k of karten) {
       expect(k.angeschnitten, `${k.slug} ${vp.width}: angeschnittene Zeilen`).toBe(0)
       expect(k.sichtbar, `${k.slug} ${vp.width}: mindestens eine Zeile`).toBeGreaterThanOrEqual(1)

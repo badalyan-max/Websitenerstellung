@@ -564,6 +564,19 @@ Belege in `lib/scenes.ts` und `lib/product-register.ts`.
 `eingangsrechnungen`, `zeiterfassung`, `lager` und `aufmass` (Varianten `dashboard`, `angebot`, `planung`,
 `rechnung`, `beleg`, `zeit`, `lager`, `aufmass`); alle übrigen Seiten zeigen nur statische v2-Szenen.
 
+**Kartenrahmen auf `/funktionen` (Befund 07-03, behoben in 07-04):** Der Browser-Rahmen der `FeatureCard` ist in
+allen Breiten 280 × 175 px (Mindestbreite) und bietet Platz für genau zwei Mini-UI-Zeilen; bei vier Zeilen war die
+dritte angeschnitten und die vierte verdeckt (Angebot, Kundenportal, Buchhaltung, Kalkulation, Mahnwesen,
+Mitarbeiter, Lager, Rechnungen u. a.). Lösung im Baustein, ohne die Kopf-Visuals auszudünnen: `Frame karte` rendert
+bei Browser-Szenen nur die ersten `KARTEN_ZEILEN` (2) Zeilen; das Kopf-Visual der Detailseite zeigt weiter alle.
+Zwischen 1024 und 1119 px (Dreispaltenraster, Bühne < 324 px) bricht die Kennzeichnung zweizeilig um und überdeckt
+den Rahmenboden; dort blendet `FeatureCard.module.css` alles ab Zeile 2 aus. Die figure behält ihre Rahmenbreite,
+damit der Rahmen bei schmaler Bühne mittig in den Innenabstand ragt statt rechts abgeschnitten zu werden.
+Bankabgleich führt beide Status in den ersten zwei Zeilen. Gemessen (Playwright, Chromium) bei 360, 390, 768, 1024,
+1100, 1120 und 1440 px: keine angeschnittene oder verdeckte Zeile in Browser-Karten; E2E-Fall in
+`tests/e2e/home-navigation.pw.cjs`. Phone-Karten bleiben unverändert: Das Gerät ist dort bewusst unten
+angeschnitten (06-UI-SPEC, Kennzeichnungsleiste an der Bühnenunterkante).
+
 **Hinweis für 07-05:** Die Kacheltabelle für `angebote` im 07-UI-SPEC enthält keine Grenze-Kachel, obwohl
 `funktionen.ts` eine Einschränkung nennt (keine pauschale DATANORM-v5-Zusage). Der Builder verlangt genau eine
 Grenze-Kachel (D-04); das Inhaltsmodul muss daher eine Kachel als Grenze führen.

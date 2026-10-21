@@ -119,7 +119,7 @@ export function FunktionsDetail({ detail }: { detail: Funktionsdetail }) {
                 benefit={v.benefit}
                 platforms={v.platforms}
                 href={v.href}
-                visual={<Frame visual={{ kind: v.rahmen, scene: v.scene }} width={160} />}
+                visual={<Frame visual={{ kind: v.rahmen, scene: v.scene }} width={160} karte />}
               />
             </li>
           ))}

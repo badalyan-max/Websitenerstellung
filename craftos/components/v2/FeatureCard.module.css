@@ -29,6 +29,23 @@
 .stage[data-visual="scene"] {
   position: relative;
 }
+/* Die figure behält die Rahmenbreite (Browser mindestens 280 px): Ist die Bühne schmaler (Dreispaltenraster
+   knapp über 1024 px), ragt der Rahmen gleichmäßig in den 24-px-Innenabstand statt rechts abgeschnitten zu werden. */
+.stage[data-visual="scene"] > figure {
+  flex-shrink: 0;
+}
+/* Kartenvariante der Browser-Szenen (07-04, Befund 07-03): Der Rahmen ist 280 × 175 px (Mindestbreite) und
+   rendert höchstens zwei Zeilen (KARTEN_ZEILEN). Ist die Bühne schmaler als 324 px, bricht die Kennzeichnung
+   „Vereinfachte Darstellung mit Beispieldaten“ (292 px + 2 × 16 px Innenabstand) zweizeilig um und überdeckt den
+   Rahmenboden. Das betrifft nur das Dreispaltenraster knapp über 1024 px (Bühne 297 px bei 1024 px, 324 px ab
+   etwa 1105 px inklusive Scrollleiste); dort zeigt die Karte nur die erste Zeile. Eine Container-Abfrage
+   scheidet aus, weil die Größeneindämmung die Kartenbreite unter 768 px verändern würde. */
+@media (min-width: 1024px) and (max-width: 1119.98px) {
+  .stage[data-visual="scene"] [data-frame="browser"] li:nth-child(n + 2) {
+    display: none;
+  }
+}
+
 .stage[data-visual="scene"] figcaption {
   position: absolute;
   inset-inline: 0;

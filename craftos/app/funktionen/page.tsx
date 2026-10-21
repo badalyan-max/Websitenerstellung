@@ -60,7 +60,7 @@ export default function Page() {
                           benefit={d.benefit}
                           platforms={d.platforms}
                           href={d.href}
-                          visual={scene ? <Frame visual={scene} width={160} /> : undefined}
+                          visual={scene ? <Frame visual={scene} width={160} karte /> : undefined}
                         />
                       </li>
                     );
