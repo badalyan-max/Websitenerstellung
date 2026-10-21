@@ -253,34 +253,6 @@ img {
 .text-link:hover {
   color: #99600b;
 }
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0;
-  border-top: 1px solid #dedee3;
-}
-.feature-link {
-  padding: 32px 26px 32px 0;
-  border-bottom: 1px solid #dedee3;
-  text-decoration: none;
-  transition: background 0.15s;
-}
-.feature-link:nth-child(3n + 2),
-.feature-link:nth-child(3n + 3) {
-  padding-left: 26px;
-}
-.feature-link h3 {
-  font-size: 24px;
-  margin: 20px 0 12px;
-}
-.feature-link p {
-  font-size: 15px;
-  color: #62626e;
-  max-width: 340px;
-}
-.feature-link:hover h3 {
-  color: #895509;
-}
 .split-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -414,15 +386,6 @@ img {
   .split-section {
     grid-template-columns: 1fr;
     gap: 32px;
-  }
-  .feature-grid {
-    grid-template-columns: 1fr;
-  }
-  .feature-link:nth-child(n) {
-    padding: 24px 0;
-  }
-  .feature-link h3 {
-    margin-top: 12px;
   }
   .section-intro {
     font-size: 17px;

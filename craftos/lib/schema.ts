@@ -76,3 +76,17 @@ export function breadcrumbSchema(items: { name: string; path: string }[]) {
     })),
   };
 }
+/** ItemList mit absoluten URLs, z. B. die Detailseiten der Funktionsübersicht (D-10). */
+export function itemListSchema(name: string, items: { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name,
+    itemListElement: items.map((i, n) => ({
+      "@type": "ListItem",
+      position: n + 1,
+      name: i.name,
+      url: site.url + i.path,
+    })),
+  };
+}

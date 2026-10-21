@@ -77,7 +77,8 @@ describe("Funktionsübersicht /funktionen", () => {
     expect(nav, "nav Funktionsgruppen").toBeTruthy();
     const hrefs = [...nav![1].matchAll(/<a[^>]*href="([^"]+)"/g)].map((m) => m[1]);
     expect(hrefs).toEqual(GRUPPEN_REIHENFOLGE.map((id) => `#${id}`));
-    expect(text(nav![1])).toBe(gruppen.map((g) => g.label).join(" "));
+    const labels = [...nav![1].matchAll(/<a[^>]*>([\s\S]*?)<\/a>/g)].map((m) => text(m[1]));
+    expect(labels).toEqual(gruppen.map((g) => g.label));
   });
 
   it("sechs Gruppenabschnitte in fester Reihenfolge mit Anker-H2, Eyebrow, Titel und Lead", () => {

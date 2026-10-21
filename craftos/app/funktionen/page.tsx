@@ -1,65 +1,86 @@
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { funktionen } from "@/lib/funktionen";
-import { PageHero } from "@/components/ui/PageHero";
-import { TrialCta } from "@/components/ui/TrialCta";
+import { FunktionenHead } from "@/components/funktionen/FunktionenHead";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { CtaBand } from "@/components/v2/CtaBand";
+import { FeatureCard } from "@/components/v2/FeatureCard";
+import { FeatureList } from "@/components/v2/FeatureList";
+import { Frame } from "@/components/v2/SceneContent";
+import { SectionHeader } from "@/components/v2/SectionHeader";
+import { getFunktionsgruppen } from "@/lib/funktionsgruppen";
 import { pageMetadata } from "@/lib/metadata";
+import { cardScenes } from "@/lib/scenes";
+import { breadcrumbSchema, itemListSchema } from "@/lib/schema";
+
+// Title-Wert ohne Marke: das Template des Root-Layouts hängt „ | CraftOS“ an (Keyword-Map, D-12).
 export const metadata = pageMetadata(
-  "Alle Funktionen der Handwerkersoftware",
-  "Angebote, Rechnungen, Plantafel, Aufmaß, Projekte und Lager: Entdecken Sie die Funktionen von CraftOS für Büro und Baustelle.",
+  "Software für Handwerksbetriebe: alle Funktionen",
+  "Angebote, Rechnungen, Plantafel, Zeiterfassung, Aufmaß, Lager und Baudokumentation: alle Funktionen der Software für Handwerksbetriebe im Überblick.",
   "/funktionen",
 );
+
+/**
+ * Funktionsübersicht (06-UI-SPEC „Seite 3“; FEAT-01, D-07, D-08, D-09, D-10, D-18): einzige Datenquelle
+ * ist getFunktionsgruppen() – sechs Gruppen mit Detailkarten (FeatureCard) und Zusatzfunktionen
+ * (FeatureList) in einem Abschnitt je Gruppe (Abweichung A6). Server Component ohne Client-JS.
+ */
 export default function Page() {
+  const groups = getFunktionsgruppen();
+  const details = groups.flatMap((g) => g.details);
+
   return (
     <>
-      <PageHero
-        eyebrow="Das Produkt"
-        title={
-          <>
-            Weniger suchen.
-            <br />
-            Mehr erledigen.
-          </>
-        }
-        intro="CraftOS verbindet die Arbeitsschritte Ihres Betriebs: vom ersten Kundenkontakt über die Baustelle bis zur Abrechnung."
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Start", path: "/" },
+          { name: "Funktionen", path: "/funktionen" },
+        ])}
       />
-      <section className="section-space">
-        <div className="site-container">
-          <div className="feature-grid">
-            {funktionen.map((f) => (
-              <Link
-                key={f.slug}
-                href={"/funktionen/" + f.slug}
-                className="feature-link"
-              >
-                <f.icon size={28} strokeWidth={1.5} />
-                <h2 className="text-2xl font-semibold mt-5 mb-3">{f.name}</h2>
-                <p>{f.kurz}</p>
-                <span className="text-xs text-ink-500 mt-5 block">
-                  {f.platforms
-                    .map((p) => (p === "web" ? "Web-App" : "Mobile-App"))
-                    .join(" · ")}
-                </span>
-                <ArrowUpRight size={19} className="mt-5" />
-              </Link>
-            ))}
-          </div>
-          <div className="notice mt-12">
-            <h2 className="text-2xl font-semibold">
-              Voll-Lizenz heißt: Web-App und Handy-App.
-            </h2>
-            <p className="mt-3">
-              Alle freigegebenen Kernmodule sind enthalten; Rollen bestimmen den
-              Zugriff. KI-Verbrauch und zusätzlicher Speicher werden separat
-              abgerechnet.
-            </p>
-            <Link href="/preise" className="text-link mt-4">
-              Preise und Lizenzumfang ansehen
-            </Link>
-          </div>
-        </div>
-      </section>
-      <TrialCta />
+      <JsonLd data={itemListSchema("Funktionen von CraftOS", details.map((d) => ({ name: d.name, path: d.href })))} />
+      <FunktionenHead groups={groups} />
+      {groups.map((group, index) => {
+        const warm = index % 2 === 1;
+        return (
+          <section
+            key={group.id}
+            aria-labelledby={group.id}
+            data-gruppe={group.id}
+            className={`py-12 md:py-16 lg:py-24 ${warm ? "bg-[#f7f3eb]" : "bg-white"}`}
+          >
+            <div className="site-container">
+              <SectionHeader eyebrow={group.label} title={group.heading} lead={group.lead} id={group.id} />
+              {group.details.length > 0 ? (
+                <ul role="list" className="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
+                  {group.details.map((d) => {
+                    const scene = cardScenes[d.slug];
+                    return (
+                      <li key={d.slug} data-funktion={d.slug} className="flex">
+                        <FeatureCard
+                          slug={d.slug}
+                          name={d.name}
+                          icon={d.icon}
+                          benefit={d.benefit}
+                          platforms={d.platforms}
+                          href={d.href}
+                          visual={scene ? <Frame visual={scene} width={160} /> : undefined}
+                        />
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : null}
+              {group.extras.length > 0 ? (
+                <div className="mt-8">
+                  <FeatureList title="Weitere Funktionen" items={group.extras} />
+                </div>
+              ) : null}
+            </div>
+          </section>
+        );
+      })}
+      <CtaBand
+        title="Alle Funktionen selbst ausprobieren"
+        text="Ohne Zahlungsdaten – Sie entscheiden nach dem Test."
+        secondary={{ label: "Preise ansehen", href: "/preise" }}
+      />
     </>
   );
 }

@@ -1,0 +1,115 @@
+/* Seitenkopf /funktionen – 06-UI-SPEC „Seite 3“, Bereiche 0 und 0a. Dunkle Fläche mit 3 px Amber-Unterkante,
+   kein Eyebrow, kein Verlauf, keine Animation. Das Linienraster der Startseite bleibt als ruhiges Bauplan-Motiv. */
+.head {
+  position: relative;
+  padding-block: 40px 48px;
+  background: #101014;
+  border-bottom: 3px solid #f2af38;
+  color: #f4f4f5;
+}
+.head::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(#f2af3807 1px, transparent 1px),
+    linear-gradient(90deg, #f2af3807 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(#000, transparent 80%);
+}
+.inner {
+  position: relative;
+  min-width: 0;
+}
+
+/* H1: Display-Stufe, 32 px unter 768 px; Keyword nie getrennt (Pitfall 7). */
+.title {
+  margin: 0;
+  max-width: 20ch;
+  font-family: var(--font-display, var(--font-clash, sans-serif));
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  hyphens: manual;
+  color: #f4f4f5;
+}
+.keyword {
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
+.lead {
+  margin: 16px 0 0;
+  max-width: 60ch;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-wrap: pretty;
+  color: #bcbcc6;
+}
+
+/* Sprungnavigation: sechs Gruppenlinks, umbrechend, Touch-Ziel ≥ 44 px, Lücke 8 px. */
+.nav {
+  margin-top: 32px;
+}
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #f4f4f5;
+  text-decoration: none;
+  border: 1px solid #ffffff25;
+  border-radius: 6px;
+  transition: border-color 0.15s ease;
+}
+.icon {
+  flex: none;
+  color: #f2af38;
+}
+.link:focus-visible {
+  outline: 3px solid #bb7609;
+  outline-offset: 2px;
+}
+@media (hover: hover) {
+  .link:hover {
+    border-color: #f2af38;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .head {
+    padding-block: 64px;
+  }
+  .title {
+    font-size: clamp(32px, 4vw, 48px);
+  }
+  .lead {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+}
+@media (min-width: 1024px) {
+  .head {
+    padding-block: 80px 72px;
+  }
+}
