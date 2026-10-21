@@ -795,7 +795,8 @@ describe("getFunktionsdetail und Inhaltstabelle", () => {
     const web = inhalt.rollen.panels.find((p) => p.platform === "web")!;
     expect(web.rollen).toEqual([{ name: "Admin" }, { name: "Büro-Leitung", zusatz: "Einstellungen nur lesen" }]);
     for (const text of texteOhneFragen(inhalt)) {
-      expect(text, text).not.toMatch(/(^|\s)\d+\.(\s|$)/);
+      // Ordinalzahl = Ziffer, Punkt, Leerraum, Wort („1. Mahnung“); ein Satzende „auf 0.“ ist keine.
+      expect(text, text).not.toMatch(/(^|\s)\d+\.\s+\p{L}/u);
       if (/automatisch/i.test(text)) expect(text, text).toMatch(/auf Wunsch/i);
     }
     expect(JSON.stringify(inhalt)).toContain("Zahlungserinnerung");

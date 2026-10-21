@@ -27,6 +27,8 @@ import {
 import { angebotInhalte } from "./angebot";
 import { planungInhalte } from "./planung";
 import { baustelleInhalte } from "./baustelle";
+import { rechnungInhalte } from "./rechnung";
+import { teamInhalte } from "./team";
 
 /**
  * Builder der Funktionsdetailseiten (Phase 7, 07-UI-SPEC „Vorlage Detailseite“; D-02, D-03, D-04, D-19, D-23).
@@ -45,6 +47,8 @@ export const INHALTE: Readonly<Record<string, FunktionsdetailInhalt>> = {
   ...angebotInhalte,
   ...planungInhalte,
   ...baustelleInhalte,
+  ...rechnungInhalte,
+  ...teamInhalte,
 };
 
 /** FeatureSnippet nur auf diesen 8 Detailseiten, als einziges animiertes Element im Ablauf (D-19). */
