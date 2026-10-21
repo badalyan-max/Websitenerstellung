@@ -9,6 +9,7 @@ import { createElement } from "react";
 import { renderToString } from "react-dom/server";
 import { Calculator, Copy, FileInput, FileOutput, BookOpen, Import, Info, Ruler, Signature } from "lucide-react";
 import { describe, expect, it } from "vitest";
+import sitemap from "@/app/sitemap";
 import { FunktionsDetail } from "@/components/funktionen/FunktionsDetail";
 import { getFunktion, type Funktion } from "@/lib/funktionen";
 import {
@@ -22,7 +23,7 @@ import {
 import type { FunktionsdetailInhalt, Kernpunkt, RolleName } from "@/lib/funktionsdetails/types";
 import { getFunktionsgruppen } from "@/lib/funktionsgruppen";
 import { keywordMap } from "@/lib/keyword-map";
-import { angebotScene, cardScenes, kopfVisuals } from "@/lib/scenes";
+import { angebotScene, cardScenes, kopfVisuals, type FrameScene } from "@/lib/scenes";
 import { site } from "@/lib/site";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
@@ -245,8 +246,82 @@ interface Erwartung {
   webRollen: RolleName[];
   mobileRollen: RolleName[] | null;
   sekundaer: { label: string; href: string };
+  /** FeatureSnippet-Variante (D-19) oder null. */
+  snippet: string | null;
+  /** ids der Zusatzfunktionen in Kachelreihenfolge (D-02 (4)). */
+  zusatz: string[];
+  /** Kachel mit Phone-Szene (lg), falls die Seite eine hat. */
+  phone?: { title: string; scene: FrameScene; width: 160 | 194 };
+  /** Kacheltitel → href (Querverweise, D-12). */
+  hrefs?: Record<string, string>;
+  /** Text, den der Satz des jeweiligen Panels enthalten muss (D-20). */
+  panelSatz?: { web?: string; mobile?: string };
 }
-const ERWARTET: Record<string, Erwartung> = {};
+const HILFE = "Anleitung in der Hilfe";
+const ALLE = { label: "Alle Funktionen ansehen", href: "/funktionen" };
+const BUERO: RolleName[] = ["Admin", "Büro-Leitung", "Büro-Projektleitung"];
+const MOBIL: RolleName[] = ["Mobil-Teamleitung", "Mobil-Teammitglied"];
+const ERWARTET: Record<string, Erwartung> = {
+  // Gruppe Angebot (07-05 Task 1)
+  angebote: {
+    pflichtfrage: "Kann mein Kunde das Angebot online unterschreiben?",
+    verwandt: ["aufmass", "gaeb", "projektverwaltung"],
+    anordnung: "md·sm·sm·wide·wide",
+    webRollen: BUERO,
+    mobileRollen: [],
+    sekundaer: { label: HILFE, href: "/hilfe/angebot-entwurf-anlegen" },
+    snippet: "angebot",
+    zusatz: ["angebotsunterschrift"],
+  },
+  aufmass: {
+    pflichtfrage: "Werden Maße automatisch gemessen?",
+    verwandt: ["angebote", "gaeb", "arbeitsanweisungen"],
+    anordnung: "md·sm·sm·wide·wide",
+    webRollen: BUERO,
+    mobileRollen: MOBIL,
+    sekundaer: { label: HILFE, href: "/hilfe/raumaufmass-angebot-uebernehmen" },
+    snippet: "aufmass",
+    zusatz: ["besichtigung"],
+  },
+  kundenportal: {
+    pflichtfrage: "Können Kunden Rechnungen im Portal online bezahlen?",
+    verwandt: ["angebote", "projektverwaltung"],
+    anordnung: "md·sm·sm·wide",
+    webRollen: [...BUERO, "Kunde"],
+    mobileRollen: null,
+    sekundaer: ALLE,
+    snippet: null,
+    zusatz: [],
+  },
+  gaeb: {
+    pflichtfrage: "Welche GAEB-Formate unterstützt CraftOS?",
+    verwandt: ["angebote", "aufmass"],
+    anordnung: "md·sm·sm·wide·wide",
+    webRollen: BUERO,
+    mobileRollen: null,
+    sekundaer: { label: HILFE, href: "/hilfe/gaeb-importieren" },
+    snippet: null,
+    zusatz: [],
+  },
+};
+
+/** Normierung wie tests/keyword-map.test.ts (Kopfwort-Regel). */
+const norm = (k: string) =>
+  k
+    .toLowerCase()
+    .replace(/ß/g, "ss")
+    .replace(/ä/g, "ae")
+    .replace(/ö/g, "oe")
+    .replace(/ü/g, "ue")
+    .replace(/[\s-]+/g, "");
+const GENERISCHE_H2 = ["features", "funktionen", "vorteile", "faq", "fragen", "ablauf", "rollen"];
+
+/** Bezugswörter einer Seite: erstes Wort des Funktionsnamens und erstes Wort des Hauptkeywords (normiert). */
+function bezugswoerter(slug: string): string[] {
+  const name = getFunktion(slug)!.name.split(" ")[0];
+  const keyword = zielwerte(`/funktionen/${slug}`).keyword?.split(" ")[0];
+  return [name, keyword].filter((w): w is string => Boolean(w)).map(norm);
+}
 
 describe("Zielwerte aus der Keyword-Map", () => {
   it("zielwerte liefert Title, Title ohne Marke, H1, Description und Keyword", () => {
@@ -520,6 +595,61 @@ describe("getFunktionsdetail und Inhaltstabelle", () => {
       expect(web?.rollen.map((r) => r.name), slug).toEqual(erwartung.webRollen);
       expect(mobile ? mobile.rollen.map((r) => r.name) : null, slug).toEqual(erwartung.mobileRollen);
       expect(detail.kopf.secondary, slug).toEqual(erwartung.sekundaer);
+      expect(detail.snippet ?? null, slug).toBe(erwartung.snippet);
+      expect(
+        detail.kernpunkte.tiles.flatMap((t) => (t.zusatz ? [t.zusatz] : [])),
+        slug,
+      ).toEqual(erwartung.zusatz);
+      if (erwartung.phone) {
+        const tile = detail.kernpunkte.tiles.find((t) => t.title === erwartung.phone!.title);
+        expect(tile?.visual, slug).toEqual({ kind: "phone", scene: erwartung.phone.scene, width: erwartung.phone.width });
+      }
+      for (const [titel, href] of Object.entries(erwartung.hrefs ?? {})) {
+        expect(detail.kernpunkte.tiles.find((t) => t.title === titel)?.href, `${slug}: ${titel}`).toBe(href);
+      }
+      if (erwartung.panelSatz?.web) expect(web?.satz, slug).toContain(erwartung.panelSatz.web);
+      if (erwartung.panelSatz?.mobile) expect(mobile?.satz, slug).toContain(erwartung.panelSatz.mobile);
+    }
+  });
+
+  it("jede ERWARTET-Zeile hat ein Inhaltsmodul in INHALTE", () => {
+    for (const slug of Object.keys(ERWARTET)) {
+      expect(Object.hasOwn(INHALTE, slug), `INHALTE-Eintrag für ${slug}`).toBe(true);
+    }
+  });
+
+  it("jede Abschnitts-H2 nennt Funktionsnamen oder erstes Keyword-Wort und ist nicht generisch", () => {
+    for (const slug of Object.keys(INHALTE)) {
+      const inhalt = INHALTE[slug];
+      const woerter = bezugswoerter(slug);
+      for (const abschnitt of [inhalt.ablauf, inhalt.rollen, inhalt.kernpunkte, inhalt.faq]) {
+        const h2 = norm(abschnitt.title);
+        expect(woerter.some((w) => h2.includes(w)), `${slug}: „${abschnitt.title}“ nennt keins von ${woerter.join(", ")}`).toBe(true);
+        expect(GENERISCHE_H2.includes(h2), `${slug}: „${abschnitt.title}“ ist generisch`).toBe(false);
+      }
+    }
+  });
+
+  it("Sekundärlink und Kachel-Links zeigen auf Pfade der Sitemap", async () => {
+    const pfade = new Set((await sitemap()).map((e) => new URL(e.url).pathname));
+    for (const slug of Object.keys(INHALTE)) {
+      const inhalt = INHALTE[slug];
+      expect(pfade.has(inhalt.secondary.href), `${slug}: ${inhalt.secondary.href}`).toBe(true);
+      for (const tile of inhalt.kernpunkte.tiles) {
+        if (tile.href) expect(pfade.has(tile.href), `${slug}: ${tile.title} → ${tile.href}`).toBe(true);
+      }
+    }
+  });
+
+  it("jede Zusatzfunktion mit Ziel auf einer Detailseite mit Inhalt steht dort als Kachel mit passendem zusatz", () => {
+    for (const extra of gruppen.flatMap((g) => g.extras)) {
+      const href = extra.target?.href ?? "";
+      if (extra.target?.kind !== "funktion" || !href.startsWith("/funktionen/")) continue;
+      const ziel = href.slice("/funktionen/".length);
+      if (!Object.hasOwn(INHALTE, ziel)) continue;
+      const kachel = INHALTE[ziel].kernpunkte.tiles.find((t) => t.zusatz === extra.id);
+      expect(kachel, `${extra.id} auf ${ziel}`).toBeDefined();
+      expect(kachel!.size, `${extra.id} auf ${ziel}`).not.toBe("sm");
     }
   });
 
@@ -527,8 +657,37 @@ describe("getFunktionsdetail und Inhaltstabelle", () => {
     const dir = path.join(ROOT, "lib/funktionsdetails");
     for (const datei of fs.readdirSync(dir).filter((d) => d.endsWith(".ts"))) {
       const quelltext = fs.readFileSync(path.join(dir, datei), "utf8");
-      expect(quelltext, datei).not.toMatch(/€|10 Tage/);
+      expect(quelltext, datei).not.toMatch(/€|10 Tage|Tage kostenlos/);
     }
+  });
+});
+
+describe("Wortregel „automatisch“", () => {
+  const mitFrage = (q: string, a: string): FunktionsdetailInhalt => {
+    const inhalt = angeboteInhalt();
+    inhalt.faq.items[2] = { q, a };
+    return inhalt;
+  };
+
+  it("in einer Frage erlaubt, wenn die Antwort mit „Nein“ beginnt", () => {
+    expect(() =>
+      baue(mitFrage("Werden Mengen automatisch kalkuliert?", "Nein. Sie geben Mengen ein und prüfen sie.")),
+    ).not.toThrow();
+  });
+
+  it("in einer Frage verboten, wenn die Antwort nicht mit „Nein“ beginnt", () => {
+    expect(() =>
+      baue(mitFrage("Werden Mengen automatisch kalkuliert?", "Ja. Sie geben Mengen ein und prüfen sie.")),
+    ).toThrow("Funktionsdetail: angebote enthält ‚automatisch‘ – Formulierung laut 07-UI-SPEC ändern.");
+  });
+
+  it("in der Antwort nur mit „auf Wunsch“, auch wenn sie mit „Nein“ beginnt", () => {
+    expect(() =>
+      baue(mitFrage("Werden Mengen automatisch kalkuliert?", "Nein. Mengen werden automatisch übernommen.")),
+    ).toThrow("Funktionsdetail: angebote enthält ‚automatisch‘ – Formulierung laut 07-UI-SPEC ändern.");
+    expect(() =>
+      baue(mitFrage("Werden Mengen kalkuliert?", "Ja. Auf Wunsch übernimmt CraftOS Mengen automatisch.")),
+    ).not.toThrow();
   });
 });
 
