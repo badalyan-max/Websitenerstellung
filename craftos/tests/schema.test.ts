@@ -6,6 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { mobileApplicationSchema, softwareApplicationSchema, webPageSchema } from "@/lib/schema";
+import { mobileLocales } from "@/lib/product-register";
 import { site, tarife } from "@/lib/site";
 
 const appTarif = tarife.find((t) => t.id === "app")!;
@@ -50,8 +51,18 @@ describe("mobileApplicationSchema", () => {
     expect(schema["@id"]).not.toBe(softwareApplicationSchema()["@id"]);
   });
 
+  it("inLanguage = alle belegten App-Sprachen als BCP-47 (IN-04)", () => {
+    expect(schema.inLanguage).toHaveLength(mobileLocales.length);
+    expect(schema.inLanguage).toContain("de");
+    expect(schema.inLanguage).toContain("sr-Cyrl");
+    expect(schema.inLanguage).toContain("sr-Latn");
+    for (const tag of schema.inLanguage) expect(tag).toMatch(/^[a-z]{2,3}(-[A-Z][a-z]{3})?$/);
+  });
+
   it("Angebot = App-Lizenz netto pro Person und Monat aus tarife", () => {
     expect(schema.offers["@type"]).toBe("Offer");
+    expect(schema.offers.name).toBe(appTarif.name);
+    expect(schema.offers.description).toContain("mindestens eine Voll-Lizenz pro Betrieb");
     expect(schema.offers.price).toBe(price);
     expect(schema.offers.priceCurrency).toBe("EUR");
     const spec = schema.offers.priceSpecification;

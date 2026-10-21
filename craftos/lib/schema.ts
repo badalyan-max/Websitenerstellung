@@ -1,3 +1,4 @@
+import { mobileLocales } from "./product-register";
 import { site, tarife } from "./site";
 // Abgrenzung zu gleichnamigen Produkten für Suchmaschinen und KI-Suchen
 const brandName = "CraftOS Handwerkersoftware";
@@ -77,8 +78,9 @@ export function webPageSchema(p: { path: string; name: string; description: stri
  */
 export function mobileApplicationSchema() {
   const app = tarife.find((t) => t.id === "app");
-  if (!app) {
-    throw new Error("lib/schema.ts: Tarif „app“ fehlt in lib/site.ts (tarife) – mobileApplicationSchema braucht die App-Lizenz.");
+  const voll = tarife.find((t) => t.id === "voll");
+  if (!app || !voll) {
+    throw new Error("lib/schema.ts: Tarif „app“ oder „voll“ fehlt in lib/site.ts (tarife) – mobileApplicationSchema braucht beide.");
   }
   const price = app.monat.toFixed(2);
   return {
@@ -89,13 +91,16 @@ export function mobileApplicationSchema() {
     applicationCategory: "BusinessApplication",
     operatingSystem: "iOS, Android",
     url: site.url + "/app",
-    inLanguage: "de-DE",
+    // IN-04: alle belegten App-Sprachen (mobileLocales) als BCP-47, Schriftsubtag großgeschrieben (sr-Cyrl, sr-Latn).
+    inLanguage: mobileLocales.map((code) => code.replace(/-([a-z])([a-z]{3})$/, (_, a: string, rest: string) => `-${a.toUpperCase()}${rest}`)),
     sameAs: storeUrls,
     installUrl: storeUrls,
     publisher: { "@id": site.url + "/#organization" },
     offers: {
       "@type": "Offer",
-      name: `${app.name} (${app.produktlizenz})`,
+      // IN-04: „App-Lizenz“ statt „App-Lizenz (App)“; Voraussetzung wie in der sichtbaren FAQ.
+      name: app.name,
+      description: `Ergänzt die ${voll.name}; mindestens eine ${voll.name} pro Betrieb ist erforderlich.`,
       price,
       priceCurrency: "EUR",
       priceSpecification: {
