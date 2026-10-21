@@ -173,14 +173,30 @@ test('Detailseite: CLS 0 und reduzierte Bewegung auf allen Detailseiten und /app
   for (const path of paths) {
     await page.goto(path)
     await page.waitForLoadState('networkidle')
+    // IN-05: Bedingungen statt fester Pausen – je Schritt zwei Frames, am Ende Schriften, alle Bilder (geladen und
+    // dekodiert) und zwei weitere Frames, damit späte Verschiebungen noch in die Messung fallen.
     await page.evaluate(async () => {
+      const zweiFrames = () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))
       for (let y = 0; y < document.documentElement.scrollHeight; y += 600) {
         window.scrollTo(0, y)
-        await new Promise((resolve) => setTimeout(resolve, 40))
+        await zweiFrames()
       }
       window.scrollTo(0, document.documentElement.scrollHeight)
-      await new Promise((resolve) => setTimeout(resolve, 150))
+      await document.fonts.ready
+      // Nur dargestellte Bilder: ein verstecktes Lazy-Bild (z. B. QR unter 1024 px) lädt nie.
+      const sichtbar = [...document.images].filter((img) => img.getClientRects().length > 0)
+      const geladen = Promise.all(sichtbar.map((img) => (img.complete ? img.decode().catch(() => {}) : new Promise((resolve) => {
+        img.addEventListener('load', resolve, { once: true })
+        img.addEventListener('error', resolve, { once: true })
+      }))))
+      // Obergrenze gegen Hänger; die Bedingung prüft danach expect.poll.
+      await Promise.race([geladen, new Promise((resolve) => setTimeout(resolve, 10_000))])
+      await zweiFrames()
     })
+    await expect.poll(() => page.evaluate(() => [...document.images].filter((img) => img.getClientRects().length > 0).every((img) => img.complete)), {
+      message: `${path}: alle dargestellten Bilder geladen`,
+      timeout: 10_000,
+    }).toBe(true)
     supported = await page.evaluate(() => window.__clsSupported)
     if (supported) expect(await page.evaluate(() => window.__cls), `${path}: CLS`).toBe(0)
     // Auf eine Bedingung warten statt auf eine feste Zeit: Unter Volllast kann ein Übergang kurz nachlaufen.
