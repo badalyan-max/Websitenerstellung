@@ -98,7 +98,7 @@ Plans:
 
 **Wave 5** *(blocked on Wave 4 completion)*
 
-- [ ] 06-05-PLAN.md — /funktionen gruppiert mit FeatureCard/FeatureList, JSON-LD, Zwei-Klick-Nachweis
+- [x] 06-05-PLAN.md — /funktionen gruppiert mit FeatureCard/FeatureList, JSON-LD, Zwei-Klick-Nachweis
 
 **Wave 6** *(blocked on Wave 5 completion; Code-Review-Gate des Orchestrators vorher)*
 
@@ -172,7 +172,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
-| 6. Startseite, Navigation und Funktionsübersicht | 4/6 | In Progress|  |
+| 6. Startseite, Navigation und Funktionsübersicht | 5/6 | In Progress|  |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 0/TBD | Not started | - |
 | 8. SEO und KI-Sichtbarkeit | 0/TBD | Not started | - |
 | 9. Gewerke und Wissensinhalte | 0/TBD | Not started | - |
