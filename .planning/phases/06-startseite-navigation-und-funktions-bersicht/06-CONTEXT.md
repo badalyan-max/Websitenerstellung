@@ -39,6 +39,14 @@ Nicht in dieser Phase: Funktionsdetailseiten und neue Funktionsseiten (`/funktio
 - **D-13:** Server Components bleiben Standard; Client-JavaScript nur für das Menü. Ohne JavaScript bleibt die Navigation nutzbar (z. B. Links zu Übersichtsseiten, `<details>`-Fallback oder serverseitig gerenderte Links). CLS 0, LCP-Element ohne Lazy-Load, keine Animationen ohne reduced-motion-Schutz.
 - **D-14:** Prüfungen lokal (vitest, typecheck, lint, build, Playwright-E2E inkl. axe, Breiten 360/390/768/1024/1440, Tastaturbedienung Menü, Zwei-Klick-Test für jede Live-Funktion), dann Ship-Gate, `gh workflow list --all`, Push auf main, Vercel READY, `scripts/live-check.mjs`, `npm run indexnow`, `node scripts/seo-report.mjs --etappe rollout-phase06`, Rollout-Nachweis wie Phase 5 (`docs/releases/PHASE-06-ROLLOUT.md`). Prozesse nur über eigene PID beenden.
 
+### Nach der Recherche festgelegt (21.10.2026, Orchestrator)
+- **D-15:** Craft AI erscheint bis zur Klärung im Produktregister nur als Menülink auf die bestehende Seite `/craft-ai`, nicht als Funktionskarte; die Seite „KI-Agent“ bleibt unbeworben.
+- **D-16:** `data-evidence` auf öffentlichen Seiten wird auf die Kurzform `web:<Bildschirmname>` bzw. `app:<Bildschirmname>` gekürzt (keine internen Quellpfade im HTML, Review-Punkt LO-05); die E2E-Prüfung prüft das Kurzformat.
+- **D-17:** Mega-Menü ohne Vorschaubilder: je Gruppe Icon + Kurzbeschreibung (DESIGN-03 im Rahmen der Umfangsänderung vom 20.10.2026). Mobil ist die Gruppe „Funktionen“ beim Öffnen bereits aufgeklappt, damit jede Live-Funktion in ≤ 2 Taps erreichbar ist.
+- **D-18:** Zusatzfunktionen ohne Detailseite (14 laut Recherche) erscheinen in einer Kompaktliste je Gruppe; Linkziele gemäß Zuordnungstabelle in 06-RESEARCH.md (Hilfeartikel oder nächstliegende Detailseite, sonst ohne Link). Gruppenanker `#angebot`, `#planung`, `#baustelle`, `#rechnung`, `#buchhaltung`, `#team` auf `/funktionen`. Neue Nutzensätze je Funktion: genau ein Satz, ≤ 100 Zeichen, nur belegte Aussagen.
+- **D-19:** Title der Startseite vollständig gesetzt (Root-Seite erbt kein Template), z. B. „Handwerkersoftware für Büro und Baustelle | CraftOS“; Tests prüfen den ausgegebenen Title.
+- **D-20:** Above the fold bei 360×640 hat Vorrang vor der vollständigen DevicePair-Darstellung: kompakte Hero-Lage (z. B. Phone allein oder verkleinertes Paar) ist erlaubt; Messung im Browser ist Pflicht. „Handwerkersoftware“ darf in der H1 nicht silbengetrennt werden (hyphens/Größe anpassen).
+
 ### Claude's Discretion
 - Genaue Abschnittsreihenfolge und Inhalte der Startseite innerhalb von D-02; Auswahl der Kennzahlen (nur belegte Werte: Preise, Testtage, Anzahl Live-Funktionen, Plattformen).
 - Icon-Auswahl je Gruppe; Zuordnung grenzwertiger Funktionen zu Gruppen (z. B. Dashboard, Kundenportal, Craft AI) – begründet im Plan.
