@@ -171,3 +171,58 @@ test('Desktop Navigation bedient Dropdowns per Maus und Tastatur und schließt m
   await atScroll(page, 700)
   expect((await page.locator('header').first().boundingBox()).y).toBe(0)
 })
+
+test('Desktop Navigation: Escape greift nur bei Fokus im Header oder Hover-Panel ein und lässt Eingabefelder unberührt', async ({ page, hasTouch }) => {
+  test.skip(hasTouch, 'Desktop-Maus und Tastatur werden im Desktop-Projekt geprüft.')
+  await page.goto('/rechner/stundensatz')
+  // Nach allen Dokument-Handlern festhalten, ob Esc sein Standardverhalten behalten hat.
+  await page.evaluate(() => {
+    window.__escPrevented = []
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') window.__escPrevented.push(event.defaultPrevented)
+    })
+  })
+  const escPrevented = () => page.evaluate(() => window.__escPrevented)
+  const nav = page.getByRole('navigation', { name: 'Hauptnavigation' })
+  const product = nav.getByRole('button', { name: 'Untermenü Funktionen', exact: true })
+  const panel = page.locator('#navigation-funktionen')
+
+  // 1. Fokus im Eingabefeld, Panel nur per Hover offen: Esc gehört dem Feld, kein Fokusraub, kein preventDefault.
+  const input = page.locator('main input').first()
+  await input.focus()
+  await product.hover()
+  await expect(panel).toBeVisible()
+  await page.keyboard.press('Escape')
+  await expect(input).toBeFocused()
+  expect(await escPrevented()).toEqual([false])
+
+  // 2. Fokus auf einem Inhaltslink, Panel per Hover offen: Esc schließt das Panel, der Fokus bleibt im Inhalt.
+  await page.mouse.move(30, 600)
+  await expect(panel).toBeHidden()
+  const contentLink = page.locator('main a[href]').first()
+  await contentLink.focus()
+  await product.hover()
+  await expect(panel).toBeVisible()
+  await page.keyboard.press('Escape')
+  await expect(panel).toBeHidden()
+  await expect(contentLink).toBeFocused()
+  expect(await escPrevented()).toEqual([false, true])
+
+  // 3. Fokus im Header (Tastatur): Esc schließt und gibt den Fokus an den Schalter zurück.
+  await page.mouse.move(30, 600)
+  await product.focus()
+  await page.keyboard.press('Enter')
+  await expect(panel).toBeVisible()
+  await page.keyboard.press('ArrowDown')
+  await expect(panel.locator('a').first()).toBeFocused()
+  await page.keyboard.press('Escape')
+  await expect(panel).toBeHidden()
+  await expect(product).toBeFocused()
+  expect(await escPrevented()).toEqual([false, true, true])
+
+  // 4. Kein Panel offen: Esc bleibt unangetastet.
+  await contentLink.focus()
+  await page.keyboard.press('Escape')
+  await expect(contentLink).toBeFocused()
+  expect(await escPrevented()).toEqual([false, true, true, false])
+})

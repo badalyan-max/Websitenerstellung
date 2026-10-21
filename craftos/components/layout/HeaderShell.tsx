@@ -27,7 +27,9 @@ export interface HeaderNavItem {
 
 const mobileQuery = "(max-width: 1120px)";
 const isMobile = () => window.matchMedia(mobileQuery).matches;
-const ohneSchraegstrich = (path: string) => (path.length > 1 ? path.replace(/\/+$/, "") : path);
+/** Elemente mit eigenem Esc-Verhalten, in die der globale Esc-Handler nicht eingreift. */
+const EIGENES_ESC = "input, textarea, select, dialog, [role='dialog'], [role='alertdialog'], [aria-modal='true']";
+const ohneSchraegstrich =(path: string) => (path.length > 1 ? path.replace(/\/+$/, "") : path);
 
 export function HeaderShell({ items }: { items: HeaderNavItem[] }) {
   const pathname = usePathname() ?? "/";
@@ -112,9 +114,21 @@ export function HeaderShell({ items }: { items: HeaderNavItem[] }) {
       if (event.target instanceof Node && !headerRef.current?.contains(event.target)) close();
     }
     function onEscape(event: KeyboardEvent) {
-      if (event.key !== "Escape") return;
+      if (event.key !== "Escape" || event.defaultPrevented) return;
+      const active = document.activeElement;
+      const focusInHeader = active !== null && (headerRef.current?.contains(active) ?? false);
+      // Kein fokussiertes Element (WebKit fokussiert Schalter bei Klick/Tap nicht): Die letzte Interaktion lag
+      // dann im Header, sonst hätte pointerdown außerhalb bereits geschlossen.
+      const focusNowhere = active === null || active === document.body;
+      const hoverOpen = !open && openSource.current === "hover";
+      // WAI-APG: Nur reagieren, wenn der Fokus zur Navigation gehört oder das Panel per Hover offen ist –
+      // nie Fokus oder natives Esc (Eingabe leeren, Dialog-cancel) außerhalb des Headers übernehmen.
+      if (!focusInHeader && !focusNowhere && !hoverOpen) return;
+      if (!focusInHeader && active instanceof HTMLElement && (active.isContentEditable || active.closest(EIGENES_ESC))) return;
       event.preventDefault();
       close();
+      // Fokus nur zurückgeben, wenn er im Header lag (bzw. nirgends nach Klick/Tap im Header).
+      if (!focusInHeader && !(focusNowhere && !hoverOpen)) return;
       const button = open ? toggleRef.current : firstExpanded ? groupButtons.current[firstExpanded] : null;
       button?.focus({ preventScroll: true });
     }
