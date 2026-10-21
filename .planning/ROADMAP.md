@@ -117,7 +117,44 @@ Plans:
   2. Die Mobile-App-Seite zeigt alle Live-Funktionen der App als gegliederte Kacheln mit Phone-Darstellungen.
   3. Alle neuen Seiten sind in Sitemap und `llms.txt` enthalten, über Menü und Übersicht verlinkt und nach Ship-Gate live mit IndexNow-Meldung.
 
-**Plans**: TBD
+**Plans**: 9 plans (9 Wellen, strikt sequentiell)
+Plans:
+**Wave 1**
+
+- [ ] 07-01-PLAN.md — Bausteinergänzungen: Budgets F4, Statusnamen F3 mit Release-Beleg, KeyFacts-Kurzform (D-13), Zielart „seite“ (F5), webPageSchema/mobileApplicationSchema
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 07-02-PLAN.md — Sechs neue Detailfunktionen im Modell (Register → funktionen → Gruppen), Keyword-Map-Status und Zielwerte, Paritäten 22/8/30, interne Links, Menü-E2E
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [ ] 07-03-PLAN.md — Szenenkatalog MEDIA-01: Kopf-Visual für 22 Funktionen, cardScenes, App-Kachel-Szenen, Registerbelege, Sichtprüfung /funktionen
+
+**Wave 4** *(blocked on Wave 3 completion)*
+
+- [ ] 07-04-PLAN.md — Detailvorlage: Inhaltstypen und prüfender Builder, FunktionsKopf, PlattformRollen, FunktionsDetail mit JSON-LD, Kaskade DESIGN-V2 § 16
+
+**Wave 5** *(blocked on Wave 4 completion)*
+
+- [ ] 07-05-PLAN.md — Inhalte Angebot, Planung, Baustelle (12 Detailseiten)
+
+**Wave 6** *(blocked on Wave 5 completion)*
+
+- [ ] 07-06-PLAN.md — Inhalte Rechnung, Team, Buchhaltung (10 Detailseiten), Routenumstellung, Keyword-Fall, Rollen gegen Release, Sichtprüfung
+
+**Wave 7** *(blocked on Wave 6 completion)*
+
+- [ ] 07-07-PLAN.md — Mobile-App-Seite /app aus v2-Bausteinen mit Phone-Kacheln, Kennzahlen, Offline-Ablauf, FAQ und MobileApplication
+
+**Wave 8** *(blocked on Wave 7 completion)*
+
+- [ ] 07-08-PLAN.md — Browserprüfungen Detailseiten und /app (Above-the-fold, axe, CLS, reduced motion), scrollbar-gutter-Entscheidung (D-14)
+
+**Wave 9** *(blocked on Wave 8 completion; Code-Review-Gate des Orchestrators vorher)*
+
+- [ ] 07-09-PLAN.md — Phasen-Gate, live-check-Erweiterung, Ship-Gate über Gesamtdiff, Push, IndexNow, SE-Ranking-Abgleich, Etappenmessung, Rollout-Nachweis
+
 **UI hint**: yes
 
 ### Phase 8: SEO und KI-Sichtbarkeit
@@ -173,7 +210,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
 | 6. Startseite, Navigation und Funktionsübersicht | 6/6 | Complete    | 2026-10-21 |
-| 7. Funktionsdetailseiten und Mobile-App-Seite | 0/TBD | Not started | - |
+| 7. Funktionsdetailseiten und Mobile-App-Seite | 0/9 | Planned | - |
 | 8. SEO und KI-Sichtbarkeit | 0/TBD | Not started | - |
 | 9. Gewerke und Wissensinhalte | 0/TBD | Not started | - |
 | 10. Abschlussaudit | 0/TBD | Not started | - |
