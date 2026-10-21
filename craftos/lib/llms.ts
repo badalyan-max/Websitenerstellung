@@ -47,6 +47,15 @@ export function buildLlmsTxt(): string {
       .filter((f) => f.tier === "heute")
       .map((f) => link(f.name, `/funktionen/${f.slug}`, f.kurz)),
     "",
+    "## Mobile-App",
+    "",
+    // Phase-7-Seite /app (Code-Review 07 WR-04); Offline nur mit Einschränkung (D-23, Registereintrag mobileOffline).
+    link(
+      "Handwerker-App für die Baustelle",
+      "/app",
+      "Zeiten, Einsätze, Fotos, Mängel und Unterschriften in der Mobile-App erfassen; ohne Empfang nur teilweise nutzbar",
+    ),
+    "",
     "## Gewerke",
     "",
     ...gewerke.map((g) => link(g.name, `/gewerke/${g.slug}`)),

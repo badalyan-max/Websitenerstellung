@@ -26,6 +26,13 @@ describe("llms.txt", () => {
       else expect(text, f.slug).not.toContain(url);
     }
   });
+  it("links the mobile app page /app with the offline limitation (WR-04)", () => {
+    const abschnitt = text.slice(text.indexOf("## Mobile-App"), text.indexOf("## Gewerke"));
+    expect(text.indexOf("## Mobile-App")).toBeGreaterThan(-1);
+    expect(abschnitt).toContain(`(${site.url}/app)`);
+    expect(abschnitt).toContain("nur teilweise");
+    expect(abschnitt).not.toMatch(/vollständig offline/i);
+  });
   it("lists every trade page", () => {
     for (const g of gewerke)
       expect(text).toContain(`${site.url}/gewerke/${g.slug})`);
