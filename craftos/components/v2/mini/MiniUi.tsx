@@ -117,7 +117,8 @@ export const MINI_STATUS_BELEGE: Record<MiniStatusName, string> = {
   Bezahlt: "web:src/pages/Dokumente.tsx",
   Überfällig: "web:src/pages/Dokumente.tsx",
   Storniert: "web:src/pages/Dokumente.tsx",
-  Geplant: "web:src/pages/Dashboard.tsx",
+  // Schlüssel in Anführungszeichen: „Geplant“ ist hier ein Projektstatus, keine Ankündigung (tests/announcements.test.ts).
+  "Geplant": "web:src/pages/Dashboard.tsx",
   "In Arbeit": "web:src/pages/Dashboard.tsx",
   Abgeschlossen: "web:src/pages/Dashboard.tsx",
   "In Bearbeitung": "mobile:src/shared/i18n/locales/de/defects.json",
@@ -145,7 +146,7 @@ export const MINI_STATUS_TON: Record<MiniStatusName, MiniStatusTon> = {
   Bezahlt: "positiv",
   Überfällig: "hervorgehoben",
   Storniert: "neutral",
-  Geplant: "neutral",
+  "Geplant": "neutral",
   "In Arbeit": "neutral",
   Abgeschlossen: "positiv",
   "In Bearbeitung": "neutral",
