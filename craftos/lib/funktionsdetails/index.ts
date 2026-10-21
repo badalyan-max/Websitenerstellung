@@ -160,7 +160,7 @@ function textfelder(inhalt: FunktionsdetailInhalt): Textfeld[] {
     inhalt.secondary.label,
     ...abschnitte.flatMap((a) => [a.title, a.lead]),
     ...inhalt.ablauf.steps.flatMap((s) => [s.title, s.text]),
-    ...inhalt.rollen.panels.flatMap((p) => [p.satz, ...p.rollen.map((r) => r.zusatz ?? "")]),
+    ...inhalt.rollen.panels.flatMap((p) => [p.satz, p.kundenHinweis ?? "", ...p.rollen.map((r) => r.zusatz ?? "")]),
     ...inhalt.kernpunkte.tiles.flatMap((t) => [t.title, t.text]),
   ];
   return [
@@ -281,6 +281,17 @@ export function buildFunktionsdetail(input: {
     assertTextBudget("plattformRollen.satz", panel.satz, PANEL_BUDGET.satz);
     assertOneSentence("PlattformRollen", `${slug} (${panel.platform})`, panel.satz);
     assertCount("PlattformRollen", panel.lizenzen.length, PANEL_BUDGET.lizenzen, "Lizenzen");
+    if (panel.kundenHinweis !== undefined) {
+      // WR-03 (B13): Kunden stehen nie unter dem Lizenzbadge, sondern in einem eigenen Hinweis ohne Lizenz.
+      if (panel.platform !== "web") {
+        throw new Error(`Funktionsdetail: kundenHinweis im Panel ${panel.platform} von ${slug} – nur im Web-Panel zulässig.`);
+      }
+      assertTextBudget("plattformRollen.kundenHinweis", panel.kundenHinweis, PANEL_BUDGET.kundenHinweis);
+      assertOneSentence("PlattformRollen", `${slug} (Kundenhinweis)`, panel.kundenHinweis);
+      if (!panel.kundenHinweis.includes("keine Lizenz")) {
+        throw new Error(`Funktionsdetail: kundenHinweis von ${slug} nennt „keine Lizenz“ nicht – Kunden brauchen keine Lizenz.`);
+      }
+    }
   }
 
   // (5) Kernpunkt-Kacheln

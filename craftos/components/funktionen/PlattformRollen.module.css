@@ -81,6 +81,18 @@
   margin-top: auto;
   padding-top: 16px;
 }
+/* Kundenzugang ohne Lizenz (WR-03, 07-UI-SPEC B13): durch eine Linie vom Lizenzbadge der Betriebsrollen getrennt. */
+.kunden {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid #dedee3;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #62626e;
+}
 
 @media (min-width: 768px) {
   .raster {

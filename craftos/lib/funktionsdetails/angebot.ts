@@ -270,10 +270,12 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
             { name: "Admin" },
             { name: "Büro-Leitung" },
             { name: "Büro-Projektleitung" },
-            { name: "Kunde", zusatz: "eigener Zugang im Browser" },
           ],
           satz: "Im Büro laden Sie Kunden ein und geben Angebote, Rechnungen und Termine frei.",
           lizenzen: ["voll"],
+          // WR-03/B13: Kunden sind keine Betriebsrolle; funktionen.ts access „Separater Kundenbereich mit eigenem
+          // Login“, Web-Release LicenseType admin | buero | app (keine Kundenlizenz), src/pages/portal/CustomerLogin.tsx.
+          kundenHinweis: "Ihre Kunden nutzen einen eigenen Portal-Zugang im Browser und brauchen keine Lizenz.",
         },
       ],
     },

@@ -66,6 +66,13 @@ export function PlattformRollen({ slug, panels }: PlattformRollenProps) {
                 ))}
               />
             </div>
+            {panel.kundenHinweis ? (
+              // WR-03 (B13): Kundenzugang ohne Lizenz getrennt unter dem Lizenzbadge der Betriebsrollen.
+              <p className={s.kunden} data-kunden-hinweis="">
+                <UserRound className={s.rollenIcon} size={16} strokeWidth={1.75} aria-hidden="true" />
+                <span>{panel.kundenHinweis}</span>
+              </p>
+            ) : null}
           </article>
         );
       })}

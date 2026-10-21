@@ -298,7 +298,7 @@ const ERWARTET: Record<string, Erwartung> = {
     pflichtfrage: "Können Kunden Rechnungen im Portal online bezahlen?",
     verwandt: ["angebote", "projektverwaltung"],
     anordnung: "md·sm·sm·wide",
-    webRollen: [...BUERO, "Kunde"],
+    webRollen: BUERO,
     mobileRollen: null,
     sekundaer: ALLE,
     snippet: null,
@@ -522,7 +522,7 @@ function texteOhneFragen(inhalt: FunktionsdetailInhalt): string[] {
     inhalt.lead,
     ...abschnitte.flatMap((a) => [a.title, a.lead]),
     ...inhalt.ablauf.steps.flatMap((s) => [s.title, s.text]),
-    ...inhalt.rollen.panels.flatMap((p) => [p.satz, ...p.rollen.map((r) => r.zusatz ?? "")]),
+    ...inhalt.rollen.panels.flatMap((p) => [p.satz, p.kundenHinweis ?? "", ...p.rollen.map((r) => r.zusatz ?? "")]),
     ...inhalt.kernpunkte.tiles.flatMap((t) => [t.title, t.text]),
     ...inhalt.faq.items.map((f) => f.a),
   ];
@@ -659,6 +659,25 @@ describe("buildFunktionsdetail – Regelverstöße werfen die 07-UI-SPEC-Fehlert
     inhalt.rollen.panels[0].rollen = [{ name: "Bauleiter" as unknown as RolleName }];
     expect(() => baue(inhalt)).toThrow(
       "Funktionsdetail: Rolle ‚Bauleiter‘ ist keine belegte Rolle – Wert aus RolleName wählen.",
+    );
+  });
+
+  it("Rolle „Kunde“ unter dem Lizenzbadge (WR-03, B13)", () => {
+    const inhalt = angeboteInhalt();
+    inhalt.rollen.panels[0].rollen = [{ name: "Kunde" as unknown as RolleName, zusatz: "eigener Zugang im Browser" }];
+    expect(() => baue(inhalt)).toThrow("Funktionsdetail: Rolle ‚Kunde‘ ist keine belegte Rolle – Wert aus RolleName wählen.");
+  });
+
+  it("kundenHinweis im Mobile-Panel oder ohne „keine Lizenz“ (WR-03, B13)", () => {
+    const mobil = angeboteInhalt();
+    mobil.rollen.panels[1].kundenHinweis = "Ihre Kunden nutzen einen eigenen Portal-Zugang und brauchen keine Lizenz.";
+    expect(() => baue(mobil)).toThrow(
+      "Funktionsdetail: kundenHinweis im Panel mobile von angebote – nur im Web-Panel zulässig.",
+    );
+    const ohneLizenz = angeboteInhalt();
+    ohneLizenz.rollen.panels[0].kundenHinweis = "Ihre Kunden nutzen einen eigenen Portal-Zugang im Browser.";
+    expect(() => baue(ohneLizenz)).toThrow(
+      "Funktionsdetail: kundenHinweis von angebote nennt „keine Lizenz“ nicht – Kunden brauchen keine Lizenz.",
     );
   });
 
@@ -1119,6 +1138,17 @@ describe("Vorlage gerendert", () => {
     expect(rollen).toMatch(/^data-abschnitt="rollen"[^>]*class="[^"]*bg-\[#f7f3eb\]/);
     expect((rollen.match(/<article/g) ?? []).length).toBe(2);
     expect(rollen).toContain("Im Büro");
+    expect(rollen).not.toContain("data-kunden-hinweis");
+  });
+
+  it("kundenportal: Kunde nicht in der Rollenliste, Kundenhinweis ohne Lizenz nach dem Lizenzbadge (WR-03, B13)", () => {
+    const portal = renderToString(createElement(FunktionsDetail, { detail: getFunktionsdetail("kundenportal") }));
+    expect(portal).not.toContain('data-rolle="Kunde"');
+    const badge = portal.indexOf('aria-label="Enthalten in"');
+    const hinweis = portal.indexOf("data-kunden-hinweis");
+    expect(badge).toBeGreaterThan(-1);
+    expect(hinweis).toBeGreaterThan(badge);
+    expect(portal.slice(hinweis)).toMatch(/^data-kunden-hinweis=""[^>]*>[\s\S]*?keine Lizenz/);
   });
 
   it("Kacheln: data-zusatz an der Zusatz-Kachel, Grenze-Kachel weiß, übrige warm", () => {

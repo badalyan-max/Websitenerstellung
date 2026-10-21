@@ -12,16 +12,12 @@ import type { GruppenId } from "@/lib/funktionsgruppen";
 import type { FrameScene, KopfVisual } from "@/lib/scenes";
 
 /**
- * Rollen-Presets des Web-Releases (`src/lib/subscription/roles.ts` `ROLES`) plus „Kunde“ für das Kundenportal.
- * „Büro“ ist eine Lizenzstufe, keine Rolle (07-UI-SPEC Abschnitt 3, Abweichung B2).
+ * Rollen-Presets des Web-Releases (`src/lib/subscription/roles.ts` `ROLES`): nur Betriebsrollen, die unter dem
+ * Lizenzbadge „Enthalten in“ stehen. „Büro“ ist eine Lizenzstufe, keine Rolle (07-UI-SPEC Abschnitt 3, Abweichung B2).
+ * Kunden haben keine Lizenz (Web-Release `LicenseType` = admin | buero | app, eigener Portal-Login) und stehen deshalb
+ * nicht in der Rollenliste, sondern im `kundenHinweis` des Panels (Code-Review 07 WR-03, 07-UI-SPEC B13).
  */
-export type RolleName =
-  | "Admin"
-  | "Büro-Leitung"
-  | "Büro-Projektleitung"
-  | "Mobil-Teamleitung"
-  | "Mobil-Teammitglied"
-  | "Kunde";
+export type RolleName = "Admin" | "Büro-Leitung" | "Büro-Projektleitung" | "Mobil-Teamleitung" | "Mobil-Teammitglied";
 
 export const ROLLEN: readonly RolleName[] = [
   "Admin",
@@ -29,13 +25,13 @@ export const ROLLEN: readonly RolleName[] = [
   "Büro-Projektleitung",
   "Mobil-Teamleitung",
   "Mobil-Teammitglied",
-  "Kunde",
 ];
 
 /** Budgets der Plattform-Panels (07-UI-SPEC Abschnitt 3); geprüft mit assertTextBudget/assertCount. */
 export const PANEL_BUDGET = {
   zusatz: 40,
   satz: 90,
+  kundenHinweis: 90,
   rollen: { min: 0, max: 4 },
   lizenzen: { min: 1, max: 2 },
 } as const;
@@ -47,8 +43,13 @@ export interface PlattformPanel {
   rollen: { name: RolleName; zusatz?: string }[];
   /** Genau ein Satz ≤ 90 Zeichen: was auf dieser Plattform passiert. */
   satz: string;
-  /** Mindestens eine Lizenz (LicenseBadge). */
+  /** Mindestens eine Lizenz (LicenseBadge); gilt nur für die Betriebsrollen der Liste. */
   lizenzen: ("voll" | "app")[];
+  /**
+   * Nur Web-Panel: eigener Hinweis zum Kundenzugang ohne Lizenz, getrennt unter dem Lizenzbadge gerendert.
+   * Genau ein Satz ≤ 90 Zeichen, nennt „keine Lizenz“ (WR-03, B13).
+   */
+  kundenHinweis?: string;
 }
 
 export interface Abschnittskopf {
