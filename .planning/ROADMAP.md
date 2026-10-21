@@ -90,7 +90,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 06-03-PLAN.md — Navigation: Server-Header mit Mega-Menü „Funktionen“, Client-Hülle, Drawer, No-JS, Browserprüfungen
+- [x] 06-03-PLAN.md — Navigation: Server-Header mit Mega-Menü „Funktionen“, Client-Hülle, Drawer, No-JS, Browserprüfungen
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
@@ -172,7 +172,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
-| 6. Startseite, Navigation und Funktionsübersicht | 2/6 | In Progress|  |
+| 6. Startseite, Navigation und Funktionsübersicht | 3/6 | In Progress|  |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 0/TBD | Not started | - |
 | 8. SEO und KI-Sichtbarkeit | 0/TBD | Not started | - |
 | 9. Gewerke und Wissensinhalte | 0/TBD | Not started | - |
