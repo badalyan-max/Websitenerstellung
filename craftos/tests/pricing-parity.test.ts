@@ -107,6 +107,7 @@ describe("Preise entsprechen origin/release der Web-App", () => {
       "lib/llms.ts",
       "lib/schema.ts",
       "app/fakten-ueber-craftos/page.tsx",
+      "lib/funktionsgruppen.ts",
     ];
     const preis = /29[,.]95|9[,.]95|299[,.]50|99[,.]50|24[,.]96|8[,.]29|0[,.]99|9[,.]90/;
     const funde: string[] = [];
