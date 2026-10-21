@@ -13,7 +13,7 @@ const BLOCKS = [
   'Geräterahmen', 'ComparisonTable', 'Badges', 'FaqList', 'MediaFigure', 'Videoplayer', 'CtaBand',
 ]
 const LABELS = ['Vereinfachte Darstellung mit Beispieldaten', 'Darstellung, KI-gestaltet']
-const BUDGET_ROUTES = ['/', '/funktionen', '/app', '/gewerke', '/preise', '/vergleich', '/funktionen/angebote', '/styleguide']
+const BUDGET_ROUTES = ['/', '/funktionen', '/app', '/gewerke', '/preise', '/vergleich', '/funktionen/angebote', '/funktionen/mahnwesen', '/funktionen/terminplanung', '/styleguide']
 const LIMIT = 150 * 1024
 /** Begründete PNG-Ausnahmen, identisch mit EXCEPTIONS in tests/media-budget.test.ts. */
 const PNG_EXCEPTIONS = ['/icons/icon-192x192.png', '/icons/icon-512x512.png', '/images/brands/craftnote.png']

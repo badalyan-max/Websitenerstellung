@@ -7,6 +7,8 @@ await fs.mkdir(output, { recursive: true });
 const routes = process.env.AUDIT_ROUTES?.split(",") || [
   "/",
   "/funktionen/angebote",
+  "/funktionen/mahnwesen",
+  "/funktionen/terminplanung",
   "/preise",
   "/app",
   "/gewerke",

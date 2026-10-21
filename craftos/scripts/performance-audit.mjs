@@ -6,6 +6,8 @@ const browser = await chromium.launch({ headless: true });
 for (const route of process.env.AUDIT_ROUTES?.split(",") || [
   "/",
   "/app",
+  "/funktionen/mahnwesen",
+  "/funktionen/terminplanung",
   "/preise",
   "/blog/handwerkerrechnung-schreiben",
   "/rechner/stundensatz",
