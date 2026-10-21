@@ -1,5 +1,6 @@
 // Live- bzw. Lokalprüfung des ausgelieferten Stands per Node-fetch (curl/WebFetch werden in dieser
-// Umgebung umgeleitet). Prüft Preise, Ankündigungsfreiheit, Styleguide-Schutz und JSON-LD.
+// Umgebung umgeleitet). Prüft Preise, Ankündigungsfreiheit, Styleguide-Schutz und JSON-LD (Phase 5)
+// sowie Startseite, Mega-Menü und /funktionen nach docs/seo/keyword-map.json (Phase 6).
 //   node scripts/live-check.mjs                                  # gegen https://craftos.eu
 //   LIVE_ORIGIN=http://localhost:3100 node scripts/live-check.mjs  # gegen lokalen Produktionsserver
 // Ausgabe je Prüfung „OK“ oder „FEHLER“; exitCode 1, sobald eine Prüfung fehlschlägt.
@@ -108,6 +109,143 @@ await check("/funktionen/kundenportal ohne „In Prüfung“", async () => {
   const r = await get("/funktionen/kundenportal");
   if (r.status !== 200) return `HTTP ${r.status}`;
   return !r.text.includes("In Prüfung") || "„In Prüfung“ gefunden";
+});
+
+// ---------------------------------------------------------------------------------------------
+// Phase 6: Startseite, Mega-Menü und /funktionen. Zielwerte stammen aus docs/seo/keyword-map.json,
+// die Detail-Slugs aus /sitemap.xml (URLs /funktionen/<slug>).
+// ---------------------------------------------------------------------------------------------
+const keywordMap = JSON.parse(fs.readFileSync(path.join(root, "docs/seo/keyword-map.json"), "utf8"));
+const kmEntries = Array.isArray(keywordMap) ? keywordMap : keywordMap.pages || keywordMap.entries || [];
+const target = (route) => {
+  const entry = kmEntries.find((e) => e.path === route);
+  if (!entry) throw new Error(`keyword-map.json ohne Eintrag für ${route}`);
+  return entry.target;
+};
+
+const decode = (s) =>
+  s
+    .replace(/&quot;/g, '"')
+    .replace(/&#x27;/g, "'")
+    .replace(/&#39;/g, "'")
+    .replace(/&amp;/g, "&");
+const plain = (html) => decode(html.replace(/<[^>]*>/g, " ")).replace(/\s+/g, " ").trim();
+
+function headTags(html) {
+  const title = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+  const desc = html.match(/<meta[^>]+name="description"[^>]+content="([^"]*)"/i);
+  const h1s = [...html.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/gi)].map((m) => plain(m[1]));
+  return { title: title ? plain(title[1]) : null, description: desc ? decode(desc[1]) : null, h1s };
+}
+
+function jsonLd(html) {
+  const out = [];
+  for (const m of html.matchAll(/<script[^>]+application\/ld\+json[^>]*>([\s\S]*?)<\/script>/g)) {
+    try {
+      out.push(JSON.parse(m[1]));
+    } catch {
+      // Ungültige Blöcke zählen nicht; die Prüfung schlägt dann über fehlende Typen fehl.
+    }
+  }
+  return out;
+}
+
+/** Alle Objekte mit dem gesuchten @type (auch in @graph oder verschachtelt). */
+function findType(node, type, acc = []) {
+  if (Array.isArray(node)) node.forEach((n) => findType(n, type, acc));
+  else if (node && typeof node === "object") {
+    const t = node["@type"];
+    if (t === type || (Array.isArray(t) && t.includes(type))) acc.push(node);
+    Object.values(node).forEach((v) => findType(v, type, acc));
+  }
+  return acc;
+}
+
+async function detailSlugs() {
+  const r = await get("/sitemap.xml");
+  if (r.status !== 200) throw new Error(`/sitemap.xml HTTP ${r.status}`);
+  const slugs = [...r.text.matchAll(/<loc>[^<]*\/funktionen\/([a-z0-9-]+)<\/loc>/g)].map((m) => m[1]);
+  if (slugs.length === 0) throw new Error("keine Detailseiten /funktionen/<slug> in der Sitemap");
+  return [...new Set(slugs)];
+}
+
+for (const route of ["/", "/funktionen"]) {
+  await check(`${route} Title, H1 und Description nach Keyword-Map`, async () => {
+    const r = await get(route);
+    if (r.status !== 200) return `HTTP ${r.status}`;
+    const t = target(route);
+    const ist = headTags(r.text);
+    const abw = [];
+    if (ist.title !== t.title) abw.push(`Title „${ist.title}“`);
+    if (ist.h1s.length !== 1) abw.push(`${ist.h1s.length} H1`);
+    else if (ist.h1s[0] !== t.h1) abw.push(`H1 „${ist.h1s[0]}“`);
+    if (ist.description !== t.description) abw.push(`Description „${ist.description}“`);
+    return abw.length === 0 || abw.join("; ");
+  });
+}
+
+const gruppenReihenfolge = ["angebot", "planung", "baustelle", "rechnung", "buchhaltung", "team"];
+
+await check("/funktionen zeigt 30 Funktionen in 6 Gruppen mit BreadcrumbList und ItemList", async () => {
+  const r = await get("/funktionen");
+  if (r.status !== 200) return `HTTP ${r.status}`;
+  const anzahl = (r.text.match(/data-funktion="/g) || []).length;
+  if (anzahl !== 30) return `${anzahl} statt 30 data-funktion`;
+  const gruppen = [...r.text.matchAll(/data-gruppe="([^"]+)"/g)].map((m) => m[1]);
+  if (gruppen.join(",") !== gruppenReihenfolge.join(",")) return `Gruppen ${gruppen.join(",")}`;
+  const ld = jsonLd(r.text);
+  if (findType(ld, "BreadcrumbList").length === 0) return "BreadcrumbList fehlt";
+  const lists = findType(ld, "ItemList");
+  if (lists.length === 0) return "ItemList fehlt";
+  const slugs = await detailSlugs();
+  const items = findType(lists, "ListItem").length;
+  return items === slugs.length || `ItemList mit ${items} ListItems, Sitemap nennt ${slugs.length} Detailseiten`;
+});
+
+await check("Mega-Menü im HTML (Detaillinks, Gruppenlinks, kein role=menu)", async () => {
+  const r = await get("/");
+  if (r.status !== 200) return `HTTP ${r.status}`;
+  if (!r.text.includes('aria-controls="navigation-funktionen"')) return 'aria-controls="navigation-funktionen" fehlt';
+  if (r.text.includes('role="menu"')) return 'role="menu" gefunden';
+  const slugs = await detailSlugs();
+  const fehlt = [
+    ...slugs.map((s) => `href="/funktionen/${s}"`),
+    ...gruppenReihenfolge.map((g) => `href="/funktionen#${g}"`),
+  ].filter((n) => !r.text.includes(n));
+  return fehlt.length === 0 || `fehlt: ${fehlt.join(", ")}`;
+});
+
+await check("Tracking-Attribute: Anmelden mit data-track=login, CTA auf app.craftos.eu ohne", async () => {
+  const r = await get("/");
+  if (r.status !== 200) return `HTTP ${r.status}`;
+  const links = [...r.text.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)].map((m) => ({ attrs: m[1], text: plain(m[2]) }));
+  const anmelden = links.filter((l) => l.text === "Anmelden");
+  if (anmelden.length === 0) return "kein Link „Anmelden“";
+  if (anmelden.some((l) => !l.attrs.includes('data-track="login"'))) return "„Anmelden“ ohne data-track=\"login\"";
+  const app = links.filter(
+    (l) => /href="https:\/\/app\.craftos\.eu[^"]*"/.test(l.attrs) && !l.attrs.includes('data-track="login"'),
+  );
+  return app.length > 0 || "kein Link auf https://app.craftos.eu ohne data-track=\"login\"";
+});
+
+await check("Keine internen Belegpfade auf / und /funktionen", async () => {
+  for (const route of ["/", "/funktionen"]) {
+    const r = await get(route);
+    if (r.status !== 200) return `${route} HTTP ${r.status}`;
+    if (r.text.includes('data-evidence="web:src') || r.text.includes('data-evidence="mobile:')) {
+      return `${route} enthält internen Belegpfad`;
+    }
+  }
+  return true;
+});
+
+await check("FAQPage der Startseite mit genau 5 Fragen", async () => {
+  const r = await get("/");
+  if (r.status !== 200) return `HTTP ${r.status}`;
+  const faq = findType(jsonLd(r.text), "FAQPage");
+  if (faq.length !== 1) return `${faq.length} FAQPage-Blöcke`;
+  const fragen = findType(faq[0], "Question").length;
+  return fragen === 5 || `${fragen} Question statt 5`;
 });
 
 console.log(fehler === 0 ? "Ergebnis: alle Prüfungen OK" : `Ergebnis: ${fehler} Prüfung(en) FEHLER`);

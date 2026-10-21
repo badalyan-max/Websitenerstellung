@@ -6,8 +6,8 @@ import { getContentList } from "@/lib/content";
 import { categories } from "@/lib/content-types";
 /** Letzte inhaltliche Änderung je Kernseite; Standard ist der Relaunch-Stand. */
 const pageUpdated: Record<string, string> = {
-  "": "2026-10-20",
-  "/funktionen": "2026-10-20",
+  "": "2026-10-21",
+  "/funktionen": "2026-10-21",
   "/craft-ai": "2026-10-20",
   "/vergleich": "2026-10-20",
   "/fakten-ueber-craftos": "2026-10-20",
