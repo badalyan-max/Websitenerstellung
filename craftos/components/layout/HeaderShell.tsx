@@ -191,6 +191,8 @@ export function HeaderShell({ items }: { items: HeaderNavItem[] }) {
           aria-label="Hauptnavigation"
           className={`${styles.nav} ${open ? styles.open : ""}`}
           onClick={(event) => {
+            // Strg/Cmd/Shift/Alt-Klick öffnet in neuem Tab bzw. Fenster: Menü bleibt für weitere Links offen.
+            if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
             if ((event.target as Element).closest("a")) closeNavigation();
           }}
         >
