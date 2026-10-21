@@ -4,7 +4,7 @@ const path = require('node:path')
 
 module.exports = defineConfig({
   testDir: __dirname,
-  testMatch: ['browser-functional.pw.cjs', 'function-illustrations.pw.cjs', 'navigation.pw.cjs', 'design-v2.pw.cjs'],
+  testMatch: ['browser-functional.pw.cjs', 'function-illustrations.pw.cjs', 'navigation.pw.cjs', 'design-v2.pw.cjs', 'home-navigation.pw.cjs'],
   timeout: 45_000,
   expect: { timeout: 8_000 },
   retries: 0,
