@@ -60,6 +60,24 @@
   align-items: center;
   justify-content: center;
 }
+/* Browserrahmen in großen Kacheln: Der Rahmen nimmt die volle Kachelbreite und wächst mit der freien
+   Höhe der über zwei Zeilen gestreckten Kachel (mindestens 16:10). So bleibt kein leerer Streifen
+   zwischen Visual und Text; der Text sitzt am Kachelboden (Sichtprüfung 06-04/06-05). */
+.tile[data-size="lg"] .visual:has([data-figure="browser"]) {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+.tile[data-size="lg"] .visual:has([data-figure="browser"]) > *,
+.tile[data-size="lg"] .visual [data-figure="browser"] {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  min-width: 0;
+}
+.tile[data-size="lg"] .visual [data-frame="browser"] {
+  flex: 1 0 auto;
+}
 .title {
   margin: 0;
   font-family: var(--font-display, var(--font-clash, sans-serif));
@@ -162,7 +180,8 @@
     align-items: center;
     gap: 32px;
   }
+  /* Visual mittig in seiner Spalte: kein breiter Leerstreifen zwischen Text und Gerät. */
   .tile[data-size="wide"][data-visual="end"] .visual {
-    justify-content: flex-end;
+    justify-content: center;
   }
 }
