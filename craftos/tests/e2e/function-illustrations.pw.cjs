@@ -246,6 +246,7 @@ test('Funktionsillustration: Pause bleibt dauerhaft erhalten und Fortsetzen star
   await activate(illustration.getByRole('button', { name: 'Animation pausieren', exact: true }), testInfo)
   const phase = await illustration.getAttribute('data-phase')
   await expect(illustration).toHaveAttribute('data-running', 'false')
+  await page.waitForTimeout(50)
   await page.clock.runFor(25_000)
   await expect(illustration).toHaveAttribute('data-phase', phase)
   await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight))
@@ -264,6 +265,9 @@ test('Funktionsillustration: außerhalb des Viewports bleibt der automatische Ab
   await advancePhase(page, durations[0])
   await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight))
   await expect(illustration).toHaveAttribute('data-running', 'false')
+  // Das Attribut wechselt beim Commit, die Effekt-Bereinigung (clearTimeout) läuft erst danach in einer
+  // eigenen Browser-Aufgabe; ohne diese Wartezeit kann runFor den alten Timer noch auslösen (WebKit-Flake).
+  await page.waitForTimeout(50)
   const phase = await illustration.getAttribute('data-phase')
   await page.clock.runFor(25_000)
   await expect(illustration).toHaveAttribute('data-phase', phase)
