@@ -479,18 +479,18 @@ export const metadata = pageMetadata(
 | A6 | FAQ-Rich-Results seit 2023 eingeschränkt | SEO | keiner für Umsetzung (Schema bleibt) |
 | A7 | Gruppenzuordnung Dashboard → Buchhaltung, Kundenportal → Angebot, Projekt-Chat → Team | Funktionszuordnung | Discretion; nur Begründungspflicht im Plan |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
-1. **Craft AI im Register?**
+1. **Craft AI im Register?** — RESOLVED durch D-15 (nur Menülink, keine Funktionskarte)
    - What we know: Seite `/craft-ai` und Hilfeartikel `craft-ai-betriebsdaten-fragen` sind live; Register führt Craft AI nicht; Web-Release hat KI-Assistent-Code, „KI-Agent“ ist `notLive`.
    - What's unclear: ob Craft AI als Registerfunktion belegt werden soll.
    - Recommendation: In Phase 6 Craft AI nur als bestehenden Link in der Menü-Fußleiste führen (wie heute), **nicht** als Live-Funktionskarte; optional Registereintrag mit geprüftem Beleg als eigener kleiner Task (Belegprüfung läuft über `tests/product-register.test.ts` „Belege existieren am Release-Commit“).
-2. **LO-05 `data-evidence` auf indexierten Seiten**
+2. **LO-05 `data-evidence` auf indexierten Seiten** — RESOLVED durch D-16: Kurzform `web:<Bildschirm>` bzw. `app:<Bildschirm>` (nicht `mobile:`); die E2E-Regex in `design-v2.pw.cjs` wird entsprechend auf web/app umgestellt (Plan 06-02)
    - What we know: Attribut nennt interne Pfade; E2E `design-v2.pw.cjs:83` erwartet `^(web|mobile):\S+`.
    - Recommendation: Attribut auf `web:<Bildschirmname>`/`mobile:<Bildschirmname>` verkürzen (Regex bleibt gültig), voller Pfad bleibt nur in Daten und Vitest-Belegprüfung; Entscheidung im ersten Plan festhalten.
-3. **Vorschaubild je Gruppe im Mega-Menü (D-05 „optional“)**
+3. **Vorschaubild je Gruppe im Mega-Menü (D-05 „optional“)** — RESOLVED durch D-17 (nur Icons + Kurzbeschreibung)
    - Recommendation: nur Icons + Kurzbeschreibung; Mini-UI im Header würde auf jeder Seite HTML-Gewicht und weitere `inert`-Bereiche hinzufügen. Falls gewünscht, höchstens eine statische Vorschau im Desktop-Panel.
-4. **Ziele der Zusatzfunktionen: Hilfeartikel oder Detailseite?**
+4. **Ziele der Zusatzfunktionen: Hilfeartikel oder Detailseite?** — RESOLVED durch D-18 (Zuordnungstabelle, sonst ohne Link)
    - Recommendation: Hilfeartikel, wo einer das Thema direkt behandelt (GAEB, Mängel, Abnahme, Bautagesbericht, Wareneingang, Bauphasen), sonst Detailseite mit passendem Bullet, sonst ohne Link (Mahnwesen, Besichtigung, Kunden in der App, 21 Sprachen, Datenübernahme). Ziele im Datenmodul pflegen, Test prüft Existenz in `sitemap()`.
 
 ## Environment Availability

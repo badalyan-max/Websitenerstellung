@@ -78,7 +78,32 @@ Plans:
   3. Die Funktionsübersicht zeigt alle Live-Funktionen nach Arbeitsablauf gruppiert (Angebot → Planung → Baustelle → Rechnung → Buchhaltung → Team), jeweils mit visuellem Element und einem Satz Nutzen, und stimmt mit dem Produktregister überein.
   4. Startseite, Menü und Übersicht nutzen die Hauptkeywords aus der Keyword-Map und sind nach Ship-Gate live mit IndexNow-Meldung; `trial_click` wird weiter erfasst.
 
-**Plans**: TBD
+**Plans**: 6 plans (6 Wellen, strikt sequentiell)
+Plans:
+**Wave 1**
+
+- [ ] 06-01-PLAN.md — Gruppenmodell lib/funktionsgruppen.ts (16 + 14 Live-Funktionen), Nutzensätze, Phase-6-Budgets, Paritätstest
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 06-02-PLAN.md — Kaskade Phase 6, Szenenmodul, Kurzform-Belege (E3), DevicePair compact (E1), FeatureList (E2)
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [ ] 06-03-PLAN.md — Navigation: Server-Header mit Mega-Menü „Funktionen“, Client-Hülle, Drawer, No-JS, Browserprüfungen
+
+**Wave 4** *(blocked on Wave 3 completion)*
+
+- [ ] 06-04-PLAN.md — Startseite: Hero oberhalb der Falz, sieben v2-Abschnitte, Keyword-Map-Metadaten, FAQPage
+
+**Wave 5** *(blocked on Wave 4 completion)*
+
+- [ ] 06-05-PLAN.md — /funktionen gruppiert mit FeatureCard/FeatureList, JSON-LD, Zwei-Klick-Nachweis
+
+**Wave 6** *(blocked on Wave 5 completion; Code-Review-Gate des Orchestrators vorher)*
+
+- [ ] 06-06-PLAN.md — Phasen-Gate, live-check-Erweiterung, Ship-Gate über Gesamtdiff, Push, IndexNow, Live-Prüfung, Etappenmessung
+
 **UI hint**: yes
 
 ### Phase 7: Funktionsdetailseiten und Mobile-App-Seite
@@ -147,7 +172,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
-| 6. Startseite, Navigation und Funktionsübersicht | 0/TBD | Not started | - |
+| 6. Startseite, Navigation und Funktionsübersicht | 0/6 | Planned | - |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 0/TBD | Not started | - |
 | 8. SEO und KI-Sichtbarkeit | 0/TBD | Not started | - |
 | 9. Gewerke und Wissensinhalte | 0/TBD | Not started | - |
