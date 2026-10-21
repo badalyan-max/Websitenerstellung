@@ -145,7 +145,7 @@ Plans:
 
 **Wave 7** *(blocked on Wave 6 completion)*
 
-- [ ] 07-07-PLAN.md — Mobile-App-Seite /app aus v2-Bausteinen mit Phone-Kacheln, Kennzahlen, Offline-Ablauf, FAQ und MobileApplication
+- [x] 07-07-PLAN.md — Mobile-App-Seite /app aus v2-Bausteinen mit Phone-Kacheln, Kennzahlen, Offline-Ablauf, FAQ und MobileApplication
 
 **Wave 8** *(blocked on Wave 7 completion)*
 
@@ -210,7 +210,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
 | 6. Startseite, Navigation und Funktionsübersicht | 6/6 | Complete    | 2026-10-21 |
-| 7. Funktionsdetailseiten und Mobile-App-Seite | 6/9 | In Progress|  |
+| 7. Funktionsdetailseiten und Mobile-App-Seite | 7/9 | In Progress|  |
 | 8. SEO und KI-Sichtbarkeit | 0/TBD | Not started | - |
 | 9. Gewerke und Wissensinhalte | 0/TBD | Not started | - |
 | 10. Abschlussaudit | 0/TBD | Not started | - |

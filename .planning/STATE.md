@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-stopped_at: Completed 07-06-PLAN.md
-last_updated: "2026-10-21T19:41:18.545Z"
-last_activity: "2026-10-21 – 07-06 Inhalte Rechnung, Team, Buchhaltung und Routenumstellung: alle 22 Detailseiten auf der v2-Vorlage mit Keyword-Map-Metadaten, Rollen gegen Release geprüft, Kopf-Visual ohne angeschnittene Zeilen"
+stopped_at: Completed 07-07-PLAN.md
+last_updated: "2026-10-21T20:13:52.948Z"
+last_activity: "2026-10-21 – 07-07 Mobile-App-Seite /app aus v2-Bausteinen: 14 Kacheln (8 Phones), Kennzahlen mit belegtem Offline-Eintrag, Offline-Ablauf, FAQ, MobileApplication-JSON-LD; Phone-Zeilen ohne Kürzung"
 progress:
   total_phases: 6
   completed_phases: 2
   total_plans: 23
-  completed_plans: 20
+  completed_plans: 21
   percent: 33
 ---
 
@@ -30,14 +30,14 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 7
-Plan: 7 of 9 (07-01 bis 07-06 abgeschlossen)
+Plan: 8 of 9 (07-01 bis 07-07 abgeschlossen)
 Status: Ready to execute
-Last activity: 2026-10-21 – 07-06 Inhalte Rechnung, Team, Buchhaltung und Routenumstellung: alle 22 Detailseiten auf der v2-Vorlage mit Keyword-Map-Metadaten, Rollen gegen Release geprüft, Kopf-Visual ohne angeschnittene Zeilen
+Last activity: 2026-10-21 – 07-07 Mobile-App-Seite /app aus v2-Bausteinen: 14 Kacheln (8 Phones), Kennzahlen mit belegtem Offline-Eintrag, Offline-Ablauf, FAQ, MobileApplication-JSON-LD; Phone-Zeilen ohne Kürzung
 
-Progress: [█████████░] 87% (20/23 Pläne des Milestones; Phase 7: 6/9)
+Progress: [█████████░] 91% (21/23 Pläne des Milestones; Phase 7: 7/9)
 
-Last session: 2026-10-21T19:41:18.537Z
-Stopped at: Completed 07-06-PLAN.md
+Last session: 2026-10-21T20:13:48.352Z
+Stopped at: Completed 07-07-PLAN.md
 Resume file: None
 
 ## Accumulated Context
@@ -93,6 +93,8 @@ Resume file: None
 - [Phase 07]: 07-05: Wortregel erlaubt „automatisch“ in einer FAQ-Frage, deren Antwort mit „Nein“ beginnt
 - [Phase 07]: 07-06: Route /funktionen/[slug] dünn (zielwerte + FunktionsDetail); synthetische faq/seoTitle/seoDescription aus lib/funktionen.ts entfernt
 - [Phase 07]: 07-06: Browserrahmen im FunktionsKopf wächst mit seinen Zeilen (mind. 16:10), keine angeschnittenen Zeilen bei 360 px; Terminplanung-Beispielnamen gekürzt
+- [Phase 07]: 07-07: mobileOffline ist eigener Registereintrag mit 4 Mobile-Release-Belegen und der Limitation „Keine vollständige Offline-Zusage“; Offline auf /app nur als Kennzahl mit Einschränkung, Hinweis, Ablauf und FAQ „Teilweise:“
+- [Phase 07]: 07-07: In Phone-Rahmen bricht Statuspille bzw. Wert unter den Text statt Ellipse; 160-px-Titel 12 px; Leerraum der lg-Kacheln mit Phone 194 (165–189 px) geht an 07-08
 
 ### Pending Todos
 
@@ -126,3 +128,4 @@ None yet.
 | Phase 07 P04 | 45min | 3 tasks | 19 files |
 | Phase 07 P05 | 15min | 3 tasks | 5 files |
 | Phase 07 P06 | 36min | 3 tasks | 10 files |
+| Phase 07 P07 | 32min | 2 tasks | 8 files |
