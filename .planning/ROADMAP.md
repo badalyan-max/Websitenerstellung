@@ -22,7 +22,7 @@ craftos.eu wird klar gegliedert und optisch ansprechend: weniger Fließtext, Kac
 ## Phases
 
 - [x] **Phase 5: Produktwahrheit, Keyword-Map und Designbausteine** - Live-Stand korrigiert, Suchbegriffe je Seite festgelegt, v2-Bausteine bereit (completed 2026-10-20)
-- [ ] **Phase 6: Startseite, Navigation und Funktionsübersicht** - Startseite klar gegliedert, Funktionsmenü und nach Ablauf gruppierte Übersicht
+- [x] **Phase 6: Startseite, Navigation und Funktionsübersicht** - Startseite klar gegliedert, Funktionsmenü und nach Ablauf gruppierte Übersicht (completed 2026-10-21)
 - [ ] **Phase 7: Funktionsdetailseiten und Mobile-App-Seite** - Einheitliche, kurze Detailseiten mit visuellem Element für jede Live-Funktion
 - [ ] **Phase 8: SEO und KI-Sichtbarkeit** - Alternativen-Seiten, Preis-Antwortblock, Metadaten nach Keyword-Map, Breadcrumbs, OG-Grafiken
 - [ ] **Phase 9: Gewerke und Wissensinhalte** - Gewerke-Seiten gegliedert, Ratgeber und Hilfe auf Produktstand, neue Hilfeartikel
@@ -102,7 +102,7 @@ Plans:
 
 **Wave 6** *(blocked on Wave 5 completion; Code-Review-Gate des Orchestrators vorher)*
 
-- [ ] 06-06-PLAN.md — Phasen-Gate, live-check-Erweiterung, Ship-Gate über Gesamtdiff, Push, IndexNow, Live-Prüfung, Etappenmessung
+- [x] 06-06-PLAN.md — Phasen-Gate, live-check-Erweiterung, Ship-Gate über Gesamtdiff, Push, IndexNow, Live-Prüfung, Etappenmessung
 
 **UI hint**: yes
 
@@ -172,7 +172,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
-| 6. Startseite, Navigation und Funktionsübersicht | 5/6 | In Progress|  |
+| 6. Startseite, Navigation und Funktionsübersicht | 6/6 | Complete   | 2026-10-21 |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 0/TBD | Not started | - |
 | 8. SEO und KI-Sichtbarkeit | 0/TBD | Not started | - |
 | 9. Gewerke und Wissensinhalte | 0/TBD | Not started | - |

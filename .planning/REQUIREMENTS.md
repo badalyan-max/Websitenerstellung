@@ -12,9 +12,9 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 
 ### Design (DESIGN)
 
-- [ ] **DESIGN-01**: Besucher erfassen auf der Startseite ohne Scrollen, was CraftOS ist, sehen eine Produktdarstellung und finden „10 Tage testen“; jeder Abschnitt hat höchstens eine Überschrift, einen Satz Einleitung und visuelle Elemente statt Fließtextblöcke.
+- [x] **DESIGN-01**: Besucher erfassen auf der Startseite ohne Scrollen, was CraftOS ist, sehen eine Produktdarstellung und finden „10 Tage testen“; jeder Abschnitt hat höchstens eine Überschrift, einen Satz Einleitung und visuelle Elemente statt Fließtextblöcke.
 - [ ] **DESIGN-02**: Ein Designsystem v2 (Tokens, Bildrahmen für Desktop und Phone mit vereinfachter UI, Kachel-/Bento-Raster, Schrittfolge, Kennzahlen, Funktionskarte mit visuellem Element, Vergleichstabelle) wird auf allen Seiten einheitlich genutzt; Marke (Amber, Clash Display, General Sans, Logo) bleibt.
-- [ ] **DESIGN-03**: Besucher finden über ein Menü mit Funktionsgruppen, Kurzbeschreibungen und Vorschaubildern jede Funktion in höchstens zwei Klicks, auf Desktop und Mobil.
+- [x] **DESIGN-03**: Besucher finden über ein Menü mit Funktionsgruppen, Kurzbeschreibungen und Vorschaubildern jede Funktion in höchstens zwei Klicks, auf Desktop und Mobil.
 - [x] **DESIGN-04**: Bewegung ist dezent (Hover, Einblenden einzelner Elemente, Videos), es gibt keine globale Scroll-Animation, und bei „reduzierte Bewegung“ bleiben alle Inhalte statisch sichtbar.
 - [ ] **DESIGN-05**: Jede Seite besteht die Barrierefreiheitsprüfung (axe ohne ernsthafte Verstöße, Kontrast ≥ 4,5:1, Tastaturbedienung) bei 360, 390, 768, 1024 und 1440 px.
 
@@ -26,7 +26,7 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 
 ### Funktionen (FEAT)
 
-- [ ] **FEAT-01**: Eine Funktionsübersicht zeigt alle Live-Funktionen nach Arbeitsablauf gruppiert (Angebot → Planung → Baustelle → Rechnung → Buchhaltung → Team), jeweils mit visuellem Element und einem Satz Nutzen.
+- [x] **FEAT-01**: Eine Funktionsübersicht zeigt alle Live-Funktionen nach Arbeitsablauf gruppiert (Angebot → Planung → Baustelle → Rechnung → Buchhaltung → Team), jeweils mit visuellem Element und einem Satz Nutzen.
 - [ ] **FEAT-02**: Jede Live-Funktion hat eine Detailseite mit visuellem Element, Kurznutzen, Ablauf in Schritten, Plattformen (Web/Mobile), Rollen und FAQ; neue Seiten für die seit 09.09.2026 hinzugekommenen Funktionen.
 - [ ] **FEAT-03**: Die Mobile-App-Seite zeigt alle Live-Funktionen der App (u. a. Zeiterfassung mit Standort, Einsätze mit Navigation, Aufmaß, Baudoku, Besichtigung, Bautagesbericht, Mängel, Abnahme mit Unterschrift, Arbeitsschritte, Urlaub, Lager-Scan, Belegscan, Chat, Offline, 21 Sprachen) mit Phone-Darstellungen.
 - [ ] **FEAT-04**: Die 12 Gewerke-Seiten zeigen gewerktypische Abläufe mit visuellen Elementen statt nur Text.
@@ -74,16 +74,16 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 | PROD-02 | Phase 5 | Complete |
 | PROD-03 | Phase 5 | Complete |
 | PROD-04 | Phase 5 | Complete |
-| DESIGN-01 | Phase 6 | Pending |
+| DESIGN-01 | Phase 6 | Complete |
 | DESIGN-02 | Phase 5 (Grundlage), Phasen 6–8 (Umsetzung) | In Progress |
-| DESIGN-03 | Phase 6 | Pending |
+| DESIGN-03 | Phase 6 | Complete |
 | DESIGN-04 | Phase 5 | Complete |
 | DESIGN-05 | Phase 10 | Pending |
 | MEDIA-01 | Phase 7 | Pending |
 | MEDIA-02 | – | Out of Scope |
 | MEDIA-03 | Phase 5 | Complete |
 | MEDIA-04 | Phase 5 | Complete |
-| FEAT-01 | Phase 6 | Pending |
+| FEAT-01 | Phase 6 | Complete |
 | FEAT-02 | Phase 7 | Pending |
 | FEAT-03 | Phase 7 | Pending |
 | FEAT-04 | Phase 9 | Pending |
