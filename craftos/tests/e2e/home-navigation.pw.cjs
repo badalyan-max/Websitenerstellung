@@ -9,10 +9,14 @@ const AxeBuilder = require('@axe-core/playwright').default
  * Filtern per -g; die Pläne 06-04 und 06-05 erweitern diese Datei. Läuft nur lokal gegen next start.
  */
 
+// 22 Detailfunktionen in Gruppenreihenfolge (Phase 7, D-07: sechs ehemalige Zusatzfunktionen haben eigene Seiten).
 const DETAIL_SLUGS = [
-  'angebote', 'aufmass', 'kundenportal', 'plantafel', 'projektverwaltung', 'arbeitsanweisungen',
-  'zeiterfassung', 'baudokumentation', 'lager', 'rechnungen', 'e-rechnung', 'buchhaltung',
-  'eingangsrechnungen', 'nachkalkulation', 'dashboard', 'team',
+  'angebote', 'aufmass', 'kundenportal', 'gaeb',
+  'plantafel', 'projektverwaltung', 'arbeitsanweisungen', 'terminplanung',
+  'zeiterfassung', 'baudokumentation', 'lager', 'maengelmanagement',
+  'rechnungen', 'e-rechnung', 'mahnwesen',
+  'buchhaltung', 'eingangsrechnungen', 'nachkalkulation', 'dashboard', 'bankabgleich',
+  'team', 'datenuebernahme',
 ]
 const GROUP_ANCHORS = ['angebot', 'planung', 'baustelle', 'rechnung', 'buchhaltung', 'team']
 const APP_HOST = 'app.craftos.eu'
@@ -98,9 +102,10 @@ test('Menü: Drawer öffnet mit aufgeklappten Funktionen, sperrt den Scroll ohne
   await expect(functions).toHaveAttribute('aria-expanded', 'true')
   const details = page.locator('#navigation-funktionen a[href^="/funktionen/"]')
   const groups = page.locator('#navigation-funktionen a[href^="/funktionen#"]')
-  await expect(details).toHaveCount(16)
+  await expect(details).toHaveCount(DETAIL_SLUGS.length)
+  expect(DETAIL_SLUGS).toHaveLength(22)
   await expect(groups).toHaveCount(6)
-  for (let i = 0; i < 16; i += 1) await expect(details.nth(i)).toBeVisible()
+  for (let i = 0; i < 22; i += 1) await expect(details.nth(i)).toBeVisible()
   for (let i = 0; i < 6; i += 1) await expect(groups.nth(i)).toBeVisible()
   expect(await details.evaluateAll((els) => els.map((el) => el.getAttribute('href').slice('/funktionen/'.length)).sort()))
     .toEqual([...DETAIL_SLUGS].sort())
@@ -337,6 +342,38 @@ test('Above the fold: Startseite ruhig und gekennzeichnet (keine Animation, Kurz
   }
 })
 
+test('Menü: 22 Detaillinks ohne horizontales Überlaufen bei 1121 und 1250 px', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.use.hasTouch, 'Mega-Menü-Breiten werden im Desktop-Projekt geprüft.')
+  for (const width of [1121, 1250]) {
+    await page.setViewportSize({ width, height: 900 })
+    await page.goto('/')
+    const panel = await openFunctionsMenu(page, false)
+    await expect(panel).toBeVisible()
+    const details = panel.locator('a[href^="/funktionen/"]')
+    await expect(details, `${width}px: Detaillinks`).toHaveCount(22)
+    for (let i = 0; i < 22; i += 1) await expect(details.nth(i), `${width}px: Link ${i + 1}`).toBeVisible()
+    expect(
+      (await details.evaluateAll((els) => els.map((el) => el.getAttribute('href').slice('/funktionen/'.length)))).sort(),
+    ).toEqual([...DETAIL_SLUGS].sort())
+    const masse = await panel.evaluate((el) => ({ scrollWidth: el.scrollWidth, clientWidth: el.clientWidth }))
+    expect(masse.scrollWidth, `${width}px: Panel ohne horizontales Überlaufen`).toBeLessThanOrEqual(masse.clientWidth + 1)
+    const seite = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
+    expect(seite, `${width}px: kein horizontaler Seiten-Scroll`).toBeLessThanOrEqual(0)
+    // Kein Link ragt aus dem Panel heraus.
+    const panelBox = await panel.boundingBox()
+    const ausserhalb = await details.evaluateAll(
+      (els, box) =>
+        els
+          .map((el) => ({ href: el.getAttribute('href'), r: el.getBoundingClientRect() }))
+          .filter(({ r }) => r.left < box.x - 1 || r.right > box.x + box.width + 1)
+          .map(({ href }) => href),
+      panelBox,
+    )
+    expect(ausserhalb, `${width}px: Links außerhalb des Panels`).toEqual([])
+    testInfo.annotations.push({ type: 'Mega-Menü', description: `${testInfo.project.name} ${width}px: 22 Detaillinks sichtbar, scrollWidth ${masse.scrollWidth} ≤ clientWidth ${masse.clientWidth} + 1` })
+  }
+})
+
 // Zwei-Klick-Nachweis (Plan 06-05; DESIGN-03, D-05, D-17, 06-RESEARCH „Zwei-Klick-Definition“): jede
 // Live-Funktion ist nach genau einer Menü-Aktivierung über einen sichtbaren Funktions- oder Gruppenlink erreichbar.
 async function overviewDetails(request) {
@@ -391,7 +428,7 @@ test('Zwei Klicks: Mobil – ein Tap auf „Menü öffnen“ zeigt alle Funktion
   await panel.locator('a[href="/funktionen#baustelle"]').tap()
   await expect(page).toHaveURL(/\/funktionen#baustelle$/)
   await expectAnchorBelowHeader(page, 'baustelle')
-  await expect(page.locator('[data-funktion="maengel"]')).toBeVisible()
+  await expect(page.locator('[data-funktion="maengelmanagement"]')).toBeVisible()
   testInfo.annotations.push({ type: 'Zwei Klicks', description: `Mobil: ${details.length} Funktionslinks und ${GROUP_ANCHORS.length} Gruppenlinks nach 1 Tap sichtbar` })
 })
 
@@ -411,7 +448,7 @@ test('Zwei Klicks: Zuordnung – alle 30 Einträge auf /funktionen liegen in ein
   expect(entries).toHaveLength(30)
   for (const e of entries) expect(visibleGroups, `${e.id} in ${e.gruppe}`).toContain(e.gruppe)
   const detailCount = entries.filter((e) => DETAIL_SLUGS.includes(e.id)).length
-  expect(detailCount).toBe(16)
+  expect(detailCount).toBe(22)
   testInfo.annotations.push({
     type: 'Zwei Klicks',
     description: `${testInfo.project.name}: ${entries.length} Funktionen erreichbar (${detailCount} Detail + ${entries.length - detailCount} Zusatz)`,
@@ -422,7 +459,9 @@ test('Zwei Klicks: Ziele – alle Links der Übersichtseinträge und des Funktio
   test.skip(testInfo.project.use.hasTouch, 'Serverantworten sind geräteunabhängig.')
   await page.goto('/funktionen')
   const entryLinks = await page.locator('[data-funktion] a[href]').evaluateAll((els) => els.map((el) => el.getAttribute('href')))
-  expect(entryLinks).toHaveLength(16 + 7)
+  // 22 Detailkarten („Mehr zu …“) + 8 Zusatzfunktionen mit Ziel (07-UI-SPEC Zusatzliste, D-21) = 30
+  expect(entryLinks).toHaveLength(22 + 8)
+  expect(entryLinks).toContain('/app')
   const panelLinks = await page.locator('#navigation-funktionen a[href]').evaluateAll((els) => els.map((el) => el.getAttribute('href')))
   for (const href of ['/funktionen', '/app', '/craft-ai', '/gobd', '/vergleich']) expect(panelLinks, href).toContain(href)
   const paths = [...new Set([...entryLinks, ...panelLinks].map((href) => href.split('#')[0]))]
@@ -498,6 +537,6 @@ test('Funktionsübersicht: ohne JavaScript stehen alle 30 Funktionen im Dokument
     await page.goto(new URL('/funktionen', baseURL).href)
     await expect(page.locator('[data-funktion]')).toHaveCount(30)
     await expect(page.locator('[data-gruppe]')).toHaveCount(6)
-    await expect(page.getByRole('link', { name: /^Mehr zu / })).toHaveCount(16)
+    await expect(page.getByRole('link', { name: /^Mehr zu / })).toHaveCount(22)
   } finally { await context.close() }
 })
