@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-stopped_at: Completed 07-02-PLAN.md
-last_updated: "2026-10-21T17:31:43.970Z"
-last_activity: 2026-10-21 – 07-02 Funktionsmodell 22 + 8, Keyword-Map-Status und Zielwerte, interne Links, E2E 22/8 abgeschlossen
+stopped_at: Completed 07-03-PLAN.md
+last_updated: "2026-10-21T17:56:23.990Z"
+last_activity: 2026-10-21 – 07-03 Szenenkatalog MEDIA-01: kopfVisuals für 22 Funktionen, abgeleitete cardScenes, 3 App-Kachel-Szenen, /funktionen mit 22 Szenen-Karten
 progress:
   total_phases: 6
   completed_phases: 2
   total_plans: 23
-  completed_plans: 16
+  completed_plans: 17
   percent: 33
 ---
 
@@ -30,14 +30,14 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 7
-Plan: 3 of 9 (07-01, 07-02 abgeschlossen)
-Status: In progress
-Last activity: 2026-10-21 – 07-02 Funktionsmodell 22 + 8, Keyword-Map-Status und Zielwerte, interne Links, E2E 22/8 abgeschlossen
+Plan: 4 of 9 (07-01 bis 07-03 abgeschlossen)
+Status: Ready to execute
+Last activity: 2026-10-21 – 07-03 Szenenkatalog MEDIA-01: kopfVisuals für 22 Funktionen, abgeleitete cardScenes, 3 App-Kachel-Szenen, /funktionen mit 22 Szenen-Karten
 
-Progress: [███████░░░] 70% (16/23 Pläne des Milestones; Phase 7: 2/9)
+Progress: [███████░░░] 74% (17/23 Pläne des Milestones; Phase 7: 3/9)
 
-Last session: 2026-10-21T17:31:37.482Z
-Stopped at: Completed 07-02-PLAN.md
+Last session: 2026-10-21T17:56:23.981Z
+Stopped at: Completed 07-03-PLAN.md
 Resume file: None
 
 ## Accumulated Context
@@ -84,6 +84,8 @@ Resume file: None
 - [Phase 07]: 07-02: Sechs live Funktionen (gaeb, mahnwesen, terminplanung, bankabgleich, datenuebernahme, maengelmanagement) sind Detailfunktionen; Belege in evidence/mobileEvidence, liveExtras mit 8 beworbenen Einträgen
 - [Phase 07]: 07-02: Alle 8 Zusatzfunktionen haben ein Ziel (7 Detailseiten mit Funktionsname als label, 21 Sprachen -> /app kind seite); ZUSATZ_IDS gegen beworbene Registereinträge getestet
 - [Phase 07]: 07-02: Keyword-Map: sechs Pfade bestehend im selben Commit wie Sitemap; H1/Description laut 07-UI-SPEC SEO-Vertrag bereinigt (KEYWORD-MAP.md § 6); pageCandidates für datenuebernahme und maengelmanagement ergänzt
+- [Phase 07]: 07-03: cardScenes wird aus kopfVisuals abgeleitet (Paar → Browser-Szene) und bleibt FrameVisual { kind, scene }; ein Katalog für Kopf, Karten und /app
+- [Phase 07]: 07-03: Kundenportal-Szene zeigt die Portal-Rechnungsansicht (CustomerInvoice.tsx, Rechnungsdetails), weil die Startansicht am Release keine Belegliste hat; Belegscan mit Release-Feldname Nettobetrag (€)
 
 ### Pending Todos
 
@@ -113,3 +115,4 @@ None yet.
 | Phase 06 P06 | 35min | 2 tasks | 10 files |
 | Phase 07 P01 | 25min | 2 tasks | 14 files |
 | Phase 07 P02 | 19min | 3 tasks | 21 files |
+| Phase 07 P03 | 55min | 2 tasks | 7 files |
