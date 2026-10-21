@@ -32,6 +32,8 @@ export interface Funktion {
   icon: LucideIcon;
   tier: "heute" | "launch" | "vision";
   kurz: string;
+  /** Genau ein Nutzensatz (≤ 100 Zeichen) für Funktionskarten und Gruppenmodell (06-UI-SPEC). */
+  benefit: string;
   heroTitle: string;
   heroIntro: string;
   bullets: {
@@ -57,6 +59,7 @@ interface Definition {
   icon: LucideIcon;
   title: string;
   intro: string;
+  benefit: string;
   platforms: ProductPlatform[];
   access: string;
   points: [string, string][];
@@ -70,6 +73,8 @@ const definitions: Definition[] = [
   {
     slug: "dashboard",
     name: "Dashboard",
+    benefit:
+      "Projekte, offene Beträge, Angebote und Aufgaben auf einen Blick sehen.",
     icon: LayoutDashboard,
     title: "Der Arbeitstag beginnt mit Überblick.",
     intro:
@@ -104,6 +109,8 @@ const definitions: Definition[] = [
   {
     slug: "projektverwaltung",
     name: "Projektverwaltung",
+    benefit:
+      "Kunden, Phasen, Aufgaben, Termine und Dokumente bleiben beim jeweiligen Auftrag.",
     icon: FolderKanban,
     title: "Ein Projekt. Alle Informationen an ihrem Platz.",
     intro:
@@ -138,6 +145,8 @@ const definitions: Definition[] = [
   {
     slug: "angebote",
     name: "Angebote & Kalkulation",
+    benefit:
+      "Positionen mit Lohn, Material und Zuschlägen kalkulieren und als PDF mit Briefpapier ausgeben.",
     icon: FileText,
     title: "Angebote, die bis zur letzten Position passen.",
     intro:
@@ -176,6 +185,8 @@ const definitions: Definition[] = [
   {
     slug: "rechnungen",
     name: "Rechnungen",
+    benefit:
+      "Abschlags-, Teil- und Schlussrechnungen erstellen und Zahlungseingänge zuordnen.",
     icon: Receipt,
     title: "Von der geleisteten Arbeit zur nachvollziehbaren Rechnung.",
     intro:
@@ -214,6 +225,8 @@ const definitions: Definition[] = [
   {
     slug: "e-rechnung",
     name: "E-Rechnung",
+    benefit:
+      "Rechnungen als XRechnung oder ZUGFeRD mit strukturierten Daten ausgeben.",
     icon: FileCheck2,
     title: "Rechnungsdaten, mit denen andere Systeme weiterarbeiten.",
     intro:
@@ -247,6 +260,8 @@ const definitions: Definition[] = [
   {
     slug: "buchhaltung",
     name: "Buchhaltung & DATEV",
+    benefit:
+      "Belege prüfen und Buchungsdaten samt Belegbezug für DATEV exportieren.",
     icon: Calculator,
     title: "Die Vorbereitung sitzt. Die Steuerberatung kann weiterarbeiten.",
     intro:
@@ -281,6 +296,8 @@ const definitions: Definition[] = [
   {
     slug: "eingangsrechnungen",
     name: "Eingangsrechnungen & Belegscan",
+    benefit:
+      "Belege fotografieren, erkannte Angaben prüfen und Ausgaben einem Projekt zuordnen.",
     icon: ScanLine,
     title: "Der Beleg ist erfasst. Die Entscheidung bleibt bei Ihnen.",
     intro:
@@ -315,6 +332,8 @@ const definitions: Definition[] = [
   {
     slug: "plantafel",
     name: "Plantafel & Einsatzplanung",
+    benefit:
+      "Einsätze für das Team planen und die Einsatzorte auf der Karte im Blick behalten.",
     icon: CalendarDays,
     title: "Wer macht was? Und wann passt es wirklich?",
     intro:
@@ -361,6 +380,8 @@ const definitions: Definition[] = [
   {
     slug: "zeiterfassung",
     name: "Zeiterfassung",
+    benefit:
+      "Arbeitszeit per Timer starten und stoppen, mit Standort erfassen und einem Projekt zuordnen.",
     icon: Clock,
     title: "Die Zeit landet dort, wo die Arbeit passiert.",
     intro:
@@ -399,6 +420,8 @@ const definitions: Definition[] = [
   {
     slug: "lager",
     name: "Lager & Material",
+    benefit:
+      "Bestände, Lagerorte und Materialbewegungen nachvollziehbar verwalten.",
     icon: Package,
     title: "Wissen, was da ist. Und wohin es gegangen ist.",
     intro:
@@ -432,6 +455,8 @@ const definitions: Definition[] = [
   {
     slug: "baudokumentation",
     name: "Baudokumentation",
+    benefit:
+      "Arbeiten, Fotos und Mängel direkt beim Projekt festhalten und im Büro wiederfinden.",
     icon: HardHat,
     title: "Was auf der Baustelle passiert, bleibt im Projekt.",
     intro:
@@ -470,6 +495,8 @@ const definitions: Definition[] = [
   {
     slug: "aufmass",
     name: "Aufmaß",
+    benefit:
+      "Räume, Flächen und Abzüge vor Ort erfassen und die Mengen ins Angebot übernehmen.",
     icon: Ruler,
     title: "Aus Maßen werden nachvollziehbare Positionen.",
     intro:
@@ -504,6 +531,8 @@ const definitions: Definition[] = [
   {
     slug: "arbeitsanweisungen",
     name: "Arbeitsanweisungen",
+    benefit:
+      "Leistungen und Materialbedarf ohne Verkaufspreise für die Ausführung bereitstellen.",
     icon: ClipboardList,
     title: "Das Team weiß, was zu tun ist.",
     intro:
@@ -537,6 +566,8 @@ const definitions: Definition[] = [
   {
     slug: "team",
     name: "Team & Rechte",
+    benefit:
+      "Mitarbeitende einladen und Zugänge und Rechte passend zur Aufgabe vergeben.",
     icon: Users,
     title: "Jeder Zugang passt zur Aufgabe.",
     intro:
@@ -570,6 +601,8 @@ const definitions: Definition[] = [
   {
     slug: "nachkalkulation",
     name: "Nachkalkulation",
+    benefit:
+      "Geplante und tatsächliche Kosten je Projekt vergleichen und Abweichungen erkennen.",
     icon: TrendingUp,
     title: "Was war geplant? Was hat der Auftrag wirklich gekostet?",
     intro:
@@ -604,6 +637,8 @@ const definitions: Definition[] = [
   {
     slug: "kundenportal",
     name: "Kundenportal",
+    benefit:
+      "Kunden sehen freigegebene Angebote, Rechnungen und Termine in einem eigenen Bereich im Browser.",
     icon: Globe,
     title: "Ein gemeinsamer Ort für Ihre Kunden.",
     intro:
@@ -641,6 +676,7 @@ export const funktionen: Funktion[] = definitions.map((d) => ({
   icon: d.icon,
   tier: "heute",
   kurz: d.intro,
+  benefit: d.benefit,
   heroTitle: d.title,
   heroIntro: d.intro,
   bullets: d.points.map(([titel, text]) => ({ titel, text })),

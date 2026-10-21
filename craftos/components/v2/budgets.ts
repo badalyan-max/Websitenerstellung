@@ -14,6 +14,11 @@ export const TEXT_BUDGET = {
   badge: 16,
   faq: { question: 90, firstSentence: 300, answer: 600 },
   ctaBand: { title: 40, text: 80, button: 28 },
+  /** Phase 6 (06-UI-SPEC „Textbudgets“): Hero der Startseite, Seitenkopf /funktionen, Mega-Menü, FeatureList */
+  hero: { h1: 60, lead: 110 },
+  pageHead: { lead: 140 },
+  menuGroup: { description: 60 },
+  featureList: { name: 32, benefit: 100 },
   /** Mengen je Baustein */
   count: {
     bento: { min: 3, max: 7 },
@@ -21,6 +26,9 @@ export const TEXT_BUDGET = {
     keyFacts: { min: 3, max: 4 },
     faq: { min: 3, max: 8 },
     comparison: { columns: 4, rows: 12 },
+    /** Phase 6: Zusatzfunktionen je Gruppe und Startseiten-Abschnitte nach dem Hero */
+    featureList: { min: 1, max: 7 },
+    homeSections: { min: 6, max: 8 },
   },
 } as const;
 
@@ -34,6 +42,19 @@ export function assertTextBudget(field: string, value: string, max: number): voi
   const n = charCount(value);
   if (n > max) {
     throw new Error(`Textbudget überschritten: ${field} hat ${n} von ${max} Zeichen – Satz kürzen.`);
+  }
+}
+
+/** Anzahl der Sätze: Satzzeichen „.“, „!“ oder „?“ vor Leerraum oder Textende (06-UI-SPEC). */
+export function sentenceCount(value: string): number {
+  return (value.match(/[.!?](?=\s|$)/g) ?? []).length;
+}
+
+/** Wirft den Fehlertext aus dem 06-UI-SPEC, wenn ein Nutzentext nicht genau einen Satz hat. */
+export function assertOneSentence(component: string, name: string, value: string): void {
+  const n = sentenceCount(value);
+  if (n !== 1) {
+    throw new Error(`${component}: Nutzen für ${name} hat ${n} Sätze – genau einen Satz schreiben.`);
   }
 }
 
