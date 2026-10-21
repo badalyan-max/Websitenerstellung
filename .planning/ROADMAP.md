@@ -149,7 +149,7 @@ Plans:
 
 **Wave 8** *(blocked on Wave 7 completion)*
 
-- [ ] 07-08-PLAN.md — Browserprüfungen Detailseiten und /app (Above-the-fold, axe, CLS, reduced motion), scrollbar-gutter-Entscheidung (D-14)
+- [x] 07-08-PLAN.md — Browserprüfungen Detailseiten und /app (Above-the-fold, axe, CLS, reduced motion), scrollbar-gutter-Entscheidung (D-14)
 
 **Wave 9** *(blocked on Wave 8 completion; Code-Review-Gate des Orchestrators vorher)*
 
@@ -210,7 +210,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
 | 6. Startseite, Navigation und Funktionsübersicht | 6/6 | Complete    | 2026-10-21 |
-| 7. Funktionsdetailseiten und Mobile-App-Seite | 7/9 | In Progress|  |
+| 7. Funktionsdetailseiten und Mobile-App-Seite | 8/9 | In Progress|  |
 | 8. SEO und KI-Sichtbarkeit | 0/TBD | Not started | - |
 | 9. Gewerke und Wissensinhalte | 0/TBD | Not started | - |
 | 10. Abschlussaudit | 0/TBD | Not started | - |

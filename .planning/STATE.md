@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-stopped_at: Completed 07-07-PLAN.md
-last_updated: "2026-10-21T20:13:52.948Z"
-last_activity: "2026-10-21 – 07-07 Mobile-App-Seite /app aus v2-Bausteinen: 14 Kacheln (8 Phones), Kennzahlen mit belegtem Offline-Eintrag, Offline-Ablauf, FAQ, MobileApplication-JSON-LD; Phone-Zeilen ohne Kürzung"
+stopped_at: Completed 07-08-PLAN.md
+last_updated: "2026-10-21T21:18:54.387Z"
+last_activity: "2026-10-21 – 07-08 Browserprüfungen für 22 Detailseiten und /app (funktionsdetails.pw.cjs, 293 E2E grün), B10 Phone-Kacheln ohne Leerstreifen, scrollbar-gutter nur im Drawer-Scroll-Lock (D-14)"
 progress:
   total_phases: 6
   completed_phases: 2
   total_plans: 23
-  completed_plans: 21
+  completed_plans: 22
   percent: 33
 ---
 
@@ -30,14 +30,14 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 7
-Plan: 8 of 9 (07-01 bis 07-07 abgeschlossen)
+Plan: 9 of 9 (07-01 bis 07-08 abgeschlossen)
 Status: Ready to execute
-Last activity: 2026-10-21 – 07-07 Mobile-App-Seite /app aus v2-Bausteinen: 14 Kacheln (8 Phones), Kennzahlen mit belegtem Offline-Eintrag, Offline-Ablauf, FAQ, MobileApplication-JSON-LD; Phone-Zeilen ohne Kürzung
+Last activity: 2026-10-21 – 07-08 Browserprüfungen für 22 Detailseiten und /app (funktionsdetails.pw.cjs, 293 E2E grün), B10 Phone-Kacheln ohne Leerstreifen, scrollbar-gutter nur im Drawer-Scroll-Lock (D-14)
 
-Progress: [█████████░] 91% (21/23 Pläne des Milestones; Phase 7: 7/9)
+Progress: [██████████] 96% (22/23 Pläne des Milestones; Phase 7: 8/9)
 
-Last session: 2026-10-21T20:13:48.352Z
-Stopped at: Completed 07-07-PLAN.md
+Last session: 2026-10-21T21:18:54.378Z
+Stopped at: Completed 07-08-PLAN.md
 Resume file: None
 
 ## Accumulated Context
@@ -95,6 +95,9 @@ Resume file: None
 - [Phase 07]: 07-06: Browserrahmen im FunktionsKopf wächst mit seinen Zeilen (mind. 16:10), keine angeschnittenen Zeilen bei 360 px; Terminplanung-Beispielnamen gekürzt
 - [Phase 07]: 07-07: mobileOffline ist eigener Registereintrag mit 4 Mobile-Release-Belegen und der Limitation „Keine vollständige Offline-Zusage“; Offline auf /app nur als Kennzahl mit Einschränkung, Hinweis, Ablauf und FAQ „Teilweise:“
 - [Phase 07]: 07-07: In Phone-Rahmen bricht Statuspille bzw. Wert unter den Text statt Ellipse; 160-px-Titel 12 px; Leerraum der lg-Kacheln mit Phone 194 (165–189 px) geht an 07-08
+- [Phase 07]: 07-08: D-14 entschieden – globales scrollbar-gutter entfernt; HeaderShell setzt es nur während des Drawer-Scroll-Locks mit klassischer Scrollleiste (gemessen: 15-px-Leerrinne auf der 404-Seite bei 1920 × 1080 in Chromium)
+- [Phase 07]: 07-08: B10 – große Bento-Kachel mit Phone ab 1024 px mit höhengekoppelter Phone-Breite (160–320 px), ab Seitenverhältnis 4:5 Phone und Text nebeneinander; Leerraum vorher bis 220 px, nachher höchstens 25 px
+- [Phase 07]: 07-08: FeatureSnippet beendet Animationen bei reduzierter Bewegung (finish statt pause); axe-Fälle prüfen den statischen Zustand
 
 ### Pending Todos
 
@@ -129,3 +132,4 @@ None yet.
 | Phase 07 P05 | 15min | 3 tasks | 5 files |
 | Phase 07 P06 | 36min | 3 tasks | 10 files |
 | Phase 07 P07 | 32min | 2 tasks | 8 files |
+| Phase 07 P08 | 61min | 2 tasks | 13 files |
