@@ -3,6 +3,7 @@
  * Builder und Vorlage werden mit Fremddaten geprüft: Die Fixtures stehen nur hier, nicht im Produktcode.
  * Die echten Inhalte (lib/funktionsdetails/{gruppe}.ts) folgen in 07-05/07-06 und laufen dann über ERWARTET.
  */
+import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { createElement } from "react";
@@ -969,6 +970,80 @@ describe("getFunktionsdetail und Inhaltstabelle", () => {
       const quelltext = fs.readFileSync(path.join(dir, datei), "utf8");
       expect(quelltext, datei).not.toMatch(/€|10 Tage|Tage kostenlos/);
     }
+  });
+});
+
+describe("Route /funktionen/[slug] rendert die v2-Vorlage (D-04, D-19)", () => {
+  const ABSCHNITTE = ["kopf", "ablauf", "rollen", "kernpunkte", "faq", "verwandt", "cta"];
+
+  it("alle 22 Detailseiten: feste Abschnittsfolge, kein PageHero-/TrialCta-Markup, FeatureSnippet genau auf den 8 Seiten", async () => {
+    const { default: Page } = await import("@/app/funktionen/[slug]/page");
+    let mitSnippet = 0;
+    for (const { slug } of funktionen) {
+      const element = await Page({ params: Promise.resolve({ slug }) });
+      const html = renderToString(element);
+      expect([...html.matchAll(/data-abschnitt="([^"]+)"/g)].map((m) => m[1]), slug).toEqual(ABSCHNITTE);
+      expect(html, slug).not.toContain("craft-page-hero");
+      expect(html, slug).not.toContain("CraftOS kennenlernen");
+      expect(html.match(/<h1[\s>]/g) ?? [], slug).toHaveLength(1);
+      const variante = Object.hasOwn(SNIPPET_VARIANTE, slug) ? SNIPPET_VARIANTE[slug] : undefined;
+      const snippets = [...html.matchAll(/data-feature-snippet="([^"]+)"/g)].map((m) => m[1]);
+      if (variante) {
+        mitSnippet += 1;
+        expect(snippets, slug).toEqual([variante]);
+        expect(html, slug).toContain('data-figure="snippet"');
+      } else {
+        expect(snippets, slug).toEqual([]);
+        expect(html, slug).not.toContain('data-figure="snippet"');
+      }
+    }
+    expect(mitSnippet).toBe(8);
+  });
+});
+
+/**
+ * Rollen gegen den Web-Release (D-02 (3), T-07-17): nur lesend per `git show origin/release:<pfad>`.
+ * Übersprungen wird nur, wenn das Web-Repo auf diesem Rechner fehlt.
+ */
+const WEB_REPO = "C:/Projekte/craft-connect-buddy";
+const webRepoDa = fs.existsSync(path.join(WEB_REPO, ".git"));
+function releaseDatei(pfad: string): string {
+  return execFileSync("git", ["-C", WEB_REPO, "show", `origin/release:${pfad}`], { encoding: "utf8" });
+}
+
+describe.skipIf(!webRepoDa)("Rollen gegen Release (D-02 (3))", () => {
+  const webRollen = (slug: string) =>
+    INHALTE[slug].rollen.panels.find((p) => p.platform === "web")!.rollen.map((r) => r.name);
+
+  it("die fünf Preset-Namen stehen in roles.ts; Büro-Leitung mit, Büro-Projektleitung ohne Finanzschalter", () => {
+    const roles = releaseDatei("src/lib/subscription/roles.ts");
+    for (const name of ["Admin", "Büro-Leitung", "Büro-Projektleitung", "Mobil-Teamleitung", "Mobil-Teammitglied"]) {
+      expect(roles, name).toContain(`label: '${name}'`);
+    }
+    const license = releaseDatei("src/types/license.ts");
+    const preset = (rolle: string) =>
+      license.match(new RegExp(`${rolle}: \\{\\s*licenseType: '(\\w+)',\\s*toggles: \\{([^}]*)\\}`))?.slice(1) ?? [];
+    expect(preset("buero_leitung")[1]).toMatch(/finanzen_sichtbar: true/);
+    expect(preset("buero_projektleitung")[1]).toMatch(/finanzen_sichtbar: false/);
+  });
+
+  it("FEATURE_ACCESS gewährt finanzen und team_verwaltung nur admin", () => {
+    const license = releaseDatei("src/types/license.ts");
+    for (const feature of ["finanzen", "team_verwaltung"]) {
+      const zeile = license.match(new RegExp(`^\\s*${feature}:\\s*\\{([^}]*)\\}`, "m"))?.[1] ?? "";
+      expect(zeile, feature).toMatch(/admin:\s*true/);
+      expect(zeile, feature).toMatch(/buero:\s*false/);
+      expect(zeile, feature).toMatch(/app:\s*false/);
+    }
+  });
+
+  it("Finanzseiten nur Admin und Büro-Leitung, team nur Admin, datenuebernahme laut Datenimport.tsx", () => {
+    for (const slug of ["buchhaltung", "eingangsrechnungen", "nachkalkulation", "bankabgleich"]) {
+      for (const name of webRollen(slug)) expect(["Admin", "Büro-Leitung"], `${slug}: ${name}`).toContain(name);
+    }
+    expect(webRollen("team")).toEqual(["Admin"]);
+    for (const name of webRollen("datenuebernahme")) expect(["Admin", "Büro-Leitung"]).toContain(name);
+    expect(releaseDatei("src/pages/Datenimport.tsx")).toContain("Admin oder Büro-Leitung");
   });
 });
 

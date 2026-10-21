@@ -217,6 +217,38 @@ describe("Keyword-Map", () => {
     }
   });
 
+  it("Phase-7-Detailseiten folgen den Zielwerten (D-10, D-22, SEO-02)", async () => {
+    // Pitfall 1: Detailseiten haben generateMetadata (params als Promise) und eine async Page; gerendert wird
+    // deshalb die synchrone Vorlage FunktionsDetail mit getFunktionsdetail(slug).
+    const { generateMetadata } = await import("@/app/funktionen/[slug]/page");
+    const { FunktionsDetail } = await import("@/components/funktionen/FunktionsDetail");
+    const { getFunktionsdetail } = await import("@/lib/funktionsdetails");
+    const { funktionen } = await import("@/lib/funktionen");
+    expect(funktionen).toHaveLength(22);
+    for (const f of funktionen) {
+      const pfad = `/funktionen/${f.slug}`;
+      const eintrag = keywordMap.find((k) => k.path === pfad);
+      expect(eintrag?.primary && eintrag.target, `${pfad}: Eintrag mit Zielwerten`).toBeTruthy();
+      const { target, primary } = eintrag!;
+      const meta = await generateMetadata({ params: Promise.resolve({ slug: f.slug }) });
+      expect(`${String(meta.title)} | CraftOS`, `${pfad}: Title`).toBe(target!.title);
+      expect(meta.description, `${pfad}: Description`).toBe(target!.description);
+      expect(meta.alternates?.canonical, `${pfad}: Canonical`).toMatch(new RegExp(`${pfad}$`));
+      const html = renderToString(createElement(FunktionsDetail, { detail: getFunktionsdetail(f.slug) }));
+      const h1s = [...html.matchAll(/<h1[^>]*>([\s\S]*?)<\/h1>/g)];
+      expect(h1s, `${pfad}: genau eine H1`).toHaveLength(1);
+      const h1 = h1s[0][1]
+        .replace(/<[^>]+>/g, "")
+        .replace(/&amp;/g, "&")
+        .replace(/\s+/g, " ")
+        .trim();
+      expect(h1, `${pfad}: H1`).toBe(target!.h1);
+      expect(norm(h1), `${pfad}: Kopfwort`).toContain(norm(primary!.keyword.split(" ")[0]));
+    }
+    const leer = await generateMetadata({ params: Promise.resolve({ slug: "gibt-es-nicht" }) });
+    expect(leer).toEqual({});
+  });
+
   it("Phase-6-Seiten folgen den Zielwerten (D-12)", async () => {
     for (const seite of PHASE6_SEITEN) {
       const eintrag = keywordMap.find((k) => k.path === seite.path);
