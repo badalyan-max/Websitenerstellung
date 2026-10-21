@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
-status: verifying
-last_updated: "2026-10-20T23:56:59.949Z"
-last_activity: 2026-10-20
+status: executing
+last_updated: "2026-10-21T12:19:38.037Z"
+last_activity: 2026-10-21
 progress:
   total_phases: 6
   completed_phases: 1
-  total_plans: 8
-  completed_plans: 8
+  total_plans: 14
+  completed_plans: 9
   percent: 17
 ---
 
@@ -20,7 +20,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-10-20)
 
 **Core value:** Besucher verstehen den Produktablauf anhand lesbarer Beispiele und direkter App-Aufnahmen und können die richtige Funktion und Anleitung schnell finden.
-**Current focus:** Phase 5 — Produktwahrheit, Keyword-Map und Designbausteine
+**Current focus:** Phase 6 — Startseite, Navigation und Funktionsübersicht
 
 ## Vorheriger Milestone v1.0 (abgeschlossen)
 
@@ -29,9 +29,9 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 6
-Plan: Not started
-Status: Phase complete — ready for verification
-Last activity: 2026-10-20
+Plan: 1 of 6 complete (06-01 Gruppenmodell, Nutzensätze, Phase-6-Budgets); next 06-02
+Status: In progress
+Last activity: 2026-10-21 — Completed 06-01-PLAN.md
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -63,6 +63,7 @@ Progress: [░░░░░░░░░░] 0%
 - [Phase 05]: 05-07: Projekt 13094375 trackt alle 126 Hauptkeywords der Keyword-Map (19 geplante mit geplantem Pfad); limits[] leer, SEO-07 erledigt
 - [Phase 05]: 05-07: SEO-08 in REQUIREMENTS offen bis Plan 05-08; mindestens 15 neue seriöse Refdomains bleibt Meilensteinziel
 - [Phase 05]: 05-07: Portal-Mailtexte nicht neu formuliert; Register und LINKPLAN nennen Empfänger, Absender und Betreffvorschlag
+- [Phase 06]: 06-01: lib/funktionsgruppen.ts ist einzige Quelle für Menü, Startseite und /funktionen (6 Gruppen, 16 Detail- + 14 Zusatzfunktionen); Grenzfälle Dashboard→Buchhaltung, Kundenportal→Angebot, Projekt-Chat→Team, Datenübernahme→Team; Craft AI nur Fußleistenlink
 
 ### Pending Todos
 
@@ -84,3 +85,4 @@ None yet.
 | Phase 05 P05 | 17 min | 2 tasks | 21 files |
 | Phase 05 P06 | 36 min | 3 tasks | 24 files |
 | Phase 05 P07 | 17min | 3 tasks | 16 files |
+| Phase 06 P01 | 7min | 2 tasks | 6 files |

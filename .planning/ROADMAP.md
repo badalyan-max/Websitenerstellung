@@ -82,7 +82,7 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 06-01-PLAN.md — Gruppenmodell lib/funktionsgruppen.ts (16 + 14 Live-Funktionen), Nutzensätze, Phase-6-Budgets, Paritätstest
+- [x] 06-01-PLAN.md — Gruppenmodell lib/funktionsgruppen.ts (16 + 14 Live-Funktionen), Nutzensätze, Phase-6-Budgets, Paritätstest
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -172,7 +172,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
-| 6. Startseite, Navigation und Funktionsübersicht | 0/6 | Planned | - |
+| 6. Startseite, Navigation und Funktionsübersicht | 1/6 | In Progress|  |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 0/TBD | Not started | - |
 | 8. SEO und KI-Sichtbarkeit | 0/TBD | Not started | - |
 | 9. Gewerke und Wissensinhalte | 0/TBD | Not started | - |
