@@ -189,23 +189,31 @@ test('Desktop Navigation: Escape greift nur bei Fokus im Header oder Hover-Panel
 
   // 1. Fokus im Eingabefeld, Panel nur per Hover offen: Esc gehört dem Feld, kein Fokusraub, kein preventDefault.
   const input = page.locator('main input').first()
-  await input.focus()
+  // WebKit übernimmt den Fokus erst nach der Hydrierung zuverlässig; bis dahin erneut fokussieren.
+  await expect(async () => {
+    await input.click()
+    await expect(input).toBeFocused({ timeout: 500 })
+  }).toPass()
   await product.hover()
   await expect(panel).toBeVisible()
+  await expect(input).toBeFocused()
   await page.keyboard.press('Escape')
   await expect(input).toBeFocused()
   expect(await escPrevented()).toEqual([false])
 
-  // 2. Fokus auf einem Inhaltslink, Panel per Hover offen: Esc schließt das Panel, der Fokus bleibt im Inhalt.
+  // 2. Fokus auf einem Inhaltselement, Panel per Hover offen: Esc schließt das Panel, der Fokus bleibt im Inhalt.
   await page.mouse.move(30, 600)
   await expect(panel).toBeHidden()
-  const contentLink = page.locator('main a[href]').first()
-  await contentLink.focus()
+  // Fokussierbares Inhaltselement, das kein Eingabefeld ist (WebKit fokussiert Links ohne tabindex nicht per Skript).
+  const contentTarget = page.locator('main h1').first()
+  await contentTarget.evaluate((el) => el.setAttribute('tabindex', '-1'))
+  await contentTarget.focus()
+  await expect(contentTarget).toBeFocused()
   await product.hover()
   await expect(panel).toBeVisible()
   await page.keyboard.press('Escape')
   await expect(panel).toBeHidden()
-  await expect(contentLink).toBeFocused()
+  await expect(contentTarget).toBeFocused()
   expect(await escPrevented()).toEqual([false, true])
 
   // 3. Fokus im Header (Tastatur): Esc schließt und gibt den Fokus an den Schalter zurück.
@@ -221,8 +229,8 @@ test('Desktop Navigation: Escape greift nur bei Fokus im Header oder Hover-Panel
   expect(await escPrevented()).toEqual([false, true, true])
 
   // 4. Kein Panel offen: Esc bleibt unangetastet.
-  await contentLink.focus()
+  await contentTarget.focus()
   await page.keyboard.press('Escape')
-  await expect(contentLink).toBeFocused()
+  await expect(contentTarget).toBeFocused()
   expect(await escPrevented()).toEqual([false, true, true, false])
 })
