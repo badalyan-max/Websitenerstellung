@@ -428,3 +428,55 @@ WebKit weicht um höchstens 23 px ab (Phone-Höhe), alle Kriterien erfüllt.
 | H1 | Bei 390 px gilt 28 px statt 32 px für das H1 | Das UI-SPEC widerspricht sich („< 400 px: 28 px“ vs. „390 px nutzt 32 px“); umgesetzt ist die im Plan verbindlich genannte Grenze 400 px, die bei 390 px 10 px mehr Reserve für das ungetrennte Keyword lässt. |
 | H2 | Abschnitt „Abschluss“ ist ein `div[data-home-section]` um das `CtaBand` | `CtaBand` rendert selbst die `section` mit `aria-labelledby`; eine zweite `section` darum würde verschachtelte Landmarken erzeugen. |
 | H3 | Kennzahl „10 Tage“ mit geschütztem Leerzeichen | Wie auf der Musterseite, damit Zahl und Einheit in der Kennzahlen-Leiste nie umbrechen. |
+
+## 15. Kaskade Funktionsübersicht (Plan 06-05, 21.10.2026)
+
+Verbindlich sind 05-UI-SPEC und 06-UI-SPEC, Abschnitt „Seite 3: Funktionsübersicht `/funktionen`“. Umsetzung:
+`components/funktionen/FunktionenHead.tsx` (+ `.module.css`), `app/funktionen/page.tsx`, `itemListSchema` in
+`lib/schema.ts`. Einzige Datenquelle ist `getFunktionsgruppen()`; die Seite ist ein dunkler Seitenkopf mit
+Sprungnavigation, sechs Gruppenabschnitte (Kopf → `FeatureCard`-Raster → `FeatureList` „Weitere Funktionen“)
+und das `CtaBand`. `PageHero`, `TrialCta`, die Lizenz-Hinweisbox und `.feature-grid`/`.feature-link` sind entfallen.
+
+1. **frontend-design:** Kein Skill-Werkzeug in dieser Sitzung; gelesen (nicht kopiert):
+   `C:/Users/badal/.claude/plugins/cache/claude-plugins-official/frontend-design/e68e375d2286/skills/frontend-design/SKILL.md`.
+   Angewendet:
+   - *Struktur trägt Information:* Eyebrow nur als Gruppenname (Arbeitsablauf-Stufe), Sprunglinks mit dem
+     Gruppen-Icon aus dem Gruppenmodell, keine Nummern (die Gruppen sind Bereiche, keine Schrittfolge).
+   - *Hierarchie statt Einheitskarten:* Detailfunktionen als Karten mit Bühne, Zusatzfunktionen bewusst als
+     flache Liste ohne Karte und Schatten.
+   - *Kühnheit an einer Stelle:* Der Seitenkopf trägt die einzige Amber-Linie (3 px Unterkante) über dem
+     72-px-Linienraster der Startseite; die Gruppen wechseln ruhig zwischen Weiß und Warm.
+   - *Bewegung nur als Antwort:* nur Rahmenfarbe beim Hover der Sprunglinks (150 ms, bei reduzierter Bewegung aus).
+2. **ui-ux-pro-max** (ausgeführt am 21.10.2026, lokal):
+   ```
+   py -3.12 -X utf8 c:/Projekte/ai-agent-tools/skills/ui-ux-pro-max/scripts/search.py "construction trades saas feature overview page" --design-system -p "CraftOS"
+   py -3.12 -X utf8 c:/Projekte/ai-agent-tools/skills/ui-ux-pro-max/scripts/search.py "feature overview grouped anchor jump navigation sticky header" --domain ux
+   ```
+   Übernommen: „Sticky Navigation – fixed nav should not obscure content“ (Anker-H2 mit `scroll-margin-top: 100px`,
+   per Playwright geprüft: H2-Oberkante ≥ Header-Unterkante für alle sechs Sprunglinks und die Menü-Gruppenlinks).
+   Verworfen: „Smooth Scroll“ (würde unter reduzierter Bewegung Animationen erzeugen; die Seite hat bewusst keine),
+   Stil „Exaggerated Minimalism“, Palette Blau/Orange und Plus Jakarta Sans – sie widersprechen den gesperrten Tokens.
+3. **21st.dev:** `21st_magic_component_inspiration` stand nicht als Werkzeug zur Verfügung; keine Referenzen
+   abgerufen oder behauptet, builder und refiner nicht verwendet.
+4. **Context7:** MCP-Werkzeug nicht verfügbar; Title-Template-Verhalten wie in §14 belegt (Seitenwert ohne Marke,
+   das Layout-Template hängt „ | CraftOS“ an).
+
+**SEO-Prüfung:** Title „Software für Handwerksbetriebe: alle Funktionen | CraftOS“ (gerendert), H1 „Alle Funktionen
+der Software für Handwerksbetriebe“ (Keyword-Span `nowrap`), Description 148 Zeichen – alle gleich `keyword-map.json`
+(`tests/keyword-map.test.ts`, PHASE6_SEITEN). JSON-LD: `BreadcrumbList` (Start → Funktionen) und `ItemList`
+„Funktionen von CraftOS“ mit den 16 Detailseiten in Gruppenreihenfolge; Zusatzfunktionen ohne eigene URL fehlen bewusst.
+
+**Sichtprüfung (Playwright-Ganzseiten-Screenshots, nicht eingecheckt):** `/funktionen` in Chromium und WebKit bei
+360, 390, 768, 1024 und 1440 px; kein horizontaler Scroll, Keyword in einer Zeile. Keine Korrekturen an der
+Übersicht nötig. Bento-Kacheln der Startseite (Befund aus §14) im Baustein behoben:
+- Große Kachel (`lg`) mit Browserrahmen: Der Rahmen füllt die Kachelbreite und wächst mit der freien Höhe der über
+  zwei Zeilen gestreckten Kachel (mindestens 16:10); der Text sitzt am Kachelboden, kein leerer Streifen mehr. Das
+  behebt auch den zu schmalen Rahmen in der dunklen Kachel auf `/styleguide`.
+- Breite Kachel mit Visual am Ende: Gerät mittig in seiner Spalte statt am rechten Rand.
+
+**Abweichungen:**
+
+| # | Abweichung | Begründung |
+|---|---|---|
+| F1 | Raster und `FeatureList` stehen im selben Gruppenabschnitt (A6) | Eine Gruppe ist ein Anker und eine Landmarke; getrennte Abschnitte würden die Zwei-Klick-Zuordnung verdoppeln. |
+| F2 | H1 des Seitenkopfs mit `max-width: 20ch` | Hält die H1 bei 1440 px auf zwei Zeilen mit dem Keyword in der zweiten Zeile, statt einer überlangen ersten Zeile. |
