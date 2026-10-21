@@ -19,12 +19,51 @@ import {
   MiniStatus,
   MiniTimer,
   MiniWeek,
+  MINI_STATUS_BELEGE,
   type MiniListProps,
 } from "@/components/v2/mini/MiniUi";
 import { MINI_BUDGET } from "@/components/v2/mini/limits";
 import { PhoneFrame as BestandPhoneFrame } from "@/components/feature-snippet/DeviceFrame";
 import StyleguidePage from "@/app/styleguide/page";
-import { allScenes, cardScenes } from "@/lib/scenes";
+import { Frame } from "@/components/v2/SceneContent";
+import {
+  abnahmeScene,
+  allScenes,
+  cardScenes,
+  einsaetzeScene,
+  kopfVisuals,
+  lagerAppScene,
+  maengelScene,
+  maengelStatusScene,
+  plantafelScene,
+  urlaubScene,
+} from "@/lib/scenes";
+
+/** Die 22 Detailfunktionen (07-02, lib/funktionsgruppen.ts DETAIL_ZUORDNUNG). */
+const DETAIL_SLUGS = [
+  "dashboard",
+  "projektverwaltung",
+  "angebote",
+  "rechnungen",
+  "e-rechnung",
+  "buchhaltung",
+  "eingangsrechnungen",
+  "plantafel",
+  "zeiterfassung",
+  "lager",
+  "baudokumentation",
+  "aufmass",
+  "arbeitsanweisungen",
+  "team",
+  "nachkalkulation",
+  "kundenportal",
+  "gaeb",
+  "mahnwesen",
+  "terminplanung",
+  "bankabgleich",
+  "datenuebernahme",
+  "maengelmanagement",
+] as const;
 
 /** Kinder als createElement-Argumente: typisierte Hüllen (react/no-children-prop, siehe 05-04). */
 const Phone = PhoneFrame as FunctionComponent<Omit<PhoneFrameProps, "children">>;
@@ -394,25 +433,117 @@ describe("Kurzform-Belege (E3)", () => {
   });
 
   it("jede Szene in lib/scenes.ts hat eine Kurzform passend zum Präfix des vollen Belegs", () => {
-    expect(allScenes).toHaveLength(6);
+    // 6 Bestand + 22 neu (19 Kopf-Szenen der Detailseiten, 3 App-Kachel-Szenen; 07-UI-SPEC Szenenkatalog)
+    expect(allScenes).toHaveLength(28);
     for (const scene of allScenes) {
       expect(scene.screen, scene.title).toMatch(KURZFORM);
       const prefix = scene.evidence.split(":")[0];
       expect(["web", "mobile"], scene.title).toContain(prefix);
       expect(scene.screen.startsWith(prefix === "web" ? "web:" : "app:"), scene.title).toBe(true);
     }
-    expect(allScenes.map((scene) => scene.screen).sort()).toEqual(
-      ["app:Aufmaß", "app:Einsätze", "app:Mängel", "app:Zeiterfassung", "web:Plantafel", "web:Rechnungen"].sort(),
-    );
   });
 
-  it("cardScenes ordnet genau die fünf Funktionen mit belegter Szene zu", () => {
-    expect(Object.keys(cardScenes).sort()).toEqual(
-      ["aufmass", "baudokumentation", "plantafel", "rechnungen", "zeiterfassung"].sort(),
-    );
-    expect(cardScenes.plantafel?.kind).toBe("browser");
-    expect(cardScenes.rechnungen?.kind).toBe("browser");
-    expect(cardScenes.aufmass?.kind).toBe("phone");
+  it("allScenes enthält jede Szene genau einmal; nur maengelScene und maengelStatusScene teilen Bildschirm und Titel", () => {
+    expect(new Set(allScenes).size).toBe(allScenes.length);
+    const keys = allScenes.map((scene) => `${scene.screen}|${scene.title}`);
+    const doppelt = keys.filter((key, index) => keys.indexOf(key) !== index);
+    // Bewusst: dieselbe App-Ansicht „Mängel“ einmal ohne Status (Startseite, Bestand) und einmal mit Status (D-05).
+    expect(doppelt).toEqual(["app:Mängel|Mängel"]);
+    expect(allScenes).toContain(maengelScene);
+    expect(allScenes).toContain(maengelStatusScene);
+    const beschreibungen = allScenes.map((scene) => scene.description);
+    expect(new Set(beschreibungen).size).toBe(beschreibungen.length);
+  });
+
+  it("maengelScene (Startseite) ist unverändert", () => {
+    expect(maengelScene).toEqual({
+      title: "Mängel",
+      evidence: "mobile:src/features/defects/screens/DefectsScreen.tsx",
+      screen: "app:Mängel",
+      description: "Mängelliste in der Mobile-App mit drei erfassten Mängeln aus zwei Projekten.",
+      activeTab: "Projekte",
+      rows: [
+        { primary: "Silikonfuge Dusche", secondary: "Bad Bergmann" },
+        { primary: "Fliese gesprungen", secondary: "Bad Bergmann" },
+        { primary: "Türzarge beschädigt", secondary: "Bäckerei Krause" },
+      ],
+    });
+  });
+
+  it("jede Szene hält Mini-Budgets ein und nutzt nur belegte Statusnamen", () => {
+    const statusNamen = new Set(Object.keys(MINI_STATUS_BELEGE));
+    for (const scene of allScenes) {
+      expect(scene.title.length, scene.screen).toBeLessThanOrEqual(MINI_BUDGET.row);
+      expect(scene.description.length, scene.screen).toBeLessThanOrEqual(140);
+      expect(scene.description, scene.screen).toMatch(/^[^.!?]+[.!?]$/);
+      expect(scene.rows || scene.week || scene.timer, scene.screen).toBeTruthy();
+      expect((scene.rows ?? []).length, scene.screen).toBeLessThanOrEqual(MINI_BUDGET.rows);
+      expect((scene.week ?? []).length, scene.screen).toBeLessThanOrEqual(MINI_BUDGET.rows);
+      for (const row of scene.rows ?? []) {
+        for (const text of [row.primary, row.secondary, row.value]) {
+          if (text !== undefined) expect(text.length, `${scene.screen}: ${text}`).toBeLessThanOrEqual(MINI_BUDGET.row);
+        }
+        if (row.status) expect(statusNamen.has(row.status), `${scene.screen}: ${row.status}`).toBe(true);
+      }
+      for (const entry of scene.week ?? []) {
+        expect(entry.label.length, entry.label).toBeLessThanOrEqual(MINI_BUDGET.row);
+        expect(entry.day + (entry.span ?? 1), entry.label).toBeLessThanOrEqual(5);
+      }
+      // Phone-Szenen (mobile-Beleg) brauchen einen Tab der App-Navigation, Browser-Szenen keinen.
+      if (scene.evidence.startsWith("mobile:")) expect(scene.activeTab, scene.screen).toBeDefined();
+      else expect(scene.activeTab, scene.screen).toBeUndefined();
+    }
+  });
+
+  it("jede Szene rendert im passenden Rahmen ohne Fehler und gibt nur die Kurzform aus", () => {
+    for (const scene of allScenes) {
+      const kind = scene.evidence.startsWith("mobile:") ? "phone" : "browser";
+      const html = renderToString(createElement(Frame, { visual: { kind, scene } }));
+      expect(html, scene.screen).toContain(`data-evidence="${scene.screen}"`);
+      expect(html, scene.screen).not.toContain(scene.evidence.split(":")[1]);
+    }
+  });
+
+  it("kopfVisuals hat genau die 22 Detailfunktionen, Paare mit 1 Satz ≤ 140 Zeichen", () => {
+    expect(Object.keys(kopfVisuals).sort()).toEqual([...DETAIL_SLUGS].sort());
+    for (const [slug, visual] of Object.entries(kopfVisuals)) {
+      if (visual.kind === "pair") {
+        expect(visual.browser.evidence.startsWith("web:"), slug).toBe(true);
+        expect(visual.phone.evidence.startsWith("mobile:"), slug).toBe(true);
+        expect(visual.description.length, slug).toBeLessThanOrEqual(140);
+        expect(visual.description, slug).toMatch(/^[^.!?]+[.!?]$/);
+      } else {
+        expect(visual.scene.evidence.startsWith(visual.kind === "phone" ? "mobile:" : "web:"), slug).toBe(true);
+      }
+    }
+    expect(kopfVisuals.plantafel).toMatchObject({ kind: "pair", browser: plantafelScene, phone: einsaetzeScene });
+    expect(kopfVisuals.terminplanung).toMatchObject({
+      kind: "pair",
+      description:
+        "Projektplan der Web-App mit drei Arbeitsabschnitten und daneben dieselben Abschnitte mit Status in der Mobile-App.",
+    });
+    expect(kopfVisuals.maengelmanagement).toEqual({ kind: "phone", scene: maengelStatusScene });
+  });
+
+  it("cardScenes leitet sich für alle 22 Slugs aus kopfVisuals ab (Paar → Browser-Szene)", () => {
+    expect(Object.keys(cardScenes).sort()).toEqual([...DETAIL_SLUGS].sort());
+    for (const slug of DETAIL_SLUGS) {
+      const kopf = kopfVisuals[slug];
+      const card = cardScenes[slug];
+      if (kopf.kind === "pair") expect(card, slug).toEqual({ kind: "browser", scene: kopf.browser });
+      else expect(card, slug).toEqual({ kind: kopf.kind, scene: kopf.scene });
+      expect(card?.scene, slug).toBe(kopf.kind === "pair" ? kopf.browser : kopf.scene);
+    }
+  });
+
+  it("jede Szene aus kopfVisuals und den App-Kacheln steht in allScenes", () => {
+    const kopfSzenen = Object.values(kopfVisuals).flatMap((v) => (v.kind === "pair" ? [v.browser, v.phone] : [v.scene]));
+    for (const scene of [...kopfSzenen, urlaubScene, abnahmeScene, lagerAppScene]) {
+      expect(allScenes, scene.screen).toContain(scene);
+    }
+    expect(urlaubScene).toMatchObject({ screen: "app:Urlaub", title: "Meine Urlaubsanträge", activeTab: "Zeiten" });
+    expect(abnahmeScene).toMatchObject({ screen: "app:Abnahme", title: "Abnahmeprotokolle", activeTab: "Projekte" });
+    expect(lagerAppScene).toMatchObject({ screen: "app:Lager", title: "Lager", activeTab: "Mehr" });
   });
 
   it("die Musterseite liefert nur Kurzform-Belege aus", () => {

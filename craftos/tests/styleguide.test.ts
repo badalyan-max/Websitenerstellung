@@ -13,6 +13,7 @@ import sitemap from "@/app/sitemap";
 import { funktionen } from "@/lib/funktionen";
 import { buildLlmsTxt } from "@/lib/llms";
 import { getProductRegister, mobileLocales } from "@/lib/product-register";
+import { allScenes } from "@/lib/scenes";
 import { site, startCredits, tarife } from "@/lib/site";
 import * as content from "@/lib/styleguide-content";
 
@@ -84,6 +85,25 @@ describe("styleguide: Produktwahrheit", () => {
       expect(e).toMatch(/^(web|mobile):\S+/);
       expect(known.has(e), `Beleg ${e} fehlt im Produktregister`).toBe(true);
     }
+  });
+
+  it("jeder volle Szenenbeleg in lib/scenes.ts (allScenes) kommt im Produktregister vor", () => {
+    const register = getProductRegister();
+    const known = new Set(
+      [...register.features.flatMap((f) => f.evidence), ...register.liveExtras.flatMap((e) => e.evidence)].map(
+        (e) => `${e.repository}:${e.path}`,
+      ),
+    );
+    expect(allScenes.length).toBe(28);
+    for (const scene of allScenes) {
+      expect(scene.evidence, scene.screen).toMatch(/^(web|mobile):\S+$/);
+      expect(known.has(scene.evidence), `Beleg ${scene.evidence} (${scene.screen}) fehlt im Produktregister`).toBe(true);
+    }
+  });
+
+  it("Szenen nennen keine Bauphasen (Release-Begriff Arbeitsabschnitte, B3)", () => {
+    const text = JSON.stringify(allScenes);
+    expect(text).not.toContain("Bauphase");
   });
 
   it("jeder KeyFact-Wert entspricht dem formatierten Wert seiner Quelle", () => {
