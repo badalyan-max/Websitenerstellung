@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-last_updated: "2026-10-21T12:19:38.037Z"
-last_activity: 2026-10-21
+last_updated: "2026-10-21T12:35:32.612Z"
+last_activity: 2026-10-21 — Completed 06-02-PLAN.md
 progress:
   total_phases: 6
   completed_phases: 1
   total_plans: 14
-  completed_plans: 9
+  completed_plans: 10
   percent: 17
 ---
 
@@ -29,9 +29,9 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 6
-Plan: 1 of 6 complete (06-01 Gruppenmodell, Nutzensätze, Phase-6-Budgets); next 06-02
+Plan: 2 of 6 complete (06-01 Gruppenmodell, Nutzensätze, Phase-6-Budgets; 06-02 Szenenmodul, Kurzform-Belege, DevicePair compact, FeatureList); next 06-03
 Status: In progress
-Last activity: 2026-10-21 — Completed 06-01-PLAN.md
+Last activity: 2026-10-21 — Completed 06-02-PLAN.md
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -64,6 +64,7 @@ Progress: [░░░░░░░░░░] 0%
 - [Phase 05]: 05-07: SEO-08 in REQUIREMENTS offen bis Plan 05-08; mindestens 15 neue seriöse Refdomains bleibt Meilensteinziel
 - [Phase 05]: 05-07: Portal-Mailtexte nicht neu formuliert; Register und LINKPLAN nennen Empfänger, Absender und Betreffvorschlag
 - [Phase 06]: 06-01: lib/funktionsgruppen.ts ist einzige Quelle für Menü, Startseite und /funktionen (6 Gruppen, 16 Detail- + 14 Zusatzfunktionen); Grenzfälle Dashboard→Buchhaltung, Kundenportal→Angebot, Projekt-Chat→Team, Datenübernahme→Team; Craft AI nur Fußleistenlink
+- [Phase 06]: 06-02: data-evidence nur als Kurzform web:/app: (components/v2/evidence.ts erzwingt sie); voller Beleg nur in lib/scenes.ts; Szenen/Rahmen über lib/scenes.ts und components/v2/SceneContent.tsx; cardScenes nur für aufmass, plantafel, zeiterfassung, baudokumentation, rechnungen
 
 ### Pending Todos
 
@@ -86,3 +87,4 @@ None yet.
 | Phase 05 P06 | 36 min | 3 tasks | 24 files |
 | Phase 05 P07 | 17min | 3 tasks | 16 files |
 | Phase 06 P01 | 7min | 2 tasks | 6 files |
+| Phase 06 P02 | 14min | 3 tasks | 16 files |

@@ -86,7 +86,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 06-02-PLAN.md — Kaskade Phase 6, Szenenmodul, Kurzform-Belege (E3), DevicePair compact (E1), FeatureList (E2)
+- [x] 06-02-PLAN.md — Kaskade Phase 6, Szenenmodul, Kurzform-Belege (E3), DevicePair compact (E1), FeatureList (E2)
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
@@ -172,7 +172,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
-| 6. Startseite, Navigation und Funktionsübersicht | 1/6 | In Progress|  |
+| 6. Startseite, Navigation und Funktionsübersicht | 2/6 | In Progress|  |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 0/TBD | Not started | - |
 | 8. SEO und KI-Sichtbarkeit | 0/TBD | Not started | - |
 | 9. Gewerke und Wissensinhalte | 0/TBD | Not started | - |
