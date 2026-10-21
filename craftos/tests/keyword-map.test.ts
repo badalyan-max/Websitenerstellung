@@ -29,6 +29,7 @@ const toPath = (url: string) => new URL(url).pathname.replace(/\/$/, "") || "/";
 type SeitenModul = { default: () => ReactElement; metadata: Metadata };
 const PHASE6_SEITEN: { path: string; modul: () => Promise<SeitenModul> }[] = [
   { path: "/", modul: () => import("@/app/page") },
+  { path: "/funktionen", modul: () => import("@/app/funktionen/page") },
 ];
 
 type Row = Record<string, unknown>;

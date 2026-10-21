@@ -332,3 +332,168 @@ test('Above the fold: Startseite ruhig und gekennzeichnet (keine Animation, Kurz
     expect(await severeAxe(page), `axe ${vp.width}×${vp.height}`).toEqual([])
   }
 })
+
+// Zwei-Klick-Nachweis (Plan 06-05; DESIGN-03, D-05, D-17, 06-RESEARCH „Zwei-Klick-Definition“): jede
+// Live-Funktion ist nach genau einer Menü-Aktivierung über einen sichtbaren Funktions- oder Gruppenlink erreichbar.
+async function overviewDetails(request) {
+  const response = await request.get('/funktionen')
+  expect(response.status()).toBe(200)
+  const html = await response.text()
+  const ids = [...html.matchAll(/data-funktion="([^"]+)"/g)].map((m) => m[1])
+  expect(ids).toHaveLength(30)
+  // Detail-Einträge sind die Karten mit Link „Mehr zu …“ auf /funktionen/<slug>.
+  return ids.filter((id) => new RegExp(`href="/funktionen/${id}"[^>]*>Mehr zu `).test(html))
+}
+
+async function openFunctionsMenu(page, hasTouch) {
+  const nav = page.getByRole('navigation', { name: 'Hauptnavigation' })
+  const button = nav.getByRole('button', { name: 'Untermenü Funktionen', exact: true })
+  if (hasTouch) await tapToggle(page, true)
+  else await button.click()
+  await expect(button).toHaveAttribute('aria-expanded', 'true')
+  return page.locator('#navigation-funktionen')
+}
+
+async function expectAnchorBelowHeader(page, id) {
+  const bottom = await page.locator('[data-site-header]').evaluate((el) => el.getBoundingClientRect().bottom)
+  await expect
+    .poll(() => page.locator(`h2#${id}`).evaluate((el) => Math.round(el.getBoundingClientRect().top)), { message: `#${id} unter dem Header` })
+    .toBeGreaterThanOrEqual(Math.floor(bottom))
+}
+
+test('Zwei Klicks: Desktop – ein Klick auf „Untermenü Funktionen“ zeigt alle Funktions- und Gruppenlinks, Gruppenlink führt zum Anker', async ({ page, request }, testInfo) => {
+  test.skip(testInfo.project.use.hasTouch, 'Desktop-Weg im 1440-Projekt; der Drawer wird im Touch-Projekt geprüft.')
+  const details = await overviewDetails(request)
+  expect([...details].sort()).toEqual([...DETAIL_SLUGS].sort())
+  await page.goto('/')
+  const panel = await openFunctionsMenu(page, false)
+  for (const slug of details) await expect(panel.locator(`a[href="/funktionen/${slug}"]`), slug).toBeVisible()
+  for (const id of GROUP_ANCHORS) await expect(panel.locator(`a[href="/funktionen#${id}"]`), id).toBeVisible()
+  await panel.locator('a[href="/funktionen#rechnung"]').click()
+  await expect(page).toHaveURL(/\/funktionen#rechnung$/)
+  await expectAnchorBelowHeader(page, 'rechnung')
+  await expect(page.locator('[data-funktion="mahnwesen"]')).toBeVisible()
+  testInfo.annotations.push({ type: 'Zwei Klicks', description: `Desktop: ${details.length} Funktionslinks und ${GROUP_ANCHORS.length} Gruppenlinks nach 1 Klick sichtbar` })
+})
+
+test('Zwei Klicks: Mobil – ein Tap auf „Menü öffnen“ zeigt alle Funktions- und Gruppenlinks, Gruppenlink führt zum Anker', async ({ page, request, hasTouch }, testInfo) => {
+  test.skip(!hasTouch, 'Mobiler Weg im Touch-Projekt.')
+  const details = await overviewDetails(request)
+  expect([...details].sort()).toEqual([...DETAIL_SLUGS].sort())
+  await page.goto('/')
+  const panel = await openFunctionsMenu(page, true)
+  for (const slug of details) await expect(panel.locator(`a[href="/funktionen/${slug}"]`), slug).toBeVisible()
+  for (const id of GROUP_ANCHORS) await expect(panel.locator(`a[href="/funktionen#${id}"]`), id).toBeVisible()
+  await panel.locator('a[href="/funktionen#baustelle"]').tap()
+  await expect(page).toHaveURL(/\/funktionen#baustelle$/)
+  await expectAnchorBelowHeader(page, 'baustelle')
+  await expect(page.locator('[data-funktion="maengel"]')).toBeVisible()
+  testInfo.annotations.push({ type: 'Zwei Klicks', description: `Mobil: ${details.length} Funktionslinks und ${GROUP_ANCHORS.length} Gruppenlinks nach 1 Tap sichtbar` })
+})
+
+test('Zwei Klicks: Zuordnung – alle 30 Einträge auf /funktionen liegen in einer Gruppe, deren Link im geöffneten Menü sichtbar war', async ({ page, hasTouch }, testInfo) => {
+  await page.goto('/')
+  const panel = await openFunctionsMenu(page, hasTouch)
+  const visibleGroups = []
+  for (const id of GROUP_ANCHORS) {
+    if (await panel.locator(`a[href="/funktionen#${id}"]`).isVisible()) visibleGroups.push(id)
+  }
+  expect(visibleGroups).toEqual(GROUP_ANCHORS)
+  await page.goto('/funktionen')
+  const entries = await page.locator('[data-funktion]').evaluateAll((els) => els.map((el) => ({
+    id: el.getAttribute('data-funktion'),
+    gruppe: el.closest('[data-gruppe]')?.getAttribute('data-gruppe') ?? null,
+  })))
+  expect(entries).toHaveLength(30)
+  for (const e of entries) expect(visibleGroups, `${e.id} in ${e.gruppe}`).toContain(e.gruppe)
+  const detailCount = entries.filter((e) => DETAIL_SLUGS.includes(e.id)).length
+  expect(detailCount).toBe(16)
+  testInfo.annotations.push({
+    type: 'Zwei Klicks',
+    description: `${testInfo.project.name}: ${entries.length} Funktionen erreichbar (${detailCount} Detail + ${entries.length - detailCount} Zusatz)`,
+  })
+})
+
+test('Zwei Klicks: Ziele – alle Links der Übersichtseinträge und des Funktionen-Panels liefern 200', async ({ page, request }, testInfo) => {
+  test.skip(testInfo.project.use.hasTouch, 'Serverantworten sind geräteunabhängig.')
+  await page.goto('/funktionen')
+  const entryLinks = await page.locator('[data-funktion] a[href]').evaluateAll((els) => els.map((el) => el.getAttribute('href')))
+  expect(entryLinks).toHaveLength(16 + 7)
+  const panelLinks = await page.locator('#navigation-funktionen a[href]').evaluateAll((els) => els.map((el) => el.getAttribute('href')))
+  for (const href of ['/funktionen', '/app', '/craft-ai', '/gobd', '/vergleich']) expect(panelLinks, href).toContain(href)
+  const paths = [...new Set([...entryLinks, ...panelLinks].map((href) => href.split('#')[0]))]
+  for (const p of paths) {
+    const response = await request.get(p)
+    expect(response.status(), p).toBe(200)
+  }
+})
+
+// Funktionsübersicht im Browser (Plan 06-05; 06-UI-SPEC „Seite 3“ und Prüfmatrix).
+test('Funktionsübersicht: axe, kein horizontaler Scroll und ungetrenntes Keyword in fünf Breiten', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.use.hasTouch, 'Die Breiten werden im Desktop-Projekt per setViewportSize geprüft.')
+  test.setTimeout(120_000)
+  for (const vp of FOLD_VIEWPORTS) {
+    await page.setViewportSize(vp)
+    await page.goto('/funktionen')
+    await page.waitForLoadState('networkidle')
+    const m = await page.evaluate(() => {
+      const h1 = document.querySelector('h1')
+      const kw = h1.querySelector('[data-keyword]')
+      return {
+        overflow: document.documentElement.scrollWidth - window.innerWidth,
+        rects: kw.getClientRects().length,
+        kw: kw.getBoundingClientRect().width,
+        h1: h1.getBoundingClientRect().width,
+        h1Count: document.querySelectorAll('h1').length,
+      }
+    })
+    expect(m.overflow, `horizontaler Scroll ${vp.width}`).toBeLessThanOrEqual(1)
+    expect(m.rects, `Keyword in einer Zeile ${vp.width}`).toBe(1)
+    expect(m.kw, `Keyword ≤ H1 ${vp.width}`).toBeLessThanOrEqual(m.h1 + 0.5)
+    expect(m.h1Count).toBe(1)
+    expect(await severeAxe(page), `axe ${vp.width}×${vp.height}`).toEqual([])
+  }
+})
+
+test('Funktionsübersicht: Sprunglinks, reduzierte Bewegung, Kurzform-Belege und Kennzeichnung', async ({ page, hasTouch }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto('/funktionen')
+  await page.waitForLoadState('networkidle')
+  // WebKit meldet beim Laden kurzzeitig 0,01-ms-Übergänge (globale Reduced-Motion-Regel mit transition: all);
+  // geprüft wird, dass danach nichts mehr läuft.
+  await expect.poll(() => page.evaluate(() => document.getAnimations().length), { timeout: 3_000 }).toBe(0)
+
+  const jump = page.getByRole('navigation', { name: 'Funktionsgruppen' })
+  const links = jump.getByRole('link')
+  await expect(links).toHaveCount(6)
+  expect(await links.evaluateAll((els) => els.map((el) => el.getAttribute('href')))).toEqual(GROUP_ANCHORS.map((id) => `#${id}`))
+  for (const id of GROUP_ANCHORS) {
+    await page.evaluate(() => window.scrollTo(0, 0))
+    const link = jump.locator(`a[href="#${id}"]`)
+    if (hasTouch) await link.tap()
+    else await link.click()
+    await expect(page).toHaveURL(new RegExp(`/funktionen#${id}$`))
+    await expectAnchorBelowHeader(page, id)
+  }
+
+  const figures = await page.locator('figure[data-figure]').evaluateAll((els) => els.map((el) => el.textContent))
+  expect(figures).toHaveLength(5)
+  for (const text of figures) expect(text).toContain(FRAME_LABEL)
+  const evidence = await page.locator('[data-evidence]').evaluateAll((els) => els.map((el) => el.getAttribute('data-evidence')))
+  expect(evidence.length).toBeGreaterThan(0)
+  for (const e of evidence) expect(e).toMatch(/^(web|app):[^\s/]+$/)
+})
+
+test('Funktionsübersicht: ohne JavaScript stehen alle 30 Funktionen im Dokument', async ({ browser, baseURL }, testInfo) => {
+  test.skip(testInfo.project.use.hasTouch, 'Die Serverausgabe ist unabhängig von Touch.')
+  const origin = new URL(baseURL).origin
+  const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } })
+  const page = await context.newPage()
+  await page.route('**/*', (route) => new URL(route.request().url()).origin === origin ? route.continue() : route.abort())
+  try {
+    await page.goto(new URL('/funktionen', baseURL).href)
+    await expect(page.locator('[data-funktion]')).toHaveCount(30)
+    await expect(page.locator('[data-gruppe]')).toHaveCount(6)
+    await expect(page.getByRole('link', { name: /^Mehr zu / })).toHaveCount(16)
+  } finally { await context.close() }
+})
