@@ -646,3 +646,12 @@ if (aktiv.has("antwort") && mitAntwortRegel(path))
 
 **Research date:** 2026-10-22
 **Valid until:** nächster `origin/release`-Sprung (Web/Mobile) bzw. 7 Tage (schnell bewegliches Produkt); Keyword-Daten 30 Tage.
+
+## Orchestrator-Entscheidungen zu den Open Questions (22.10.2026)
+
+1. RESOLVED: `/blog/gaeb-formate` darf als neutrale Fachübersicht D83 (GAEB 90) erklären. Der CraftOS-Abschnitt nennt nur die unterstützten Formate X83 und X84, ohne Negativliste.
+2. RESOLVED: Die Pflichtfrage zur Portal-Onlinezahlung auf `/funktionen/kundenportal` wird von Paket (f) positiv umformuliert, also mit dem, was das Portal kann. Den Test zieht Paket (f) nach.
+3. RESOLVED: Besitzer von `lib/funktionen.ts` ist Paket (f). Dazu gehören auch die GAEB-Negativlisten in `lib/funktionen.ts` und `lib/funktionsdetails/angebot.ts`.
+4. RESOLVED: Paket (b) ruft die BMF-FAQ zur E-Rechnung neu ab, bevor es Fristen schreibt. Ist sie nicht erreichbar, nutzt es die Primärquelle (BMF-Schreiben bzw. UStG § 14 und § 27 Abs. 38), mit Abrufdatum.
+5. RESOLVED: Die Gewerke-Zusage „vorbereitete Leistungsvorlagen“ (`hatVorlagen`) ist nicht als Nutzerfunktion belegt. Paket (a) streicht sie aus allen Gewerke-Seiten, und kein Text darf sie wieder aufnehmen.
+6. RESOLVED: Die Rohdaten `2026-10-22-keyword-*-phase09.json` committet der Orchestrator.

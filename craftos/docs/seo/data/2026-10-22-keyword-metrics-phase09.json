@@ -1,0 +1,1535 @@
+{
+ "source": "SE Ranking Data API via MCP DATA_getKeywordsMetrics, source=de",
+ "fetchedAt": "2026-10-22T18:20:36.165Z",
+ "groups": {
+  "kundenportal-kunden-einladen": [
+   "kundenportal handwerker",
+   "kundenportal handwerk",
+   "kundenportal einladen",
+   "kundenportal software",
+   "kundenportal app",
+   "handwerker kundenportal"
+  ],
+  "angebot-online-unterschreiben-lassen": [
+   "angebot online unterschreiben",
+   "angebot digital unterschreiben",
+   "angebot unterschreiben lassen",
+   "digitale unterschrift angebot",
+   "angebot elektronisch unterschreiben",
+   "online unterschrift angebot"
+  ],
+  "mahnwesen-zahlungserinnerungen": [
+   "mahnwesen handwerk",
+   "automatisches mahnwesen",
+   "mahnwesen software",
+   "mahnstufen",
+   "zahlungserinnerung automatisch",
+   "mahnlauf",
+   "mahnwesen einrichten"
+  ],
+  "bankumsaetze-abgleichen": [
+   "bankabgleich",
+   "bankumsätze abgleichen",
+   "zahlungsabgleich",
+   "kontoabgleich",
+   "camt.053",
+   "camt 053",
+   "kontoauszug importieren",
+   "offene posten abgleichen"
+  ],
+  "daten-importieren": [
+   "daten importieren",
+   "datenübernahme",
+   "datenimport",
+   "kundendaten importieren",
+   "daten übernehmen software",
+   "csv import kunden"
+  ],
+  "datanorm-katalog-importieren": [
+   "datanorm import",
+   "datanorm",
+   "datanorm katalog",
+   "datanorm datei",
+   "datanorm 5",
+   "datanorm einlesen",
+   "datanorm importieren"
+  ],
+  "lager-scan-app": [
+   "lager app",
+   "lagerverwaltung app",
+   "barcode scanner lager",
+   "lagerverwaltung barcode",
+   "materialentnahme app",
+   "werkzeugverwaltung app"
+  ],
+  "besichtigung-durchfuehren": [
+   "besichtigung baustelle",
+   "baustellenbesichtigung",
+   "vor ort termin handwerker",
+   "besichtigungsprotokoll",
+   "baustellenbegehung",
+   "baustellenbegehung protokoll"
+  ],
+  "projekt-chat-nachrichten": [
+   "baustellen chat",
+   "projekt chat",
+   "handwerker app chat",
+   "baustellenkommunikation",
+   "team chat baustelle",
+   "messenger für handwerker"
+  ],
+  "app-sprache-einstellen": [
+   "handwerker app mehrsprachig",
+   "app sprache ändern",
+   "baustellen app mehrsprachig",
+   "mehrsprachige app",
+   "app mehrsprachig"
+  ],
+  "gewerke-software": [
+   "gewerke software",
+   "software für gewerke",
+   "handwerkersoftware gewerke",
+   "branchensoftware handwerk",
+   "branchensoftware für handwerker"
+  ],
+  "schlussrechnung-teilabnahme": [
+   "schlussrechnung",
+   "schlussrechnung erstellen",
+   "schlussrechnung handwerker",
+   "teilabnahme",
+   "teilabnahme vob",
+   "abnahmeprotokoll teilabnahme"
+  ]
+ },
+ "requested": [
+  "kundenportal handwerker",
+  "kundenportal handwerk",
+  "kundenportal einladen",
+  "kundenportal software",
+  "kundenportal app",
+  "handwerker kundenportal",
+  "angebot online unterschreiben",
+  "angebot digital unterschreiben",
+  "angebot unterschreiben lassen",
+  "digitale unterschrift angebot",
+  "angebot elektronisch unterschreiben",
+  "online unterschrift angebot",
+  "mahnwesen handwerk",
+  "automatisches mahnwesen",
+  "mahnwesen software",
+  "mahnstufen",
+  "zahlungserinnerung automatisch",
+  "mahnlauf",
+  "mahnwesen einrichten",
+  "bankabgleich",
+  "bankumsätze abgleichen",
+  "zahlungsabgleich",
+  "kontoabgleich",
+  "camt.053",
+  "camt 053",
+  "kontoauszug importieren",
+  "offene posten abgleichen",
+  "daten importieren",
+  "datenübernahme",
+  "datenimport",
+  "kundendaten importieren",
+  "daten übernehmen software",
+  "csv import kunden",
+  "datanorm import",
+  "datanorm",
+  "datanorm katalog",
+  "datanorm datei",
+  "datanorm 5",
+  "datanorm einlesen",
+  "datanorm importieren",
+  "lager app",
+  "lagerverwaltung app",
+  "barcode scanner lager",
+  "lagerverwaltung barcode",
+  "materialentnahme app",
+  "werkzeugverwaltung app",
+  "besichtigung baustelle",
+  "baustellenbesichtigung",
+  "vor ort termin handwerker",
+  "besichtigungsprotokoll",
+  "baustellenbegehung",
+  "baustellenbegehung protokoll",
+  "baustellen chat",
+  "projekt chat",
+  "handwerker app chat",
+  "baustellenkommunikation",
+  "team chat baustelle",
+  "messenger für handwerker",
+  "handwerker app mehrsprachig",
+  "app sprache ändern",
+  "baustellen app mehrsprachig",
+  "mehrsprachige app",
+  "app mehrsprachig",
+  "gewerke software",
+  "software für gewerke",
+  "handwerkersoftware gewerke",
+  "branchensoftware handwerk",
+  "branchensoftware für handwerker",
+  "schlussrechnung",
+  "schlussrechnung erstellen",
+  "schlussrechnung handwerker",
+  "teilabnahme",
+  "teilabnahme vob",
+  "abnahmeprotokoll teilabnahme"
+ ],
+ "unitsBefore": {
+  "units_left": 34671,
+  "units_limit": 100000,
+  "checkedAt": "2026-10-22T18:20:32.680Z"
+ },
+ "unitsAfter": {
+  "units_left": 34671,
+  "units_limit": 100000,
+  "checkedAt": "2026-10-22T18:20:36.165Z"
+ },
+ "result": {
+  "archetype": "keyword-table",
+  "title": "Keyword metrics — 74 keyword(s)",
+  "subtitle": "DE",
+  "summary": "74 keyword(s), 29 with data (DE). Volume 10–1,800.",
+  "columns": [
+   {
+    "key": "volume",
+    "label": "Volume",
+    "format": "integer"
+   },
+   {
+    "key": "cpc",
+    "label": "CPC",
+    "format": "currency"
+   },
+   {
+    "key": "difficulty",
+    "label": "Difficulty",
+    "format": "integer"
+   },
+   {
+    "key": "competition",
+    "label": "Competition",
+    "format": "decimal"
+   },
+   {
+    "key": "intents",
+    "label": "Intent",
+    "format": "intents"
+   }
+  ],
+  "rows": [
+   {
+    "keyword": "schlussrechnung",
+    "cells": {
+     "volume": 1800,
+     "cpc": 1.69,
+     "difficulty": 71,
+     "competition": 0.08,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     2400,
+     2400,
+     2400,
+     2400,
+     2400,
+     2400,
+     2400,
+     2400,
+     2400,
+     1800
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "datanorm",
+    "cells": {
+     "volume": 390,
+     "cpc": 1.64,
+     "difficulty": 18,
+     "competition": 0.34,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     480,
+     610,
+     410,
+     470,
+     390,
+     330,
+     470,
+     480,
+     370,
+     390
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "camt 053",
+    "cells": {
+     "volume": 390,
+     "cpc": 0,
+     "difficulty": 13,
+     "competition": 0.02,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     480,
+     480,
+     480,
+     480,
+     480,
+     480,
+     480,
+     480,
+     480,
+     390
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "lagerverwaltung app",
+    "cells": {
+     "volume": 210,
+     "cpc": 2.78,
+     "difficulty": 14,
+     "competition": 0.47,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     260,
+     260,
+     260,
+     260,
+     260,
+     260,
+     260,
+     210,
+     210,
+     210
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "baustellenbegehung",
+    "cells": {
+     "volume": 210,
+     "cpc": 0,
+     "difficulty": 8,
+     "competition": 0.03,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     210,
+     210,
+     210,
+     210,
+     210,
+     210,
+     210,
+     210,
+     210,
+     210,
+     210
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "mahnstufen",
+    "cells": {
+     "volume": 170,
+     "cpc": 0.25,
+     "difficulty": 8,
+     "competition": 0.2,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     210,
+     210,
+     210,
+     210,
+     210,
+     210,
+     210,
+     210,
+     170,
+     170
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "mahnlauf",
+    "cells": {
+     "volume": 140,
+     "cpc": 1.52,
+     "difficulty": 7,
+     "competition": 0.07,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     170,
+     170,
+     170,
+     170,
+     170,
+     170,
+     170,
+     170,
+     170,
+     140
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "datanorm datei",
+    "cells": {
+     "volume": 140,
+     "cpc": 1.14,
+     "difficulty": 11,
+     "competition": 0.16,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     170,
+     140,
+     140,
+     140,
+     140,
+     140,
+     140,
+     140,
+     140,
+     140
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "teilabnahme vob",
+    "cells": {
+     "volume": 110,
+     "cpc": 0,
+     "difficulty": 9,
+     "competition": 0.03,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     140,
+     140,
+     140,
+     140,
+     140,
+     140,
+     140,
+     110,
+     110,
+     110,
+     110
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "kundenportal software",
+    "cells": {
+     "volume": 110,
+     "cpc": 4.46,
+     "difficulty": 13,
+     "competition": 0.45,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     170,
+     170,
+     170,
+     140,
+     140,
+     170,
+     140,
+     110,
+     110,
+     110
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "datenübernahme",
+    "cells": {
+     "volume": 110,
+     "cpc": 0,
+     "difficulty": 9,
+     "competition": 0.04,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     110,
+     110,
+     110,
+     110,
+     110,
+     110,
+     110,
+     110,
+     110,
+     110
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "app sprache ändern",
+    "cells": {
+     "volume": 110,
+     "cpc": 0,
+     "difficulty": 10,
+     "competition": 0,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     140,
+     140,
+     140,
+     140,
+     140,
+     140,
+     110,
+     110,
+     110,
+     110,
+     110
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "lager app",
+    "cells": {
+     "volume": 90,
+     "cpc": 2.85,
+     "difficulty": 14,
+     "competition": 0.57,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     90,
+     90,
+     90,
+     90,
+     90,
+     90,
+     90,
+     90,
+     90,
+     90,
+     90
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "datenimport",
+    "cells": {
+     "volume": 90,
+     "cpc": 0,
+     "difficulty": 8,
+     "competition": 0.02,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     170,
+     170,
+     170,
+     170,
+     140,
+     140,
+     110,
+     110,
+     90,
+     90
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "daten importieren",
+    "cells": {
+     "volume": 70,
+     "cpc": 0,
+     "difficulty": 10,
+     "competition": 0.06,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     90,
+     90,
+     90,
+     90,
+     90,
+     90,
+     70,
+     70,
+     70,
+     70,
+     70
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "baustellenkommunikation",
+    "cells": {
+     "volume": 50,
+     "cpc": 11.72,
+     "difficulty": 7,
+     "competition": 0.16,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     70,
+     90,
+     90,
+     90,
+     90,
+     90,
+     70,
+     70,
+     70,
+     50,
+     50
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "mahnwesen software",
+    "cells": {
+     "volume": 40,
+     "cpc": 8.62,
+     "difficulty": 8,
+     "competition": 0.47,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     70,
+     70,
+     70,
+     70,
+     50,
+     50,
+     50,
+     50,
+     50,
+     40
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "lagerverwaltung barcode",
+    "cells": {
+     "volume": 40,
+     "cpc": 3.76,
+     "difficulty": 14,
+     "competition": 0.68,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     70,
+     70,
+     70,
+     70,
+     70,
+     50,
+     50,
+     40,
+     40,
+     40
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "werkzeugverwaltung app",
+    "cells": {
+     "volume": 30,
+     "cpc": 3.37,
+     "difficulty": 11,
+     "competition": 0.72,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "datanorm katalog",
+    "cells": {
+     "volume": 30,
+     "cpc": 2.31,
+     "difficulty": 12,
+     "competition": 0.55,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "datanorm 5",
+    "cells": {
+     "volume": 30,
+     "cpc": 1.6,
+     "difficulty": 0,
+     "competition": 0.39,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "zahlungsabgleich",
+    "cells": {
+     "volume": 20,
+     "cpc": 8.97,
+     "difficulty": 8,
+     "competition": 0.36,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     30,
+     30,
+     30,
+     30,
+     20,
+     20,
+     20,
+     20,
+     20,
+     20,
+     20
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "schlussrechnung erstellen",
+    "cells": {
+     "volume": 20,
+     "cpc": 6.35,
+     "difficulty": 12,
+     "competition": 0.37,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     20,
+     20,
+     20,
+     20,
+     20,
+     20,
+     20,
+     20,
+     20,
+     20
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "datanorm import",
+    "cells": {
+     "volume": 20,
+     "cpc": 0,
+     "difficulty": 7,
+     "competition": 0.33,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     20,
+     20,
+     20,
+     20,
+     20
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "branchensoftware handwerk",
+    "cells": {
+     "volume": 20,
+     "cpc": 5.46,
+     "difficulty": 30,
+     "competition": 0.81,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     50,
+     40,
+     40,
+     40,
+     30,
+     30,
+     20,
+     20,
+     20,
+     20
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "baustellenbegehung protokoll",
+    "cells": {
+     "volume": 20,
+     "cpc": 2.18,
+     "difficulty": 7,
+     "competition": 0.46,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     20,
+     20
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "schlussrechnung handwerker",
+    "cells": {
+     "volume": 10,
+     "cpc": 0,
+     "difficulty": 7,
+     "competition": 0.07,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     20,
+     20,
+     20,
+     20,
+     20,
+     20,
+     20,
+     20,
+     20,
+     10
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "barcode scanner lager",
+    "cells": {
+     "volume": 10,
+     "cpc": 2.13,
+     "difficulty": 6,
+     "competition": 0.77,
+     "intents": [
+      "C"
+     ]
+    },
+    "sparkline": [
+     0,
+     10,
+     10,
+     10,
+     10,
+     10,
+     10,
+     10,
+     10,
+     10,
+     10
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "automatisches mahnwesen",
+    "cells": {
+     "volume": 10,
+     "cpc": 5.38,
+     "difficulty": 9,
+     "competition": 0.34,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     10,
+     10,
+     10,
+     10,
+     10,
+     10,
+     10,
+     10,
+     10,
+     10,
+     10
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "zahlungserinnerung automatisch",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "vor ort termin handwerker",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "teilabnahme",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "team chat baustelle",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "software für gewerke",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "projekt chat",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "online unterschrift angebot",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "offene posten abgleichen",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "messenger für handwerker",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "mehrsprachige app",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "materialentnahme app",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "mahnwesen handwerk",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "mahnwesen einrichten",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "kundenportal handwerker",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "kundenportal handwerk",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "kundenportal einladen",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "kundenportal app",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "kundendaten importieren",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "kontoauszug importieren",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "kontoabgleich",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "handwerkersoftware gewerke",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "handwerker kundenportal",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "handwerker app mehrsprachig",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "handwerker app chat",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "gewerke software",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "digitale unterschrift angebot",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "daten übernehmen software",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "datanorm importieren",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "datanorm einlesen",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "csv import kunden",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "camt.053",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "branchensoftware für handwerker",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "besichtigungsprotokoll",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "besichtigung baustelle",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "baustellenbesichtigung",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "baustellen chat",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "baustellen app mehrsprachig",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "bankumsätze abgleichen",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "bankabgleich",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "app mehrsprachig",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "angebot unterschreiben lassen",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "angebot online unterschreiben",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "angebot elektronisch unterschreiben",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "angebot digital unterschreiben",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "abnahmeprotokoll teilabnahme",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   }
+  ],
+  "notes": [
+   "45 keyword(s) returned no data."
+  ],
+  "sparklineMonths": [
+   "2025-12",
+   "2026-01",
+   "2026-02",
+   "2026-03",
+   "2026-04",
+   "2026-05",
+   "2026-06",
+   "2026-07",
+   "2026-08",
+   "2026-09",
+   "2026-10"
+  ]
+ }
+}

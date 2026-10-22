@@ -1,0 +1,1701 @@
+{
+ "source": "SE Ranking Data API via MCP DATA_getKeywordQuestions (limit 10, sort volume) und DATA_getSimilarKeywords (limit 10), source=de",
+ "fetchedAt": "2026-10-22T18:21:32.380Z",
+ "questionSeeds": [
+  "mängelanzeige",
+  "reverse charge",
+  "materialliste",
+  "gaeb",
+  "bauablaufplan",
+  "arbeitszeitnachweis",
+  "teilabnahme",
+  "datanorm",
+  "kundenportal",
+  "leistungsdatum",
+  "bauzeitenplan",
+  "schlussrechnung"
+ ],
+ "similarSeeds": [
+  "regiebericht",
+  "bedenkenanzeige"
+ ],
+ "unitsBefore": {
+  "units_left": 34671,
+  "units_limit": 100000,
+  "checkedAt": "2026-10-22T18:20:36.165Z"
+ },
+ "unitsAfter": {
+  "units_left": 33921,
+  "units_limit": 100000,
+  "checkedAt": "2026-10-22T18:21:32.380Z"
+ },
+ "questions": {
+  "mängelanzeige": {
+   "archetype": "keyword-table",
+   "title": "Question keywords for \"mängelanzeige\"",
+   "subtitle": "DE • 3 of 3",
+   "summary": "Question keywords for \"mängelanzeige\" (DE): 3 of 3 question keywords.",
+   "columns": [
+    {
+     "key": "volume",
+     "label": "Volume",
+     "format": "integer"
+    },
+    {
+     "key": "cpc",
+     "label": "CPC",
+     "format": "currency"
+    },
+    {
+     "key": "difficulty",
+     "label": "Difficulty",
+     "format": "integer"
+    },
+    {
+     "key": "competition",
+     "label": "Competition",
+     "format": "decimal"
+    },
+    {
+     "key": "intents",
+     "label": "Intent",
+     "format": "intents"
+    },
+    {
+     "key": "serp_features",
+     "label": "SERP features",
+     "format": "serp_features"
+    }
+   ],
+   "rows": [
+    {
+     "keyword": "was muss eine mängelanzeige enthalten",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "wie schreibe ich eine mängelanzeige an den vermieter",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "wie schreibe ich eine mängelanzeige",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    }
+   ],
+   "total": 3,
+   "notes": [
+    "Pass history_trend=true for per-row monthly search-volume sparklines."
+   ]
+  },
+  "reverse charge": {
+   "archetype": "keyword-table",
+   "title": "Question keywords for \"reverse charge\"",
+   "subtitle": "DE • 10 of 10",
+   "summary": "Question keywords for \"reverse charge\" (DE): 10 of 10 question keywords.",
+   "columns": [
+    {
+     "key": "volume",
+     "label": "Volume",
+     "format": "integer"
+    },
+    {
+     "key": "cpc",
+     "label": "CPC",
+     "format": "currency"
+    },
+    {
+     "key": "difficulty",
+     "label": "Difficulty",
+     "format": "integer"
+    },
+    {
+     "key": "competition",
+     "label": "Competition",
+     "format": "decimal"
+    },
+    {
+     "key": "intents",
+     "label": "Intent",
+     "format": "intents"
+    },
+    {
+     "key": "serp_features",
+     "label": "SERP features",
+     "format": "serp_features"
+    }
+   ],
+   "rows": [
+    {
+     "keyword": "wann reverse charge und wann innergemeinschaftliche lieferung",
+     "cells": {
+      "volume": 10,
+      "cpc": 0,
+      "difficulty": 7,
+      "competition": 0.23,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "people_also_ask",
+       "sge",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "reverse charge what is it",
+     "cells": {
+      "volume": 10,
+      "cpc": 0,
+      "difficulty": 28,
+      "competition": 0,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "featured_snippets",
+       "people_also_ask",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "how to disable reverse charging huawei",
+     "cells": {
+      "volume": 10,
+      "cpc": 0,
+      "difficulty": 11,
+      "competition": 0,
+      "intents": [
+       "I",
+       "N"
+      ],
+      "serp_features": [
+       "people_also_ask",
+       "images",
+       "digital_complaints",
+       "sge",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "does reverse charge apply to non eu countries",
+     "cells": {
+      "volume": 10,
+      "cpc": 0,
+      "difficulty": 27,
+      "competition": 0,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "featured_snippets",
+       "people_also_ask",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "hat das oneplus 9 pro reverse wireless charging",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "hat großbritannien reverse charge",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "what is the reverse charge rule",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "hat china reverse charge",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "what is reverse charge vat in europe",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "who qualifies for reverse charge vat",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    }
+   ],
+   "total": 10,
+   "notes": [
+    "Pass history_trend=true for per-row monthly search-volume sparklines."
+   ]
+  },
+  "materialliste": {
+   "archetype": "keyword-table",
+   "title": "Question keywords for \"materialliste\"",
+   "subtitle": "DE • 0 of 0",
+   "summary": "Question keywords for \"materialliste\" (DE): 0 of 0 question keywords.",
+   "columns": [
+    {
+     "key": "volume",
+     "label": "Volume",
+     "format": "integer"
+    },
+    {
+     "key": "cpc",
+     "label": "CPC",
+     "format": "currency"
+    },
+    {
+     "key": "difficulty",
+     "label": "Difficulty",
+     "format": "integer"
+    },
+    {
+     "key": "competition",
+     "label": "Competition",
+     "format": "decimal"
+    },
+    {
+     "key": "intents",
+     "label": "Intent",
+     "format": "intents"
+    },
+    {
+     "key": "serp_features",
+     "label": "SERP features",
+     "format": "serp_features"
+    }
+   ],
+   "rows": [],
+   "total": 0,
+   "notes": [
+    "Pass history_trend=true for per-row monthly search-volume sparklines."
+   ]
+  },
+  "gaeb": {
+   "archetype": "keyword-table",
+   "title": "Question keywords for \"gaeb\"",
+   "subtitle": "DE • 10 of 15",
+   "summary": "Question keywords for \"gaeb\" (DE): 10 of 15 question keywords.",
+   "columns": [
+    {
+     "key": "volume",
+     "label": "Volume",
+     "format": "integer"
+    },
+    {
+     "key": "cpc",
+     "label": "CPC",
+     "format": "currency"
+    },
+    {
+     "key": "difficulty",
+     "label": "Difficulty",
+     "format": "integer"
+    },
+    {
+     "key": "competition",
+     "label": "Competition",
+     "format": "decimal"
+    },
+    {
+     "key": "intents",
+     "label": "Intent",
+     "format": "intents"
+    },
+    {
+     "key": "serp_features",
+     "label": "SERP features",
+     "format": "serp_features"
+    }
+   ],
+   "rows": [
+    {
+     "keyword": "was ist gaeb d83",
+     "cells": {
+      "volume": 10,
+      "cpc": 0,
+      "difficulty": 11,
+      "competition": 0.36,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "people_also_ask",
+       "images",
+       "sge",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "was bedeutet gaeb d83",
+     "cells": {
+      "volume": 10,
+      "cpc": 0,
+      "difficulty": 11,
+      "competition": 0,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "people_also_ask",
+       "images",
+       "sge",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "was ist ein gaeb format",
+     "cells": {
+      "volume": 10,
+      "cpc": 0,
+      "difficulty": 11,
+      "competition": 0.14,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "people_also_ask",
+       "images",
+       "sge",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "was ist eine gaeb x83 datei",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "wie kann ich eine gaeb datei öffnen",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "wie funktioniert gaeb",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "was ist gaeb d86",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "was ist gaeb d81",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "wie bearbeite ich eine gaeb datei",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "welche gaeb formate gibt es",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    }
+   ],
+   "total": 15,
+   "notes": [
+    "Pass history_trend=true for per-row monthly search-volume sparklines."
+   ]
+  },
+  "bauablaufplan": {
+   "archetype": "keyword-table",
+   "title": "Question keywords for \"bauablaufplan\"",
+   "subtitle": "DE • 0 of 0",
+   "summary": "Question keywords for \"bauablaufplan\" (DE): 0 of 0 question keywords.",
+   "columns": [
+    {
+     "key": "volume",
+     "label": "Volume",
+     "format": "integer"
+    },
+    {
+     "key": "cpc",
+     "label": "CPC",
+     "format": "currency"
+    },
+    {
+     "key": "difficulty",
+     "label": "Difficulty",
+     "format": "integer"
+    },
+    {
+     "key": "competition",
+     "label": "Competition",
+     "format": "decimal"
+    },
+    {
+     "key": "intents",
+     "label": "Intent",
+     "format": "intents"
+    },
+    {
+     "key": "serp_features",
+     "label": "SERP features",
+     "format": "serp_features"
+    }
+   ],
+   "rows": [],
+   "total": 0,
+   "notes": [
+    "Pass history_trend=true for per-row monthly search-volume sparklines."
+   ]
+  },
+  "arbeitszeitnachweis": {
+   "archetype": "keyword-table",
+   "title": "Question keywords for \"arbeitszeitnachweis\"",
+   "subtitle": "DE • 1 of 1",
+   "summary": "Question keywords for \"arbeitszeitnachweis\" (DE): 1 of 1 question keywords.",
+   "columns": [
+    {
+     "key": "volume",
+     "label": "Volume",
+     "format": "integer"
+    },
+    {
+     "key": "cpc",
+     "label": "CPC",
+     "format": "currency"
+    },
+    {
+     "key": "difficulty",
+     "label": "Difficulty",
+     "format": "integer"
+    },
+    {
+     "key": "competition",
+     "label": "Competition",
+     "format": "decimal"
+    },
+    {
+     "key": "intents",
+     "label": "Intent",
+     "format": "intents"
+    },
+    {
+     "key": "serp_features",
+     "label": "SERP features",
+     "format": "serp_features"
+    }
+   ],
+   "rows": [
+    {
+     "keyword": "wie sieht ein arbeitszeitnachweis aus",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    }
+   ],
+   "total": 1,
+   "notes": [
+    "Pass history_trend=true for per-row monthly search-volume sparklines."
+   ]
+  },
+  "teilabnahme": {
+   "archetype": "keyword-table",
+   "title": "Question keywords for \"teilabnahme\"",
+   "subtitle": "DE • 0 of 0",
+   "summary": "Question keywords for \"teilabnahme\" (DE): 0 of 0 question keywords.",
+   "columns": [
+    {
+     "key": "volume",
+     "label": "Volume",
+     "format": "integer"
+    },
+    {
+     "key": "cpc",
+     "label": "CPC",
+     "format": "currency"
+    },
+    {
+     "key": "difficulty",
+     "label": "Difficulty",
+     "format": "integer"
+    },
+    {
+     "key": "competition",
+     "label": "Competition",
+     "format": "decimal"
+    },
+    {
+     "key": "intents",
+     "label": "Intent",
+     "format": "intents"
+    },
+    {
+     "key": "serp_features",
+     "label": "SERP features",
+     "format": "serp_features"
+    }
+   ],
+   "rows": [],
+   "total": 0,
+   "notes": [
+    "Pass history_trend=true for per-row monthly search-volume sparklines."
+   ]
+  },
+  "datanorm": {
+   "archetype": "keyword-table",
+   "title": "Question keywords for \"datanorm\"",
+   "subtitle": "DE • 0 of 0",
+   "summary": "Question keywords for \"datanorm\" (DE): 0 of 0 question keywords.",
+   "columns": [
+    {
+     "key": "volume",
+     "label": "Volume",
+     "format": "integer"
+    },
+    {
+     "key": "cpc",
+     "label": "CPC",
+     "format": "currency"
+    },
+    {
+     "key": "difficulty",
+     "label": "Difficulty",
+     "format": "integer"
+    },
+    {
+     "key": "competition",
+     "label": "Competition",
+     "format": "decimal"
+    },
+    {
+     "key": "intents",
+     "label": "Intent",
+     "format": "intents"
+    },
+    {
+     "key": "serp_features",
+     "label": "SERP features",
+     "format": "serp_features"
+    }
+   ],
+   "rows": [],
+   "total": 0,
+   "notes": [
+    "Pass history_trend=true for per-row monthly search-volume sparklines."
+   ]
+  },
+  "kundenportal": {
+   "archetype": "keyword-table",
+   "title": "Question keywords for \"kundenportal\"",
+   "subtitle": "DE • 4 of 4",
+   "summary": "Question keywords for \"kundenportal\" (DE): 4 of 4 question keywords.",
+   "columns": [
+    {
+     "key": "volume",
+     "label": "Volume",
+     "format": "integer"
+    },
+    {
+     "key": "cpc",
+     "label": "CPC",
+     "format": "currency"
+    },
+    {
+     "key": "difficulty",
+     "label": "Difficulty",
+     "format": "integer"
+    },
+    {
+     "key": "competition",
+     "label": "Competition",
+     "format": "decimal"
+    },
+    {
+     "key": "intents",
+     "label": "Intent",
+     "format": "intents"
+    },
+    {
+     "key": "serp_features",
+     "label": "SERP features",
+     "format": "serp_features"
+    }
+   ],
+   "rows": [
+    {
+     "keyword": "wie komme ich ins kundenportal deutsche glasfaser",
+     "cells": {
+      "volume": 40,
+      "cpc": 0,
+      "difficulty": 17,
+      "competition": 0.14,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "people_also_ask",
+       "bads",
+       "sge",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "hat advanzia ein neues kundenportal",
+     "cells": {
+      "volume": 10,
+      "cpc": 0,
+      "difficulty": 34,
+      "competition": 0,
+      "intents": [
+       "I",
+       "N"
+      ],
+      "serp_features": [
+       "reviews",
+       "sitelinks",
+       "people_also_ask",
+       "sge",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "was sollte ein kundenportal können",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "isn norderstedt kundenportal",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    }
+   ],
+   "total": 4,
+   "notes": [
+    "Pass history_trend=true for per-row monthly search-volume sparklines."
+   ]
+  },
+  "leistungsdatum": {
+   "archetype": "keyword-table",
+   "title": "Question keywords for \"leistungsdatum\"",
+   "subtitle": "DE • 1 of 1",
+   "summary": "Question keywords for \"leistungsdatum\" (DE): 1 of 1 question keywords.",
+   "columns": [
+    {
+     "key": "volume",
+     "label": "Volume",
+     "format": "integer"
+    },
+    {
+     "key": "cpc",
+     "label": "CPC",
+     "format": "currency"
+    },
+    {
+     "key": "difficulty",
+     "label": "Difficulty",
+     "format": "integer"
+    },
+    {
+     "key": "competition",
+     "label": "Competition",
+     "format": "decimal"
+    },
+    {
+     "key": "intents",
+     "label": "Intent",
+     "format": "intents"
+    },
+    {
+     "key": "serp_features",
+     "label": "SERP features",
+     "format": "serp_features"
+    }
+   ],
+   "rows": [
+    {
+     "keyword": "was zählt rechnungsdatum oder leistungsdatum steuererklärung",
+     "cells": {
+      "volume": 20,
+      "cpc": 0,
+      "difficulty": 8,
+      "competition": 0.01,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "people_also_ask",
+       "bads",
+       "sge",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    }
+   ],
+   "total": 1,
+   "notes": [
+    "Pass history_trend=true for per-row monthly search-volume sparklines."
+   ]
+  },
+  "bauzeitenplan": {
+   "archetype": "keyword-table",
+   "title": "Question keywords for \"bauzeitenplan\"",
+   "subtitle": "DE • 7 of 7",
+   "summary": "Question keywords for \"bauzeitenplan\" (DE): 7 of 7 question keywords.",
+   "columns": [
+    {
+     "key": "volume",
+     "label": "Volume",
+     "format": "integer"
+    },
+    {
+     "key": "cpc",
+     "label": "CPC",
+     "format": "currency"
+    },
+    {
+     "key": "difficulty",
+     "label": "Difficulty",
+     "format": "integer"
+    },
+    {
+     "key": "competition",
+     "label": "Competition",
+     "format": "decimal"
+    },
+    {
+     "key": "intents",
+     "label": "Intent",
+     "format": "intents"
+    },
+    {
+     "key": "serp_features",
+     "label": "SERP features",
+     "format": "serp_features"
+    }
+   ],
+   "rows": [
+    {
+     "keyword": "wann muss ein bauzeitenplan erstellt werden",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "welches programm für bauzeitenplan",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "was gehört in einen bauzeitenplan",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "wer muss den bauzeitenplan erstellen",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "wer muss bauzeitenplan erstellen",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "ist ein bauzeitenplan verpflichtend",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "wie erstelle ich einen bauzeitenplan",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    }
+   ],
+   "total": 7,
+   "notes": [
+    "Pass history_trend=true for per-row monthly search-volume sparklines."
+   ]
+  },
+  "schlussrechnung": {
+   "archetype": "keyword-table",
+   "title": "Question keywords for \"schlussrechnung\"",
+   "subtitle": "DE • 9 of 9",
+   "summary": "Question keywords for \"schlussrechnung\" (DE): 9 of 9 question keywords.",
+   "columns": [
+    {
+     "key": "volume",
+     "label": "Volume",
+     "format": "integer"
+    },
+    {
+     "key": "cpc",
+     "label": "CPC",
+     "format": "currency"
+    },
+    {
+     "key": "difficulty",
+     "label": "Difficulty",
+     "format": "integer"
+    },
+    {
+     "key": "competition",
+     "label": "Competition",
+     "format": "decimal"
+    },
+    {
+     "key": "intents",
+     "label": "Intent",
+     "format": "intents"
+    },
+    {
+     "key": "serp_features",
+     "label": "SERP features",
+     "format": "serp_features"
+    }
+   ],
+   "rows": [
+    {
+     "keyword": "wann kommt schlussrechnung strom",
+     "cells": {
+      "volume": 10,
+      "cpc": 0,
+      "difficulty": 26,
+      "competition": 0,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "people_also_ask",
+       "images",
+       "sge",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "bis wann schlussrechnung überbrückungshilfe i",
+     "cells": {
+      "volume": 10,
+      "cpc": 0,
+      "difficulty": 36,
+      "competition": 0,
+      "intents": [
+       "I",
+       "N"
+      ],
+      "serp_features": [
+       "reviews",
+       "sitelinks",
+       "people_also_ask",
+       "images",
+       "sge",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "wie lange hat der vermieter zeit für die schlussrechnung",
+     "cells": {
+      "volume": 10,
+      "cpc": 0,
+      "difficulty": 10,
+      "competition": 0,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "featured_snippets",
+       "reviews",
+       "people_also_ask",
+       "sge",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "bis wann schlussrechnung überbrückungshilfe iii",
+     "cells": {
+      "volume": 10,
+      "cpc": 0,
+      "difficulty": 28,
+      "competition": 0,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "video",
+       "people_also_ask",
+       "sge",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "bis wann schlussrechnung überbrückungshilfe",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "bis wann schlussrechnung novemberhilfe",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "welcher mehrwertsteuersatz gilt bei schlussrechnung",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "wann schlussrechnung überbrückungshilfe",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "bis wann schlussrechnung neustarthilfe",
+     "cells": {
+      "volume": 0,
+      "cpc": 0,
+      "difficulty": 0,
+      "competition": 0,
+      "intents": [],
+      "serp_features": []
+     },
+     "sparkline": []
+    }
+   ],
+   "total": 9,
+   "notes": [
+    "Pass history_trend=true for per-row monthly search-volume sparklines."
+   ]
+  }
+ },
+ "similar": {
+  "regiebericht": {
+   "archetype": "keyword-table",
+   "title": "Similar keywords for \"regiebericht\"",
+   "subtitle": "DE • 10 of 36",
+   "summary": "10 of 36 similar keywords for \"regiebericht\" (DE).",
+   "columns": [
+    {
+     "key": "volume",
+     "label": "Volume",
+     "format": "integer"
+    },
+    {
+     "key": "cpc",
+     "label": "CPC",
+     "format": "currency"
+    },
+    {
+     "key": "difficulty",
+     "label": "Difficulty",
+     "format": "integer"
+    },
+    {
+     "key": "competition",
+     "label": "Competition",
+     "format": "decimal"
+    },
+    {
+     "key": "intents",
+     "label": "Intent",
+     "format": "intents"
+    },
+    {
+     "key": "serp_features",
+     "label": "SERP features",
+     "format": "serp_features"
+    }
+   ],
+   "rows": [
+    {
+     "keyword": "regiebericht vorlage",
+     "cells": {
+      "volume": 210,
+      "cpc": 1.49,
+      "difficulty": 10,
+      "competition": 1,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "people_also_ask",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "regieberichte vorlagen",
+     "cells": {
+      "volume": 210,
+      "cpc": 1.49,
+      "difficulty": 6,
+      "competition": 1,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "sge",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "regieberichte vorlage",
+     "cells": {
+      "volume": 210,
+      "cpc": 1.49,
+      "difficulty": 10,
+      "competition": 1,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "people_also_ask",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "regiebericht vorlage pdf",
+     "cells": {
+      "volume": 110,
+      "cpc": 1.47,
+      "difficulty": 10,
+      "competition": 0.96,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "bads",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "regieberichte",
+     "cells": {
+      "volume": 70,
+      "cpc": 1.85,
+      "difficulty": 8,
+      "competition": 0.99,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "people_also_ask",
+       "images",
+       "bads",
+       "sge",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "regiebericht handwerk",
+     "cells": {
+      "volume": 70,
+      "cpc": 2.1,
+      "difficulty": 13,
+      "competition": 0.99,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "people_also_ask",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "regiebericht vorlage pdf kostenlos",
+     "cells": {
+      "volume": 70,
+      "cpc": 1.15,
+      "difficulty": 12,
+      "competition": 0.42,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "images",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "regiebericht vorlage word",
+     "cells": {
+      "volume": 50,
+      "cpc": 1.11,
+      "difficulty": 11,
+      "competition": 0.75,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "images",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "regiebericht vorlage zum ausdrucken",
+     "cells": {
+      "volume": 40,
+      "cpc": 1.26,
+      "difficulty": 12,
+      "competition": 0.92,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "regiebericht vorlage kostenlos",
+     "cells": {
+      "volume": 30,
+      "cpc": 1.64,
+      "difficulty": 12,
+      "competition": 0.8,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "people_also_ask",
+       "bads",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    }
+   ],
+   "total": 36,
+   "notes": [
+    "Pass history_trend=true for per-row monthly search-volume sparklines."
+   ]
+  },
+  "bedenkenanzeige": {
+   "archetype": "keyword-table",
+   "title": "Similar keywords for \"bedenkenanzeige\"",
+   "subtitle": "DE • 10 of 21",
+   "summary": "10 of 21 similar keywords for \"bedenkenanzeige\" (DE).",
+   "columns": [
+    {
+     "key": "volume",
+     "label": "Volume",
+     "format": "integer"
+    },
+    {
+     "key": "cpc",
+     "label": "CPC",
+     "format": "currency"
+    },
+    {
+     "key": "difficulty",
+     "label": "Difficulty",
+     "format": "integer"
+    },
+    {
+     "key": "competition",
+     "label": "Competition",
+     "format": "decimal"
+    },
+    {
+     "key": "intents",
+     "label": "Intent",
+     "format": "intents"
+    },
+    {
+     "key": "serp_features",
+     "label": "SERP features",
+     "format": "serp_features"
+    }
+   ],
+   "rows": [
+    {
+     "keyword": "bedenkenanzeige vob",
+     "cells": {
+      "volume": 140,
+      "cpc": 1.13,
+      "difficulty": 7,
+      "competition": 0.06,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "people_also_ask",
+       "images",
+       "bads",
+       "sge",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "bedenkenanzeige vorlage",
+     "cells": {
+      "volume": 70,
+      "cpc": 0,
+      "difficulty": 7,
+      "competition": 0.03,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "people_also_ask",
+       "images",
+       "bads",
+       "sge",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "vob bedenkenanzeige",
+     "cells": {
+      "volume": 70,
+      "cpc": 0,
+      "difficulty": 7,
+      "competition": 0.03,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "people_also_ask",
+       "images",
+       "sge",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "bedenkenanzeige nach vob",
+     "cells": {
+      "volume": 50,
+      "cpc": 0,
+      "difficulty": 7,
+      "competition": 0.06,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "people_also_ask",
+       "images",
+       "sge",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "bedenkenanzeige bau",
+     "cells": {
+      "volume": 30,
+      "cpc": 0,
+      "difficulty": 7,
+      "competition": 0.04,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "people_also_ask",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "bau bedenkenanzeige",
+     "cells": {
+      "volume": 30,
+      "cpc": 0,
+      "difficulty": 7,
+      "competition": 0.04,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "people_also_ask",
+       "images",
+       "sge",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "bedenkenanzeige vob muster",
+     "cells": {
+      "volume": 20,
+      "cpc": 0,
+      "difficulty": 7,
+      "competition": 0.06,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "people_also_ask",
+       "images",
+       "bads",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "bedenkenanzeige bgb",
+     "cells": {
+      "volume": 20,
+      "cpc": 0,
+      "difficulty": 7,
+      "competition": 0,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "people_also_ask",
+       "sge",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "bedenkenanzeige vob vorlage",
+     "cells": {
+      "volume": 20,
+      "cpc": 0,
+      "difficulty": 7,
+      "competition": 0.06,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "people_also_ask",
+       "images",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    },
+    {
+     "keyword": "vob b bedenkenanzeige",
+     "cells": {
+      "volume": 20,
+      "cpc": 0,
+      "difficulty": 16,
+      "competition": 0,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "people_also_ask",
+       "bads",
+       "sge",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    }
+   ],
+   "total": 21,
+   "notes": [
+    "Pass history_trend=true for per-row monthly search-volume sparklines."
+   ]
+  }
+ }
+}
