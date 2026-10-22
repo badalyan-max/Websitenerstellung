@@ -72,6 +72,10 @@ for (const p of [
   "/opengraph-image",
   "/blog/handwerkerrechnung-schreiben/opengraph-image",
   "/hilfe/rechnung-fertigstellen/opengraph-image",
+  // 08-05: Segmentbilder statischer und dynamischer Segmente
+  "/preise/opengraph-image",
+  "/funktionen/angebote/opengraph-image",
+  "/hilfe/kategorie/rechnungen/opengraph-image",
 ]) {
   const r = await fetch(base + p);
   og.push({ path: p, status: r.status, type: r.headers.get("content-type") });
@@ -110,4 +114,4 @@ console.log(
   ),
 );
 
-if(results.some(x=>x.status!==200||!x.canonical||!x.hasH1||x.oldTrial||x.ctaTrial.length>0||x.announcement)||badLinks.length||unknown.some(x=>x.status!==404)||og.some(x=>x.status!==200))process.exitCode=1;
+if(results.some(x=>x.status!==200||!x.canonical||!x.hasH1||x.oldTrial||x.ctaTrial.length>0||x.announcement)||badLinks.length||unknown.some(x=>x.status!==404)||og.some(x=>x.status!==200||!String(x.type).startsWith("image/png")))process.exitCode=1;

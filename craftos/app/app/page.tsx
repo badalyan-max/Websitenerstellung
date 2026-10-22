@@ -21,7 +21,7 @@ import {
   type AppTile,
 } from "@/lib/app-content";
 import { zielwerte } from "@/lib/funktionsdetails";
-import { pageMetadata } from "@/lib/metadata";
+import { metaFor } from "@/lib/seo-meta";
 import { crumbsFor } from "@/lib/breadcrumbs";
 import { faqSchema, mobileApplicationSchema } from "@/lib/schema";
 
@@ -34,7 +34,8 @@ import { faqSchema, mobileApplicationSchema } from "@/lib/schema";
  */
 const z = zielwerte("/app");
 
-export const metadata = pageMetadata(z.titleOhneMarke, z.description, "/app");
+// Metadaten aus der Keyword-Map; og:image und twitter:image = Segmentbild /app/opengraph-image (08-05).
+export const metadata = metaFor("/app");
 
 const SURFACE = {
   white: "bg-white",

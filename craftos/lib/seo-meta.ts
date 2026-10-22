@@ -39,10 +39,24 @@ export function zielwerte(path: string): Zielwerte {
   };
 }
 
+/** Pfad des statisch erzeugten OG-Bilds eines Segments (app/<pfad>/opengraph-image.tsx). */
+export function segmentBild(path: string): string {
+  return path === "/" ? "/opengraph-image" : path + "/opengraph-image";
+}
+
+/**
+ * Titel der OG-Grafik (08-05, UI-SPEC § 7): die H1 der Seite; nur wenn sie länger als 90 Zeichen ist, der
+ * Kurztitel `target.ogTitle` aus derselben Map.
+ */
+export function ogTitel(path: string): string {
+  const { h1 } = zielwerte(path);
+  return keywordMap.find((k) => k.path === path)?.target?.ogTitle ?? h1;
+}
+
 /**
  * Title, Description, Canonical, Open Graph und Twitter einer Seite aus der Keyword-Map.
- * `imagePath` setzt og:image und twitter:image auf dasselbe Bild (Pitfall 8); Standard bleibt das
- * Bild aus pageMetadata, bis die Seite ein eigenes Segmentbild hat.
+ * `imagePath` setzt og:image und twitter:image auf dasselbe Bild (Pitfall 8). Standard ist das Segmentbild
+ * `{path}/opengraph-image` (08-05, D-08); die Startseite behält `/opengraph-image`.
  *
  * Endet `target.title` auf „ | CraftOS“, hängt das Layout-Template die Marke an (title = Teil ohne Marke).
  * Fehlt der Zusatz (08-04, Entwurfsregel Hilfe: Markenzusatz entfällt, wenn der Titel sonst > 60 Zeichen
@@ -50,6 +64,6 @@ export function zielwerte(path: string): Zielwerte {
  */
 export function metaFor(path: string, opts?: { imagePath?: string }): Metadata {
   const z = zielwerte(path);
-  const meta = pageMetadata(z.titleOhneMarke, z.description, path, opts?.imagePath);
+  const meta = pageMetadata(z.titleOhneMarke, z.description, path, opts?.imagePath ?? segmentBild(path));
   return z.title.endsWith(MARKE) ? meta : { ...meta, title: { absolute: z.title } };
 }

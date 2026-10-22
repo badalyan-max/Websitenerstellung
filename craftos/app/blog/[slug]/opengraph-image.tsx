@@ -1,14 +1,16 @@
-import { getContentArticle } from "@/lib/content";
-import { articleOg } from "@/lib/og";
-export const size = { width: 1200, height: 630 };
+import { getContentList } from "@/lib/content";
+import { OG_SIZE, pageOg } from "@/lib/og";
+import { ogTitel } from "@/lib/seo-meta";
+
+// OG-Grafik je Artikel (08-05, UI-SPEC § 7): statisch beim Build, Titel = H1 aus der Keyword-Map.
+export const size = OG_SIZE;
 export const contentType = "image/png";
-export const alt = "CraftOS Ratgeber";
-export default async function Image({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export const alt = "Ratgeber von CraftOS";
+export async function generateStaticParams() {
+  return (await getContentList("blog")).map((a) => ({ slug: a.slug }));
+}
+export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const a = await getContentArticle("blog", slug);
-  return articleOg(a?.title ?? "CraftOS Ratgeber", "Ratgeber");
+  const pfad = "/blog/" + slug;
+  return pageOg({ title: ogTitel(pfad), kind: "Ratgeber", path: pfad });
 }
