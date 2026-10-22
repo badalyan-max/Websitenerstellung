@@ -103,3 +103,27 @@ describe("pageOg – Vorlage", () => {
     expect(quelle).not.toContain("articleOg");
   });
 });
+
+// LO-03 (08-REVIEW): Dynamische OG-Routen liefern bei unbekanntem Parameter 404 statt 500 (dynamicParams = false,
+// nur die per generateStaticParams erzeugten Bilder existieren).
+describe("dynamische OG-Routen ohne On-Demand-Rendering", () => {
+  const root = path.resolve(import.meta.dirname, "..");
+  const dateien: string[] = [];
+  const suche = (dir: string) => {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) suche(p);
+      else if (e.name === "opengraph-image.tsx" && p.includes("[")) dateien.push(p);
+    }
+  };
+  suche(path.join(root, "app"));
+
+  it("alle sechs dynamischen Segmente setzen dynamicParams = false und erzeugen ihre Parameter statisch", () => {
+    expect(dateien).toHaveLength(6);
+    for (const d of dateien) {
+      const q = fs.readFileSync(d, "utf8");
+      expect(q, d).toMatch(/export const dynamicParams = false;/);
+      expect(q, d).toMatch(/export (async )?function generateStaticParams/);
+    }
+  });
+});

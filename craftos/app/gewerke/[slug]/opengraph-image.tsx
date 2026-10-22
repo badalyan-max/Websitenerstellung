@@ -6,6 +6,8 @@ import { ogTitel } from "@/lib/seo-meta";
 // damit jedes Bild beim Build entsteht (Pattern 3); Titel = H1 aus der Keyword-Map.
 export const size = OG_SIZE;
 export const contentType = "image/png";
+// LO-03: nur die per generateStaticParams erzeugten Bilder; unbekannte Parameter liefern 404 statt 500.
+export const dynamicParams = false;
 export const alt = "Gewerk: Handwerkersoftware von CraftOS";
 export function generateStaticParams() {
   return gewerke.map((g) => ({ slug: g.slug }));

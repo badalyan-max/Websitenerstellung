@@ -64,6 +64,10 @@ for (const p of [
   "/hilfe/unbekannt",
   "/blog/kategorie/constructor",
   "/hilfe/kategorie/__proto__",
+  // LO-03: unbekannte OG-Pfade dynamischer Segmente → 404 (dynamicParams = false), nicht 500.
+  "/funktionen/unbekannt/opengraph-image",
+  "/blog/unbekannt/opengraph-image",
+  "/hilfe/kategorie/unbekannt/opengraph-image",
 ]) {
   const r = await fetch(base + p);
   unknown.push({ path: p, status: r.status });
