@@ -101,11 +101,11 @@ export default function GobdPage() {
             <FaqList items={gobdFaq} headingLevel={3} answerMax={300} />
             <p data-grundlage="" className="mt-4 text-sm leading-[1.4] text-ink-500">
               {"Grundlage: "}
-              <a href={gobdGrundlage.quellen[0].href} className="text-ink-900 underline underline-offset-4">
+              <a href={gobdGrundlage.quellen[0].href} rel="nofollow" className="text-ink-900 underline underline-offset-4">
                 {gobdGrundlage.quellen[0].label}
               </a>
               {" und "}
-              <a href={gobdGrundlage.quellen[1].href} className="text-ink-900 underline underline-offset-4">
+              <a href={gobdGrundlage.quellen[1].href} rel="nofollow" className="text-ink-900 underline underline-offset-4">
                 {gobdGrundlage.quellen[1].label}
               </a>
               {`. ${gobdGrundlage.stand}`}
