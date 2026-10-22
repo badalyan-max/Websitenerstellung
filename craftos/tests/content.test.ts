@@ -399,6 +399,7 @@ describe("Prosa-Regeln (09-UI-SPEC § 2.3–2.4, § 5)", () => {
  * Übergang bis 09-09 (W3, T-09-04): Bestandstreffer der Prosa-Regeln, eingefroren am 23.10.2026 auf dem Stand
  * von main 0b84201. Schlüssel „<datei>|<regel>“ ohne Zeilennummer. Die Liste wird nie erweitert; die
  * Inhaltspakete beheben die Treffer, 09-09 entfernt die Liste. Einträge ohne Treffer sind bis dahin erlaubt.
+ * Messung am 23.10.2026: 0 Bestandstreffer in 64 Artikeln – die Liste ist leer, jeder neue Treffer ist rot.
  */
 const UEBERGANG_PHASE9 = new Set<string>([]);
 

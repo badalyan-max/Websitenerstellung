@@ -246,7 +246,8 @@ describe("pruefeSeite", () => {
     expect(v).toEqual([]);
   });
 
-  it("Antwort > 300 auf zentraler Seite → antwort, auf nicht zentraler Seite ignoriert", () => {
+  // Phase 9 (D-24): /blog/* fällt jetzt unter die Antwortregel (mitAntwortRegel); ignoriert wird z. B. /support.
+  it("Antwort > 300 auf zentraler Seite und Ratgeber → antwort, auf /support ignoriert", () => {
     const body = `<h2>Was kostet CraftOS?</h2><p>${x(301)}</p>`;
     const v = seite("/preise", { body });
     expect(regeln(v)).toEqual(["antwort"]);
@@ -260,7 +261,16 @@ describe("pruefeSeite", () => {
       mapEntry: null,
       og: OG_OK,
     });
-    expect(blog).toEqual([]);
+    expect(regeln(blog)).toEqual(["antwort"]);
+    expect(blog[0].problem).toContain("auf /blog/x hat keine Antwort ≤ 300 Zeichen");
+    const supportCrumbs = [PREISE_CRUMBS[0], { name: "Support", path: "/support" }];
+    const support = pruefeSeite({
+      path: "/support",
+      html: html({ nav: crumbNav(supportCrumbs), ldBlocks: [crumbSchema(supportCrumbs)], og: `${ORIGIN}/support/opengraph-image`, body }),
+      mapEntry: null,
+      og: OG_OK,
+    });
+    expect(support).toEqual([]);
   });
 
   it("Regelauswahl beschränkt die Prüfung", () => {

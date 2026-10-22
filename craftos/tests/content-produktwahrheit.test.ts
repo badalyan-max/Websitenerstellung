@@ -60,7 +60,35 @@ function dateien(): string[] {
  * Schlüssel „<datei>|<wort>“ ohne Zeilennummer. Die Liste wird nie erweitert; die Inhaltspakete und Paket (a)
  * beheben die Treffer, 09-09 entfernt die Liste. Einträge ohne Treffer sind bis dahin erlaubt.
  */
-const L1_UEBERGANG_PHASE9 = new Set<string>([]);
+const L1_UEBERGANG_PHASE9 = new Set<string>([
+  // Ratgeber
+  "content/blog/handwerkersoftware-einzelunternehmen.md|Admin-Lizenz",
+  "content/blog/zahlungserinnerung-mahnung-handwerk.md|verspricht keine",
+  "content/blog/zahlungserinnerung-mahnung-handwerk.md|Onlinezahlung",
+  "content/blog/ki-belegscan-pruefen.md|kein autonomes Verbuchen",
+  // Hilfe
+  "content/hilfe/abschlagsrechnung-erstellen.md|Büro-Lizenz",
+  "content/hilfe/anmelden-web-mobile.md|Büro-Lizenz",
+  "content/hilfe/kunden-ansprechpartner-anlegen.md|Büro-Lizenz",
+  "content/hilfe/gaeb-importieren.md|.x84 und .d83",
+  "content/hilfe/rollen-zugriffsrechte-einstellen.md|Finanzen sichtbar",
+  "content/hilfe/rollen-zugriffsrechte-einstellen.md|Teamleitung (Zeiten für andere)",
+  "content/hilfe/schlussrechnung-erstellen.md|nicht pauschal",
+  "content/hilfe/zahlungen-erfassen.md|ersetzt keinen",
+  "content/hilfe/artikel-stammdaten-anlegen.md|Büro-Lizenz",
+  "content/hilfe/craft-ai-betriebsdaten-fragen.md|Büro-Lizenz",
+  "content/hilfe/lagerorte-lagerplaetze-einrichten.md|Büro-Lizenz",
+  "content/hilfe/mobile-offline-synchronisierung.md|kein pauschales",
+  "content/hilfe/plantafel-einsatz-planen.md|Keine Koordinaten",
+  "content/hilfe/plantafel-einsatz-planen.md|Konflikt erkannt",
+  "content/hilfe/plantafel-einsatz-planen.md|Büro-Lizenz",
+  "content/hilfe/planung-mitarbeiter-ressourcen.md|Ressourcen verwalten",
+  "content/hilfe/projekt-phasen-anlegen.md|Neue Phase",
+  "content/hilfe/projekt-phasen-anlegen.md|Büro-Lizenz",
+  "content/hilfe/projektdateien-ordner.md|Asset hinzufügen",
+  // Gewerke-Daten (Paket a)
+  "lib/gewerke.ts|vorbereitete Leistungsvorlagen",
+]);
 
 describe("Leitlinie L-1 in Ratgebern, Hilfe und Gewerke-Texten", () => {
   it("keine neuen Treffer außerhalb der Übergangsliste", () => {

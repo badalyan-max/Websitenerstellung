@@ -250,6 +250,17 @@ export function istZentral(path) {
   return ZENTRAL_BAUM.some((b) => path === b || path.startsWith(`${b}/`));
 }
 
+/**
+ * Phase 9 (D-24, 09-UI-SPEC § 8): Antwort-zuerst-Regel für zentrale Seiten sowie /gewerke, /gewerke/*, /blog/* und
+ * /hilfe/*. Kategorieseiten (/blog/kategorie/*, /hilfe/kategorie/*) haben keine Frage-Überschriften (09-UI-SPEC A7)
+ * und bleiben außen vor, ebenso Rechner und Support (DESIGN-02-Rest, Phase 10). istZentral bleibt unverändert.
+ */
+export function mitAntwortRegel(path) {
+  if (istZentral(path) || path === "/gewerke") return true;
+  if (/^\/(blog|hilfe)\/kategorie(\/|$)/.test(path)) return false;
+  return /^\/(gewerke|blog|hilfe)\/[^/]+$/.test(path);
+}
+
 const istVergleich = (path) => path === "/vergleich" || path.startsWith("/vergleich/");
 
 /**
@@ -392,7 +403,7 @@ export function pruefeSeite({ path, html, mapEntry = null, og = { imInManifest: 
       if (findType(ld, t).length > 0) add("schema", `Schema: ${path} enthält ${t} – auf Vergleichsseiten nicht erlaubt.`);
   }
 
-  if (aktiv.has("antwort") && istZentral(path))
+  if (aktiv.has("antwort") && mitAntwortRegel(path))
     for (const v of answerFirstViolations(html)) add("antwort", antwortText(v.q, path), v.problem);
 
   return out;
@@ -467,8 +478,8 @@ export function optionsFehler({ only, paths, alleRegeln, alleSeiten }) {
 
 /**
  * Regel `prompts` (08 D-10, D-18): Mapping-Ziele aus docs/seo/ai-prompts-targets.json im Build prüfen.
- * Ziele bis Phase 8: Seite gebaut, Anker-id vorhanden, Antwort darunter ≤ 300 (anchorAnswer). Phase-9-Ziele:
- * nur Existenz der Seite. Mit `pfadFilter` werden nur Ziele geprüft, deren Pfad (ohne Anker) im Filter steht.
+ * Ziele bis Phase 8 und Phase-9-Ziele mit Anker: Seite gebaut, Anker-id vorhanden, Antwort darunter ≤ 300
+ * (anchorAnswer). Phase-9-Ziele ohne Anker: nur Existenz der Seite (K-2). Mit `pfadFilter` werden nur Ziele geprüft, deren Pfad (ohne Anker) im Filter steht.
  * @param {{ prompts: { target: string, phase: number, prompt?: string }[] } | { target: string, phase: number }[]} mapping
  * @param {(path: string) => string | null} getHtml
  * @param {string[] | null} [pfadFilter]
@@ -492,7 +503,8 @@ export function promptVerstoesse(mapping, getHtml, pfadFilter = null) {
       add(`Prompt-Ziel ${e.target} fehlt im Build`);
       continue;
     }
-    if (e.phase >= 9) continue;
+    // K-2 (09-01): Phase-9-Ziele ohne Anker nur auf Existenz; mit Anker (z. B. /gewerke/maler#antwort) voll prüfen.
+    if (e.phase >= 9 && !anker) continue;
     if (!anker) {
       add(`Prompt-Ziel ${e.target} hat keinen Anker – Ziel nach DESIGN-V2.md § 17 mit #id angeben.`);
       continue;
