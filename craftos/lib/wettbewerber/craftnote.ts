@@ -63,8 +63,8 @@ export const craftnote: Wettbewerber = {
   },
   staerken: [
     fakt("Sie möchten Firmenfahrzeuge per GPS orten; Craftnote bietet dafür ein Zusatzmodul an.", QUELLEN.preise),
-    fakt(`Sie möchten länger testen: Craftnote nennt ${TESTTAGE} Tage mit dem Umfang von Büro Plus.`, QUELLEN.start),
     fakt("Sie möchten Großhändlerartikel per IDS-Connect übernehmen, wie in Büro Plus.", QUELLEN.preise),
+    // „länger testen“ bildet lib/seiten/alternativen aus testphaseTage und site.trialDays (08-REVIEW ME-03).
   ],
   angaben: {
     mindestpaket: fakt("mindestens ein Büropaket", QUELLEN.preise, {

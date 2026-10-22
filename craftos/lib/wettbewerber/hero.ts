@@ -84,7 +84,7 @@ export const hero: Wettbewerber = {
   staerken: [
     fakt("Sie möchten KI-Telefonie mit HERO Voice nutzen, enthalten ab HERO OS.", QUELLEN.preise),
     fakt("Sie möchten Zahlungen über HERO Wallet abwickeln oder einen API-Zugang nutzen.", QUELLEN.preise),
-    fakt(`Sie möchten länger testen: HERO nennt ${TESTTAGE} Tage.`, QUELLEN.agb),
+    // „länger testen“ bildet lib/seiten/alternativen aus testphaseTage und site.trialDays (08-REVIEW ME-03).
   ],
   angaben: {
     netto: fakt("zuzüglich Umsatzsteuer", QUELLEN.agb, {

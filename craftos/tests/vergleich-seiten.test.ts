@@ -498,7 +498,12 @@ describe("Craftnote", () => {
     expect(inhalt.fuerWen.answer).toBe(
       "Craftnote passt zu Betrieben, die Fahrzeuge orten oder länger testen möchten; CraftOS passt zu Betrieben, die monatlich kündbar bleiben und Mitarbeitende mit einer App-Lizenz ausstatten wollen.",
     );
-    expect(inhalt.fuerWen.panels[0].points.map((p) => p.text)).toEqual(craftnote.staerken.map((s) => s.wert));
+    // ME-03: „länger testen“ entsteht aus testphaseTage > site.trialDays (Craftnote 30 Tage).
+    expect(inhalt.fuerWen.panels[0].points.map((p) => p.text)).toEqual([
+      ...craftnote.staerken.map((s) => s.wert),
+      `Sie möchten länger testen: Craftnote nennt ${craftnote.testphaseTage.wert} Tage.`,
+    ]);
+    expect(inhalt.fuerWen.panels[0].points.at(-1)!.quelle!.url).toBe(craftnote.testphaseTage.quelle.url);
     expect(inhalt.umstieg.steps[0].text).toBe("Craftnote nennt drei Monate Frist vor Ende des Vertragsjahres.");
     expect(inhalt.umstieg.answer).toContain("Ihres Craftnote-Vertrags");
     expect(inhalt.faq.items).toEqual([
@@ -617,7 +622,11 @@ function pruefeHeroInhalt(w: Wettbewerber, inhalt: AlternativeInhalt) {
   expect(inhalt.fuerWen.answer).toBe(
     "HERO passt zu Betrieben, die KI-Telefonie, Online-Zahlungen oder einen API-Zugang im selben System nutzen möchten; CraftOS passt zu Betrieben, die pro Person abrechnen und monatlich kündbar bleiben wollen.",
   );
-  expect(inhalt.fuerWen.panels[0].points.map((p) => p.text)).toEqual(w.staerken.map((s) => s.wert));
+  // ME-03: „länger testen“ aus testphaseTage > site.trialDays (HERO 14 Tage).
+  expect(inhalt.fuerWen.panels[0].points.map((p) => p.text)).toEqual([
+    ...w.staerken.map((s) => s.wert),
+    ...(w.testphaseTage.wert > site.trialDays ? [`Sie möchten länger testen: HERO nennt ${w.testphaseTage.wert} Tage.`] : []),
+  ]);
   expect(inhalt.fuerWen.panels[0].points.length).toBeGreaterThanOrEqual(2);
   expect(inhalt.umstieg.answer).toContain("Ihres HERO-Vertrags");
   expect(inhalt.umstieg.steps[0].text).toBe("HERO nennt in den AGB einen Monat Frist zum Ende der Laufzeit.");
@@ -835,6 +844,27 @@ describe("HI-02: HERO-Laufzeit nur als Grundlaufzeit mit Vorbehalt", () => {
 
 /** ME-02: Stand der Marktübersichten = ältestes Abrufdatum der angezeigten Angaben (hier alle Fakten gleich alt). */
 const aeltesterStand = () => germanDate([plancraft, craftnote, hero, tooltime].map((w) => standVon(w)).reduce((a, b) => (b < a ? b : a)));
+
+describe("ME-03: „länger testen“ nur, wenn die Testphase des Anbieters länger ist als site.trialDays", () => {
+  it("Craftnote mit gleich langer Testphase: kein „länger“ im Panel und in der Für-wen-Antwort", async () => {
+    const { alternativeAusModul } = await import("@/lib/seiten/alternativen");
+    const { craftnoteSeite } = await import("@/lib/seiten/alternativen/craftnote");
+    const w = structuredClone(craftnote);
+    w.testphaseTage = { ...w.testphaseTage, wert: site.trialDays };
+    const inhalt = alternativeAusModul(w, craftnoteSeite, "/vergleich/craftnote-alternative");
+    expect(alleTexte(inhalt).filter((t) => /länger/i.test(t))).toEqual([]);
+    expect(inhalt.fuerWen.answer.startsWith("Craftnote passt zu Betrieben, die Fahrzeuge orten möchten;")).toBe(true);
+  });
+
+  it("ein Seitentext mit „länger testen“ ohne längere Testphase bricht ab", async () => {
+    const { alternativeAusModul } = await import("@/lib/seiten/alternativen");
+    const { craftnoteSeite } = await import("@/lib/seiten/alternativen/craftnote");
+    const w = structuredClone(craftnote);
+    w.testphaseTage = { ...w.testphaseTage, wert: site.trialDays };
+    const seite: typeof craftnoteSeite = (k) => ({ ...craftnoteSeite(k), fuerWen: { ...craftnoteSeite(k).fuerWen, answer: "Craftnote passt zu Betrieben, die länger testen möchten." } });
+    expect(() => alternativeAusModul(w, seite, "/vergleich/craftnote-alternative")).toThrow(/länger/);
+  });
+});
 
 describe("ME-02: Stand der Anbieterangaben konservativ (ältestes Abrufdatum)", () => {
   it("Hub: eine neu geprüfte Einzelangabe hebt den Stand nicht an, eine ältere senkt ihn", async () => {

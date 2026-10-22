@@ -167,6 +167,12 @@ describe("UWG-Wortliste (U7)", () => {
     const w = fixture({ staerken: [fakt("Erste belegte Stärke."), fakt("Nicht teuer im Einstieg.")] });
     expect(() => pruefeWettbewerber(w, HEUTE)).toThrow("Vergleichstext enthält ‚teuer‘");
   });
+  // ME-03: Vergleiche mit CraftOS („länger testen“) entstehen im Seitenmodul aus testphaseTage und site.trialDays.
+  it("Stärken ohne vergleichendes „länger“ – das Datenmodul kennt die CraftOS-Werte nicht", () => {
+    const w = fixture({ staerken: [fakt("Erste belegte Stärke."), fakt("Sie möchten länger testen: plancraft nennt 7 Tage.")] });
+    expect(() => pruefeWettbewerber(w, HEUTE)).toThrow(/vergleichend.*Seitenmodul/);
+    for (const m of wettbewerber) expect(m.staerken.filter((s) => /länger/i.test(s.wert)), m.slug).toEqual([]);
+  });
 });
 
 describe("Preisfelder (U3), Stärken (U6), Ankündigungen (U9), Schreibweise (U8)", () => {

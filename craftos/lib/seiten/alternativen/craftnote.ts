@@ -57,8 +57,8 @@ export const craftnoteSeite: Seitenmodul = (k) => {
       nichtEnthalten: `KI-Verbrauch und Extra-Speicher bei CraftOS; Fahrzeug-Modul (${euro(fahrzeug.wert.centsJahrJeMonat!)} je Tracker und Monat im ersten Jahr, jährliche Abrechnung) und Formularpakete bei Craftnote`,
     },
     fuerWen: {
-      answer:
-        "Craftnote passt zu Betrieben, die Fahrzeuge orten oder länger testen möchten; CraftOS passt zu Betrieben, die monatlich kündbar bleiben und Mitarbeitende mit einer App-Lizenz ausstatten wollen.",
+      // ME-03: „länger testen“ nur, wenn die Craftnote-Testphase laut Daten länger ist als die CraftOS-Testphase.
+      answer: `Craftnote passt zu Betrieben, die Fahrzeuge orten${w.testphaseTage.wert > c.trialDays ? " oder länger testen" : ""} möchten; CraftOS passt zu Betrieben, die monatlich kündbar bleiben und Mitarbeitende mit einer App-Lizenz ausstatten wollen.`,
       craftos: ["proPerson", "monatlich", "gaebDatev"],
     },
     umstieg: { laufzeit: "Craftnote nennt drei Monate Frist vor Ende des Vertragsjahres." },

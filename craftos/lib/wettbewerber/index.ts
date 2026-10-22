@@ -226,6 +226,10 @@ export function pruefeWettbewerber(w: Wettbewerber, heute: Date = new Date()): v
 
   if (w.staerken.length < 2)
     throw new Error(`Wettbewerber ${w.slug}: staerken hat ${w.staerken.length} Einträge – mindestens 2 belegte Stärken erforderlich (U6).`);
+  // ME-03: Das Datenmodul kennt die CraftOS-Werte nicht; Vergleiche wie „länger testen“ bildet das Seitenmodul.
+  const vergleichend = w.staerken.find((s) => /(?<![\p{L}])länger(?![\p{L}])/iu.test(s.wert));
+  if (vergleichend)
+    throw new Error(`Wettbewerber ${w.slug}: Stärke „${vergleichend.wert}“ ist vergleichend – im Seitenmodul aus den Daten bilden (ME-03).`);
   const doppelteStaerke = ersteDoppelung(w.staerken.map((s) => s.wert));
   if (doppelteStaerke) throw new Error(`Wettbewerber ${w.slug}: Stärke ‚${doppelteStaerke}‘ doppelt.`);
 

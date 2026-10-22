@@ -149,6 +149,15 @@ function kontext(w: Wettbewerber): Kontext {
   };
 }
 
+/**
+ * Vergleichende Stärke „länger testen“ (08-REVIEW ME-03): nur, wenn die belegte Testphase des Anbieters länger ist
+ * als die CraftOS-Testphase aus lib/site.ts; Beleg = Quelle von `testphaseTage`.
+ */
+function laengerTesten(w: Wettbewerber): Fakt<string>[] {
+  if (w.testphaseTage.wert <= site.trialDays) return [];
+  return [{ ...w.testphaseTage, wert: `Sie möchten länger testen: ${w.name} nennt ${w.testphaseTage.wert} Tage.` }];
+}
+
 function fehler(w: Wettbewerber, text: string): Error {
   return new Error(`Alternative ${w.slug}: ${text}`);
 }
@@ -261,7 +270,7 @@ export function alternativeAusModul(w: Wettbewerber, seite: Seitenmodul, path: s
       panels: [
         {
           title: `Wann ${name} passt`,
-          points: w.staerken.slice(0, TEXT_BUDGET.count.fitPoints.max).map((s) => ({
+          points: [...w.staerken, ...laengerTesten(w)].slice(0, TEXT_BUDGET.count.fitPoints.max).map((s) => ({
             text: s.wert,
             quelle: { label: `${name}: ${s.quelle.label}`, url: s.quelle.url },
           })),
@@ -291,6 +300,12 @@ export function alternativeAusModul(w: Wettbewerber, seite: Seitenmodul, path: s
   // keine Nein-Antwort, kein Negativsatz über CraftOS; belegte Wettbewerberangaben bleiben außen vor.
   const [verstoss] = nurUnterstuetztVerstoesse(inhalt);
   if (verstoss) throw fehler(w, `${verstoss} (${NUR_UNTERSTUETZT})`);
+
+  // ME-03: „länger testen“ nur, wenn die Testphase des Anbieters laut Daten länger ist als site.trialDays.
+  if (w.testphaseTage.wert <= site.trialDays) {
+    const laenger = texteVon(inhalt).find((t) => /länger test/i.test(t));
+    if (laenger) throw fehler(w, `„${laenger}“ – ${w.name} nennt ${w.testphaseTage.wert} Tage, CraftOS ${site.trialDays}; „länger testen“ weglassen.`);
+  }
 
   // UWG-Wortliste (U7) über alle Seitentexte.
   for (const text of texteVon(inhalt)) {
