@@ -39,7 +39,7 @@ export default function Page() {
             <div className="site-container">
               <SectionHeader eyebrow={group.label} title={group.heading} lead={group.lead} id={group.id} />
               {group.details.length > 0 ? (
-                <ul role="list" className="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
+                <ul role="list" className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
                   {group.details.map((d) => {
                     const scene = cardScenes[d.slug];
                     return (

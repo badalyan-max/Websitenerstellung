@@ -112,7 +112,7 @@ export function FunktionsDetail({ detail }: { detail: Funktionsdetail }) {
 
       <Abschnitt id="verwandt" surface="white">
         <SectionHeader id="verwandt-titel" title={VERWANDT_KOPF.title} lead={VERWANDT_KOPF.lead} />
-        <ul role="list" className="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
+        <ul role="list" className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
           {verwandt.map((v) => (
             <li key={v.slug} data-verwandt={v.slug} className="flex">
               <FeatureCard

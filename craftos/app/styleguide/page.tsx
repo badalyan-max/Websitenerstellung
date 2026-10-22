@@ -252,7 +252,7 @@ export default function StyleguidePage() {
 
       {/* Block 6 */}
       <Block name="FeatureCard" surface="warm">
-        <ul role="list" className="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
+        <ul role="list" className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
           {featureCardContent.map((card) => (
             <li key={card.slug} className="flex">
               <FeatureCard
