@@ -224,3 +224,11 @@ Nicht in dieser Phase: Rechner, `/support`, Rechtsseiten und 404 auf v2 (DESIGN-
 
 *Phase: 09-gewerke-und-wissensinhalte*
 *Context gathered: 2026-10-22*
+
+## Nachtrag Orchestrator (22.10.2026, nach 08-13)
+
+- **D-32:** Web-Release `cd419852` (v4.0.0-test.244) bringt neue Live-Funktionen: das GoBD-Kassenbuch (Stufe 1, mit DATEV-Export), die Rechnung nach § 13b, die Zeitkorrektur von Beginn, Ende und Pause im Web sowie die Sperre abgerechneter Zeiten (Mobile 837aab4f: Hinweis in der App).
+  - 09-15 nimmt sie ins Delta auf.
+  - 09-07 bzw. 09-14 ergänzt mindestens einen Hilfeartikel „Kassenbuch führen“ (CONTENT-04).
+  - § 13b und die Zeitkorrektur fließen in die passenden Bestandsartikel ein: `rechnung-…` (09-17) und `zeiteintrag-erfassen-korrigieren` (09-06).
+  - Register und Snapshot stehen bereits auf diesem Stand (Commit nach 08-13).
