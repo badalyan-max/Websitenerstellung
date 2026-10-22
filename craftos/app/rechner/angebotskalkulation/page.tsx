@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import {
   CalculatorCta,
   CalculatorHelp,
@@ -7,37 +6,21 @@ import {
 import { OfferCalculator } from "@/components/calculators/OfferCalculator";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { site } from "@/lib/site";
+import { metaFor, zielwerte } from "@/lib/seo-meta";
 import styles from "@/components/calculators/Calculators.module.css";
 
-const title = "Angebots- und Margenrechner fürs Handwerk – kostenlos";
-const description =
-  "Angebotspreis berechnen oder vorhandene Preise prüfen: Material, Stunden, Zusatzkosten, Gewinnmarge und Kostenaufschlag. Kostenlos und ohne Anmeldung.";
+// Title, Description, Canonical, Open Graph und Twitter aus der Keyword-Map (08-04, D-06); H1 aus zielwerte (D-17).
+const z = zielwerte("/rechner/angebotskalkulation");
+const description = z.description;
 const url = `${site.url}/rechner/angebotskalkulation`;
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: url },
-  openGraph: {
-    title: "Angebots- und Margenrechner | CraftOS",
-    description,
-    url,
-    type: "website",
-    siteName: "CraftOS",
-    locale: "de_DE",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Angebots- und Margenrechner | CraftOS",
-    description,
-  },
-};
+export const metadata = metaFor("/rechner/angebotskalkulation");
 
 export default function OfferCalculatorPage() {
   return (
     <CalculatorPage
       current="angebotskalkulation"
-      title="Was bleibt von Ihrem Angebot übrig?"
+      title={z.h1}
       intro="Kalkulieren Sie einen Auftrag aus Material, Arbeitszeit und zusätzlichen Kosten. Oder prüfen Sie, welche Gewinnmarge Ihr vorhandener Preis ergibt."
     >
       <JsonLd

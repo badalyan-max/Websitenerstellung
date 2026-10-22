@@ -1,18 +1,14 @@
-import type { Metadata } from "next";
 import { LegalShell, LegalSection } from "@/components/legal/Legal";
 import { crumbsFor } from "@/lib/breadcrumbs";
 import { site } from "@/lib/site";
+import { metaFor, zielwerte } from "@/lib/seo-meta";
 
-export const metadata: Metadata = {
-  title: "Allgemeine Geschäftsbedingungen (AGB)",
-  description:
-    "Allgemeine Geschäftsbedingungen für die Nutzung der CraftOS Handwerkersoftware.",
-  alternates: { canonical: `${site.url}/agb` },
-};
+// Nur Metadaten und H1 aus der Keyword-Map (08-04, D-20); der Rechtstext bleibt unverändert.
+export const metadata = metaFor("/agb");
 
 export default function AgbPage() {
   return (
-    <LegalShell title="Allgemeine Geschäftsbedingungen" crumbs={crumbsFor("/agb")}>
+    <LegalShell title={zielwerte("/agb").h1} crumbs={crumbsFor("/agb")}>
       <LegalSection heading="§ 1 Geltungsbereich">
         <p>
           Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für die Nutzung

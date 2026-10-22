@@ -3,25 +3,16 @@ import { Mail, BookOpen, ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/ui/PageHero";
 import { crumbsFor } from "@/lib/breadcrumbs";
 import { site } from "@/lib/site";
-import { pageMetadata } from "@/lib/metadata";
-export const metadata = pageMetadata(
-  "Kontakt & Support",
-  "Hilfe bei CraftOS: Anleitungen für Web und Mobile, Kontakt zum Support und praktische Informationen zu Ihrer Anfrage.",
-  "/support",
-);
+import { metaFor, zielwerte } from "@/lib/seo-meta";
+// Title, Description und H1 aus der Keyword-Map (08-04, D-06).
+export const metadata = metaFor("/support");
 export default function Page() {
   return (
     <>
       <PageHero
         crumbs={crumbsFor("/support")}
         eyebrow="Kontakt & Support"
-        title={
-          <>
-            Wir helfen Ihnen
-            <br />
-            beim nächsten Schritt.
-          </>
-        }
+        title={zielwerte("/support").h1}
         intro="Ob Einrichtung, Rechnung oder eine Frage zur Mobile-App: Beschreiben Sie uns kurz, wobei Sie Unterstützung benötigen."
       />
       <section className="section-space">
