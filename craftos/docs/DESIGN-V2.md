@@ -584,3 +584,24 @@ Grenze-Kachel (D-04); das Inhaltsmodul muss daher eine Kachel als Grenze führen
 
 **Vermerk Phase 10:** `components/product-demo`, `MobileAppGallery` und die zwei übersprungenen Specs bleiben
 unverändert bis zur Inhaberfreigabe; `FunktionsDetail` importiert `components/product-demo` nicht.
+
+## 17. Phase 8 (Plan 08-01, 22.10.2026)
+
+Kaskade Phase 8: siehe 08-02 und 08-03.
+
+### 17.1 Anker-Konvention für Frage-Überschriften
+
+Verbindlich ab Plan 08-01 für alle Seitenpläne; Grundlage für die Prompt-Ziele in `docs/seo/ai-prompts-targets.json` (08 D-10) und die Antwort-zuerst-Regel (08-UI-SPEC § 2). Geprüft wird sie vom Post-Build-Audit `node scripts/seo-audit.mjs` (Regeln `antwort` und `prompts`, Prüffunktion `anchorAnswer` in `scripts/lib/seo-audit-core.mjs`).
+
+1. **Kopf-Antwort:** `<p id="antwort" data-answer>` steht direkt nach der H1 (Prompt-Ziel `#antwort`), höchstens 300 Zeichen, 1–2 Sätze.
+2. **Phase-8-Abschnitte:** `section data-abschnitt={id} aria-labelledby={id}`; die Abschnitts-H2 trägt `id={id}` **ohne** Suffix (z. B. `app-lizenz`, `was-ist-craftos`, `was-kostet-handwerkersoftware`). `scroll-margin-top: 100px` aus `SectionHeader` bleibt.
+3. **Bestandsseiten der Phasen 6/7** behalten `{id}-titel`; ihre Prompt-Ziele nutzen die vorhandene id (z. B. `/funktionen/zeiterfassung#faq-titel`, `/#faq-titel`, `/app#faq-titel`). Fehlt einer Bestandsseite eine passende id, wird sie am bestehenden Abschnitts-Wrapper ergänzt, ohne sichtbare Änderung.
+4. **Prüfregel `anchorAnswer`:** Anker an `<p>` → dessen Text ≤ 300 Zeichen; Anker an einer Frage-H2 (Text mit „?“) → das erste folgende `<p>` vor der nächsten Überschrift ≤ 300 Zeichen; Anker an einer FAQ-H2 (ohne „?“) → alle `summary`-Fragen bis zur nächsten H2 erfüllen die Antwortregel; Anker an einem Wrapper → die erste H2/H3 darin wird wie oben geprüft.
+
+Fehlertexte (08-UI-SPEC „Copywriting Contract“): „Antwort zuerst: Frage ‚{q}‘ auf {path} hat keine Antwort ≤ 300 Zeichen direkt darunter – ersten Absatz kürzen oder vorziehen.“; für Prompt-Ziele „Prompt-Ziel {target} fehlt im Build“ bzw. „Prompt-Ziel {target}: Anker #{id} fehlt – id laut DESIGN-V2.md § 17 ergänzen.“
+
+### 17.2 Prüfinfrastruktur (Stand 08-01)
+
+- `scripts/seo-audit.mjs [--only=<regel,…>] [--paths=<pfad,…>] [--report]` prüft jede Sitemap-URL im gebauten HTML (`.next/server/app`): `title`, `description`, `h1`, `duplikate`, `keyword`, `map`, `breadcrumbs`, `og`, `faq-schema`, `schema`, `antwort`, `prompts`. Ergebnis immer in `test-results/seo-audit.json` (inklusive Ist-Werte je Pfad).
+- KeyFacts akzeptiert zusätzlich die Quellen-Kurzform `wettbewerber:<schlüssel>` für belegte Wettbewerberwerte; CraftOS-Werte bleiben `site:`/`register:`.
+- Metadaten neuer und umgebauter Seiten über `metaFor(path)` aus `lib/seo-meta.ts` (Quelle `docs/seo/keyword-map.json`); H1 aus `zielwerte(path).h1`.

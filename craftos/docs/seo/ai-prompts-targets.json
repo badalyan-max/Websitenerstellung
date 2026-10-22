@@ -1,0 +1,194 @@
+{
+  "_hinweis": "Prompt → Zielseite#Anker für alle Einträge des SE-Ranking-AI-Trackers (08 D-10, D-18). IDs und Texte aus der Rohdatei unter quelle; phase = Phase, in der das Ziel entsteht bzw. entstanden ist. Anker nach DESIGN-V2.md § 17. Ziele bis Phase 8 prüft node scripts/seo-audit.mjs --only=prompts (Anker + Antwort ≤ 300), Phase 9 nur die Existenz. luecken = KD-<20-Wissenslücken (D-11), Ausbau in Phase 9.",
+  "stand": "2026-10-22",
+  "quelle": "docs/seo/data/2026-10-22-ai-tracker-prompts.json",
+  "prompts": [
+    {
+      "engine": "chatgpt",
+      "promptLlmId": 1528441,
+      "prompt": "Welche Handwerkersoftware ist die beste für kleine Betriebe?",
+      "target": "/vergleich/handwerkersoftware-kleine-betriebe#antwort",
+      "phase": 8
+    },
+    {
+      "engine": "chatgpt",
+      "promptLlmId": 1528444,
+      "prompt": "beste Handwerkersoftware 2026",
+      "target": "/vergleich#antwort",
+      "phase": 8
+    },
+    {
+      "engine": "chatgpt",
+      "promptLlmId": 1528447,
+      "prompt": "Handwerkersoftware Vergleich",
+      "target": "/vergleich#antwort",
+      "phase": 8
+    },
+    {
+      "engine": "chatgpt",
+      "promptLlmId": 1528450,
+      "prompt": "Alternative zu Plancraft",
+      "target": "/vergleich/plancraft-alternative#antwort",
+      "phase": 8
+    },
+    {
+      "engine": "chatgpt",
+      "promptLlmId": 1528453,
+      "prompt": "günstige Handwerkersoftware mit App für Mitarbeiter",
+      "target": "/preise#app-lizenz",
+      "phase": 8
+    },
+    {
+      "engine": "chatgpt",
+      "promptLlmId": 1528456,
+      "prompt": "Was ist CraftOS?",
+      "target": "/fakten-ueber-craftos#was-ist-craftos",
+      "phase": 8
+    },
+    {
+      "engine": "chatgpt",
+      "promptLlmId": 1535959,
+      "prompt": "Welche App eignet sich für die Zeiterfassung im Handwerk?",
+      "target": "/funktionen/zeiterfassung#faq-titel",
+      "phase": 7
+    },
+    {
+      "engine": "chatgpt",
+      "promptLlmId": 1535962,
+      "prompt": "Rechnungssoftware für Handwerker mit E-Rechnung (XRechnung, ZUGFeRD)",
+      "target": "/funktionen/e-rechnung#faq-titel",
+      "phase": 7
+    },
+    {
+      "engine": "chatgpt",
+      "promptLlmId": 1535965,
+      "prompt": "Alternative zu HERO Software",
+      "target": "/vergleich/hero-alternative#antwort",
+      "phase": 8
+    },
+    {
+      "engine": "chatgpt",
+      "promptLlmId": 1535968,
+      "prompt": "Alternative zu ToolTime",
+      "target": "/vergleich/tooltime-alternative#antwort",
+      "phase": 8
+    },
+    {
+      "engine": "chatgpt",
+      "promptLlmId": 1535971,
+      "prompt": "Welche Aufmaß-App ist gut für Handwerker?",
+      "target": "/funktionen/aufmass#faq-titel",
+      "phase": 7
+    },
+    {
+      "engine": "chatgpt",
+      "promptLlmId": 1535974,
+      "prompt": "Bautagebuch App für Handwerksbetriebe",
+      "target": "/funktionen/baudokumentation#faq-titel",
+      "phase": 7
+    },
+    {
+      "engine": "chatgpt",
+      "promptLlmId": 1535977,
+      "prompt": "Was kostet eine Handwerkersoftware pro Monat?",
+      "target": "/preise#was-kostet-handwerkersoftware",
+      "phase": 8
+    },
+    {
+      "engine": "chatgpt",
+      "promptLlmId": 1535980,
+      "prompt": "Handwerkersoftware mit Plantafel und Einsatzplanung",
+      "target": "/funktionen/plantafel#faq-titel",
+      "phase": 7
+    },
+    {
+      "engine": "chatgpt",
+      "promptLlmId": 1535983,
+      "prompt": "Software für Elektrobetriebe",
+      "target": "/gewerke/elektriker",
+      "phase": 9
+    },
+    {
+      "engine": "chatgpt",
+      "promptLlmId": 1535986,
+      "prompt": "Software für Malerbetriebe",
+      "target": "/gewerke/maler",
+      "phase": 9
+    },
+    {
+      "engine": "perplexity",
+      "promptLlmId": 1528465,
+      "prompt": "Welche Handwerkersoftware ist die beste für kleine Betriebe?",
+      "target": "/vergleich/handwerkersoftware-kleine-betriebe#antwort",
+      "phase": 8
+    },
+    {
+      "engine": "perplexity",
+      "promptLlmId": 1528468,
+      "prompt": "Alternative zu HERO Software",
+      "target": "/vergleich/hero-alternative#antwort",
+      "phase": 8
+    },
+    {
+      "engine": "google_ai_overview",
+      "promptLlmId": 1528459,
+      "prompt": "handwerkersoftware",
+      "target": "/#faq-titel",
+      "phase": 6
+    },
+    {
+      "engine": "google_ai_overview",
+      "promptLlmId": 1528462,
+      "prompt": "handwerker app",
+      "target": "/app#faq-titel",
+      "phase": 7
+    }
+  ],
+  "luecken": [
+    {
+      "path": "/hilfe/leistungszeitraum-rechnung",
+      "keyword": "leistungszeitraum rechnung",
+      "phase": 9
+    },
+    {
+      "path": "/hilfe/regiebericht",
+      "keyword": "regiebericht",
+      "phase": 9
+    },
+    {
+      "path": "/hilfe/bedenkenanzeige",
+      "keyword": "bedenkenanzeige",
+      "phase": 9
+    },
+    {
+      "path": "/blog/maengelanzeige",
+      "keyword": "mängelanzeige",
+      "phase": 9
+    },
+    {
+      "path": "/blog/reverse-charge-bauleistungen",
+      "keyword": "reverse charge rechnungsstellung",
+      "phase": 9
+    },
+    {
+      "path": "/blog/materialliste-vorlage",
+      "keyword": "materialliste vorlage",
+      "phase": 9
+    },
+    {
+      "path": "/blog/gaeb-formate",
+      "keyword": "gaeb formate",
+      "phase": 9
+    },
+    {
+      "path": "/blog/bauablaufplan",
+      "keyword": "bauablaufplan",
+      "phase": 9
+    },
+    {
+      "path": "/blog/arbeitszeitnachweis-vorlage",
+      "keyword": "arbeitszeitnachweis vorlagen",
+      "phase": 9
+    }
+  ]
+}

@@ -408,3 +408,41 @@ export function duplikate(seiten, pfadFilter = null) {
   }
   return out;
 }
+
+/**
+ * Regel `prompts` (08 D-10, D-18): Mapping-Ziele aus docs/seo/ai-prompts-targets.json im Build prüfen.
+ * Ziele bis Phase 8: Seite gebaut, Anker-id vorhanden, Antwort darunter ≤ 300 (anchorAnswer). Phase-9-Ziele:
+ * nur Existenz der Seite. Mit `pfadFilter` werden nur Ziele geprüft, deren Pfad (ohne Anker) im Filter steht.
+ * @param {{ prompts: { target: string, phase: number, prompt?: string }[] } | { target: string, phase: number }[]} mapping
+ * @param {(path: string) => string | null} getHtml
+ * @param {string[] | null} [pfadFilter]
+ * @returns {{ regel: string, path: string, problem: string }[]}
+ */
+export function promptVerstoesse(mapping, getHtml, pfadFilter = null) {
+  const eintraege = Array.isArray(mapping) ? mapping : mapping.prompts ?? [];
+  const filter = pfadFilter ? new Set(pfadFilter) : null;
+  const out = [];
+  const gesehen = new Set();
+  for (const e of eintraege) {
+    if (gesehen.has(e.target)) continue;
+    gesehen.add(e.target);
+    const [pfadRoh, anker] = e.target.split("#");
+    const pfad = pfadRoh || "/";
+    if (filter && !filter.has(pfad)) continue;
+    const add = (problem) => out.push({ regel: "prompts", path: pfad, problem });
+    const html = getHtml(pfad);
+    if (html === null || html === undefined) {
+      add(`Prompt-Ziel ${e.target} fehlt im Build`);
+      continue;
+    }
+    if (e.phase >= 9) continue;
+    if (!anker) {
+      add(`Prompt-Ziel ${e.target} hat keinen Anker – Ziel nach DESIGN-V2.md § 17 mit #id angeben.`);
+      continue;
+    }
+    const r = anchorAnswer(html, anker);
+    if (!r.exists) add(`Prompt-Ziel ${e.target}: Anker #${anker} fehlt – id laut DESIGN-V2.md § 17 ergänzen.`);
+    else if (!r.ok) add(`Prompt-Ziel ${e.target}: ${r.problem} – Antwort zuerst (≤ ${ANTWORT_MAX} Zeichen) direkt unter dem Anker.`);
+  }
+  return out;
+}

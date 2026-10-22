@@ -203,7 +203,7 @@ Kontingent laut `/v1/account/subscription`: vor dem Lauf 78.093 Units, danach 65
 | `/hilfe/zeiteintrag-erfassen-korrigieren` | bestehend | – (keine Daten) | – | – | – | – | – |
 | `/hilfe/zeiten-pruefen-exportieren` | bestehend | stundenzettel excel | 320 | 9 | I | – | `export--candidates-1.json` |
 
-### Geplante Seiten (13)
+### Geplante Seiten (14)
 
 | Pfad | Zielphase | Hauptkeyword | Volumen | KD | Intent | Wettbewerber (Position) | Quelle |
 |---|---|---|---|---|---|---|---|
@@ -211,6 +211,7 @@ Kontingent laut `/v1/account/subscription`: vor dem Lauf 78.093 Units, danach 65
 | `/vergleich/craftnote-alternative` | 8 | craftnote alternative | 30 | 6 | I | craftnote.de (5), openhandwerk.de (36) | `export--candidates-1.json` |
 | `/vergleich/hero-alternative` | 8 | hero software alternative | 10 | 15 | I | – | `export--candidates-1.json` |
 | `/vergleich/tooltime-alternative` | 8 | tooltime | 4.400 | 78 | L, C | – | `export--candidates-1.json` |
+| `/vergleich/handwerkersoftware-kleine-betriebe` | 8 | – (ohne Daten: „beste handwerkersoftware für kleine betriebe“) | – | – | – | – | `export--candidates-1.json` (`is_data_found:false`) |
 | `/hilfe/leistungszeitraum-rechnung` | 9 | leistungszeitraum rechnung | 390 | 8 | I | plancraft.com (24) | `export--candidates-1.json` |
 | `/hilfe/regiebericht` | 9 | regiebericht | 390 | 4 | I | plancraft.com (8), openhandwerk.de (26), craftnote.de (33) | `export--candidates-1.json` |
 | `/hilfe/bedenkenanzeige` | 9 | bedenkenanzeige | 390 | 7 | I | plancraft.com (24) | `export--candidates-1.json` |
@@ -464,3 +465,11 @@ Geänderte Zielwerte (07-UI-SPEC „SEO-Vertrag“; Länge in Zeichen):
 `docs/seo/keyword-seeds.json` führt für `/funktionen/datenuebernahme` („datenimport“, „daten importieren“) und `/funktionen/maengelmanagement` („mängelmanagement“, „mängelmanagement app“) jetzt pageCandidates, weil `tests/keyword-seeds.test.ts` für jeden Sitemap-Pfad Kandidaten verlangt. Es sind genau Haupt- und Nebenbegriff der Map; beide stehen bereits in `export--candidates-1.json` bzw. `export--candidates-2.json`, ein neuer API-Abruf war nicht nötig (§ 1 „Export“ nennt den Stand vom 20.10.2026 mit 373 pageCandidates).
 
 Absicherung: `tests/keyword-map.test.ts` („Phase 7 (D-08, D-22)“) prüft Status, Sitemap-Aufnahme, die neuen Werte, H1 ≤ 60, die Kopfwort-Regel und dass Zielwerte der Funktionsseiten weder „automatisch“ noch „lückenlos“ enthalten.
+
+### 22.10.2026 – Phase 8 (Prompt-Mapping und Seite für kleine Betriebe, D-10, D-11, D-18)
+
+Neuer Eintrag `/vergleich/handwerkersoftware-kleine-betriebe` (Status `geplant`, Zielphase 8, `primary: null`): Ziel des AI-Tracker-Prompts „Welche Handwerkersoftware ist die beste für kleine Betriebe?“. Der einzige passende Kandidat „beste handwerkersoftware für kleine betriebe“ steht in `export--candidates-1.json` mit `is_data_found:false` und ist als pageCandidate in `docs/seo/keyword-seeds.json` geführt; verwandte Begriffe mit Daten („beste handwerkersoftware“, „software für kleine handwerksbetriebe“) bleiben Hauptkeywords der Ratgeber `/blog/handwerkersoftware-auswaehlen` und `/blog/handwerkersoftware-einzelunternehmen` (keine Kannibalisierung, kein neuer API-Abruf). Zielwerte laut 08-UI-SPEC § 8: Title „Handwerkersoftware für kleine Betriebe: Kriterien | CraftOS“ (59), H1 „Handwerkersoftware für kleine Betriebe im Vergleich“ (51), Description (153). Der Statuswechsel auf `bestehend` erfolgt im selben Commit wie Seite, Sitemap und `llms.txt`.
+
+Prompt-Mapping: `docs/seo/ai-prompts-targets.json` ordnet alle 20 Einträge des AI-Trackers (16 ChatGPT, 2 Perplexity, 2 Google AI Overview; Rohdaten `docs/seo/data/2026-10-22-ai-tracker-prompts.json`) einer Zielseite mit Anker und Phase zu; die geplanten Phase-9-Pfade aus § 3 stehen dort als `luecken` (D-11). Anker nach `docs/DESIGN-V2.md` § 17. Absicherung: `tests/ai-prompts.test.ts` (IDs/Texte gegen Rohdaten, Ziele gegen Sitemap und Map) und `node scripts/seo-audit.mjs --only=prompts` (Anker und Antwort ≤ 300 Zeichen im Build).
+
+Ab Phase 8 gelten die Zielwertregeln (Title ≤ 60, Description 120–155, Title/H1/Description vollständig) für jeden Eintrag mit `target`, auch ohne Hauptkeyword (`tests/keyword-map.test.ts`); die Keyword-Prüfung im Titel bleibt auf Einträge mit `primary` beschränkt.

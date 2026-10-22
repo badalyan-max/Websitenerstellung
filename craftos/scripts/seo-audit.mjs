@@ -7,11 +7,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { SEITEN_REGELN, duplikate, headTags, pfadVonUrl, pruefeSeite } from "./lib/seo-audit-core.mjs";
+import { SEITEN_REGELN, duplikate, headTags, pfadVonUrl, promptVerstoesse, pruefeSeite } from "./lib/seo-audit-core.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const appDir = path.join(root, ".next/server/app");
-const ALLE_REGELN = [...SEITEN_REGELN, "duplikate"];
+const ALLE_REGELN = [...SEITEN_REGELN, "duplikate", "prompts"];
 
 const args = process.argv.slice(2);
 const liste = (name) => {
@@ -74,6 +74,12 @@ for (const p of alleSeiten) {
   verstoesse.push(...pruefeSeite({ path: p, html, mapEntry: mapBy.get(p) ?? null, og: ogInfo(ist.ogImage) }, seitenRegeln));
 }
 if (regeln.includes("duplikate")) verstoesse.push(...duplikate(seiten, pfadFilter));
+if (regeln.includes("prompts")) {
+  // Prompt-Mapping (D-10): Ziele bis Phase 8 mit Anker und Antwort, Phase 9 nur Existenz.
+  const mapping = JSON.parse(fs.readFileSync(path.join(root, "docs/seo/ai-prompts-targets.json"), "utf8"));
+  const getHtml = (p) => (fs.existsSync(htmlDatei(p)) ? fs.readFileSync(htmlDatei(p), "utf8") : null);
+  verstoesse.push(...promptVerstoesse(mapping, getHtml, pfadFilter));
+}
 
 const zusammenfassung = Object.fromEntries([...regeln, "build"].map((r) => [r, verstoesse.filter((v) => v.regel === r).length]));
 if (zusammenfassung.build === 0) delete zusammenfassung.build;

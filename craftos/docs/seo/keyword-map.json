@@ -3983,6 +3983,20 @@
     }
   },
   {
+    "path": "/vergleich/handwerkersoftware-kleine-betriebe",
+    "status": "geplant",
+    "phase": 8,
+    "primary": null,
+    "reason": "Kein belegtes Suchvolumen: ‚beste handwerkersoftware für kleine betriebe‘ ohne Daten (export--candidates-1.json); verwandte Begriffe mit Daten gehören den Ratgebern /blog/handwerkersoftware-auswaehlen und /blog/handwerkersoftware-einzelunternehmen (keine Kannibalisierung).",
+    "secondary": [],
+    "competitors": [],
+    "target": {
+      "title": "Handwerkersoftware für kleine Betriebe: Kriterien | CraftOS",
+      "h1": "Handwerkersoftware für kleine Betriebe im Vergleich",
+      "description": "Handwerkersoftware für kleine Betriebe: belegte Kriterien zu E-Rechnung, Laufzeit, Kosten pro Person und Mobile-App, fünf Anbieter mit Quellen und Stand."
+    }
+  },
+  {
     "path": "/funktionen/gaeb",
     "status": "bestehend",
     "primary": {
