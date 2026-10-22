@@ -2,7 +2,7 @@
  * Kernseiten /fakten-ueber-craftos, /craft-ai und /gobd (Plan 08-12; D-09, D-12, D-25; 08-UI-SPEC §§ 5.2–5.4, § 9).
  * Inhalte stehen budgetgeprüft in lib/seiten/{fakten,craft-ai,gobd}.ts; Preise, Credits, Testtage und Sprachenzahl
  * kommen aus lib/site.ts und dem Produktregister. Wortregeln (T-08-32): keine behördliche GoBD-Zertifizierung,
- * kein autonomes Verbuchen durch Craft AI, Offline nur „Teilweise“.
+ * kein autonomes Verbuchen durch Craft AI, Offline nur als Aufzählung belegter Vorgänge (HI-03), nie „vollständig offline“.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -89,7 +89,7 @@ describe("Fakten über CraftOS (§ 5.2, D-25)", () => {
     expect(fakten.faktenKopf.eyebrow).toBe("Fakten");
     expect(fakten.faktenKopf.kopfwort).toBe("CraftOS");
     expect(fakten.faktenKopf.lead).toBe(
-      "Überprüfbare Angaben zu Produkt, Plattformen, Lizenzen und Grenzen der Handwerkersoftware CraftOS.",
+      "Überprüfbare Angaben zu Produkt, Plattformen, Lizenzen und Funktionen der Handwerkersoftware CraftOS.",
     );
     expect(fakten.faktenKopf.secondary).toEqual({ label: "Preise ansehen", href: "/preise" });
     expect(kopfProbleme(fakten.faktenKopf, fakten.FAKTEN_PFAD)).toEqual([]);
@@ -164,9 +164,17 @@ describe("Fakten über CraftOS (§ 5.2, D-25)", () => {
     expect(def("App-Lizenz")).toContain(euro(app.monat));
     expect(def("App-Lizenz")).toContain(euro(app.jahr));
     expect(def("Testphase")).toContain(`${site.trialDays} Tage`);
-    expect(def("Offline-Nutzung").startsWith("Teilweise")).toBe(true);
-    expect(def("Offline-Nutzung")).toContain(mobileOffline.limitation);
-    expect(def("Standort bei der Zeiterfassung")).toMatch(/keine Bewegungsverläufe|Bewegungsverläufe werden nicht/);
+    // HI-03 (Inhaber 22.10.2026): positiv – was offline funktioniert und danach synchronisiert wird; GPS nur je Vorgang.
+    expect(def("Offline-Nutzung")).toBe(
+      "Zeiten, Bautagesberichte, Mängel, Aufmaße und Urlaubsanträge erfasst die Mobile-App auch ohne Empfang und überträgt sie danach. Bereits geladene Projekte stehen offline bereit.",
+    );
+    expect(mobileOffline.evidence.length).toBeGreaterThan(0);
+    expect(def("Standort bei der Zeiterfassung")).toBe(
+      "GPS erfasst nur einzelne Vorgänge wie das Ein- und Ausstempeln: Die Mobile-App speichert beim Starten und Stoppen des Timers je einen Standortpunkt.",
+    );
+    expect(def("Einsatzkarte")).toBe("Die Web-App zeigt geplante Einsatzorte mit Tages- und Mitarbeiterfilter.");
+    expect(fakten.faktenSections.produktfakten.lead).toBe("Jede Angabe beschreibt den freigegebenen Funktionsstand.");
+    for (const { term, definition } of items) expect(definition, term).not.toMatch(/^Teilweise|\bnicht\b|\bkeine?\b|Grenzen/);
     // Inhabervorgabe 22.10.2026: nur nennen, was unterstützt wird; DATANORM nur positiv als „DATANORM 4 und 5“.
     expect(def("GAEB und DATANORM")).toContain("DATANORM 4 und 5");
   });
@@ -187,17 +195,24 @@ describe("Fakten über CraftOS (§ 5.2, D-25)", () => {
     );
   });
 
-  it("FAQ: vier Antworten ≤ 300; Offline „Teilweise.“, GoBD ohne Zertifizierungsbehauptung, Standort ohne Verlauf", () => {
+  it("FAQ: vier Antworten ≤ 300, nur positiv formuliert (HI-03): Offline-Aufzählung, GoBD-Zuständigkeit, Standort je Vorgang", () => {
     expect(fakten.faktenFaq.map((f) => f.q)).toEqual([
       "Wer bietet CraftOS an?",
-      "Funktioniert CraftOS offline?",
+      "Was funktioniert in CraftOS offline?",
       "Unterstützt CraftOS die GoBD?",
-      "Zeichnet CraftOS Bewegungen meiner Mitarbeitenden auf?",
+      "Welche Standortdaten speichert die Mobile-App?",
     ]);
     expect(faqProbleme(fakten.faktenFaq)).toEqual([]);
-    expect(fakten.faktenFaq[1].a.startsWith("Teilweise.")).toBe(true);
-    expect(fakten.faktenFaq[2].a).toContain("eine behördliche Zertifizierung wird nicht behauptet");
-    expect(fakten.faktenFaq[3].a.startsWith("Nein.")).toBe(true);
+    expect(fakten.faktenFaq[1].a).toBe(
+      "In der Mobile-App erfassen Sie Zeiten, Bautagesberichte, Mängel, Aufmaße und Urlaubsanträge auch ohne Empfang; die App überträgt sie, sobald wieder eine Verbindung besteht, und bereits geladene Projekte stehen offline bereit.",
+    );
+    expect(fakten.faktenFaq[2].a).toBe(
+      "CraftOS unterstützt GoBD-konforme Abläufe mit Festschreibung, Dokumentversionen und Protokollen; die GoBD-Konformität des gesamten Verfahrens organisiert Ihr Betrieb.",
+    );
+    expect(fakten.faktenFaq[3].a).toBe(
+      "GPS erfasst nur einzelne Vorgänge wie das Ein- und Ausstempeln: Die Mobile-App speichert beim Start und Stopp der Zeiterfassung je einen Standortpunkt, bei mobilen Unterschriften Ort und Zeitpunkt.",
+    );
+    for (const f of fakten.faktenFaq) expect(f.a, f.q).not.toMatch(/^(Nein|Teilweise)\b|\bnicht\b|\bkeine?\b/);
   });
 });
 

@@ -1,11 +1,13 @@
 /**
  * Inhalte der Entitätsseite `/fakten-ueber-craftos` (08-UI-SPEC § 5.2; D-09, D-12, D-25, Prompt #6 „Was ist CraftOS?“).
- * Alle Zahlen kommen aus lib/site.ts (site, tarife), dem Produktregister (mobileLocales, mobileOffline) und
+ * Alle Zahlen kommen aus lib/site.ts (site, tarife), dem Produktregister (mobileLocales) und
  * lib/funktionen.ts bzw. lib/funktionsgruppen.ts; Preise und Testtage werden nie als Literal geschrieben
  * (tests/pricing-parity.test.ts). Bestandsfakten sind nur gekürzt, es kommen keine neuen Behauptungen hinzu.
- * Inhabervorgabe 22.10.2026: die Seite nennt nur, was unterstützt wird (keine Negativlisten nicht unterstützter
- * Funktionen oder Versionen); Einschränkungen unterstützter Funktionen (Offline teilweise, keine GoBD-Zertifizierung)
- * bleiben als Überclaim-Schutz (T-08-32); die KI-Zuständigkeit steht positiv („Sie prüfen und bestätigen“).
+ * Inhabervorgabe 22.10.2026: die Seite nennt nur, was unterstützt wird, und formuliert positiv (08-REVIEW HI-03):
+ * Offline zählt auf, was die Mobile-App ohne Empfang erfasst und danach überträgt (Beleg: Produktregister
+ * `mobileOffline`, Mobile-Release `useOfflineMutation` in Zeiterfassung, Bautagesbericht, Mängeln, Raumaufmaß und
+ * Urlaubsanträgen); Standort „GPS erfasst nur einzelne Vorgänge“ (Register-Grenze); GoBD- und KI-Zuständigkeit
+ * positiv. Überclaim-Schutz ohne Verneinung: es werden nur belegte Abläufe genannt.
  * Prüfung: tests/kernseiten.test.ts, tests/design-v2-budgets.test.ts.
  */
 import type { LucideIcon } from "lucide-react";
@@ -14,7 +16,7 @@ import type { KeyFact } from "@/components/v2/KeyFacts";
 import { euro, germanDate } from "@/lib/format";
 import { funktionen } from "@/lib/funktionen";
 import { getFunktionsgruppen } from "@/lib/funktionsgruppen";
-import { mobileLocales, mobileOffline } from "@/lib/product-register";
+import { mobileLocales } from "@/lib/product-register";
 import { site, tarife } from "@/lib/site";
 
 function tarif(id: "voll" | "app") {
@@ -26,6 +28,10 @@ function tarif(id: "voll" | "app") {
 const voll = tarif("voll");
 const app = tarif("app");
 const NBSP = " ";
+/** Offline erfassbare Vorgänge der Mobile-App (Beleg: Produktregister `mobileOffline`, Mobile-Release origin/release). */
+const OFFLINE_ERFASSUNG = "Zeiten, Bautagesberichte, Mängel, Aufmaße und Urlaubsanträge";
+/** Standortgrenze positiv (Produktregister: „GPS erfasst einzelne Vorgänge“). */
+const GPS_VORGAENGE = "GPS erfasst nur einzelne Vorgänge wie das Ein- und Ausstempeln";
 const ZAHLWORT: Record<number, string> = { 4: "vier", 5: "fünf", 6: "sechs", 7: "sieben", 8: "acht" };
 
 export const FAKTEN_PFAD = "/fakten-ueber-craftos" as const;
@@ -50,7 +56,7 @@ export const FAKTEN_SURFACES: Readonly<Record<FaktenSectionId, "dark" | "white" 
 export const faktenKopf = {
   eyebrow: "Fakten",
   kopfwort: "CraftOS",
-  lead: "Überprüfbare Angaben zu Produkt, Plattformen, Lizenzen und Grenzen der Handwerkersoftware CraftOS.",
+  lead: "Überprüfbare Angaben zu Produkt, Plattformen, Lizenzen und Funktionen der Handwerkersoftware CraftOS.",
   secondary: { label: "Preise ansehen", href: "/preise" },
 } as const;
 
@@ -64,7 +70,7 @@ export const faktenSections: Record<Exclude<FaktenSectionId, "kopf" | "cta">, { 
   },
   produktfakten: {
     title: "Produktfakten im Überblick",
-    lead: "Jede Angabe beschreibt den freigegebenen Funktionsstand mit seinen Grenzen.",
+    lead: "Jede Angabe beschreibt den freigegebenen Funktionsstand.",
   },
   funktionen: {
     title: "Welche Funktionen hat CraftOS?",
@@ -122,17 +128,15 @@ export const produktfakten: FactListItem[] = [
   },
   {
     term: "Offline-Nutzung",
-    definition: `Teilweise: bereits geladene mobile Daten und ausgewählte Eingaben. ${mobileOffline.limitation} für Fotos, KI oder neue Downloads.`,
+    definition: `${OFFLINE_ERFASSUNG} erfasst die Mobile-App auch ohne Empfang und überträgt sie danach. Bereits geladene Projekte stehen offline bereit.`,
   },
   {
     term: "Standort bei der Zeiterfassung",
-    definition:
-      "Die Mobile-App speichert beim Starten und Stoppen des Timers je einen Standortpunkt. Bewegungsverläufe werden nicht aufgezeichnet.",
+    definition: `${GPS_VORGAENGE}: Die Mobile-App speichert beim Starten und Stoppen des Timers je einen Standortpunkt.`,
   },
   {
     term: "Einsatzkarte",
-    definition:
-      "Die Web-App zeigt geplante Einsatzorte mit Tages- und Mitarbeiterfilter. Aktuelle Aufenthaltsorte des Teams zeigt die Karte nicht.",
+    definition: "Die Web-App zeigt geplante Einsatzorte mit Tages- und Mitarbeiterfilter.",
   },
   {
     term: "Unterschriften mit Standort",
@@ -176,15 +180,15 @@ export const faktenFaq: { q: string; a: string }[] = [
     a: "CraftOS wird von einem Einzelunternehmen angeboten; Name, Anschrift und Kontakt stehen im Impressum.",
   },
   {
-    q: "Funktioniert CraftOS offline?",
-    a: "Teilweise. Die Mobile-App zeigt bereits geladene Daten und nimmt ausgewählte Eingaben offline an; Fotos, KI und neue Downloads brauchen eine Verbindung.",
+    q: "Was funktioniert in CraftOS offline?",
+    a: `In der Mobile-App erfassen Sie ${OFFLINE_ERFASSUNG} auch ohne Empfang; die App überträgt sie, sobald wieder eine Verbindung besteht, und bereits geladene Projekte stehen offline bereit.`,
   },
   {
     q: "Unterstützt CraftOS die GoBD?",
-    a: "CraftOS unterstützt GoBD-konforme Abläufe mit Festschreibung, Dokumentversionen und Protokollen; eine behördliche Zertifizierung wird nicht behauptet.",
+    a: "CraftOS unterstützt GoBD-konforme Abläufe mit Festschreibung, Dokumentversionen und Protokollen; die GoBD-Konformität des gesamten Verfahrens organisiert Ihr Betrieb.",
   },
   {
-    q: "Zeichnet CraftOS Bewegungen meiner Mitarbeitenden auf?",
-    a: "Nein. Die Mobile-App speichert nur beim Start und Stopp der Zeiterfassung je einen Standortpunkt; Bewegungsverläufe werden nicht aufgezeichnet.",
+    q: "Welche Standortdaten speichert die Mobile-App?",
+    a: `${GPS_VORGAENGE}: Die Mobile-App speichert beim Start und Stopp der Zeiterfassung je einen Standortpunkt, bei mobilen Unterschriften Ort und Zeitpunkt.`,
   },
 ];
