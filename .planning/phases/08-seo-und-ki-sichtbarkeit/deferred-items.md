@@ -8,3 +8,8 @@
 ## Aus 08-03 (22.10.2026)
 
 - **Produkt-Snapshot veraltet: `tests/pricing-parity.test.ts` „Snapshot ist aktuell: Commit entspricht origin/release“.** Das Web-Repo `C:/Projekte/craft-connect-buddy` hat `origin/release` am 22.10.2026 um 17:56 (+02:00) auf `1e9c8bc288dc` vorgerückt; `product-source-snapshot.json` steht noch auf `535206b42aac`. Der Test war im Vitest-Lauf nach Task 1 noch grün und nach Task 2 rot – unabhängig von den Bausteinänderungen (08-03 ändert keine Produktdaten). Vorschlag: Snapshot-Abgleich (Preise, Testphase, Register) in einem eigenen Produktsync-Schritt prüfen und den Snapshot erst nach Faktenabgleich aktualisieren, nicht blind hochziehen.
+
+## Aus 08-07 (22.10.2026)
+
+- **`home-navigation.pw.cjs:501` (webkit-390-touch, /funktionen) jetzt auch einzeln rot.** Voller Lauf und Einzelwiederholung (`--project=webkit-390-touch`, Server auf 3101 nach Merge von main) melden jeweils 555 laufende Animationen nach 3 s (`document.getAnimations()`), also die in 08-02 beschriebenen `tab-size`-Übergänge. 08-07 berührt /funktionen nicht. Vorschlag wie unter 08-02 (Poll-Fenster bzw. Auslesen nach `data-running="false"`), eigener QA-Plan.
+- **`tests/content.test.ts` „has valid categories, source metadata and feature links“ überschreitet unter der vollen Vitest-Suite das 5-s-Zeitlimit** (zweimal 5,0 bzw. 5,1 s), einzeln grün (10/10). Unabhängig von 08-07; Vorschlag: Testzeitlimit für diesen Fall anheben.
