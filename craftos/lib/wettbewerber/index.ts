@@ -253,27 +253,35 @@ export function alterWarnung(w: Wettbewerber, heute: Date = new Date()): string 
   return meldung;
 }
 
-/** Stand eines Wettbewerbers = jüngstes abgerufenAm aller Fakten. */
-export function standVon(w: Wettbewerber): string {
-  return faktenVon(w)
-    .map(({ fakt }) => fakt.abgerufenAm)
-    .reduce((a, b) => (b > a ? b : a));
+/** `felder` = Feldpfade oder deren Anfang („preise“, „kriterien“, „kriterien.datev“); ohne Angabe alle Fakten. */
+const passtFeld = (felder: readonly string[] | undefined) => (feld: string) =>
+  !felder || felder.some((f) => feld === f || feld.startsWith(`${f}.`));
+
+/**
+ * Stand eines Wettbewerbers = ältestes abgerufenAm der angezeigten Fakten (`felder`, sonst alle). Konservativ
+ * (08-REVIEW ME-02): eine neu geprüfte Einzelangabe darf ältere, ungeprüfte Angaben nicht aktueller wirken lassen.
+ */
+export function standVon(w: Wettbewerber, felder?: readonly string[]): string {
+  const daten = faktenVon(w)
+    .filter(({ feld }) => passtFeld(felder)(feld))
+    .map(({ fakt }) => fakt.abgerufenAm);
+  if (daten.length === 0) throw new Error(`Wettbewerber ${w.slug}: keine Angabe in ${felder?.join(", ")} – Feldpfad prüfen.`);
+  return daten.reduce((a, b) => (b < a ? b : a));
 }
 
 /**
  * Eindeutige Quellen der genutzten Fakten für die Quellenliste (G3), in Reihenfolge des ersten Vorkommens.
- * `felder` = Feldpfade oder deren Anfang („preise“, „kriterien“, „kriterien.datev“); ohne Angabe alle Fakten.
- * `abgerufenAm` = jüngstes Abrufdatum der Fakten mit dieser Quelle.
+ * `felder` wie bei `standVon`. `abgerufenAm` = ältestes Abrufdatum der Fakten mit dieser Quelle (ME-02).
  */
 export function quellenFuer(w: Wettbewerber, felder?: readonly string[]): QuellenEintrag[] {
-  const passt = (feld: string) => !felder || felder.some((f) => feld === f || feld.startsWith(`${f}.`));
+  const passt = passtFeld(felder);
   const eintraege = new Map<string, QuellenEintrag>();
   for (const { feld, fakt } of faktenVon(w)) {
     if (!passt(feld)) continue;
     const vorhanden = eintraege.get(fakt.quelle.url);
     if (!vorhanden)
       eintraege.set(fakt.quelle.url, { anbieter: w.name, label: fakt.quelle.label, url: fakt.quelle.url, abgerufenAm: fakt.abgerufenAm });
-    else if (fakt.abgerufenAm > vorhanden.abgerufenAm) vorhanden.abgerufenAm = fakt.abgerufenAm;
+    else if (fakt.abgerufenAm < vorhanden.abgerufenAm) vorhanden.abgerufenAm = fakt.abgerufenAm;
   }
   return [...eintraege.values()];
 }

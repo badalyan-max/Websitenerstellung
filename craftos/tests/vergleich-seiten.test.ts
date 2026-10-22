@@ -833,7 +833,33 @@ describe("HI-02: HERO-Laufzeit nur als Grundlaufzeit mit Vorbehalt", () => {
   });
 });
 
-const juengsterStand = () => germanDate([plancraft, craftnote, hero, tooltime].map(standVon).reduce((a, b) => (b > a ? b : a)));
+/** ME-02: Stand der Marktübersichten = ältestes Abrufdatum der angezeigten Angaben (hier alle Fakten gleich alt). */
+const aeltesterStand = () => germanDate([plancraft, craftnote, hero, tooltime].map((w) => standVon(w)).reduce((a, b) => (b < a ? b : a)));
+
+describe("ME-02: Stand der Anbieterangaben konservativ (ältestes Abrufdatum)", () => {
+  it("Hub: eine neu geprüfte Einzelangabe hebt den Stand nicht an, eine ältere senkt ihn", async () => {
+    const { baueVergleich } = await import("@/lib/seiten/vergleich");
+    const basis = baueVergleich([plancraft, craftnote, hero, tooltime]).ueberblick.tabelle.stand;
+    const neu = structuredClone(hero);
+    neu.laufzeit = { ...neu.laufzeit, abgerufenAm: "2026-10-23" };
+    expect(baueVergleich([plancraft, craftnote, neu, tooltime]).ueberblick.tabelle.stand).toBe(basis);
+    const alt = structuredClone(tooltime);
+    alt.testphaseTage = { ...alt.testphaseTage, abgerufenAm: "2026-10-01" };
+    const t = baueVergleich([plancraft, craftnote, hero, alt]).ueberblick.tabelle;
+    expect(t.stand).toBe(germanDate("2026-10-01"));
+    expect(t.note.startsWith(`Angaben ohne Gewähr, Stand ${germanDate("2026-10-01")}, `)).toBe(true);
+  });
+
+  it("Alternativen-Seite: Stand = ältestes Abrufdatum des Anbieters", async () => {
+    const { alternativeAusModul } = await import("@/lib/seiten/alternativen");
+    const { craftnoteSeite } = await import("@/lib/seiten/alternativen/craftnote");
+    const w = structuredClone(craftnote);
+    w.staerken = w.staerken.map((s, i) => (i === 0 ? { ...s, abgerufenAm: "2026-10-02" } : s));
+    w.preise = { ...w.preise, abgerufenAm: "2026-10-23" };
+    const inhalt = alternativeAusModul(w, craftnoteSeite, "/vergleich/craftnote-alternative");
+    expect(inhalt.kopf.stand).toBe(`Anbieterangaben Stand ${germanDate("2026-10-02")}, Quellen unter der Tabelle`);
+  });
+});
 
 describe("/vergleich Inhalte", () => {
   const laden = () => import("@/lib/seiten/vergleich");
@@ -846,7 +872,7 @@ describe("/vergleich Inhalte", () => {
       "Handwerkersoftware unterscheidet sich vor allem in Abrechnung, Laufzeit und Plantafel: CraftOS rechnet pro Person ab und ist monatlich kündbar, plancraft und ToolTime arbeiten mit Paketen, Craftnote mit Paketen pro Nutzer und HERO mit Plänen und Lizenzen.",
     );
     expect(charCount(vergleich.kopf.answer)).toBeLessThanOrEqual(300);
-    expect(vergleich.kopf.stand).toBe(`Anbieterangaben Stand ${juengsterStand()}, Quellen unter der Tabelle`);
+    expect(vergleich.kopf.stand).toBe(`Anbieterangaben Stand ${aeltesterStand()}, Quellen unter der Tabelle`);
     expect(vergleich.kopf.secondary).toEqual({ label: "Zur Übersicht", href: "#ueberblick" });
   });
 
@@ -918,9 +944,9 @@ describe("/vergleich Inhalte", () => {
   it("Pflichthinweis und Disclaimer wörtlich (UI-SPEC § 3.2)", async () => {
     const { vergleich } = await laden();
     const t = vergleich.ueberblick.tabelle;
-    expect(t.note.startsWith(`Angaben ohne Gewähr, Stand ${juengsterStand()}, `)).toBe(true);
+    expect(t.note.startsWith(`Angaben ohne Gewähr, Stand ${aeltesterStand()}, `)).toBe(true);
     expect(t.note).toBe(
-      `Angaben ohne Gewähr, Stand ${juengsterStand()}, Quellen unter der Tabelle. Alle Beträge netto zzgl. USt.; CraftOS-Preise laut Preisliste, Stand ${germanDate(site.checkedAt)}. ${HERO_GRUNDLAUFZEIT}`,
+      `Angaben ohne Gewähr, Stand ${aeltesterStand()}, Quellen unter der Tabelle. Alle Beträge netto zzgl. USt.; CraftOS-Preise laut Preisliste, Stand ${germanDate(site.checkedAt)}. ${HERO_GRUNDLAUFZEIT}`,
     );
     expect(t.disclaimer).toBe("Die Nennung der Anbieter dient der Zuordnung; es besteht keine Geschäftsbeziehung.");
   });
@@ -1153,7 +1179,7 @@ describe("kleine Betriebe Inhalte", () => {
       "Für einen kleinen Handwerksbetrieb eignet sich eine Software, die Angebote, Rechnungen mit E-Rechnung, Einsatzplanung und eine Mobile-App fürs Team abdeckt, für Ihre Personenzahl bezahlbar bleibt und kurz kündbar ist; prüfen Sie das mit einem echten Auftrag.",
     );
     expect(charCount(kb.kopf.answer)).toBeLessThanOrEqual(300);
-    expect(kb.kopf.stand).toBe(`Anbieterangaben Stand ${juengsterStand()}, Quellen unter der Tabelle`);
+    expect(kb.kopf.stand).toBe(`Anbieterangaben Stand ${aeltesterStand()}, Quellen unter der Tabelle`);
     expect(kb.kopf.secondary).toEqual({ label: "Zu den Kriterien", href: "#kriterien" });
   });
 
@@ -1263,7 +1289,7 @@ describe("kleine Betriebe Inhalte", () => {
     expect(t.note).toContain("Quellen unter der Tabelle.");
     expect(t.note).toContain("Alle Beträge netto zzgl. USt.; CraftOS-Preise laut Preisliste, Stand ");
     expect(t.note).toBe(
-      `Angaben ohne Gewähr, Stand ${juengsterStand()}, Quellen unter der Tabelle. Alle Beträge netto zzgl. USt.; CraftOS-Preise laut Preisliste, Stand ${germanDate(site.checkedAt)}. Weitere mobile Person: netto je Person und Monat, Zahlweise in Klammern. ${HERO_GRUNDLAUFZEIT}`,
+      `Angaben ohne Gewähr, Stand ${aeltesterStand()}, Quellen unter der Tabelle. Alle Beträge netto zzgl. USt.; CraftOS-Preise laut Preisliste, Stand ${germanDate(site.checkedAt)}. Weitere mobile Person: netto je Person und Monat, Zahlweise in Klammern. ${HERO_GRUNDLAUFZEIT}`,
     );
     expect(t.disclaimer).toBe("Die Nennung der Anbieter dient der Zuordnung; es besteht keine Geschäftsbeziehung.");
     const urls = t.sources.map((s) => s.url);

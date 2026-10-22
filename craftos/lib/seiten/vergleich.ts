@@ -28,7 +28,6 @@ import {
   plancraft,
   pruefeText,
   pruefeWettbewerber,
-  standVon,
   tooltime,
   wettbewerber as alleWettbewerber,
 } from "@/lib/wettbewerber";
@@ -75,7 +74,7 @@ export interface Marktuebersicht {
   note: string;
   sources: ComparisonSource[];
   disclaimer: string;
-  /** Jüngstes Abrufdatum aller Anbieter, deutsch formatiert. */
+  /** Ältestes Abrufdatum der angezeigten Anbieterangaben, deutsch formatiert (ME-02). */
   stand: string;
 }
 
@@ -146,7 +145,7 @@ export function baueMarktuebersicht(opts: {
             url: beleg.quelle.url,
             abgerufenAm: beleg.abgerufenAm,
           });
-        else if (beleg.abgerufenAm > vorhanden.abgerufenAm) vorhanden.abgerufenAm = beleg.abgerufenAm;
+        else if (beleg.abgerufenAm < vorhanden.abgerufenAm) vorhanden.abgerufenAm = beleg.abgerufenAm;
       }
       cells[s.key] = wert;
     }
@@ -154,7 +153,10 @@ export function baueMarktuebersicht(opts: {
     zeilen.push({ anbieter: w.name, slug: w.slug, belege });
   }
 
-  const stand = germanDate(anbieter.map(standVon).reduce((a, b) => (b > a ? b : a)));
+  // ME-02: Stand = ältestes Abrufdatum der angezeigten Belege (konservativ, wie /preise und die Alternativen).
+  const daten = zeilen.flatMap((z) => Object.values(z.belege).map((b) => b.abgerufenAm));
+  if (daten.length === 0) throw new Error("Marktübersicht: keine belegte Anbieterangabe – Stand nicht bestimmbar.");
+  const stand = germanDate(daten.reduce((a, b) => (b < a ? b : a)));
   const zusaetze = [opts.noteZusatz, ...opts.spalten.map((s) => s.hinweis?.(anbieter))].filter((x): x is string => Boolean(x));
   return {
     caption: opts.caption,

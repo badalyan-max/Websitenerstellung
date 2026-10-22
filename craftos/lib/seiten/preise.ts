@@ -211,7 +211,8 @@ const spanne = {
 /** CraftOS-Werte immer mit Cent (Preisliste), Wettbewerber in Anbieterschreibweise. */
 const spannenBetrag = (c: number) =>
   c === cents(voll.monat) || c === craftosJahrJeMonatCents ? euro(c / 100) : betrag(c);
-const anbieterStand = germanDate(verglichen.map(standVon).reduce((a, b) => (b < a ? b : a)));
+/** ME-02: ältestes Abrufdatum der angezeigten Preisangaben (wie Hub und Alternativen). */
+const anbieterStand = germanDate(verglichen.map((w) => standVon(w, ["preise"])).reduce((a, b) => (b < a ? b : a)));
 
 export const marktspanne: {
   caption: string;

@@ -246,22 +246,25 @@ describe("HERO-Variante (D-16, U11)", () => {
 });
 
 describe("Stand und Quellen", () => {
-  it("standVon = jüngstes abgerufenAm aller Fakten", () => {
+  // ME-02: konservativ das älteste Abrufdatum der angezeigten Angaben – eine neu geprüfte Einzelangabe macht ältere,
+  // ungeprüfte Angaben nicht aktueller.
+  it("standVon = ältestes abgerufenAm der (ausgewählten) Fakten", () => {
     const w = fixture({ laufzeit: fakt("1 Monat", "2026-10-01"), testphaseTage: fakt(7, "2026-09-30", KLEIN) });
-    expect(standVon(w)).toBe("2026-10-22");
-    const alt = fixture({
-      testphaseTage: fakt(7, "2026-10-01", KLEIN),
-      laufzeit: fakt("1 Monat", "2026-10-02"),
-      preise: fakt([{ paket: "Business", centsMonat: 7490 }], "2026-10-03"),
-      kriterien: { kiTelefon: fakt(true, "2026-10-01") },
-      staerken: [fakt("Erste belegte Stärke.", "2026-10-01"), fakt("Zweite belegte Stärke.", "2026-10-01")],
-    });
-    expect(standVon(alt)).toBe("2026-10-03");
+    expect(standVon(w)).toBe("2026-09-30");
+    expect(standVon(w, ["preise"])).toBe("2026-10-22");
+    expect(standVon(w, ["preise", "laufzeit"])).toBe("2026-10-01");
+    const neuGeprueft = fixture({ preise: fakt([{ paket: "Business", centsMonat: 7490 }], "2026-11-15") });
+    expect(standVon(neuGeprueft, ["preise", "testphaseTage"])).toBe("2026-10-21");
+    expect(() => standVon(w, ["gibtEsNicht"])).toThrow(/keine Angabe/);
   });
-  it("quellenFuer liefert eindeutige Quellen der genutzten Fakten mit Anbieter und Abrufdatum", () => {
+  it("quellenFuer liefert eindeutige Quellen der genutzten Fakten mit Anbieter und ältestem Abrufdatum je Quelle", () => {
     const w = fixture();
     expect(quellenFuer(w, ["preise", "laufzeit"])).toEqual([
       { anbieter: "plancraft", label: PREISE.label, url: PREISE.url, abgerufenAm: "2026-10-22" },
+    ]);
+    const gemischt = fixture({ laufzeit: fakt("1 Monat", "2026-10-05") });
+    expect(quellenFuer(gemischt, ["preise", "laufzeit"])).toEqual([
+      { anbieter: "plancraft", label: PREISE.label, url: PREISE.url, abgerufenAm: "2026-10-05" },
     ]);
     expect(quellenFuer(w, ["testphaseTage"])).toEqual([
       { anbieter: "plancraft", label: KLEIN.label, url: KLEIN.url, abgerufenAm: "2026-10-21" },
