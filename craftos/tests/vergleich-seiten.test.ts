@@ -798,6 +798,7 @@ const ALTERNATIVEN_PFADE = [
   "/vergleich/hero-alternative",
   "/vergleich/tooltime-alternative",
 ];
+const KB_PFAD = "/vergleich/handwerkersoftware-kleine-betriebe";
 const juengsterStand = () => germanDate([plancraft, craftnote, hero, tooltime].map(standVon).reduce((a, b) => (b > a ? b : a)));
 
 describe("/vergleich Inhalte", () => {
@@ -890,19 +891,23 @@ describe("/vergleich Inhalte", () => {
     expect(t.disclaimer).toBe("Die Nennung der Anbieter dient der Zuordnung; es besteht keine Geschäftsbeziehung.");
   });
 
-  it("Einzelvergleiche: genau vier Kacheln auf die Alternativen, erlaubte Anordnung, kein Link auf kleine Betriebe", async () => {
+  it("Einzelvergleiche: vier Alternativen und als fünfte Kachel (wide) die Seite für kleine Betriebe, erlaubte Anordnung", async () => {
     const { vergleich } = await laden();
     const { ERLAUBTE_ANORDNUNGEN } = await import("@/lib/funktionsdetails");
     const kacheln = vergleich.einzelvergleiche.kacheln;
-    expect(kacheln.map((k) => k.href)).toEqual(ALTERNATIVEN_PFADE);
+    expect(kacheln).toHaveLength(5);
+    expect(kacheln.map((k) => k.href)).toEqual([...ALTERNATIVEN_PFADE, KB_PFAD]);
+    expect(kacheln.map((k) => k.size).join("·")).toBe("md·sm·sm·wide·wide");
     expect(ERLAUBTE_ANORDNUNGEN).toContain(kacheln.map((k) => k.size).join("·"));
     expect(kacheln.map((k) => k.title)).toEqual([
       "plancraft-Alternative",
       "Craftnote-Alternative",
       "HERO-Alternative",
       "ToolTime-Alternative",
+      "Handwerkersoftware für kleine Betriebe",
     ]);
-    expect(JSON.stringify(vergleich)).not.toContain("handwerkersoftware-kleine-betriebe");
+    expect(kacheln[4].text).toBe("Belegte Kriterien und fünf Anbieter für Betriebe mit wenigen Personen im Überblick.");
+    expect(kacheln[4].icon).not.toBe(kacheln[0].icon);
   });
 
   it("So vergleichen: Frage-H2 mit Antwort ≤ 300 und vier Schritte; FAQ mit vier Einträgen ≤ 300", async () => {
@@ -994,10 +999,10 @@ describe("/vergleich Inhalte", () => {
     ).toThrow(/Quelle/);
   });
 
-  it("Inhaltsmodul ohne Preis- und Tagesliterale und ohne Link auf noch nicht vorhandene Seiten", () => {
+  it("Inhaltsmodul ohne Preis- und Tagesliterale, mit Kachel auf die Seite für kleine Betriebe", () => {
     pruefeModulLiterale("lib/seiten/vergleich.ts");
     const quelle = fs.readFileSync(path.join(ROOT, "lib/seiten/vergleich.ts"), "utf8");
-    expect(quelle).not.toContain("handwerkersoftware-kleine-betriebe");
+    expect(quelle).toContain("handwerkersoftware-kleine-betriebe");
     expect(quelle).not.toMatch(/\bbeste\b|testsieger/i);
   });
 });
@@ -1033,11 +1038,10 @@ describe("/vergleich gerendert", () => {
     expect(html).toContain('href="#ueberblick"');
   });
 
-  it("Kacheln verlinken die vier Alternativen; Pflichthinweis, Disclaimer und Quellen im HTML; keine Logos", async () => {
+  it("Kacheln verlinken die vier Alternativen und kleine Betriebe; Pflichthinweis, Disclaimer und Quellen im HTML; keine Logos", async () => {
     const { html } = await rendern();
     const { vergleich } = await import("@/lib/seiten/vergleich");
-    for (const p of ALTERNATIVEN_PFADE) expect(html, p).toContain(`href="${p}"`);
-    expect(html).not.toContain("handwerkersoftware-kleine-betriebe");
+    for (const p of [...ALTERNATIVEN_PFADE, KB_PFAD]) expect(html, p).toContain(`href="${p}"`);
     const text = decode(html);
     expect(text).toContain(vergleich.ueberblick.tabelle.note);
     expect(text).toContain("Die Nennung der Anbieter dient der Zuordnung; es besteht keine Geschäftsbeziehung.");
@@ -1082,5 +1086,223 @@ describe("/vergleich gerendert", () => {
       expect(fs.existsSync(path.join(ROOT, datei)), datei).toBe(false);
     const seite = fs.readFileSync(path.join(ROOT, "app/vergleich/page.tsx"), "utf8");
     expect(seite).not.toMatch(/@graph|<img|PageHero|lib\/comparison/);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// 08-11: /vergleich/handwerkersoftware-kleine-betriebe (08-UI-SPEC § 6, § 3.2, § 3.3, § 9; D-02, D-10, Prompt #1).
+// Inhaber 22.10.2026 („Nur, was unterstützt wird“): keine Aussage, dass CraftOS etwas nicht kann.
+// ---------------------------------------------------------------------------
+
+const ANBIETER_MODULE = [craftnote, hero, plancraft, tooltime];
+const TESTTAGE_MIN = () => Math.min(site.trialDays, ...ANBIETER_MODULE.map((w) => w.testphaseTage.wert));
+const TESTTAGE_MAX = () => Math.max(site.trialDays, ...ANBIETER_MODULE.map((w) => w.testphaseTage.wert));
+const ISO_DATUM = /^\d{4}-\d{2}-\d{2}$/;
+
+/** Alle Zeichenketten eines Objekts (für Wort- und Negativregeln). */
+function texteVon(v: unknown, out: string[] = []): string[] {
+  if (typeof v === "string") out.push(v);
+  else if (Array.isArray(v)) v.forEach((x) => texteVon(x, out));
+  else if (v && typeof v === "object") Object.values(v).forEach((x) => texteVon(x, out));
+  return out;
+}
+
+describe("kleine Betriebe Inhalte", () => {
+  const laden = () => import("@/lib/seiten/kleine-betriebe");
+
+  it("Kopf: Antwort wörtlich laut UI-SPEC § 6 (≤ 300, ≤ 2 Sätze), Stand-Zeile und „Zu den Kriterien“", async () => {
+    const { kleineBetriebe: kb, KLEINE_BETRIEBE_PFAD } = await laden();
+    expect(KLEINE_BETRIEBE_PFAD).toBe(KB_PFAD);
+    expect(kb.kopf.eyebrow).toBe("Vergleich");
+    expect(kb.kopf.kopfwort).toBe("Handwerkersoftware");
+    expect(kb.kopf.answer).toBe(
+      "Für einen kleinen Handwerksbetrieb eignet sich eine Software, die Angebote, Rechnungen mit E-Rechnung, Einsatzplanung und eine Mobile-App fürs Team abdeckt, für Ihre Personenzahl bezahlbar bleibt und kurz kündbar ist; prüfen Sie das mit einem echten Auftrag.",
+    );
+    expect(charCount(kb.kopf.answer)).toBeLessThanOrEqual(300);
+    expect(kb.kopf.stand).toBe(`Anbieterangaben Stand ${juengsterStand()}, Quellen unter der Tabelle`);
+    expect(kb.kopf.secondary).toEqual({ label: "Zu den Kriterien", href: "#kriterien" });
+  });
+
+  it("Kriterien: Frage-H2 mit Antwort, sechs Kacheln laut UI-SPEC (sm/md, erlaubte Anordnung), Testphasen-Spanne aus Daten", async () => {
+    const { kleineBetriebe: kb } = await laden();
+    const { ERLAUBTE_ANORDNUNGEN } = await import("@/lib/funktionsdetails");
+    expect(kb.sections.kriterien).toEqual({
+      title: "Welche Kriterien zählen für kleine Betriebe?",
+      lead: "Wichtig sind E-Rechnung, Kosten für Ihre Personenzahl, Laufzeit, eine Mobile-App fürs Team, GoBD-gerechte Abläufe und ein Test mit echtem Auftrag.",
+    });
+    const k = kb.kriterien.kacheln;
+    expect(k.map((x) => [x.title, x.text])).toEqual([
+      ["E-Rechnung empfangen und erstellen", "Zwischen Unternehmen: Empfang seit 2025 Pflicht, Ausstellen ab 2028 grundsätzlich."],
+      ["Kosten für Ihre Personenzahl", "Rechnen Sie Büro- und Baustellenzugänge für Ihr Team, nicht nur den Einstiegspreis."],
+      ["Laufzeit und Kündigungsfrist", "Die verglichenen Anbieter reichen von monatlich kündbar bis zwölf Monate Laufzeit."],
+      ["Mobile-App fürs Team", "Zeiten, Einsätze und Fotos gehören aufs Handy, oft mit eigener, günstigerer Lizenz."],
+      ["GoBD-gerechte Abläufe", "Festgeschriebene Rechnungen und nachvollziehbare Korrekturen gehören zur Buchführung."],
+      [
+        "Test mit echtem Auftrag",
+        `Die Testphasen der verglichenen Anbieter reichen von ${TESTTAGE_MIN()} bis ${TESTTAGE_MAX()} Tagen.`,
+      ],
+    ]);
+    for (const x of k) expect(["sm", "md"], x.title).toContain(x.size);
+    expect(ERLAUBTE_ANORDNUNGEN).toContain(k.map((x) => x.size).join("·"));
+  });
+
+  it("Testphasen- und Laufzeit-Kachel ändern sich mit den Moduldaten (Fixture)", async () => {
+    const { baueKleineBetriebe } = await laden();
+    const cn = structuredClone(craftnote);
+    cn.testphaseTage = { ...cn.testphaseTage, wert: 45 };
+    const tt = structuredClone(tooltime);
+    tt.laufzeit = { ...tt.laufzeit, wert: "1 Monat" };
+    const hr = structuredClone(hero);
+    hr.laufzeit = { ...hr.laufzeit, wert: "1 Monat" };
+    const cn2 = structuredClone(cn);
+    cn2.laufzeit = { ...cn2.laufzeit, wert: "1 Monat" };
+    const inhalt = baueKleineBetriebe([plancraft, cn2, hr, tt]);
+    const text = (t: string) => inhalt.kriterien.kacheln.find((x) => x.title === t)!.text;
+    expect(text("Test mit echtem Auftrag")).toBe(`Die Testphasen der verglichenen Anbieter reichen von ${TESTTAGE_MIN()} bis 45 Tagen.`);
+    expect(text("Laufzeit und Kündigungsfrist")).toBe("Alle verglichenen Anbieter sind monatlich kündbar.");
+  });
+
+  it("amtliche Quellen: BMF-FAQ E-Rechnung und GoBD mit https-URL auf bundesfinanzministerium.de und Abrufdatum", async () => {
+    const { kleineBetriebe: kb } = await laden();
+    const quellen = kb.kriterien.quellen;
+    expect(quellen.length).toBeGreaterThanOrEqual(2);
+    const heute = new Date().toISOString().slice(0, 10);
+    for (const q of quellen) {
+      expect(q.url.startsWith("https://"), q.url).toBe(true);
+      expect(new URL(q.url).hostname.endsWith("bundesfinanzministerium.de"), q.url).toBe(true);
+      expect(q.anbieter).toBe("Bundesfinanzministerium");
+      expect(q.abgerufenAm).toMatch(ISO_DATUM);
+      expect(q.abgerufenAm <= heute).toBe(true);
+    }
+    expect(quellen.some((q) => /E-Rechnung/.test(q.label))).toBe(true);
+    expect(quellen.some((q) => /GoBD/.test(q.label) && /14\.07\.2025/.test(q.label))).toBe(true);
+    // Jede amtlich belegte Kachel verweist auf einen Eintrag der Liste.
+    for (const titel of ["E-Rechnung empfangen und erstellen", "GoBD-gerechte Abläufe"]) {
+      const kachel = kb.kriterien.kacheln.find((x) => x.title === titel)!;
+      expect(kachel.quellen.length, titel).toBeGreaterThanOrEqual(1);
+      for (const url of kachel.quellen) expect(quellen.map((q) => q.url), titel).toContain(url);
+    }
+  });
+
+  it("Anbietertabelle: fünf Zeilen, Spalten laut UI-SPEC, Zahlweise in jeder Preiszelle, Zellen ≤ 24, ohne Hervorhebung", async () => {
+    const { kleineBetriebe: kb } = await laden();
+    const { vergleich } = await import("@/lib/seiten/vergleich");
+    const t = kb.anbieter.tabelle;
+    expect(t.rows.map((r) => r.label)).toEqual(["CraftOS", "Craftnote", "HERO", "plancraft", "ToolTime"]);
+    expect(t.columns.map((c) => c.label)).toEqual(["Abrechnung", "Kürzeste Laufzeit", "Weitere mobile Person", "Testphase"]);
+    expect(t.columns.some((c) => c.highlight)).toBe(false);
+    for (const r of t.rows)
+      for (const zelle of Object.values(r.cells))
+        if (typeof zelle === "string") expect(charCount(zelle), `${r.label}: ${zelle}`).toBeLessThanOrEqual(24);
+    const person = (label: string) => t.rows.find((r) => r.label === label)!.cells.person;
+    expect(person("CraftOS")).toBe(`${euro(app.monat)} (Monatsabo)`);
+    expect(person("Craftnote")).toBe(`${e(craftnote.preise.wert.find((p) => p.paket === "Baustelle")!.centsJahrJeMonat)} (Jahresabo)`);
+    expect(heroVariante(hero)).toBe("A");
+    expect(person("HERO")).toBe(`${ek(hero.zusatzPreise!.appLizenz.wert.centsMonat)} (monatlich)`);
+    expect(person("plancraft")).toBe(`${e(plancraft.zusatzPreise!.mobilzugang.wert.centsMonat)} (Monatsabo)`);
+    expect(person("ToolTime")).toBe("im Paket, bis 5 Personen");
+    for (const r of t.rows) {
+      const zelle = String(r.cells.person);
+      if (zelle.includes("€")) expect(zelle, r.label).toMatch(/ \([^)]+\)$/);
+    }
+    // Übrige Spalten wie /vergleich (gemeinsamer Helfer, gleiche Zellen).
+    for (const r of t.rows) {
+      const hub = vergleich.ueberblick.tabelle.rows.find((x) => x.label === r.label)!.cells;
+      expect({ a: r.cells.abrechnung, l: r.cells.laufzeit, t: r.cells.testphase }, r.label).toEqual({
+        a: hub.abrechnung,
+        l: hub.laufzeit,
+        t: hub.testphase,
+      });
+    }
+  });
+
+  it("HERO ohne Screenshot-Beleg: Zelle „laut hero-software.de“ (Variante B, D-16)", async () => {
+    const { baueKleineBetriebe } = await laden();
+    const inhalt = baueKleineBetriebe([plancraft, craftnote, heroOhneBeleg(), tooltime]);
+    expect(inhalt.anbieter.tabelle.rows.find((r) => r.label === "HERO")!.cells.person).toBe("laut hero-software.de");
+  });
+
+  it("Pflichthinweis wörtlich (UI-SPEC § 3.2 plus Zahlweise-Satz) und Disclaimer; jede verwendete Quelle genau einmal", async () => {
+    const { kleineBetriebe: kb } = await laden();
+    const t = kb.anbieter.tabelle;
+    expect(t.note.startsWith("Angaben ohne Gewähr, Stand ")).toBe(true);
+    expect(t.note).toContain("Quellen unter der Tabelle.");
+    expect(t.note).toContain("Alle Beträge netto zzgl. USt.; CraftOS-Preise laut Preisliste, Stand ");
+    expect(t.note).toBe(
+      `Angaben ohne Gewähr, Stand ${juengsterStand()}, Quellen unter der Tabelle. Alle Beträge netto zzgl. USt.; CraftOS-Preise laut Preisliste, Stand ${germanDate(site.checkedAt)}. Weitere mobile Person: netto je Person und Monat, Zahlweise in Klammern.`,
+    );
+    expect(t.disclaimer).toBe("Die Nennung der Anbieter dient der Zuordnung; es besteht keine Geschäftsbeziehung.");
+    const urls = t.sources.map((s) => s.url);
+    expect(new Set(urls).size).toBe(urls.length);
+    const benutzt = new Set(t.zeilen.flatMap((z) => Object.values(z.belege).map((b) => b.quelle.url)));
+    expect(new Set(urls)).toEqual(benutzt);
+    for (const z of t.zeilen.filter((z) => z.slug !== "craftos"))
+      expect(Object.keys(z.belege).sort(), z.anbieter).toEqual(["abrechnung", "laufzeit", "person", "testphase"]);
+  });
+
+  it("Testen: Frage-H2 mit Antwort, vier Schritte und Textlink auf den Ratgeber", async () => {
+    const { kleineBetriebe: kb } = await laden();
+    expect(kb.sections.testen).toEqual({
+      title: "Wie testen Sie Handwerkersoftware mit einem Auftrag?",
+      lead: "Spielen Sie einen echten Auftrag vom Aufmaß bis zur Rechnung durch und beziehen Sie eine Person von der Baustelle mit ein.",
+    });
+    expect(kb.schritte.map((s) => s.title)).toEqual(["Auftrag auswählen", "Angebot schreiben", "Baustelle einbinden", "Rechnung stellen"]);
+    expect(kb.ratgeber).toEqual({ label: "Ratgeber: Handwerkersoftware auswählen", href: "/blog/handwerkersoftware-auswaehlen" });
+    expect(kb.sections.anbieter).toEqual({
+      title: "Fünf Anbieter für kleine Betriebe im Überblick",
+      lead: "Abrechnung, Laufzeit, Preis für weitere Personen und Testphase laut den Seiten der Anbieter.",
+    });
+    expect(kb.sections.faq).toEqual({
+      title: "Häufige Fragen zu Software für kleine Betriebe",
+      lead: "Kurze Antworten zu E-Rechnung, Kosten, Laufzeit und Lizenzen für das Team.",
+    });
+  });
+
+  it("FAQ: vier Fragen ≤ 300, E-Rechnung mit Ausnahmen laut BMF, CraftOS-Wert aus monatAusJahr (58,13 €)", async () => {
+    const { kleineBetriebe: kb } = await laden();
+    expect(kb.faq.map((f) => f.q)).toEqual([
+      "Ab wann muss ein kleiner Betrieb E-Rechnungen ausstellen?",
+      "Was kostet Handwerkersoftware für fünf Personen?",
+      "Kann ich Handwerkersoftware monatlich kündigen?",
+      "Brauchen Mitarbeitende auf der Baustelle eine eigene Lizenz?",
+    ]);
+    for (const f of kb.faq) expect(charCount(f.a), f.q).toBeLessThanOrEqual(300);
+    const [eRechnung, kosten, kuendigen, lizenz] = kb.faq.map((f) => f.a);
+    for (const teil of ["seit dem 1. Januar 2025", "ab 2028 grundsätzlich", "Kleinbetragsrechnungen bis 250 € brutto", "Kleinunternehmern"])
+      expect(eRechnung).toContain(teil);
+    expect(BEISPIEL_JAHR).toBe("58,13 €");
+    expect(kosten).toBe(
+      `Bei CraftOS zahlen eine Person im Büro und vier auf der Baustelle im Jahresabo ${BEISPIEL_JAHR} netto im Monat; die Preise der anderen Anbieter stehen in den Einzelvergleichen.`,
+    );
+    expect(kuendigen.startsWith("Das hängt vom Anbieter ab: ")).toBe(true);
+    expect(kuendigen).toContain("CraftOS und plancraft");
+    expect(lizenz).toBe(
+      `Bei den meisten verglichenen Anbietern ja; bei CraftOS ist das die App-Lizenz für ${euro(app.monat)} netto im Monat, bei ToolTime sind Mitarbeitende im Paketpreis enthalten.`,
+    );
+  });
+
+  it("Inhaber 22.10.2026 und UWG: keine verneinte CraftOS-Zelle, keine Nein-FAQ, kein „beste“, keine Wortliste, keine Ankündigung", async () => {
+    const { kleineBetriebe: kb } = await laden();
+    for (const zelle of Object.values(kb.anbieter.tabelle.rows.find((r) => r.label === "CraftOS")!.cells)) {
+      expect(zelle).not.toBe(false);
+      if (typeof zelle === "string") expect(zelle).not.toMatch(/^\s*(nein|[-–—]|nicht\b)|nicht verfügbar/i);
+    }
+    for (const f of kb.faq) expect(f.a, f.q).not.toMatch(/^Nein\b/);
+    const texte = texteVon({ ...kb, anbieter: { tabelle: { ...kb.anbieter.tabelle, zeilen: [] } } });
+    for (const t of texte) {
+      expect(uwgTreffer(t), t).toBeUndefined();
+      expect(t).not.toMatch(/\bbeste\b|testsieger|Rangfolge|Platz 1|Telefon-Agent|MCP-Server|nicht verfügbar|CraftOS (bietet|hat|kann|unterstützt) (kein|nicht)/i);
+      expect(t).not.toMatch(/Telefon|Fahrzeug/);
+    }
+  });
+
+  it("Inhaltsmodul: keine Preis- und Tagesliterale, amtliche Quellen mit abgerufenAm, Marktübersicht über den Helfer aus lib/seiten/vergleich", () => {
+    pruefeModulLiterale("lib/seiten/kleine-betriebe.ts");
+    const quelle = fs.readFileSync(path.join(ROOT, "lib/seiten/kleine-betriebe.ts"), "utf8");
+    expect(quelle).toContain("bundesfinanzministerium.de");
+    expect(quelle).toContain("abgerufenAm");
+    expect(quelle).toContain("@/lib/seiten/vergleich");
+    expect(quelle).toContain("baueMarktuebersicht(");
+    expect(quelle).not.toMatch(/\bbeste\b|testsieger/i);
   });
 });

@@ -496,3 +496,61 @@ describe("Vergleichs-Hub /vergleich im Budget (08-10)", () => {
     expect(t.columns.some((c) => c.highlight)).toBe(false);
   });
 });
+
+/**
+ * Sammeltest 08-11 (08-UI-SPEC § 6, § 9, C5): Inhalte der Seite /vergleich/handwerkersoftware-kleine-betriebe aus
+ * lib/seiten/kleine-betriebe.ts im Budget – Kopfantwort, Abschnittsköpfe (Frage-H2 ≤ 300), Kriterienkacheln,
+ * Anbietertabelle (ohne highlight), StepFlow, FAQ (zentral ≤ 300) und CtaBand.
+ */
+describe("Kleine Betriebe im Budget (08-11)", () => {
+  it("Kopf, Kacheln, Tabelle, Schritte und FAQ halten Textbudgets und Mengenregeln ein", async () => {
+    const { kleineBetriebe: kb } = await import("@/lib/seiten/kleine-betriebe");
+    const b = TEXT_BUDGET;
+    const t = kb.anbieter.tabelle;
+    const checks: Check[] = [
+      ["answer", kb.kopf.answer, b.answer],
+      ["pageHead.eyebrow", kb.kopf.eyebrow, b.pageHead.eyebrow],
+      ...Object.values(kb.sections).flatMap(({ title, lead }): Check[] => [
+        ["sectionHeader.title", title, b.sectionHeader.title],
+        title.endsWith("?")
+          ? ["sectionHeader.answerLead", lead, b.sectionHeader.answerLead]
+          : ["sectionHeader.lead", lead, b.sectionHeader.lead],
+      ]),
+      ...t.rows.flatMap((r): Check[] => [
+        ["comparison.rowLabel", r.label, b.comparison.rowLabel],
+        ...Object.values(r.cells)
+          .filter((c): c is string => typeof c === "string" && c !== "teilweise")
+          .map((c): Check => ["comparison.cell", c, b.comparison.cell]),
+      ]),
+      ...t.columns.map((c): Check => ["comparison.rowLabel", c.label, b.comparison.rowLabel]),
+      ...kb.kriterien.kacheln.flatMap((k): Check[] => [
+        ["bentoTile.title", k.title, b.bentoTile.title],
+        ["bentoTile.textSmall", k.text, b.bentoTile.textSmall],
+      ]),
+      ...kb.schritte.flatMap((s): Check[] => [
+        ["step.title", s.title, b.step.title],
+        ["step.text", s.text, b.step.text],
+      ]),
+      ...kb.faq.flatMap((f): Check[] => [
+        ["faq.question", f.q, b.faq.question],
+        ["faq.answerCentral", f.a, b.faq.answerCentral],
+      ]),
+      ["ctaBand.title", kb.cta.title, b.ctaBand.title],
+      ["ctaBand.text", kb.cta.text, b.ctaBand.text],
+    ];
+    const saetze = [kb.kopf.answer, ...Object.values(kb.sections).map((s) => s.lead)].filter((s) => sentenceCount(s) > 2);
+    expect([
+      ...violations(checks),
+      ...countViolation("ComparisonTable", t.columns.length, { min: 1, max: b.count.comparison.columns }, "Wertspalten"),
+      ...countViolation("ComparisonTable", t.rows.length, { min: 1, max: b.count.comparison.rows }, "Zeilen"),
+      ...countViolation("BentoGrid", kb.kriterien.kacheln.length, b.count.bento, "Kacheln"),
+      ...countViolation("StepFlow", kb.schritte.length, b.count.steps, "Schritte"),
+      ...countViolation("FaqList", kb.faq.length, b.count.faq, "Fragen"),
+      ...saetze,
+    ]).toEqual([]);
+    expect(kb.kriterien.kacheln).toHaveLength(6);
+    expect(kb.schritte).toHaveLength(4);
+    expect(kb.faq).toHaveLength(4);
+    expect(t.columns.some((c) => c.highlight)).toBe(false);
+  });
+});
