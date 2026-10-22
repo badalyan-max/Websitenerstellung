@@ -63,7 +63,8 @@ export function buildLlmsTxt(): string {
     "## Preise und Vergleich",
     "",
     link("Preise", "/preise"),
-    link("Vergleich mit Craftnote und plancraft", "/vergleich"),
+    // 08-10: Hub mit Marktübersicht der fünf Anbieter (Quellen und Stand auf der Seite).
+    link("Handwerkersoftware-Vergleich", "/vergleich"),
     // 08-08: Alternativen-Seiten, ohne Wettbewerberzahlen (Preise mit Quelle und Stand stehen auf der Seite).
     link("plancraft-Alternative", "/vergleich/plancraft-alternative", "CraftOS und plancraft mit Quellen und Stand im Vergleich"),
     link("Craftnote-Alternative", "/vergleich/craftnote-alternative", "CraftOS und Craftnote mit Quellen und Stand im Vergleich"),

@@ -1,594 +1,107 @@
-import Link from "next/link";
-import {
-  ArrowDown,
-  ArrowUpRight,
-  CalendarDays,
-  Layers3,
-  Route,
-  ShieldCheck,
-  Smartphone,
-  Users,
-} from "lucide-react";
-import { PageHero } from "@/components/ui/PageHero";
-import { crumbsFor } from "@/lib/breadcrumbs";
-import { TrialCta } from "@/components/ui/TrialCta";
+import type { ReactNode } from "react";
+import { FunktionsKopf } from "@/components/funktionen/FunktionsKopf";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { BentoGrid, BentoTile, TileIcon } from "@/components/v2/BentoGrid";
+import { ComparisonTable } from "@/components/v2/ComparisonTable";
+import { CtaBand } from "@/components/v2/CtaBand";
+import { FaqList } from "@/components/v2/FaqList";
+import { SectionHeader } from "@/components/v2/SectionHeader";
+import { StepFlow } from "@/components/v2/StepFlow";
+import { crumbsFor } from "@/lib/breadcrumbs";
+import { faqSchema, webPageSchema } from "@/lib/schema";
+import { VERGLEICH_PFAD, VERGLEICH_SURFACES, vergleich, type VergleichSectionId } from "@/lib/seiten/vergleich";
 import { metaFor, zielwerte } from "@/lib/seo-meta";
-import { site } from "@/lib/site";
-import {
-  comparisonCheckedAt,
-  comparisonCheckedLabel,
-  comparisonSources,
-  craftnotePlans,
-  craftosComparisonPrices,
-  featureComparisons,
-  formatComparisonMoney as money,
-  plancraftAddons,
-  plancraftPlans,
-  teamExamples,
-  type ComparisonSourceId,
-} from "@/lib/comparison";
-import styles from "./Comparison.module.css";
-import { ProviderLogo } from "./ProviderLogo";
 
-// Title, Description und H1 aus der Keyword-Map (08-04, D-06; Werte laut 08-UI-SPEC § 8); v2-Umbau folgt in einem
-// späteren Phase-8-Plan.
-const z = zielwerte("/vergleich");
-const title = z.titleOhneMarke;
-const description = z.description;
-export const metadata = metaFor("/vergleich");
+/**
+ * Vergleichs-Hub auf v2-Bausteinen (08-UI-SPEC § 5.1, C5, C12; D-02, D-12; SEO-03, SEO-06, SEO-09): Kopf mit
+ * Antwortsatz (#antwort), neutrale Marktübersicht der fünf Anbieter mit Quellen, Pflichthinweis und Disclaimer,
+ * Einzelvergleiche zu den vier Alternativen-Seiten, Vorgehen als Frage-Abschnitt, FAQ und CtaBand.
+ * Alle Texte und Werte aus lib/seiten/vergleich.ts; Title, H1 und Description aus der Keyword-Map.
+ * JSON-LD: BreadcrumbList (Baustein), FAQPage aus der sichtbaren FAQ und WebPage – je ein eigener Block.
+ * Keine Wettbewerberlogos (D-02).
+ */
+const z = zielwerte(VERGLEICH_PFAD);
 
-function SourceLink({ id, label }: { id: ComparisonSourceId; label?: string }) {
-  const source = comparisonSources[id];
+export const metadata = metaFor(VERGLEICH_PFAD);
+
+const SURFACE = { white: "bg-white", warm: "bg-[#f7f3eb]" } as const;
+
+/** Abschnitt nach Anker-Konvention DESIGN-V2 § 17: data-abschnitt und aria-labelledby = id der H2. */
+function Abschnitt({ id, children }: { id: VergleichSectionId; children: ReactNode }) {
+  const surface = VERGLEICH_SURFACES[id];
+  if (surface === "dark") throw new Error(`Vergleichsseite: Abschnitt ${id} darf nicht dunkel sein – VERGLEICH_SURFACES prüfen.`);
   return (
-    <a className={styles.sourceLink} href={source.url}>
-      {label ?? source.label}
-      <ArrowUpRight size={13} aria-hidden="true" />
-    </a>
+    <section data-abschnitt={id} aria-labelledby={id} className={`${SURFACE[surface]} py-12 md:py-16 lg:py-24`}>
+      <div className="site-container">{children}</div>
+    </section>
   );
 }
 
-const reasons = [
-  {
-    icon: Layers3,
-    title: "Die Kernmodule gehören dazu.",
-    text: "Angebote, Rechnungen, Projekte, Zeiterfassung, Lager und Plantafel gehören zur Voll-Lizenz. Für die Plantafel kommt keine separate Modulgebühr dazu.",
-    href: "/funktionen",
-    link: "Funktionen im Detail",
-  },
-  {
-    icon: Smartphone,
-    title: "Eine Person. Web und Handy.",
-    text: "Ihre Voll-Lizenz enthält die Web-App und die Mobile-App für dieselbe Person. Das mobile Team ergänzen Sie mit eigenen App-Lizenzen; die Rechte passen Sie an die Aufgaben an.",
-    href: "/app",
-    link: "Büro und Baustelle verbinden",
-  },
-  {
-    icon: Route,
-    title: "Ein Auftrag als gemeinsame Grundlage.",
-    text: "Kunde, Dokumente, Einsätze, Stunden und Material bleiben mit dem Projekt verbunden. Tatsächlich erfasste Zeiten, Materialbewegungen und Belege fließen in die Nachkalkulation ein.",
-    href: "/funktionen/nachkalkulation",
-    link: "Den Auftrag nachkalkulieren",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Belege bleiben nachvollziehbar.",
-    text: "Rechnungsnummern entstehen beim Fertigstellen; Korrekturen erfolgen über Folgebelege. Buchungsjournal, Belegbezug und Festschreibung unterstützen Ihre GoBD-Prozesse. Ordnungsgemäße Abläufe und fachliche Prüfung bleiben Aufgabe Ihres Betriebs.",
-    href: "/funktionen/buchhaltung",
-    link: "Buchhaltung und DATEV ansehen",
-  },
-  {
-    icon: Users,
-    title: "Ein Abo, passend zu Ihren Personen.",
-    text: "Sie wählen Voll- oder App-Lizenzen pro Person. Das Jahresabo ist rund 17 % günstiger als zwölf Monatszahlungen. KI-Nutzung verbraucht Credits; zusätzlicher Speicher kann weitere Kosten verursachen.",
-    href: "/preise",
-    link: "Preise und Bedingungen ansehen",
-  },
-];
-
-export default function ComparisonPage() {
+export default function VergleichPage() {
+  const v = vergleich;
+  const s = v.sections;
+  const t = v.ueberblick.tabelle;
   return (
     <>
-      <PageHero
-        crumbs={crumbsFor("/vergleich")}
-        eyebrow="Warum CraftOS?"
-        title={z.h1}
-        intro="Büro und Baustelle arbeiten an denselben Aufträgen. CraftOS verbindet sie in einem System mit klaren Preisen pro Person. Hier sehen Sie unsere Argumente und einen nachvollziehbaren Anbietervergleich."
+      <FunktionsKopf
+        id="vergleich-titel"
+        eyebrow={v.kopf.eyebrow}
+        h1={z.h1}
+        keyword={v.kopf.kopfwort}
+        answer={v.kopf.answer}
+        stand={v.kopf.stand}
+        secondary={v.kopf.secondary}
+        crumbs={crumbsFor(VERGLEICH_PFAD)}
       />
 
-      <div className={styles.page}>
-        <nav
-          className={styles.sectionNav}
-          aria-label="Auf dieser Vergleichsseite"
-        >
-          <div className={`site-container ${styles.navInner}`}>
-            <a href="#warum">Für CraftOS spricht</a>
-            <a href="#kosten">Kostenbeispiel</a>
-            <a href="#tarife">Tarife</a>
-            <a href="#funktionen">Funktionsvergleich</a>
-            <a href="#quellen">Quellen & Stand</a>
-          </div>
-        </nav>
+      <Abschnitt id="ueberblick">
+        <SectionHeader id="ueberblick" title={s.ueberblick.title} lead={s.ueberblick.lead} />
+        <ComparisonTable
+          caption={t.caption}
+          rowHeader={t.rowHeader}
+          columns={t.columns}
+          rows={t.rows}
+          note={t.note}
+          sources={t.sources}
+          disclaimer={t.disclaimer}
+        />
+      </Abschnitt>
 
-        <section
-          className="section-space"
-          id="warum"
-          aria-labelledby="why-heading"
-        >
-          <div className="site-container">
-            <p className="eyebrow">Im Arbeitsalltag zählt der Zusammenhang</p>
-            <h2 className="section-title" id="why-heading">
-              Ein System für den Auftrag.
-              <br />
-              Ein Preis pro Person.
-            </h2>
-            <div className={styles.reasonGrid}>
-              {reasons.map(
-                (
-                  { icon: Icon, title: reasonTitle, text, href, link },
-                  index,
-                ) => (
-                  <article className={styles.reason} key={reasonTitle}>
-                    <div className={styles.reasonTop}>
-                      <Icon size={24} strokeWidth={1.7} aria-hidden="true" />
-                      <span aria-hidden="true">0{index + 1}</span>
-                    </div>
-                    <h3>{reasonTitle}</h3>
-                    <p>{text}</p>
-                    <Link className="text-link" href={href}>
-                      {link}
-                      <ArrowUpRight size={16} aria-hidden="true" />
-                    </Link>
-                  </article>
-                ),
-              )}
-              <aside
-                className={styles.licenseNote}
-                aria-label="CraftOS Lizenzpreise"
-              >
-                <span className={styles.smallLabel}>CraftOS · Jahresabo</span>
-                <div className={styles.ownPrice}>
-                  {money(craftosComparisonPrices.fullAnnualCents / 12)}
-                  <span>netto / Person / Monat bei Jahresabrechnung</span>
-                </div>
-                <h3>Voll-Lizenz inklusive Mobile-App.</h3>
-                <p>
-                  {money(craftosComparisonPrices.fullAnnualCents)} jährlich
-                  abgerechnet (rund 17 % günstiger). Zusätzliche App-Lizenz:{" "}
-                  {money(craftosComparisonPrices.appAnnualCents / 12)} pro Monat
-                  bei {money(craftosComparisonPrices.appAnnualCents)} jährlicher
-                  Abrechnung. Alternativ Voll-Lizenz für{" "}
-                  {money(craftosComparisonPrices.fullMonthlyCents)} im
-                  Monatsabo.
-                </p>
-                <a className="btn-cta" href="#kosten">
-                  Ein Team durchrechnen
-                  <ArrowDown size={17} aria-hidden="true" />
-                </a>
-              </aside>
-            </div>
-          </div>
-        </section>
+      <Abschnitt id="einzelvergleiche">
+        <SectionHeader id="einzelvergleiche" title={s.einzelvergleiche.title} lead={s.einzelvergleiche.lead} />
+        <BentoGrid label={s.einzelvergleiche.title}>
+          {v.einzelvergleiche.kacheln.map((k) => (
+            <BentoTile
+              key={k.href}
+              size={k.size}
+              surface="white"
+              title={k.title}
+              text={k.text}
+              href={k.href}
+              visual={<TileIcon icon={k.icon} />}
+            />
+          ))}
+        </BentoGrid>
+      </Abschnitt>
 
-        <section
-          className={`section-space ${styles.tinted}`}
-          id="kosten"
-          aria-labelledby="cost-heading"
-        >
-          <div className="site-container">
-            <div className={styles.sectionHeader}>
-              <div>
-                <p className="eyebrow">Drei konkrete Zusammenstellungen</p>
-                <h2 className="section-title" id="cost-heading">
-                  Ein Bürozugang.
-                  <br />
-                  Vier Personen auf der Baustelle.
-                </h2>
-              </div>
-              <p className={styles.date}>
-                <CalendarDays size={16} aria-hidden="true" />
-                Stand:{" "}
-                <time dateTime={comparisonCheckedAt}>
-                  {comparisonCheckedLabel}
-                </time>
-              </p>
-            </div>
-            <p className={styles.intro}>
-              Ein Kostenbeispiel mit Jahresabrechnung für fünf Personen. Die
-              Pakete unterscheiden sich im Leistungsumfang; die Zusammenstellung
-              ist keine Aussage über vollständige Funktionsgleichheit.
-            </p>
-            <div className={styles.exampleGrid}>
-              {teamExamples.map((example, index) => (
-                <article
-                  key={example.name}
-                  className={`${styles.example} ${index === 0 ? styles.exampleOwn : ""}`}
-                >
-                  <ProviderLogo provider={example.name} />
-                  <h3>{example.package}</h3>
-                  <p className={styles.total}>
-                    {money(example.annualCents / 12)}
-                    <span>netto pro Monat · bei Jahresabrechnung</span>
-                  </p>
-                  <p className={styles.equivalent}>
-                    {money(example.annualCents)} jährlich abgerechnet
-                  </p>
-                  <p className={styles.calculation}>{example.calculation}</p>
-                  <p className={styles.exampleNote}>{example.note}</p>
-                  {example.href.startsWith("/") ? (
-                    <Link className="text-link" href={example.href}>
-                      {example.sourceLabel}
-                      <ArrowUpRight size={15} aria-hidden="true" />
-                    </Link>
-                  ) : (
-                    <a className="text-link" href={example.href}>
-                      {example.sourceLabel}
-                      <ArrowUpRight size={15} aria-hidden="true" />
-                    </a>
-                  )}
-                </article>
-              ))}
-            </div>
-            <div className={`notice ${styles.exampleNotice}`}>
-              <p>
-                Die Monatsäquivalente sind der Jahresbetrag geteilt durch zwölf,
-                keine monatliche Abbuchung. Alle Beträge netto, zuzüglich
-                Umsatzsteuer. KI-Verbrauch, zusätzlicher Speicher, Schulungen,
-                Zahlungsgebühren und GPS-Tracker sind nicht eingerechnet.
-              </p>
-              <p>
-                Bei Craftnote ist die Plantafel dokumentiert; ein gesonderter
-                Modulpreis ist nicht ausgewiesen. Die administrativen
-                Planungsrechte hängen von der Rolle ab. Büro Plus wird am
-                Prüfdatum mit einem Aktionspreis angeboten.
-              </p>
-            </div>
-          </div>
-        </section>
+      <Abschnitt id="so-vergleichen">
+        <SectionHeader id="so-vergleichen" title={s["so-vergleichen"].title} lead={s["so-vergleichen"].lead} />
+        <StepFlow steps={v.schritte} tone="light" label={s["so-vergleichen"].title} />
+      </Abschnitt>
 
-        <section
-          className="section-space"
-          id="tarife"
-          aria-labelledby="tariff-heading"
-        >
-          <div className="site-container">
-            <p className="eyebrow">Die Grundlage hinter den Zahlen</p>
-            <h2 className="section-title" id="tariff-heading">
-              Laufzeit und Zugänge
-              <br />
-              machen den Preis.
-            </h2>
-            <p className={styles.intro}>
-              Für den passenden Vergleich zählen auch zusätzliche Personen und
-              Module. Alle folgenden Beträge sind netto; die Abrechnungsperiode
-              steht jeweils dabei.
-            </p>
-            <article
-              className={styles.tariffBlock}
-              aria-labelledby="craftnote-heading"
-            >
-              <div className={styles.providerHeading}>
-                <h3 id="craftnote-heading">
-                  <ProviderLogo provider="Craftnote" />
-                </h3>
-                <SourceLink id="craftnotePrices" label="Preise beim Anbieter" />
-              </div>
-              <p className={styles.providerIntro}>
-                Büro Plus verbindet Baustellenorganisation mit Angeboten,
-                Rechnungen und Kalkulation. Büro- und Baustellenpakete lassen
-                sich für die Aufgaben im Team kombinieren.{" "}
-                <SourceLink id="craftnoteOffice" label="Büro Plus im Detail" />
-              </p>
-              <p className={styles.scrollHint} id="craftnote-scroll">
-                Auf kleinen Bildschirmen kann die Tabelle horizontal gescrollt
-                werden.
-              </p>
-              <div
-                className={styles.tableScroll}
-                role="region"
-                aria-label="Craftnote Jahrespreise"
-                aria-describedby="craftnote-scroll"
-                tabIndex={0}
-              >
-                <table className={styles.priceTable}>
-                  <caption>
-                    Craftnote: jährliche Abrechnung, Preis pro Person
-                  </caption>
-                  <thead>
-                    <tr>
-                      <th scope="col">Paket</th>
-                      <th scope="col">Pro Monat, rechnerisch</th>
-                      <th scope="col">Pro Jahr</th>
-                      <th scope="col">Einordnung</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {craftnotePlans.map((plan) => (
-                      <tr key={plan.name}>
-                        <th scope="row">{plan.name}</th>
-                        <td>{money(plan.monthlyEquivalentCents)}</td>
-                        <td>{money(plan.monthlyEquivalentCents * 12)}</td>
-                        <td>{plan.note}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <div className={styles.providerNotes}>
-                <p>
-                  <strong>Büro Plus: Aktionspreis.</strong> Am Prüfdatum werden
-                  49,90 € statt 69,90 € angezeigt; eine eindeutige Aktionsdauer
-                  ist nicht genannt. Mindestens ein Büropaket ist erforderlich.
-                  Der Hilfeartikel beschreibt eine automatische
-                  Jahresverlängerung, sofern nicht fristgerecht gekündigt wird.{" "}
-                  <SourceLink id="craftnoteTerms" label="Vertragsangaben" />
-                </p>
-                <p>
-                  <strong>Zusatzmodul Fahrzeug:</strong> 24,90 € je Tracker und
-                  Monat im ersten Jahr bei jährlicher Abrechnung. Für die
-                  Plantafel wird auf der Preisseite kein eigener Modulpreis
-                  ausgewiesen.{" "}
-                  <SourceLink
-                    id="craftnotePrices"
-                    label="Zusatzmodule prüfen"
-                  />
-                </p>
-              </div>
-            </article>
+      <Abschnitt id="faq">
+        <div className="grid gap-y-0 lg:grid-cols-[5fr_7fr] lg:gap-x-12">
+          <SectionHeader id="faq" title={s.faq.title} lead={s.faq.lead} />
+          <FaqList items={v.faq} headingLevel={3} answerMax={300} />
+        </div>
+        <JsonLd data={faqSchema(v.faq)} />
+      </Abschnitt>
 
-            <article
-              className={styles.tariffBlock}
-              aria-labelledby="plancraft-heading"
-            >
-              <div className={styles.providerHeading}>
-                <h3 id="plancraft-heading">
-                  <ProviderLogo provider="plancraft" />
-                </h3>
-                <SourceLink id="plancraftPrices" label="Preise beim Anbieter" />
-              </div>
-              <p className={styles.providerIntro}>
-                Business deckt Angebote, Rechnungen und Zeiten ab. Pro ergänzt
-                etwa GAEB, DATANORM, Nachkalkulation und bis zu 50
-                Eingangsrechnungsscans pro Monat. Premium enthält die Plantafel,
-                unbegrenzte Scans und einen persönlichen Ansprechpartner.
-              </p>
-              <p className={styles.scrollHint} id="plancraft-scroll">
-                Die Spalten zeigen Monats-Bezugsbeträge für unterschiedliche
-                Vertragslaufzeiten; Tabelle horizontal scrollbar.
-              </p>
-              <div
-                className={styles.tableScroll}
-                role="region"
-                aria-label="plancraft Preise nach Vertragslaufzeit"
-                aria-describedby="plancraft-scroll"
-                tabIndex={0}
-              >
-                <table className={styles.priceTable}>
-                  <caption>
-                    plancraft: Netto-Bezugsbetrag pro Monat, Vorauszahlung für
-                    die gewählte Periode
-                  </caption>
-                  <thead>
-                    <tr>
-                      <th scope="col">Paket / Zusatz</th>
-                      <th scope="col">1 Monat</th>
-                      <th scope="col">1 Jahr</th>
-                      <th scope="col">2 Jahre</th>
-                      <th scope="col">Enthalten / Berechnung</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {plancraftPlans.map((plan) => (
-                      <tr key={plan.name}>
-                        <th scope="row">{plan.name}</th>
-                        <td>{money(plan.monthlyCents)}</td>
-                        <td>{money(plan.annualMonthlyCents)}</td>
-                        <td>{money(plan.biennialMonthlyCents)}</td>
-                        <td>
-                          {plan.officeUsers}{" "}
-                          {plan.officeUsers === 1
-                            ? "Bürozugang"
-                            : "Bürozugänge"}
-                          , jeweils inklusive mobiler Nutzung
-                        </td>
-                      </tr>
-                    ))}
-                    {plancraftAddons.map((addon) => (
-                      <tr className={styles.addonRow} key={addon.name}>
-                        <th scope="row">{addon.name}</th>
-                        <td>{money(addon.monthlyCents)}</td>
-                        <td>{money(addon.annualMonthlyCents)}</td>
-                        <td>{money(addon.biennialMonthlyCents)}</td>
-                        <td>{addon.note}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <div className={styles.providerNotes}>
-                <p>
-                  Die Zweijahrespreise sind an zwei Jahre Laufzeit gebunden.
-                  Jahresbetrag = Spalte „1 Jahr“ × 12; Zweijahresbetrag = Spalte
-                  „2 Jahre“ × 24. Beispiel Business: 718,80 € für ein Jahr oder
-                  1.150,08 € für zwei Jahre. Es handelt sich jeweils um
-                  Vorauszahlung.
-                </p>
-                <p>
-                  <strong>KI-Telefonempfang bereits verfügbar:</strong> Der
-                  kostenlose Tarif enthält 60 Credits pro Monat. Der Tarif
-                  „Flexibel“ beginnt mit 160 Credits bei 79,90 € monatlich für
-                  plancraft-Kunden oder 89,90 € ohne plancraft-Vertrag. Ein
-                  Credit entspricht einer angefangenen Gesprächsminute.{" "}
-                  <SourceLink
-                    id="plancraftPhone"
-                    label="KI-Tarife und Bedingungen"
-                  />
-                </p>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section
-          className={`section-space ${styles.tinted}`}
-          id="funktionen"
-          aria-labelledby="comparison-heading"
-        >
-          <div className="site-container">
-            <p className="eyebrow">Leistungen im Zusammenhang</p>
-            <h2 className="section-title" id="comparison-heading">
-              Was passt zu Ihrer
-              <br />
-              Art zu arbeiten?
-            </h2>
-            <p className={styles.intro}>
-              Alle drei Anbieter verbinden Büro und Baustelle. Hier vergleichen
-              wir ausgewählte, öffentlich belegte Leistungen und deren
-              Paketzuordnung. Oberflächen, Tiefe und Berechtigungen
-              unterscheiden sich.
-            </p>
-            <p className={styles.scrollHint} id="feature-scroll">
-              Die Vergleichstabelle lässt sich horizontal scrollen; fokussieren
-              Sie sie für die Bedienung mit Pfeiltasten.
-            </p>
-            <div
-              className={styles.tableScroll}
-              role="region"
-              aria-label="Funktionsvergleich CraftOS, Craftnote und plancraft"
-              aria-describedby="feature-scroll"
-              tabIndex={0}
-            >
-              <table className={styles.featureTable}>
-                <caption>
-                  Ausgewählte Funktionen · Stand {comparisonCheckedLabel}
-                </caption>
-                <thead>
-                  <tr>
-                    <th scope="col">Leistung</th>
-                    <th scope="col"><ProviderLogo provider="CraftOS" /></th>
-                    <th scope="col"><ProviderLogo provider="Craftnote" /></th>
-                    <th scope="col"><ProviderLogo provider="plancraft" /></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {featureComparisons.map((row) => (
-                    <tr key={row.feature}>
-                      <th scope="row">{row.feature}</th>
-                      {(["craftos", "craftnote", "plancraft"] as const).map(
-                        (provider) => {
-                          const cell = row[provider];
-                          return (
-                            <td key={provider}>
-                              <strong>{cell.text}</strong>
-                              {cell.detail && <p>{cell.detail}</p>}
-                              {cell.source && (
-                                <SourceLink
-                                  id={cell.source}
-                                  label="Anbieterquelle"
-                                />
-                              )}
-                              {cell.href && (
-                                <Link
-                                  className={styles.sourceLink}
-                                  href={cell.href}
-                                >
-                                  Details
-                                  <ArrowUpRight size={13} aria-hidden="true" />
-                                </Link>
-                              )}
-                            </td>
-                          );
-                        },
-                      )}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className={styles.tableFootnote}>
-              „Hier nicht bewertet“ bedeutet, dass dieser Vergleich dazu keine
-              belastbare Aussage trifft. Daraus lässt sich weder eine fehlende
-              Funktion noch eine angekündigte Entwicklung ableiten.
-            </p>
-          </div>
-        </section>
-
-        <section
-          className={`section-space ${styles.sourceSection}`}
-          id="quellen"
-          aria-labelledby="sources-heading"
-        >
-          <div className={`site-container ${styles.sourcesLayout}`}>
-            <div>
-              <p className="eyebrow">Nachvollziehbar vergleichen</p>
-              <h2 id="sources-heading">
-                Quellen, Stand
-                <br />
-                und Vergleichsrahmen.
-              </h2>
-              <p>
-                Herausgeber dieser Seite ist CraftOS. Die Anbieterangaben wurden
-                am{" "}
-                <time dateTime={comparisonCheckedAt}>
-                  {comparisonCheckedLabel}
-                </time>{" "}
-                geprüft. Maßgeblich für einen Abschluss sind das aktuelle
-                Angebot und die Vertragsbedingungen des jeweiligen Anbieters.
-              </p>
-              <p>
-                Der Vergleich bewertet ausgewählte Leistungen für
-                Handwerksbetriebe. Er ist keine vollständige Produktbewertung
-                und beruht bei anderen Anbietern auf öffentlichen Preis-,
-                Produkt- und Hilfeseiten.
-              </p>
-              <p>
-                Die Logos kennzeichnen die verglichenen Anbieter. Die Marken
-                gehören ihren jeweiligen Inhabern; ihre Darstellung bedeutet
-                keine Partnerschaft oder Empfehlung durch diese Unternehmen.
-              </p>
-              <Link className="text-link" href="/funktionen">
-                CraftOS-Funktionen im Detail
-                <ArrowUpRight size={16} aria-hidden="true" />
-              </Link>
-            </div>
-            <ul className={styles.sourceList}>
-              {Object.entries(comparisonSources).map(([id, source]) => (
-                <li key={id}>
-                  <a href={source.url}>
-                    {source.label}
-                    <ArrowUpRight size={15} aria-hidden="true" />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
+      <div data-abschnitt="cta">
+        <CtaBand title={v.cta.title} text={v.cta.text} secondary={v.cta.secondary} />
       </div>
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "WebPage",
-              "@id": `${site.url}/vergleich#webpage`,
-              url: `${site.url}/vergleich`,
-              name: title,
-              description,
-              inLanguage: "de-DE",
-              dateModified: comparisonCheckedAt,
-              publisher: {
-                "@type": "Organization",
-                name: "CraftOS",
-                url: site.url,
-              },
-              citation: Object.values(comparisonSources).map(
-                (source) => source.url,
-              ),
-            },
-          ],
-        }}
-      />
-      <TrialCta />
+
+      <JsonLd data={webPageSchema({ path: VERGLEICH_PFAD, name: z.h1, description: z.description })} />
     </>
   );
 }

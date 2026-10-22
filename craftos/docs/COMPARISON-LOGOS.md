@@ -1,5 +1,7 @@
 # Anbieterlogos im Vergleich
 
+> **Logos in Phase 8 entfernt (D-02, C12).** Am 22.10.2026 (Plan 08-10) wurden `public/images/brands/craftnote.png`, `public/images/brands/plancraft.svg`, die Komponente `app/vergleich/ProviderLogo.tsx`, das CSS-Modul `app/vergleich/Comparison.module.css` und die Vergleichsdaten `lib/comparison.ts` (Stand 09.09.2026) gelöscht. `/vergleich` ist seitdem ein v2-Hub ohne Wettbewerberlogos; Anbieter werden nur namentlich in Anbieterschreibweise genannt, Angaben stammen aus `lib/wettbewerber/*` mit Quelle und Abrufdatum. Medienbudget (`tests/media-budget.test.ts`) und Browserprüfung (`tests/e2e/design-v2.pw.cjs`) führen keine Ausnahme für Markenlogos mehr. Der folgende Text dokumentiert den historischen Stand.
+
 Stand: 9. September 2026.
 
 Die Vergleichsseite `/vergleich` verwendet die Logos zur sichtbaren Zuordnung der Kostenbeispiele, Anbieterabschnitte und Tabellenspalten. Die bestehenden Preise, Vergleichsfakten und Quellenangaben wurden dabei nicht verändert.

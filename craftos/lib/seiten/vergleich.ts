@@ -414,7 +414,9 @@ export function baueVergleich(anbieter: readonly Wettbewerber[] = alleWettbewerb
         lead: "Notieren Sie Ihre Abläufe, rechnen Sie Preise für Ihre Teamgröße, prüfen Sie Laufzeit und Kündigungsfrist und testen Sie mit einem echten Auftrag.",
       },
       faq: {
-        title: "Häufige Fragen zum Handwerkersoftware-Vergleich",
+        // UI-SPEC § 9 nennt „… zum Handwerkersoftware-Vergleich“; in der 5fr-Spalte ab 1024 px trennte die
+        // Silbentrennung „Handwerkersoft-ware“ (Sichtprüfung 08-10). Kopfwort steht in H1 und Kopfantwort.
+        title: "Häufige Fragen zum Vergleich",
         lead: "Kurze Antworten mit Quelle und Stand der Anbieterangaben.",
       },
     },
