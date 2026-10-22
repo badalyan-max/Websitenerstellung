@@ -22,8 +22,10 @@ import {
   CRAFTOS_OHNE,
   craftnote,
   craftosRechenbeispiel,
+  hero,
   monatAusJahr,
   plancraft,
+  tooltime,
   pruefeText,
   pruefeWettbewerber,
   quellenFuer,
@@ -39,10 +41,17 @@ import type {
   Seitenmodul,
 } from "./types";
 import { craftnoteSeite } from "./craftnote";
+import { heroSeite } from "./hero";
 import { plancraftSeite } from "./plancraft";
+import { tooltimeSeite } from "./tooltime";
 
 const cents = (betrag: number) => Math.round(betrag * 100);
 const euroCent = (c: number) => euro(c / 100);
+/** Anbieterschreibweise: ganze Euro ohne Cent („69 €“), sonst mit Cent. */
+const euroKurz = (c: number) =>
+  new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR", minimumFractionDigits: c % 100 === 0 ? 0 : 2 }).format(
+    c / 100,
+  );
 const tarif = (id: "voll" | "app") => tarife.find((t) => t.id === id)!;
 
 /** CraftOS-Werte für alle Alternativen-Seiten, nur aus lib/site.ts. */
@@ -126,6 +135,7 @@ function kontext(w: Wettbewerber): Kontext {
     w,
     craftos: craftosWerte(),
     euro: euroCent,
+    euroKurz,
     zeile,
     testphase: () => zeile("Testphase", `${site.trialDays} Tage`, `${w.testphaseTage.wert} Tage`, w.testphaseTage),
     laufzeit: () => zeile("Kürzeste Laufzeit", "1 Monat", w.laufzeit.wert, w.laufzeit),
@@ -242,6 +252,12 @@ export function alternativeAusModul(w: Wettbewerber, seite: Seitenmodul, path: s
       facts: [
         { value: k.craftos.beispielJahrJeMonat, label: "CraftOS, 5 Personen, Jahresabo je Monat", source: "site:tarife-5p-jahr" },
         { value: k.craftos.beispielMonat, label: "CraftOS, 5 Personen, Monatsabo", source: "site:tarife-5p-monat" },
+        ...(t.kosten.craftosLizenzen
+          ? [
+              { value: k.craftos.vollMonat, label: "CraftOS Voll-Lizenz pro Monat", source: "site:tarife-voll-monat" },
+              { value: k.craftos.appMonat, label: "CraftOS App-Lizenz pro Monat", source: "site:tarife-app-monat" },
+            ]
+          : []),
         ...t.kosten.facts.map((f) => ({ value: f.value, label: f.label, source: `wettbewerber:${w.slug}-${f.key}` })),
       ],
       note: kostenNote,
@@ -303,6 +319,8 @@ export function alternativeAusModul(w: Wettbewerber, seite: Seitenmodul, path: s
 const SEITEN: Partial<Record<WettbewerberSlug, { w: Wettbewerber; modul: Seitenmodul; path: string }>> = {
   plancraft: { w: plancraft, modul: plancraftSeite, path: "/vergleich/plancraft-alternative" },
   craftnote: { w: craftnote, modul: craftnoteSeite, path: "/vergleich/craftnote-alternative" },
+  hero: { w: hero, modul: heroSeite, path: "/vergleich/hero-alternative" },
+  tooltime: { w: tooltime, modul: tooltimeSeite, path: "/vergleich/tooltime-alternative" },
 };
 
 /** Alternativen-Seite eines Wettbewerbers, geprüft (Vorlage UI-SPEC § 3.1). */
