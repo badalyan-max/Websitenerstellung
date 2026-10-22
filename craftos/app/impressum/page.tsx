@@ -2,17 +2,17 @@ import type { Metadata } from 'next'
 import { LegalShell, LegalSection, DataBlock } from '@/components/legal/Legal'
 import { crumbsFor } from '@/lib/breadcrumbs'
 import { site } from '@/lib/site'
+import { metaFor, zielwerte } from '@/lib/seo-meta'
 
+// Nur Metadaten und H1 aus der Keyword-Map (08-04, D-20); der Rechtstext bleibt unverändert.
 export const metadata: Metadata = {
-  title: 'Impressum',
-  description: 'Impressum und Anbieterkennzeichnung von CraftOS gemäß § 5 TMG.',
-  alternates: { canonical: `${site.url}/impressum` },
+  ...metaFor('/impressum'),
   robots: { index: true, follow: true },
 }
 
 export default function ImpressumPage() {
   return (
-    <LegalShell title="Impressum" crumbs={crumbsFor('/impressum')}>
+    <LegalShell title={zielwerte('/impressum').h1} crumbs={crumbsFor('/impressum')}>
       <p className="text-ink-500">Angaben gemäß § 5 TMG</p>
 
       <LegalSection heading="Anbieter">

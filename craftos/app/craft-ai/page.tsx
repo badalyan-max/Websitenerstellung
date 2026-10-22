@@ -4,25 +4,16 @@ import { PageHero } from "@/components/ui/PageHero";
 import { crumbsFor } from "@/lib/breadcrumbs";
 import { TrialCta } from "@/components/ui/TrialCta";
 import { FeatureSnippet } from "@/components/feature-snippet/FeatureSnippet";
-import { pageMetadata } from "@/lib/metadata";
-export const metadata = pageMetadata(
-  "Craft AI – Betriebsdaten abfragen und Entwürfe prüfen",
-  "Craft AI beantwortet Fragen zu Ihren Betriebsdaten und bereitet Entwürfe vor. Sie prüfen den Inhalt und bestätigen jede Übernahme selbst.",
-  "/craft-ai",
-);
+import { metaFor, zielwerte } from "@/lib/seo-meta";
+// Title, Description und H1 aus der Keyword-Map (08-04, D-06, D-17); v2-Umbau folgt in einem späteren Phase-8-Plan.
+export const metadata = metaFor("/craft-ai");
 export default function Page() {
   return (
     <>
       <PageHero
         crumbs={crumbsFor("/craft-ai")}
         eyebrow="Craft AI"
-        title={
-          <>
-            Fragen Sie Ihren Betrieb.
-            <br />
-            Behalten Sie das letzte Wort.
-          </>
-        }
+        title={zielwerte("/craft-ai").h1}
         intro="Craft AI hilft beim Finden von Informationen und bereitet Entwürfe vor. Sie prüfen den Inhalt und bestätigen, bevor ein unterstützter Schreibvorgang übernommen wird."
       />
       <section className="section-space">

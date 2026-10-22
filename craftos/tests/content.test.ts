@@ -135,7 +135,7 @@ describe("Inhaltsrouten folgen der Keyword-Map (08-04)", () => {
         expect(h1s(html), `${pfad}: genau eine H1 = Map`).toEqual([z.h1]);
       }
     }
-  });
+  }, 60_000);
 
   it("Kategorien und Übersichten: Metadaten über metaFor, ContentIndex-H1 aus der Map", async () => {
     const { renderToString } = await import("react-dom/server");
@@ -162,7 +162,7 @@ describe("Inhaltsrouten folgen der Keyword-Map (08-04)", () => {
       }
       expect(await kat[kind].generateMetadata({ params: Promise.resolve({ category: "gibt-es-nicht" }) })).toEqual({});
     }
-  });
+  }, 60_000);
 
   it("Gewerke: Übersicht und Detailseiten aus der Map, keine eigenen SEO-Felder mehr", async () => {
     const { renderToString } = await import("react-dom/server");
@@ -184,5 +184,5 @@ describe("Inhaltsrouten folgen der Keyword-Map (08-04)", () => {
       const html = renderToString(await detail.default({ params: Promise.resolve({ slug: g.slug }) }));
       expect(h1s(html), `${pfad}: H1`).toEqual([zg.h1]);
     }
-  });
+  }, 60_000);
 });

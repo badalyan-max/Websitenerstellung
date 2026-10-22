@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { crumbsFor } from "@/lib/breadcrumbs";
-import { pageMetadata } from "@/lib/metadata";
+import { metaFor, zielwerte } from "@/lib/seo-meta";
 import { funktionen } from "@/lib/funktionen";
 import { annualSavingPercent, site, tarife } from "@/lib/site";
 const euro = new Intl.NumberFormat("de-DE", {
@@ -16,18 +16,15 @@ function lizenz(id: (typeof tarife)[number]["id"]) {
 }
 const voll = lizenz("voll");
 const app = lizenz("app");
-export const metadata = pageMetadata(
-  "Fakten über CraftOS: Funktionen, Lizenzen und Verfügbarkeit",
-  `Überprüfbare Produktinformationen zu CraftOS: Web-App, Mobile-App, Lizenzen, ${site.trialDays} Testtage, GoBD-Unterstützung und klar benannte Grenzen.`,
-  "/fakten-ueber-craftos",
-);
+// Title, Description und H1 aus der Keyword-Map (08-04, D-06; Werte laut 08-UI-SPEC § 8); v2-Umbau folgt in einem späteren Phase-8-Plan.
+export const metadata = metaFor("/fakten-ueber-craftos");
 export default function Page() {
   return (
     <>
       <PageHero
         crumbs={crumbsFor("/fakten-ueber-craftos")}
         eyebrow="Produktinformationen"
-        title="CraftOS in klaren Fakten."
+        title={zielwerte("/fakten-ueber-craftos").h1}
         intro="Eine Übersicht für Betriebe, Redaktionen und alle, die Funktionsumfang und Verfügbarkeit nachvollziehen möchten."
       />
       <section className="section-space">

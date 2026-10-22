@@ -1,17 +1,14 @@
-import type { Metadata } from 'next'
 import { LegalShell, LegalSection, DataBlock } from '@/components/legal/Legal'
 import { crumbsFor } from '@/lib/breadcrumbs'
 import { site } from '@/lib/site'
+import { metaFor, zielwerte } from '@/lib/seo-meta'
 
-export const metadata: Metadata = {
-  title: 'Datenschutzerklärung',
-  description: 'Informationen zur Verarbeitung personenbezogener Daten bei CraftOS gemäß DSGVO.',
-  alternates: { canonical: `${site.url}/datenschutz` },
-}
+// Nur Metadaten und H1 aus der Keyword-Map (08-04, D-20); der Rechtstext bleibt unverändert.
+export const metadata = metaFor('/datenschutz')
 
 export default function DatenschutzPage() {
   return (
-    <LegalShell title="Datenschutzerklärung" crumbs={crumbsFor('/datenschutz')}>
+    <LegalShell title={zielwerte('/datenschutz').h1} crumbs={crumbsFor('/datenschutz')}>
       <p>
         Der Schutz Ihrer personenbezogenen Daten ist uns wichtig. Wir verarbeiten Ihre Daten
         ausschließlich auf Grundlage der gesetzlichen Bestimmungen (DSGVO, BDSG). In dieser

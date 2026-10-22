@@ -10,15 +10,12 @@ import {
 import { PageHero } from "@/components/ui/PageHero";
 import { crumbsFor } from "@/lib/breadcrumbs";
 import { TrialCta } from "@/components/ui/TrialCta";
-import { pageMetadata } from "@/lib/metadata";
+import { metaFor, zielwerte } from "@/lib/seo-meta";
 import { FeatureSnippet } from "@/components/feature-snippet/FeatureSnippet";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { faqSchema } from "@/lib/schema";
-export const metadata = pageMetadata(
-  "GoBD-konforme Abläufe mit CraftOS unterstützen",
-  "Festschreibung, geschützte Rechnungsinhalte, Dokumentversionen, Belegprüfung und Protokolle: So unterstützt CraftOS GoBD-konforme Abläufe.",
-  "/gobd",
-);
+// Title, Description und H1 aus der Keyword-Map (08-04, D-06, D-17); v2-Umbau folgt in einem späteren Phase-8-Plan.
+export const metadata = metaFor("/gobd");
 const points = [
   {
     icon: LockKeyhole,
@@ -63,13 +60,7 @@ export default function Page() {
       <PageHero
         crumbs={crumbsFor("/gobd")}
         eyebrow="GoBD & Nachvollziehbarkeit"
-        title={
-          <>
-            Ihre Belege.
-            <br />
-            Ein nachvollziehbarer Verlauf.
-          </>
-        }
+        title={zielwerte("/gobd").h1}
         intro="CraftOS unterstützt Ihre GoBD-konformen Abläufe mit Festschreibung, geschützten Rechnungsinhalten, Dokumentversionen und einer nachvollziehbaren Belegprüfung."
       />
       <section className="section-space">
