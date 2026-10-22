@@ -198,7 +198,7 @@ Plans:
 
 **Wave 7** *(blocked on Wave 6 completion)*
 
-- [ ] 08-07-PLAN.md — /preise answer-first mit Preistabelle, Marktspanne und FAQ auf v2
+- [x] 08-07-PLAN.md — /preise answer-first mit Preistabelle, Marktspanne und FAQ auf v2
 
 **Wave 8** *(blocked on Wave 7 completion)*
 
