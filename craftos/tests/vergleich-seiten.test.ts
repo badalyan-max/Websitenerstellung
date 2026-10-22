@@ -770,4 +770,20 @@ describe("Routen und OG-Dateien", () => {
     expect(String(mod.metadata.title)).toBe("Craftnote-Alternative: Preise im Vergleich");
     expect(fs.existsSync(path.join(ROOT, "app/vergleich/craftnote-alternative/opengraph-image.tsx"))).toBe(true);
   });
+
+  it("HERO: Route rendert die Vorlage, Metadaten aus der Map, OG-Datei vorhanden", async () => {
+    const mod = await import("@/app/vergleich/hero-alternative/page");
+    const html = renderToString(createElement(mod.default));
+    expect(html).toContain('id="antwort"');
+    expect(String(mod.metadata.title)).toBe("HERO Software Alternative im Vergleich");
+    expect(fs.existsSync(path.join(ROOT, "app/vergleich/hero-alternative/opengraph-image.tsx"))).toBe(true);
+  });
+
+  it("ToolTime: Route rendert die Vorlage, Metadaten aus der Map, OG-Datei vorhanden", async () => {
+    const mod = await import("@/app/vergleich/tooltime-alternative/page");
+    const html = renderToString(createElement(mod.default));
+    expect(html).toContain('id="antwort"');
+    expect(String(mod.metadata.title)).toBe("ToolTime-Alternative: Preise im Vergleich");
+    expect(fs.existsSync(path.join(ROOT, "app/vergleich/tooltime-alternative/opengraph-image.tsx"))).toBe(true);
+  });
 });
