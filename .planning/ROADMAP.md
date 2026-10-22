@@ -202,7 +202,7 @@ Plans:
 
 **Wave 8** *(blocked on Wave 7 completion)*
 
-- [ ] 08-08-PLAN.md — Alternativen-Vorlage mit prüfendem Builder, plancraft- und Craftnote-Alternative
+- [x] 08-08-PLAN.md — Alternativen-Vorlage mit prüfendem Builder, plancraft- und Craftnote-Alternative
 
 **Wave 9** *(blocked on Wave 8 completion)*
 
