@@ -9,10 +9,10 @@ import { renderToString } from "react-dom/server";
 import { AlternativePage } from "@/components/vergleich/AlternativePage";
 import { TEXT_BUDGET, charCount } from "@/components/v2/budgets";
 import { germanDate, euro } from "@/lib/format";
-import { alternativeAusModul } from "@/lib/seiten/alternativen";
+import { alternativeAusModul, baueAlternative } from "@/lib/seiten/alternativen";
 import type { AlternativeInhalt, Seitenmodul } from "@/lib/seiten/alternativen/types";
-import { site, tarife } from "@/lib/site";
-import { monatAusJahr, plancraft, standVon, UWG_WORTLISTE, uwgTreffer } from "@/lib/wettbewerber";
+import { annualSavingPercent, site, tarife } from "@/lib/site";
+import { craftnote, monatAusJahr, plancraft, standVon, UWG_WORTLISTE, uwgTreffer } from "@/lib/wettbewerber";
 import type { Wettbewerber } from "@/lib/wettbewerber/types";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
@@ -263,5 +263,211 @@ describe("Vorlage", () => {
     expect(quelle).not.toContain('"use client"');
     expect(quelle).not.toMatch(/async function/);
     expect(quelle).not.toMatch(/Product|AggregateRating|<img/);
+  });
+});
+
+/** Seitenmodule: keine Tageszahl und keine Preiszahl als Literal (U12, Akzeptanz 08-08). */
+function pruefeModulLiterale(datei: string) {
+  const quelle = fs.readFileSync(path.join(ROOT, datei), "utf8");
+  expect(quelle.match(/[0-9]+ Tage|[0-9]+,[0-9]{2} €/g), datei).toBeNull();
+}
+
+const e = (c: number | undefined) => euro(c! / 100);
+const VOLL_MONAT = euro(voll.monat);
+const VOLL_JAHR = euro(voll.jahr);
+const VOLL_JAHR_MONAT = euro(monatAusJahr([cents(voll.jahr)]) / 100);
+const APP_MONAT = euro(app.monat);
+const APP_JAHR_MONAT = euro(monatAusJahr([cents(app.jahr)]) / 100);
+
+describe("plancraft", () => {
+  const inhalt = baueAlternative("plancraft");
+  const [business, pro, premium] = plancraft.preise.wert;
+  const mobil = plancraft.zusatzPreise!.mobilzugang.wert;
+  const tafel = plancraft.zusatzPreise!.plantafel.wert;
+  const jahr5 = monatAusJahr([business, mobil, mobil, mobil, mobil, tafel].map((p) => p.centsJahrJeMonat! * 12));
+  const monat5 = business.centsMonat! + 4 * mobil.centsMonat! + tafel.centsMonat!;
+
+  it("Pfad, H1 aus der Map, Kopfwort und Antwort laut UI-SPEC § 3.6", () => {
+    expect(inhalt.path).toBe("/vergleich/plancraft-alternative");
+    expect(inhalt.kopf.h1).toBe("Die plancraft-Alternative für Büro und Baustelle");
+    expect(inhalt.kopf.keyword).toBe("plancraft-Alternative");
+    expect(inhalt.kopf.answer).toBe(
+      `CraftOS ist eine plancraft-Alternative mit Preis pro Person: Die Voll-Lizenz mit Web-App, Mobile-App und Plantafel kostet ${VOLL_MONAT} netto im Monat. plancraft Business kostet ${e(business.centsMonat)} netto im Monat mit einem Bürozugang, die Plantafel ist dort ein Zusatzmodul.`,
+    );
+  });
+
+  it("Tabelle mit 11 Zeilen und Werten aus den Modulen", () => {
+    const zeilen = inhalt.tabelle.rows.map((r) => [r.label, r.craftos, r.wettbewerber]);
+    expect(zeilen).toEqual([
+      ["Bürozugang, monatliche Zahlung", VOLL_MONAT, `${e(business.centsMonat)} (Business)`],
+      ["Bürozugang, Jahresabo je Monat", VOLL_JAHR_MONAT, `${e(business.centsJahrJeMonat)} (Business)`],
+      ["Weitere mobile Person, Jahresabo je Monat", `${APP_JAHR_MONAT} (App-Lizenz)`, `${e(mobil.centsJahrJeMonat)} (Mobilzugang)`],
+      ["Kürzeste Laufzeit", "1 Monat", plancraft.laufzeit.wert],
+      ["Testphase", `${site.trialDays} Tage`, `${plancraft.testphaseTage.wert} Tage`],
+      ["Mobile-App für iOS und Android", true, true],
+      ["Plantafel", "In Voll-Lizenz", "Premium, sonst Modul"],
+      ["E-Rechnung", "XRechnung und ZUGFeRD", "XRechnung-Format"],
+      ["DATEV-Export", true, "In allen Paketen"],
+      ["GAEB-Schnittstelle", "Import X83, Export X84", "ab Pro"],
+      ["KI-Telefonempfang", false, "In allen Paketen"],
+    ]);
+  });
+
+  it("Kosten: Business + 4 Mobilzugänge + Plantafel-Modul, Jahresabo je Monat berechnet", () => {
+    expect(e(jahr5)).toBe(euro(179.4));
+    expect(e(monat5)).toBe(euro(224.4));
+    expect(inhalt.kosten.answer).toBe(
+      `Für eine Person im Büro und vier auf der Baustelle zahlen Sie im Jahresabo ${BEISPIEL_JAHR} netto im Monat bei CraftOS und ${e(jahr5)} bei plancraft Business mit Plantafel; die Pakete unterscheiden sich im Funktionsumfang.`,
+    );
+    expect(inhalt.kosten.facts.map((f) => [f.value, f.label])).toEqual([
+      [BEISPIEL_JAHR, "CraftOS, 5 Personen, Jahresabo je Monat"],
+      [BEISPIEL_MONAT, "CraftOS, 5 Personen, Monatsabo"],
+      [e(jahr5), "plancraft Business, 5 Personen, Jahr"],
+      [e(monat5), "plancraft Business, 5 Personen, Monat"],
+    ]);
+    expect(inhalt.kosten.note).toContain("plancraft: Business + 4 Mobilzugänge + Plantafel-Modul.");
+    expect(inhalt.kosten.note).toContain("Nicht enthalten: KI-Verbrauch, Extra-Speicher, Schulungen.");
+  });
+
+  it("Für wen, Umstieg und FAQ laut UI-SPEC § 3.6", () => {
+    expect(inhalt.fuerWen.answer).toBe(
+      "plancraft passt zu Betrieben, die Pakete mit KI-Empfang oder eine Zweijahresvorauszahlung nutzen möchten; CraftOS passt zu Betrieben, die pro Person abrechnen und die Plantafel ohne Modulgebühr wollen.",
+    );
+    expect(inhalt.fuerWen.panels[0].points.map((p) => p.text)).toEqual(plancraft.staerken.map((s) => s.wert));
+    expect(inhalt.umstieg.steps[0].text).toBe("plancraft nennt als Frist einen Tag vor Ende der Mindestlaufzeit.");
+    expect(inhalt.faq.items).toEqual([
+      {
+        q: "Was kostet plancraft pro Monat?",
+        a: `plancraft Business kostet ${e(business.centsMonat)} netto im Monatsabo, ${e(business.centsJahrJeMonat)} im Jahresabo und ${e(business.centsZweiJahreJeMonat)} im Zweijahresabo, jeweils pro Monat mit einem Bürozugang; Pro kostet ${e(pro.centsMonat)}, ${e(pro.centsJahrJeMonat)} oder ${e(pro.centsZweiJahreJeMonat)}, Premium ${e(premium.centsMonat)}, ${e(premium.centsJahrJeMonat)} oder ${e(premium.centsZweiJahreJeMonat)}.`,
+      },
+      {
+        q: "Ist die Plantafel bei CraftOS im Preis enthalten?",
+        a: `Ja. Die Plantafel gehört zur Voll-Lizenz für ${VOLL_MONAT} netto im Monat oder ${VOLL_JAHR} im Jahr; zusätzlich kosten nur KI-Credits und Extra-Speicher.`,
+      },
+      {
+        q: "Wie lange kann ich plancraft und CraftOS kostenlos testen?",
+        a: `CraftOS testen Sie ${site.trialDays} Tage ohne Zahlungsdaten. plancraft nennt ${plancraft.testphaseTage.wert} Tage ohne Kreditkarte und ohne automatische Verlängerung, danach einen 0-€-Tarif mit eingeschränkten Funktionen.`,
+      },
+      {
+        q: "Kann ich von plancraft zu CraftOS wechseln?",
+        a: "Ja. Prüfen Sie die Frist Ihres plancraft-Abos, laut plancraft bis einen Tag vor Ende der Mindestlaufzeit, und übernehmen Sie Kunden, Projekte und Stammdaten per Datei in CraftOS.",
+      },
+      {
+        q: "Unterstützen plancraft und CraftOS E-Rechnungen?",
+        a: "Ja. CraftOS erzeugt XRechnung und ZUGFeRD und liest strukturierte E-Rechnungen im Eingang ein; plancraft beschreibt E-Rechnungen im XRechnung-Format in allen Paketen.",
+      },
+    ]);
+  });
+
+  it("renderToString besteht die Vorlagenprüfung; Seitenmodul ohne Zahlenliterale", () => {
+    pruefeHtml(inhalt);
+    pruefeModulLiterale("lib/seiten/alternativen/plancraft.ts");
+  });
+});
+
+describe("Craftnote", () => {
+  const inhalt = baueAlternative("craftnote");
+  const preis = (paket: string) => craftnote.preise.wert.find((p) => p.paket === paket)!;
+  const bueroPlus = preis("Büro Plus");
+  const buero = preis("Büro");
+  const baustelle = preis("Baustelle");
+  const fahrzeug = craftnote.zusatzPreise!.fahrzeugModul.wert;
+  const mit = monatAusJahr([bueroPlus.centsJahrJeMonat!, ...Array(4).fill(baustelle.centsJahrJeMonat!)].map((c) => c * 12));
+  const mitStatt = monatAusJahr([bueroPlus.stattCents!, ...Array(4).fill(baustelle.centsJahrJeMonat!)].map((c) => c * 12));
+
+  it("Pfad, H1 aus der Map, Kopfwort und Antwort laut UI-SPEC § 3.6", () => {
+    expect(inhalt.path).toBe("/vergleich/craftnote-alternative");
+    expect(inhalt.kopf.h1).toBe("Die Craftnote-Alternative mit Angebot und Rechnung");
+    expect(inhalt.kopf.keyword).toBe("Craftnote-Alternative");
+    expect(inhalt.kopf.answer).toBe(
+      `CraftOS ist eine Craftnote-Alternative mit Angeboten, Rechnungen, Plantafel und Mobile-App in der Voll-Lizenz für ${VOLL_MONAT} netto pro Person und Monat. Craftnote Büro Plus kostet laut Preisseite ${e(bueroPlus.centsJahrJeMonat)} statt ${e(bueroPlus.stattCents)} netto pro Nutzer und Monat bei jährlicher Abrechnung.`,
+    );
+  });
+
+  it("Tabelle mit 10 Zeilen und Werten aus den Modulen", () => {
+    const zeilen = inhalt.tabelle.rows.map((r) => [r.label, r.craftos, r.wettbewerber]);
+    expect(zeilen).toEqual([
+      ["Bürozugang mit Rechnungen, Jahresabo je Monat", VOLL_JAHR_MONAT, `${e(bueroPlus.centsJahrJeMonat)} statt ${e(bueroPlus.stattCents)}`],
+      ["Weitere mobile Person, Jahresabo je Monat", `${APP_JAHR_MONAT} (App-Lizenz)`, `${e(baustelle.centsJahrJeMonat)} (Baustelle)`],
+      ["Kürzeste Laufzeit", "1 Monat", craftnote.laufzeit.wert],
+      ["Testphase", `${site.trialDays} Tage`, `${craftnote.testphaseTage.wert} Tage`],
+      ["Mobile-App für iOS und Android", true, true],
+      ["Plantafel", "In Voll-Lizenz", "Ja, ohne Preisangabe"],
+      ["E-Rechnung", "XRechnung und ZUGFeRD", "„E-Rechnungsfähig“"],
+      ["DATEV-Export", true, "Nur Büro Plus"],
+      ["Zeiterfassung", true, "In allen Paketen"],
+      ["Fahrzeugortung per GPS", false, "Zusatzmodul"],
+    ]);
+  });
+
+  it("Kosten: zwei Werte mit Statt-Preis-Wortlaut, Note wörtlich", () => {
+    expect(e(mit)).toBe(euro(109.5));
+    expect(e(mitStatt)).toBe(euro(129.5));
+    expect(inhalt.kosten.answer).toBe(
+      `Für eine Person im Büro und vier auf der Baustelle zahlen Sie im Jahresabo ${BEISPIEL_JAHR} netto im Monat bei CraftOS und ${e(mit)} bei Craftnote mit ${e(bueroPlus.centsJahrJeMonat)} für Büro Plus, mit ${e(bueroPlus.stattCents)} gerechnet ${e(mitStatt)}; die Pakete unterscheiden sich im Funktionsumfang.`,
+    );
+    expect(inhalt.kosten.facts.map((f) => [f.value, f.label])).toEqual([
+      [BEISPIEL_JAHR, "CraftOS, 5 Personen, Jahresabo je Monat"],
+      [BEISPIEL_MONAT, "CraftOS, 5 Personen, Monatsabo"],
+      [e(mit), `Craftnote, 5 Personen, mit ${e(bueroPlus.centsJahrJeMonat)}`],
+      [e(mitStatt), `Craftnote, 5 Personen, mit ${e(bueroPlus.stattCents)}`],
+    ]);
+    expect(inhalt.kosten.note).toBe(
+      `Annahme: 1 Person im Büro, 4 auf der Baustelle. CraftOS: 1 Voll-Lizenz + 4 App-Lizenzen. Craftnote: 1 Büro Plus + 4 Baustelle, jährliche Abrechnung. Nicht enthalten: KI-Verbrauch und Extra-Speicher bei CraftOS; Fahrzeug-Modul (${e(fahrzeug.centsJahrJeMonat)} je Tracker und Monat im ersten Jahr, jährliche Abrechnung) und Formularpakete bei Craftnote. Die Pakete unterscheiden sich im Funktionsumfang. Monatswerte rechnerisch aus dem Jahresbetrag, auf Cent gerundet. Netto, Stand ${germanDate(standVon(craftnote))}.`,
+    );
+  });
+
+  it("Für wen, Umstieg und FAQ laut UI-SPEC § 3.6", () => {
+    expect(inhalt.fuerWen.answer).toBe(
+      "Craftnote passt zu Betrieben, die Fahrzeuge orten oder länger testen möchten; CraftOS passt zu Betrieben, die monatlich kündbar bleiben und Mitarbeitende mit einer App-Lizenz ausstatten wollen.",
+    );
+    expect(inhalt.fuerWen.panels[0].points.map((p) => p.text)).toEqual(craftnote.staerken.map((s) => s.wert));
+    expect(inhalt.umstieg.steps[0].text).toBe("Craftnote nennt drei Monate Frist vor Ende des Vertragsjahres.");
+    expect(inhalt.umstieg.answer).toContain("Ihres Craftnote-Vertrags");
+    expect(inhalt.faq.items).toEqual([
+      {
+        q: "Was kostet Craftnote pro Monat?",
+        a: `Craftnote kostet pro Nutzer und Monat ${e(buero.centsJahrJeMonat)} (Büro), ${e(bueroPlus.centsJahrJeMonat)} statt ${e(bueroPlus.stattCents)} (Büro Plus) und ${e(baustelle.centsJahrJeMonat)} (Baustelle), jeweils netto bei jährlicher Abrechnung; mindestens ein Büropaket ist nötig.`,
+      },
+      {
+        q: "Kann ich CraftOS monatlich kündigen?",
+        a: `Ja. Das Monatsabo ist monatlich kündbar; das Jahresabo kostet rund ${Math.round(annualSavingPercent)} % weniger als zwölf Monatszahlungen und ist zum Ende der Laufzeit kündbar.`,
+      },
+      {
+        q: "Wie lange kann ich Craftnote und CraftOS kostenlos testen?",
+        a: `CraftOS testen Sie ${site.trialDays} Tage ohne Zahlungsdaten. Craftnote nennt ${craftnote.testphaseTage.wert} Tage mit dem Funktionsumfang von Büro Plus, ohne hinterlegte Zahlungsmethode.`,
+      },
+      {
+        q: "Kann ich mit CraftOS Fahrzeuge orten?",
+        a: "Nein. CraftOS speichert nur beim Start und Stopp der Zeiterfassung und bei Unterschriften je einen Standortpunkt, ohne Bewegungsverläufe.",
+      },
+      {
+        q: "Brauche ich bei CraftOS für jede Person eine Voll-Lizenz?",
+        a: `Nein. Büro und Bauleitung arbeiten mit der Voll-Lizenz, Mitarbeitende auf der Baustelle mit der App-Lizenz für ${APP_MONAT} netto im Monat.`,
+      },
+    ]);
+  });
+
+  it("renderToString besteht die Vorlagenprüfung; Seitenmodul ohne Zahlenliterale", () => {
+    pruefeHtml(inhalt);
+    pruefeModulLiterale("lib/seiten/alternativen/craftnote.ts");
+  });
+});
+
+describe("Routen und OG-Dateien", () => {
+  it("plancraft: Route rendert die Vorlage, Metadaten aus der Map, OG-Datei vorhanden", async () => {
+    const mod = await import("@/app/vergleich/plancraft-alternative/page");
+    const html = renderToString(createElement(mod.default));
+    expect(html).toContain('id="antwort"');
+    expect(String(mod.metadata.title)).toBe("plancraft-Alternative: Preise im Vergleich");
+    expect(fs.existsSync(path.join(ROOT, "app/vergleich/plancraft-alternative/opengraph-image.tsx"))).toBe(true);
+  });
+
+  it("Craftnote: Route rendert die Vorlage, Metadaten aus der Map, OG-Datei vorhanden", async () => {
+    const mod = await import("@/app/vergleich/craftnote-alternative/page");
+    const html = renderToString(createElement(mod.default));
+    expect(html).toContain('id="antwort"');
+    expect(String(mod.metadata.title)).toBe("Craftnote-Alternative: Preise im Vergleich");
+    expect(fs.existsSync(path.join(ROOT, "app/vergleich/craftnote-alternative/opengraph-image.tsx"))).toBe(true);
   });
 });

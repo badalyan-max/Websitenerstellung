@@ -43,6 +43,9 @@ const PHASE6_SEITEN: { path: string; modul: () => Promise<SeitenModul> }[] = [
   { path: "/", modul: () => import("@/app/page") },
   { path: "/funktionen", modul: () => import("@/app/funktionen/page") },
   { path: "/app", modul: () => import("@/app/app/page") },
+  // 08-08: Alternativen-Seiten (statische Ordner, H1 aus zielwerte(path).h1).
+  { path: "/vergleich/plancraft-alternative", modul: () => import("@/app/vergleich/plancraft-alternative/page") },
+  { path: "/vergleich/craftnote-alternative", modul: () => import("@/app/vergleich/craftnote-alternative/page") },
 ];
 
 type Row = Record<string, unknown>;
@@ -150,7 +153,14 @@ describe("Keyword-Map", () => {
 
   it("geplante Seiten haben eine Zielphase 6–9, Alternativen-Seiten Phase 8", async () => {
     const sitemapPaths = new Set((await sitemap()).map((e) => toPath(e.url)));
-    for (const marke of ["plancraft", "craftnote", "hero", "tooltime"]) {
+    // 08-08: plancraft und Craftnote sind veröffentlicht (bestehend + in der Sitemap, Pitfall 12).
+    for (const marke of ["plancraft", "craftnote"]) {
+      const e = keywordMap.find((k) => k.path === `/vergleich/${marke}-alternative`);
+      expect(e?.status, marke).toBe("bestehend");
+      expect(e?.phase, marke).toBe(8);
+      expect(sitemapPaths.has(`/vergleich/${marke}-alternative`), marke).toBe(true);
+    }
+    for (const marke of ["hero", "tooltime"]) {
       const e = keywordMap.find((k) => k.path === `/vergleich/${marke}-alternative`);
       expect(e?.status, marke).toBe("geplant");
       expect(e?.phase, marke).toBe(8);
