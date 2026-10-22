@@ -152,6 +152,19 @@ const WEITERE_PERSON: Readonly<Record<WettbewerberSlug, (w: Wettbewerber) => Zel
   },
 };
 
+/**
+ * Paketgrößen mit mehreren Personen laut `enthalten` („Team bis 5, Max bis 10 Personen“), ME-04: Mitarbeitende sind
+ * nur bis zur Paketgröße im Paketpreis enthalten.
+ */
+function paketGroessen(w: Wettbewerber): string {
+  const teile = w.preise.wert.flatMap((p) => {
+    const n = Number(/\d+/.exec(p.enthalten ?? "")?.[0]);
+    return Number.isInteger(n) && n > 1 ? [`${p.paket} bis ${n}`] : [];
+  });
+  if (teile.length === 0) throw new Error(`Kleine Betriebe: ${w.name} ohne Paket mit Personenzahl in „enthalten“ – Datenmodul prüfen.`);
+  return `${teile.join(", ")} Personen`;
+}
+
 const PERSON_SPALTE: MarktSpalte = {
   key: "person",
   label: "Weitere mobile Person",
@@ -364,7 +377,7 @@ export function baueKleineBetriebe(anbieter: readonly Wettbewerber[] = alleWettb
       {
         q: "Brauchen Mitarbeitende auf der Baustelle eine eigene Lizenz?",
         a: `Bei den meisten verglichenen Anbietern ja; bei CraftOS ist das die ${app.name} für ${euro(app.monat)} netto im Monat${
-          paketPersonen ? `, bei ${paketPersonen.name} sind Mitarbeitende im Paketpreis enthalten` : ""
+          paketPersonen ? `, bei ${paketPersonen.name} sind Mitarbeitende bis zur Paketgröße im Paketpreis enthalten (${paketGroessen(paketPersonen)})` : ""
         }.`,
       },
     ],

@@ -39,16 +39,17 @@ export const tooltimeSeite: Seitenmodul = (k) => {
     vertragsname: "ToolTime-Vertrags",
     rows: [
       k.zeile("Abrechnung", "pro Person", "Paket nach Teamgröße", w.preise),
+      // ME-04: „je Lizenz“ = Team-Paketpreis je enthaltener Person (Daten: 169 € / 5 ≈ 34 €), kein Aufpreis je Person.
       k.zeile(
         "Preis je Person, monatliche Zahlung",
         `${c.vollMonat} Voll, ${c.appMonat} App`,
-        `${euroKurz(teamJeLizenz.wert.centsMonat!)} (Team-Paket)`,
+        `${euroKurz(teamJeLizenz.wert.centsMonat!)} anteilig (Team)`,
         teamJeLizenz,
       ),
       k.zeile(
         "Preis je Person, Jahresabo je Monat",
         `${c.vollJahrJeMonat} Voll, ${c.appJahrJeMonat} App`,
-        `${euroKurz(teamJeLizenz.wert.centsJahrJeMonat!)} (Team, 1. Jahr)`,
+        `${euroKurz(teamJeLizenz.wert.centsJahrJeMonat!)} anteilig, 1. Jahr`,
         teamJeLizenz,
       ),
       k.laufzeit(),
@@ -68,7 +69,7 @@ export const tooltimeSeite: Seitenmodul = (k) => {
       zusammenstellung: `Team-Paket für ${team.enthalten}, Jahresabo`,
       nichtEnthalten:
         "KI-Verbrauch und Extra-Speicher bei CraftOS; Erweiterungen wie DATEV Rechnungsdatenservice und ToolTime Assistant bei ToolTime",
-      zusatz: `Die Jahresabo-Preise gelten laut ToolTime nur im ersten Vertragsjahr; regulär nennt ToolTime derzeit ${teamRegulaer} (Team). Preise späterer Jahre sind nicht zugesagt.`,
+      zusatz: `Die Jahresabo-Preise gelten laut ToolTime nur im ersten Vertragsjahr; regulär nennt ToolTime derzeit ${teamRegulaer} (Team). Preise späterer Jahre sind nicht zugesagt. „Anteilig“ heißt: Paketpreis je enthaltener Person.`,
     },
     fuerWen: {
       answer:

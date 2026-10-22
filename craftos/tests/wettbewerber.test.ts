@@ -399,6 +399,20 @@ describe("Datenmodule: Werte laut Neuprüfung", () => {
     expect(w.testphaseTage.wert).toBe(7);
   });
 
+  // ME-04: Lesart „je Lizenz“ aus den Daten – der Lizenzpreis ist der Paketpreis geteilt durch die enthaltenen
+  // Mitarbeitenden (auf ganze Euro gerundet), also ein Anteil am Paketpreis und kein Aufpreis je Person.
+  it("ToolTime: je-Lizenz-Preise = Paketpreis je enthaltener Person (Team und Max, alle Zahlweisen)", () => {
+    const w = modul("tooltime");
+    for (const [paket, lizenz] of [["Team", "teamJeLizenz"], ["Max", "maxJeLizenz"]] as const) {
+      const p = preis(w, paket);
+      const personen = Number(/\d+/.exec(p.enthalten ?? "")?.[0]);
+      expect(personen, paket).toBeGreaterThan(1);
+      const l = w.zusatzPreise![lizenz].wert;
+      for (const feld of ["centsMonat", "centsJahrJeMonat", "regulaerDerzeitCents"] as const)
+        expect(l[feld], `${paket} ${feld}`).toBe(Math.round(p[feld]! / personen / 100) * 100);
+    }
+  });
+
   it("U6 (Inhaber 22.10.2026): jeder Wettbewerber hat mindestens 2 belegte Stärken für „Wann {Name} passt“", () => {
     for (const w of wettbewerber) expect(w.staerken.length, w.slug).toBeGreaterThanOrEqual(2);
   });

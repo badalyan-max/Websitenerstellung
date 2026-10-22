@@ -4,7 +4,9 @@
  * Neuprüfung: 22.10.2026 (Preisseite, Nutzungsbedingungen 4.1/9.1/9.4, Startseite, Plantafel-Seite). Netto laut
  * Nutzungsbedingungen 4.1. Jahresabo-Preise gelten laut Preisseite nur im ersten Vertragsjahr (U3: ersterJahrespreis,
  * spätere Jahre nur als regulaerDerzeitCents). Nicht verwendet: „Weitere Mitarbeitende“ (Tabelle und FAQ nennen
- * unterschiedliche Werte).
+ * unterschiedliche Werte). Lesart „je Lizenz“ (08-REVIEW ME-04): Paketpreis geteilt durch die enthaltenen Mitarbeitenden,
+ * auf ganze Euro gerundet (Team 169 € / 5 ≈ 34 €, Max 329 € / 10 ≈ 33 €) – ein Anteil am Paketpreis, kein Aufpreis
+ * je Person; Seiten schreiben „anteilig“ bzw. „bis zur Paketgröße im Paketpreis enthalten“ (tests/wettbewerber.test.ts).
  * Tests: tests/wettbewerber.test.ts.
  */
 import type { Fakt, Quelle, Wettbewerber } from "./types";

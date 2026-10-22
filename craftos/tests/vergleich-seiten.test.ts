@@ -697,8 +697,9 @@ describe("ToolTime", () => {
   it("Tabelle mit 10 Zeilen, nur Funktionen, die CraftOS hat (Inhaber 22.10.2026); Jahresabo nur „1. Jahr“", () => {
     expect(inhalt.tabelle.rows.map((r) => [r.label, r.craftos, r.wettbewerber])).toEqual([
       ["Abrechnung", "pro Person", "Paket nach Teamgröße"],
-      ["Preis je Person, monatliche Zahlung", `${VOLL_MONAT} Voll, ${APP_MONAT} App`, `${ek(teamLizenz.centsMonat)} (Team-Paket)`],
-      ["Preis je Person, Jahresabo je Monat", `${VOLL_JAHR_MONAT} Voll, ${APP_JAHR_MONAT} App`, `${ek(teamLizenz.centsJahrJeMonat)} (Team, 1. Jahr)`],
+      // ME-04: der je-Lizenz-Preis ist der Anteil am Team-Paketpreis, kein Aufpreis je Person.
+      ["Preis je Person, monatliche Zahlung", `${VOLL_MONAT} Voll, ${APP_MONAT} App`, `${ek(teamLizenz.centsMonat)} anteilig (Team)`],
+      ["Preis je Person, Jahresabo je Monat", `${VOLL_JAHR_MONAT} Voll, ${APP_JAHR_MONAT} App`, `${ek(teamLizenz.centsJahrJeMonat)} anteilig, 1. Jahr`],
       ["Kürzeste Laufzeit", "1 Monat", tooltime.laufzeit.wert],
       ["Testphase", `${site.trialDays} Tage`, `${tooltime.testphaseTage.wert} Tage`],
       ["Mobile-App für iOS und Android", true, true],
@@ -863,6 +864,24 @@ describe("ME-03: „länger testen“ nur, wenn die Testphase des Anbieters län
     w.testphaseTage = { ...w.testphaseTage, wert: site.trialDays };
     const seite: typeof craftnoteSeite = (k) => ({ ...craftnoteSeite(k), fuerWen: { ...craftnoteSeite(k).fuerWen, answer: "Craftnote passt zu Betrieben, die länger testen möchten." } });
     expect(() => alternativeAusModul(w, seite, "/vergleich/craftnote-alternative")).toThrow(/länger/);
+  });
+});
+
+describe("ME-04: ToolTime-Personenpreis auf beiden Seiten in derselben Lesart (Anteil am Paketpreis)", () => {
+  it("Alternative „anteilig“, kleine Betriebe „im Paket“ bzw. „bis zur Paketgröße“, nie „Mitarbeitende im Paketpreis“ ohne Grenze", async () => {
+    const { baueAlternative } = await import("@/lib/seiten/alternativen");
+    const { kleineBetriebe } = await import("@/lib/seiten/kleine-betriebe");
+    const zellen = baueAlternative("tooltime")
+      .tabelle.rows.filter((r) => r.label.startsWith("Preis je Person"))
+      .map((r) => String(r.wettbewerber));
+    expect(zellen).toHaveLength(2);
+    for (const z of zellen) expect(z).toContain("anteilig");
+    const team = tooltime.preise.wert.find((p) => p.paket === "Team")!;
+    const personen = /\d+/.exec(team.enthalten!)![0];
+    expect(kleineBetriebe.anbieter.tabelle.rows.find((r) => r.label === "ToolTime")!.cells.person).toBe(`im Paket, bis ${personen} Personen`);
+    const faq = kleineBetriebe.faq.map((f) => f.a).join(" ");
+    expect(faq).toContain("bis zur Paketgröße im Paketpreis enthalten");
+    expect(faq).not.toMatch(/Mitarbeitende im Paketpreis enthalten/);
   });
 });
 
@@ -1368,7 +1387,7 @@ describe("kleine Betriebe Inhalte", () => {
     expect(kuendigen.startsWith("Das hängt vom Anbieter ab: ")).toBe(true);
     expect(kuendigen).toContain("CraftOS und plancraft");
     expect(lizenz).toBe(
-      `Bei den meisten verglichenen Anbietern ja; bei CraftOS ist das die App-Lizenz für ${euro(app.monat)} netto im Monat, bei ToolTime sind Mitarbeitende im Paketpreis enthalten.`,
+      `Bei den meisten verglichenen Anbietern ja; bei CraftOS ist das die App-Lizenz für ${euro(app.monat)} netto im Monat, bei ToolTime sind Mitarbeitende bis zur Paketgröße im Paketpreis enthalten (Team bis 5, Max bis 10 Personen).`,
     );
   });
 
