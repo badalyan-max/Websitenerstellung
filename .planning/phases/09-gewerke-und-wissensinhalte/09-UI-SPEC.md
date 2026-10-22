@@ -1,7 +1,8 @@
 ---
 phase: 09
 slug: gewerke-und-wissensinhalte
-status: draft
+status: approved
+reviewed_at: 2026-10-22
 shadcn_initialized: false
 preset: none
 created: 2026-10-22
@@ -15,7 +16,7 @@ created: 2026-10-22
 
 **Quellenkennzeichnung:** [D-xx] = `09-CONTEXT.md` (verbindlich), [R] = `09-RESEARCH.md` inkl. Leitlinie L-1 und Orchestrator-Entscheidungen, [05]–[08] = genehmigte Verträge, [BESTAND] = Code auf `main`, [KASKADE] = Design-Kaskade, [ERMESSEN] = Entscheidung im Rahmen von „Claude's Discretion“ bzw. Annahme ohne Inhaberrückfrage (Liste A1–A10 am Ende).
 
-**Mess- und Zählnachweis (22.10.2026):** 45 feste Texte dieses Vertrags per Node gezählt (`Array.from(s).length`, Satzregel `sentenceCount` aus `components/v2/budgets.ts`), alle im Budget. H1-Zeilen und Kopfwort-Spans per Playwright-Chromium (`setContent`, Clash Display 600 aus `public/fonts`, kein Server) für alle 73 Artikel-H1 der Keyword-Map und alle 13 Gewerke-H1 in sechs Breiten gemessen. Skripte (nicht versioniert, die Tests im Plan ersetzen sie): `C:/Users/badal/AppData/Local/Temp/claude/c--Projekte-Websitenerstellung/8faeabcc-263d-4f29-8287-1406748c2152/scratchpad/p9ui/count09.cjs` und `C:/Users/badal/AppData/Local/Temp/claude/c--Projekte-Websitenerstellung/8faeabcc-263d-4f29-8287-1406748c2152/scratchpad/p9ui/measure09.cjs`.
+**Mess- und Zählnachweis (22.10.2026):** 45 feste Texte dieses Vertrags per Node gezählt (`Array.from(s).length`, Satzregel `sentenceCount` aus `components/v2/budgets.ts`), alle im Budget. H1-Zeilen und Kopfwort-Spans per Playwright-Chromium (`setContent`, Clash Display 600 aus `public/fonts`, kein Server) für alle 73 Artikel-H1 der Keyword-Map und alle 13 Gewerke-H1 in sechs Breiten gemessen. Skripte (nicht versioniert, die Tests im Plan ersetzen sie): `C:/Users/badal/AppData/Local/Temp/claude/c--Projekte-Websitenerstellung/8faeabcc-263d-4f29-8287-1406748c2152/scratchpad/p9ui/count09.cjs` und `C:/Users/badal/AppData/Local/Temp/claude/c--Projekte-Websitenerstellung/8faeabcc-263d-4f29-8287-1406748c2152/scratchpad/p9ui/measure09.cjs`; Nachmessung mit Silbentrennungsregeln (Checker A5) in `C:/Users/badal/AppData/Local/Temp/claude/c--Projekte-Websitenerstellung/8faeabcc-263d-4f29-8287-1406748c2152/scratchpad/p9ui/measure09b.cjs`. Die drei nach dem Checker neuen Texte (CTA-Titel mit Punkt 37/40, Hilfe-Leerzustand 34 und 93) sind ebenfalls gezählt und im Budget.
 
 ---
 
@@ -116,9 +117,13 @@ interface LinkKartenProps {
 - Fehlertexte: „LinkKarten: mindestens 1 Einträge erforderlich – Inhalte in lib/… ergänzen.“ (Muster `assertCount`), „Textbudget überschritten: linkKarte.title hat {n} von 100 Zeichen – Satz kürzen.“
 - Wird in der Client-Insel `ContentSearch` als reine Darstellungskomponente (ohne Hooks) wiederverwendet; `ContentSearch` bleibt funktionsgleich.
 
-**`TEXT_BUDGET`-Erweiterung (`components/v2/budgets.ts`, additiv):** `linkKarte: { label: 24, title: 100, text: 160, meta: 32 }`, `gewerk: { teaser: 100, exampleTitle: 40, example: 200 }`, `artikel: { h1: 100, heading: 80, step: 160 }`; Mengen `count.linkKarten: { min: 1, max: 60 }`, `count.gewerkSteps: { min: 4, max: 5 }`, `count.gewerkFunktionen: { min: 4, max: 6 }`, `count.gewerkFaq: { min: 3, max: 4 }`, `count.gewerkArtikel: { min: 2, max: 3 }`, `count.artikelSchritte: { min: 2, max: 10 }`, `count.artikelVerwandt: { min: 1, max: 4 }`.
+**`TEXT_BUDGET`-Erweiterung (`components/v2/budgets.ts`, additiv):** `linkKarte: { label: 24, title: 100, text: 160, meta: 32 }`, `gewerk: { teaser: 100, exampleTitle: 40, example: 200 }`, `artikel: { h1: 100, heading: 80, step: 160 }`; Mengen `count.linkKarten: { min: 1, max: 60 }`, `count.gewerkSteps: { min: 4, max: 5 }`, `count.gewerkFunktionen: { min: 4, max: 6 }`, `count.gewerkFaq: { min: 3, max: 4 }`, `count.gewerkArtikel: { min: 2, max: 3 }`, `count.artikelSchritte: { min: 2, max: 10 }`, `count.artikelFunktionen: { min: 1, max: 3 }`, `count.artikelVerwandt: { min: 1, max: 4 }`.
 
-**Besitz (D-27) und Reihenfolge:** Fundament (09-01) baut G8, G9, G10, `sceneById`, alle Budgetfelder oben, die Audit-Ausweitung und die Map-H1-Korrekturen (§ 1.3) als **erste** Aufgaben in einem Commit; (a) setzt die Abschnitte 1–5 der Gewerke-Vorlage sofort um und die Abschnitte, die `LinkKarten` brauchen (Gewerke-„Weiterlesen“, `/gewerke`-Raster), erst nach dem Merge dieses Commits (D-26: „(a) darf in Welle 2 weiterlaufen“). Fundament ergänzt `craftos/docs/DESIGN-V2.md` § 18 „Phase 9“ mit Verweis auf diesen Vertrag.
+**Besitz (D-27) und Reihenfolge (verbindlich, Checker A1/A2):**
+1. **Fundament, Aufgabe 1** („09-01 Aufgabe 1“, ein Commit): alle Budgetfelder oben, die Map-H1-Kürzungen (§ 1.3), `ContentKopf` (G8) und `LinkKarten` (G9). Der Orchestrator merged diesen Commit vorgezogen nach `main`. Danach folgen im Fundament G10, `sceneById`, die Audit-Ausweitung und `DESIGN-V2.md` § 18 „Phase 9“ (Verweis auf diesen Vertrag).
+2. **Paket (a) vor diesem Merge:** nur `lib/gewerke.ts` sowie die Abschnitte Ablauf, Funktionen, FAQ und CTA (§ 1.1 Nr. 1, 2, 3, 5) – **ohne** neue Budgetfelder (Prüfungen mit vorhandenen Feldern bzw. lokalen Konstanten in `lib/gewerke.ts`).
+3. **Paket (a) nach dem Merge:** setzt neu auf `main` auf und baut den Kopf (§ 1.1 Nr. 0, braucht die gekürzten Map-H1), `/gewerke` (§ 1b), „Weiterlesen“ (§ 1.1 Nr. 4) und `tests/gewerke.test.ts`.
+4. **Links:** (a) verlinkt bis zur Integration nur **bestehende** Artikel. Neue Ziele aus (f) und (g) (u. a. `/hilfe/mahnwesen-einrichten`, `/hilfe/datanorm-katalog-importieren`, `/hilfe/lager-scan-app`, `/hilfe/regiebericht`, `/blog/bauablaufplan`) ergänzt (a) in einer **letzten Aufgabe** nach dem Merge von (f) und (g). Der Mahnwesen-Artikel heißt endgültig `mahnwesen-einrichten`.
 
 ---
 
@@ -130,7 +135,7 @@ interface LinkKartenProps {
 | H2 | [05 §1] Seitenkopf | Köpfe dunkel bzw. Bestand-`PageHero` | Heller Kopf `ContentKopf` (G8) für Artikel, `/blog`, `/hilfe`, Kategorien | [08] Color nennt den hellen Kopf für Ratgeber/Hilfe; `PageHero` entfällt auf diesen Seiten. |
 | H3 | [05 §2] Bento max. 7 | Kachelraster mit Hierarchie | `LinkKarten` (G9) gleichförmig in 1/2/3 Spalten | Listen gleichrangiger Ziele (12 Gewerke, Kategorien, Artikel) haben keine Rangfolge; Bento würde eine erfinden. |
 | H4 | D-05 (4) eigener Abschnitt „Gewerkbeispiel“ | Abschnitt 4 als Kachel oder FactList | Beispiel als **Beispielkachel im Ablauf-Abschnitt** direkt neben dem `FeatureSnippet` (§ 1.2) | Der Snippet zeigt denselben Auftrag (`trade-snippet-examples.ts`: „The project and work match the adjacent trade story“); ein Abschnitt mit einer einzigen Textkachel verstieße gegen „jeder Abschnitt = SectionHeader + ein visueller Baustein“ [05]; `FactList` braucht 6 Einträge. |
-| H5 | [07 F4] `pageHead.h1` ≤ 60 | gilt für Köpfe | Artikel-H1 (G8) ≤ 100 (`artikel.h1`), neue Map-Einträge ≤ 70; `hyphens: auto` + `overflow-wrap: break-word` statt Kopfwort-Span | Map-H1 bis 98 Zeichen [BESTAND]; Messung: „Stundenverrechnungssatz“ (364 > 324 px), „Materialentnahmeschein:“ (339), „Synchronisierungsstatus“ (340) laufen bei 360 px über. |
+| H5 | [07 F4] `pageHead.h1` ≤ 60 | gilt für Köpfe | Alle H1 im `ContentKopf` (G8: Artikel, Übersichten, Kategorien) ≤ 100 (`artikel.h1`), neue Map-Einträge ≤ 70; `hyphens: auto` + `overflow-wrap: break-word` + `hyphenate-limit-chars: 10 4 4` statt Kopfwort-Span | Map-H1 bis 98 Zeichen [BESTAND]; ohne Trennung laufen „Stundenverrechnungssatz“ (364 > 324 px), „Materialentnahmeschein:“ (339) und „Synchronisierungsstatus“ (340) bei 360 px über, mit dieser Regel nicht mehr (Nachmessung). |
 | H6 | Bestand `.article-prose` | 17/1.8, H2 29, H3 23, Zitat mit Amber-Kante | v2-Skala: 16/1.5, H2 32 (Display-Mindeststufe), H3 20; Zitat ohne Amber (§ 2.3) | Vier Größen [05]; Amber nicht als Dekoration. |
 | H7 | [08] C3 `answerMax` | zentrale Seiten | FAQ auf Gewerke- und Artikelseiten ebenfalls `answerMax={300}` | D-24 dehnt die Antwort-zuerst-Prüfung auf `/gewerke`, `/blog/*`, `/hilfe/*` aus. |
 | H8 | `/gewerke` Bild `werkstatt-2026` | KI-Bild mit Kennzeichnung [BESTAND] | **entfällt** [ERMESSEN A1]; Datei bleibt in `public/images` | D-02 (nur Code-Visuals); Gewerke-Piktogramme tragen die Seite; spart LCP-Gewicht. (a) passt `tests/media-ki-label.test.ts` Z. 42 an. |
@@ -168,11 +173,12 @@ Unverändert aus [05]–[08]: vier Größen (14/16/20/Display), zwei Gewichte (4
 | Heading | 20px | 600 (Clash) / 400 (General Sans) | 1.25 / 1.4 | 600: h3 in Prosa, Karten, Schritten, Beispielkachel, „Quellen“. 400: Antwortsatz ≥ 768 px, Lead der Abschnittsköpfe |
 | Display | `clamp(32px, 4vw, 48px)`, 32 px < 768 px, **H1 < 400 px: 28 px**; **Prosa-H2 fest 32 px** | 600 | 1.1 | H1 (alle Köpfe), H2 der Abschnittsköpfe, Prosa-H2 und „Häufige Fragen“ im Artikel, CTA-Band |
 
-**Regeln:** Gewerke-H1 im `FunktionsKopf`: `hyphens: manual`, Kopfwort-Span `nowrap` [07]. Artikel-, Übersichts- und Kategorie-H1 im `ContentKopf`: `hyphens: auto` (`lang="de"` [BESTAND]) und `overflow-wrap: break-word` (H5), max. 800 px breit. Prosa-H2 `hyphens: auto`, `scroll-margin-top: 100px`. Zahlen `tabular-nums`. Keine Großbuchstaben, keine Einzelwort-Hervorhebung, keine Monospace (Inline-`code` in General Sans).
+**Regeln:** Gewerke-H1 im `FunktionsKopf`: `hyphens: manual`, Kopfwort-Span `nowrap` [07]. Alle H1 im `ContentKopf` (Artikel, Übersichten, Kategorien): `hyphens: auto` (`lang="de"` [BESTAND]), `hyphenate-limit-chars: 10 4 4`, `overflow-wrap: break-word` (H5), max. 800 px breit. Prosa-H2 mit denselben drei Regeln, `scroll-margin-top: 100px` (abgeleitet: Header 84 + 16). Zahlen `tabular-nums`. Keine Großbuchstaben, keine Einzelwort-Hervorhebung, keine Monospace (Inline-`code` in General Sans).
 
 **Gemessen (Clash Display 600, `letter-spacing: -0.025em`, `text-wrap: balance`; Container 324 @ 28 px bei 360, 354 @ 32 bei 390, 704 @ 32 bei 768, Textspalte 800 @ 40,96 bei 1024 und @ 48 bei 1280/1440):**
 - **Gewerke-H1 (§ 1.3):** höchstens 4 Zeilen bei 360/390, 2–3 Zeilen ab 768; alle Spans ≤ Container.
-- **Artikel-H1 (73 Map-Einträge):** höchstens 6 Zeilen (184,8 px) bei 360, 6 Zeilen (211,1 px) bei 390, 3 bei 768, 4 bei 1024/1280/1440; ohne Silbentrennung laufen drei Wörter bei 360/390 über (H5) → Prüfung `scrollWidth ≤ clientWidth` für jede H1.
+- **Artikel-H1 (73 Map-Einträge), Nachmessung am 22.10.2026 mit `hyphens: auto`, `overflow-wrap: break-word`, `hyphenate-limit-chars: 10 4 4`:** **kein Überlauf** in allen sechs Breiten; höchstens 6 Zeilen bei 360 (184,8 px, 11 H1 mit ≥ 5 Zeilen) und bei 390 (211,1 px, 13 H1 mit ≥ 5 Zeilen), 3 Zeilen bei 768 und 1024, 4 Zeilen bei 1280 und 1440. Die Checker-Angabe „höchstens 5 Zeilen“ ließ sich mit diesen Containerbreiten (324/354 px) nicht bestätigen; Above-the-fold § 2.1 rechnet deshalb mit 6 Zeilen. Ohne die Regeln laufen drei Wörter bei 360/390 über (H5).
+- **Grenze der Messung:** Ob Playwright-Chromium ein deutsches Trennwörterbuch lädt, ist ungeprüft. Der Test belegt deshalb nur „kein Überlauf“ (`scrollWidth ≤ clientWidth` für jede H1), nicht schöne Trennstellen; echte Trennung zeigt sich erst in Browsern mit Wörterbuch (Safari, Chrome Android/macOS).
 
 ---
 
@@ -219,7 +225,7 @@ Abschnitte = `section data-abschnitt={id} aria-labelledby={id}`, H2-`id` = Absch
 | 2 | Funktionen | `#F7F3EB` | `FeatureCard`-Raster (4–6, Ziel 6) mit Karten-Szene aus `cardScenes` – Darstellung wie [07] Abschnitt 6 | `funktionen` | H2 „Passende Funktionen“ (19), Lead „Mit diesen Funktionen erledigen Sie den Ablauf im Büro und auf der Baustelle.“ (77) |
 | 3 | FAQ | Weiß | `FaqList answerMax={300}` (3–4) + `JsonLd(faqSchema(dasselbeArray))` | `faq` | H2 „Häufige Fragen: {name}“ (≤ 47), Lead „Kurze Antworten zu Ablauf, Funktionen und Mobile-App für Ihr Gewerk.“ (68) |
 | 4 | Weiterlesen | `#F7F3EB` | `LinkKarten surface="white"` (2–3) | `weiterlesen` | H2 „Weiterlesen“ (11), Lead „Anleitungen und Ratgeber zu den Schritten dieses Ablaufs.“ (57); Karten: Label „Ratgeber“/„Hilfe“, Titel = Frontmatter-`title`, Text = `description`, Meta „{n} Min. Lesezeit“ |
-| 5 | Abschluss | `#101014` | `CtaBand` | – | „Testen Sie CraftOS mit Ihrem Auftrag“ (36) / „Ohne Zahlungsdaten – Sie entscheiden nach dem Test.“ (51) / „Preise ansehen“ → `/preise` |
+| 5 | Abschluss | `#101014` | `CtaBand` | – | „Testen Sie CraftOS mit Ihrem Auftrag.“ (37) / „Ohne Zahlungsdaten – Sie entscheiden nach dem Test.“ (51) / „Preise ansehen“ → `/preise` |
 
 Entfällt (URL bleibt): `PageHero`, alte Klassen `section-space`/`section-title`/`eyebrow`/`notice`, `components/ui/Faq`, `TrialCta`, Vorlagen-Hinweis (`hatVorlagen`), die zwei für alle Gewerke gleichen FAQ als alleinige FAQ.
 
@@ -230,8 +236,8 @@ SectionHeader (H2 #ablauf, Lead)
 ↓ 48 / 32 (< 768)
 StepFlow tone="light", label = H2, 4–5 Schritte, jeder Schritttitel verlinkt /funktionen/{funktion}
 ↓ 48
-≥ 1024: [Beispielkachel  minmax(0,1fr)] 48 [figure FeatureSnippet  minmax(0,640px)]  align-items: center
-< 1024: Beispielkachel → 32 → figure (max. 640 px, linksbündig)
+≥ 1280: [Beispielkachel  minmax(0,1fr)] 48 [figure FeatureSnippet  minmax(0,640px)]  align-items: center
+< 1280: Beispielkachel → 32 → figure (max. 640 px, linksbündig)
 ```
 
 - **Beispielkachel** (seiteneigenes `<article>`, kein neuer Baustein): `#F7F3EB` + 1 px `#E7DCC9`, Radius 16, Innenabstand 24 (16 < 768); `GewerkIcon` 48 × 48 (`alt=""`) → 16 → `<h3>` „Beispiel: {exampleTitle}“ (20/600 Clash) → 8 → `<p>` `example` (16/400 `#62626E`, max. 45ch). Beispiel und Snippet erzählen denselben Auftrag (Projekt/Arbeit aus `tradeSnippetExamples[slug]`).
@@ -243,14 +249,16 @@ StepFlow tone="light", label = H2, 4–5 Schritte, jeder Schritttitel verlinkt /
 ```ts
 interface Gewerk {
   slug: string; name: string; kurz: string;
+  kopfwort: string;                     // Kopfwort-Span laut Tabelle unten; muss wörtlich in zielwerte(pfad).h1 vorkommen
   answer: string;                       // ≤ 300, 1–2 Sätze, nennt Gewerk + belegte Funktionen (ersetzt heroIntro)
   teaser: string;                       // ≤ 100, genau 1 Satz (Karte auf /gewerke)
   ablauf: { title: string; text: string; funktion: string }[]; // 4–5; title ≤ 28, text ≤ 80 und 1 Satz
   exampleTitle: string; example: string; // ≤ 40 / ≤ 200, höchstens 2 Sätze
   funktionen: string[];                 // 4–6 (Ziel 6), ≥ 1 Phase-7-Slug, enthält jedes ablauf[].funktion
   faq: { q: string; a: string }[];      // 3–4; q ≤ 90 mit „?“, a ≤ 300; über alle 12 höchstens 1 gemeinsame Frage
-  artikel: string[];                    // 2–3 Pfade /blog/… oder /hilfe/…, Ziel muss existieren
+  artikel: string[];                    // 2–3 Pfade /blog/… oder /hilfe/…, Ziel muss existieren (bis zur Integration nur bestehende Artikel)
 }
+// /gewerke nutzt die Konstante GEWERKE_KOPFWORT = "Branchensoftware" (in lib/gewerke.ts)
 // entfallen: heroTitle, heroIntro, hatVorlagen
 ```
 
@@ -274,11 +282,11 @@ Ablauf-, Funktions- und FAQ-Auswahl je Gewerk: Tabelle [R] „Ablauf je Gewerk�
 | bauunternehmen | **neu** „Software für Bauunternehmen: vom LV bis zur Schlussrechnung“ (59), bisher 69 | „Bauunternehmen:“ | 243 / 278 |
 | allrounder | **neu** „Hausmeister-Software: vom kleinen Einsatz bis zur Rechnung“ (58), bisher 66 | „Hausmeister-“ | 184 / 210 |
 
-Spans ≥ 340 px bei 390 px (Dachdecker 353,5, Fliesenleger 349,5, Trockenbau 352,5, Hausmeister 361,4 > 354) enden nach dem Bindestrich; der Umbruch nach „-“ ist zulässig und gemessen ohne Überlauf. Die Zahl „zwölf“ muss `gewerke.length` entsprechen (Test).
+Spans ≥ 340 px bei 390 px (Dachdecker 353,5, Fliesenleger 349,5, Trockenbau 352,5, Hausmeister 361,4 > 354) enden nach dem Bindestrich; der Umbruch nach „-“ ist zulässig und gemessen ohne Überlauf. Der Span steht im Feld `kopfwort` (bzw. für `/gewerke` in der Konstante „Branchensoftware“); ein Test prüft, dass er wörtlich in `zielwerte(pfad).h1` vorkommt. Die Zahl „zwölf“ muss `gewerke.length` entsprechen (Test).
 
 **Above-the-fold 360 × 640 (ungünstigster Fall):** 74 Header + 8 + 44 Brotkrumen + 16 + 20 Eyebrow + 24 + H1 124 (4 × 30,8) + 16 + Antwort 192 (8 × 24) + 24 + CTA 48 = **590 px** ≤ 640.
 
-**Prompt-Anker (D-10):** `/gewerke/elektriker#antwort`, `/gewerke/maler#antwort`.
+**Prompt-Anker (D-10):** `/gewerke/elektriker#antwort`, `/gewerke/maler#antwort`; die Antwort enthält jeweils `kurz` des Gewerks („Elektro“ bzw. „Maler“).
 
 ---
 
@@ -332,7 +340,7 @@ unten 48 / 64 / 64
 | Breite | Raster des Text-Abschnitts (Weiß) |
 |---|---|
 | < 1024 | eine Spalte (max. 720 px): `details` „Inhalt dieses Artikels“ → Szene → Prosa → FAQ → Quellen |
-| ≥ 1024 | `grid-template-columns: minmax(0, 720px) 280px; column-gap: 48px; justify-content: space-between` – links Szene → Prosa → FAQ → Quellen, rechts `nav aria-label="Inhaltsverzeichnis"` sticky `top: 100px` |
+| ≥ 1024 | `grid-template-columns: minmax(0, 720px) 280px; column-gap: 48px; justify-content: space-between` – links Szene → Prosa → FAQ → Quellen, rechts `nav aria-label="Inhaltsverzeichnis"` sticky `top: 100px` (abgeleitet: Header 84 + 16) |
 
 - **Inhaltsverzeichnis:** nur bei ≥ 3 Einträgen; H2 und H3 (H3 16 px eingerückt); Label „In diesem Artikel“ 14/600 als `<p>` (keine Überschrift); Links 14/400 `#62626E`, `min-height: 44px`, Hover `#17171C`. Mobil `<details>` geschlossen, `summary` 16/600 min. 48 px mit `Plus` 20 px wie `FaqList`.
 - **Szene (optional, D-15):** Frontmatter `scene: <id>` ∈ `sceneById`; `figure` mit `Frame` (Browser: Breite 100 %, max. 560 px; Phone: `width={194}`, linksbündig), darunter `IllustrationLabel kind="vereinfacht"`; 48 px Abstand zur Prosa; statisch, kein `FeatureSnippet` in Artikeln.
@@ -347,7 +355,7 @@ unten 48 / 64 / 64
 | Element | Festlegung |
 |---|---|
 | Absatz | 16/400/1.5, `#17171C`, `max-width: 68ch`, Abstand 16 |
-| H2 | 32/600 Clash, Zeilenhöhe 1.1, `#17171C`, oben 48 (erste H2 0), unten 16, `hyphens: auto` |
+| H2 | 32/600 Clash, Zeilenhöhe 1.1, `#17171C`, oben 48 (erste H2 0), unten 16, `hyphens: auto`, `hyphenate-limit-chars: 10 4 4`, `overflow-wrap: break-word` |
 | H3 | 20/600 Clash, Zeilenhöhe 1.25, oben 32, unten 8 |
 | Punktliste | `disc`, Marker `#777782`, Einzug 24, Eintragsabstand 8 |
 | Nummerierte Liste | oberste Ebene = Schrittliste (§ 2.4); verschachtelt `decimal`, Einzug 24 |
@@ -362,8 +370,8 @@ unten 48 / 64 / 64
 
 - Gilt für `.article-prose > ol` (oberste Ebene). Rehype setzt `role="list"` (WebKit entfernt sonst die Listensemantik bei `list-style: none`).
 - `ol`: `list-style: none; counter-reset: schritt; padding: 0; margin: 24px 0`.
-- `li`: `position: relative; counter-increment: schritt; padding: 8px 0 24px 56px; min-height: 40px` (letzter Eintrag `padding-bottom: 0`); Text 16/400/1.5, max. 68ch.
-- Knoten `li::before`: `content: counter(schritt) / ""` (für Screenreader stumm, die Liste nennt die Position), 40 × 40 px, `clip-path: polygon(50% 0, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)`, Fläche `#F2AF38`, Ziffer 14/600 `#17171C`, `tabular-nums`, links oben.
+- `li`: `position: relative; counter-increment: schritt; padding: 8px 0 24px 56px; min-height: 40px` (letzter Eintrag `padding-bottom: 0`); Text 16/400/1.5, max. 68ch. Abgeleitete Werte: 56 = Knoten 40 + Lücke 16; 8 oben = (Knoten 40 − Zeile 24) / 2.
+- Knoten `li::before`: zuerst die Ausweichzeile `content: counter(schritt);`, direkt danach `content: counter(schritt) / "";` (Browser ohne Alt-Text-Syntax verwerfen die zweite Zeile und behalten die erste; mit Unterstützung bleibt die Ziffer für Screenreader stumm, die Liste nennt die Position), 40 × 40 px, `clip-path: polygon(50% 0, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)`, Fläche `#F2AF38`, Ziffer 14/600 `#17171C`, `tabular-nums`, links oben.
 - Maßlinie `li:not(:last-child)::after`: `left: 15px; top: 48px; bottom: 8px; width: 10px; border-block: 2px solid #F2AF38;` senkrechte 2-px-Linie mittig – identisch zu `StepFlow` < 1024 px. In allen Breiten senkrecht.
 - Jede Liste beginnt bei 1 (kein `start`-Attribut, Test); 2–10 Schritte; längere Abläufe unter Zwischenüberschriften teilen („… in der Web-App“, „… in der Mobile-App“).
 
@@ -407,7 +415,7 @@ unten 48 / 64 / 64
 | | Funktionen | 4–6 (Ziel 6), ≥ 1 Phase-7-Slug |
 | | FAQ | 3–4; Frage ≤ 90 mit „?“, Antwort gesamt ≤ 300 |
 | | Weiterlesen | 2–3 bestehende Artikel |
-| Köpfe | H1 | Gewerke ≤ 60 (`pageHead.h1`); Artikel/Übersicht/Kategorie ≤ 100 (`artikel.h1`), neue Map-Einträge ≤ 70 |
+| Köpfe | H1 | Gewerke ≤ 60 (`pageHead.h1`); alle H1 im `ContentKopf` ≤ 100 (`artikel.h1`); neue Map-Einträge ≤ 70 (`keyword-map.test`) |
 | | Antwort `#antwort` | ≤ 300, 1–2 Sätze; Ziel ≤ 240 |
 | | Eyebrow | ≤ 24 |
 | Artikel | Frontmatter `answer` | ≤ 300, 1–2 Sätze (Welle 1–2 optional, ab Integration Pflicht, D-18) |
@@ -416,7 +424,7 @@ unten 48 / 64 / 64
 | | Antwort unter Frage-Überschrift | erster Absatz direkt darunter ≤ 300, beantwortet im ersten Satz |
 | | Schritt (Listeneintrag oberste Ebene) | ≤ 160 (heute max. 154), eine Handlung |
 | | Schrittliste | 2–10 Einträge (heute max. 8) |
-| | Passende Funktionen / Weiterlesen | 1–3 / 1–4 |
+| | Passende Funktionen / Weiterlesen | 1–3 (`count.artikelFunktionen`) / 1–4 (`count.artikelVerwandt`) |
 | Karten | `LinkKarten` | Label ≤ 24, Titel ≤ 100, Text ≤ 160, Meta ≤ 32 |
 | Abschnittsköpfe | H2 / Lead / Antwort-Lead | ≤ 60 / ≤ 140, 1 Satz / ≤ 300, 1–2 Sätze [05, 08] |
 | CTA-Band | Titel / Satz / Button | ≤ 40 / ≤ 80 / ≤ 28 [05] |
@@ -437,7 +445,9 @@ Unverändert aus [05]–[08]: „Sie“, Satzschreibung, aktive Verben, keine Au
 | „keine autonom verbuchende KI“ | „KI-Vorschläge holen Sie auf Anforderung; die Zuordnung bestätigen Sie selbst.“ |
 | „GAEB 90 und GAEB 2000 werden nicht unterstützt“ / „DATANORM v5 nicht zugesagt“ | „Leistungsverzeichnisse als X83 im Format GAEB DA XML 3.2 und 3.3 einlesen, Angebote als X84 abgeben.“ / „DATANORM 4 und DATANORM 5 einlesen.“ |
 
-- **Wortliste (Test, Wortgrenzen, alle Phase-9-Texte inkl. `lib/gewerke.ts` und Markdown):** „nicht unterstützt“, „verspricht keine“, „verspricht nicht“, „nicht zugesagt“, „nicht pauschal“, „keine Onlinezahlung“, „keine vollständige“, „DATANORM v5“, „vorbereitete Leistungsvorlagen“, „Mit vorbereiteten Leistungsvorlagen“. Fachneutrale Wissensabschnitte (z. B. GAEB-Formatübersicht auf `/blog/gaeb-formate`) dürfen D83/GAEB 90 erklären; der CraftOS-Abschnitt nennt nur X83/X84 (Orchestrator-Entscheidung 1).
+- **Wortliste (Test, Wortgrenzen, Groß-/Kleinschreibung egal):** „nicht unterstützt“, „verspricht keine“, „verspricht nicht“, „nicht zugesagt“, „nicht pauschal“, „kein pauschales“, „keine Onlinezahlung“, „Onlinezahlung“, „online bezahlen“, „keine vollständige“, „kein autonomes Verbuchen“, „nicht autonom“, „ersetzt keinen“, „Videoanalyse“, „Videoauswertung“, „Bald verfügbar“, „DATANORM v5“, „vorbereitete Leistungsvorlagen“, „Mit vorbereiteten Leistungsvorlagen“.
+- **Geltungsbereich:** ab Welle 2 alle Dateien unter `content/blog`, `content/hilfe` und `lib/gewerke.ts`; **ab der Integration zusätzlich** `lib/funktionen.ts`, `lib/funktionsdetails/*.ts` und `lib/app-content.ts` (nach den L-1-Korrekturen von Paket (f)).
+- **Ausnahmen (abschließend):** (1) der neutrale Fachteil von `/blog/gaeb-formate` je Abschnitt – die Prüfung nimmt nur die Abschnitte unter Frage-Überschriften ohne CraftOS-Bezug aus; D83/GAEB 90 dürfen dort erklärt werden, der Abschnitt „So unterstützt CraftOS“ nennt nur X83/X84 (Orchestrator-Entscheidung 1); (2) die FAQ „Ist CraftOS GoBD-zertifiziert?“ auf `/gobd` [08]; (3) rechtlich nötige Hinweise wie „Preise netto zzgl. USt.“. Weitere Ausnahmen nur mit eigener Begründung im Test.
 - **FAQ-Fragen** so wählen, dass die Antwort Unterstütztes nennt („Wie bezahlen Kunden Rechnungen aus dem Portal?“ statt „Können Kunden online bezahlen?“); erster Satz beantwortet direkt mit Wert, Name oder „Ja.“.
 - **Begriffe:** „Web-App“, „Mobile-App“, „Voll-Lizenz“ (Admin oder Büro), „App-Lizenz“, „Credits“; Rollen nur „Admin“, „Büro-Leitung“, „Büro-Projektleitung“, „Mobil-Teamleitung“, „Mobil-Teammitglied“; „Arbeitsabschnitte“ als Produktbegriff, „Bauphasen“ nur als Suchbegriff („Bauphasen, in CraftOS Arbeitsabschnitte“); „Geräte & Fahrzeuge“ statt „Ressourcen“; Bankabgleich nie „automatisch“.
 - **Bedienbegriffe** in „…“ exakt wie im Release (Belegpfad in `docs/content-pruefung/09-<paket>.md`); Menüpfade „Buchhaltung → Belege → Eingangsbelege“ – „→“ nur in zitierten Pfaden.
@@ -448,7 +458,7 @@ Unverändert aus [05]–[08]: „Sie“, Satzschreibung, aktive Verben, keine Au
 |---------|------|
 | Primary CTA | „10 Tage kostenlos testen“ (Zahl aus `site.trialDays`) → `site.ctaUrl`, `.v2-btn-cta`, Icon `ArrowUpRight` – Gewerke-Köpfe und alle CTA-Bänder |
 | Sekundärlink Kopf | Gewerk: „So läuft ein Auftrag“ → `#ablauf` · `/gewerke`: „Zu den Gewerken“ → `#gewerke` · Artikel/Übersichten: keiner |
-| CTA-Band Gewerke | „Testen Sie CraftOS mit Ihrem Auftrag“ / „Ohne Zahlungsdaten – Sie entscheiden nach dem Test.“ / „Preise ansehen“ → `/preise` |
+| CTA-Band Gewerke | „Testen Sie CraftOS mit Ihrem Auftrag.“ / „Ohne Zahlungsdaten – Sie entscheiden nach dem Test.“ / „Preise ansehen“ → `/preise` |
 | CTA-Band Ratgeber (Artikel, `/blog`, Kategorien) | „Machen Sie Platz für Ihr Handwerk.“ / Satz wie oben / „Stundensatz berechnen“ → `/rechner/stundensatz` |
 | CTA-Band Hilfe (Artikel, `/hilfe`, Kategorien) | „Machen Sie Platz für Ihr Handwerk.“ / Satz wie oben / „Support kontaktieren“ → `/support` |
 | Antwort `/blog` | „Der CraftOS-Ratgeber erklärt Rechnungen, Kalkulation, Belege, Projekte und Teamarbeit im Handwerk mit Beispielen und Quellen. Jeder Artikel beantwortet seine Frage zuerst und zeigt dann das Vorgehen.“ (199) |
@@ -457,8 +467,9 @@ Unverändert aus [05]–[08]: „Sie“, Satzschreibung, aktive Verben, keine Au
 | Inhaltsverzeichnis | Label „In diesem Artikel“; mobil `summary` „Inhalt dieses Artikels“; `nav aria-label` „Inhaltsverzeichnis“ |
 | Szene/Snippet-Kennzeichnung | „Vereinfachte Darstellung mit Beispieldaten“ [05] |
 | Quellen | H2 „Quellen“; Eintrag „{label}, geprüft am {TT.MM.JJJJ}“ |
-| Empty state heading | „Kein passender Artikel gefunden.“ (Suche ohne Treffer, `ContentSearch`) |
-| Empty state body | „Versuchen Sie einen kürzeren Suchbegriff oder wählen Sie alle Themen.“ + Text-Button „Suche zurücksetzen“ (setzt Suchbegriff und Thema zurück) |
+| CTA-Satzzeichen | Alle CTA-Band-Titel und -Sätze enden mit Punkt; Buttons und Links ohne Satzzeichen. |
+| Empty state heading | Ratgeber: „Kein passender Artikel gefunden.“ (32) · Hilfe: „Keine passende Anleitung gefunden.“ (34) (Suche ohne Treffer, `ContentSearch`) |
+| Empty state body | Ratgeber: „Versuchen Sie einen kürzeren Suchbegriff oder wählen Sie alle Themen.“ (69) · Hilfe: „Versuchen Sie einen kürzeren Suchbegriff, wählen Sie alle Themen oder fragen Sie den Support.“ (93) mit „Support“ als Link → `/support`; beide mit Text-Button „Suche zurücksetzen“ (setzt Suchbegriff und Thema zurück) |
 | Error state | Keine Laufzeitfehler für Besucher (statisch; unbekannter Pfad → bestehende 404). Build-/Testfehler nennen Problem und Abhilfe: „Gewerk {slug}: Ablauf hat {n} Schritte – 4 bis 5 erforderlich.“; „Gewerk {slug}: Schritt ‚{titel}‘ verlinkt {funktion}, das nicht unter funktionen steht – Slug ergänzen oder Schritt ändern.“; „Gewerk {slug}: {n} Funktionen – 4 bis 6 erforderlich, davon mindestens eine Phase-7-Detailseite.“; „Gewerk {slug}: Artikel {pfad} fehlt – nur bestehende Artikel verlinken.“; „Artikel {slug}: Szene ‚{id}‘ ist unbekannt – nur IDs aus sceneById verwenden.“; „Artikel {slug}: Bild im Text gefunden – Screenshots sind nicht erlaubt, Szene per Frontmatter nutzen.“; „Artikel {slug}: Schritt {n} hat {m} Zeichen – höchstens 160, Schritt teilen.“; „Artikel {slug}: Schrittliste mit {n} Einträgen – 2 bis 10, unter Zwischenüberschriften aufteilen.“; „Artikel {slug}: Überschrift ‚{h}‘ hat {n} Zeichen – höchstens 80.“; „Artikel {slug}: FAQ-Frage ‚{q}‘ steht auch als Überschrift im Text – nur an einer Stelle beantworten.“; „Artikel {slug}: Überschrift erzeugt die reservierte id ‚{id}‘ – Überschrift umbenennen.“; „Text {pfad} enthält ‚{wort}‘ – nur Unterstütztes nennen (Leitlinie L-1).“; Antwort-zuerst-Fehlertext wörtlich aus [08] § 2 |
 | Destructive confirmation | Keine destruktiven Aktionen in dieser Phase (statische Marketing- und Wissensseiten ohne Konten, Formulare oder Löschfunktionen). |
 
@@ -473,7 +484,7 @@ Container [BESTAND]: < 768 px `calc(100% - 36px)`, sonst `min(1280px, calc(100% 
 | 360 | 324 | 48 | 8 → 44 → 16; 48 | 1 Spalte, Lücke 16, Innen 16 | `StepFlow` senkrecht; Beispiel → 32 → Snippet (324) | eine Spalte 324; Inhaltsverzeichnis `details`; H1 28 px |
 | 390 | 354 | 48 | wie 360 | wie 360 | wie 360 | eine Spalte 354; H1 32 px |
 | 768 | 704 | 64 | 16 → 44 → 24; 64 | 2 Spalten, Lücke 24, Innen 24 | senkrecht; Beispiel → 32 → Snippet (max. 640) | eine Spalte max. 704; `details` |
-| 1024 | 960 | 96 | 24 → 44 → 32; 64 | 3 Spalten (`columns={2}`: 2), Lücke 24 | `StepFlow` waagerecht (4–5 gleich breite Spalten); Beispiel `1fr` (272) + 48 + Snippet 640 | Artikel 632 + 48 + Inhaltsverzeichnis 280 sticky |
+| 1024 | 960 | 96 | 24 → 44 → 32; 64 | 3 Spalten (`columns={2}`: 2), Lücke 24 | `StepFlow` waagerecht (4–5 gleich breite Spalten); Beispiel → 32 → Snippet (max. 640), gestapelt, weil die Kachel nebeneinander nur 272 px hätte | Artikel 632 + 48 + Inhaltsverzeichnis 280 sticky |
 | 1280 | 1216 | 96 | wie 1024 | wie 1024 | Beispiel 528 + 48 + Snippet 640 | Artikel 720, Inhaltsverzeichnis 280 rechtsbündig |
 | 1440 | 1280 | 96 | wie 1024 | wie 1024 | Beispiel 592 + 48 + Snippet 640 | wie 1280 |
 
@@ -491,7 +502,7 @@ Abschnittskopf → Inhalt 48 ab 768, 32 darunter [05]. Kein horizontaler Seitens
 - **Tastatur/Touch:** ein Tabstopp je Karte (gestreckter Link); Brotkrumen, Inhaltsverzeichnis-Links, Text-Button und `summary` ≥ 44 px hoch; Fokusring 3 px `#BB7609`, Offset 4 px; Reihenfolge Skip-Link → Header → Brotkrumen → Kopf → Inhalt.
 - **Kontrast:** alle Textpaare ≥ 4,5:1 (Werte § Color), Rahmen von Eingabefeldern ≥ 3:1; `#777782` nie für Text.
 - **Bewegung:** einzig `FeatureSnippet` auf Gewerke-Seiten (reduziert: Endzustand, keine laufende Animation); sonst nur Hover 150 ms und FAQ-Symbol [05]; `prefers-reduced-motion` ohne laufende Animationen.
-- **Sprache:** `lang="de"` [BESTAND]; Silbentrennung nur in Artikel-H1 und Prosa-H2.
+- **Sprache:** `lang="de"` [BESTAND]; Silbentrennung nur in allen H1 im `ContentKopf` und in Prosa-H2 (H5).
 - **Stabilität:** CLS = 0 (Rahmen mit fester `aspect-ratio`, Piktogramme mit `width`/`height`); LCP = H1 (keine Bilder im Kopf).
 
 ---
@@ -500,18 +511,20 @@ Abschnittskopf → Inhalt 48 ab 768, 32 darunter [05]. Kein horizontaler Seitens
 
 | Prüfung | Werkzeug | Erwartung |
 |---|---|---|
-| Gewerke-Daten | Vitest `tests/gewerke.test.ts` (neu, (a)) | Budgets § 4; `ablauf[].funktion` ∈ `funktionen`; ≥ 1 Phase-7-Slug; höchstens 1 gemeinsame FAQ-Frage über 12 Gewerke; `heroTitle`, `heroIntro`, `hatVorlagen` existieren nicht; H1 === `zielwerte(pfad).h1` und enthält den Kopfwort-Span § 1.3; „zwölf“ = `gewerke.length`; `artikel`-Ziele existieren |
+| Gewerke-Daten | Vitest `tests/gewerke.test.ts` (neu, (a)) | Budgets § 4; `ablauf[].funktion` ∈ `funktionen`; ≥ 1 Phase-7-Slug; höchstens 1 gemeinsame FAQ-Frage über 12 Gewerke; `heroTitle`, `heroIntro`, `hatVorlagen` existieren nicht; H1 === `zielwerte(pfad).h1`; `kopfwort` (bzw. „Branchensoftware“ für `/gewerke`) kommt wörtlich in `zielwerte(pfad).h1` vor; „zwölf“ = `gewerke.length`; `artikel`-Ziele existieren. Entsteht erst nach dem Merge von „09-01 Aufgabe 1“ (§ Design System, Reihenfolge) |
+| Map-Einträge | Vitest `tests/keyword-map.test.ts` (Fundament) | H1 der neuen Phase-9-Einträge ≤ 70; Gewerke-H1 und `/gewerke`-H1 ≤ 60; Artikel-H1 ≤ 100 |
 | Inhalte | Vitest `tests/content.test.ts` (Fundament, Integration) | Frontmatter `answer`/`faq`/`scene` gemäß § 4 (`answer` ab Integration Pflicht); `scene` ∈ `sceneById`; kein `<img` und kein `ol[start]` in der Prosa; Schritt ≤ 160, 2–10 je Liste; Überschriften ≤ 80; reservierte ids frei; FAQ-Frage nicht zugleich Überschrift; Map-H1 ≤ 100 |
 | Produktwahrheit und L-1 | Vitest `tests/content-produktwahrheit.test.ts` (neu, Fundament) | Wortliste § 5 und Altbegriffe aus [R] (u. a. „Neue Phase“, „Ressourcen verwalten“, „Finanzen sichtbar“, „Admin-Lizenz“, „Büro-Lizenz“) in 0 Dateien unter `content/`, `lib/gewerke.ts` |
 | Bausteinbudgets | Vitest `tests/design-v2-budgets.test.ts` (Sammeltest erweitert) | `LinkKarten`, `ContentKopf`, 12 Gewerke-Seiten, `/gewerke`, `/blog`, `/hilfe` im Budget; Fehlertexte § 5 |
 | Antwort zuerst | `node scripts/seo-audit.mjs --only=antwort` (Regel auf `/gewerke*`, `/blog/*`, `/hilfe/*` ausgedehnt, `tests/seo-audit-core.test.ts` Z. 361–366) | Pakete: 0 Verstöße für eigene `--paths`; Integration: sitewide 0 |
 | Metadaten, Brotkrumen, OG, Schema | `node scripts/seo-audit.mjs` | Title ≤ 60, Description 120–155, genau 1 H1 = Map, keine Duplikate; genau 1 `nav[aria-label="Brotkrumen"]` + 1 BreadcrumbList; FAQPage nur und genau mit sichtbarer FAQ (Gewerke, Artikel mit `faq`); `Article`/`TechArticle` unverändert; kein `HowTo`; eigenes `og:image` je Seite |
-| Prompt-Anker | Vitest `tests/ai-prompts.test.ts` + Audit-Regel `prompts` | `/gewerke/elektriker#antwort`, `/gewerke/maler#antwort` vorhanden, Text ≤ 300 und nennt das Gewerk |
+| Prompt-Anker | Vitest `tests/ai-prompts.test.ts` + Audit-Regel `prompts` | `/gewerke/elektriker#antwort`, `/gewerke/maler#antwort` vorhanden, Text ≤ 300 und enthält `kurz` des Gewerks („Elektro“, „Maler“) |
 | Links | `node scripts/route-audit.mjs` | 0 Fehler, 0 defekte Links (Gewerke-„Weiterlesen“, Artikel-Querverweise, Kategorie-Karten) |
 | Gewerke-Snippet | Playwright `function-illustrations.pw.cjs` (Gewerke-Fälle ab Z. 341, unverändert) | grün in 360/390/768/1024/1440 |
 | Darstellung | Playwright `design-v2.pw.cjs` (neue Fälle, Integration) für `/gewerke`, `/gewerke/elektriker`, `/gewerke/allrounder`, `/blog`, `/hilfe/kategorie/rechnungen`, `/blog/tiefenkalkulation-handwerk`, `/hilfe/material-entnehmen-zurueckbuchen` in **360, 390, 768, 1024, 1280, 1440** | kein horizontaler Seitenscroll; H1 `scrollWidth ≤ clientWidth`; Kopfwort-Span ≤ Container; 360 × 640: Gewerke-CTA-Unterkante ≤ 640, Artikel-Antwort-Unterkante ≤ 640; `StepFlow` waagerecht ab 1024, darunter senkrecht; Inhaltsverzeichnis `details` < 1024, sticky ≥ 1024; Schrittliste zeigt Knoten 40 × 40 |
 | A11y, Bewegung, CLS | axe (`wcag2a`, `wcag2aa`, `wcag21aa`), `emulateMedia({ reducedMotion: "reduce" })`, `PerformanceObserver` | keine serious/critical in allen sechs Breiten; reduziert keine laufende Animation; CLS 0 |
-| Medien | Vitest/Audit | Gewerke-, Übersichts- und Artikelseiten ohne Rasterbild; einzige `img` sind `/icons/gewerke/*.svg` mit `alt=""`; `/gewerke` ohne `werkstatt-2026` (`tests/media-ki-label.test.ts` angepasst) |
+| Medien | Vitest/Audit | Geprüft wird nur innerhalb von `<main>` (Header und Footer ausgenommen): Gewerke-, Übersichts- und Artikelseiten ohne Rasterbild; einzige `img` sind `/icons/gewerke/*.svg` mit `alt=""`; `/gewerke` ohne `werkstatt-2026` (`tests/media-ki-label.test.ts` angepasst) |
+| Inhaltliche Durchsicht (nicht automatisierbar) | **Durchsicht** im Paket bzw. Code-Review-Gate, Ergebnis in `docs/content-pruefung/09-<paket>.md` | Gewerke-Ablauf fachlich passend je Gewerk ([R] A1); Beispielkachel und Snippet erzählen denselben Auftrag; erster Satz jeder Antwort beantwortet die Frage direkt; Schritte enthalten genau eine Handlung; L-1-Umformulierungen sind sachlich richtig (über die Wortliste hinaus); Bedienbegriffe tragen einen Release-Beleg; echte Silbentrennung in Safari/Chrome mit Wörterbuch stichprobenhaft angesehen |
 
 ---
 
@@ -546,11 +559,13 @@ Neue npm-Abhängigkeiten: keine [R]. Rehype-Schritte (`role="list"`, Tabellen-H�
 
 ## Checker Sign-Off
 
-- [ ] Dimension 1 Copywriting: PASS
-- [ ] Dimension 2 Visuals: PASS
-- [ ] Dimension 3 Color: PASS
-- [ ] Dimension 4 Typography: PASS
-- [ ] Dimension 5 Spacing: PASS
-- [ ] Dimension 6 Registry Safety: PASS
+- [x] Dimension 1 Copywriting: PASS
+- [x] Dimension 2 Visuals: PASS
+- [x] Dimension 3 Color: PASS
+- [x] Dimension 4 Typography: PASS
+- [x] Dimension 5 Spacing: PASS
+- [x] Dimension 6 Registry Safety: PASS
 
-**Approval:** pending
+Geprüft: 2026-10-22, gsd-ui-checker. Korrekturen am selben Tag eingearbeitet: A1 Reihenfolge Fundament/Paket (a) mit vorgezogenem Merge von „09-01 Aufgabe 1“; A2 Links bis zur Integration nur auf bestehende Artikel, Slug `mahnwesen-einrichten`; A3 Feld `kopfwort` und Konstante „Branchensoftware“ mit Test; A4 Wortliste, Geltungsbereich und Ausnahmen; A5 Nachmessung (kein Überlauf, höchstens 6 statt der genannten 5 Zeilen bei 360/390), Trennwörterbuch ungeprüft, `hyphenate-limit-chars: 10 4 4`; B1 leerer Zustand der Hilfe; B2 CTA-Satzzeichen mit Punkt; B3 Beispielkachel erst ab 1280 nebeneinander; B4 Silbentrennung für alle H1 im `ContentKopf`; B5 Ausweichzeile für `counter`; B6 abgeleitete Werte 56 und 100; B7 Bildtest nur in `<main>`, Prompt-Anker „enthält `kurz`“; B8 Durchsicht-Kriterien, Map-Einträge ≤ 70 in `keyword-map.test`, `count.artikelFunktionen`.
+
+**Approval:** approved 2026-10-22
