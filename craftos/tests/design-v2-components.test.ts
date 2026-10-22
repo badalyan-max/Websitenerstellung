@@ -91,15 +91,35 @@ describe("KeyFacts", () => {
     );
   });
 
-  it("wirft bei Quellen ohne Kurzform site:… oder register:… (07 D-13)", () => {
-    for (const bad of ["tarife.voll.monat", "product-register: mobileLocales", "site.trialDays", "site:", "web:src/x"]) {
+  it("wirft bei Quellen ohne Kurzform site:…, register:… oder wettbewerber:… (07 D-13, 08 D-04)", () => {
+    for (const bad of [
+      "tarife.voll.monat",
+      "product-register: mobileLocales",
+      "site.trialDays",
+      "site:",
+      "web:src/x",
+      "wettbewerber:",
+      "wettbewerber:lib/x",
+      "plancraft:x",
+    ]) {
       const falsch = [...facts.slice(0, 3), { value: "29,95 €", label: "Voll-Lizenz", source: bad }];
       expect(() => renderToString(createElement(KeyFacts, { facts: falsch, note })), bad).toThrow(
-        `KeyFacts: Quelle ‚${bad}‘ ist keine Kurzform site:… oder register:… – Schlüssel angeben.`,
+        `KeyFacts: Quelle ‚${bad}‘ ist keine Kurzform site:…, register:… oder wettbewerber:… – Schlüssel angeben.`,
       );
     }
     const html = renderToString(createElement(KeyFacts, { facts, note }));
     expect(html).toContain('data-source="site:tarif-voll-monat"');
+  });
+
+  it("akzeptiert wettbewerber:<schlüssel> für belegte Wettbewerberwerte; site:/register: bleiben gültig", () => {
+    const mitWettbewerber = [
+      ...facts.slice(0, 2),
+      { value: "24,90 €", label: "plancraft Business je Person", source: "wettbewerber:plancraft-business-5p-jahr" },
+      { value: "21", label: "Sprachen", source: "register:mobileLocales" },
+    ];
+    const html = renderToString(createElement(KeyFacts, { facts: mitWettbewerber, note }));
+    expect(html).toContain('data-source="wettbewerber:plancraft-business-5p-jahr"');
+    expect(html).toContain('data-source="register:mobileLocales"');
   });
 
   it("wirft bei 2 und bei 5 Fakten", () => {

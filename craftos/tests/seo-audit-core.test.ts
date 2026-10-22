@@ -3,10 +3,12 @@ import {
   anchorAnswer,
   answerFirstViolations,
   breadcrumbNav,
+  ctaTestphaseFehler,
   duplikate,
   faqFragenSichtbar,
   findType,
   headTags,
+  istAlteTestphase,
   istZentral,
   jsonLd,
   norm,
@@ -373,5 +375,48 @@ describe("norm", () => {
       ["E-Rechnung", "erechnung"],
     ];
     for (const [ein, aus] of fixtures) expect(norm(ein), ein).toBe(aus);
+  });
+});
+
+// ---------------------------------------------------------------------------------------------
+// D-23: Ausnahmen für belegte Wettbewerberangaben – eng gefasst, CraftOS-Angaben bleiben streng.
+// ---------------------------------------------------------------------------------------------
+describe("istAlteTestphase (route-audit)", () => {
+  it("„14 Tage kostenlos“ ist außerhalb von /vergleich eine alte Testphase", () => {
+    expect(istAlteTestphase("/preise", "<p>14 Tage kostenlos testen</p>")).toBe(true);
+    expect(istAlteTestphase("/blog/x", "<p>Jetzt 14 Tage testen</p>")).toBe(true);
+    expect(istAlteTestphase("/vergleicher", "<p>14 Tage kostenlos</p>")).toBe(true);
+  });
+
+  it("auf /vergleich und darunter zählt der Wettbewerbertext nicht", () => {
+    expect(istAlteTestphase("/vergleich", "<td>HERO: 14 Tage kostenlos</td>")).toBe(false);
+    expect(istAlteTestphase("/vergleich/hero-alternative", "<p>HERO nennt 14 Tage kostenlos testen</p>")).toBe(false);
+  });
+
+  it("ohne Muster → false", () => {
+    expect(istAlteTestphase("/preise", "<p>10 Tage kostenlos testen</p>")).toBe(false);
+  });
+});
+
+describe("ctaTestphaseFehler (Ausgleich der /vergleich-Ausnahme)", () => {
+  const cta = (text: string) => `<a href="https://app.craftos.eu" class="v2-btn-cta" data-track="trial">${text}<!-- --> <svg aria-hidden="true"></svg></a>`;
+
+  it("CraftOS-CTA mit fremder Tageszahl → Fehler", () => {
+    const f = ctaTestphaseFehler(`<main>${cta("14 Tage kostenlos testen")}</main>`, 10);
+    expect(f).toHaveLength(1);
+    expect(f[0]).toContain("14 Tage kostenlos testen");
+  });
+
+  it("CraftOS-CTA mit trialDays → ok; Wettbewerbertext außerhalb des CTA → ok", () => {
+    expect(ctaTestphaseFehler(`<p>HERO nennt 14 Tage</p>${cta("10 Tage kostenlos testen")}${cta("10 Tage testen")}`, 10)).toEqual([]);
+  });
+
+  it("CTA ohne Tagesangabe oder mit zusätzlicher fremder Zahl → Fehler", () => {
+    expect(ctaTestphaseFehler(cta("Kostenlos testen"), 10)).toHaveLength(1);
+    expect(ctaTestphaseFehler(cta("10 Tage statt 14 Tage testen"), 10)).toHaveLength(1);
+  });
+
+  it("Login-Links (data-track=login) werden nicht geprüft", () => {
+    expect(ctaTestphaseFehler('<a href="https://app.craftos.eu" data-track="login">Anmelden</a>', 10)).toEqual([]);
   });
 });

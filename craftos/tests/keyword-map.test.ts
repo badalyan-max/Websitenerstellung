@@ -16,6 +16,22 @@ const DATA_DIR = "docs/seo/data/kwmap";
 const LEGAL = new Set(["/agb", "/datenschutz", "/impressum"]);
 const pageCandidates = seeds.pageCandidates as Record<string, string[]>;
 
+/**
+ * Zielwertregeln (D-14; 08 D-06): gelten für jeden Eintrag mit Hauptkeyword oder gesetztem target –
+ * Titel ≤ 60, Description 120–155, alle drei Werte vorhanden; Hauptkeyword im Titel nur bei primary.
+ */
+type ZielEintrag = { primary: { keyword: string } | null; target?: { title?: string; h1?: string; description?: string } | null };
+function zielwertFehler(k: ZielEintrag): string[] {
+  if (!k.primary && !k.target) return [];
+  const t = k.target ?? {};
+  const fehler: string[] = [];
+  if (!t.title || !t.h1 || !t.description) fehler.push("unvollständig");
+  if (t.title && Array.from(t.title).length > 60) fehler.push(`Titel ${Array.from(t.title).length} > 60`);
+  if (k.primary && t.title && !norm(t.title).includes(norm(k.primary.keyword))) fehler.push("Titel ohne Hauptkeyword");
+  if (t.description && (t.description.length < 120 || t.description.length > 155))
+    fehler.push(`Description ${t.description.length}`);
+  return fehler;
+}
 const toPath = (url: string) => new URL(url).pathname.replace(/\/$/, "") || "/";
 
 /**
@@ -147,16 +163,23 @@ describe("Keyword-Map", () => {
     }
   });
 
-  it("Zielwerte für Titel, H1 und Description (D-14)", () => {
-    for (const k of keywordMap) {
-      if (!k.primary) continue;
-      const t = k.target;
-      expect(t?.title && t.h1 && t.description, `${k.path}: Zielwerte vollständig`).toBeTruthy();
-      expect(t!.title!.length, `${k.path}: Titel ≤ 60`).toBeLessThanOrEqual(60);
-      expect(norm(t!.title!), `${k.path}: Titel enthält Hauptkeyword`).toContain(norm(k.primary.keyword));
-      expect(t!.description!.length, `${k.path}: Description ${t!.description!.length}`).toBeGreaterThanOrEqual(120);
-      expect(t!.description!.length, `${k.path}: Description ${t!.description!.length}`).toBeLessThanOrEqual(155);
-    }
+  it("Zielwerte für Titel, H1 und Description (D-14; 08 D-06: jeder Eintrag mit target)", () => {
+    const geprueft = keywordMap.filter((k) => k.primary || k.target);
+    expect(geprueft.length).toBeGreaterThan(0);
+    for (const k of geprueft) expect(zielwertFehler(k), k.path).toEqual([]);
+  });
+
+  it("Zielwertregeln greifen auch ohne Hauptkeyword (Fixture)", () => {
+    const desc = "d".repeat(130);
+    expect(zielwertFehler({ primary: null, target: { title: "x".repeat(61), h1: "H", description: desc } })).toEqual(["Titel 61 > 60"]);
+    expect(zielwertFehler({ primary: null, target: { title: "Kurz | CraftOS", h1: "H", description: "zu kurz" } })).toEqual(["Description 7"]);
+    expect(zielwertFehler({ primary: null, target: { title: "Kurz | CraftOS", description: desc } })).toEqual(["unvollständig"]);
+    expect(zielwertFehler({ primary: null, target: { title: "Kurz | CraftOS", h1: "H", description: desc } })).toEqual([]);
+    expect(zielwertFehler({ primary: { keyword: "aufmaß app" }, target: { title: "Kurz | CraftOS", h1: "H", description: desc } })).toEqual([
+      "Titel ohne Hauptkeyword",
+    ]);
+    expect(zielwertFehler({ primary: { keyword: "aufmaß app" }, target: null })).toEqual(["unvollständig"]);
+    expect(zielwertFehler({ primary: null })).toEqual([]);
   });
 
   it("Wettbewerber sind in domain-keywords- oder comparison-Rohdaten belegt", () => {

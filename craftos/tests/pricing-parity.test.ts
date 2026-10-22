@@ -158,6 +158,48 @@ function sammleDateien(dir: string, endungen: string[]): string[] {
     .map((e) => path.relative(root, path.join(e.parentPath, e.name)).replaceAll("\\", "/"));
 }
 
+/**
+ * D-23: Belegte Wettbewerberangaben stehen ausschließlich in den Datenmodulen unter lib/wettbewerber/
+ * (eigener Test unten: Tageszahlen dort nur im Feld testphaseTage oder in wörtlichen Zitaten).
+ * Alle CraftOS-eigenen Dateien bleiben vom Testphasen-Scan voll erfasst.
+ */
+const WETTBEWERBER_DIR = "lib/wettbewerber/";
+
+/** Testphasen-Scan über { rel, text }: Treffer (Literal + Template) und Fehler (Tageszahl ≠ trialDays). */
+function testphasenFehler(dateien: { rel: string; text: string }[], trialDays = snapshot.trialDays) {
+  const treffer: string[] = [];
+  const fehler: string[] = [];
+  for (const { rel: file, text } of dateien) {
+    const zeile = (idx: number) => text.slice(0, idx).split("\n").length;
+    for (const m of text.matchAll(tagesTemplate)) treffer.push(`${file}:${zeile(m.index!)}: ${m[0]}`);
+    for (const m of text.matchAll(tagesLiteral)) {
+      const fenster = satzFenster(text, m.index!, m.index! + m[0].length);
+      if (!testKontext.test(fenster)) continue;
+      const roh = m[1].toLowerCase();
+      const tage = zahlwoerter[roh] ?? Number(roh);
+      const ort = `${file}:${zeile(m.index!)}: „${m[0]}“`;
+      treffer.push(ort);
+      if (tage !== trialDays) fehler.push(`${ort} (erwartet ${trialDays} Tage)`);
+    }
+  }
+  return { treffer, fehler };
+}
+
+/**
+ * Wettbewerber-Datenmodule: Tageszahlen nur als Zahl im Feld testphaseTage ({ wert: 7, … }) oder in einem
+ * wörtlichen zitat-Feld; jede andere „N Tage“-Angabe (Freitext) wird gemeldet.
+ */
+function tageAusserhalbFeld(text: string): string[] {
+  const funde: string[] = [];
+  for (const m of text.matchAll(tagesLiteral)) {
+    const vorher = text.slice(0, m.index!);
+    const schluessel = [...vorher.matchAll(/([A-Za-z_$][\w$]*)\s*:\s*["'`]/g)].at(-1)?.[1];
+    if (schluessel === "zitat") continue;
+    funde.push(`Zeile ${vorher.split("\n").length}: „${m[0]}“${schluessel ? ` in ${schluessel}` : ""}`);
+  }
+  return funde;
+}
+
 describe("Testphase entspricht dem Snapshot", () => {
   it("Testphase: alle Tagesangaben im Testkontext stimmen mit trialDays überein", () => {
     const dateien = [
@@ -165,26 +207,31 @@ describe("Testphase entspricht dem Snapshot", () => {
       ...sammleDateien("components", [".ts", ".tsx"]),
       ...sammleDateien("lib", [".ts", ".tsx"]),
       ...sammleDateien("content", [".md", ".mdx"]),
-    ];
-    const treffer: string[] = [];
-    const fehler: string[] = [];
-    for (const file of dateien) {
-      const text = read(file);
-      const zeile = (idx: number) => text.slice(0, idx).split("\n").length;
-      for (const m of text.matchAll(tagesTemplate)) treffer.push(`${file}:${zeile(m.index!)}: ${m[0]}`);
-      for (const m of text.matchAll(tagesLiteral)) {
-        const fenster = satzFenster(text, m.index!, m.index! + m[0].length);
-        if (!testKontext.test(fenster)) continue;
-        const roh = m[1].toLowerCase();
-        const tage = zahlwoerter[roh] ?? Number(roh);
-        const ort = `${file}:${zeile(m.index!)}: „${m[0]}“`;
-        treffer.push(ort);
-        if (tage !== snapshot.trialDays) fehler.push(`${ort} (erwartet ${snapshot.trialDays} Tage)`);
-      }
-    }
+    ].map((rel) => ({ rel, text: read(rel) }));
+    const { treffer, fehler } = testphasenFehler(dateien);
     console.info(`Testphase: ${treffer.length} Fundstellen geprüft.`);
     expect(fehler).toEqual([]);
     expect(treffer.length).toBeGreaterThanOrEqual(5);
+  });
+
+  it("Ausnahme nur für lib/wettbewerber/: dieselbe Zeile in CraftOS-Dateien schlägt an (D-23)", () => {
+    const zeile = "export const satz = \"plancraft nennt 7 Tage kostenlos\";";
+    expect(testphasenFehler([{ rel: "lib/wettbewerber/plancraft.ts", text: zeile }], 10).fehler).toEqual([]);
+    for (const rel of ["app/preise/page.tsx", "lib/seiten/preise.ts", "lib/wettbewerber-alt.ts", "app/vergleich/page.tsx"])
+      expect(testphasenFehler([{ rel, text: zeile }], 10).fehler, rel).toHaveLength(1);
+    expect(testphasenFehler([{ rel: "components/x.tsx", text: "<a>14 Tage kostenlos testen</a>" }], 10).fehler).toHaveLength(1);
+  });
+
+  it("Wettbewerber-Datenmodule: Tageszahlen nur im Feld testphaseTage", () => {
+    expect(tageAusserhalbFeld('export const x = { hinweis: "Die Testphase dauert 7 Tage." };')).toHaveLength(1);
+    expect(
+      tageAusserhalbFeld(
+        'export const plancraft = {\n  testphaseTage: { wert: 7, quelle: "https://plancraft.com/preise", abgerufenAm: "2026-10-22" },\n  zitat:\n    "7 Tage kostenlos testen",\n};',
+      ),
+    ).toEqual([]);
+    const dateien = sammleDateien(WETTBEWERBER_DIR, [".ts", ".tsx"]);
+    const funde = dateien.flatMap((rel) => tageAusserhalbFeld(read(rel)).map((f) => `${rel} ${f}`));
+    expect(funde).toEqual([]);
   });
 });
 
