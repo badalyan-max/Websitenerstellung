@@ -64,13 +64,18 @@ function readRaw(file: string): unknown {
   return rawCache.get(file);
 }
 // Alle Objekte einer Rohdatei, die genau dieses Keyword tragen (gleiches Objekt = gleiche Zeile).
+// K-4 (09-01): MCP-Zeilen tragen die Zahlen in `cells` ({ keyword, cells: { volume, difficulty, … }, dataFound });
+// sie werden zu einer Zeile auf gleicher Ebene zusammengeführt – die Werte stammen weiter aus demselben Objekt.
 function rowsFor(file: string, keyword: string): Row[] {
   const out: Row[] = [];
   const walk = (v: unknown) => {
     if (Array.isArray(v)) v.forEach(walk);
     else if (v && typeof v === "object") {
       const o = v as Row;
-      if (o.keyword === keyword) out.push(o);
+      if (o.keyword === keyword) {
+        const cells = o.cells;
+        out.push(cells && typeof cells === "object" && !Array.isArray(cells) ? { ...o, ...(cells as Row) } : o);
+      }
       Object.values(o).forEach(walk);
     }
   };
@@ -81,6 +86,26 @@ const exportFiles = fs
   .readdirSync(path.join(ROOT, DATA_DIR))
   .filter((f) => f.startsWith("export--") && f.endsWith(".json"))
   .map((f) => `${DATA_DIR}/${f}`);
+/**
+ * K-4 (09-01): Rohdateien mit eigenem Herkunftskopf (`source`, `fetchedAt` auf oberster Ebene, z. B.
+ * docs/seo/data/2026-10-22-keyword-metrics-phase09.json) gelten neben dem kwmap-Manifest als Herkunft.
+ * Für sie gilt source.endpoint = Kopf.source und source.fetchedAt = Kopf.fetchedAt; die Belegpflicht bleibt.
+ */
+type Kopf = { source: string; fetchedAt: string };
+const kopfDateien = new Map<string, Kopf>(
+  fs
+    .readdirSync(path.join(ROOT, "docs/seo/data"))
+    .filter((f) => f.endsWith(".json"))
+    .map((f) => `docs/seo/data/${f}`)
+    .flatMap((f): [string, Kopf][] => {
+      const r = readRaw(f) as Partial<Kopf> | unknown[] | null;
+      return r && !Array.isArray(r) && typeof r.source === "string" && typeof r.fetchedAt === "string"
+        ? [[f, { source: r.source, fetchedAt: r.fetchedAt }]]
+        : [];
+    }),
+);
+const herkunftsDateien = [...exportFiles, ...kopfDateien.keys()];
+const ohneDaten = (r: Row) => r.is_data_found === false || r.dataFound === false;
 const RAW_REF = /(related|questions|longtail|domain-keywords|comparison)--[a-z0-9.-]+\.json/g;
 
 describe("Keyword-Map", () => {
@@ -121,10 +146,11 @@ describe("Keyword-Map", () => {
       expect(rows.length, `${k.path}: ${keyword} ${volume}/${difficulty} in ${source.file}`).toBeGreaterThan(0);
       expect([...((rows[0].intents as string[]) ?? [])].sort(), k.path).toEqual([...intents].sort());
       if (cpc !== undefined) expect(rows[0].cpc, k.path).toBe(cpc);
+      const kopf = kopfDateien.get(source.file);
       const entry = files.get(path.basename(source.file));
-      expect(entry, `${source.file} im Manifest`).toBeDefined();
-      expect(source.endpoint, k.path).toBe(entry!.endpoint);
-      expect(source.fetchedAt, k.path).toBe(entry!.fetchedAt);
+      expect(entry ?? kopf, `${source.file} im Manifest oder mit Herkunftskopf`).toBeDefined();
+      expect(source.endpoint, k.path).toBe(entry ? entry.endpoint : kopf!.source);
+      expect(source.fetchedAt, k.path).toBe(entry ? entry.fetchedAt : kopf!.fetchedAt);
     }
   });
 
@@ -136,12 +162,13 @@ describe("Keyword-Map", () => {
       if (LEGAL.has(k.path)) continue;
       const candidates = pageCandidates[k.path];
       expect(candidates?.length, `${k.path} braucht pageCandidates`).toBeGreaterThan(0);
-      const namedFiles = exportFiles.filter((f) => k.reason!.includes(path.basename(f)));
-      expect(namedFiles.length, `${k.path}: reason nennt die Exportdatei`).toBeGreaterThan(0);
+      // K-4: auch Rohdateien mit Herkunftskopf; dort belegt `dataFound: false` die fehlenden Daten.
+      const namedFiles = herkunftsDateien.filter((f) => k.reason!.includes(path.basename(f)));
+      expect(namedFiles.length, `${k.path}: reason nennt die Rohdatei`).toBeGreaterThan(0);
       for (const c of candidates) {
-        const found = exportFiles.flatMap((f) => rowsFor(f, c));
-        expect(found.length, `${k.path}: ${c} im Export`).toBeGreaterThan(0);
-        expect(found.every((r) => r.is_data_found === false), `${k.path}: ${c} hat Daten`).toBe(true);
+        const found = herkunftsDateien.flatMap((f) => rowsFor(f, c));
+        expect(found.length, `${k.path}: ${c} in den Rohdaten`).toBeGreaterThan(0);
+        expect(found.every(ohneDaten), `${k.path}: ${c} hat Daten`).toBe(true);
       }
     }
   });
@@ -176,7 +203,10 @@ describe("Keyword-Map", () => {
     for (const k of keywordMap) {
       if (k.status === "geplant") {
         expect([6, 7, 8, 9], k.path).toContain(k.phase);
-        expect(sitemapPaths.has(k.path), `${k.path} ist schon live`).toBe(false);
+        // Übergang bis 09-09 (K-3): Die Inhaltspakete der Phase 9 legen ihre Artikel an, bevor die Integration den
+        // Status auf „bestehend“ setzt; geplante Phase-9-Pfade dürfen deshalb schon in der Sitemap stehen.
+        // Für alle anderen Phasen gilt die Regel unverändert. 09-09 stellt die strenge Regel wieder her.
+        if (k.phase !== 9) expect(sitemapPaths.has(k.path), `${k.path} ist schon live`).toBe(false);
       } else expect(sitemapPaths.has(k.path), `${k.path} fehlt in der Sitemap`).toBe(true);
     }
   });
@@ -428,5 +458,71 @@ describe("Phase 9 – Zielwerte", () => {
       "/gewerke/allrounder": "Hausmeister-Software: vom kleinen Einsatz bis zur Rechnung",
     };
     for (const [p, h1] of Object.entries(neu)) expect(keywordMap.find((k) => k.path === p)?.target?.h1, p).toBe(h1);
+  });
+
+  // 09-01 Aufgabe 3 (D-24, K-4, W5; 09-RESEARCH „Neue Hilfeartikel“): zehn neue Hilfe-Pfade mit vollständigem target.
+  const NEUE_HILFE = [
+    "kundenportal-kunden-einladen",
+    "angebot-online-unterschreiben-lassen",
+    "mahnwesen-einrichten",
+    "bankumsaetze-abgleichen",
+    "daten-importieren",
+    "datanorm-katalog-importieren",
+    "lager-scan-app",
+    "besichtigung-durchfuehren",
+    "projekt-chat-nachrichten",
+    "app-sprache-einstellen",
+  ].map((s) => `/hilfe/${s}`);
+  const phase9 = keywordMap.filter((k) => k.status === "geplant" && k.phase === 9);
+
+  it("die zehn neuen Hilfe-Pfade sind geplant (Phase 9); Hauptkeywords nur mit Daten, sonst primary null", () => {
+    for (const p of NEUE_HILFE) {
+      const e = keywordMap.find((k) => k.path === p);
+      expect(e?.status, p).toBe("geplant");
+      expect(e?.phase, p).toBe(9);
+      expect(e?.target?.title && e.target.h1 && e.target.description, p).toBeTruthy();
+    }
+    const haupt = Object.fromEntries(
+      NEUE_HILFE.map((p) => [p, keywordMap.find((k) => k.path === p)?.primary?.keyword ?? null]),
+    );
+    expect(haupt).toEqual({
+      "/hilfe/kundenportal-kunden-einladen": null,
+      "/hilfe/angebot-online-unterschreiben-lassen": null,
+      "/hilfe/mahnwesen-einrichten": "mahnstufen",
+      "/hilfe/bankumsaetze-abgleichen": "camt 053",
+      "/hilfe/daten-importieren": "datenübernahme",
+      "/hilfe/datanorm-katalog-importieren": "datanorm",
+      "/hilfe/lager-scan-app": "lager app",
+      "/hilfe/besichtigung-durchfuehren": null,
+      "/hilfe/projekt-chat-nachrichten": null,
+      "/hilfe/app-sprache-einstellen": null,
+    });
+    expect(phase9).toHaveLength(19);
+    expect(keywordMap.find((k) => k.path === "/hilfe/abnahme-dokumentieren")?.secondary).toContain("teilabnahme vob");
+  });
+
+  it("H1 neuer Phase-9-Einträge ≤ 70, Artikel-H1 ≤ 100 (09-UI-SPEC § 4, § 8)", () => {
+    for (const k of phase9) expect(Array.from(k.target?.h1 ?? "").length, `${k.path}: ${k.target?.h1}`).toBeLessThanOrEqual(70);
+    const artikel = keywordMap.filter((k) => /^\/(blog|hilfe)\/[^/]+$/.test(k.path) && !k.path.includes("/kategorie/"));
+    expect(artikel.length).toBeGreaterThanOrEqual(83);
+    for (const k of artikel) expect(Array.from(k.target?.h1 ?? "").length, `${k.path}: ${k.target?.h1}`).toBeLessThanOrEqual(100);
+  });
+
+  it("geplante Phase-9-Einträge folgen den sitewide Regeln (Titel, Description, Eindeutigkeit, Kopfwort, Überclaim; W5)", () => {
+    const UEBERCLAIM = [/lückenlos/i, /vollständig offline/i, /\bbeste[nrs]?\b/i, /testsieger/i, /\bNr\. ?1\b/i, /marktführer/i, /automatisch/i];
+    for (const k of phase9) {
+      expect(zielwertFehler(k), k.path).toEqual([]);
+      const t = k.target!;
+      if (k.primary) {
+        const kopf = norm(k.primary.keyword.split(" ")[0]);
+        expect(norm(t.title!), `${k.path}: Kopfwort im Titel`).toContain(kopf);
+        expect(norm(t.h1!), `${k.path}: Kopfwort in H1`).toContain(kopf);
+      }
+      for (const re of UEBERCLAIM) expect([t.title, t.h1, t.description].join(" "), `${k.path}: ${re}`).not.toMatch(re);
+    }
+    for (const feld of ["title", "h1", "description"] as const) {
+      const werte = keywordMap.map((k) => k.target?.[feld]).filter((w): w is string => Boolean(w));
+      expect(new Set(werte).size, `${feld} sitewide eindeutig`).toBe(werte.length);
+    }
   });
 });
