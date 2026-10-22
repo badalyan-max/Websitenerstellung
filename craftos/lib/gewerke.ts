@@ -3,13 +3,12 @@ export interface Gewerk {
   name: string;
   kurz: string;
   hatVorlagen: boolean;
+  /** Slogan der Gewerkeseite; die H1 (Slogan mit Kopfwort), Title und Description kommen seit 08-04 aus docs/seo/keyword-map.json. */
   heroTitle: string;
   heroIntro: string;
   exampleTitle: string;
   example: string;
   funktionen: string[];
-  seoTitle: string;
-  seoDescription: string;
   faq: { q: string; a: string }[];
 }
 const definitions = [
@@ -167,8 +166,6 @@ export const gewerke: Gewerk[] = definitions.map(
     exampleTitle,
     example,
     funktionen: [...features],
-    seoTitle: "Handwerkersoftware für " + name,
-    seoDescription: "CraftOS für " + name + ": " + intro,
     faq: [
       {
         q: "Sind branchenspezifische Vorlagen enthalten?",

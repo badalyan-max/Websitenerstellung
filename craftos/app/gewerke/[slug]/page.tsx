@@ -9,7 +9,7 @@ import { crumbsFor } from "@/lib/breadcrumbs";
 import { FeatureSnippet } from "@/components/feature-snippet/FeatureSnippet";
 import { TrialCta } from "@/components/ui/TrialCta";
 import { Faq } from "@/components/ui/Faq";
-import { pageMetadata } from "@/lib/metadata";
+import { metaFor, zielwerte } from "@/lib/seo-meta";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { faqSchema } from "@/lib/schema";
 export function generateStaticParams() {
@@ -22,9 +22,8 @@ export async function generateMetadata({
 }) {
   const { slug } = await params,
     g = getGewerk(slug);
-  return g
-    ? pageMetadata(g.seoTitle, g.seoDescription, "/gewerke/" + slug)
-    : {};
+  // Title und Description aus der Keyword-Map (08-04, D-06): docs/seo/keyword-map.json ist die einzige Quelle.
+  return g ? metaFor("/gewerke/" + slug) : {};
 }
 export default async function Page({
   params,
@@ -41,7 +40,7 @@ export default async function Page({
       <PageHero
         crumbs={crumbsFor("/gewerke/" + slug)}
         eyebrow={"CraftOS für " + g.name}
-        title={g.heroTitle}
+        title={zielwerte("/gewerke/" + slug).h1}
         intro={g.heroIntro}
       />
       <section className="section-space">

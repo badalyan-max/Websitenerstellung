@@ -1,10 +1,7 @@
 import { ContentIndex } from "@/components/content/ContentIndex";
-import { pageMetadata } from "@/lib/metadata";
-export const metadata = pageMetadata(
-  "Ratgeber für Handwerksbetriebe",
-  "Praktische Ratgeber zu Rechnungen, Kalkulation, Projekten und Teamplanung – mit Beispielen, Quellen und kostenlosen Rechnern.",
-  "/blog",
-);
+import { metaFor } from "@/lib/seo-meta";
+// Title und Description aus der Keyword-Map (08-04, D-06).
+export const metadata = metaFor("/blog");
 export default function Page() {
   return <ContentIndex kind="blog" />;
 }

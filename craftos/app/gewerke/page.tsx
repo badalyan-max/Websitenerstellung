@@ -6,25 +6,16 @@ import { PageHero } from "@/components/ui/PageHero";
 import { crumbsFor } from "@/lib/breadcrumbs";
 import { TrialCta } from "@/components/ui/TrialCta";
 import { MediaFigure } from "@/components/v2/MediaFigure";
-import { pageMetadata } from "@/lib/metadata";
-export const metadata = pageMetadata(
-  "Handwerkersoftware nach Gewerk",
-  "CraftOS für Elektro, SHK, Maler, Tischler und weitere Gewerke: passende Abläufe für Angebote, Planung, Projekte und Abrechnung.",
-  "/gewerke",
-);
+import { metaFor, zielwerte } from "@/lib/seo-meta";
+// Title, Description und H1 aus der Keyword-Map (08-04, D-06, D-17).
+export const metadata = metaFor("/gewerke");
 export default function Page() {
   return (
     <>
       <PageHero
         crumbs={crumbsFor("/gewerke")}
         eyebrow="Für Ihr Gewerk"
-        title={
-          <>
-            Anderes Werkzeug.
-            <br />
-            Derselbe Anspruch.
-          </>
-        }
+        title={zielwerte("/gewerke").h1}
         intro="Jedes Gewerk arbeitet anders. Gute Angebote, eine verlässliche Planung und nachvollziehbare Zahlen brauchen sie alle."
       />
       <section className="section-space">

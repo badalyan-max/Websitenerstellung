@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { ContentIndex } from "@/components/content/ContentIndex";
 import { categories } from "@/lib/content-types";
-import { pageMetadata } from "@/lib/metadata";
+import { metaFor } from "@/lib/seo-meta";
 export function generateStaticParams() {
   return Object.keys(categories.hilfe).map((category) => ({ category }));
 }
@@ -11,15 +11,9 @@ export async function generateMetadata({
   params: Promise<{ category: string }>;
 }) {
   const { category } = await params;
-  const label = Object.hasOwn(categories.hilfe, category)
-    ? categories.hilfe[category]
-    : undefined;
-  return label
-    ? pageMetadata(
-        label + " – Hilfe",
-        "Anleitungen zum Thema " + label + " für Handwerksbetriebe.",
-        "/hilfe/kategorie/" + category,
-      )
+  // Title und Description aus der Keyword-Map (08-04, D-06); die H1 setzt ContentIndex aus derselben Quelle.
+  return Object.hasOwn(categories.hilfe, category)
+    ? metaFor("/hilfe/kategorie/" + category)
     : {};
 }
 export default async function Page({

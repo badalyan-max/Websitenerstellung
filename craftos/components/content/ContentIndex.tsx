@@ -4,6 +4,7 @@ import { ContentSearch } from "./ContentSearch";
 import { getContentList } from "@/lib/content";
 import { categories, type ContentKind } from "@/lib/content-types";
 import { crumbsFor } from "@/lib/breadcrumbs";
+import { zielwerte } from "@/lib/seo-meta";
 export async function ContentIndex({
   kind,
   category,
@@ -12,17 +13,13 @@ export async function ContentIndex({
   category?: string;
 }) {
   const items = await getContentList(kind);
-  const title = category
-    ? categories[kind][category]
-    : kind === "blog"
-      ? "Wissen, das im Alltag hilft."
-      : "Schnell zur passenden Antwort.";
+  // H1 aus der Keyword-Map (08-04, D-17): Übersichten und Kategorien („Ratgeber: …“ / „Hilfe: …“).
+  const pfad = category ? "/" + kind + "/kategorie/" + category : "/" + kind;
+  const title = zielwerte(pfad).h1;
   return (
     <>
       <PageHero
-        crumbs={crumbsFor(
-          category ? "/" + kind + "/kategorie/" + category : "/" + kind,
-        )}
+        crumbs={crumbsFor(pfad)}
         eyebrow={kind === "blog" ? "CraftOS Ratgeber" : "CraftOS Hilfezentrum"}
         title={title}
         intro={

@@ -1,10 +1,7 @@
 import { ContentIndex } from "@/components/content/ContentIndex";
-import { pageMetadata } from "@/lib/metadata";
-export const metadata = pageMetadata(
-  "Hilfezentrum für Web-App und Mobile-App",
-  "Schrittweise Anleitungen für CraftOS: Einrichtung, Angebote, Rechnungen, Planung, Zeiten, Lager und Craft AI.",
-  "/hilfe",
-);
+import { metaFor } from "@/lib/seo-meta";
+// Title und Description aus der Keyword-Map (08-04, D-06).
+export const metadata = metaFor("/hilfe");
 export default function Page() {
   return <ContentIndex kind="hilfe" />;
 }

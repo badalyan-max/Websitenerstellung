@@ -6,6 +6,7 @@ import { getFunktion } from "@/lib/funktionen";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs } from "@/components/v2/Breadcrumbs";
 import { crumbsFor } from "@/lib/breadcrumbs";
+import { zielwerte } from "@/lib/seo-meta";
 import { site } from "@/lib/site";
 export async function ArticlePage({ article: a }: { article: ContentArticle }) {
   const all = [
@@ -16,6 +17,8 @@ export async function ArticlePage({ article: a }: { article: ContentArticle }) {
     .filter((x) => a.relatedArticles.includes("/" + x.kind + "/" + x.slug))
     .slice(0, 4);
   const url = site.url + "/" + a.kind + "/" + a.slug;
+  // H1 aus der Keyword-Map (08-04, D-17); der Frontmatter-Titel bleibt für Brotkrumen, Listen, Feed und Schema.
+  const h1 = zielwerte("/" + a.kind + "/" + a.slug).h1;
   return (
     <>
       <div className="bg-ink-100 pt-2 pb-12 md:pt-4 md:pb-20 lg:pt-6">
@@ -29,7 +32,7 @@ export async function ArticlePage({ article: a }: { article: ContentArticle }) {
           </div>
           <p className="eyebrow block">{categories[a.kind][a.category]}</p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl max-w-5xl font-semibold">
-            {a.title}
+            {h1}
           </h1>
           <p className="text-lg text-ink-600 mt-6 max-w-3xl">{a.description}</p>
           <p className="text-xs text-ink-500 mt-6">
