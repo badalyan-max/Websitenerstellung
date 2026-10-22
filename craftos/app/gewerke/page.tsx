@@ -32,12 +32,7 @@ export default function Page() {
                   {g.name}
                   <ArrowUpRight size={20} className="shrink-0 mt-1" />
                 </h2>
-                <p className="text-sm text-ink-600 mt-4">{g.heroIntro}</p>
-                {g.hatVorlagen && (
-                  <p className="text-xs text-primary-800 mt-4 font-semibold">
-                    Mit vorbereiteten Leistungsvorlagen
-                  </p>
-                )}
+                <p className="text-sm text-ink-600 mt-4">{g.teaser}</p>
               </Link>
             ))}
           </div>

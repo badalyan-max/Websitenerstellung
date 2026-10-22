@@ -41,7 +41,7 @@ export default async function Page({
         crumbs={crumbsFor("/gewerke/" + slug)}
         eyebrow={"CraftOS für " + g.name}
         title={zielwerte("/gewerke/" + slug).h1}
-        intro={g.heroIntro}
+        intro={g.answer}
       />
       <section className="section-space">
         <div className="site-container grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14 lg:items-center">
@@ -50,11 +50,6 @@ export default async function Page({
             <p className="eyebrow">Ein Beispiel aus Ihrem Alltag</p>
             <h2 className="section-title">{g.exampleTitle}</h2>
             <p className="section-intro">{g.example}</p>
-            <p className="notice mt-7 text-sm">
-              {g.hatVorlagen
-                ? "Vorbereitete Leistungsvorlagen helfen beim Start. Prüfen Sie Preise und Leistungsbeschreibungen vor der Übernahme."
-                : "Ihre eigenen Artikel und Leistungsvorlagen bilden die Grundlage. Ein spezieller vollständiger Branchenkatalog ist nicht vorausgesetzt."}
-            </p>
           </div>
           <div className="w-full min-w-0 max-w-[640px] justify-self-center">
             <FeatureSnippet
