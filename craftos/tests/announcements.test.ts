@@ -2,7 +2,9 @@ import { describe, it, expect } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 import { buildLlmsTxt } from "@/lib/llms";
-import { featureComparisons } from "@/lib/comparison";
+import { baueAlternative } from "@/lib/seiten/alternativen";
+import { vergleich } from "@/lib/seiten/vergleich";
+import { CRAFTOS_OHNE } from "@/lib/wettbewerber";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
 
@@ -65,13 +67,27 @@ describe("keine Ankündigungen nicht-live Funktionen", () => {
     expect("upcomingFeatures" in mod).toBe(false);
     expect("vision" in mod).toBe(false);
   });
-  it("Vergleich zeigt beim KI-Telefonempfang für CraftOS ein neutrales Nein", () => {
-    const row = featureComparisons.find((r) => r.feature === "KI-Telefonempfang");
-    // Umbenannte oder entfernte Zeile darf den Test nicht still grün machen (LO-08).
-    expect(row, "Vergleichszeile KI-Telefonempfang fehlt").toBeDefined();
-    if (!row) return;
-    expect(row.craftos.text).toBe("Nein");
-    expect(row.craftos.detail).toBeUndefined();
-    expect(row.craftos.href).toBeUndefined();
+  // 08-10: lib/comparison.ts (Stand 09.09.2026) ist abgelöst. Gleiche Absicht auf den neuen Daten (T-08-30):
+  // KI-Telefonie ist für CraftOS nicht live und wird nirgends als CraftOS-Leistung oder Ankündigung gezeigt.
+  // Nach der Inhabervorgabe vom 22.10.2026 („Nur, was unterstützt wird“, geht UI-SPEC U9/U6 vor) erscheint
+  // das Kriterium auch nicht als neutrale Nein-Zeile, sondern gar nicht; der Builder wirft bei CRAFTOS_OHNE.
+  it("Vergleichsseiten führen KI-Telefonie nicht als CraftOS-Zeile und nicht als Ankündigung", () => {
+    expect(CRAFTOS_OHNE).toContain("kiTelefon");
+    const telefon = /Telefon/i;
+    for (const slug of ["plancraft", "craftnote", "hero", "tooltime"] as const) {
+      const inhalt = baueAlternative(slug);
+      for (const r of inhalt.tabelle.rows) {
+        expect(r.label, `${slug}: Zeile ${r.label}`).not.toMatch(telefon);
+        expect(String(r.craftos), `${slug}: CraftOS-Zelle ${r.label}`).not.toMatch(telefon);
+      }
+      expect(JSON.stringify(inhalt.faq), slug).not.toMatch(CODE_PATTERN);
+    }
+    const t = vergleich.ueberblick.tabelle;
+    expect(t.columns.map((c) => c.label).join(" ")).not.toMatch(telefon);
+    for (const r of t.rows) expect(JSON.stringify(r.cells), r.label).not.toMatch(telefon);
+    expect(JSON.stringify(vergleich.faq)).not.toMatch(CODE_PATTERN);
+  });
+  it("veraltete Vergleichsdaten lib/comparison.ts sind entfernt", () => {
+    expect(fs.existsSync(path.join(ROOT, "lib/comparison.ts"))).toBe(false);
   });
 });

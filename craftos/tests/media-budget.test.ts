@@ -20,8 +20,6 @@ const EXCEPTIONS: Record<string, string> = {
     "Favicon und Apple-Touch-Icon in app/layout.tsx: Browser und iOS verlangen PNG.",
   "icons/icon-512x512.png":
     "Organisationslogo im JSON-LD (lib/schema.ts): Google verlangt ein Rasterformat wie PNG.",
-  "images/brands/craftnote.png":
-    "Offizielles Fremdlogo von Craftnote auf /vergleich, unverändert eingebunden (Markenvorgaben); kleines Logo deutlich unter 150 KB.",
 };
 
 function walk(dir: string): string[] {
@@ -70,14 +68,9 @@ describe("Medienbudget: ausgelieferte Bilder", () => {
     expect(missing, `Fehlende Dateien: ${missing.map((m) => `${m} (${sourcesByRef.get(m)?.join(", ")})`).join("; ")}`).toEqual([]);
   });
 
-  it("dynamisch gebildete Pfade werden per Verzeichnis aufgelöst (qr-*, brands/*)", () => {
-    expect([...dynamicPrefixes]).toEqual(expect.arrayContaining(["images/mobile/qr-", "images/brands/"]));
-    for (const expected of [
-      "images/mobile/qr-android.svg",
-      "images/mobile/qr-ios.svg",
-      "images/brands/craftnote.png",
-      "images/brands/plancraft.svg",
-    ]) {
+  it("dynamisch gebildete Pfade werden per Verzeichnis aufgelöst (qr-*)", () => {
+    expect([...dynamicPrefixes]).toEqual(expect.arrayContaining(["images/mobile/qr-"]));
+    for (const expected of ["images/mobile/qr-android.svg", "images/mobile/qr-ios.svg"]) {
       expect(checked.has(expected), `${expected} fehlt in der geprüften Menge`).toBe(true);
     }
   });
@@ -93,6 +86,22 @@ describe("Medienbudget: ausgelieferte Bilder", () => {
       if (size > LIMIT) violations.push(`${ref}: ${Math.round(size / 1024)} KB > 150 KB`);
     }
     expect(violations).toEqual([]);
+  });
+
+  // 08-10 (D-02, C12): Wettbewerberlogos sind gelöscht, nicht nur unverlinkt (T-08-29).
+  it("keine Wettbewerberlogos: Markenordner unter public/images fehlt und wird nirgends referenziert", () => {
+    expect(fs.existsSync(path.join(PUBLIC, "images", "brands"))).toBe(false);
+    const marke = (p: string) => p.split("/")[1] === "brands";
+    expect([...dynamicPrefixes].filter(marke)).toEqual([]);
+    expect([...literalRefs].filter(marke)).toEqual([]);
+  });
+
+  it("PNG-Ausnahmen der Browserprüfung (tests/e2e/design-v2.pw.cjs) entsprechen genau EXCEPTIONS", () => {
+    const e2e = fs.readFileSync(path.join(ROOT, "tests/e2e/design-v2.pw.cjs"), "utf8");
+    const m = /const PNG_EXCEPTIONS = \[([^\]]*)\]/.exec(e2e);
+    expect(m, "PNG_EXCEPTIONS fehlt in design-v2.pw.cjs").toBeTruthy();
+    const liste = [...m![1].matchAll(/'([^']+)'/g)].map((x) => x[1]);
+    expect(liste.sort()).toEqual(Object.keys(EXCEPTIONS).map((k) => `/${k}`).sort());
   });
 
   it("jede Ausnahme ist begründet und betrifft eine tatsächlich ausgelieferte Datei", () => {

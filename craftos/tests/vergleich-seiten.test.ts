@@ -1001,3 +1001,86 @@ describe("/vergleich Inhalte", () => {
     expect(quelle).not.toMatch(/\bbeste\b|testsieger/i);
   });
 });
+
+describe("/vergleich gerendert", () => {
+  const rendern = async () => {
+    const mod = await import("@/app/vergleich/page");
+    return { mod, html: renderToString(createElement(mod.default)) };
+  };
+
+  it("eine H1 aus der Map, #antwort ≤ 300 direkt danach, Abschnitte in fester Folge mit H2-ids", async () => {
+    const { mod, html } = await rendern();
+    const { zielwerte } = await import("@/lib/seo-meta");
+    const z = zielwerte("/vergleich");
+    expect(String(mod.metadata.title)).toBe(z.titleOhneMarke);
+    const h1 = [...html.matchAll(/<h1[^>]*>([\s\S]*?)<\/h1>/g)];
+    expect(h1).toHaveLength(1);
+    expect(decode(h1[0][1])).toBe(z.h1);
+    const nachH1 = html.slice(html.indexOf("</h1>") + 5);
+    const antwort = nachH1.match(/^<p id="antwort" data-answer=""[^>]*>([\s\S]*?)<\/p>/);
+    expect(antwort, "#antwort direkt nach der H1").toBeTruthy();
+    expect(charCount(decode(antwort![1]))).toBeLessThanOrEqual(300);
+
+    const abschnitte = [...html.matchAll(/data-abschnitt="([^"]+)"/g)].map((m) => m[1]).filter((a) => a !== "kopf");
+    expect(abschnitte).toEqual(["ueberblick", "einzelvergleiche", "so-vergleichen", "faq", "cta"]);
+    for (const id of ["ueberblick", "einzelvergleiche", "so-vergleichen", "faq"]) {
+      expect(html, `section ${id}`).toContain(`data-abschnitt="${id}" aria-labelledby="${id}"`);
+      expect(html, `H2 ${id}`).toMatch(new RegExp(`<h2 id="${id}"`));
+    }
+    const frage = html.match(/<h2 id="so-vergleichen"[^>]*>([\s\S]*?)<\/h2><p[^>]*data-answer=""[^>]*>([\s\S]*?)<\/p>/);
+    expect(frage, "Frage-H2 so-vergleichen mit Antwort").toBeTruthy();
+    expect(charCount(decode(frage![2]))).toBeLessThanOrEqual(300);
+    expect(html).toContain('href="#ueberblick"');
+  });
+
+  it("Kacheln verlinken die vier Alternativen; Pflichthinweis, Disclaimer und Quellen im HTML; keine Logos", async () => {
+    const { html } = await rendern();
+    const { vergleich } = await import("@/lib/seiten/vergleich");
+    for (const p of ALTERNATIVEN_PFADE) expect(html, p).toContain(`href="${p}"`);
+    expect(html).not.toContain("handwerkersoftware-kleine-betriebe");
+    const text = decode(html);
+    expect(text).toContain(vergleich.ueberblick.tabelle.note);
+    expect(text).toContain("Die Nennung der Anbieter dient der Zuordnung; es besteht keine Geschäftsbeziehung.");
+    for (const s of vergleich.ueberblick.tabelle.sources) expect(html, s.url).toContain(`href="${s.url}"`);
+    expect(html).not.toContain("<img");
+    expect(html).not.toMatch(/images\/brands|data-highlight="true"/);
+    for (const a of html.matchAll(/<a [^>]*href="https:\/\/(?!app\.craftos\.eu)[^"]*"[^>]*>/g)) {
+      expect(a[0], a[0]).toContain('rel="nofollow"');
+      expect(a[0]).not.toContain("_blank");
+    }
+    const ctas = [...html.matchAll(/<a [^>]*data-track="trial"[^>]*>([\s\S]*?)<\/a>/g)].map((m) => decode(m[1]));
+    expect(ctas.length).toBeGreaterThanOrEqual(2);
+    for (const c of ctas) expect(c).toBe(`${site.trialDays} Tage kostenlos testen`);
+  });
+
+  it("JSON-LD: genau eine BreadcrumbList (Start, Vergleich), FAQPage = sichtbare FAQ, ein WebPage, kein @graph", async () => {
+    const { html } = await rendern();
+    const { vergleich } = await import("@/lib/seiten/vergleich");
+    expect(html).not.toContain("@graph");
+    for (const verboten of ["Product", "Review", "AggregateRating", "Telefon-Agent", "MCP-Server"])
+      expect(html, verboten).not.toContain(verboten);
+    const blocks = jsonLd(html);
+    const crumbs = blocks.filter((b) => b["@type"] === "BreadcrumbList");
+    expect(crumbs).toHaveLength(1);
+    expect((crumbs[0].itemListElement as { name: string }[]).map((i) => i.name)).toEqual(["Start", "Vergleich"]);
+    const faq = blocks.filter((b) => b["@type"] === "FAQPage");
+    expect(faq).toHaveLength(1);
+    const sichtbar = [...html.matchAll(/<summary[^>]*><h3[^>]*>([\s\S]*?)<\/h3>/g)].map((m) => decode(m[1]));
+    expect(sichtbar).toEqual(vergleich.faq.map((f) => f.q));
+    expect((faq[0].mainEntity as { name: string }[]).map((e) => e.name)).toEqual(sichtbar);
+    expect(blocks.filter((b) => b["@type"] === "WebPage")).toHaveLength(1);
+  });
+
+  it("Altbestände entfernt: keine Logos, keine Logo-Komponente, kein altes CSS-Modul, kein lib/comparison.ts", () => {
+    for (const datei of [
+      "app/vergleich/ProviderLogo.tsx",
+      "app/vergleich/Comparison.module.css",
+      "lib/comparison.ts",
+      "public/images/brands/craftnote.png",
+      "public/images/brands/plancraft.svg",
+    ])
+      expect(fs.existsSync(path.join(ROOT, datei)), datei).toBe(false);
+    const seite = fs.readFileSync(path.join(ROOT, "app/vergleich/page.tsx"), "utf8");
+    expect(seite).not.toMatch(/@graph|<img|PageHero|lib\/comparison/);
+  });
+});
