@@ -8,3 +8,8 @@
 ## Aus 08-03 (22.10.2026)
 
 - **Produkt-Snapshot veraltet: `tests/pricing-parity.test.ts` „Snapshot ist aktuell: Commit entspricht origin/release“.** Das Web-Repo `C:/Projekte/craft-connect-buddy` hat `origin/release` am 22.10.2026 um 17:56 (+02:00) auf `1e9c8bc288dc` vorgerückt; `product-source-snapshot.json` steht noch auf `535206b42aac`. Der Test war im Vitest-Lauf nach Task 1 noch grün und nach Task 2 rot – unabhängig von den Bausteinänderungen (08-03 ändert keine Produktdaten). Vorschlag: Snapshot-Abgleich (Preise, Testphase, Register) in einem eigenen Produktsync-Schritt prüfen und den Snapshot erst nach Faktenabgleich aktualisieren, nicht blind hochziehen.
+
+## Aus 08-08 (22.10.2026, Worktree wt-08d, Port 3103)
+
+- **E2E-Zeitflake `home-navigation.pw.cjs:501` (webkit-390-touch) auch in der Einzelwiederholung rot.** Voller Lauf: 289 bestanden, 4 rot (3 × `function-illustrations.pw.cjs:443` webkit-1440 „Handyansicht rechnung/zeit/aufmass“, kurzzeitiger Überlauf; 1 × `home-navigation.pw.cjs:501`). Einzelwiederholung nach dem Merge von main: `function-illustrations.pw.cjs:443` 8/8 grün, `home-navigation.pw.cjs:501` erneut rot mit 875 statt 0 Übergängen (dasselbe `tab-size`-Muster wie aus 08-02 beschrieben). Betrifft `/funktionen`, nicht die Alternativen-Seiten; 08-08 ändert weder `/funktionen` noch FeatureCards/MiniUi. Vorschlag unverändert: Poll-Fenster anheben bzw. Übergänge erst nach Hydration zählen (QA-Plan Phase 10, QA-05).
+- **`tests/content.test.ts` „has valid categories …“ Zeitüberschreitung (5 s) nur in der vollen Suite unter Last;** einzeln grün (108/108 zusammen mit vergleich-seiten und funktionsdetails). Vorschlag: Testzeitlimit der Datei anheben.
