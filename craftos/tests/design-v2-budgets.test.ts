@@ -180,7 +180,7 @@ describe("Phase-6-Budgets und Satzprüfung", () => {
     expect(TEXT_BUDGET.featureList).toEqual({ name: 32, benefit: 100 });
     expect(TEXT_BUDGET.count.featureList).toEqual({ min: 1, max: 7 });
     expect(TEXT_BUDGET.count.homeSections).toEqual({ min: 6, max: 8 });
-    expect(TEXT_BUDGET.sectionHeader).toEqual({ eyebrow: 24, title: 60, lead: 140 });
+    expect(TEXT_BUDGET.sectionHeader).toMatchObject({ eyebrow: 24, title: 60, lead: 140 });
     expect(TEXT_BUDGET.featureCard).toEqual({ title: 32, benefit: 100 });
     expect(TEXT_BUDGET.count.bento).toEqual({ min: 3, max: 7 });
   });
@@ -193,6 +193,25 @@ describe("Phase-6-Budgets und Satzprüfung", () => {
       "Textbudget überschritten: pageHead.kopfLead hat 111 von 110 Zeichen – Satz kürzen.",
     );
     expect(() => assertTextBudget("pageHead.kopfLead", "x".repeat(110), TEXT_BUDGET.pageHead.kopfLead)).not.toThrow();
+  });
+
+  it("Phase 8 (08-UI-SPEC G1–G7): Antwort-, Panel-, Faktenlisten-, OG- und Brotkrumen-Budgets", () => {
+    expect(TEXT_BUDGET.answer).toBe(300);
+    expect(TEXT_BUDGET.sectionHeader.answerLead).toBe(300);
+    expect(TEXT_BUDGET.faq.answerCentral).toBe(300);
+    expect(TEXT_BUDGET.fitPanel).toEqual({ title: 40, point: 100 });
+    expect(TEXT_BUDGET.factList).toEqual({ term: 32, definition: 200 });
+    expect(TEXT_BUDGET.og).toEqual({ title: 90 });
+    expect(TEXT_BUDGET.crumb).toEqual({ name: 32 });
+    expect(TEXT_BUDGET.count.fitPoints).toEqual({ min: 2, max: 4 });
+    expect(TEXT_BUDGET.count.factList).toEqual({ min: 6, max: 12 });
+    expect(TEXT_BUDGET.count.crumbs).toEqual({ min: 2, max: 4 });
+    // Bestand unverändert
+    expect(TEXT_BUDGET.sectionHeader.lead).toBe(140);
+    expect(TEXT_BUDGET.faq).toMatchObject({ question: 90, firstSentence: 300, answer: 600 });
+    expect(() => assertTextBudget("crumb.name", "x".repeat(33), TEXT_BUDGET.crumb.name)).toThrow(
+      "Textbudget überschritten: crumb.name hat 33 von 32 Zeichen – Satz kürzen.",
+    );
   });
 
   it("zählt Sätze an Satzenden vor Leerraum oder Textende", () => {
