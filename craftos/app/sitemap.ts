@@ -8,18 +8,18 @@ import { categories } from "@/lib/content-types";
 const pageUpdated: Record<string, string> = {
   "": "2026-10-21",
   "/funktionen": "2026-10-22",
-  "/craft-ai": "2026-10-22",
-  "/vergleich": "2026-10-22",
-  "/fakten-ueber-craftos": "2026-10-22",
-  "/preise": "2026-10-22",
+  "/craft-ai": "2026-10-23",
+  "/vergleich": "2026-10-23",
+  "/fakten-ueber-craftos": "2026-10-23",
+  "/preise": "2026-10-23",
   "/app": "2026-10-22",
   "/gewerke": "2026-10-20",
-  "/gobd": "2026-10-22",
-  "/vergleich/plancraft-alternative": "2026-10-22",
-  "/vergleich/craftnote-alternative": "2026-10-22",
-  "/vergleich/hero-alternative": "2026-10-22",
-  "/vergleich/tooltime-alternative": "2026-10-22",
-  "/vergleich/handwerkersoftware-kleine-betriebe": "2026-10-22",
+  "/gobd": "2026-10-23",
+  "/vergleich/plancraft-alternative": "2026-10-23",
+  "/vergleich/craftnote-alternative": "2026-10-23",
+  "/vergleich/hero-alternative": "2026-10-23",
+  "/vergleich/tooltime-alternative": "2026-10-23",
+  "/vergleich/handwerkersoftware-kleine-betriebe": "2026-10-23",
 };
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = [

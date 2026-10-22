@@ -3,7 +3,7 @@ title: "Handwerkersoftware für Einzelunternehmen: wenig Verwaltung, vollständi
 description: "Welche Abläufe ein allein geführter Handwerksbetrieb zuerst digitalisieren sollte und wie er Aufwand und Nutzen sinnvoll prüft."
 category: "softwareauswahl"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["angebote", "rechnungen", "eingangsrechnungen"]

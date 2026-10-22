@@ -2,14 +2,25 @@
 // Umgebung umgeleitet). Prüft Preise, Ankündigungsfreiheit, Styleguide-Schutz und JSON-LD (Phase 5)
 // sowie Startseite, Mega-Menü und /funktionen nach docs/seo/keyword-map.json (Phase 6) und
 // /app und alle Detailseiten (Keyword-Map, JSON-LD inkl. MobileApplication, Kennzeichnung,
-// interne Belegpfade, llms.txt; Phase 7).
+// interne Belegpfade, llms.txt; Phase 7) sowie sitewide Keyword-Map, Brotkrumen, OG-Bilder, FAQPage,
+// /preise, Prompt-Anker und llms.txt der Vergleichsseiten (Phase 8).
 //   node scripts/live-check.mjs                                  # gegen https://craftos.eu
 //   LIVE_ORIGIN=http://localhost:3100 node scripts/live-check.mjs  # gegen lokalen Produktionsserver
 // Ausgabe je Prüfung „OK“ oder „FEHLER“; exitCode 1, sobald eine Prüfung fehlschlägt.
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { findType, headTags, jsonLd, plain } from "./lib/seo-audit-core.mjs";
+import {
+  OG_MAX_BYTES,
+  breadcrumbNav,
+  faqFragenSichtbar,
+  findType,
+  headTags,
+  jsonLd,
+  pfadVonUrl,
+  plain,
+  promptVerstoesse,
+} from "./lib/seo-audit-core.mjs";
 
 const origin = (process.env.LIVE_ORIGIN || "https://craftos.eu").replace(/\/$/, "");
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -66,7 +77,27 @@ await check("/llms.txt nennt Extra-Speicher, Start-Credits, einmalig und alle Pa
   return fehlt.length === 0 || `fehlt: ${fehlt.join(", ")}`;
 });
 
-for (const route of ["/funktionen", "/craft-ai", "/vergleich", "/fakten-ueber-craftos"]) {
+// Phase 8: Routenliste um /preise, /gobd, die vier Alternativen und „kleine Betriebe“ erweitert.
+const PHASE8_ALTERNATIVEN = [
+  "/vergleich/plancraft-alternative",
+  "/vergleich/craftnote-alternative",
+  "/vergleich/hero-alternative",
+  "/vergleich/tooltime-alternative",
+];
+const KLEINE_BETRIEBE = "/vergleich/handwerkersoftware-kleine-betriebe";
+const PHASE8_UMBAU = ["/preise", "/vergleich", "/fakten-ueber-craftos", "/craft-ai", "/gobd"];
+const PHASE8_SEITEN = [...PHASE8_UMBAU, ...PHASE8_ALTERNATIVEN, KLEINE_BETRIEBE];
+
+for (const route of [
+  "/funktionen",
+  "/craft-ai",
+  "/vergleich",
+  "/fakten-ueber-craftos",
+  "/preise",
+  "/gobd",
+  ...PHASE8_ALTERNATIVEN,
+  KLEINE_BETRIEBE,
+]) {
   await check(`${route} ohne Ankündigung`, async () => {
     const r = await get(route);
     if (r.status !== 200) return `HTTP ${r.status}`;
@@ -315,6 +346,172 @@ await check("llms.txt nennt alle Detailseiten und /app", async () => {
   if (r.status !== 200) return `HTTP ${r.status}`;
   if (detailPfade.length === 0) return "keine Detailseiten";
   const fehlt = [...detailPfade, "/app"].filter((pfad) => !r.text.includes(`${pfad})`));
+  return fehlt.length === 0 || `fehlt: ${fehlt.join(", ")}`;
+});
+
+// ---------------------------------------------------------------------------------------------
+// Phase 8: sitewide Metadaten, Brotkrumen und OG-Bilder aller Sitemap-URLs, FAQPage, /preise,
+// Prompt-Anker und llms.txt. Pfade aus /sitemap.xml, Zielwerte aus docs/seo/keyword-map.json,
+// Prompt-Ziele aus docs/seo/ai-prompts-targets.json (keine fest kodierte Seitenzahl).
+// ---------------------------------------------------------------------------------------------
+const promptMapping = JSON.parse(fs.readFileSync(path.join(root, "docs/seo/ai-prompts-targets.json"), "utf8"));
+
+const sitemapPfade = await get("/sitemap.xml")
+  .then((r) => {
+    if (r.status !== 200) throw new Error(`/sitemap.xml HTTP ${r.status}`);
+    const pfade = [...new Set([...r.text.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => pfadVonUrl(m[1].trim())))];
+    if (pfade.length === 0 || pfade.includes(null)) throw new Error("keine oder ungültige <loc>-Einträge");
+    return pfade;
+  })
+  .catch((err) => {
+    report(false, "Sitemap-URLs lesen", err instanceof Error ? err.message : String(err));
+    return [];
+  });
+
+/** Führt `fn(route, seite)` für jede Route aus und sammelt Abweichungen (HTTP-Fehler zählen mit). */
+async function jedeSeite(routen, fn) {
+  if (routen.length === 0) return "keine URLs";
+  const abw = [];
+  for (const route of routen) {
+    const r = await get(route);
+    if (r.status !== 200) {
+      abw.push(`${route} HTTP ${r.status}`);
+      continue;
+    }
+    const problem = await fn(route, r);
+    if (problem) abw.push(`${route}: ${problem}`);
+  }
+  return abw.length === 0 || abw.join("; ");
+}
+
+await check(`Keyword-Map aller Sitemap-URLs (${sitemapPfade.length}): Title, einzige H1 und Description = target`, () =>
+  jedeSeite(sitemapPfade, (route, r) => {
+    const entry = kmEntries.find((e) => e.path === route);
+    if (!entry) return "kein Eintrag in keyword-map.json";
+    const t = entry.target;
+    const ist = headTags(r.text);
+    const abw = [];
+    if (ist.title !== t.title) abw.push(`Title „${ist.title}“`);
+    if (ist.h1s.length !== 1) abw.push(`${ist.h1s.length} H1`);
+    else if (ist.h1s[0] !== t.h1) abw.push(`H1 „${ist.h1s[0]}“`);
+    if (ist.description !== t.description) abw.push(`Description „${ist.description}“`);
+    return abw.join(", ");
+  }),
+);
+
+const crumbSoll = new Map([
+  ...PHASE8_ALTERNATIVEN.map((p) => [p, 3]),
+  [KLEINE_BETRIEBE, 3],
+  ...PHASE8_UMBAU.map((p) => [p, 2]),
+]);
+
+await check("Brotkrumen und BreadcrumbList: genau eine Navigation und ein Schema je URL außer /", () =>
+  jedeSeite(
+    sitemapPfade.filter((p) => p !== "/"),
+    (route, r) => {
+      const nav = breadcrumbNav(r.text, route);
+      if (nav.count !== 1) return `${nav.count} Brotkrumen-Navigationen`;
+      const listen = findType(jsonLd(r.text), "BreadcrumbList");
+      if (listen.length !== 1) return `${listen.length} BreadcrumbList-Blöcke`;
+      const glieder = findType(listen[0], "ListItem").length;
+      if (glieder !== nav.items.length) return `Schema ${glieder} Glieder, sichtbar ${nav.items.length}`;
+      const soll = crumbSoll.get(route);
+      if (soll !== undefined && glieder !== soll) return `${glieder} statt ${soll} Glieder`;
+      return "";
+    },
+  ),
+);
+
+await check("OG je Seite: og:image = <url>/opengraph-image und twitter:image = og:image (außer /)", () =>
+  jedeSeite(
+    sitemapPfade.filter((p) => p !== "/"),
+    (route, r) => {
+      const { ogImage, twitterImage } = headTags(r.text);
+      if (!ogImage) return "og:image fehlt";
+      if (pfadVonUrl(ogImage) !== `${route}/opengraph-image`) return `og:image „${ogImage}“`;
+      if (twitterImage !== ogImage) return `twitter:image „${twitterImage}“ ≠ og:image`;
+      return "";
+    },
+  ),
+);
+
+await check(`OG je Seite: Stichprobe Alternative, Ratgeber, Rechtsseite → 200, image/png, ≤ ${OG_MAX_BYTES / 1024} KB`, async () => {
+  const ratgeber = sitemapPfade.find((p) => p.startsWith("/blog/") && !p.startsWith("/blog/kategorie/"));
+  const stichprobe = [PHASE8_ALTERNATIVEN[0], ratgeber, "/impressum"];
+  if (stichprobe.includes(undefined)) return "kein Ratgeber in der Sitemap";
+  const abw = [];
+  for (const route of stichprobe) {
+    const seite = await get(route);
+    const ogImage = headTags(seite.text).ogImage;
+    if (!ogImage) {
+      abw.push(`${route}: og:image fehlt`);
+      continue;
+    }
+    const u = new URL(ogImage, origin);
+    const res = await fetch(origin + u.pathname + u.search, { signal: AbortSignal.timeout(20000) });
+    const bytes = (await res.arrayBuffer()).byteLength;
+    const typ = res.headers.get("content-type") || "";
+    if (res.status !== 200 || !typ.startsWith("image/png") || bytes > OG_MAX_BYTES) {
+      abw.push(`${u.pathname}: HTTP ${res.status}, ${typ}, ${Math.round(bytes / 1024)} KB`);
+    }
+  }
+  return abw.length === 0 || abw.join("; ");
+});
+
+await check(`FAQPage = sichtbare Fragen auf den ${PHASE8_SEITEN.length} Phase-8-Seiten`, () =>
+  jedeSeite(PHASE8_SEITEN, (route, r) => {
+    const faq = findType(jsonLd(r.text), "FAQPage");
+    if (faq.length !== 1) return `${faq.length} FAQPage-Blöcke`;
+    const { fragen, fehlend } = faqFragenSichtbar(r.text);
+    if (fragen.length === 0) return "FAQPage ohne Fragen";
+    return fehlend.length ? `nicht sichtbar: ${fehlend.join(" | ")}` : "";
+  }),
+);
+
+await check("Kein Product/Review/AggregateRating unter /vergleich", () =>
+  jedeSeite(
+    sitemapPfade.filter((p) => p === "/vergleich" || p.startsWith("/vergleich/")),
+    (route, r) => {
+      const ld = jsonLd(r.text);
+      return ["Product", "Review", "AggregateRating"].filter((t) => findType(ld, t).length > 0).join(", ");
+    },
+  ),
+);
+
+await check("/preise beginnt mit Antwort und Tabelle (#antwort vor der ersten Tabelle, Voll- und App-Lizenz)", async () => {
+  const r = await get("/preise");
+  if (r.status !== 200) return `HTTP ${r.status}`;
+  const antwort = r.text.search(/\sid="antwort"/);
+  const tabelle = r.text.search(/<table\b/i);
+  if (antwort === -1) return "#antwort fehlt";
+  if (tabelle === -1) return "keine Tabelle";
+  if (antwort > tabelle) return "#antwort steht nach der ersten Tabelle";
+  const text = plain(r.text);
+  const fehlt = missing(text, [euro(p.ADMIN_MONTHLY), euro(p.APP_MONTHLY)]);
+  return fehlt.length === 0 || `fehlt: ${fehlt.join(", ")}`;
+});
+
+await check("Prompt-Anker live: jedes Ziel bis Phase 8 mit Anker und Antwort ≤ 300", async () => {
+  const eintraege = (promptMapping.prompts ?? []).filter((e) => e.phase <= 8);
+  if (eintraege.length === 0) return "ai-prompts-targets.json ohne Ziele bis Phase 8";
+  const html = new Map();
+  for (const e of eintraege) {
+    const pfad = e.target.split("#")[0] || "/";
+    if (!html.has(pfad)) {
+      const r = await get(pfad);
+      html.set(pfad, r.status === 200 ? r.text : null);
+    }
+  }
+  // promptVerstoesse meldet fehlende Seiten, Ziele ohne #id, fehlende Anker und Antworten > 300 Zeichen
+  // (Anker-Konvention DESIGN-V2.md § 17, gleiche Logik wie seo-audit --only=prompts).
+  const verstoesse = promptVerstoesse(eintraege, (pfad) => html.get(pfad));
+  return verstoesse.length === 0 || verstoesse.map((v) => v.problem).join("; ");
+});
+
+await check("llms.txt nennt die neuen Seiten (vier Alternativen und kleine Betriebe)", async () => {
+  const r = await get("/llms.txt");
+  if (r.status !== 200) return `HTTP ${r.status}`;
+  const fehlt = [...PHASE8_ALTERNATIVEN, KLEINE_BETRIEBE].filter((pfad) => !r.text.includes(`${pfad})`));
   return fehlt.length === 0 || `fehlt: ${fehlt.join(", ")}`;
 });
 

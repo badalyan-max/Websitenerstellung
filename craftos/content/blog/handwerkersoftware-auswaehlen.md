@@ -3,7 +3,7 @@ title: "Handwerkersoftware auswählen: mit einem echten Auftrag statt einer Funk
 description: "Prüfen Sie Handwerkersoftware anhand eines Musterauftrags, konkreter Rollen und nachvollziehbarer Übergaben zwischen Büro und Baustelle."
 category: "softwareauswahl"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["projektverwaltung", "angebote", "zeiterfassung"]
