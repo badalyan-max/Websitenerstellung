@@ -3,7 +3,7 @@
 Antwortsprache: Deutsch.
 
 ## Ablauf
-- Haupt-Arbeitsbaum `C:/Projekte/Websitenerstellung` (Branch main), kein Worktree, keine parallelen Agenten.
+- Haupt-Arbeitsbaum `C:/Projekte/Websitenerstellung` (Branch main), sofern der Auftrag keinen Worktree nennt. Nennt er einen, gilt der Abschnitt „Parallelbetrieb“ (Vorrang).
 - Workflow: `$HOME/.claude/gsd-core/workflows/execute-plan.md` (plus `templates/summary.md`, `references/checkpoints.md`, `references/tdd.md`, `references/executor-examples.md`).
 - Atomare Commits mit normalen Hooks, nie `--no-verify`. Nicht pushen, außer der Plan ist ausdrücklich der Rollout-Plan.
 - Reihenfolge: Tasks (TDD rot → grün, wo vorgesehen), SUMMARY.md, STATE/ROADMAP aktualisieren (gsd-tools; wenn Befehle scheitern, die Felder von Hand korrigieren), committen.
