@@ -34,7 +34,10 @@ export const decode = (s) =>
     .replace(/&gt;/g, ">")
     .replace(/&amp;/g, "&");
 
-export const plain = (html) => decode(html.replace(/<[^>]*>/g, " ")).replace(/\s+/g, " ").trim();
+/** Inline-Elemente trennen keine Wörter (wie im Browser: „<span>HERO-Software</span>-Alternative“), andere Tags schon. */
+const INLINE_TAG = /<\/?(?:span|a|strong|em|b|i|mark|abbr|code|small|sub|sup|wbr)\b[^>]*>/gi;
+export const plain = (html) =>
+  decode(html.replace(INLINE_TAG, "").replace(/<[^>]*>/g, " ")).replace(/\s+/g, " ").trim();
 
 function attrs(tag) {
   const out = {};
