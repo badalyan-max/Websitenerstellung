@@ -210,7 +210,7 @@ Plans:
 
 **Wave 10** *(blocked on Wave 9 completion)*
 
-- [ ] 08-10-PLAN.md — /vergleich als v2-Hub mit Marktübersicht und Pflichthinweis, Logos und lib/comparison.ts entfernt, Schutztests synchron
+- [x] 08-10-PLAN.md — /vergleich als v2-Hub mit Marktübersicht und Pflichthinweis, Logos und lib/comparison.ts entfernt, Schutztests synchron
 
 **Wave 11** *(blocked on Wave 10 completion)*
 
@@ -297,6 +297,6 @@ Plans:
 | 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
 | 6. Startseite, Navigation und Funktionsübersicht | 6/6 | Complete    | 2026-10-21 |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 9/9 | Complete    | 2026-10-22 |
-| 8. SEO und KI-Sichtbarkeit | 5/14 | In Progress|  |
+| 8. SEO und KI-Sichtbarkeit | 11/14 | In Progress|  |
 | 9. Gewerke und Wissensinhalte | 0/13 | Not started | - |
 | 10. Abschlussaudit | 0/TBD | Not started | - |

@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-stopped_at: Completed 08-05-PLAN.md
-last_updated: "2026-10-22T17:42:48.971Z"
-last_activity: 2026-10-22 – 08-09 HERO/ToolTime-Alternativen + Inhaberregel gemergt; als Nächstes 08-10 (Vergleichshub)
+stopped_at: Completed 08-10-PLAN.md
+last_updated: "2026-10-22T19:52:33.621Z"
+last_activity: "2026-10-22 – 08-10 /vergleich als v2-Hub (Marktübersicht 5 Anbieter ohne highlight, Pflichthinweis wörtlich, 4 Alternativen verlinkt), Logos und lib/comparison.ts gelöscht; als Nächstes 08-11 (kleine Betriebe)"
 progress:
   total_phases: 6
   completed_phases: 3
-  total_plans: 37
-  completed_plans: 33
-  percent: 89
+  total_plans: 50
+  completed_plans: 34
+  percent: 68
 ---
 
 # State
@@ -30,14 +30,14 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 8 (SEO und KI-Sichtbarkeit)
-Plan: 6 of 14 (08-01 bis 08-05 abgeschlossen)
+Plan: 11 of 14 (08-01 bis 08-10 und 08-12 abgeschlossen; offen 08-11, 08-13, 08-14)
 Status: Ready to execute
-Last activity: 2026-10-22 – 08-05 OG-Grafik je Seite (pageOg-Vorlage, 24 Bilddateien, 131 statische OG-Bilder = Sitemap-URLs, max. 57,9 KB, twitter:image = og:image, Audit og 0 Verstöße)
+Last activity: 2026-10-22 – 08-10 /vergleich als v2-Hub (Marktübersicht 5 Anbieter ohne highlight, Pflichthinweis wörtlich, 4 Alternativen verlinkt), Logos und lib/comparison.ts gelöscht; als Nächstes 08-11 (kleine Betriebe)
 
-Progress: [████████░░] 76% (28/37 Pläne des Milestones; Phase 8: 5/14)
+Progress: [███████░░░] 68% (34/50 Pläne des Milestones inkl. geplanter Phase 9; Phase 8: 11/14)
 
-Last session: 2026-10-22T17:42:48.957Z
-Stopped at: Completed 08-05-PLAN.md
+Last session: 2026-10-22T19:52:33.190Z
+Stopped at: Completed 08-10-PLAN.md
 Resume file: None
 
 ## Accumulated Context
@@ -112,6 +112,9 @@ Resume file: None
 - [Phase 08]: 08-04: H1-Regel D-17 wörtlich – bisher gerenderte H1 bleibt, wenn sie das Kopfwort enthält; sonst Kopfwort vorangestellt oder Synonym ersetzt (62 H1, Tabelle KEYWORD-MAP.md § 6)
 - [Phase 08]: 08-04: Kategorien einheitlich „Ratgeber: …“/„Hilfe: …“ (mit Hauptkeyword per Synonym-Ersatz); Gewerke-H1 = Gewerk-Software-Bezeichnung + bisheriger Slogan; Descriptions ohne Superlative (Überclaim-Test)
 - [Phase 08]: 08-05: OG-Bild je Segment über pageOg (Geist Regular, Titel = H1, Kurztitel target.ogTitle nur bei H1 > 90); metaFor setzt standardmäßig {path}/opengraph-image, twitter:image = og:image; 131 Bilder statisch im prerender-manifest
+- [Phase 08]: 08-10: /vergleich ist v2-Hub; Einzelvergleiche md·sm·sm·wide (4 × md nicht erlaubt), 08-11 ergänzt wide zu md·sm·sm·wide·wide
+- [Phase 08]: 08-10: baueMarktuebersicht (lib/seiten/vergleich.ts) ist der gemeinsame Helfer für Marktübersichten – Beleg je Wettbewerberzelle, Pflichthinweis/Disclaimer wörtlich, wirft bei verneinter CraftOS-Zelle
+- [Phase 08]: 08-10: Logos, ProviderLogo, Comparison.module.css und lib/comparison.ts gelöscht; announcements.test prüft nach Inhabervorgabe, dass KI-Telefonie auf keiner Vergleichsseite als CraftOS-Zeile erscheint
 
 ### Pending Todos
 
@@ -153,3 +156,4 @@ None yet.
 | Phase 08 P03 | 33min | 2 tasks | 18 files |
 | Phase 08 P04 | 33min | 3 tasks | 29 files |
 | Phase 08 P05 | 31min | 2 tasks | 36 files |
+| Phase 08 P10 | 33min | 2 tasks | 19 files |
