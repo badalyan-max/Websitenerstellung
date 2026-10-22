@@ -4,8 +4,11 @@
  * `baueAlternative(slug)` setzt CraftOS-Werte aus lib/site.ts (`tarife`, `vertrag`, `site.trialDays`; Preise per
  * `euro`, Monatswerte per `monatAusJahr`) und Wettbewerberwerte aus lib/wettbewerber per Vorlage zusammen und prüft:
  * Zellen ≤ 24, Beschriftungen ≤ 48, ≤ 12 Zeilen, Quelle je Zeile und Quellenliste ⊇ Zellenquellen, Pflichthinweis
- * und Rechenweg-Note wörtlich, UWG-Wortliste über alle Texte, ≥ 2 belegte Stärken, ≥ 1 Zeile „Wettbewerber ✓ /
- * CraftOS –“, Antworten ≤ 300. Ein Verstoß ist ein Build-/Testfehler. Gemeinsame Texte stehen nur hier.
+ * und Rechenweg-Note wörtlich, UWG-Wortliste über alle Texte, ≥ 2 belegte Stärken, Antworten ≤ 300 und die
+ * Inhabervorgabe vom 22.10.2026 („Nur, was unterstützt wird, nicht, was nicht unterstützt wird“; geht U6 vor):
+ * keine CraftOS-Zelle verneint, keine Nein-FAQ zu einer CraftOS-Funktion, kein Satz „CraftOS bietet kein …“.
+ * Fairness entsteht über die belegten Stärken im Panel „Wann {Name} passt“. Ein Verstoß ist ein Build-/Testfehler.
+ * Gemeinsame Texte stehen nur hier.
  * Tests: tests/vergleich-seiten.test.ts; Literalverbot: tests/pricing-parity.test.ts.
  */
 import "server-only";
@@ -16,6 +19,7 @@ import { zielwerte } from "@/lib/seo-meta";
 import { annualSavingPercent, site, tarife, vertrag } from "@/lib/site";
 import {
   alterWarnung,
+  CRAFTOS_OHNE,
   craftnote,
   craftosRechenbeispiel,
   monatAusJahr,
@@ -63,8 +67,8 @@ function craftosWerte(): CraftosWerte {
 
 /**
  * CraftOS-Zellen je Kriterium (Belege: lib/funktionen.ts e-rechnung, buchhaltung, gaeb, zeiterfassung, plantafel,
- * lager; lib/product-register.ts notLive für KI-Telefonie; Zeiterfassung ohne Bewegungsverläufe). `false` = neutrale
- * „Nein“-Zelle (U9). Nicht aufgeführte Kriterien haben keine belegte CraftOS-Angabe und dürfen nicht verwendet werden.
+ * lager). Nur Kriterien, die CraftOS hat (Inhaber 22.10.2026); Kriterien aus `CRAFTOS_OHNE` und nicht aufgeführte
+ * Kriterien dürfen nicht als Zeile verwendet werden.
  */
 const CRAFTOS_KRITERIEN: Partial<Record<KriteriumId, Cell>> = {
   mobileApp: true,
@@ -74,9 +78,16 @@ const CRAFTOS_KRITERIEN: Partial<Record<KriteriumId, Cell>> = {
   gaeb: "Import X83, Export X84",
   zeiterfassung: true,
   lager: true,
-  kiTelefon: false,
-  fahrzeugortung: false,
 };
+
+/** Inhaber 22.10.2026: Kennzeichnung der Fehlermeldungen (Abweichung von U6, DESIGN-V2.md § 17.6). */
+const NUR_UNTERSTUETZT = "Inhaber 22.10.2026: nur, was CraftOS unterstützt";
+/** CraftOS-Zelle verneint: „Nein“, Strich, „nicht …“, „nicht verfügbar“. */
+const VERNEINTE_ZELLE = /^\s*(nein|[-–—]|nicht\b)|nicht verfügbar/i;
+/** FAQ-Frage nach einer Funktion („Kann ich mit CraftOS …?“). */
+const FUNKTIONSFRAGE = /^(Kann|Hat|Bietet|Unterstützt|Gibt es|Lässt sich)\b/;
+/** Satz, dass CraftOS etwas nicht kann oder nicht bietet. */
+const NEGATIVSATZ = /nicht verfügbar|nicht unterstützt|CraftOS (bietet|hat|kann|unterstützt) (kein|nicht)|ohne Bewegungsverläufe/i;
 
 /** Panel „Wann CraftOS passt“ (UI-SPEC § 3.6 „Gemeinsam“). */
 const CRAFTOS_PUNKTE: Record<CraftosPunkt, string> = {
@@ -119,6 +130,8 @@ function kontext(w: Wettbewerber): Kontext {
     testphase: () => zeile("Testphase", `${site.trialDays} Tage`, `${w.testphaseTage.wert} Tage`, w.testphaseTage),
     laufzeit: () => zeile("Kürzeste Laufzeit", "1 Monat", w.laufzeit.wert, w.laufzeit),
     kriterium: (id, label, zelle) => {
+      if (CRAFTOS_OHNE.includes(id))
+        throw new Error(`Alternative ${w.slug}: Kriterium ${id} bietet CraftOS nicht – keine Vergleichszeile (${NUR_UNTERSTUETZT}); Stärke im Panel „Wann ${w.name} passt“ nennen.`);
       const fakt = w.kriterien[id];
       if (!fakt) throw new Error(`Alternative ${w.slug}: Kriterium ${id} ohne belegte Angabe – Zeile weglassen (U1).`);
       const craftos = CRAFTOS_KRITERIEN[id];
@@ -181,8 +194,10 @@ export function alternativeAusModul(w: Wettbewerber, seite: Seitenmodul, path: s
       if (!bekannteQuellen.some((b) => b.url === q.url))
         throw fehler(w, `Zeile „${r.label}“: Quelle ${q.url} steht nicht im Datenmodul (U1).`);
   }
-  if (!t.rows.some((r) => r.craftos === false && r.wettbewerber !== false))
-    throw fehler(w, `keine Zeile, in der ${name} etwas bietet, das CraftOS nicht anbietet – Fairnesszeile ergänzen (U6).`);
+  // Inhaber 22.10.2026 (geht U6 vor): nur Zeilen, in denen CraftOS die Funktion hat.
+  for (const r of t.rows)
+    if (r.craftos === false || (typeof r.craftos === "string" && VERNEINTE_ZELLE.test(r.craftos)))
+      throw fehler(w, `Zeile „${r.label}“ verneint CraftOS – Zeile weglassen (${NUR_UNTERSTUETZT}).`);
   const zellQuellen = new Set(t.rows.flatMap((r) => r.quellen.map((q) => q.url)));
   for (const f of t.kosten.facts) zellQuellen.add(f.fakt.quelle.url);
   const sources = bekannteQuellen.filter((q) => zellQuellen.has(q.url));
@@ -259,12 +274,18 @@ export function alternativeAusModul(w: Wettbewerber, seite: Seitenmodul, path: s
   pruefeAntwort(w, "Kosten-Antwort", inhalt.kosten.answer);
   pruefeAntwort(w, "Für-wen-Antwort", inhalt.fuerWen.answer);
   pruefeAntwort(w, "Umstieg-Antwort", inhalt.umstieg.answer);
-  for (const item of inhalt.faq.items) pruefeAntwort(w, `FAQ „${item.q}“`, item.a);
+  for (const item of inhalt.faq.items) {
+    pruefeAntwort(w, `FAQ „${item.q}“`, item.a);
+    if (FUNKTIONSFRAGE.test(item.q) && item.q.includes("CraftOS") && /^Nein\b/.test(item.a))
+      throw fehler(w, `FAQ „${item.q}“ verneint eine CraftOS-Funktion – Frage weglassen (${NUR_UNTERSTUETZT}).`);
+  }
   if (!inhalt.kopf.h1.includes(inhalt.kopf.keyword))
     throw fehler(w, `Kopfwort „${inhalt.kopf.keyword}“ steht nicht in der H1 „${inhalt.kopf.h1}“.`);
 
-  // UWG-Wortliste über alle Seitentexte (U7).
+  // UWG-Wortliste (U7) und Negativaussagen über CraftOS (Inhaber 22.10.2026) über alle Seitentexte.
   for (const text of texteVon(inhalt)) {
+    const negativ = NEGATIVSATZ.exec(text)?.[0];
+    if (negativ) throw fehler(w, `Text enthält „${negativ}“ – nur nennen, was CraftOS unterstützt (${NUR_UNTERSTUETZT}).`);
     try {
       pruefeText(text);
     } catch (e) {

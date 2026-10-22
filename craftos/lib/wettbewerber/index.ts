@@ -66,9 +66,10 @@ const SCHREIBWEISE: Record<WettbewerberSlug, WettbewerberName> = {
 };
 
 /**
- * Kriterien, die CraftOS nicht anbietet (U6-Fairnesszeile): KI-Telefonie ist nicht live (lib/product-register.ts
- * `notLive`), Zeiterfassung speichert nur Standortpunkte ohne Bewegungsverläufe
- * (lib/funktionen.ts `zeiterfassung`).
+ * Kriterien, die CraftOS nicht anbietet: KI-Telefonie ist nicht live (lib/product-register.ts `notLive`),
+ * Zeiterfassung speichert nur Standortpunkte (lib/funktionen.ts `zeiterfassung`). Inhaber 22.10.2026 („Nur, was
+ * unterstützt wird“, geht U6 vor): Diese Kriterien erscheinen nie als Vergleichszeile (der Builder in
+ * lib/seiten/alternativen wirft); im Datenmodul belegen sie nur Stärken des Wettbewerbers.
  */
 export const CRAFTOS_OHNE: readonly KriteriumId[] = ["kiTelefon", "fahrzeugortung"];
 
@@ -220,10 +221,6 @@ export function pruefeWettbewerber(w: Wettbewerber, heute: Date = new Date()): v
     throw new Error(`Wettbewerber ${w.slug}: staerken hat ${w.staerken.length} Einträge – mindestens 2 belegte Stärken erforderlich (U6).`);
   const doppelteStaerke = ersteDoppelung(w.staerken.map((s) => s.wert));
   if (doppelteStaerke) throw new Error(`Wettbewerber ${w.slug}: Stärke ‚${doppelteStaerke}‘ doppelt.`);
-  if (!CRAFTOS_OHNE.some((k) => Boolean(w.kriterien[k]?.wert)))
-    throw new Error(
-      `Wettbewerber ${w.slug}: kein belegtes Kriterium, das CraftOS nicht anbietet (${CRAFTOS_OHNE.join(", ")}) – Fairnesszeile ergänzen (U6).`,
-    );
 
   if (w.slug === "hero" && heroVariante(w) === "B") {
     const preise = [...w.preise.wert, ...Object.values(w.zusatzPreise ?? {}).map((f) => f.wert)];

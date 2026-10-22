@@ -3,7 +3,8 @@
  * Nur Texte und Auswahl der Fakten; alle Zahlen per Vorlage aus dem Kontext (CraftOS: lib/site.ts,
  * Craftnote: lib/wettbewerber/craftnote.ts). Rechenbeispiel = 1 Büro Plus + 4 Baustelle bei jährlicher Abrechnung,
  * einmal mit dem genannten Preis und einmal mit dem Statt-Preis im Wortlaut der Preisseite (U3).
- * Prüfung: lib/seiten/alternativen/index.ts.
+ * Tabelle und FAQ nur mit Funktionen, die CraftOS hat (Inhaber 22.10.2026); die Fahrzeugortung nennt das Panel
+ * „Wann Craftnote passt“. Prüfung: lib/seiten/alternativen/index.ts.
  */
 import { monatAusJahr } from "@/lib/wettbewerber";
 import type { Preis } from "@/lib/wettbewerber/types";
@@ -45,7 +46,6 @@ export const craftnoteSeite: Seitenmodul = (k) => {
       k.kriterium("eRechnung", "E-Rechnung", `„${w.kriterien.eRechnung!.wert}“`),
       k.kriterium("datev", "DATEV-Export"),
       k.kriterium("zeiterfassung", "Zeiterfassung"),
-      k.kriterium("fahrzeugortung", "Fahrzeugortung per GPS"),
     ],
     kosten: {
       answer: `Für eine Person im Büro und vier auf der Baustelle zahlen Sie im Jahresabo ${c.beispielJahrJeMonat} netto im Monat bei CraftOS und ${mit} bei Craftnote mit ${bp} für Büro Plus, mit ${bpStatt} gerechnet ${mitStatt}; die Pakete unterscheiden sich im Funktionsumfang.`,
@@ -74,10 +74,6 @@ export const craftnoteSeite: Seitenmodul = (k) => {
       {
         q: "Wie lange kann ich Craftnote und CraftOS kostenlos testen?",
         a: `CraftOS testen Sie ${c.trialDays} Tage ohne Zahlungsdaten. Craftnote nennt ${w.testphaseTage.wert} Tage mit dem Funktionsumfang von Büro Plus, ohne hinterlegte Zahlungsmethode.`,
-      },
-      {
-        q: "Kann ich mit CraftOS Fahrzeuge orten?",
-        a: "Nein. CraftOS speichert nur beim Start und Stopp der Zeiterfassung und bei Unterschriften je einen Standortpunkt, ohne Bewegungsverläufe.",
       },
       {
         q: "Brauche ich bei CraftOS für jede Person eine Voll-Lizenz?",
