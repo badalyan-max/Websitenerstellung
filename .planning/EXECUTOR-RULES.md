@@ -13,6 +13,7 @@ Antwortsprache: Deutsch.
 ## Prozesse und schwere Läufe
 - Koordinationsstatus vor schweren Läufen lesen: `node "$CRAFTOS_WORKSPACE/coordination/client/cli.mjs" status` (für die Website gibt es kein Rezept → lokal, einzeln).
 - Vor Serverstart prüfen, dass Port 3100 frei ist (belegt → abbrechen und melden, fremde Prozesse nie beenden). Start z. B. `node node_modules/next/dist/bin/next start -p 3100 & SRV=$!`, nach der Warteschleife `kill -0 $SRV`, am Ende `kill $SRV`.
+- Achtung (08-01): `kill $SRV` kann nur eine Hilfs-Shell beenden. Nach dem Stopp prüfen, dass Port 3100 frei ist; lauscht dort noch der eigene `next start` (PID aus netstat, Startzeit/Kommandozeile geprüft), genau diese PID beenden.
 - Niemals Prozesse per Name/Image beenden (kein `taskkill /IM`, kein `pkill`). Nichts im Hintergrund zurücklassen.
 - Texte mit Backticks oder `$` nie in Shell-Strings mit doppelten Anführungszeichen schreiben; Write/Edit oder Skript mit Datei-Eingabe verwenden. Ersetzungen mit `split/join` statt Regex-Ersetzungsstrings mit `$`.
 
