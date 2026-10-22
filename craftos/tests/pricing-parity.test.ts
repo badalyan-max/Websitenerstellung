@@ -117,6 +117,8 @@ describe("Preise entsprechen origin/release der Web-App", () => {
       // 08-08: Alternativen-Vorlage und Builder – CraftOS-Preise nur aus tarife, Wettbewerberpreise nur per Vorlage.
       "lib/seiten/alternativen/index.ts",
       "components/vergleich/AlternativePage.tsx",
+      // 08-10: Vergleichs-Hub – CraftOS-Werte nur aus site.ts, Wettbewerberwerte nur per Vorlage aus lib/wettbewerber.
+      "lib/seiten/vergleich.ts",
     ];
     const preis = /29[,.]95|9[,.]95|299[,.]50|99[,.]50|24[,.]96|8[,.]29|0[,.]99|9[,.]90/;
     const funde: string[] = [];

@@ -787,3 +787,217 @@ describe("Routen und OG-Dateien", () => {
     expect(fs.existsSync(path.join(ROOT, "app/vergleich/tooltime-alternative/opengraph-image.tsx"))).toBe(true);
   });
 });
+
+// ---------------------------------------------------------------------------
+// 08-10: Vergleichs-Hub /vergleich (08-UI-SPEC § 5.1, § 3.2, § 3.3, C5; D-02, D-12; Inhaber 22.10.2026)
+// ---------------------------------------------------------------------------
+
+const ALTERNATIVEN_PFADE = [
+  "/vergleich/plancraft-alternative",
+  "/vergleich/craftnote-alternative",
+  "/vergleich/hero-alternative",
+  "/vergleich/tooltime-alternative",
+];
+const juengsterStand = () => germanDate([plancraft, craftnote, hero, tooltime].map(standVon).reduce((a, b) => (b > a ? b : a)));
+
+describe("/vergleich Inhalte", () => {
+  const laden = () => import("@/lib/seiten/vergleich");
+
+  it("Kopf: Antwort wörtlich laut UI-SPEC § 5.1 (≤ 300, ≤ 2 Sätze), Stand-Zeile und Sekundärlink", async () => {
+    const { vergleich } = await laden();
+    expect(vergleich.kopf.eyebrow).toBe("Vergleich");
+    expect(vergleich.kopf.kopfwort).toBe("Handwerkersoftware");
+    expect(vergleich.kopf.answer).toBe(
+      "Handwerkersoftware unterscheidet sich vor allem in Abrechnung, Laufzeit und Plantafel: CraftOS rechnet pro Person ab und ist monatlich kündbar, plancraft und ToolTime arbeiten mit Paketen, Craftnote mit Paketen pro Nutzer und HERO mit Plänen und Lizenzen.",
+    );
+    expect(charCount(vergleich.kopf.answer)).toBeLessThanOrEqual(300);
+    expect(vergleich.kopf.stand).toBe(`Anbieterangaben Stand ${juengsterStand()}, Quellen unter der Tabelle`);
+    expect(vergleich.kopf.secondary).toEqual({ label: "Zur Übersicht", href: "#ueberblick" });
+  });
+
+  it("Marktübersicht: fünf Anbieter in der Folge CraftOS, dann alphabetisch, vier Spalten, ohne Hervorhebung", async () => {
+    const { vergleich } = await laden();
+    const t = vergleich.ueberblick.tabelle;
+    expect(t.rows.map((r) => r.label)).toEqual(["CraftOS", "Craftnote", "HERO", "plancraft", "ToolTime"]);
+    expect(t.columns.map((c) => c.label)).toEqual(["Abrechnung", "Kürzeste Laufzeit", "Testphase", "Plantafel"]);
+    expect(t.columns.some((c) => c.highlight)).toBe(false);
+    expect(t.rowHeader).toBe("Anbieter");
+    for (const r of t.rows)
+      for (const zelle of Object.values(r.cells))
+        if (typeof zelle === "string") expect(charCount(zelle), `${r.label}: ${zelle}`).toBeLessThanOrEqual(24);
+    const zeile = (label: string) => t.rows.find((r) => r.label === label)!.cells;
+    expect(zeile("CraftOS")).toEqual({
+      abrechnung: `pro Person, ${tarife.length} Lizenzen`,
+      laufzeit: "1 Monat",
+      testphase: `${site.trialDays} Tage`,
+      plantafel: "In Voll-Lizenz",
+    });
+    expect(zeile("Craftnote")).toEqual({
+      abrechnung: `pro Nutzer, ${craftnote.preise.wert.length} Pakete`,
+      laufzeit: craftnote.laufzeit.wert,
+      testphase: `${craftnote.testphaseTage.wert} Tage`,
+      plantafel: "Ja, ohne Paketangabe",
+    });
+    expect(zeile("HERO")).toEqual({
+      abrechnung: "Plan plus Lizenzen",
+      laufzeit: `${hero.laufzeit.wert} laut AGB`,
+      testphase: `${hero.testphaseTage.wert} Tage`,
+      plantafel: hero.kriterien.plantafel!.wert,
+    });
+    expect(zeile("plancraft")).toEqual({
+      abrechnung: "Paket plus Zugänge",
+      laufzeit: plancraft.laufzeit.wert,
+      testphase: `${plancraft.testphaseTage.wert} Tage`,
+      plantafel: plancraft.kriterien.plantafel!.wert,
+    });
+    expect(zeile("ToolTime")).toEqual({
+      abrechnung: "Paket nach Teamgröße",
+      laufzeit: tooltime.laufzeit.wert,
+      testphase: `${tooltime.testphaseTage.wert} Tage`,
+      plantafel: "Ja, ohne Paketangabe",
+    });
+  });
+
+  it("jede Wettbewerberzelle stammt aus einem Modul; jede verwendete Quelle genau einmal in sources", async () => {
+    const { vergleich } = await laden();
+    const t = vergleich.ueberblick.tabelle;
+    const module = [craftnote, hero, plancraft, tooltime];
+    const urls = t.sources.map((s) => s.url);
+    expect(new Set(urls).size).toBe(urls.length);
+    for (const z of t.zeilen.filter((z) => z.slug !== "craftos")) {
+      const w = module.find((m) => m.slug === z.slug)!;
+      expect(Object.keys(z.belege).sort(), z.anbieter).toEqual(["abrechnung", "laufzeit", "plantafel", "testphase"]);
+      for (const beleg of Object.values(z.belege)) {
+        expect(beleg.quelle.url.startsWith("https://"), `${z.anbieter}: ${beleg.quelle.url}`).toBe(true);
+        expect(new URL(beleg.quelle.url).hostname.endsWith(w.domain)).toBe(true);
+        const eintrag = t.sources.find((s) => s.url === beleg.quelle.url);
+        expect(eintrag, `${z.anbieter}: Quelle ${beleg.quelle.url} fehlt in sources`).toBeDefined();
+        expect(eintrag!.anbieter).toBe(w.name);
+        expect(eintrag!.abgerufenAm >= beleg.abgerufenAm).toBe(true);
+      }
+    }
+    const benutzt = new Set(t.zeilen.flatMap((z) => Object.values(z.belege).map((b) => b.quelle.url)));
+    expect(new Set(urls)).toEqual(benutzt);
+  });
+
+  it("Pflichthinweis und Disclaimer wörtlich (UI-SPEC § 3.2)", async () => {
+    const { vergleich } = await laden();
+    const t = vergleich.ueberblick.tabelle;
+    expect(t.note.startsWith(`Angaben ohne Gewähr, Stand ${juengsterStand()}, `)).toBe(true);
+    expect(t.note).toBe(
+      `Angaben ohne Gewähr, Stand ${juengsterStand()}, Quellen unter der Tabelle. Alle Beträge netto zzgl. USt.; CraftOS-Preise laut Preisliste, Stand ${germanDate(site.checkedAt)}.`,
+    );
+    expect(t.disclaimer).toBe("Die Nennung der Anbieter dient der Zuordnung; es besteht keine Geschäftsbeziehung.");
+  });
+
+  it("Einzelvergleiche: genau vier Kacheln auf die Alternativen, erlaubte Anordnung, kein Link auf kleine Betriebe", async () => {
+    const { vergleich } = await laden();
+    const { ERLAUBTE_ANORDNUNGEN } = await import("@/lib/funktionsdetails");
+    const kacheln = vergleich.einzelvergleiche.kacheln;
+    expect(kacheln.map((k) => k.href)).toEqual(ALTERNATIVEN_PFADE);
+    expect(ERLAUBTE_ANORDNUNGEN).toContain(kacheln.map((k) => k.size).join("·"));
+    expect(kacheln.map((k) => k.title)).toEqual([
+      "plancraft-Alternative",
+      "Craftnote-Alternative",
+      "HERO-Alternative",
+      "ToolTime-Alternative",
+    ]);
+    expect(JSON.stringify(vergleich)).not.toContain("handwerkersoftware-kleine-betriebe");
+  });
+
+  it("So vergleichen: Frage-H2 mit Antwort ≤ 300 und vier Schritte; FAQ mit vier Einträgen ≤ 300", async () => {
+    const { vergleich } = await laden();
+    const s = vergleich.sections["so-vergleichen"];
+    expect(s.title).toBe("Wie vergleichen Sie Handwerkersoftware?");
+    expect(s.lead).toBe(
+      "Notieren Sie Ihre Abläufe, rechnen Sie Preise für Ihre Teamgröße, prüfen Sie Laufzeit und Kündigungsfrist und testen Sie mit einem echten Auftrag.",
+    );
+    expect(vergleich.schritte.map((x) => x.title)).toEqual([
+      "Abläufe notieren",
+      "Teamgröße rechnen",
+      "Laufzeit prüfen",
+      "Mit Auftrag testen",
+    ]);
+    expect(vergleich.faq).toHaveLength(4);
+    for (const f of vergleich.faq) expect(charCount(f.a), f.q).toBeLessThanOrEqual(300);
+    expect(vergleich.faq.map((f) => f.q)).toEqual([
+      "Welche Handwerkersoftware passt zu einem kleinen Betrieb?",
+      "Welche Handwerkersoftware ist monatlich kündbar?",
+      "Welche Handwerkersoftware hat eine Plantafel?",
+      "Woher stammen die Angaben im Vergleich?",
+    ]);
+  });
+
+  it("FAQ „monatlich kündbar“ und „Plantafel“ leiten sich aus den Modulen ab (Fixture ändert die Antwort)", async () => {
+    const { vergleich, baueVergleich } = await laden();
+    const antwort = (v: typeof vergleich, q: string) => v.faq.find((f) => f.q.includes(q))!.a;
+    expect(antwort(vergleich, "monatlich kündbar")).toBe(
+      `Von den fünf verglichenen Anbietern sind CraftOS und plancraft monatlich kündbar; Craftnote und ToolTime nennen ${craftnote.laufzeit.wert} Mindestlaufzeit, HERO nennt laut AGB ${hero.laufzeit.wert} Mindestlaufzeit.`,
+    );
+    expect(antwort(vergleich, "Plantafel")).toBe(
+      "Alle fünf Anbieter nennen eine Plantafel: CraftOS in der Voll-Lizenz, HERO in allen Plänen, plancraft im Paket Premium, sonst als Modul; Craftnote und ToolTime ohne Paketangabe.",
+    );
+
+    const tt = structuredClone(tooltime);
+    tt.laufzeit = { ...tt.laufzeit, wert: "1 Monat" };
+    const monatlich = baueVergleich([plancraft, craftnote, hero, tt]);
+    expect(antwort(monatlich, "monatlich kündbar").split(";")[0]).toBe(
+      "Von den fünf verglichenen Anbietern sind CraftOS, plancraft und ToolTime monatlich kündbar",
+    );
+
+    const cn = structuredClone(craftnote);
+    delete cn.kriterien.plantafel;
+    const ohneTafel = baueVergleich([plancraft, cn, hero, tooltime]);
+    expect(antwort(ohneTafel, "Plantafel").startsWith("Vier der fünf Anbieter nennen eine Plantafel:")).toBe(true);
+    expect(antwort(ohneTafel, "Plantafel")).not.toContain("Craftnote");
+    expect(ohneTafel.ueberblick.tabelle.rows.find((r) => r.label === "Craftnote")!.cells.plantafel).toBe("nicht angegeben");
+  });
+
+  it("Inhaber 22.10.2026 und UWG: keine verneinte CraftOS-Zelle, keine Nein-FAQ, kein „beste“, keine Wortliste, keine Ankündigung", async () => {
+    const { vergleich } = await laden();
+    for (const r of vergleich.ueberblick.tabelle.rows.filter((r) => r.label === "CraftOS"))
+      for (const zelle of Object.values(r.cells)) {
+        expect(zelle).not.toBe(false);
+        if (typeof zelle === "string") expect(zelle).not.toMatch(/^\s*(nein|[-–—]|nicht\b)|nicht verfügbar/i);
+      }
+    for (const f of vergleich.faq) expect(f.a, f.q).not.toMatch(/^Nein\b/);
+    const texte: string[] = [];
+    const walk = (v: unknown) => {
+      if (typeof v === "string") texte.push(v);
+      else if (Array.isArray(v)) v.forEach(walk);
+      else if (v && typeof v === "object") Object.values(v).forEach(walk);
+    };
+    walk({ ...vergleich, ueberblick: { ...vergleich.ueberblick, tabelle: { ...vergleich.ueberblick.tabelle, zeilen: [] } } });
+    for (const t of texte) {
+      expect(uwgTreffer(t), t).toBeUndefined();
+      expect(t).not.toMatch(/\bbeste\b|testsieger|Telefon-Agent|MCP-Server|nicht verfügbar|CraftOS (bietet|hat|kann|unterstützt) (kein|nicht)/i);
+      expect(t).not.toMatch(/Telefon|Fahrzeug/);
+    }
+  });
+
+  it("Marktübersicht-Helfer wirft bei verneinter CraftOS-Zelle, Zelle > 24 und unbelegter Wettbewerberzelle", async () => {
+    const { baueMarktuebersicht } = await laden();
+    const spalte = (craftos: string, zelle: string) => ({
+      key: "x",
+      label: "X",
+      craftos,
+      wettbewerber: (w: Wettbewerber) => ({ wert: zelle, beleg: w.laufzeit }),
+    });
+    expect(() => baueMarktuebersicht({ caption: "Test", spalten: [spalte("1 Monat", "12 Monate")] })).not.toThrow();
+    expect(() => baueMarktuebersicht({ caption: "Test", spalten: [spalte("Nein", "12 Monate")] })).toThrow(/Inhaber 22\.10\.2026/);
+    expect(() => baueMarktuebersicht({ caption: "Test", spalten: [spalte("1 Monat", "x".repeat(25))] })).toThrow(/24/);
+    expect(() =>
+      baueMarktuebersicht({
+        caption: "Test",
+        spalten: [{ key: "x", label: "X", craftos: "1 Monat", wettbewerber: () => ({ wert: "frei erfunden" }) }],
+      }),
+    ).toThrow(/Quelle/);
+  });
+
+  it("Inhaltsmodul ohne Preis- und Tagesliterale und ohne Link auf noch nicht vorhandene Seiten", () => {
+    pruefeModulLiterale("lib/seiten/vergleich.ts");
+    const quelle = fs.readFileSync(path.join(ROOT, "lib/seiten/vergleich.ts"), "utf8");
+    expect(quelle).not.toContain("handwerkersoftware-kleine-betriebe");
+    expect(quelle).not.toMatch(/\bbeste\b|testsieger/i);
+  });
+});
