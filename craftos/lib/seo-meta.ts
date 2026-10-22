@@ -43,8 +43,13 @@ export function zielwerte(path: string): Zielwerte {
  * Title, Description, Canonical, Open Graph und Twitter einer Seite aus der Keyword-Map.
  * `imagePath` setzt og:image und twitter:image auf dasselbe Bild (Pitfall 8); Standard bleibt das
  * Bild aus pageMetadata, bis die Seite ein eigenes Segmentbild hat.
+ *
+ * Endet `target.title` auf „ | CraftOS“, hängt das Layout-Template die Marke an (title = Teil ohne Marke).
+ * Fehlt der Zusatz (08-04, Entwurfsregel Hilfe: Markenzusatz entfällt, wenn der Titel sonst > 60 Zeichen
+ * hätte), rendert die Seite `title: { absolute }` – der gerenderte Title ist dann genau `target.title`.
  */
 export function metaFor(path: string, opts?: { imagePath?: string }): Metadata {
   const z = zielwerte(path);
-  return pageMetadata(z.titleOhneMarke, z.description, path, opts?.imagePath);
+  const meta = pageMetadata(z.titleOhneMarke, z.description, path, opts?.imagePath);
+  return z.title.endsWith(MARKE) ? meta : { ...meta, title: { absolute: z.title } };
 }

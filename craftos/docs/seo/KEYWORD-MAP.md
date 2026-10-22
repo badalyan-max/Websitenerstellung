@@ -313,6 +313,8 @@ Weitere geplante Einträge unterhalb der Lückenschwelle, aber als Seite vorgeme
 
 ## 5. Zielwerte für Titel, H1 und Description (Umsetzung Phasen 6–8, D-14)
 
+**Stand 22.10.2026:** Die Tabelle zeigt die Festlegung aus Phase 5. Maßgeblich ist seit Phase 8 allein `docs/seo/keyword-map.json`; die in Phase 8 geänderten H1 und die neu ergänzten Zielwerte stehen in § 6 (Abschnitt „sitewide Zielwerte“ vom 22.10.2026).
+
 Die Zielwerte werden in Phase 5 nur festgelegt, nicht in die Seiten übernommen. Titel enthalten das Hauptkeyword (nach Normalisierung) und sind inklusive Marken-Suffix „ | CraftOS“ aus dem Layout-Template höchstens 60 Zeichen lang; Descriptions haben 120–155 Zeichen. Produktaussagen beschränken sich auf live verfügbare Funktionen; Phasen 6–8 prüfen jede Aussage beim Übernehmen erneut gegen das Produktregister.
 
 | Pfad | Titel | H1 | Description |
@@ -473,3 +475,80 @@ Neuer Eintrag `/vergleich/handwerkersoftware-kleine-betriebe` (Status `geplant`,
 Prompt-Mapping: `docs/seo/ai-prompts-targets.json` ordnet alle 20 Einträge des AI-Trackers (16 ChatGPT, 2 Perplexity, 2 Google AI Overview; Rohdaten `docs/seo/data/2026-10-22-ai-tracker-prompts.json`) einer Zielseite mit Anker und Phase zu; die geplanten Phase-9-Pfade aus § 3 stehen dort als `luecken` (D-11). Anker nach `docs/DESIGN-V2.md` § 17. Absicherung: `tests/ai-prompts.test.ts` (IDs/Texte gegen Rohdaten, Ziele gegen Sitemap und Map) und `node scripts/seo-audit.mjs --only=prompts` (Anker und Antwort ≤ 300 Zeichen im Build).
 
 Ab Phase 8 gelten die Zielwertregeln (Title ≤ 60, Description 120–155, Title/H1/Description vollständig) für jeden Eintrag mit `target`, auch ohne Hauptkeyword (`tests/keyword-map.test.ts`); die Keyword-Prüfung im Titel bleibt auf Einträge mit `primary` beschränkt.
+
+### 22.10.2026 – Phase 8 – sitewide Zielwerte (D-06, D-17, D-20)
+
+**Die Map ist einzige Quelle.** Title, H1 und Description jeder indexierten Seite kommen ab Phase 8 ausschließlich aus `target` in `docs/seo/keyword-map.json`: Seiten rendern `metaFor(pfad)` und `zielwerte(pfad).h1` (`lib/seo-meta.ts`). Die Gewerke-Felder `seoTitle`/`seoDescription`, die Kategorie-Metadaten im Code, die eigenen Metadaten der Rechner, von `/support` und der Rechtsseiten entfallen. Endet `target.title` nicht auf „ | CraftOS“, rendert `metaFor` den Titel als `title: { absolute }` (Entwurfsregel Hilfe: Markenzusatz entfällt, wenn der Titel sonst länger als 60 Zeichen wäre; heute nur `/hilfe/mitarbeiter-einladen-lizenz-zuweisen`).
+
+**Vollständige Zielwerte.** Jeder Eintrag mit Status `bestehend` und jeder geplante Phase-8-Pfad hat `target.title`, `target.h1` und `target.description` (136 Einträge); Phase-9-Einträge bleiben unverändert. Neu ergänzt für die 18 Seiten ohne Zielwerte (Entwurf `docs/entwuerfe/titel-descriptions.md` als Startpunkt, Ist-Werte aus dem Build vom 22.10.2026): `/fakten-ueber-craftos` (Werte laut 08-UI-SPEC § 8), `/support`, `/hilfe`, `/agb`, `/datenschutz`, `/impressum` (Description ohne Paragrafenangabe, bis der Inhaber „§ 5 DDG“ bestätigt; Rechtstexte selbst unverändert), `/blog/kategorie/rechnungen`, `/blog/kategorie/softwareauswahl`, `/hilfe/kategorie/einrichtung`, `/hilfe/kategorie/craft-ai`, `/blog/handwerkersoftware-wechseln`, `/blog/ki-belegscan-pruefen`, `/blog/materialverbrauch-baustelle-zuordnen`, `/hilfe/anmelden-web-mobile`, `/hilfe/berichte-abrechnen`, `/hilfe/ki-entwurf-pruefen-uebernehmen`, `/hilfe/mitarbeiter-einladen-lizenz-zuweisen`, `/hilfe/zeiteintrag-erfassen-korrigieren`. Titel der Ratgeber ohne Hauptkeyword folgen der Entwurfsregel (Teil vor dem Doppelpunkt).
+
+**Weitere geänderte Werte (08-UI-SPEC § 8):** Titel der vier Alternativen-Seiten („plancraft-Alternative: Preise im Vergleich | CraftOS“, „Craftnote-Alternative: Preise im Vergleich | CraftOS“, „HERO Software Alternative im Vergleich | CraftOS“, „ToolTime-Alternative: Preise im Vergleich | CraftOS“), H1 und Description von `/vergleich` (fünf Anbieter mit Quellen). Description von `/blog/handwerkersoftware-auswaehlen` ohne „beste“ (Überclaim-Regel T-08-09; das Hauptkeyword bleibt im Titel und in der H1).
+
+**H1-Regel (D-17).** Seiten mit Hauptkeyword: Enthält die bisher gerenderte H1 das Kopfwort (erstes Wort des Hauptkeywords, normalisiert wie `norm` in `scripts/lib/seo-audit-core.mjs`), ist `target.h1` die bisherige H1 unverändert – frühere Phase-5-Vorschläge für die H1 entfallen damit. Sonst wird das Kopfwort mechanisch-minimal eingefügt (vorangestellt oder Ersatz eines Synonyms), ohne Umschreiben. Seiten ohne Hauptkeyword behalten ihre H1. Ausnahmen: alle 15 Kategorien heißen einheitlich „Ratgeber: …“ bzw. „Hilfe: …“ (löst die doppelte H1 „Rechnungen“, Pitfall 11), und die fünf Umbauseiten `/preise`, `/vergleich`, `/fakten-ueber-craftos`, `/craft-ai`, `/gobd` tragen die H1 aus 08-UI-SPEC §§ 4–5 bereits im Bestandskopf. Alle 62 geänderten H1 (alt = bisher gerendert, Build 22.10.2026):
+
+| Pfad | Alt | Neu | Grund |
+|---|---|---|---|
+| `/gewerke` | Anderes Werkzeug. Derselbe Anspruch. | Branchensoftware fürs Handwerk: Anderes Werkzeug. Derselbe Anspruch. | Kopfwort „Branchensoftware“ vorangestellt |
+| `/craft-ai` | Fragen Sie Ihren Betrieb. Behalten Sie das letzte Wort. | KI im Handwerk: Craft AI beantwortet Fragen zu Ihrem Betrieb | UI-SPEC §§ 4–5/§ 8 (Umbauseite) |
+| `/preise` | Ihr Betrieb wächst. Ihre Software wächst mit. | Preise der Handwerkersoftware CraftOS | UI-SPEC §§ 4–5/§ 8 (Umbauseite) |
+| `/gobd` | Ihre Belege. Ein nachvollziehbarer Verlauf. | GoBD-konforme Software: wie CraftOS Ihre Abläufe unterstützt | UI-SPEC §§ 4–5/§ 8 (Umbauseite) |
+| `/vergleich` | Eine Entscheidung, die zum Betrieb passt. | Handwerkersoftware im Vergleich: fünf Anbieter mit Quellen | UI-SPEC §§ 4–5/§ 8 (Umbauseite) |
+| `/fakten-ueber-craftos` | CraftOS in klaren Fakten. | Fakten über CraftOS | UI-SPEC §§ 4–5/§ 8 (Umbauseite) |
+| `/blog` | Wissen, das im Alltag hilft. | Handwerk-Blog: Wissen, das im Alltag hilft. | Kopfwort „Handwerk“ vorangestellt |
+| `/rechner` | Gute Angebote beginnen mit Ihren Zahlen. | Kalkulationsrechner: Gute Angebote beginnen mit Ihren Zahlen. | Kopfwort „Kalkulationsrechner“ vorangestellt |
+| `/rechner/stundensatz` | Was muss Ihre Arbeitsstunde kosten? | Handwerker-Stundensatz: Was muss Ihre Arbeitsstunde kosten? | Kopfwort „Handwerker“ vorangestellt |
+| `/rechner/angebotskalkulation` | Was bleibt von Ihrem Angebot übrig? | Angebotskalkulation: Was bleibt von Ihrem Angebot übrig? | Kopfwort „Angebotskalkulation“ vorangestellt |
+| `/gewerke/elektriker` | Vom Zählerschrank bis zur Wallbox | Elektriker-Software: vom Zählerschrank bis zur Wallbox | Kopfwort vorangestellt |
+| `/gewerke/shk` | Vom Heizungstausch bis zur Badsanierung | SHK-Software: vom Heizungstausch bis zur Badsanierung | Kopfwort vorangestellt |
+| `/gewerke/maler` | Von der Fläche zum fertigen Raum | Software für Maler: von der Fläche zum fertigen Raum | Kopfwort vorangestellt |
+| `/gewerke/tischler-schreiner` | Von der Werkbank bis zur Montage | Software für Schreiner: von der Werkbank bis zur Montage | Kopfwort vorangestellt |
+| `/gewerke/dachdecker` | Vom Dachaufmaß bis zur Abnahme | Dachdecker-Software: vom Dachaufmaß bis zur Abnahme | Kopfwort vorangestellt |
+| `/gewerke/fliesenleger` | Von der Fläche bis zur Fuge | Fliesenleger-Software: von der Fläche bis zur Fuge | Kopfwort vorangestellt |
+| `/gewerke/zimmerer` | Vom Holzbauplan bis zur Montage | Zimmerer-Software: vom Holzbauplan bis zur Montage | Kopfwort vorangestellt |
+| `/gewerke/galabau` | Von der Erdarbeit bis zur fertigen Anlage | GaLaBau-Software: von der Erdarbeit bis zur fertigen Anlage | Kopfwort vorangestellt |
+| `/gewerke/trockenbau` | Von der Raumaufteilung bis zur Übergabe | Trockenbau-Software: von der Raumaufteilung bis zur Übergabe | Kopfwort vorangestellt |
+| `/gewerke/metallbau` | Von der Fertigung bis zum Einbau | Metallbau-Software: von der Fertigung bis zum Einbau | Kopfwort vorangestellt |
+| `/gewerke/bauunternehmen` | Von der Bauphase bis zur Schlussrechnung | Software für Bauunternehmen: von der Bauphase bis zur Schlussrechnung | Kopfwort vorangestellt |
+| `/gewerke/allrounder` | Vom kleinen Einsatz bis zum größeren Auftrag | Hausmeister-Software: vom kleinen Einsatz bis zum größeren Auftrag | Kopfwort vorangestellt |
+| `/blog/kategorie/rechnungen` | Rechnungen | Ratgeber: Rechnungen | Kategorie-Präfix (löst doppelte H1 „Rechnungen“) |
+| `/blog/kategorie/kalkulation` | Angebote & Kalkulation | Ratgeber: Angebote & Kalkulation | Kategorie-Präfix |
+| `/blog/kategorie/softwareauswahl` | Software auswählen | Ratgeber: Software auswählen | Kategorie-Präfix |
+| `/blog/kategorie/belege` | Belege & Überblick | Ratgeber: Belege & Überblick | Kategorie-Präfix |
+| `/blog/kategorie/projekte` | Projekte & Material | Ratgeber: Projektmanagement & Material | Kategorie-Präfix; Kopfwort „Projektmanagement“ statt „Projekte“ |
+| `/blog/kategorie/team` | Team & Baustelle | Ratgeber: Team & Baustellenkommunikation | Kategorie-Präfix; Kopfwort „Baustellenkommunikation“ statt „Baustelle“ |
+| `/hilfe/kategorie/einrichtung` | Einrichtung | Hilfe: Einrichtung | Kategorie-Präfix |
+| `/hilfe/kategorie/angebote` | Angebote | Hilfe: Angebote | Kategorie-Präfix |
+| `/hilfe/kategorie/rechnungen` | Rechnungen | Hilfe: Rechnungen | Kategorie-Präfix (löst doppelte H1 „Rechnungen“) |
+| `/hilfe/kategorie/belege` | Zahlungen & Belege | Hilfe: Zahlungen & Belege | Kategorie-Präfix |
+| `/hilfe/kategorie/projekte` | Projekte & Planung | Hilfe: Bauprojekte & Planung | Kategorie-Präfix; Kopfwort „Bauprojekte“ statt „Projekte“ |
+| `/hilfe/kategorie/zeiten` | Zeiten & Mobile | Hilfe: Zeiterfassung & Mobile | Kategorie-Präfix; Kopfwort „Zeiterfassung“ statt „Zeiten“ |
+| `/hilfe/kategorie/lager` | Lager | Hilfe: Lagerbestand | Kategorie-Präfix; Kopfwort „Lagerbestand“ statt „Lager“ |
+| `/hilfe/kategorie/baudokumentation` | Baudokumentation | Hilfe: Baustellendokumentation | Kategorie-Präfix; Kopfwort „Baustellendokumentation“ statt „Baudokumentation“ |
+| `/hilfe/kategorie/craft-ai` | Craft AI | Hilfe: Craft AI | Kategorie-Präfix |
+| `/blog/abschlagsrechnung-schlussrechnung` | Abschlags- und Schlussrechnung: Leistungen und Zahlungen sauber auseinanderhalten | Abschlagsrechnung und Schlussrechnung: Leistungen und Zahlungen sauber auseinanderhalten | „Abschlags-“ ausgeschrieben (Kopfwort „Abschlagsrechnung“) |
+| `/blog/baustellen-einsatzplanung` | Baustellen und Ressourcen planen: Kapazität, Abwesenheiten und Übergaben verbinden | Baustellenplanung und Ressourcen: Kapazität, Abwesenheiten und Übergaben verbinden | „Baustellen … planen“ → Kopfwort „Baustellenplanung“ |
+| `/blog/handwerkersoftware-auswaehlen` | Handwerkersoftware auswählen: mit einem echten Auftrag statt einer Funktionsliste | Die beste Handwerkersoftware auswählen: mit einem echten Auftrag statt einer Funktionsliste | Kopfwort „beste“ eingefügt (Auswahl durch den Leser, keine Selbstbewertung) |
+| `/blog/projektbezogene-zeiterfassung` | Projektbezogene Zeiterfassung: aus Stunden brauchbare Auftragsdaten machen | Projektzeiterfassung: aus Stunden brauchbare Auftragsdaten machen | „Projektbezogene Zeiterfassung“ → Kopfwort „Projektzeiterfassung“ |
+| `/blog/tiefenkalkulation-handwerk` | Tiefenkalkulation im Handwerk: Material, Lohn und Marge richtig verbinden | Tiefenkalkulation und Zuschlagskalkulation im Handwerk: Material, Lohn und Marge richtig verbinden | Kopfwort „Zuschlagskalkulation“ eingefügt |
+| `/blog/urlaub-abwesenheiten-einsatzplanung` | Urlaub und Abwesenheiten in der Einsatzplanung berücksichtigen | Urlaubsplanung und Abwesenheiten in der Einsatzplanung berücksichtigen | „Urlaub“ → Kopfwort „Urlaubsplanung“ |
+| `/hilfe/abnahme-dokumentieren` | Eine Abnahme mit Prüfpunkten und Ergebnis dokumentieren | Eine Bauabnahme mit Prüfpunkten und Ergebnis dokumentieren | „Abnahme“ → Kopfwort „Bauabnahme“ |
+| `/hilfe/angebot-in-rechnung-uebernehmen` | Ein Angebot in eine Rechnung übernehmen | Ein Handwerker-Angebot in eine Rechnung übernehmen | Kopfwort „Handwerker“ eingefügt |
+| `/hilfe/angebotspositionen-leistungsvorlagen` | Angebotspositionen und Leistungsvorlagen verwenden | Leistungsverzeichnis: Angebotspositionen und Leistungsvorlagen verwenden | Kopfwort „Leistungsverzeichnis“ vorangestellt |
+| `/hilfe/artikel-stammdaten-anlegen` | Einen Artikel in den Stammdaten anlegen | Einen Artikel in den Artikelstammdaten anlegen | „Stammdaten“ → Kopfwort „Artikelstammdaten“ |
+| `/hilfe/craft-ai-betriebsdaten-fragen` | Craft AI zu Ihren Betriebsdaten befragen | Die KI Craft AI zu Ihren Betriebsdaten befragen | Kopfwort „KI“ eingefügt |
+| `/hilfe/firmenprofil-einrichten` | Firmenprofil und Rechnungsgrundlagen einrichten | Firmenprofil, Briefpapier und Rechnungsgrundlagen einrichten | Kopfwort „Briefpapier“ eingefügt (Thema des Artikels) |
+| `/hilfe/kunden-ansprechpartner-anlegen` | Kunden und Ansprechpartner anlegen | Kundenverwaltung: Kunden und Ansprechpartner anlegen | Kopfwort „Kundenverwaltung“ vorangestellt |
+| `/hilfe/lagerorte-lagerplaetze-einrichten` | Lagerorte und Lagerplätze einrichten | Lagerplatzverwaltung: Lagerorte und Lagerplätze einrichten | Kopfwort „Lagerplatzverwaltung“ vorangestellt |
+| `/hilfe/mangel-erfassen-bearbeiten` | Einen Mangel erfassen und bis zur Prüfung bearbeiten | Mängelliste: einen Mangel erfassen und bis zur Prüfung bearbeiten | Kopfwort „Mängelliste“ vorangestellt |
+| `/hilfe/material-entnehmen-zurueckbuchen` | Material für einen Auftrag entnehmen und zurückbuchen | Materialentnahmeschein: Material für einen Auftrag entnehmen und zurückbuchen | Kopfwort „Materialentnahmeschein“ vorangestellt |
+| `/hilfe/mobilen-timer-bedienen` | Den Timer in der Mobile-App starten und stoppen | Stempeluhr-App: den Timer in der Mobile-App starten und stoppen | Kopfwort „Stempeluhr“ vorangestellt |
+| `/hilfe/plantafel-einsatz-planen` | Einen Einsatz auf der Plantafel planen oder verschieben | Einsatzplanung: einen Einsatz auf der Plantafel planen oder verschieben | Kopfwort „Einsatzplanung“ vorangestellt |
+| `/hilfe/planung-mitarbeiter-ressourcen` | Mitarbeiter, Fahrzeuge und Geräte einem Einsatz zuordnen | Ressourcenplanung: Mitarbeiter, Fahrzeuge und Geräte einem Einsatz zuordnen | Kopfwort „Ressourcenplanung“ vorangestellt |
+| `/hilfe/position-tiefenkalkulieren` | Eine Angebotsposition detailliert kalkulieren | Preise: eine Angebotsposition detailliert kalkulieren | Kopfwort „Preise“ vorangestellt |
+| `/hilfe/projekt-phasen-anlegen` | Ein Projekt mit Phasen anlegen | Ein Projekt mit Bauphasen anlegen | „Phasen“ → Kopfwort „Bauphasen“ |
+| `/hilfe/projektdateien-ordner` | Projektdateien in Ordnern ablegen und wiederfinden | Ordnerstruktur: Projektdateien in Ordnern ablegen und wiederfinden | Kopfwort „Ordnerstruktur“ vorangestellt |
+| `/hilfe/rechnung-stornieren` | Eine fertige Rechnung nachvollziehbar stornieren | Storno: eine fertige Rechnung nachvollziehbar stornieren | Kopfwort „Storno“ vorangestellt |
+| `/hilfe/zahlungen-erfassen` | Eine Zahlung zu einer Rechnung erfassen | Einen Zahlungseingang zu einer Rechnung erfassen | „Zahlung“ → Kopfwort „Zahlungseingang“ |
+| `/hilfe/zeiten-pruefen-exportieren` | Zeiten prüfen und als CSV oder Excel exportieren | Stundenzettel: Zeiten prüfen und als CSV oder Excel exportieren | Kopfwort „Stundenzettel“ vorangestellt |
+
+Absicherung: `tests/keyword-map.test.ts` („Phase 8 – Zielwerte sitewide“: Vollständigkeit, Title ≤ 60, Description 120–155, Eindeutigkeit von Titel, H1 und Description, Kopfwort in Titel und H1, Kategorie-Präfix, UI-SPEC-Werte, keine Superlative in Descriptions), `tests/seo-meta.test.ts` (absolute Titelvariante) und am Build `node scripts/seo-audit.mjs --only=title,description,h1,duplikate,keyword,map`.

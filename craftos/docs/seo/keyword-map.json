@@ -118,7 +118,7 @@
     ],
     "target": {
       "title": "Branchensoftware Handwerk nach Gewerk | CraftOS",
-      "h1": "Branchensoftware fürs Handwerk – passend zu Ihrem Gewerk",
+      "h1": "Branchensoftware fürs Handwerk: Anderes Werkzeug. Derselbe Anspruch.",
       "description": "CraftOS als Branchensoftware fürs Handwerk: passende Abläufe für Elektro, SHK, Maler, Tischler und weitere Gewerke – vom Angebot bis zur Rechnung."
     }
   },
@@ -313,8 +313,8 @@
     ],
     "target": {
       "title": "Handwerkersoftware-Vergleich mit Quellen | CraftOS",
-      "h1": "Handwerkersoftware im Vergleich: CraftOS, Craftnote und plancraft",
-      "description": "Handwerkersoftware-Vergleich mit Quellen: Preise, Mobile-App, E-Rechnung und Funktionen von CraftOS, Craftnote und plancraft nebeneinander geprüft."
+      "h1": "Handwerkersoftware im Vergleich: fünf Anbieter mit Quellen",
+      "description": "Handwerkersoftware-Vergleich mit Quellen: Abrechnung, Laufzeit, Testphase und Plantafel von CraftOS, plancraft, Craftnote, HERO und ToolTime im Überblick."
     }
   },
   {
@@ -323,7 +323,12 @@
     "primary": null,
     "reason": "Alle pageCandidates („craftos“, „craftos software“, „craftos erfahrungen“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
     "secondary": [],
-    "competitors": []
+    "competitors": [],
+    "target": {
+      "title": "Fakten über CraftOS: Funktionen und Lizenzen | CraftOS",
+      "h1": "Fakten über CraftOS",
+      "description": "Überprüfbare Fakten über CraftOS: was die Handwerkersoftware ist, Plattformen, Lizenzen und Preise, Testphase, GoBD-Unterstützung und benannte Grenzen."
+    }
   },
   {
     "path": "/support",
@@ -331,7 +336,12 @@
     "primary": null,
     "reason": "Alle pageCandidates („craftos support“, „craftos kontakt“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
     "secondary": [],
-    "competitors": []
+    "competitors": [],
+    "target": {
+      "title": "Kontakt & Support | CraftOS",
+      "h1": "Wir helfen Ihnen beim nächsten Schritt.",
+      "description": "Kontakt zum CraftOS-Support per E-Mail und Anleitungen im Hilfezentrum, dazu Hinweise, welche Angaben zu Ansicht, Gerät und Fehlermeldung uns helfen."
+    }
   },
   {
     "path": "/blog",
@@ -362,7 +372,7 @@
     ],
     "target": {
       "title": "Handwerk-Blog: Ratgeber für Ihren Betrieb | CraftOS",
-      "h1": "Handwerk-Blog: Ratgeber für Büro und Baustelle",
+      "h1": "Handwerk-Blog: Wissen, das im Alltag hilft.",
       "description": "Der Handwerk-Blog von CraftOS: Ratgeber zu Rechnungen, Kalkulation, Projekten und Teamplanung – mit Beispielen, Quellen und kostenlosen Rechnern."
     }
   },
@@ -372,7 +382,12 @@
     "primary": null,
     "reason": "Alle pageCandidates („craftos hilfe“, „craftos anleitung“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
     "secondary": [],
-    "competitors": []
+    "competitors": [],
+    "target": {
+      "title": "Hilfezentrum für Web-App und Mobile-App | CraftOS",
+      "h1": "Schnell zur passenden Antwort.",
+      "description": "Schrittweise Anleitungen für CraftOS in Web-App und Mobile-App: Einrichtung, Angebote, Rechnungen, Belege, Planung, Zeiten, Lager und Craft AI."
+    }
   },
   {
     "path": "/rechner",
@@ -398,7 +413,7 @@
     "competitors": [],
     "target": {
       "title": "Kalkulationsrechner fürs Handwerk – kostenlos | CraftOS",
-      "h1": "Kostenlose Kalkulationsrechner fürs Handwerk",
+      "h1": "Kalkulationsrechner: Gute Angebote beginnen mit Ihren Zahlen.",
       "description": "Kostenlose Kalkulationsrechner fürs Handwerk: Stundenverrechnungssatz und Angebotspreis mit Ihren eigenen Zahlen berechnen – direkt im Browser."
     }
   },
@@ -426,7 +441,7 @@
     "competitors": [],
     "target": {
       "title": "Handwerker-Stundensatz berechnen: Rechner | CraftOS",
-      "h1": "Handwerker-Stundensatz berechnen",
+      "h1": "Handwerker-Stundensatz: Was muss Ihre Arbeitsstunde kosten?",
       "description": "Mit dem kostenlosen Rechner Ihren Handwerker-Stundensatz berechnen: Jahreskosten, produktive Stunden und Gewinnzuschlag ergeben einen tragfähigen Preis."
     }
   },
@@ -454,7 +469,7 @@
     "competitors": [],
     "target": {
       "title": "Angebotskalkulation: kostenloser Rechner | CraftOS",
-      "h1": "Angebotskalkulation mit Material, Lohn und Zuschlag",
+      "h1": "Angebotskalkulation: Was bleibt von Ihrem Angebot übrig?",
       "description": "Angebotskalkulation online: Material, Lohnstunden und Zuschläge eingeben und einen nachvollziehbaren Angebotspreis für Ihren Handwerksauftrag berechnen."
     }
   },
@@ -464,7 +479,12 @@
     "primary": null,
     "reason": "Rechtsseite (Pflichtangabe); bewusst ohne Suchbegriff, begründete Ausnahme nach D-07.",
     "secondary": [],
-    "competitors": []
+    "competitors": [],
+    "target": {
+      "title": "Allgemeine Geschäftsbedingungen (AGB) | CraftOS",
+      "h1": "Allgemeine Geschäftsbedingungen",
+      "description": "Allgemeine Geschäftsbedingungen von CraftOS: Vertragsgegenstand, Vertragsschluss und Testphase, Preise, Laufzeit und Kündigung, Verfügbarkeit und Haftung."
+    }
   },
   {
     "path": "/datenschutz",
@@ -472,7 +492,12 @@
     "primary": null,
     "reason": "Rechtsseite (Pflichtangabe); bewusst ohne Suchbegriff, begründete Ausnahme nach D-07.",
     "secondary": [],
-    "competitors": []
+    "competitors": [],
+    "target": {
+      "title": "Datenschutzerklärung | CraftOS",
+      "h1": "Datenschutzerklärung",
+      "description": "Datenschutzerklärung von CraftOS: Verantwortlicher, Hosting, Server-Logfiles, Kontaktaufnahme, Nutzung der Software, Webanalyse und Ihre Rechte."
+    }
   },
   {
     "path": "/impressum",
@@ -480,7 +505,12 @@
     "primary": null,
     "reason": "Rechtsseite (Pflichtangabe); bewusst ohne Suchbegriff, begründete Ausnahme nach D-07.",
     "secondary": [],
-    "competitors": []
+    "competitors": [],
+    "target": {
+      "title": "Impressum | CraftOS",
+      "h1": "Impressum",
+      "description": "Impressum von CraftOS mit Anbieterkennzeichnung: Name, Anschrift und Kontaktdaten des Anbieters der Handwerkersoftware CraftOS für Handwerksbetriebe."
+    }
   },
   {
     "path": "/funktionen/dashboard",
@@ -1109,7 +1139,7 @@
     ],
     "target": {
       "title": "Elektriker-Software für Elektrobetriebe | CraftOS",
-      "h1": "Elektriker-Software für Angebot, Einsatz und Abrechnung",
+      "h1": "Elektriker-Software: vom Zählerschrank bis zur Wallbox",
       "description": "Elektriker-Software von CraftOS: Angebote kalkulieren, Einsätze planen, Zeiten und Material erfassen und Rechnungen erstellen – für Elektrobetriebe."
     }
   },
@@ -1168,7 +1198,7 @@
     ],
     "target": {
       "title": "SHK-Software für Sanitär, Heizung, Klima | CraftOS",
-      "h1": "SHK-Software für Sanitär, Heizung und Klima",
+      "h1": "SHK-Software: vom Heizungstausch bis zur Badsanierung",
       "description": "SHK-Software von CraftOS: Angebote, Einsatzplanung, Zeiterfassung und Rechnungen für Betriebe in Sanitär, Heizung und Klima in einem System."
     }
   },
@@ -1217,7 +1247,7 @@
     ],
     "target": {
       "title": "Software für Maler und Lackierer | CraftOS",
-      "h1": "Software für Maler: vom Aufmaß bis zur Rechnung",
+      "h1": "Software für Maler: von der Fläche zum fertigen Raum",
       "description": "Software für Maler und Lackierer: Räume aufmessen, Flächen ins Angebot übernehmen, Einsätze planen und Arbeitszeiten projektbezogen erfassen."
     }
   },
@@ -1271,7 +1301,7 @@
     ],
     "target": {
       "title": "Software für Schreiner und Tischler | CraftOS",
-      "h1": "Software für Schreiner und Tischler",
+      "h1": "Software für Schreiner: von der Werkbank bis zur Montage",
       "description": "Software für Schreiner und Tischler: Angebote mit Material und Lohn kalkulieren, Aufträge planen, Montagezeiten erfassen und sauber abrechnen."
     }
   },
@@ -1315,7 +1345,7 @@
     ],
     "target": {
       "title": "Dachdecker-Software für Büro und Dach | CraftOS",
-      "h1": "Dachdecker-Software für Angebot, Baustelle und Rechnung",
+      "h1": "Dachdecker-Software: vom Dachaufmaß bis zur Abnahme",
       "description": "Dachdecker-Software von CraftOS: Aufmaß und Angebot, Einsatzplanung, Baustellenfotos, Zeiten und Rechnungen – im Büro und auf dem Dach per App."
     }
   },
@@ -1364,7 +1394,7 @@
     ],
     "target": {
       "title": "Fliesenleger-Software mit Raumaufmaß | CraftOS",
-      "h1": "Fliesenleger-Software: Flächen erfassen, Angebot erstellen",
+      "h1": "Fliesenleger-Software: von der Fläche bis zur Fuge",
       "description": "Fliesenleger-Software von CraftOS: Räume und Flächen aufmessen, Abzüge berücksichtigen, Angebote kalkulieren und Arbeitszeiten je Projekt erfassen."
     }
   },
@@ -1408,7 +1438,7 @@
     ],
     "target": {
       "title": "Zimmerer-Software für Holzbaubetriebe | CraftOS",
-      "h1": "Zimmerer-Software für Zimmerei und Holzbau",
+      "h1": "Zimmerer-Software: vom Holzbauplan bis zur Montage",
       "description": "Zimmerer-Software von CraftOS: Angebote kalkulieren, Montageeinsätze planen, Zeiten und Material auf der Baustelle erfassen und Projekte abrechnen."
     }
   },
@@ -1452,7 +1482,7 @@
     ],
     "target": {
       "title": "GaLaBau-Software für Garten- und Landschaftsbau | CraftOS",
-      "h1": "GaLaBau-Software für Garten- und Landschaftsbau",
+      "h1": "GaLaBau-Software: von der Erdarbeit bis zur fertigen Anlage",
       "description": "GaLaBau-Software von CraftOS: Projekte und Pflege planen, Kolonnen einteilen, Zeiten und Material erfassen und Leistungen im GaLaBau abrechnen."
     }
   },
@@ -1501,7 +1531,7 @@
     ],
     "target": {
       "title": "Trockenbau-Software für den Innenausbau | CraftOS",
-      "h1": "Trockenbau-Software für Aufmaß, Angebot und Ausführung",
+      "h1": "Trockenbau-Software: von der Raumaufteilung bis zur Übergabe",
       "description": "Trockenbau-Software von CraftOS: Wand- und Deckenflächen aufmessen, Angebote kalkulieren, Einsätze planen und Zeiten im Innenausbau erfassen."
     }
   },
@@ -1555,7 +1585,7 @@
     ],
     "target": {
       "title": "Metallbau-Software für Schlossereien | CraftOS",
-      "h1": "Metallbau-Software für Werkstatt und Montage",
+      "h1": "Metallbau-Software: von der Fertigung bis zum Einbau",
       "description": "Metallbau-Software von CraftOS: Angebote mit Material und Lohn kalkulieren, Montagen planen, Zeiten und Material erfassen und Aufträge sauber abrechnen."
     }
   },
@@ -1594,7 +1624,7 @@
     ],
     "target": {
       "title": "Bauunternehmen-Software für Baubetriebe | CraftOS",
-      "h1": "Software für Bauunternehmen: Projekte, Team und Abrechnung",
+      "h1": "Software für Bauunternehmen: von der Bauphase bis zur Schlussrechnung",
       "description": "Bauunternehmen-Software: Projekte mit Phasen führen, Kolonnen planen, Bautagesberichte erfassen und Abschläge sowie Schlussrechnungen erstellen."
     }
   },
@@ -1633,7 +1663,7 @@
     ],
     "target": {
       "title": "Hausmeister-Software für Hausmeisterservice | CraftOS",
-      "h1": "Hausmeister-Software für wiederkehrende Einsätze",
+      "h1": "Hausmeister-Software: vom kleinen Einsatz bis zum größeren Auftrag",
       "description": "Hausmeister-Software von CraftOS: wiederkehrende Leistungen vorbereiten, Einsätze einteilen, Arbeit dokumentieren und erbrachte Leistungen abrechnen."
     }
   },
@@ -1643,7 +1673,12 @@
     "primary": null,
     "reason": "Alle pageCandidates („rechnungsstellung handwerk“, „rechnungen handwerk“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
     "secondary": [],
-    "competitors": []
+    "competitors": [],
+    "target": {
+      "title": "Rechnungen im Handwerk: Ratgeber | CraftOS",
+      "h1": "Ratgeber: Rechnungen",
+      "description": "Ratgeber zu Rechnungen im Handwerk: Abschlags- und Schlussrechnung, Pflichtangaben, XRechnung, ZUGFeRD und PDF sowie Zahlungserinnerung und Mahnung."
+    }
   },
   {
     "path": "/blog/kategorie/kalkulation",
@@ -1679,7 +1714,7 @@
     ],
     "target": {
       "title": "Kalkulation Handwerk: Ratgeber und Rechner | CraftOS",
-      "h1": "Kalkulation im Handwerk: Angebote und Preise",
+      "h1": "Ratgeber: Angebote & Kalkulation",
       "description": "Ratgeber zur Kalkulation im Handwerk: Stundenverrechnungssatz, Tiefenkalkulation, Aufmaß und Angebot – mit Beispielen, Quellen und kostenlosen Rechnern."
     }
   },
@@ -1689,7 +1724,12 @@
     "primary": null,
     "reason": "Alle pageCandidates („handwerkersoftware auswahl“, „software auswahl handwerk“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
     "secondary": [],
-    "competitors": []
+    "competitors": [],
+    "target": {
+      "title": "Software auswählen im Handwerk: Ratgeber | CraftOS",
+      "h1": "Ratgeber: Software auswählen",
+      "description": "Ratgeber zur Softwareauswahl im Handwerk: mit einem echten Auftrag testen, für Einzelunternehmen wählen, sicher wechseln und Web und App aufteilen."
+    }
   },
   {
     "path": "/blog/kategorie/belege",
@@ -1714,7 +1754,7 @@
     "competitors": [],
     "target": {
       "title": "Belege digitalisieren im Handwerk: Ratgeber | CraftOS",
-      "h1": "Belege digitalisieren und den Überblick behalten",
+      "h1": "Ratgeber: Belege & Überblick",
       "description": "Ratgeber: Belege digitalisieren, Eingangsrechnungen organisieren, offene Posten im Blick behalten und den DATEV-Export für die Steuerkanzlei vorbereiten."
     }
   },
@@ -1740,7 +1780,7 @@
     "competitors": [],
     "target": {
       "title": "Projektmanagement Bau: Ratgeber | CraftOS",
-      "h1": "Projektmanagement am Bau für Handwerksbetriebe",
+      "h1": "Ratgeber: Projektmanagement & Material",
       "description": "Ratgeber zu Projektmanagement am Bau: Einsatzplanung, digitale Projektakte, Materialverbrauch und Nachkalkulation für Handwerksbetriebe erklärt."
     }
   },
@@ -1767,7 +1807,7 @@
     "competitors": [],
     "target": {
       "title": "Baustellenkommunikation und Team: Ratgeber | CraftOS",
-      "h1": "Baustellenkommunikation und Teamarbeit",
+      "h1": "Ratgeber: Team & Baustellenkommunikation",
       "description": "Ratgeber zu Baustellenkommunikation: Bautagesberichte, Zeiterfassung, Urlaubsplanung und Offline-Arbeit auf der Baustelle – praxisnah für Ihr Team."
     }
   },
@@ -1777,7 +1817,12 @@
     "primary": null,
     "reason": "Alle pageCandidates („handwerkersoftware einrichten“, „craftos einrichten“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
     "secondary": [],
-    "competitors": []
+    "competitors": [],
+    "target": {
+      "title": "Einrichtung: Anleitungen für den Start | CraftOS",
+      "h1": "Hilfe: Einrichtung",
+      "description": "Anleitungen zur Einrichtung von CraftOS: Anmeldung in Web und Mobile, Firmenprofil, Kunden anlegen, Mitarbeiter einladen und Rollen mit Zugriffsrechten."
+    }
   },
   {
     "path": "/hilfe/kategorie/angebote",
@@ -1806,7 +1851,7 @@
     ],
     "target": {
       "title": "Angebot erstellen Software-gestützt: Anleitungen | CraftOS",
-      "h1": "Anleitungen: Angebote in CraftOS erstellen",
+      "h1": "Hilfe: Angebote",
       "description": "Angebot erstellen mit Software: Anleitungen für Entwürfe, Leistungsvorlagen, Positionskalkulation, Raumaufmaß und GAEB-Import in der CraftOS Web-App."
     }
   },
@@ -1831,7 +1876,7 @@
     "competitors": [],
     "target": {
       "title": "Rechnung erstellen Software-gestützt: Anleitungen | CraftOS",
-      "h1": "Anleitungen: Rechnungen in CraftOS erstellen",
+      "h1": "Hilfe: Rechnungen",
       "description": "Rechnung erstellen mit Software: Anleitungen für Abschläge, Schlussrechnung, E-Rechnung, Storno und das Fertigstellen von Rechnungen in CraftOS."
     }
   },
@@ -1858,7 +1903,7 @@
     "competitors": [],
     "target": {
       "title": "Belege erfassen und Zahlungen buchen: Hilfe | CraftOS",
-      "h1": "Anleitungen: Belege erfassen und Zahlungen zuordnen",
+      "h1": "Hilfe: Zahlungen & Belege",
       "description": "Belege erfassen, scannen und kontieren, Zahlungen zu Rechnungen buchen und den DATEV-Export erstellen: Schritt-für-Schritt-Anleitungen für CraftOS."
     }
   },
@@ -1885,7 +1930,7 @@
     "competitors": [],
     "target": {
       "title": "Bauprojekt planen mit CraftOS: Anleitungen | CraftOS",
-      "h1": "Anleitungen: Projekte und Einsätze planen",
+      "h1": "Hilfe: Bauprojekte & Planung",
       "description": "Bauprojekt planen in CraftOS: Anleitungen für Projektphasen, Plantafel, Ressourcen und Projektdateien – damit Büro und Baustelle denselben Stand haben."
     }
   },
@@ -1923,7 +1968,7 @@
     ],
     "target": {
       "title": "Zeiterfassung-App: Anleitungen für CraftOS | CraftOS",
-      "h1": "Anleitungen: Zeiten und Mobile-App",
+      "h1": "Hilfe: Zeiterfassung & Mobile",
       "description": "Zeiterfassung per App: Anleitungen zum Timer, zum Nachtragen und Exportieren von Zeiten, zu Urlaubsanträgen und zur Offline-Synchronisierung in CraftOS."
     }
   },
@@ -1950,7 +1995,7 @@
     "competitors": [],
     "target": {
       "title": "Lagerbestand verwalten: Anleitungen | CraftOS",
-      "h1": "Anleitungen: Lager und Material",
+      "h1": "Hilfe: Lagerbestand",
       "description": "Lagerbestand verwalten in CraftOS: Anleitungen für Artikelstammdaten, Lagerorte, Wareneingang, Materialentnahme und Inventur mit Bestandsdifferenzen."
     }
   },
@@ -1988,7 +2033,7 @@
     ],
     "target": {
       "title": "Baustellendokumentation: Anleitungen | CraftOS",
-      "h1": "Anleitungen: Baustellendokumentation",
+      "h1": "Hilfe: Baustellendokumentation",
       "description": "Baustellendokumentation in CraftOS: Anleitungen für Bautagesberichte, Mängel und Abnahmen mit Prüfpunkten – auf der Baustelle erfasst, im Büro auffindbar."
     }
   },
@@ -1998,7 +2043,12 @@
     "primary": null,
     "reason": "Alle pageCandidates („ki assistent handwerk“, „ki software handwerk“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
     "secondary": [],
-    "competitors": []
+    "competitors": [],
+    "target": {
+      "title": "Craft AI: Anleitungen zur KI-Hilfe | CraftOS",
+      "h1": "Hilfe: Craft AI",
+      "description": "Anleitungen zu Craft AI in CraftOS: Fragen zu Ihren Betriebsdaten stellen, vorgeschlagene Entwürfe prüfen und erst nach Ihrer Bestätigung übernehmen."
+    }
   },
   {
     "path": "/blog/abschlagsrechnung-schlussrechnung",
@@ -2030,7 +2080,7 @@
     ],
     "target": {
       "title": "Abschlagsrechnung Schlussrechnung: Unterschied | CraftOS",
-      "h1": "Abschlagsrechnung und Schlussrechnung sauber trennen",
+      "h1": "Abschlagsrechnung und Schlussrechnung: Leistungen und Zahlungen sauber auseinanderhalten",
       "description": "Abschlagsrechnung und Schlussrechnung im Handwerk: wie Sie Leistungen, Teilzahlungen und Restforderung sauber auseinanderhalten und prüfbar abrechnen."
     }
   },
@@ -2079,7 +2129,7 @@
     ],
     "target": {
       "title": "Aufmaß erstellen: Mengen und Abzüge prüfen | CraftOS",
-      "h1": "Aufmaß erstellen und ins Angebot übernehmen",
+      "h1": "Aufmaß ins Angebot übernehmen: Mengen, Einheiten und Abzüge richtig prüfen",
       "description": "Aufmaß erstellen und ins Angebot übernehmen: wie Sie Mengen, Einheiten und Abzüge richtig prüfen, bevor daraus Positionen und Preise werden."
     }
   },
@@ -2113,7 +2163,7 @@
     ],
     "target": {
       "title": "Baustellenplanung: Kapazität und Einsätze | CraftOS",
-      "h1": "Baustellenplanung mit Kapazität, Abwesenheiten und Übergaben",
+      "h1": "Baustellenplanung und Ressourcen: Kapazität, Abwesenheiten und Übergaben verbinden",
       "description": "Baustellenplanung: Kapazitäten, Abwesenheiten und Übergaben verbinden, damit Team, Fahrzeuge und Material zur richtigen Zeit am Einsatzort sind."
     }
   },
@@ -2141,7 +2191,7 @@
     "competitors": [],
     "target": {
       "title": "Belege für Steuerberater vorbereiten | CraftOS",
-      "h1": "DATEV-Export vorbereiten: Belege für den Steuerberater",
+      "h1": "DATEV-Export vorbereiten: Belege prüfen, Zeitraum abstimmen und Übergabe kontrollieren",
       "description": "Belege für den Steuerberater vorbereiten: Vollständigkeit prüfen, Zeitraum abstimmen und den DATEV-Export übergeben, mit dem die Kanzlei weiterarbeitet."
     }
   },
@@ -2175,7 +2225,7 @@
     ],
     "target": {
       "title": "Bautagesbericht digital: so hilft er wirklich | CraftOS",
-      "h1": "Digitale Bautagesberichte, die wirklich helfen",
+      "h1": "Digitale Bautagesberichte: Leistungen und Abweichungen so dokumentieren, dass sie helfen",
       "description": "Bautagesbericht digital führen: Leistungen, Abweichungen, Wetter und Behinderungen so dokumentieren, dass sie für Abrechnung und Nachweis wirklich helfen."
     }
   },
@@ -2203,7 +2253,7 @@
     "competitors": [],
     "target": {
       "title": "Digitale Projektakte im Handwerk | CraftOS",
-      "h1": "Digitale Projektakte: alles zum Auftrag an einem Ort",
+      "h1": "Digitale Projektakte: Angebote, Dateien, Zeiten und Entscheidungen zusammenführen",
       "description": "Digitale Projektakte im Handwerk: Angebote, Dateien, Zeiten und Entscheidungen zusammenführen, damit jeder im Team den aktuellen Stand des Auftrags kennt."
     }
   },
@@ -2236,7 +2286,7 @@
     ],
     "target": {
       "title": "Eingangsrechnungen verwalten: digital und geprüft | CraftOS",
-      "h1": "Eingangsrechnungen digital verwalten",
+      "h1": "Eingangsrechnungen digital organisieren: vom Eingang bis zur geprüften Übergabe",
       "description": "Eingangsrechnungen verwalten im Handwerk: vom Posteingang über Prüfung und Projektzuordnung bis zur geprüften Übergabe an Buchhaltung und Steuerkanzlei."
     }
   },
@@ -2290,7 +2340,7 @@
     ],
     "target": {
       "title": "Angebot Handwerker erstellen: Leistung und Preis | CraftOS",
-      "h1": "Handwerkerangebot erstellen: Leistung, Annahmen und Preis",
+      "h1": "Handwerkerangebot erstellen: Leistungen, Annahmen und Preis verständlich machen",
       "description": "Ein gutes Angebot als Handwerker erstellen: Leistungen klar beschreiben, Annahmen offenlegen und den Preis so begründen, dass Kunden ihn nachvollziehen."
     }
   },
@@ -2324,7 +2374,7 @@
     ],
     "target": {
       "title": "Handwerkerrechnung schreiben: Pflichtangaben | CraftOS",
-      "h1": "Handwerkerrechnung schreiben: vom Nachweis zum Dokument",
+      "h1": "Handwerkerrechnung schreiben: vom Leistungsnachweis zum prüfbaren Dokument",
       "description": "Handwerkerrechnung schreiben: Pflichtangaben, Leistungsnachweis und Lohnanteil richtig darstellen, damit Ihre Rechnung prüfbar ist und bezahlt wird."
     }
   },
@@ -2363,8 +2413,8 @@
     ],
     "target": {
       "title": "Beste Handwerkersoftware finden: mit Testauftrag | CraftOS",
-      "h1": "Die beste Handwerkersoftware für Ihren Betrieb auswählen",
-      "description": "Die beste Handwerkersoftware finden Sie mit einem echten Auftrag statt einer Funktionsliste: Kriterien, Testablauf und Fragen für Ihre Auswahl."
+      "h1": "Die beste Handwerkersoftware auswählen: mit einem echten Auftrag statt einer Funktionsliste",
+      "description": "Handwerkersoftware auswählen mit einem echten Auftrag statt einer Funktionsliste: Kriterien, Testablauf und Fragen, mit denen Sie die passende finden."
     }
   },
   {
@@ -2406,7 +2456,7 @@
     ],
     "target": {
       "title": "Software für kleine Handwerksbetriebe | CraftOS",
-      "h1": "Software für kleine Handwerksbetriebe und Einzelunternehmer",
+      "h1": "Handwerkersoftware für Einzelunternehmen: wenig Verwaltung, vollständige Aufträge",
       "description": "Software für kleine Handwerksbetriebe und Einzelunternehmer: wenig Verwaltung, vollständige Aufträge – worauf es bei Auswahl, Preis und Mobile-App ankommt."
     }
   },
@@ -2416,7 +2466,12 @@
     "primary": null,
     "reason": "Alle pageCandidates („handwerkersoftware wechseln“, „software wechseln“, „datenübernahme software“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
     "secondary": [],
-    "competitors": []
+    "competitors": [],
+    "target": {
+      "title": "Handwerkersoftware wechseln | CraftOS",
+      "h1": "Handwerkersoftware wechseln: Daten, offene Aufträge und Zuständigkeiten vorbereiten",
+      "description": "Handwerkersoftware wechseln mit Plan: aktive Daten übernehmen, Stichtag festlegen, Rechnungsnummern sichern, Pilotauftrag testen, Zuständige benennen."
+    }
   },
   {
     "path": "/blog/ki-belegscan-pruefen",
@@ -2424,7 +2479,12 @@
     "primary": null,
     "reason": "Alle pageCandidates („belegscan“, „ki belegerkennung“, „beleg scannen app“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
     "secondary": [],
-    "competitors": []
+    "competitors": [],
+    "target": {
+      "title": "KI-Belegscan prüfen | CraftOS",
+      "h1": "KI-Belegscan prüfen: welche Angaben Sie vor dem Speichern vergleichen sollten",
+      "description": "KI-Belegscan prüfen: Original vorbereiten, Rechnungsdaten, Steuersätze, Dubletten und Projektzuordnung vergleichen und Fehler vor dem Speichern beheben."
+    }
   },
   {
     "path": "/blog/materialverbrauch-baustelle-zuordnen",
@@ -2432,7 +2492,12 @@
     "primary": null,
     "reason": "Alle pageCandidates („materialverbrauch baustelle“, „materialerfassung baustelle“, „materialverbrauch erfassen“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
     "secondary": [],
-    "competitors": []
+    "competitors": [],
+    "target": {
+      "title": "Materialverbrauch einer Baustelle zuordnen | CraftOS",
+      "h1": "Materialverbrauch einer Baustelle zuordnen: Einkauf, Entnahme und Rückgabe unterscheiden",
+      "description": "Materialverbrauch einer Baustelle zuordnen: Einkauf, Entnahme und Rückgabe trennen, damit Lagerbestand und Projektkosten in der Nachkalkulation stimmen."
+    }
   },
   {
     "path": "/blog/nachkalkulation-handwerk",
@@ -2469,7 +2534,7 @@
     ],
     "target": {
       "title": "Nachkalkulation: Abweichungen erkennen | CraftOS",
-      "h1": "Nachkalkulation im Handwerk: aus Abweichungen lernen",
+      "h1": "Nachkalkulation im Handwerk: Abweichungen erkennen und nächste Angebote verbessern",
       "description": "Nachkalkulation: geplante und tatsächliche Kosten vergleichen, Abweichungen erkennen und die nächsten Angebote im Handwerk gezielt verbessern."
     }
   },
@@ -2497,7 +2562,7 @@
     "competitors": [],
     "target": {
       "title": "Offene Posten und Liquidität im Handwerk | CraftOS",
-      "h1": "Offene Posten und Liquidität richtig lesen",
+      "h1": "Offene Posten und Liquidität: Rechnungen nicht mit verfügbarem Geld verwechseln",
       "description": "Offene Posten im Handwerk verstehen: warum Rechnungsbeträge kein verfügbares Geld sind und wie Sie Forderungen und Liquidität getrennt im Blick behalten."
     }
   },
@@ -2525,7 +2590,7 @@
     "competitors": [],
     "target": {
       "title": "Offline-Zeiterfassung auf der Baustelle | CraftOS",
-      "h1": "Offline auf der Baustelle arbeiten",
+      "h1": "Offline auf der Baustelle arbeiten: vorbereiten, lokal erfassen und Synchronisierung prüfen",
       "description": "Offline-Zeiterfassung und Baustellen-App ohne Netz: Arbeit vorbereiten, Daten lokal erfassen und die Synchronisierung danach zuverlässig prüfen."
     }
   },
@@ -2553,7 +2618,7 @@
     "competitors": [],
     "target": {
       "title": "Projektzeiterfassung im Handwerk | CraftOS",
-      "h1": "Projektbezogene Zeiterfassung: Stunden mit Auftragsbezug",
+      "h1": "Projektzeiterfassung: aus Stunden brauchbare Auftragsdaten machen",
       "description": "Projektzeiterfassung im Handwerk: wie aus erfassten Stunden brauchbare Auftragsdaten für Abrechnung, Nachkalkulation und bessere Angebote werden."
     }
   },
@@ -2581,7 +2646,7 @@
     "competitors": [],
     "target": {
       "title": "Stundenverrechnungssatz berechnen: Anleitung | CraftOS",
-      "h1": "Stundenverrechnungssatz berechnen: von Kosten zum Preis",
+      "h1": "Stundenverrechnungssatz berechnen: von Jahreskosten zum tragfähigen Preis",
       "description": "Stundenverrechnungssatz berechnen: von Jahreskosten und produktiven Stunden zum tragfähigen Preis – mit Beispiel und kostenlosem Rechner."
     }
   },
@@ -2630,7 +2695,7 @@
     ],
     "target": {
       "title": "Zuschlagskalkulation Handwerk: Tiefenkalkulation | CraftOS",
-      "h1": "Tiefenkalkulation: Material, Lohn und Zuschläge verbinden",
+      "h1": "Tiefenkalkulation und Zuschlagskalkulation im Handwerk: Material, Lohn und Marge richtig verbinden",
       "description": "Zuschlagskalkulation im Handwerk als Tiefenkalkulation: Material, Lohn, Gemeinkosten und Marge je Position nachvollziehbar zu einem Preis verbinden."
     }
   },
@@ -2658,7 +2723,7 @@
     "competitors": [],
     "target": {
       "title": "Urlaubsplanung Mitarbeiter in der Einsatzplanung | CraftOS",
-      "h1": "Urlaub und Abwesenheiten in der Einsatzplanung",
+      "h1": "Urlaubsplanung und Abwesenheiten in der Einsatzplanung berücksichtigen",
       "description": "Urlaubsplanung für Mitarbeiter im Handwerk: Urlaub und Abwesenheiten früh in der Einsatzplanung berücksichtigen, damit Baustellen besetzt bleiben."
     }
   },
@@ -2696,7 +2761,7 @@
     ],
     "target": {
       "title": "Baustellen-App und Web-App: Aufgaben verteilen | CraftOS",
-      "h1": "Web-App und Baustellen-App sinnvoll aufteilen",
+      "h1": "Web-App und Baustellen-App: Aufgaben zwischen Büro und Team sinnvoll verteilen",
       "description": "Baustellen-App und Web-App im Handwerk: welche Aufgaben ins Büro gehören, was das Team mobil erledigt und wie beide auf denselben Daten arbeiten."
     }
   },
@@ -2724,7 +2789,7 @@
     "competitors": [],
     "target": {
       "title": "XRechnung ZUGFeRD Unterschied einfach erklärt | CraftOS",
-      "h1": "XRechnung, ZUGFeRD oder PDF: welches Format passt?",
+      "h1": "XRechnung, ZUGFeRD oder PDF: welches Rechnungsformat passt?",
       "description": "XRechnung und ZUGFeRD im Unterschied zur PDF-Rechnung: was die Formate leisten, wer welches verlangt und welches Format für Ihren Handwerksbetrieb passt."
     }
   },
@@ -2759,7 +2824,7 @@
     ],
     "target": {
       "title": "Zahlungserinnerung Muster und Ablauf | CraftOS",
-      "h1": "Zahlungserinnerung und Mahnung: offene Rechnungen nachfassen",
+      "h1": "Zahlungserinnerung und Mahnung: offene Rechnungen geordnet nachfassen",
       "description": "Zahlungserinnerung mit Muster und klarem Ablauf: offene Rechnungen im Handwerk freundlich, aber konsequent nachfassen – bis zur Mahnung mit Frist."
     }
   },
@@ -2787,7 +2852,7 @@
     "competitors": [],
     "target": {
       "title": "Bauabnahme-Protokoll in CraftOS erstellen | CraftOS",
-      "h1": "Eine Abnahme mit Prüfpunkten dokumentieren",
+      "h1": "Eine Bauabnahme mit Prüfpunkten und Ergebnis dokumentieren",
       "description": "Bauabnahme-Protokoll in CraftOS: Prüfpunkte festhalten, Ergebnis und Vorbehalte dokumentieren und die Abnahme mobil unterschreiben lassen."
     }
   },
@@ -2884,7 +2949,7 @@
     ],
     "target": {
       "title": "Handwerker-Angebot in Rechnung stellen | CraftOS",
-      "h1": "Ein Angebot in eine Rechnung übernehmen",
+      "h1": "Ein Handwerker-Angebot in eine Rechnung übernehmen",
       "description": "Handwerker-Angebot in Rechnung stellen: Positionen aus dem angenommenen Angebot übernehmen, Mengen anpassen und die Rechnung in CraftOS fertigstellen."
     }
   },
@@ -2918,7 +2983,7 @@
     ],
     "target": {
       "title": "Leistungsverzeichnis-Vorlage für Angebote | CraftOS",
-      "h1": "Angebotspositionen und Leistungsvorlagen verwenden",
+      "h1": "Leistungsverzeichnis: Angebotspositionen und Leistungsvorlagen verwenden",
       "description": "Leistungsverzeichnis-Vorlage in CraftOS: wiederkehrende Angebotspositionen als Leistungsvorlagen speichern und in neuen Angeboten schnell wiederverwenden."
     }
   },
@@ -2928,7 +2993,12 @@
     "primary": null,
     "reason": "Alle pageCandidates („craftos login“, „craftos anmelden“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
     "secondary": [],
-    "competitors": []
+    "competitors": [],
+    "target": {
+      "title": "In der Web-App und Mobile-App anmelden | CraftOS",
+      "h1": "In der Web-App und Mobile-App anmelden",
+      "description": "So melden Sie sich in der Web-App und der Mobile-App von CraftOS mit Passwort oder E-Mail-Code an und lösen typische Zugriffsprobleme selbst."
+    }
   },
   {
     "path": "/hilfe/artikel-stammdaten-anlegen",
@@ -2954,7 +3024,7 @@
     "competitors": [],
     "target": {
       "title": "Artikelstammdaten anlegen | CraftOS",
-      "h1": "Einen Artikel in den Stammdaten anlegen",
+      "h1": "Einen Artikel in den Artikelstammdaten anlegen",
       "description": "Artikelstammdaten in CraftOS anlegen: Bezeichnung, Einheit, Einkaufs- und Verkaufspreis sowie Lagerangaben pflegen, damit Angebote und Lager stimmen."
     }
   },
@@ -3021,7 +3091,7 @@
     "competitors": [],
     "target": {
       "title": "Beleg kontieren und Projekten zuordnen | CraftOS",
-      "h1": "Einen Beleg kontieren und zuordnen",
+      "h1": "Einen Beleg kontieren und Projekten zuordnen",
       "description": "Beleg kontieren in CraftOS: Konto und Steuersatz prüfen, Ausgaben einem Projekt zuordnen und den Beleg für Buchhaltung und DATEV-Export vorbereiten."
     }
   },
@@ -3049,7 +3119,7 @@
     "competitors": [],
     "target": {
       "title": "Beleg hochladen, auslesen und prüfen | CraftOS",
-      "h1": "Einen Beleg hochladen und prüfen",
+      "h1": "Einen Beleg hochladen, auslesen und prüfen",
       "description": "Beleg hochladen oder scannen: wie CraftOS Angaben ausliest, welche Felder Sie vor dem Speichern prüfen sollten und wie Sie Fehler korrigieren."
     }
   },
@@ -3059,7 +3129,12 @@
     "primary": null,
     "reason": "Alle pageCandidates („stundenlohnarbeiten abrechnen“, „regiebericht abrechnen“, „leistungen abrechnen“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
     "secondary": [],
-    "competitors": []
+    "competitors": [],
+    "target": {
+      "title": "Leistungen aus Bautagesberichten abrechnen | CraftOS",
+      "h1": "Leistungen aus Bautagesberichten abrechnen",
+      "description": "So rechnen Sie Leistungen aus Bautagesberichten ab: Berichte wählen, Material und Stunden prüfen und einen kontrollierten Rechnungsentwurf erstellen."
+    }
   },
   {
     "path": "/hilfe/craft-ai-betriebsdaten-fragen",
@@ -3085,7 +3160,7 @@
     "competitors": [],
     "target": {
       "title": "KI Fragen stellen zu Betriebsdaten | CraftOS",
-      "h1": "Craft AI zu Ihren Betriebsdaten befragen",
+      "h1": "Die KI Craft AI zu Ihren Betriebsdaten befragen",
       "description": "KI Fragen stellen zu Ihren Betriebsdaten: wie Sie Craft AI zu Projekten, Rechnungen und Zeiten befragen und Antworten mit den Quelldaten abgleichen."
     }
   },
@@ -3113,7 +3188,7 @@
     "competitors": [],
     "target": {
       "title": "DATEV-Export für die Steuerkanzlei | CraftOS",
-      "h1": "Einen DATEV-Export erstellen",
+      "h1": "Einen DATEV-Export für die Steuerkanzlei erstellen",
       "description": "DATEV-Export in CraftOS erstellen: Zeitraum wählen, Belege prüfen und die Exportdatei mit Belegbezug an Ihre Steuerkanzlei übergeben."
     }
   },
@@ -3185,7 +3260,7 @@
     "competitors": [],
     "target": {
       "title": "Briefpapier Rechnung und Firmenprofil einrichten | CraftOS",
-      "h1": "Firmenprofil und Rechnungsgrundlagen einrichten",
+      "h1": "Firmenprofil, Briefpapier und Rechnungsgrundlagen einrichten",
       "description": "Firmenprofil einrichten: Logo, Briefpapier für Rechnung und Angebot, Bankverbindung und Steuerangaben in CraftOS einmal hinterlegen und überall nutzen."
     }
   },
@@ -3219,7 +3294,7 @@
     ],
     "target": {
       "title": "GAEB-Datei öffnen und importieren | CraftOS",
-      "h1": "Ein GAEB-Leistungsverzeichnis importieren",
+      "h1": "Ein GAEB-Leistungsverzeichnis in ein Angebot importieren",
       "description": "GAEB-Datei öffnen und als Angebot importieren: so übernehmen Sie ein GAEB-Leistungsverzeichnis in CraftOS und prüfen Positionen, Mengen und Einheiten."
     }
   },
@@ -3247,7 +3322,7 @@
     "competitors": [],
     "target": {
       "title": "Inventur Lager durchführen und buchen | CraftOS",
-      "h1": "Eine Inventur durchführen",
+      "h1": "Eine Inventur durchführen und Bestandsdifferenzen buchen",
       "description": "Inventur im Lager mit CraftOS: Bestände zählen, Differenzen nachvollziehbar buchen und die Bestände nach der Inventur sauber dokumentieren."
     }
   },
@@ -3257,7 +3332,12 @@
     "primary": null,
     "reason": "Alle pageCandidates („ki entwurf prüfen“, „ki texte prüfen“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
     "secondary": [],
-    "competitors": []
+    "competitors": [],
+    "target": {
+      "title": "Einen KI-Entwurf prüfen und bewusst übernehmen | CraftOS",
+      "h1": "Einen KI-Entwurf prüfen und bewusst übernehmen",
+      "description": "So prüfen Sie einen KI-Entwurf von Craft AI: vorgeschlagene Daten kontrollieren, einen passenden Entwurf bestätigen und im richtigen Modul öffnen."
+    }
   },
   {
     "path": "/hilfe/kunden-ansprechpartner-anlegen",
@@ -3283,7 +3363,7 @@
     "competitors": [],
     "target": {
       "title": "Kundenverwaltung: Kunden anlegen | CraftOS",
-      "h1": "Kunden und Ansprechpartner anlegen",
+      "h1": "Kundenverwaltung: Kunden und Ansprechpartner anlegen",
       "description": "Kundenverwaltung in CraftOS: Kunden und Ansprechpartner anlegen, Adressen und Kontaktdaten pflegen und Kunden direkt mit Projekten verbinden."
     }
   },
@@ -3311,7 +3391,7 @@
     "competitors": [],
     "target": {
       "title": "Lagerplatzverwaltung: Lagerorte einrichten | CraftOS",
-      "h1": "Lagerorte und Lagerplätze einrichten",
+      "h1": "Lagerplatzverwaltung: Lagerorte und Lagerplätze einrichten",
       "description": "Lagerplatzverwaltung in CraftOS: Lagerorte und Lagerplätze übersichtlich anlegen, damit Bestände und Entnahmen eindeutig zugeordnet sind."
     }
   },
@@ -3339,7 +3419,7 @@
     "competitors": [],
     "target": {
       "title": "Mängelliste: Mangel erfassen und prüfen | CraftOS",
-      "h1": "Einen Mangel erfassen und bearbeiten",
+      "h1": "Mängelliste: einen Mangel erfassen und bis zur Prüfung bearbeiten",
       "description": "Mängelliste in CraftOS führen: Mangel mit Foto und Ort erfassen, Zuständigkeit und Frist festlegen und die Behebung bis zur Prüfung nachverfolgen."
     }
   },
@@ -3367,7 +3447,7 @@
     "competitors": [],
     "target": {
       "title": "Materialentnahmeschein digital buchen | CraftOS",
-      "h1": "Material entnehmen und zurückbuchen",
+      "h1": "Materialentnahmeschein: Material für einen Auftrag entnehmen und zurückbuchen",
       "description": "Materialentnahmeschein digital: Material für einen Auftrag aus dem Lager entnehmen, Rückgaben buchen und die Kosten dem Projekt zuordnen."
     }
   },
@@ -3377,7 +3457,12 @@
     "primary": null,
     "reason": "Alle pageCandidates („mitarbeiter einladen“, „lizenz zuweisen“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
     "secondary": [],
-    "competitors": []
+    "competitors": [],
+    "target": {
+      "title": "Mitarbeiter einladen und eine passende Lizenz zuweisen",
+      "h1": "Mitarbeiter einladen und eine passende Lizenz zuweisen",
+      "description": "So laden Sie Mitarbeiter in CraftOS ein: Teammitglied anlegen, Rolle und passende Lizenz wählen, den persönlichen Einladungslink versenden und prüfen."
+    }
   },
   {
     "path": "/hilfe/mobile-offline-synchronisierung",
@@ -3403,7 +3488,7 @@
     "competitors": [],
     "target": {
       "title": "Offline-Synchronisierung der Mobile-App | CraftOS",
-      "h1": "Offline- und Synchronisierungsstatus verstehen",
+      "h1": "Offline- und Synchronisierungsstatus der Mobile-App verstehen",
       "description": "Offline-Synchronisierung der CraftOS Mobile-App: was ohne Netz gespeichert wird, wie Sie den Status erkennen und offene Änderungen sicher übertragen."
     }
   },
@@ -3431,7 +3516,7 @@
     "competitors": [],
     "target": {
       "title": "Stempeluhr-App: Timer starten und stoppen | CraftOS",
-      "h1": "Den Timer in der Mobile-App bedienen",
+      "h1": "Stempeluhr-App: den Timer in der Mobile-App starten und stoppen",
       "description": "Die Stempeluhr-App in CraftOS: Timer starten, Projekt zuordnen und wieder stoppen – so landen Ihre Arbeitszeiten direkt beim richtigen Auftrag."
     }
   },
@@ -3459,7 +3544,7 @@
     "competitors": [],
     "target": {
       "title": "Einsatzplanung auf der Plantafel | CraftOS",
-      "h1": "Einen Einsatz auf der Plantafel planen",
+      "h1": "Einsatzplanung: einen Einsatz auf der Plantafel planen oder verschieben",
       "description": "Einsatzplanung auf der Plantafel: so planen oder verschieben Sie einen Einsatz in CraftOS und Ihr Team sieht die Änderung sofort in der Mobile-App."
     }
   },
@@ -3487,7 +3572,7 @@
     "competitors": [],
     "target": {
       "title": "Ressourcenplanung: Team, Fahrzeuge, Geräte | CraftOS",
-      "h1": "Mitarbeiter, Fahrzeuge und Geräte zuordnen",
+      "h1": "Ressourcenplanung: Mitarbeiter, Fahrzeuge und Geräte einem Einsatz zuordnen",
       "description": "Ressourcenplanung in CraftOS: Mitarbeiter, Fahrzeuge und Geräte einem Einsatz zuordnen, Überschneidungen erkennen und Kapazitäten realistisch planen."
     }
   },
@@ -3516,7 +3601,7 @@
     "competitors": [],
     "target": {
       "title": "Preise kalkulieren: Position im Detail | CraftOS",
-      "h1": "Eine Angebotsposition detailliert kalkulieren",
+      "h1": "Preise: eine Angebotsposition detailliert kalkulieren",
       "description": "Preise kalkulieren je Position: Material, Lohnzeit, Geräte und Zuschläge in CraftOS erfassen und den Einheitspreis nachvollziehbar berechnen."
     }
   },
@@ -3573,7 +3658,7 @@
     "competitors": [],
     "target": {
       "title": "Ordnerstruktur Projekte: Dateien ablegen | CraftOS",
-      "h1": "Projektdateien in Ordnern ablegen",
+      "h1": "Ordnerstruktur: Projektdateien in Ordnern ablegen und wiederfinden",
       "description": "Ordnerstruktur für Projekte in CraftOS: Pläne, Fotos und Dokumente in Ordnern ablegen, sinnvoll benennen und auf der Baustelle schnell wiederfinden."
     }
   },
@@ -3601,7 +3686,7 @@
     "competitors": [],
     "target": {
       "title": "Aufmaß Raum erfassen und übernehmen | CraftOS",
-      "h1": "Raumaufmaß erfassen und ins Angebot übernehmen",
+      "h1": "Raumaufmaß erfassen und als Angebotspositionen übernehmen",
       "description": "Aufmaß je Raum erfassen: Boden-, Wand- und Deckenflächen mit Abzügen in CraftOS aufnehmen und als geprüfte Angebotspositionen übernehmen."
     }
   },
@@ -3636,7 +3721,7 @@
     ],
     "target": {
       "title": "Rechnung korrigieren und fertigstellen | CraftOS",
-      "h1": "Eine Rechnung prüfen und fertigstellen",
+      "h1": "Eine Rechnung prüfen und endgültig fertigstellen",
       "description": "Rechnung korrigieren, solange sie ein Entwurf ist: in CraftOS Angaben prüfen, Fehler beheben und die Rechnung danach GoBD-gerecht fertigstellen."
     }
   },
@@ -3670,7 +3755,7 @@
     ],
     "target": {
       "title": "Storno-Rechnung: Rechnung stornieren | CraftOS",
-      "h1": "Eine fertige Rechnung nachvollziehbar stornieren",
+      "h1": "Storno: eine fertige Rechnung nachvollziehbar stornieren",
       "description": "Storno-Rechnung in CraftOS erstellen: eine fertiggestellte Rechnung nachvollziehbar stornieren, Gründe dokumentieren und bei Bedarf neu abrechnen."
     }
   },
@@ -3698,7 +3783,7 @@
     "competitors": [],
     "target": {
       "title": "Zugriffsrechte und Rollen einstellen | CraftOS",
-      "h1": "Rollen und Zugriffsrechte einstellen",
+      "h1": "Rollen und Zugriffsrechte eines Teammitglieds einstellen",
       "description": "Zugriffsrechte in CraftOS einstellen: Rollen für Büro und Baustelle vergeben und festlegen, wer Preise, Rechnungen und Auswertungen sehen darf."
     }
   },
@@ -3732,7 +3817,7 @@
     ],
     "target": {
       "title": "Schlussrechnung Muster und Anleitung | CraftOS",
-      "h1": "Eine Schlussrechnung mit Abschlägen erstellen",
+      "h1": "Eine Schlussrechnung mit bisherigen Abschlägen erstellen",
       "description": "Schlussrechnung mit Muster: so erstellen Sie in CraftOS eine Schlussrechnung, verrechnen bisherige Abschlagsrechnungen und prüfen die Restforderung."
     }
   },
@@ -3816,7 +3901,7 @@
     "competitors": [],
     "target": {
       "title": "Zahlungseingang zur Rechnung erfassen | CraftOS",
-      "h1": "Eine Zahlung zu einer Rechnung erfassen",
+      "h1": "Einen Zahlungseingang zu einer Rechnung erfassen",
       "description": "Zahlungseingang erfassen: in CraftOS Teil- und Vollzahlungen einer Rechnung zuordnen, Zahlungsdatum festhalten und offene Posten aktuell halten."
     }
   },
@@ -3826,7 +3911,12 @@
     "primary": null,
     "reason": "Alle pageCandidates („arbeitszeit nachtragen“, „zeiteintrag korrigieren“, „arbeitszeit korrigieren“) sind in export--candidates-1.json mit is_data_found:false geführt; kein belegtes Suchvolumen, daher kein Hauptkeyword.",
     "secondary": [],
-    "competitors": []
+    "competitors": [],
+    "target": {
+      "title": "Einen Zeiteintrag nachtragen oder korrigieren | CraftOS",
+      "h1": "Einen Zeiteintrag nachtragen oder korrigieren",
+      "description": "So tragen Sie einen Zeiteintrag in der Web-App oder Mobile-App von CraftOS nach oder korrigieren ihn und beachten die unterschiedlichen Eingabefelder."
+    }
   },
   {
     "path": "/hilfe/zeiten-pruefen-exportieren",
@@ -3852,7 +3942,7 @@
     "competitors": [],
     "target": {
       "title": "Stundenzettel Excel: Zeiten exportieren | CraftOS",
-      "h1": "Zeiten prüfen und exportieren",
+      "h1": "Stundenzettel: Zeiten prüfen und als CSV oder Excel exportieren",
       "description": "Stundenzettel als Excel oder CSV: Arbeitszeiten in CraftOS prüfen, nach Mitarbeiter oder Projekt filtern und für Lohnabrechnung und Auswertung exportieren."
     }
   },
@@ -3879,7 +3969,7 @@
     ],
     "competitors": [],
     "target": {
-      "title": "plancraft-Alternative: CraftOS im Vergleich | CraftOS",
+      "title": "plancraft-Alternative: Preise im Vergleich | CraftOS",
       "h1": "Die plancraft-Alternative für Büro und Baustelle",
       "description": "plancraft-Alternative gesucht? CraftOS im sachlichen Vergleich: Funktionen, Mobile-App, E-Rechnung und Preise mit Quellen und Prüfdatum gegenübergestellt."
     }
@@ -3918,7 +4008,7 @@
       }
     ],
     "target": {
-      "title": "Craftnote-Alternative: CraftOS im Vergleich | CraftOS",
+      "title": "Craftnote-Alternative: Preise im Vergleich | CraftOS",
       "h1": "Die Craftnote-Alternative mit Angebot und Rechnung",
       "description": "Craftnote-Alternative gesucht? CraftOS im Vergleich: Baustellendoku, Angebote, Rechnungen und Preise mit Quellen und Prüfdatum gegenübergestellt."
     }
@@ -3947,7 +4037,7 @@
     ],
     "competitors": [],
     "target": {
-      "title": "HERO Software Alternative: CraftOS | CraftOS",
+      "title": "HERO Software Alternative im Vergleich | CraftOS",
       "h1": "Die HERO-Software-Alternative im Vergleich",
       "description": "HERO Software Alternative gesucht? CraftOS im Vergleich: Funktionen, Mobile-App, Lizenzen und Preise mit Quellen und Prüfdatum gegenübergestellt."
     }
@@ -3977,7 +4067,7 @@
     ],
     "competitors": [],
     "target": {
-      "title": "ToolTime oder CraftOS? Der Vergleich | CraftOS",
+      "title": "ToolTime-Alternative: Preise im Vergleich | CraftOS",
       "h1": "ToolTime-Alternative: CraftOS im Vergleich",
       "description": "ToolTime oder CraftOS? Der sachliche Vergleich von Funktionen, Mobile-App, E-Rechnung und Preisen – mit Quellen, Prüfdatum und Hinweisen zum Umstieg."
     }
