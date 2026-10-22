@@ -10,6 +10,12 @@ Antwortsprache: Deutsch.
 - `.planning/config.json` (lokale Änderung) nie anfassen, stagen, committen.
 - Anforderungs-Markierung: Außer im Rollout-Plan im SUMMARY `requirements-completed: []` und kein `requirements.mark-complete`. Im Rollout-Plan nur die im Plan-Frontmatter genannten IDs markieren; DESIGN-02 und SEO-02 bleiben „In Progress“, bis der Plan sie ausdrücklich abschließt.
 
+## Parallelbetrieb (Inhaber 22.10.2026: mehrere Agenten)
+- Spur-Agenten arbeiten in eigenen Worktrees (`C:/Projekte/wt-<spur>`, eigener Branch) statt im Haupt-Arbeitsbaum. Im Worktree einmalig `npm ci --prefer-offline` in `craftos/` (unter der Sperre), kein Junction auf fremde node_modules. `.env` liegt nur im Haupt-Arbeitsbaum und wird bei Bedarf nur gelesen.
+- Worktree-Agenten aktualisieren STATE.md/ROADMAP.md NICHT (macht der Orchestrator nach dem Merge); SUMMARY.md und eigene Dateien normal committen. Kein Merge in main, kein Push.
+- **Schwere Läufe nur unter der Sperre** (Build, `next start`, Playwright-E2E, volle Vitest-Suite, visual/performance-audit, npm ci): Sperre atomar holen mit `until mkdir C:/Projekte/Websitenerstellung/.heavy-lock 2>/dev/null; do sleep 20; done; echo "<plan> $(date -u +%FT%TZ)" > C:/Projekte/Websitenerstellung/.heavy-lock/owner`, danach sofort freigeben mit `rm -rf C:/Projekte/Websitenerstellung/.heavy-lock`. Sperre nie länger als den Lauf halten, nie eine fremde Sperre löschen (älter als 90 Min → Orchestrator melden). Gezielte Einzel-Vitest-Dateien dürfen ohne Sperre laufen.
+- Ports: Haupt-Arbeitsbaum 3100, Worktrees den im Auftrag genannten Port (3101, 3102 …). Alle Port-/PID-Regeln unten gelten sinngemäß für den eigenen Port.
+
 ## Prozesse und schwere Läufe
 - Koordinationsstatus vor schweren Läufen lesen: `node "$CRAFTOS_WORKSPACE/coordination/client/cli.mjs" status` (für die Website gibt es kein Rezept → lokal, einzeln).
 - Vor Serverstart prüfen, dass Port 3100 frei ist (belegt → abbrechen und melden, fremde Prozesse nie beenden). Start z. B. `node node_modules/next/dist/bin/next start -p 3100 & SRV=$!`, nach der Warteschleife `kill -0 $SRV`, am Ende `kill $SRV`.
