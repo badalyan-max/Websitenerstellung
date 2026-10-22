@@ -22,7 +22,8 @@ import {
 } from "@/lib/app-content";
 import { zielwerte } from "@/lib/funktionsdetails";
 import { pageMetadata } from "@/lib/metadata";
-import { breadcrumbSchema, faqSchema, mobileApplicationSchema } from "@/lib/schema";
+import { crumbsFor } from "@/lib/breadcrumbs";
+import { faqSchema, mobileApplicationSchema } from "@/lib/schema";
 
 /**
  * Mobile-App-Seite (07-UI-SPEC „Mobile-App-Seite /app“; FEAT-03, MEDIA-01, D-09, D-10, D-11, D-23):
@@ -89,6 +90,7 @@ export default function AppPage() {
         lead={appKopf.lead}
         visual={appKopf.visual}
         stores
+        crumbs={crumbsFor("/app")}
       />
 
       <Abschnitt id="zeit">
@@ -133,12 +135,6 @@ export default function AppPage() {
         <CtaBand title={s.cta.title} text={s.cta.text} secondary={s.cta.secondary} />
       </div>
 
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Start", path: "/" },
-          { name: "Mobile-App", path: "/app" },
-        ])}
-      />
       <JsonLd data={mobileApplicationSchema()} />
     </>
   );

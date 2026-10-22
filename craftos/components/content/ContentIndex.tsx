@@ -3,8 +3,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { ContentSearch } from "./ContentSearch";
 import { getContentList } from "@/lib/content";
 import { categories, type ContentKind } from "@/lib/content-types";
-import { JsonLd } from "@/components/seo/JsonLd";
-import { breadcrumbSchema } from "@/lib/schema";
+import { crumbsFor } from "@/lib/breadcrumbs";
 export async function ContentIndex({
   kind,
   category,
@@ -21,6 +20,9 @@ export async function ContentIndex({
   return (
     <>
       <PageHero
+        crumbs={crumbsFor(
+          category ? "/" + kind + "/kategorie/" + category : "/" + kind,
+        )}
         eyebrow={kind === "blog" ? "CraftOS Ratgeber" : "CraftOS Hilfezentrum"}
         title={title}
         intro={
@@ -97,15 +99,6 @@ export async function ContentIndex({
           </div>
         </div>
       </section>
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Start", path: "/" },
-          { name: kind === "blog" ? "Ratgeber" : "Hilfe", path: "/" + kind },
-          ...(category
-            ? [{ name: title, path: "/" + kind + "/kategorie/" + category }]
-            : []),
-        ])}
-      />
     </>
   );
 }

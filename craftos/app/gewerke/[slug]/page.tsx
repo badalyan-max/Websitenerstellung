@@ -5,12 +5,13 @@ import { tradeSnippetExamples } from "@/lib/trade-snippet-examples";
 import { getFunktion } from "@/lib/funktionen";
 import { GewerkIcon } from "@/components/ui/GewerkIcon";
 import { PageHero } from "@/components/ui/PageHero";
+import { crumbsFor } from "@/lib/breadcrumbs";
 import { FeatureSnippet } from "@/components/feature-snippet/FeatureSnippet";
 import { TrialCta } from "@/components/ui/TrialCta";
 import { Faq } from "@/components/ui/Faq";
 import { pageMetadata } from "@/lib/metadata";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { faqSchema, breadcrumbSchema } from "@/lib/schema";
+import { faqSchema } from "@/lib/schema";
 export function generateStaticParams() {
   return gewerke.map((g) => ({ slug: g.slug }));
 }
@@ -38,6 +39,7 @@ export default async function Page({
   return (
     <>
       <PageHero
+        crumbs={crumbsFor("/gewerke/" + slug)}
         eyebrow={"CraftOS für " + g.name}
         title={g.heroTitle}
         intro={g.heroIntro}
@@ -88,13 +90,6 @@ export default async function Page({
         </div>
       </section>
       <JsonLd data={faqSchema(g.faq)} />
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Start", path: "/" },
-          { name: "Gewerke", path: "/gewerke" },
-          { name: g.name, path: "/gewerke/" + slug },
-        ])}
-      />
       <TrialCta />
     </>
   );

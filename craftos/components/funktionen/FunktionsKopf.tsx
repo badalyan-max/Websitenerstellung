@@ -2,9 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { StoreLinks } from "@/components/ui/StoreLinks";
+import { Breadcrumbs } from "@/components/v2/Breadcrumbs";
 import { TEXT_BUDGET, assertTextBudget, sentenceCount } from "@/components/v2/budgets";
 import { DevicePair } from "@/components/v2/DevicePair";
 import { Frame, SceneContent } from "@/components/v2/SceneContent";
+import type { Crumb } from "@/lib/breadcrumbs";
 import type { KopfVisual } from "@/lib/scenes";
 import { site } from "@/lib/site";
 import s from "./FunktionsKopf.module.css";
@@ -25,6 +27,10 @@ export interface FunktionsKopfProps {
   visual: KopfVisual;
   /** Nur /app: StoreLinks unter dem CTA und QR-Codes ab 1024 px (Abweichung B8). */
   stores?: boolean;
+  /** Brotkrumen-Kette aus crumbsFor(path) – erste Zeile des Kopfs (08-UI-SPEC G1/G6). */
+  crumbs: Crumb[];
+  /** Standard true; false nur auf noindex-Musterseiten (kein JSON-LD). */
+  crumbsSchema?: boolean;
 }
 
 const QR = [
@@ -34,11 +40,22 @@ const QR = [
 
 /**
  * Seitenkopf der Funktionsdetailseiten und von /app (07-UI-SPEC F1; D-02, D-15, B1, B8).
- * Aufbau wie HomeHero: Eyebrow, Keyword-H1, ein Satz Kurznutzen, Test-CTA und Sekundärlink, daneben die
+ * Aufbau wie HomeHero, davor die Brotkrumen-Zeile (08-UI-SPEC G1/G6): Eyebrow, Keyword-H1, ein Satz Kurznutzen, Test-CTA und Sekundärlink, daneben die
  * vereinfachte Produktoberfläche im Geräterahmen. Server Component ohne Animation; die H1 ist das
  * LCP-Element, das Visual wird nicht lazy geladen. Budgets und Kopfwort werden beim Rendern geprüft.
  */
-export function FunktionsKopf({ id, eyebrow, h1, keyword, lead, secondary, visual, stores = false }: FunktionsKopfProps) {
+export function FunktionsKopf({
+  id,
+  eyebrow,
+  h1,
+  keyword,
+  lead,
+  secondary,
+  visual,
+  stores = false,
+  crumbs,
+  crumbsSchema = true,
+}: FunktionsKopfProps) {
   assertTextBudget("pageHead.h1", h1, TEXT_BUDGET.pageHead.h1);
   assertTextBudget("pageHead.eyebrow", eyebrow, TEXT_BUDGET.pageHead.eyebrow);
   const position = keyword ? h1.indexOf(keyword) : -1;
@@ -64,6 +81,9 @@ export function FunktionsKopf({ id, eyebrow, h1, keyword, lead, secondary, visua
       data-abschnitt="kopf"
       data-tone="dark"
     >
+      <div className={`site-container ${s.crumbs}`}>
+        <Breadcrumbs items={crumbs} tone="dark" schema={crumbsSchema} />
+      </div>
       <div className={`site-container ${s.inner}`}>
         <div className={s.copy}>
           <p className={`v2-eyebrow ${s.eyebrow}`}>{eyebrow}</p>

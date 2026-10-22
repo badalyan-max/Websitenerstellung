@@ -11,7 +11,8 @@ import { SectionHeader } from "@/components/v2/SectionHeader";
 import { StepFlow } from "@/components/v2/StepFlow";
 import { CTA_DETAIL, VERWANDT_KOPF } from "@/lib/funktionsdetails";
 import type { Funktionsdetail } from "@/lib/funktionsdetails/types";
-import { breadcrumbSchema, faqSchema, webPageSchema } from "@/lib/schema";
+import { crumbsFor } from "@/lib/breadcrumbs";
+import { faqSchema, webPageSchema } from "@/lib/schema";
 import { FunktionsKopf } from "./FunktionsKopf";
 import { PlattformRollen } from "./PlattformRollen";
 
@@ -40,7 +41,8 @@ function Abschnitt({ id, surface, children }: { id: AbschnittId; surface: keyof 
  * (1) FunktionsKopf, (2) Ablauf mit StepFlow [+ FeatureSnippet auf 8 Seiten], (3) PlattformRollen,
  * (4) Kernpunkte im BentoGrid, (5) FAQ mit FAQPage aus demselben Array, (6) Passende Funktionen, (7) CtaBand.
  * Synchrone Server Component (renderToString-fähig); alle Daten kommen geprüft aus lib/funktionsdetails.
- * JSON-LD: BreadcrumbList (Start → Funktionen → Name), FAQPage und WebPage; kein Schritt-Schema (D-11).
+ * JSON-LD: BreadcrumbList (Start → Funktionen → Name, vom Brotkrumen-Baustein im Kopf), FAQPage und WebPage;
+ * kein Schritt-Schema (D-11).
  */
 export function FunktionsDetail({ detail }: { detail: Funktionsdetail }) {
   const { kopf, ablauf, rollen, kernpunkte, faq, verwandt, meta } = detail;
@@ -55,6 +57,7 @@ export function FunktionsDetail({ detail }: { detail: Funktionsdetail }) {
         lead={kopf.lead}
         secondary={kopf.secondary}
         visual={kopf.visual}
+        crumbs={crumbsFor(meta.path)}
       />
 
       <Abschnitt id="ablauf" surface="white">
@@ -130,13 +133,6 @@ export function FunktionsDetail({ detail }: { detail: Funktionsdetail }) {
         <CtaBand title={CTA_DETAIL.title} text={CTA_DETAIL.text} secondary={CTA_DETAIL.secondary} />
       </div>
 
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Start", path: "/" },
-          { name: "Funktionen", path: "/funktionen" },
-          { name: detail.name, path: meta.path },
-        ])}
-      />
       <JsonLd data={webPageSchema({ path: meta.path, name: meta.title, description: meta.description })} />
     </>
   );

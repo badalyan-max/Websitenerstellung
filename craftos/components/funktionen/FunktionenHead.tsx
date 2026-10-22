@@ -1,5 +1,7 @@
 import type { LucideIcon } from "lucide-react";
+import { Breadcrumbs } from "@/components/v2/Breadcrumbs";
 import { TEXT_BUDGET, assertTextBudget, sentenceCount } from "@/components/v2/budgets";
+import type { Crumb } from "@/lib/breadcrumbs";
 import s from "./FunktionenHead.module.css";
 
 export interface FunktionenHeadGroup {
@@ -16,10 +18,10 @@ const LEAD = "Von Angebot bis Team: alle Funktionen von CraftOS, geordnet nach d
 
 /**
  * Seitenkopf v2 der Funktionsübersicht (06-UI-SPEC „Seite 3“, Bereiche 0 und 0a; D-11): dunkle Fläche
- * mit Amber-Unterkante, Keyword-H1 (Keyword nie getrennt), ein Satz Einleitung und die
+ * mit Amber-Unterkante, Brotkrumen als erste Zeile (08-UI-SPEC G6), Keyword-H1 (Keyword nie getrennt), ein Satz Einleitung und die
  * Sprungnavigation „Funktionsgruppen“ zu den sechs Gruppenankern. Server Component ohne Animation.
  */
-export function FunktionenHead({ groups }: { groups: FunktionenHeadGroup[] }) {
+export function FunktionenHead({ groups, crumbs }: { groups: FunktionenHeadGroup[]; crumbs: Crumb[] }) {
   assertTextBudget("pageHead.lead", LEAD, TEXT_BUDGET.pageHead.lead);
   const sentences = sentenceCount(LEAD);
   if (sentences !== 1) {
@@ -29,6 +31,9 @@ export function FunktionenHead({ groups }: { groups: FunktionenHeadGroup[] }) {
   return (
     <section className={s.head} aria-labelledby="funktionen-titel">
       <div className={`site-container ${s.inner}`}>
+        <div className={s.crumbs}>
+          <Breadcrumbs items={crumbs} tone="dark" />
+        </div>
         <h1 id="funktionen-titel" className={s.title}>
           {H1_START}
           <span className={s.keyword} data-keyword="">

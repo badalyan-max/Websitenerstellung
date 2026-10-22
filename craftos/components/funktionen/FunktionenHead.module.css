@@ -2,7 +2,7 @@
    kein Eyebrow, kein Verlauf, keine Animation. Das Linienraster der Startseite bleibt als ruhiges Bauplan-Motiv. */
 .head {
   position: relative;
-  padding-block: 40px 48px;
+  padding-block: 8px 48px;
   background: #101014;
   border-bottom: 3px solid #f2af38;
   color: #f4f4f5;
@@ -21,6 +21,10 @@
 .inner {
   position: relative;
   min-width: 0;
+}
+/* Kopf mit Brotkrumen (08-UI-SPEC „Spacing Scale“): oben 8/16/24 → Zeile 44 → H1 16/24/32. */
+.crumbs {
+  margin-bottom: 16px;
 }
 
 /* H1: Display-Stufe, 32 px unter 768 px; Keyword nie getrennt (Pitfall 7). */
@@ -98,7 +102,10 @@
 
 @media (min-width: 768px) {
   .head {
-    padding-block: 64px;
+    padding-block: 16px 64px;
+  }
+  .crumbs {
+    margin-bottom: 24px;
   }
   .title {
     font-size: clamp(32px, 4vw, 48px);
@@ -110,6 +117,9 @@
 }
 @media (min-width: 1024px) {
   .head {
-    padding-block: 80px 72px;
+    padding-block: 24px 72px;
+  }
+  .crumbs {
+    margin-bottom: 32px;
   }
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Mail, BookOpen, ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/ui/PageHero";
+import { crumbsFor } from "@/lib/breadcrumbs";
 import { site } from "@/lib/site";
 import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata(
@@ -12,6 +13,7 @@ export default function Page() {
   return (
     <>
       <PageHero
+        crumbs={crumbsFor("/support")}
         eyebrow="Kontakt & Support"
         title={
           <>

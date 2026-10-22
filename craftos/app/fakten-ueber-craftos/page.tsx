@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
+import { crumbsFor } from "@/lib/breadcrumbs";
 import { pageMetadata } from "@/lib/metadata";
 import { funktionen } from "@/lib/funktionen";
 import { annualSavingPercent, site, tarife } from "@/lib/site";
@@ -24,6 +25,7 @@ export default function Page() {
   return (
     <>
       <PageHero
+        crumbs={crumbsFor("/fakten-ueber-craftos")}
         eyebrow="Produktinformationen"
         title="CraftOS in klaren Fakten."
         intro="Eine Übersicht für Betriebe, Redaktionen und alle, die Funktionsumfang und Verfügbarkeit nachvollziehen möchten."

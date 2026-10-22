@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { gewerke } from "@/lib/gewerke";
 import { GewerkIcon } from "@/components/ui/GewerkIcon";
 import { PageHero } from "@/components/ui/PageHero";
+import { crumbsFor } from "@/lib/breadcrumbs";
 import { TrialCta } from "@/components/ui/TrialCta";
 import { MediaFigure } from "@/components/v2/MediaFigure";
 import { pageMetadata } from "@/lib/metadata";
@@ -15,6 +16,7 @@ export default function Page() {
   return (
     <>
       <PageHero
+        crumbs={crumbsFor("/gewerke")}
         eyebrow="Für Ihr Gewerk"
         title={
           <>

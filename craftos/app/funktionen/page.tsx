@@ -8,7 +8,8 @@ import { SectionHeader } from "@/components/v2/SectionHeader";
 import { getFunktionsgruppen } from "@/lib/funktionsgruppen";
 import { pageMetadata } from "@/lib/metadata";
 import { cardScenes } from "@/lib/scenes";
-import { breadcrumbSchema, itemListSchema } from "@/lib/schema";
+import { crumbsFor } from "@/lib/breadcrumbs";
+import { itemListSchema } from "@/lib/schema";
 
 // Title-Wert ohne Marke: das Template des Root-Layouts hängt „ | CraftOS“ an (Keyword-Map, D-12).
 export const metadata = pageMetadata(
@@ -28,14 +29,8 @@ export default function Page() {
 
   return (
     <>
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Start", path: "/" },
-          { name: "Funktionen", path: "/funktionen" },
-        ])}
-      />
       <JsonLd data={itemListSchema("Funktionen von CraftOS", details.map((d) => ({ name: d.name, path: d.href })))} />
-      <FunktionenHead groups={groups} />
+      <FunktionenHead groups={groups} crumbs={crumbsFor("/funktionen")} />
       {groups.map((group, index) => {
         const warm = index % 2 === 1;
         return (

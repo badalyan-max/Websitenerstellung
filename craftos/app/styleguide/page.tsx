@@ -97,7 +97,17 @@ export default function StyleguidePage() {
     <>
       {/* Block 0 */}
       <div data-block="Designbausteine v2">
-        <PageHero eyebrow={pageIntro.eyebrow} title={pageIntro.title} intro={pageIntro.intro} />
+        {/* Brotkrumen nur als Muster: noindex-Seite ohne JSON-LD (08-UI-SPEC § 1, schema={false}) */}
+        <PageHero
+          eyebrow={pageIntro.eyebrow}
+          title={pageIntro.title}
+          intro={pageIntro.intro}
+          crumbs={[
+            { name: "Start", path: "/" },
+            { name: "Designbausteine", path: "/styleguide" },
+          ]}
+          crumbsSchema={false}
+        />
       </div>
 
       {/* Block 1 */}

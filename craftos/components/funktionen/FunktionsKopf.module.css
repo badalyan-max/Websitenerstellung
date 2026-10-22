@@ -3,10 +3,15 @@
    dunkle Fläche mit 3 px Amber-Unterkante wie der Seitenkopf von /funktionen. Keine Animation. */
 .kopf {
   position: relative;
-  padding-block: 24px 48px;
+  padding-block: 8px 48px;
   background: #101014;
   border-bottom: 3px solid #f2af38;
   color: #f4f4f5;
+}
+/* Kopf mit Brotkrumen (08-UI-SPEC „Spacing Scale“): oben 8/16/24 → Zeile 44 → Eyebrow 16/24/32. */
+.crumbs {
+  position: relative;
+  margin-bottom: 16px;
 }
 .inner {
   position: relative;
@@ -130,7 +135,10 @@
 }
 @media (min-width: 768px) {
   .kopf {
-    padding-block: 48px 64px;
+    padding-block: 16px 64px;
+  }
+  .crumbs {
+    margin-bottom: 24px;
   }
   .lead {
     font-size: 20px;
@@ -153,7 +161,10 @@
 }
 @media (min-width: 1024px) {
   .kopf {
-    padding-block: 64px 96px;
+    padding-block: 24px 96px;
+  }
+  .crumbs {
+    margin-bottom: 32px;
   }
   .inner {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);

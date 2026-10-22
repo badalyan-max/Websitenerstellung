@@ -8,6 +8,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import { PageHero } from "@/components/ui/PageHero";
+import { crumbsFor } from "@/lib/breadcrumbs";
 import { TrialCta } from "@/components/ui/TrialCta";
 import { pageMetadata } from "@/lib/metadata";
 import { FeatureSnippet } from "@/components/feature-snippet/FeatureSnippet";
@@ -60,6 +61,7 @@ export default function Page() {
   return (
     <>
       <PageHero
+        crumbs={crumbsFor("/gobd")}
         eyebrow="GoBD & Nachvollziehbarkeit"
         title={
           <>

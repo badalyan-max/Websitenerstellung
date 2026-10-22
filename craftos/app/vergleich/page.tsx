@@ -10,6 +10,7 @@ import {
   Users,
 } from "lucide-react";
 import { PageHero } from "@/components/ui/PageHero";
+import { crumbsFor } from "@/lib/breadcrumbs";
 import { TrialCta } from "@/components/ui/TrialCta";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { pageMetadata } from "@/lib/metadata";
@@ -87,6 +88,7 @@ export default function ComparisonPage() {
   return (
     <>
       <PageHero
+        crumbs={crumbsFor("/vergleich")}
         eyebrow="Warum CraftOS?"
         title={
           <>
@@ -586,23 +588,6 @@ export default function ComparisonPage() {
               citation: Object.values(comparisonSources).map(
                 (source) => source.url,
               ),
-            },
-            {
-              "@type": "BreadcrumbList",
-              itemListElement: [
-                {
-                  "@type": "ListItem",
-                  position: 1,
-                  name: "Startseite",
-                  item: site.url,
-                },
-                {
-                  "@type": "ListItem",
-                  position: 2,
-                  name: "Anbietervergleich",
-                  item: `${site.url}/vergleich`,
-                },
-              ],
             },
           ],
         }}

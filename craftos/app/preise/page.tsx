@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
+import { crumbsFor } from "@/lib/breadcrumbs";
 import { PricingTable } from "@/components/preise/PricingTable";
 import { Faq } from "@/components/ui/Faq";
 import { TrialCta } from "@/components/ui/TrialCta";
@@ -65,6 +66,7 @@ export default function Page() {
   return (
     <>
       <PageHero
+        crumbs={crumbsFor("/preise")}
         eyebrow="Preise"
         title={
           <>

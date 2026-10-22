@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MessageSquare, FilePenLine, CheckCircle2 } from "lucide-react";
 import { PageHero } from "@/components/ui/PageHero";
+import { crumbsFor } from "@/lib/breadcrumbs";
 import { TrialCta } from "@/components/ui/TrialCta";
 import { FeatureSnippet } from "@/components/feature-snippet/FeatureSnippet";
 import { pageMetadata } from "@/lib/metadata";
@@ -13,6 +14,7 @@ export default function Page() {
   return (
     <>
       <PageHero
+        crumbs={crumbsFor("/craft-ai")}
         eyebrow="Craft AI"
         title={
           <>
