@@ -9,7 +9,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { l1Treffer } from "@/lib/leitlinie";
+import { l1Treffer, l1Woerter } from "@/lib/leitlinie";
 import leitlinie from "@/lib/leitlinie-l1.json";
 import { stringLiterale } from "../scripts/lib/ts-literale.mjs";
 
@@ -40,9 +40,22 @@ function ohneGaebFachteil(markdown: string): string {
   return teile.filter((teil, i) => i === 0 || !teil.startsWith("## ") || /CraftOS/.test(teil)).join("");
 }
 
+/**
+ * Prüfmechanik, keine Inhaltsausnahme (Begründung laut 09-UI-SPEC § 5 „Weitere Ausnahmen nur mit eigener Begründung
+ * im Test“): Ein String-Literal, das genau aus einem Wort der Leitlinie besteht, ist ein Eintrag einer Prüf-Wortliste
+ * (z. B. die lokale L1_WOERTER-Liste in lib/gewerke.ts bis 09-11) und kein Text, den die Website zeigt. Literale mit
+ * weiterem Text – auch ein einzelnes Wort mit Satzzeichen oder Zusatz – bleiben voll in der Prüfung.
+ */
+const LISTENWOERTER = new Set(l1Woerter.map((w) => w.toLowerCase()));
+const istListeneintrag = (literal: string) => LISTENWOERTER.has(literal.trim().toLowerCase());
+
 /** Treffer einer Datei als „datei: wort“ (eindeutig je Wort). */
 function trefferInDatei(rel: string, inhalt: string): { datei: string; wort: string }[] {
-  let text = rel.endsWith(".ts") ? stringLiterale(inhalt).join("\n") : inhalt;
+  let text = rel.endsWith(".ts")
+    ? stringLiterale(inhalt)
+        .filter((l) => !istListeneintrag(l))
+        .join("\n")
+    : inhalt;
   if (rel === GAEB.datei) text = ohneGaebFachteil(text);
   return l1Treffer(ohnePflichthinweise(text)).map((wort) => ({ datei: rel, wort }));
 }
@@ -131,9 +144,18 @@ describe("Prüfmechanik (Fixtures)", () => {
       "// Beleg: Portal ohne Onlinezahlung (PortalPaymentNotice.tsx)",
       "/* Altbegriff Neue Phase im Release */",
       'export const a = { text: "Rechnungen begleicht der Kunde per Überweisung." };',
-      "export const b = `Vorlage ${a.text} Bald verfügbar`;",
+      "export const b = `Vorlage ${a.text} ist Bald verfügbar.`;",
     ].join("\n");
     expect(trefferInDatei("lib/gewerke.ts", quelle).map((x) => x.wort)).toEqual(["Bald verfügbar"]);
+  });
+
+  it("TypeScript: reine Wortlisten-Einträge zählen nicht, Text mit Listenwort schon", () => {
+    const quelle = [
+      'const L1_WOERTER = ["nicht unterstützt", "Onlinezahlung", "DATANORM v5"] as const;',
+      'export const faq = { a: "Onlinezahlung." };',
+      'export const t = "Bald verfügbar im Portal";',
+    ].join("\n");
+    expect(trefferInDatei("lib/gewerke.ts", quelle).map((x) => x.wort)).toEqual(["Onlinezahlung", "Bald verfügbar"]);
   });
 
   it("gaeb-formate: neutraler Fachteil ausgenommen, CraftOS-Abschnitt und Einleitung geprüft", () => {
