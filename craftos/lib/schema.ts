@@ -13,9 +13,12 @@ export function organizationSchema() {
     url: site.url,
     logo: site.url + "/icons/icon-512x512.png",
     description: site.description,
+    // D-25: sachliche Abgrenzung zu gleichnamigen Projekten (ohne Links auf diese Projekte).
     disambiguatingDescription:
-      "CraftOS (craftos.eu) ist der Anbieter der gleichnamigen Handwerkersoftware für Handwerksbetriebe in Deutschland.",
+      "CraftOS (craftos.eu) ist der Anbieter der gleichnamigen Handwerkersoftware für Handwerksbetriebe in Deutschland; nicht verbunden mit CraftOS-PC oder ComputerCraft.",
     email: site.email,
+    // Nur geprüfte offizielle Profile (D-25, T-08-31): App Store und Google Play.
+    sameAs: storeUrls,
   };
 }
 export function softwareApplicationSchema() {

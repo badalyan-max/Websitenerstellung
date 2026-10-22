@@ -310,7 +310,8 @@ describe("GoBD (§ 5.4)", () => {
       ["Die Übergabe vorbereiten", "/hilfe/datev-export-erstellen"],
     ]);
     for (const k of gobd.gobdKacheln) {
-      const max = k.size === "lg" || k.size === "wide" ? TEXT_BUDGET.bentoTile.textLarge : TEXT_BUDGET.bentoTile.textSmall;
+      const size: string = k.size;
+      const max = size === "lg" || size === "wide" ? TEXT_BUDGET.bentoTile.textLarge : TEXT_BUDGET.bentoTile.textSmall;
       expect(charCount(k.text), k.title).toBeLessThanOrEqual(max);
       expect(sentenceCount(k.text), k.title).toBe(1);
     }
@@ -356,7 +357,8 @@ describe("GoBD (§ 5.4)", () => {
 });
 
 describe("Wortregeln und Literale (T-08-32)", () => {
-  const alle = [fakten, craftAi, gobd].flatMap((m) => texte(m as Record<string, unknown>));
+  // Nur Fließtexte (mit Leerzeichen); Abschnitts-ids wie „zertifizierung“ sind keine Aussagen.
+  const alle = [fakten, craftAi, gobd].flatMap((m) => texte(m as Record<string, unknown>)).filter((t) => /s/.test(t));
 
   it("keine positive Zertifizierungsbehauptung", () => {
     const funde = alle.filter((t) => /zertifizier/i.test(t) && !t.endsWith("?") && !/\b(nicht|kein\w*|Nein)\b/i.test(t));
