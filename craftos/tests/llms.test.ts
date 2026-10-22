@@ -14,6 +14,13 @@ describe("llms.txt", () => {
     expect(text).toContain(site.url + "/preise");
     expect(text).toContain(site.url + "/vergleich");
   });
+  it("links the published alternatives pages without competitor figures (08-08, SEO-06)", () => {
+    const abschnitt = text.slice(text.indexOf("## Preise und Vergleich"), text.indexOf("## Rechner"));
+    expect(abschnitt).toContain(`(${site.url}/vergleich/plancraft-alternative)`);
+    expect(abschnitt).toContain(`(${site.url}/vergleich/craftnote-alternative)`);
+    for (const zeile of abschnitt.split("\n").filter((z) => z.includes("-alternative)")))
+      expect(zeile, zeile).not.toMatch(/\d+,\d{2}|\d+ Tage/);
+  });
   it("keeps the facts above the first link section", () => {
     const firstH2 = text.indexOf("\n## ");
     expect(text.indexOf("29,95 €")).toBeLessThan(firstH2);

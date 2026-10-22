@@ -9,6 +9,7 @@ import AppPage from "@/app/app/page";
 import FunktionenPage from "@/app/funktionen/page";
 import Home from "@/app/page";
 import { FunktionsDetail } from "@/components/funktionen/FunktionsDetail";
+import { AlternativePage } from "@/components/vergleich/AlternativePage";
 import {
   TEXT_BUDGET,
   assertCount,
@@ -20,6 +21,7 @@ import {
 import { MINI_BUDGET } from "@/components/v2/mini/limits";
 import { funktionen } from "@/lib/funktionen";
 import { getFunktionsdetail } from "@/lib/funktionsdetails";
+import { baueAlternative } from "@/lib/seiten/alternativen";
 import * as content from "@/lib/styleguide-content";
 
 type Check = [field: string, value: string | undefined, max: number];
@@ -266,12 +268,17 @@ describe("Antwort-zuerst-Regeln über Bestandsinhalte (Phase 8)", () => {
       `/funktionen/${f.slug}`,
       renderToString(createElement(FunktionsDetail, { detail: getFunktionsdetail(f.slug) })),
     ]),
+    // 08-08: Alternativen-Seiten (Frage-H2 kosten, fuer-wen, umstieg; Nicht-Frage-H2 vergleich, faq).
+    ...(["plancraft", "craftnote"] as const).map((slug): [string, string] => [
+      `/vergleich/${slug}-alternative`,
+      renderToString(createElement(AlternativePage, { inhalt: baueAlternative(slug) })),
+    ]),
   ];
   const decode = (v: string) =>
     v.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#x27;/g, "'").trim();
 
-  it("25 Seiten rendern; Frage-H2 → Antwort-Lead mit data-answer ≤ 300, sonst Lead ≤ 140 mit einem Satz", () => {
-    expect(seiten).toHaveLength(25);
+  it("27 Seiten rendern; Frage-H2 → Antwort-Lead mit data-answer ≤ 300, sonst Lead ≤ 140 mit einem Satz", () => {
+    expect(seiten).toHaveLength(27);
     const problems: string[] = [];
     for (const [pfad, html] of seiten) {
       for (const m of html.matchAll(/<header[^>]*>[\s\S]*?<h2[^>]*>([\s\S]*?)<\/h2>(<p[^>]*>)([\s\S]*?)<\/p>/g)) {

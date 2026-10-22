@@ -662,6 +662,7 @@ Abweichungen **C2–C5** zu [05]/[07] laut 08-UI-SPEC „Ergänzungen“; alle B
 
 **Prüfung:** `tests/funktionskopf.test.ts`, `tests/design-v2-components.test.ts`, `tests/design-v2-budgets.test.ts` (Sammeltest: Startseite, `/app`, `/funktionen` und 22 Detailseiten erfüllen die Antwort-zuerst-Regeln), `tests/styleguide.test.ts`.
 
+<<<<<<< HEAD
 ### 17.5 Preisseite `/preise` answer-first (Plan 08-07, 22.10.2026)
 
 Umsetzung von 08-UI-SPEC § 4 ausschließlich mit v2-Bausteinen: `FunktionsKopf` ohne Visual (Antwortsatz `#antwort`, Stand-Zeile, CTA, Sekundärlink „Lizenzen vergleichen“ → `#lizenzen`), `ComparisonTable` Lizenzen (Voll-Lizenz `highlight`, 12 Zeilen), `BentoGrid` App-Lizenz (vier belegte `/app`-Kacheln, Raster lg, sm, sm, md wie `/app`; Kacheln weiß auf Warmfläche, die Zeitkachel bleibt dunkel; „Aufmaß vor Ort“ als kleine Kachel mit Icon `Ruler`, Text unverändert), `KeyFacts` Zusatzkosten (nur `site:`-Quellen), `ComparisonTable` Marktspanne **ohne** Hervorhebung (C5) mit Quellenliste und Disclaimer, `FaqList answerMax={300}` und `CtaBand`. Flächen Kopf dunkel → Weiß → Warm → Weiß → Warm → Weiß → CTA dunkel; Abschnitte nach § 17.1 (`data-abschnitt` = `aria-labelledby` = H2-`id`). `PageHero`, `PricingTable` (gelöscht), `components/ui/Faq` und `TrialCta` sind nicht mehr eingebunden. Inhalte: `lib/seiten/preise.ts`.
@@ -677,3 +678,23 @@ Umsetzung von 08-UI-SPEC § 4 ausschließlich mit v2-Bausteinen: `FunktionsKopf`
 **Sichtprüfung** (`scripts/visual-audit.mjs`, Chromium und WebKit 360–1440): Antwort und CTA bei 360 × 640 ohne Scrollen sichtbar, Tabellen scrollen nur im eigenen Bereich, Quellenliste lesbar; kein Überlauf, keine JS-Fehler, keine axe-Befunde.
 
 **Begriff:** sitewide „Extra-Speicher“ (PROD-03); die UI-SPEC-Stellen mit „Zusatzspeicher“ sind so umgesetzt.
+=======
+### 17.6 Alternativen-Vorlage (Plan 08-08, 22.10.2026)
+
+Vorlage `components/vergleich/AlternativePage.tsx` nach 08-UI-SPEC § 3.1 (C8) für `/vergleich/plancraft-alternative` und `/vergleich/craftnote-alternative`; HERO und ToolTime folgen mit derselben Vorlage (08-09). Keine neuen Bausteine, keine neuen Tokens, keine Client-Insel.
+
+**Kaskade:**
+
+1. **frontend-design** (Leitlinie read-only gelesen, nichts kopiert): „Spend your boldness in one place“ – der einzige betonte Ort ist die hervorgehobene CraftOS-Spalte der Vergleichstabelle (Amber-Oberkante, Punkt 4 der Amber-Liste); alles andere bleibt im ruhigen Flächenrhythmus Weiß/Warm. „Visual structure is information“ – Quellenliste, Stand-Zeile und Disclaimer sind Inhalt (Belege), keine Dekoration; keine Logos, keine Einzelwort-Hervorhebung außer dem Kopfwort-Span.
+2. **ui-ux-pro-max** (ausgeführt am 22.10.2026, lokal):
+   ```
+   py -3.12 -X utf8 c:/Projekte/ai-agent-tools/skills/ui-ux-pro-max/scripts/search.py "saas comparison alternative page pricing" --domain ux
+   ```
+   Ergebnis: Image Optimization (High) – nicht betroffen, die Seiten enthalten kein Bild (Test: kein `<img`); Active State (Medium) – erfüllt über das aktuelle Brotkrumen-Glied (`aria-current`, 600).
+3. **21st.dev:** `21st_magic_component_inspiration` („comparison table competitor“) stand in dieser Sitzung nicht als Werkzeug zur Verfügung; nichts abgerufen.
+4. **Context7:** nicht verfügbar; Ersatz `craftos/node_modules/next/dist/docs`. Keine offenen API-Fragen (statische Route mit `export const metadata`, `opengraph-image.tsx` nach dem Muster aus 08-05).
+
+**Aufbau:** Kopf (`FunktionsKopf` ohne Visual: Brotkrumen, Eyebrow „Vergleich“, H1 aus der Keyword-Map mit Kopfwort-Span, `#antwort`, Stand-Zeile, CTA + „Zur Vergleichstabelle“) → `vergleich` (Weiß, `ComparisonTable` mit CraftOS-`highlight`, Quellenliste, Disclaimer) → `kosten` (Warm, Frage-H2 + `KeyFacts` 4 mit Rechenweg-Note) → `fuer-wen` (Weiß, Frage-H2 + `FitPanels`, Wettbewerber zuerst) → `umstieg` (Warm, Frage-H2 + `StepFlow tone="light"` + Textlink „Mehr zur Datenübernahme“) → `faq` (Weiß, `FaqList answerMax={300}` + FAQPage aus demselben Array) → `CtaBand`. Abschnitte als `section data-abschnitt={id} aria-labelledby={id}`, H2-`id` = Abschnitts-id (§ 17.1).
+
+**Inhalte und Prüfung:** Texte aus `lib/seiten/alternativen/{plancraft,craftnote}.ts`, Zahlen nur per Vorlage (CraftOS aus `lib/site.ts`, Wettbewerber aus `lib/wettbewerber/*`). Der Builder `baueAlternative` (`lib/seiten/alternativen/index.ts`) wirft bei Zellen > 24, mehr als 12 Zeilen, Zeilen ohne Quelle, UWG-Wort, weniger als 2 Stärken, fehlender Fairnesszeile und Antworten > 300. Tests: `tests/vergleich-seiten.test.ts`, `tests/design-v2-budgets.test.ts` (Sammeltest 27 Seiten), `tests/keyword-map.test.ts`, `tests/pricing-parity.test.ts`.
+>>>>>>> phase08-spur-d

@@ -64,6 +64,9 @@ export function buildLlmsTxt(): string {
     "",
     link("Preise", "/preise"),
     link("Vergleich mit Craftnote und plancraft", "/vergleich"),
+    // 08-08: Alternativen-Seiten, ohne Wettbewerberzahlen (Preise mit Quelle und Stand stehen auf der Seite).
+    link("plancraft-Alternative", "/vergleich/plancraft-alternative", "CraftOS und plancraft mit Quellen und Stand im Vergleich"),
+    link("Craftnote-Alternative", "/vergleich/craftnote-alternative", "CraftOS und Craftnote mit Quellen und Stand im Vergleich"),
     link("Fakten über CraftOS", "/fakten-ueber-craftos"),
     link("GoBD", "/gobd"),
     "",
