@@ -543,6 +543,13 @@ describe("gerendert", () => {
     for (const q of faq.mainEntity as { name: string }[]) expect(sichtbar.has(q.name), q.name).toBe(true);
     expect(html).toContain(gobd.gobdGrundlage.quellen[0].href);
     expect(html).toContain(gobd.gobdGrundlage.quellen[1].href);
+    // Quellenlinks wie in ComparisonTable/FitPanels: rel="nofollow", gleicher Tab (08-UI-SPEC § 3.5, 08-13).
+    for (const q of gobd.gobdGrundlage.quellen) {
+      const tag = html.match(new RegExp(`<a [^>]*href="${q.href.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"[^>]*>`));
+      expect(tag, q.href).not.toBeNull();
+      expect(tag![0], q.href).toMatch(/rel="[^"]*nofollow/);
+      expect(tag![0], q.href).not.toContain('target="_blank"');
+    }
   });
 
   it("webPageSchema: about überschreibbar, Standard bleibt #software", () => {
