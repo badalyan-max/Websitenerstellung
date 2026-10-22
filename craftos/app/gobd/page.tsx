@@ -1,182 +1,125 @@
-import Link from "next/link";
-import {
-  LockKeyhole,
-  History,
-  FileCheck2,
-  Files,
-  ShieldCheck,
-  ArrowUpRight,
-} from "lucide-react";
-import { PageHero } from "@/components/ui/PageHero";
-import { crumbsFor } from "@/lib/breadcrumbs";
-import { TrialCta } from "@/components/ui/TrialCta";
-import { metaFor, zielwerte } from "@/lib/seo-meta";
+import type { ReactNode } from "react";
 import { FeatureSnippet } from "@/components/feature-snippet/FeatureSnippet";
+import { FunktionsKopf } from "@/components/funktionen/FunktionsKopf";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { faqSchema } from "@/lib/schema";
-// Title, Description und H1 aus der Keyword-Map (08-04, D-06, D-17); v2-Umbau folgt in einem späteren Phase-8-Plan.
-export const metadata = metaFor("/gobd");
-const points = [
-  {
-    icon: LockKeyhole,
-    title: "Rechnungen verbindlich festschreiben",
-    text: "Beim Fertigstellen vergibt CraftOS die endgültige Dokumentnummer und sperrt den Rechnungsinhalt. Positionen, Beträge, Kunde, Belegdatum und weitere inhaltliche Angaben können danach nicht einfach überschrieben oder entsperrt werden.",
-    href: "/hilfe/rechnung-fertigstellen",
-  },
-  {
-    icon: History,
-    title: "Den Dokumentstand nachvollziehen",
-    text: "Zum finalisierten Dokument wird ein Versionsstand gespeichert. Festschreibung und verantwortliche Person bleiben zugeordnet. Damit ist der Zusammenhang zwischen Bearbeitung und freigegebenem Stand nachvollziehbar.",
-    href: "/funktionen/rechnungen",
-  },
-  {
-    icon: Files,
-    title: "Korrekturen mit Bezug zum Original",
-    text: "Eine Stornorechnung erhält eine eigene Nummer und verweist auf die ursprüngliche Rechnung. Die ursprüngliche Rechnung bleibt erhalten; die Korrektur wird als eigener Vorgang sichtbar.",
-    href: "/hilfe/rechnung-stornieren",
-  },
-  {
-    icon: FileCheck2,
-    title: "Eingangsbelege prüfen und sperren",
-    text: "Sie kontrollieren ausgelesene Rechnungsdaten und die Zuordnung. Nach bestätigter Prüfung schützt eine Sperre die Belegangaben; relevante Änderungen und die Festschreibung werden protokolliert. Zahlungsinformationen können weiterhin nachgeführt werden.",
-    href: "/hilfe/beleg-scannen-pruefen",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Zugriffe und E-Rechnungsbezug schützen",
-    text: "Berechtigungen begrenzen den Zugriff auf Finanzdaten und die Festschreibung. Ein einmal gespeicherter Verweis auf das archivierte E-Rechnungs-PDF lässt sich nicht durch einen anderen Verweis ersetzen.",
-    href: "/funktionen/e-rechnung",
-  },
-  {
-    icon: Files,
-    title: "Die Übergabe vorbereiten",
-    text: "Projektbezüge, Belege und Kontierung helfen bei der Zuordnung. Der DATEV-Export unterstützt die Übergabe an die Steuerberatung; Exportumfang und erforderliche Unterlagen stimmen Sie mit Ihrer Kanzlei ab.",
-    href: "/hilfe/datev-export-erstellen",
-  },
-];
-export default function Page() {
+import { BentoGrid, BentoTile, TileIcon } from "@/components/v2/BentoGrid";
+import { CtaBand } from "@/components/v2/CtaBand";
+import { FaqList } from "@/components/v2/FaqList";
+import { FitPanels } from "@/components/v2/FitPanels";
+import { IllustrationLabel } from "@/components/v2/IllustrationLabel";
+import { SectionHeader } from "@/components/v2/SectionHeader";
+import { StepFlow } from "@/components/v2/StepFlow";
+import { crumbsFor } from "@/lib/breadcrumbs";
+import { CTA_DETAIL } from "@/lib/funktionsdetails";
+import { faqSchema, webPageSchema } from "@/lib/schema";
+import { metaFor, zielwerte } from "@/lib/seo-meta";
+import {
+  GOBD_PFAD,
+  GOBD_SURFACES,
+  gobdFaq,
+  gobdGrundlage,
+  gobdKacheln,
+  gobdKopf,
+  gobdPanels,
+  gobdSections,
+  gobdSteps,
+  type GobdSectionId,
+} from "@/lib/seiten/gobd";
+
+/**
+ * GoBD (08-UI-SPEC § 5.4; D-09, D-12): Kopf G1 ohne Visual, sechs Funktionskacheln, Ablauf mit gekennzeichnetem
+ * FeatureSnippet „rechnung“, Zuständigkeiten (FitPanels ohne Quellen), FAQ mit amtlichen Grundlagen und CtaBand.
+ * Inhalte aus lib/seiten/gobd.ts. FAQPage-JSON-LD entsteht aus demselben Array wie die sichtbare FAQ (T-08-33).
+ */
+const z = zielwerte(GOBD_PFAD);
+
+export const metadata = metaFor(GOBD_PFAD);
+
+const SURFACE = { white: "bg-white", warm: "bg-[#f7f3eb]" } as const;
+
+function Abschnitt({ id, children }: { id: Exclude<GobdSectionId, "kopf" | "cta">; children: ReactNode }) {
+  const surface = GOBD_SURFACES[id];
+  if (surface === "dark") throw new Error(`GoBD-Seite: Abschnitt ${id} darf nicht dunkel sein – GOBD_SURFACES prüfen.`);
+  return (
+    <section data-abschnitt={id} aria-labelledby={id} className={`${SURFACE[surface]} py-12 md:py-16 lg:py-24`}>
+      <div className="site-container">{children}</div>
+    </section>
+  );
+}
+
+export default function GobdPage() {
+  const s = gobdSections;
   return (
     <>
-      <PageHero
-        crumbs={crumbsFor("/gobd")}
-        eyebrow="GoBD & Nachvollziehbarkeit"
-        title={zielwerte("/gobd").h1}
-        intro="CraftOS unterstützt Ihre GoBD-konformen Abläufe mit Festschreibung, geschützten Rechnungsinhalten, Dokumentversionen und einer nachvollziehbaren Belegprüfung."
+      <FunktionsKopf
+        id="gobd-titel"
+        eyebrow={gobdKopf.eyebrow}
+        h1={z.h1}
+        keyword={gobdKopf.kopfwort}
+        lead={gobdKopf.lead}
+        secondary={gobdKopf.secondary}
+        crumbs={crumbsFor(GOBD_PFAD)}
       />
-      <section className="section-space">
-        <div className="site-container">
-          <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
-            {points.map((p) => (
-              <article key={p.title} className="border-t border-ink-200 pt-7">
-                <p.icon
-                  size={30}
-                  strokeWidth={1.4}
-                  className="text-primary-800"
-                />
-                <h2 className="text-2xl font-semibold mt-5">{p.title}</h2>
-                <p className="mt-4 text-ink-600">{p.text}</p>
-                <Link href={p.href} className="text-link mt-5">
-                  Ablauf ansehen <ArrowUpRight size={17} />
-                </Link>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="section-space bg-ink-100">
-        <div className="site-container grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14 lg:items-center">
+
+      <Abschnitt id="funktionen">
+        <SectionHeader id="funktionen" title={s.funktionen.title} lead={s.funktionen.lead} />
+        <BentoGrid label={s.funktionen.title}>
+          {gobdKacheln.map((k) => (
+            <BentoTile
+              key={k.title}
+              size={k.size}
+              surface="warm"
+              title={k.title}
+              text={k.text}
+              href={k.href}
+              visual={<TileIcon icon={k.icon} />}
+            />
+          ))}
+        </BentoGrid>
+      </Abschnitt>
+
+      <Abschnitt id="ablauf">
+        <SectionHeader id="ablauf" title={s.ablauf.title} lead={s.ablauf.lead} />
+        <StepFlow steps={gobdSteps} tone="light" label={s.ablauf.title} />
+        <figure data-figure="snippet" className="mt-12 max-w-[640px]">
+          <FeatureSnippet variant="rechnung" headingLevel={3} />
+          <figcaption className="mt-2">
+            <IllustrationLabel kind="vereinfacht" />
+          </figcaption>
+        </figure>
+      </Abschnitt>
+
+      <Abschnitt id="zertifizierung">
+        <SectionHeader id="zertifizierung" title={s.zertifizierung.title} lead={s.zertifizierung.lead} />
+        <FitPanels label={s.zertifizierung.title} panels={gobdPanels} quellenPflicht={false} />
+      </Abschnitt>
+
+      <Abschnitt id="faq">
+        <div className="grid gap-y-0 lg:grid-cols-[5fr_7fr] lg:gap-x-12">
+          <SectionHeader id="faq" title={s.faq.title} lead={s.faq.lead} />
           <div className="min-w-0">
-            <p className="eyebrow">Vom Entwurf zum festen Stand</p>
-            <h2 className="section-title">
-              Erst prüfen.
-              <br />
-              Dann fertigstellen.
-            </h2>
-            <p className="section-intro">
-              Das kleine Beispiel zeigt den Unterschied: Ein Entwurf lässt sich
-              bearbeiten. Nach dem Fertigstellen stehen Dokumentnummer und
-              Rechnungsinhalt fest.
+            <FaqList items={gobdFaq} headingLevel={3} answerMax={300} />
+            <p data-grundlage="" className="mt-4 text-sm leading-[1.4] text-ink-500">
+              {"Grundlage: "}
+              <a href={gobdGrundlage.quellen[0].href} className="text-ink-900 underline underline-offset-4">
+                {gobdGrundlage.quellen[0].label}
+              </a>
+              {" und "}
+              <a href={gobdGrundlage.quellen[1].href} className="text-ink-900 underline underline-offset-4">
+                {gobdGrundlage.quellen[1].label}
+              </a>
+              {`. ${gobdGrundlage.stand}`}
             </p>
-            <Link href="/hilfe/rechnung-fertigstellen" className="text-link mt-6">
-              Rechnung Schritt für Schritt fertigstellen <ArrowUpRight size={17} />
-            </Link>
-          </div>
-          <div className="w-full min-w-0 max-w-[640px] justify-self-center">
-            <FeatureSnippet variant="rechnung" />
           </div>
         </div>
-      </section>
-      <section className="section-space">
-        <div className="site-container grid md:grid-cols-2 gap-12">
-          <div>
-            <h2 className="text-3xl font-semibold">
-              Software und betriebliche Abläufe gehören zusammen.
-            </h2>
-            <p className="mt-5 text-ink-600">
-              GoBD-Konformität betrifft das gesamte Verfahren im Betrieb. Die
-              technischen Funktionen unterstützen dieses Verfahren; sie ersetzen
-              weder Ihre Verfahrensdokumentation noch eine vollständige und
-              zeitnahe Belegerfassung.
-            </p>
-            <p className="mt-4 text-ink-600">
-              Organisieren Sie Zuständigkeiten, Kontrollen, die Aufbewahrung
-              steuerlich relevanter Originaldaten und den erforderlichen
-              Datenzugriff gemeinsam mit Ihrer Steuerberatung. Ein DATEV-Export
-              allein ist kein Nachweis, dass sämtliche Prüfungs- und
-              Aufbewahrungsanforderungen erfüllt sind.
-            </p>
-            <p className="mt-4 text-ink-600">
-              CraftOS wird hier anhand konkreter Funktionen beschrieben; eine
-              behördliche GoBD-Zertifizierung wird nicht behauptet.
-            </p>
-          </div>
-          <div className="soft-panel">
-            <h2 className="text-2xl font-semibold">Ein typischer Ablauf</h2>
-            <ol className="list-decimal pl-5 space-y-4 mt-5">
-              <li>Firmen- und Kundenangaben vollständig pflegen.</li>
-              <li>Belege erfassen, Inhalte prüfen und korrekt zuordnen.</li>
-              <li>Rechnungen nach Prüfung fertigstellen und festschreiben.</li>
-              <li>
-                Korrekturen über nachvollziehbare Stornovorgänge bearbeiten.
-              </li>
-              <li>
-                Zahlungen nachführen, Unterlagen aufbewahren und die Übergabe
-                abstimmen.
-              </li>
-            </ol>
-          </div>
-        </div>
-        <div className="site-container mt-12 border-t border-ink-200 pt-7">
-          <h2 className="text-xl font-semibold">Grundlage und Stand</h2>
-          <p className="text-sm text-ink-600 mt-3">
-            Funktionsstand geprüft am 9. September 2026. Die rechtliche
-            Einordnung orientiert sich an den{" "}
-            <a
-              className="text-link"
-              href="https://ao.bundesfinanzministerium.de/ao/2025/Anhaenge/BMF-Schreiben-und-gleichlautende-Laendererlasse/Anhang-33/inhalt.html"
-            >
-              GoBD im amtlichen AO-Handbuch
-            </a>{" "}
-            sowie dem{" "}
-            <a
-              className="text-link"
-              href="https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Weitere_Steuerthemen/Abgabenordnung/2025-07-14-GoBD-2-aenderung.html"
-            >
-              BMF-Änderungsschreiben vom 14. Juli 2025
-            </a>
-            .
-          </p>
-        </div>
-      </section>
-      <JsonLd
-        data={faqSchema([
-          {
-            q: "Wie unterstützt CraftOS GoBD-konforme Abläufe?",
-            a: "Durch Rechnungsfestschreibung, geschützte Inhalte, Dokumentversionen, nachvollziehbare Stornierungen sowie Prüfung, Sperre und Protokollierung von Eingangsbelegen. Die GoBD betreffen zugleich die betrieblichen Abläufe und die Aufbewahrung.",
-          },
-        ])}
-      />
-      <TrialCta />
+        <JsonLd data={faqSchema(gobdFaq)} />
+      </Abschnitt>
+
+      <div data-abschnitt="cta">
+        <CtaBand title={CTA_DETAIL.title} text={CTA_DETAIL.text} secondary={CTA_DETAIL.secondary} />
+      </div>
+
+      <JsonLd data={webPageSchema({ path: GOBD_PFAD, name: z.h1, description: z.description })} />
     </>
   );
 }

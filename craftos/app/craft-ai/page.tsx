@@ -1,83 +1,107 @@
-import Link from "next/link";
-import { MessageSquare, FilePenLine, CheckCircle2 } from "lucide-react";
-import { PageHero } from "@/components/ui/PageHero";
-import { crumbsFor } from "@/lib/breadcrumbs";
-import { TrialCta } from "@/components/ui/TrialCta";
+import type { ReactNode } from "react";
 import { FeatureSnippet } from "@/components/feature-snippet/FeatureSnippet";
+import { FunktionsKopf } from "@/components/funktionen/FunktionsKopf";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { BentoGrid, BentoTile, TileIcon } from "@/components/v2/BentoGrid";
+import { CtaBand } from "@/components/v2/CtaBand";
+import { FaqList } from "@/components/v2/FaqList";
+import { IllustrationLabel } from "@/components/v2/IllustrationLabel";
+import { KeyFacts } from "@/components/v2/KeyFacts";
+import { SectionHeader } from "@/components/v2/SectionHeader";
+import { StepFlow } from "@/components/v2/StepFlow";
+import { crumbsFor } from "@/lib/breadcrumbs";
+import { CTA_DETAIL } from "@/lib/funktionsdetails";
+import { faqSchema, webPageSchema } from "@/lib/schema";
 import { metaFor, zielwerte } from "@/lib/seo-meta";
-// Title, Description und H1 aus der Keyword-Map (08-04, D-06, D-17); v2-Umbau folgt in einem späteren Phase-8-Plan.
-export const metadata = metaFor("/craft-ai");
-export default function Page() {
+import {
+  CRAFT_AI_PFAD,
+  CRAFT_AI_SURFACES,
+  craftAiFaq,
+  craftAiGrenzen,
+  craftAiKeyFacts,
+  craftAiKopf,
+  craftAiSections,
+  craftAiSteps,
+  type CraftAiSectionId,
+} from "@/lib/seiten/craft-ai";
+
+/**
+ * Craft AI (08-UI-SPEC § 5.3; D-09, D-12): Kopf G1 ohne Visual, Ablauf mit gekennzeichnetem FeatureSnippet „ki“
+ * unterhalb der Falz, Kosten aus site.ts, Grenzen, FAQ und CtaBand. Inhalte aus lib/seiten/craft-ai.ts; Title, H1
+ * und Description aus der Keyword-Map. JSON-LD: BreadcrumbList (Kopf), FAQPage aus der sichtbaren FAQ, WebPage.
+ */
+const z = zielwerte(CRAFT_AI_PFAD);
+
+export const metadata = metaFor(CRAFT_AI_PFAD);
+
+const SURFACE = { white: "bg-white", warm: "bg-[#f7f3eb]" } as const;
+
+function Abschnitt({ id, children }: { id: Exclude<CraftAiSectionId, "kopf" | "cta">; children: ReactNode }) {
+  const surface = CRAFT_AI_SURFACES[id];
+  if (surface === "dark") throw new Error(`Craft-AI-Seite: Abschnitt ${id} darf nicht dunkel sein – CRAFT_AI_SURFACES prüfen.`);
+  return (
+    <section data-abschnitt={id} aria-labelledby={id} className={`${SURFACE[surface]} py-12 md:py-16 lg:py-24`}>
+      <div className="site-container">{children}</div>
+    </section>
+  );
+}
+
+export default function CraftAiPage() {
+  const s = craftAiSections;
   return (
     <>
-      <PageHero
-        crumbs={crumbsFor("/craft-ai")}
-        eyebrow="Craft AI"
-        title={zielwerte("/craft-ai").h1}
-        intro="Craft AI hilft beim Finden von Informationen und bereitet Entwürfe vor. Sie prüfen den Inhalt und bestätigen, bevor ein unterstützter Schreibvorgang übernommen wird."
+      <FunktionsKopf
+        id="craft-ai-titel"
+        eyebrow={craftAiKopf.eyebrow}
+        h1={z.h1}
+        keyword={craftAiKopf.kopfwort}
+        lead={craftAiKopf.lead}
+        secondary={craftAiKopf.secondary}
+        crumbs={crumbsFor(CRAFT_AI_PFAD)}
       />
-      <section className="section-space">
-        <div className="site-container">
-          <div className="grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14 lg:items-center">
-            <div className="min-w-0 space-y-7">
-              {[
-                [
-                  MessageSquare,
-                  "Fragen stellen",
-                  "Betriebsdaten per Text oder Sprache abfragen. Die verfügbaren Informationen richten sich nach Ihrem Zugriff.",
-                ],
-                [
-                  FilePenLine,
-                  "Entwürfe vorbereiten",
-                  "Unterstützte Angebots-, Zeit-, Einsatz- oder Berichtsentwürfe als Ausgangspunkt erhalten.",
-                ],
-                [
-                  CheckCircle2,
-                  "Bewusst übernehmen",
-                  "Inhalt und Zuordnung kontrollieren. Erst Ihre Bestätigung übernimmt den unterstützten Entwurf.",
-                ],
-              ].map(([Icon, t, p]) => {
-                const I = Icon as typeof MessageSquare;
-                return (
-                  <div className="border-t border-ink-200 pt-5" key={t as string}>
-                    <h2 className="flex items-start gap-3 text-xl font-semibold">
-                      <I size={22} className="shrink-0 text-primary-800 mt-1" />
-                      {t as string}
-                    </h2>
-                    <p className="text-ink-600 mt-3 leading-relaxed">{p as string}</p>
-                  </div>
-                );
-              })}
-            </div>
-            <div className="w-full min-w-0 max-w-[640px] justify-self-center">
-              <FeatureSnippet variant="ki" />
-            </div>
-          </div>
-          <div className="notice mt-12">
-            <h2 className="text-2xl font-semibold">
-              Ihre Prüfung bleibt Teil des Ablaufs.
-            </h2>
-            <p className="mt-3">
-              KI-Ergebnisse können unvollständig oder falsch sein. Prüfen Sie
-              insbesondere Mengen, Preise, Zeitangaben und Projektbezug. Craft
-              AI wird nicht als autonom verbuchendes Buchhaltungssystem
-              angeboten.
-            </p>
-            <p className="text-sm mt-3">
-              KI-Nutzung verbraucht Credits; Beleg-OCR wird ebenfalls nach
-              Verbrauch abgerechnet. Die strukturierte Verarbeitung einer
-              E-Rechnung ist davon getrennt.
-            </p>
-            <Link
-              href="/hilfe/ki-entwurf-pruefen-uebernehmen"
-              className="text-link mt-4"
-            >
-              KI-Entwürfe prüfen und übernehmen
-            </Link>
-          </div>
+
+      <Abschnitt id="so-arbeitet-craft-ai">
+        <SectionHeader
+          id="so-arbeitet-craft-ai"
+          title={s["so-arbeitet-craft-ai"].title}
+          lead={s["so-arbeitet-craft-ai"].lead}
+        />
+        <StepFlow steps={craftAiSteps} tone="light" label={s["so-arbeitet-craft-ai"].title} />
+        <figure data-figure="snippet" className="mt-12 max-w-[640px]">
+          <FeatureSnippet variant="ki" headingLevel={3} />
+          <figcaption className="mt-2">
+            <IllustrationLabel kind="vereinfacht" />
+          </figcaption>
+        </figure>
+      </Abschnitt>
+
+      <Abschnitt id="kosten">
+        <SectionHeader id="kosten" title={s.kosten.title} lead={s.kosten.lead} />
+        <KeyFacts facts={craftAiKeyFacts.facts} note={craftAiKeyFacts.note} />
+      </Abschnitt>
+
+      <Abschnitt id="grenzen">
+        <SectionHeader id="grenzen" title={s.grenzen.title} lead={s.grenzen.lead} />
+        <BentoGrid label={s.grenzen.title}>
+          {craftAiGrenzen.map((k) => (
+            <BentoTile key={k.title} size={k.size} surface="warm" title={k.title} text={k.text} visual={<TileIcon icon={k.icon} />} />
+          ))}
+        </BentoGrid>
+      </Abschnitt>
+
+      <Abschnitt id="faq">
+        <div className="grid gap-y-0 lg:grid-cols-[5fr_7fr] lg:gap-x-12">
+          <SectionHeader id="faq" title={s.faq.title} lead={s.faq.lead} />
+          <FaqList items={craftAiFaq} headingLevel={3} answerMax={300} />
         </div>
-      </section>
-      <TrialCta />
+        <JsonLd data={faqSchema(craftAiFaq)} />
+      </Abschnitt>
+
+      <div data-abschnitt="cta">
+        <CtaBand title={CTA_DETAIL.title} text={CTA_DETAIL.text} secondary={CTA_DETAIL.secondary} />
+      </div>
+
+      <JsonLd data={webPageSchema({ path: CRAFT_AI_PFAD, name: z.h1, description: z.description })} />
     </>
   );
 }

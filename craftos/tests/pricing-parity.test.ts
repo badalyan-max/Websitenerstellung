@@ -109,6 +109,9 @@ describe("Preise entsprechen origin/release der Web-App", () => {
       "lib/llms.ts",
       "lib/schema.ts",
       "app/fakten-ueber-craftos/page.tsx",
+      "lib/seiten/fakten.ts",
+      "lib/seiten/craft-ai.ts",
+      "lib/seiten/gobd.ts",
       "lib/funktionsgruppen.ts",
       "components/layout/HeaderShell.tsx",
       // 08-08: Alternativen-Vorlage und Builder – CraftOS-Preise nur aus tarife, Wettbewerberpreise nur per Vorlage.
