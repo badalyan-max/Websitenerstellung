@@ -105,14 +105,14 @@
       "engine": "chatgpt",
       "promptLlmId": 1535983,
       "prompt": "Software für Elektrobetriebe",
-      "target": "/gewerke/elektriker",
+      "target": "/gewerke/elektriker#antwort",
       "phase": 9
     },
     {
       "engine": "chatgpt",
       "promptLlmId": 1535986,
       "prompt": "Software für Malerbetriebe",
-      "target": "/gewerke/maler",
+      "target": "/gewerke/maler#antwort",
       "phase": 9
     },
     {

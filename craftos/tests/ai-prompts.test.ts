@@ -96,8 +96,8 @@ describe("ai-prompts-targets.json", () => {
       "/funktionen/zeiterfassung#faq-titel",
     );
     for (const p of prompts.filter((x) => x.phase < 8)) expect(p.target, p.prompt).toMatch(/#[a-z0-9-]+-titel$/);
-    expect(ziel("chatgpt", "Software für Elektrobetriebe")).toMatchObject({ target: "/gewerke/elektriker", phase: 9 });
-    expect(ziel("chatgpt", "Software für Malerbetriebe")).toMatchObject({ target: "/gewerke/maler", phase: 9 });
+    expect(ziel("chatgpt", "Software für Elektrobetriebe")).toMatchObject({ target: "/gewerke/elektriker#antwort", phase: 9 });
+    expect(ziel("chatgpt", "Software für Malerbetriebe")).toMatchObject({ target: "/gewerke/maler#antwort", phase: 9 });
   });
 
   it("luecken enthält genau die 9 Wissensseiten der Phase 9 (D-11, K-1)", () => {

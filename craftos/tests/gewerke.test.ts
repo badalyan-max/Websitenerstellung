@@ -211,6 +211,18 @@ describe("Ablauf, Funktionen und FAQ (09-UI-SPEC § 1.3, § 5)", () => {
   });
 });
 
+describe("Prompt-Anker Elektro und Maler (D-10, 09-UI-SPEC § 1.3)", () => {
+  it("die Antworten unter /gewerke/elektriker#antwort und /gewerke/maler#antwort nennen das Gewerk (kurz)", () => {
+    const elektriker = gewerke.find((g) => g.slug === "elektriker")!;
+    const maler = gewerke.find((g) => g.slug === "maler")!;
+    expect(elektriker.kurz).toBe("Elektro");
+    expect(maler.kurz).toBe("Maler");
+    expect(elektriker.answer).toContain("Elektro");
+    expect(maler.answer).toContain("Maler");
+    for (const g of [elektriker, maler]) expect(charCount(g.answer)).toBeLessThanOrEqual(TEXT_BUDGET.answer);
+  });
+});
+
 describe("H1 und Kopfwort aus der Keyword-Map (09-UI-SPEC § 1.3)", () => {
   it("Kopfwort steht wörtlich in der Map-H1; H1 ≤ 60", () => {
     for (const g of gewerke) {
@@ -256,6 +268,28 @@ describe("Gerenderte Gewerke-Seiten (09-UI-SPEC § 1.1, § 1b, § 8 „Medien“
 
       expect(fremdeBilder(html)).toEqual([]);
       expect(html).not.toMatch(/werkstatt-2026|\.webp|\.jpe?g|\.png/);
+    },
+    30_000,
+  );
+
+  it.each(gewerke.map((g) => [g.slug, g] as const))(
+    "%s: „Weiterlesen“ (Warm) zwischen FAQ und CTA mit 2–3 LinkKarten auf die Artikel aus g.artikel",
+    async (slug, g) => {
+      const html = await renderDetail(slug);
+      const reihenfolge = [...html.matchAll(/data-abschnitt="([a-z-]+)"/g)].map((m) => m[1]);
+      expect(reihenfolge).toEqual(["kopf", "ablauf", "funktionen", "faq", "weiterlesen", "cta"]);
+      const teil = abschnitt(html, "weiterlesen");
+      expect(teil).toContain("bg-[#f7f3eb]");
+      expect(teil).toContain(`>${GEWERK_ABSCHNITTE.weiterlesen.title}</h2>`);
+      expect(decode(teil)).toContain(GEWERK_ABSCHNITTE.weiterlesen.lead);
+      expect(teil).toContain('data-surface="white"');
+      const ziele = [...teil.matchAll(/<h3[^>]*><a [^>]*href="([^"]+)"/g)].map((m) => m[1]);
+      expect(ziele).toEqual(g.artikel);
+      for (const pfad of g.artikel) {
+        const label = pfad.startsWith("/blog/") ? "Ratgeber" : "Hilfe";
+        expect(teil, pfad).toContain(`>${label}</p>`);
+      }
+      expect([...teil.matchAll(/>(\d+) Min\. Lesezeit</g)]).toHaveLength(g.artikel.length);
     },
     30_000,
   );
