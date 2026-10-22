@@ -33,7 +33,9 @@ describe("published content", () => {
         }
       }
     }
-  });
+    // 08-09: Unter der vollen Vitest-Suite liest dieser Fall alle Artikel unter Last und lief ins 5-s-Limit
+    // (deferred-items 08-07/08-08); einzeln grün. Zeitlimit wie bei den Render-Prüfungen aus 08-04.
+  }, 60_000);
   it("uses published dates in sitemap and excludes unknown addresses", async () => {
     const list = await sitemap();
     expect(list.every((x) => !(x.lastModified instanceof Date))).toBe(true);
