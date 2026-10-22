@@ -193,9 +193,9 @@ describe("Footer: Spalte „Vergleiche“ (08-11)", () => {
     const pfade = new Set((await sitemap()).map((e) => new URL(e.url).pathname.replace(/\/$/, "") || "/"));
     for (const l of links(html).filter((x) => x.href.startsWith("/") && x.href !== "/feed.xml"))
       expect(pfade.has(l.href), l.href).toBe(true);
-    // Raster: Logo-Spalte plus vier Linkspalten.
-    expect(html).toMatch(/md:grid-cols-\[[^\]]*\]/);
-    const spuren = /md:grid-cols-\[([^\]]*)\]/.exec(html)![1].split("_");
+    // Raster ab 1024 px: Logo-Spalte plus vier Linkspalten (darunter 3 Spuren, damit Linktexte nicht brechen).
+    expect(html).toMatch(/lg:grid-cols-\[[^\]]*\]/);
+    const spuren = /lg:grid-cols-\[([^\]]*)\]/.exec(html)![1].split("_");
     expect(spuren).toHaveLength(5);
   });
 });

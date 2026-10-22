@@ -4077,7 +4077,7 @@
   },
   {
     "path": "/vergleich/handwerkersoftware-kleine-betriebe",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 8,
     "primary": null,
     "reason": "Kein belegtes Suchvolumen: ‚beste handwerkersoftware für kleine betriebe‘ ohne Daten (export--candidates-1.json); verwandte Begriffe mit Daten gehören den Ratgebern /blog/handwerkersoftware-auswaehlen und /blog/handwerkersoftware-einzelunternehmen (keine Kannibalisierung).",

@@ -71,6 +71,8 @@ export function buildLlmsTxt(): string {
     // 08-09: HERO und ToolTime, ebenfalls ohne Wettbewerberzahlen.
     link("HERO-Alternative", "/vergleich/hero-alternative", "CraftOS und HERO mit Quellen und Stand im Vergleich"),
     link("ToolTime-Alternative", "/vergleich/tooltime-alternative", "CraftOS und ToolTime mit Quellen und Stand im Vergleich"),
+    // 08-11: Seite für kleine Betriebe (Kriterien mit amtlichen Quellen, fünf Anbieter), ohne Wettbewerberzahlen.
+    link("Handwerkersoftware für kleine Betriebe", "/vergleich/handwerkersoftware-kleine-betriebe", "Kriterien wie E-Rechnung, Laufzeit und Kosten pro Person, fünf Anbieter mit Quellen und Stand"),
     link("Fakten über CraftOS", "/fakten-ueber-craftos"),
     link("GoBD", "/gobd"),
     "",

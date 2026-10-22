@@ -64,3 +64,5 @@ Die [Angebotsfunktion](/funktionen/angebote), [Rechnungsverwaltung](/funktionen/
 Vergleichen Sie einige abgeschlossene Aufträge mit Ihrem früheren Vorgehen. Prüfen Sie, ob Angebote schneller fertig werden, ob Belege vollständiger sind und ob die Rechnung ohne langes Rekonstruieren geschrieben werden kann.
 
 Erfassen Sie außerdem die Zeit, die Sie für die Pflege der Software aufwenden. Eine realistische Bewertung berücksichtigt beide Seiten. Wenn ein Bereich kaum hilft, vereinfachen Sie zuerst den Ablauf oder die Vorlage. Behalten Sie die Informationen, die später tatsächlich benötigt werden. Für einen Einzelbetrieb ist eine verlässliche kleine Routine häufig wertvoller als ein umfangreiches System, das nur am Monatsende gepflegt wird.
+
+Anbieter und Kriterien im Vergleich: [Handwerkersoftware für kleine Betriebe](/vergleich/handwerkersoftware-kleine-betriebe).

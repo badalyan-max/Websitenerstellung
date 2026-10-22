@@ -9,7 +9,18 @@ const columns = [
       ["Mobile-App", "/app"],
       ["Craft AI", "/craft-ai"],
       ["Preise", "/preise"],
-      ["Warum CraftOS?", "/vergleich"],
+    ],
+  ],
+  [
+    // 08-11 (08-UI-SPEC § 8, SEO-03): Vergleichsseiten im Footer; der Hub-Link steht nur noch hier (Mega-Menü unverändert).
+    "Vergleiche",
+    [
+      ["Handwerkersoftware-Vergleich", "/vergleich"],
+      ["plancraft-Alternative", "/vergleich/plancraft-alternative"],
+      ["Craftnote-Alternative", "/vergleich/craftnote-alternative"],
+      ["HERO-Alternative", "/vergleich/hero-alternative"],
+      ["ToolTime-Alternative", "/vergleich/tooltime-alternative"],
+      ["Für kleine Betriebe", "/vergleich/handwerkersoftware-kleine-betriebe"],
     ],
   ],
   [
@@ -34,7 +45,7 @@ export function Footer() {
   return (
     <footer className="dark-section pt-16 pb-8">
       <div className="site-container">
-        <div className="grid gap-10 md:grid-cols-[1.2fr_1fr_1fr_1fr]">
+        <div className="grid gap-10 md:grid-cols-3 lg:grid-cols-[1.2fr_1fr_1fr_1fr_1fr]">
           <div>
             <Link
               href="/"

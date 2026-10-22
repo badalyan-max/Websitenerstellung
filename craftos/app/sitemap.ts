@@ -19,6 +19,7 @@ const pageUpdated: Record<string, string> = {
   "/vergleich/craftnote-alternative": "2026-10-22",
   "/vergleich/hero-alternative": "2026-10-22",
   "/vergleich/tooltime-alternative": "2026-10-22",
+  "/vergleich/handwerkersoftware-kleine-betriebe": "2026-10-22",
 };
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = [
@@ -38,6 +39,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/vergleich/craftnote-alternative",
     "/vergleich/hero-alternative",
     "/vergleich/tooltime-alternative",
+    "/vergleich/handwerkersoftware-kleine-betriebe",
     "/fakten-ueber-craftos",
     "/support",
     "/blog",

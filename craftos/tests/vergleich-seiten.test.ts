@@ -1243,7 +1243,8 @@ describe("kleine Betriebe Inhalte", () => {
   it("Testen: Frage-H2 mit Antwort, vier Schritte und Textlink auf den Ratgeber", async () => {
     const { kleineBetriebe: kb } = await laden();
     expect(kb.sections.testen).toEqual({
-      title: "Wie testen Sie Handwerkersoftware mit einem Auftrag?",
+      // UI-SPEC § 9: „… Handwerkersoftware …“; gekürzt wegen Silbentrennung im Kopfwort (Sichtprüfung 08-11).
+      title: "Wie testen Sie eine Software mit einem Auftrag?",
       lead: "Spielen Sie einen echten Auftrag vom Aufmaß bis zur Rechnung durch und beziehen Sie eine Person von der Baustelle mit ein.",
     });
     expect(kb.schritte.map((s) => s.title)).toEqual(["Auftrag auswählen", "Angebot schreiben", "Baustelle einbinden", "Rechnung stellen"]);
@@ -1340,7 +1341,7 @@ describe("kleine Betriebe gerendert", () => {
       expect(html, `H2 ${id}`).toMatch(new RegExp(`<h2 id="${id}"`));
     }
     for (const id of ["kriterien", "testen"]) {
-      const m = html.match(new RegExp(`<h2 id="${id}"[^>]*>([\s\S]*?)</h2><p[^>]*data-answer=""[^>]*>([\s\S]*?)</p>`));
+      const m = html.match(new RegExp(`<h2 id="${id}"[^>]*>([\\s\\S]*?)</h2><p[^>]*data-answer=""[^>]*>([\\s\\S]*?)</p>`));
       expect(m, `Frage-H2 ${id} mit Antwort`).toBeTruthy();
       expect(decode(m![1]).endsWith("?"), id).toBe(true);
       expect(charCount(decode(m![2])), id).toBeLessThanOrEqual(300);

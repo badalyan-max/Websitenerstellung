@@ -42,7 +42,7 @@ Kontingent laut `/v1/account/subscription`: vor dem Lauf 78.093 Units, danach 65
 
 ## 2. Zuordnung je Pfad
 
-### Kernseiten und Rechtsseiten (22)
+### Kernseiten und Rechtsseiten (23)
 
 | Pfad | Status | Hauptkeyword | Volumen | KD | Intent | Wettbewerber (Position) | Quelle |
 |---|---|---|---|---|---|---|---|
@@ -58,6 +58,7 @@ Kontingent laut `/v1/account/subscription`: vor dem Lauf 78.093 Units, danach 65
 | `/vergleich/craftnote-alternative` | bestehend | craftnote alternative | 30 | 6 | I | craftnote.de (5), openhandwerk.de (36) | `export--candidates-1.json` |
 | `/vergleich/hero-alternative` | bestehend | hero software alternative | 10 | 15 | I | – | `export--candidates-1.json` |
 | `/vergleich/tooltime-alternative` | bestehend | tooltime | 4.400 | 78 | L, C | – | `export--candidates-1.json` |
+| `/vergleich/handwerkersoftware-kleine-betriebe` | bestehend | – (ohne Daten: „beste handwerkersoftware für kleine betriebe“) | – | – | – | – | `export--candidates-1.json` (`is_data_found:false`) |
 | `/fakten-ueber-craftos` | bestehend | – (keine Daten) | – | – | – | – | – |
 | `/support` | bestehend | – (keine Daten) | – | – | – | – | – |
 | `/blog` | bestehend | handwerk blog | 40 | 11 | I | craftnote.de (3) | `export--candidates-1.json` |
@@ -207,11 +208,10 @@ Kontingent laut `/v1/account/subscription`: vor dem Lauf 78.093 Units, danach 65
 | `/hilfe/zeiteintrag-erfassen-korrigieren` | bestehend | – (keine Daten) | – | – | – | – | – |
 | `/hilfe/zeiten-pruefen-exportieren` | bestehend | stundenzettel excel | 320 | 9 | I | – | `export--candidates-1.json` |
 
-### Geplante Seiten (10)
+### Geplante Seiten (9)
 
 | Pfad | Zielphase | Hauptkeyword | Volumen | KD | Intent | Wettbewerber (Position) | Quelle |
 |---|---|---|---|---|---|---|---|
-| `/vergleich/handwerkersoftware-kleine-betriebe` | 8 | – (ohne Daten: „beste handwerkersoftware für kleine betriebe“) | – | – | – | – | `export--candidates-1.json` (`is_data_found:false`) |
 | `/hilfe/leistungszeitraum-rechnung` | 9 | leistungszeitraum rechnung | 390 | 8 | I | plancraft.com (24) | `export--candidates-1.json` |
 | `/hilfe/regiebericht` | 9 | regiebericht | 390 | 4 | I | plancraft.com (8), openhandwerk.de (26), craftnote.de (33) | `export--candidates-1.json` |
 | `/hilfe/bedenkenanzeige` | 9 | bedenkenanzeige | 390 | 7 | I | plancraft.com (24) | `export--candidates-1.json` |
@@ -560,3 +560,7 @@ Absicherung: `tests/keyword-map.test.ts` („Phase 8 – Zielwerte sitewide“: 
 ### 22.10.2026 – Phase 8 – HERO- und ToolTime-Alternative veröffentlicht (08-09, Pitfall 12)
 
 `/vergleich/hero-alternative` und `/vergleich/tooltime-alternative` wechseln von `geplant` auf `bestehend` – im selben Commit wie Route, OG-Bild, `app/sitemap.ts` und `lib/llms.ts`. Titel, H1 und Description bleiben die Zielwerte aus 08-UI-SPEC § 8 (gesetzt in 08-04). Damit sind alle vier Alternativen-Seiten `bestehend`. Absicherung: `tests/keyword-map.test.ts` (Status `bestehend` ⇔ Pfad in der Sitemap, H1 der gerenderten Route = `target.h1`), `tests/vergleich-seiten.test.ts`.
+
+### 22.10.2026 – Phase 8 – Seite für kleine Betriebe veröffentlicht (08-11, Pitfall 12)
+
+`/vergleich/handwerkersoftware-kleine-betriebe` wechselt von `geplant` auf `bestehend` – im selben Commit wie Route, OG-Bild, `app/sitemap.ts` (inkl. `pageUpdated`) und `lib/llms.ts`. Hauptkeyword bleibt `null` (ohne Daten, `export--candidates-1.json`); Titel, H1 und Description bleiben die Zielwerte aus 08-UI-SPEC § 8. Die Zeile steht jetzt unter „Kernseiten und Rechtsseiten“ (23), „Geplante Seiten“ zählt 9 (alle Phase 9). Prompt-Ziel #1 (`/vergleich/handwerkersoftware-kleine-betriebe#antwort`) ist damit erfüllt. Absicherung: `tests/keyword-map.test.ts` (Status `bestehend` ⇔ Pfad in der Sitemap, H1 der gerenderten Route = `target.h1`), `tests/ai-prompts.test.ts`, `tests/vergleich-seiten.test.ts`.

@@ -30,3 +30,9 @@
 - **Prompt-Ziel `/vergleich/handwerkersoftware-kleine-betriebe#antwort` fehlt im Build** (`seo-audit --only=prompts`, 1 Verstoß). Gegenstand von 08-11 (Seite „kleine Betriebe“); `/vergleich#antwort` und `/fakten-ueber-craftos#was-ist-craftos` sind nach 08-10/08-12 erfüllt.
 - **Tabellen-Caption scrollt mit der Tabelle** (Bestand `ComparisonTable`): Bei 360 px ist die Caption „Handwerkersoftware im Überblick“ wie auf `/preise` und den Alternativen-Seiten rechts angeschnitten, bis seitlich gewischt wird. Kein Überlauf der Seite (visual-audit 0). Vorschlag: Caption außerhalb des Scrollbereichs setzen, in einem Baustein-Plan (betrifft alle Tabellen).
 - **Produkt-Snapshot weiterhin veraltet** („Snapshot ist aktuell“ rot); laut Auftrag nicht angefasst.
+
+## Aus 08-11 (22.10.2026, Haupt-Arbeitsbaum, Port 3100)
+
+- **Erledigt:** Prompt-Ziel `/vergleich/handwerkersoftware-kleine-betriebe#antwort` (Befund aus 08-09/08-10) – `seo-audit --only=prompts,antwort,faq-schema` sitewide 0 Verstöße (136 URLs).
+- **Produkt-Snapshot weiterhin veraltet** („Snapshot ist aktuell“ rot); laut Auftrag nicht angefasst.
+- **Hinweis Shell:** `seo-audit.mjs --paths=/…` unter Git Bash nur mit `MSYS_NO_PATHCONV=1` aufrufen; sonst wird `/vergleich` zu `C:/Program Files/Git/vergleich` umgeschrieben und still übersprungen (Ergebnis „1 von 136“ statt 2).

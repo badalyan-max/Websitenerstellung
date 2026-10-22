@@ -64,3 +64,5 @@ Legen Sie anschließend einen realistischen Einführungsumfang fest. Beginnen Si
 Notieren Sie pro Aufgabe die benötigten Schritte, aufgetretene Rückfragen und das überprüfbare Ergebnis. Messen Sie die Bearbeitungszeit erst nach einer kurzen Einarbeitung, damit ein ungewohnter erster Klick nicht den gesamten Vergleich verzerrt.
 
 Verwenden Sie für jeden Kandidaten denselben Musterauftrag. Ein einfaches Beispiel in einer Software und ein komplexer Sonderfall in einer anderen liefern kein faires Bild. Lassen Sie die Person testen, die die Aufgabe später tatsächlich erledigt. Am Ende zählt, ob die wichtigen Übergaben funktionieren und ob der Betrieb den Ablauf ohne dauernde Sonderregeln versteht.
+
+Anbieter und Kriterien im Vergleich: [Handwerkersoftware für kleine Betriebe](/vergleich/handwerkersoftware-kleine-betriebe).

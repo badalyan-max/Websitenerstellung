@@ -290,7 +290,8 @@ describe("Keyword-Map", () => {
   it("statische Seiten (/, /funktionen, /app) folgen den Zielwerten (D-12, 07 D-10)", async () => {
     for (const seite of PHASE6_SEITEN) {
       const eintrag = keywordMap.find((k) => k.path === seite.path);
-      expect(eintrag?.primary && eintrag.target, `${seite.path}: Eintrag mit Zielwerten`).toBeTruthy();
+      // 08-11: Seiten ohne Hauptkeyword (primary null, z. B. kleine Betriebe) brauchen nur Zielwerte.
+      expect(eintrag?.target, `${seite.path}: Eintrag mit Zielwerten`).toBeTruthy();
       const { target, primary } = eintrag!;
       const mod = await seite.modul();
       const titel = String(mod.metadata.title);
@@ -307,8 +308,9 @@ describe("Keyword-Map", () => {
         .replace(/\s+/g, " ")
         .trim();
       expect(h1, `${seite.path}: H1`).toBe(target!.h1);
-      expect(norm(gerendert), `${seite.path}: Title enthält Hauptkeyword`).toContain(norm(primary!.keyword));
-      expect(norm(h1), `${seite.path}: H1 enthält Hauptkeyword`).toContain(norm(primary!.keyword));
+      if (!primary) continue;
+      expect(norm(gerendert), `${seite.path}: Title enthält Hauptkeyword`).toContain(norm(primary.keyword));
+      expect(norm(h1), `${seite.path}: H1 enthält Hauptkeyword`).toContain(norm(primary.keyword));
     }
   });
 });

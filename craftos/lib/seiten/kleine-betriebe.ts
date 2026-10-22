@@ -331,7 +331,10 @@ export function baueKleineBetriebe(anbieter: readonly Wettbewerber[] = alleWettb
         lead: "Abrechnung, Laufzeit, Preis für weitere Personen und Testphase laut den Seiten der Anbieter.",
       },
       testen: {
-        title: "Wie testen Sie Handwerkersoftware mit einem Auftrag?",
+        // UI-SPEC § 9 nennt „Wie testen Sie Handwerkersoftware mit einem Auftrag?“; die Silbentrennung brach das
+        // Kopfwort („Hand-werkersoftware“ bei 360 px, „Handwerker-software“ bei 1440 px, Sichtprüfung 08-11). Das
+        // Kopfwort steht in H1, Kopfantwort und im Ratgeber-Link desselben Abschnitts.
+        title: "Wie testen Sie eine Software mit einem Auftrag?",
         lead: "Spielen Sie einen echten Auftrag vom Aufmaß bis zur Rechnung durch und beziehen Sie eine Person von der Baustelle mit ein.",
       },
       faq: {
