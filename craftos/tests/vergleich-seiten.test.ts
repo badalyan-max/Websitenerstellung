@@ -1268,9 +1268,9 @@ describe("kleine Betriebe Inhalte", () => {
     ]);
     for (const f of kb.faq) expect(charCount(f.a), f.q).toBeLessThanOrEqual(300);
     const [eRechnung, kosten, kuendigen, lizenz] = kb.faq.map((f) => f.a);
-    for (const teil of ["seit dem 1. Januar 2025", "ab 2028 grundsätzlich", "Kleinbetragsrechnungen bis 250 € brutto", "Kleinunternehmern"])
+    for (const teil of ["seit dem 1. Januar 2025", "ab 2028 grundsätzlich", "Kleinbetragsrechnungen bis 250 € brutto", "Kleinunternehmern"])
       expect(eRechnung).toContain(teil);
-    expect(BEISPIEL_JAHR).toBe("58,13 €");
+    expect(BEISPIEL_JAHR).toBe("58,13 €");
     expect(kosten).toBe(
       `Bei CraftOS zahlen eine Person im Büro und vier auf der Baustelle im Jahresabo ${BEISPIEL_JAHR} netto im Monat; die Preise der anderen Anbieter stehen in den Einzelvergleichen.`,
     );

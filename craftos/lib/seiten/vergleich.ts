@@ -7,10 +7,11 @@
  * Marktübersicht ohne Hervorhebung (C5), mit Pflichthinweis und Disclaimer wörtlich (§ 3.2).
  * Inhabervorgabe 22.10.2026 („Nur, was unterstützt wird, nicht, was nicht unterstützt wird“; geht der UI-SPEC vor):
  * keine verneinte CraftOS-Zelle, keine Kriterien, die CraftOS nicht hat, keine Nein-FAQ zu CraftOS
- * (DESIGN-V2.md § 17.6). `baueMarktuebersicht` ist der gemeinsame Helfer für Marktübersichten (auch 08-11).
+ * (DESIGN-V2.md § 17.6). `baueMarktuebersicht`, `UEBERSICHT_SPALTEN` und `monatlichKuendbar` sind die gemeinsamen
+ * Helfer für Marktübersichten (auch lib/seiten/kleine-betriebe.ts, 08-11).
  * Tests: tests/vergleich-seiten.test.ts, tests/design-v2-budgets.test.ts, tests/pricing-parity.test.ts.
  */
-import { ArrowLeftRight } from "lucide-react";
+import { ArrowLeftRight, Users } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { Cell, ComparisonColumn, ComparisonRow, ComparisonSource } from "@/components/v2/ComparisonTable";
 import type { Step } from "@/components/v2/StepFlow";
@@ -44,11 +45,11 @@ export const NICHT_ANGEGEBEN = "nicht angegeben";
 export const MARKT_DISCLAIMER = "Die Nennung der Anbieter dient der Zuordnung; es besteht keine Geschäftsbeziehung.";
 
 /** Kennzeichnung der Fehlermeldungen (Inhabervorgabe 22.10.2026, DESIGN-V2.md § 17.6). */
-const NUR_UNTERSTUETZT = "Inhaber 22.10.2026: nur, was CraftOS unterstützt";
+export const NUR_UNTERSTUETZT = "Inhaber 22.10.2026: nur, was CraftOS unterstützt";
 /** CraftOS-Zelle verneint: „Nein“, Strich, „nicht …“, „nicht verfügbar“. */
 const VERNEINTE_ZELLE = /^\s*(nein|[-–—]|nicht\b)|nicht verfügbar/i;
 /** Satz, dass CraftOS etwas nicht kann oder nicht bietet. */
-const NEGATIVSATZ = /nicht verfügbar|nicht unterstützt|CraftOS (bietet|hat|kann|unterstützt) (kein|nicht)/i;
+export const NEGATIVSATZ = /nicht verfügbar|nicht unterstützt|CraftOS (bietet|hat|kann|unterstützt) (kein|nicht)/i;
 
 export interface MarktSpalte {
   key: string;
@@ -93,6 +94,8 @@ export function baueMarktuebersicht(opts: {
   caption: string;
   spalten: readonly MarktSpalte[];
   anbieter?: readonly Wettbewerber[];
+  /** Satz, der an den Pflichthinweis angehängt wird (z. B. Erläuterung einer Spalte, 08-UI-SPEC § 6). */
+  noteZusatz?: string;
 }): Marktuebersicht {
   const anbieter = alphabetisch(opts.anbieter ?? alleWettbewerber);
   const limits = TEXT_BUDGET.count.comparison;
@@ -159,7 +162,7 @@ export function baueMarktuebersicht(opts: {
     columns: opts.spalten.map(({ key, label }) => ({ key, label })),
     rows,
     zeilen,
-    note: `Angaben ohne Gewähr, Stand ${stand}, Quellen unter der Tabelle. Alle Beträge netto zzgl. USt.; CraftOS-Preise laut Preisliste, Stand ${germanDate(site.checkedAt)}.`,
+    note: `Angaben ohne Gewähr, Stand ${stand}, Quellen unter der Tabelle. Alle Beträge netto zzgl. USt.; CraftOS-Preise laut Preisliste, Stand ${germanDate(site.checkedAt)}.${opts.noteZusatz ? ` ${opts.noteZusatz}` : ""}`,
     sources: [...quellen.values()],
     disclaimer: MARKT_DISCLAIMER,
     stand,
@@ -174,15 +177,16 @@ const voll = tarife.find((t) => t.id === "voll")!;
 /** Kürzeste CraftOS-Laufzeit (Monatsabo, `vertrag.monat`). */
 const CRAFTOS_LAUFZEIT = "1 Monat";
 
-const ZAHLWORT: Readonly<Record<number, string>> = { 2: "zwei", 3: "drei", 4: "vier", 5: "fünf", 6: "sechs" };
-function zahlwort(n: number): string {
+const ZAHLWORT: Readonly<Record<number, string>> = { 2: "zwei", 3: "drei", 4: "vier", 5: "fünf", 6: "sechs", 12: "zwölf" };
+/** Zahlwort für Fließtext; unbekannte Zahlen werfen statt geraten zu werden. */
+export function zahlwort(n: number): string {
   const wort = ZAHLWORT[n];
   if (!wort) throw new Error(`Vergleich: keine Zahlwortform für ${n} – ZAHLWORT ergänzen.`);
   return wort;
 }
-const gross = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+export const gross = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 /** „a, b und c“ */
-const undListe = (teile: string[]) => (teile.length <= 1 ? teile.join("") : `${teile.slice(0, -1).join(", ")} und ${teile.at(-1)}`);
+export const undListe = (teile: string[]) => (teile.length <= 1 ? teile.join("") : `${teile.slice(0, -1).join(", ")} und ${teile.at(-1)}`);
 
 /** Abrechnungsmodell je Anbieter in Kurzform, belegt mit der Preisseite (`preise`). */
 const ABRECHNUNG: Readonly<Record<WettbewerberSlug, (w: Wettbewerber) => string>> = {
@@ -215,7 +219,8 @@ function laufzeitZelle(w: Wettbewerber): string {
   return `${w.laufzeit.wert}${w.laufzeit.quelle.label === "AGB" ? " laut AGB" : ""}`;
 }
 
-const UEBERSICHT_SPALTEN: readonly MarktSpalte[] = [
+/** Spalten der Marktübersicht /vergleich; kleine Betriebe übernimmt Abrechnung, Laufzeit und Testphase (§ 6). */
+export const UEBERSICHT_SPALTEN: readonly MarktSpalte[] = [
   {
     key: "abrechnung",
     label: "Abrechnung",
@@ -263,8 +268,8 @@ export interface Vergleichskachel {
 
 /**
  * Einzelvergleiche (UI-SPEC § 5.1, Abschnitt 2). 4 × md ist nicht zulässig (ERLAUBTE_ANORDNUNGEN, keine
- * lückenlose Folge mit vier gleichen Kacheln); nächstliegende erlaubte Folge ohne lg: md·sm·sm·wide. Die Kachel
- * „Handwerkersoftware für kleine Betriebe“ (wide) folgt in 08-11 mit der Seite und ergibt md·sm·sm·wide·wide.
+ * lückenlose Folge mit vier gleichen Kacheln); nächstliegende erlaubte Folge ohne lg: md·sm·sm·wide. Mit der Kachel
+ * „Handwerkersoftware für kleine Betriebe“ (wide, Icon Users, 08-11) ergibt sich md·sm·sm·wide·wide.
  */
 function einzelvergleichKacheln(): Vergleichskachel[] {
   const ttMonate = Number.parseInt(tooltime.laufzeit.wert, 10);
@@ -298,6 +303,13 @@ function einzelvergleichKacheln(): Vergleichskachel[] {
       size: "wide",
       icon: ArrowLeftRight,
     },
+    {
+      title: "Handwerkersoftware für kleine Betriebe",
+      text: `Belegte Kriterien und ${zahlwort(alleWettbewerber.length + 1)} Anbieter für Betriebe mit wenigen Personen im Überblick.`,
+      href: "/vergleich/handwerkersoftware-kleine-betriebe",
+      size: "wide",
+      icon: Users,
+    },
   ];
 }
 
@@ -308,7 +320,8 @@ const SCHRITTE: Step[] = [
   { title: "Mit Auftrag testen", text: "Einen echten Auftrag vom Angebot bis zur Rechnung durchspielen." },
 ];
 
-const CTA = {
+/** CtaBand der Vergleichsseiten (08-UI-SPEC Copywriting Contract), auch für kleine Betriebe. */
+export const VERGLEICHS_CTA = {
   title: "Testen Sie CraftOS mit Ihrem Auftrag",
   text: "Ohne Zahlungsdaten – Sie entscheiden nach dem Test.",
   secondary: { label: "Preise ansehen", href: "/preise" },
@@ -318,7 +331,8 @@ const CTA = {
 // FAQ aus den Moduldaten (Prompts #2/#3; Antworten ≤ 300, C3)
 // ---------------------------------------------------------------------------
 
-function monatlichKuendbar(anbieter: readonly Wettbewerber[]): string {
+/** Antwortsatz „monatlich kündbar“ aus `laufzeit` der Module (FAQ /vergleich und kleine Betriebe). */
+export function monatlichKuendbar(anbieter: readonly Wettbewerber[]): string {
   const monatlich = ["CraftOS", ...anbieter.filter((w) => w.laufzeit.wert === CRAFTOS_LAUFZEIT).map((w) => w.name)];
   const gruppen = new Map<string, { namen: string[]; agb: boolean; wert: string }>();
   for (const w of anbieter.filter((x) => x.laufzeit.wert !== CRAFTOS_LAUFZEIT)) {
@@ -374,7 +388,7 @@ export interface VergleichInhalt {
   einzelvergleiche: { kacheln: Vergleichskachel[] };
   schritte: Step[];
   faq: { q: string; a: string }[];
-  cta: typeof CTA;
+  cta: typeof VERGLEICHS_CTA;
 }
 
 function pruefeAntwort(feld: string, text: string, maxSaetze = 2) {
@@ -435,7 +449,7 @@ export function baueVergleich(anbieter: readonly Wettbewerber[] = alleWettbewerb
         a: "Aus den Preisseiten, Produktseiten und AGB der Anbieter, jeweils mit Quelle und Abrufdatum; CraftOS-Angaben stammen aus der Preisliste und dem Produktregister.",
       },
     ],
-    cta: CTA,
+    cta: VERGLEICHS_CTA,
   };
 
   // Antwort zuerst (D-09, C3): Kopf, Frage-H2 und FAQ ≤ 300.
