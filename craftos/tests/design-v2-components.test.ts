@@ -18,6 +18,9 @@ import { MINI_STATUS_BELEGE, MINI_STATUS_TON, MiniStatus, type MiniStatusName } 
 import { MINI_BUDGET } from "@/components/v2/mini/limits";
 import { pruefeReleaseStand, releaseDatei, releaseSuite } from "./release-repos";
 import { site } from "@/lib/site";
+import { LinkKarten, type LinkKarte, type LinkKartenProps } from "@/components/v2/LinkKarten";
+import { ContentKopf, type ContentKopfProps } from "@/components/content/ContentKopf";
+import { crumbsFor } from "@/lib/breadcrumbs";
 
 
 /** Inhalte dürfen nie auf eine Einblendung warten (DESIGN-04, T-05-15). */
@@ -832,4 +835,179 @@ describe("FeatureCard-Raster: einspaltig mit minmax(0, 1fr) unter 768 px", () =>
       for (const klassen of raster) expect(klassen.split(" "), klassen).toContain("grid-cols-1");
     });
   }
+});
+
+/* ---------- Phase 9 (09-UI-SPEC G8, G9) ---------- */
+
+const decode9 = (s: string) =>
+  s
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#x27;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">");
+const text9 = (s: string) => decode9(s.replace(/<[^>]+>/g, "")).replace(/\s+/g, " ").trim();
+
+describe("LinkKarten (09-UI-SPEC G9)", () => {
+  const karten: LinkKarte[] = [
+    {
+      href: "/hilfe/abnahme-dokumentieren",
+      title: "Eine Abnahme mit Prüfpunkten und Ergebnis dokumentieren",
+      text: "So halten Sie eine Abnahme mit Prüfpunkten, Ergebnis und Unterschrift im Projekt fest.",
+      label: "Hilfe",
+      meta: "4 Min. Lesezeit",
+    },
+    { href: "/blog/digitale-projektakte", title: "Digitale Projektakte im Handwerk", label: "Ratgeber" },
+  ];
+  const render = (props: Partial<LinkKartenProps> = {}) =>
+    renderToString(createElement(LinkKarten, { items: karten, label: "Weiterlesen", surface: "white", ...props }));
+
+  it("rendert ul[role=list][aria-label] › li › article mit genau einem Link im h3 je Karte", () => {
+    const html = render();
+    expect(html).toMatch(/<ul[^>]*role="list"[^>]*aria-label="Weiterlesen"/);
+    expect(count(html, /<li[\s>]/g)).toBe(2);
+    expect(count(html, /<article[\s>]/g)).toBe(2);
+    expect(count(html, /<h3[\s>]/g)).toBe(2);
+    expect(count(html, /<a\s/g)).toBe(2);
+    for (const h3 of html.match(/<h3[^>]*>[\s\S]*?<\/h3>/g) ?? []) expect(count(h3, /<a\s/g)).toBe(1);
+    expect(html).toContain('href="/hilfe/abnahme-dokumentieren"');
+    expect(text9(html)).toContain("4 Min. Lesezeit");
+    expectStatic(html, "LinkKarten");
+  });
+
+  it("kein „Weiterlesen“-Linktext und keine Pfeilglyphe", () => {
+    const html = render({ label: "Artikel" });
+    expect(text9(html)).not.toContain("Weiterlesen");
+    expect(html).not.toMatch(/[→↗›»]/);
+    expect(html).not.toContain("lucide-arrow");
+  });
+
+  it("surface setzt die Flächenklasse", () => {
+    expect(render({ surface: "warm" })).toContain('data-surface="warm"');
+    expect(render({ surface: "white" })).toContain('data-surface="white"');
+    expect(render({ columns: 2 })).toContain('data-columns="2"');
+    expect(render()).toContain('data-columns="3"');
+  });
+
+  it("Icon ist dekorativ (aria-hidden)", () => {
+    const html = render({ items: [{ ...karten[0], icon: createElement(FileCheck2, { size: 24 }) }] });
+    expect(html).toMatch(/<span[^>]*aria-hidden="true"[^>]*>\s*<svg/);
+  });
+
+  it("0 Einträge wirft den Mengenfehler", () => {
+    expect(() => render({ items: [] })).toThrow("LinkKarten: mindestens 1 Einträge erforderlich – Inhalte in lib/… ergänzen.");
+  });
+
+  it("Titel mit 101 Zeichen wirft den Budgetfehler", () => {
+    expect(() => render({ items: [{ href: "/x", title: "x".repeat(101) }] })).toThrow(
+      "Textbudget überschritten: linkKarte.title hat 101 von 100 Zeichen – Satz kürzen.",
+    );
+  });
+
+  it("Label, Text und Meta werden geprüft", () => {
+    expect(() => render({ items: [{ href: "/x", title: "T", label: "x".repeat(25) }] })).toThrow(
+      "Textbudget überschritten: linkKarte.label hat 25 von 24 Zeichen – Satz kürzen.",
+    );
+    expect(() => render({ items: [{ href: "/x", title: "T", text: "x".repeat(161) }] })).toThrow(
+      "Textbudget überschritten: linkKarte.text hat 161 von 160 Zeichen – Satz kürzen.",
+    );
+    expect(() => render({ items: [{ href: "/x", title: "T", meta: "x".repeat(33) }] })).toThrow(
+      "Textbudget überschritten: linkKarte.meta hat 33 von 32 Zeichen – Satz kürzen.",
+    );
+  });
+
+  it("Quelltext ohne Hooks, ohne \"use client\" und ohne server-only (Client-Insel ContentSearch)", () => {
+    const quelle = fs.readFileSync(path.resolve(import.meta.dirname, "../components/v2/LinkKarten.tsx"), "utf8");
+    expect(quelle).not.toContain("use client");
+    expect(quelle).not.toContain("server-only");
+    expect(quelle).not.toMatch(/\buse(State|Effect|Memo|Ref|Callback|Context|Reducer)\b/);
+  });
+});
+
+describe("ContentKopf (09-UI-SPEC G8, § 2.1)", () => {
+  const ANTWORT9 =
+    "Eine Abnahme dokumentieren Sie in CraftOS im Projekt mit Prüfpunkten, Ergebnis und Unterschrift. Mängel aus der Abnahme verfolgen Sie danach im Mängelmanagement weiter.";
+  const basis9: ContentKopfProps = {
+    crumbs: crumbsFor("/hilfe/abnahme-dokumentieren", "Eine Abnahme dokumentieren"),
+    eyebrow: "Baudokumentation",
+    h1: "Abnahme dokumentieren: Prüfpunkte, Ergebnis und Unterschrift",
+    answer: ANTWORT9,
+    meta: ["Stand 22.10.2026", "Veröffentlicht 09.09.2026", "4 Min. Lesezeit", "CraftOS Redaktion"],
+    platforms: ["web", "mobile"],
+  };
+  const kopf9 = (props: Partial<ContentKopfProps> = {}) =>
+    renderToString(createElement(ContentKopf, { ...basis9, ...props }));
+
+  it("genau eine H1 und ein p#antwort[data-answer] direkt danach", () => {
+    const html = kopf9();
+    expect(count(html, /<h1[\s>]/g)).toBe(1);
+    expect(count(html, /id="antwort"/g)).toBe(1);
+    const nachH1 = html.slice(html.indexOf("</h1>") + 5);
+    expect(nachH1).toMatch(/^<p[^>]*id="antwort"[^>]*data-answer=""[^>]*>/);
+    expect(text9(nachH1.match(/^<p[^>]*>([\s\S]*?)<\/p>/)![1])).toBe(ANTWORT9);
+    expect(html).toMatch(/<section[^>]*aria-labelledby="artikel-titel"/);
+    expect(html).toMatch(/<h1[^>]*id="artikel-titel"/);
+    expectStatic(html, "ContentKopf");
+  });
+
+  it("ohne answer kein #antwort; lead erscheint als Absatz ohne id", () => {
+    const html = kopf9({ answer: undefined, lead: "Kurzbeschreibung aus dem Frontmatter." });
+    expect(html).not.toContain('id="antwort"');
+    expect(html).not.toContain("data-answer");
+    expect(text9(html)).toContain("Kurzbeschreibung aus dem Frontmatter.");
+  });
+
+  it("lead und answer zusammen werfen den Fehlertext wörtlich", () => {
+    expect(() => kopf9({ lead: "Lead." })).toThrow(
+      "ContentKopf: lead und answer gleichzeitig gesetzt – nur answer verwenden.",
+    );
+  });
+
+  it("Antwort mit 301 Zeichen bzw. drei Sätzen wirft", () => {
+    expect(() => kopf9({ answer: `${"x".repeat(300)}.` })).toThrow(
+      "Textbudget überschritten: answer hat 301 von 300 Zeichen – Satz kürzen.",
+    );
+    expect(() => kopf9({ answer: "Erster Satz. Zweiter Satz. Dritter Satz." })).toThrow(/3 Sätze/);
+  });
+
+  it("H1 über 100 Zeichen und Eyebrow über 24 Zeichen werfen", () => {
+    expect(() => kopf9({ h1: "x".repeat(101) })).toThrow(
+      "Textbudget überschritten: artikel.h1 hat 101 von 100 Zeichen – Satz kürzen.",
+    );
+    expect(() => kopf9({ eyebrow: "x".repeat(25) })).toThrow(
+      "Textbudget überschritten: pageHead.eyebrow hat 25 von 24 Zeichen – Satz kürzen.",
+    );
+  });
+
+  it("Metazeile als ul[aria-label=Angaben zum Artikel] ohne Trennpunkt", () => {
+    const html = kopf9();
+    const ul = html.match(/<ul[^>]*aria-label="Angaben zum Artikel"[^>]*>[\s\S]*?<\/ul>/)?.[0] ?? "";
+    expect(ul).not.toBe("");
+    expect(count(ul, /<li[\s>]/g)).toBe(4);
+    expect(text9(html)).not.toContain("·");
+  });
+
+  it("genau eine BreadcrumbList über Breadcrumbs (tone light), Brotkrumen vor der H1", () => {
+    const html = kopf9();
+    expect(count(html, /"@type":"BreadcrumbList"/g)).toBe(1);
+    expect(count(html, /aria-label="Brotkrumen"/g)).toBe(1);
+    expect(html).toMatch(/aria-label="Brotkrumen"[^>]*data-tone="light"|data-tone="light"[^>]*aria-label="Brotkrumen"/);
+    expect(html.indexOf('aria-label="Brotkrumen"')).toBeLessThan(html.indexOf("<h1"));
+  });
+
+  it("stand als p[data-stand], Plattformen als Gruppe, kein CTA", () => {
+    const html = kopf9({ answer: undefined, meta: undefined, stand: "40 Anleitungen, zuletzt aktualisiert am 22.10.2026" });
+    expect(html).toMatch(/<p[^>]*data-stand=""[^>]*>40 Anleitungen, zuletzt aktualisiert am 22\.10\.2026<\/p>/);
+    expect(kopf9()).toMatch(/aria-label="Plattformen"/);
+    expect(kopf9()).not.toContain('data-track="trial"');
+  });
+
+  it("CSS: Silbentrennung nur an der H1, keine Amber-Farbe im hellen Kopf", () => {
+    const css = fs.readFileSync(path.resolve(import.meta.dirname, "../components/content/ContentKopf.module.css"), "utf8");
+    expect(css).toMatch(/hyphens:\s*auto/);
+    expect(css).toMatch(/hyphenate-limit-chars:\s*10 4 4/);
+    expect(css).toMatch(/overflow-wrap:\s*break-word/);
+    expect(css.toLowerCase()).toContain("#f7f3eb");
+    expect(css.toLowerCase()).not.toContain("#f2af38");
+  });
 });
