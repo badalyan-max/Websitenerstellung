@@ -456,6 +456,47 @@ export const allScenes: readonly FrameScene[] = [
 ];
 
 /**
+ * Phase 9 (D-15, 09-RESEARCH Pattern 3): Szenen-ID → Szene für das Frontmatter-Feld `scene` der Artikel.
+ * Schlüssel = Exportname ohne „Scene“; enthält jedes Element aus `allScenes` genau einmal (Test in
+ * tests/content.test.ts). Rein additiv – Inhaltspakete legen keine neuen Szenen an.
+ */
+export const sceneById: Readonly<Record<string, FrameScene>> = {
+  plantafel: plantafelScene,
+  zeiten: zeitenScene,
+  maengel: maengelScene,
+  aufmass: aufmassScene,
+  rechnungen: rechnungenScene,
+  einsaetze: einsaetzeScene,
+  dashboard: dashboardScene,
+  projekte: projekteScene,
+  angebot: angebotScene,
+  eRechnung: eRechnungScene,
+  buchhaltung: buchhaltungScene,
+  beleg: belegScene,
+  lager: lagerScene,
+  bautagesberichte: bautagesberichteScene,
+  arbeitsschritte: arbeitsschritteScene,
+  mitarbeiter: mitarbeiterScene,
+  kalkulation: kalkulationScene,
+  portal: portalScene,
+  gaeb: gaebScene,
+  mahnwesen: mahnwesenScene,
+  projektplan: projektplanScene,
+  arbeitsabschnitte: arbeitsabschnitteScene,
+  bank: bankScene,
+  import: importScene,
+  maengelStatus: maengelStatusScene,
+  urlaub: urlaubScene,
+  abnahme: abnahmeScene,
+  lagerApp: lagerAppScene,
+};
+
+/** Rahmenart einer Szene für Artikel (09-UI-SPEC § 2.2): Kurzform „web:…“ → Browser, „app:…“ → Phone. */
+export function sceneFrame(scene: FrameScene): FrameVisual["kind"] {
+  return scene.screen.startsWith("app:") ? "phone" : "browser";
+}
+
+/**
  * Kopf-Visual einer Detailseite: eine Szene im Browser- oder Phone-Rahmen oder ein Paar
  * (Web-App und Mobile-App) mit gemeinsamer Beschreibung (≤ 140 Zeichen, 1 Satz).
  */

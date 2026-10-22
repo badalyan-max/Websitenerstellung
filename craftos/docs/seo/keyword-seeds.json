@@ -226,6 +226,16 @@
     "/funktionen/maengelmanagement": ["mängelmanagement", "mängelmanagement app"],
     "/hilfe/leistungszeitraum-rechnung": ["leistungszeitraum rechnung", "leistungszeitraum", "leistungsdatum rechnung"],
     "/hilfe/regiebericht": ["regiebericht", "regiebericht vorlage", "regiebericht muster"],
-    "/hilfe/bedenkenanzeige": ["bedenkenanzeige", "bedenkenanzeige vob", "bedenkenanzeige muster"]
+    "/hilfe/bedenkenanzeige": ["bedenkenanzeige", "bedenkenanzeige vob", "bedenkenanzeige muster"],
+    "/hilfe/kundenportal-kunden-einladen": ["kundenportal einladen", "kundenportal handwerker", "kundenportal app"],
+    "/hilfe/angebot-online-unterschreiben-lassen": ["angebot online unterschreiben", "angebot unterschreiben lassen", "angebot digital unterschreiben"],
+    "/hilfe/mahnwesen-einrichten": ["mahnstufen", "mahnlauf", "mahnwesen einrichten"],
+    "/hilfe/bankumsaetze-abgleichen": ["camt 053", "bankumsätze abgleichen", "kontoauszug importieren"],
+    "/hilfe/daten-importieren": ["datenübernahme", "kundendaten importieren"],
+    "/hilfe/datanorm-katalog-importieren": ["datanorm", "datanorm datei", "datanorm importieren"],
+    "/hilfe/lager-scan-app": ["lager app", "barcode scanner lager", "materialentnahme app"],
+    "/hilfe/besichtigung-durchfuehren": ["besichtigung baustelle", "baustellenbesichtigung", "besichtigungsprotokoll"],
+    "/hilfe/projekt-chat-nachrichten": ["projekt chat", "baustellen chat", "team chat baustelle"],
+    "/hilfe/app-sprache-einstellen": ["app mehrsprachig", "handwerker app mehrsprachig", "mehrsprachige app"]
   }
 }

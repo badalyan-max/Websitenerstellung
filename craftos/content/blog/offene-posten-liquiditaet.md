@@ -6,7 +6,7 @@ publishedAt: "2026-09-09"
 updatedAt: "2026-09-09"
 author: "CraftOS Redaktion"
 draft: false
-relatedFeatures: ["bankabgleich", "dashboard", "rechnungen", "buchhaltung"]
+relatedFeatures: ["bankabgleich", "dashboard", "rechnungen"]
 relatedArticles: ["/hilfe/zahlungen-erfassen", "/blog/zahlungserinnerung-mahnung-handwerk"]
 sources: []
 platforms: ["web"]

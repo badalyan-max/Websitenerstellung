@@ -2850,7 +2850,8 @@
     },
     "secondary": [
       "abnahmeprotokoll",
-      "abnahme dokumentieren"
+      "abnahme dokumentieren",
+      "teilabnahme vob"
     ],
     "competitors": [],
     "target": {
@@ -4620,6 +4621,222 @@
       "title": "Arbeitszeitnachweis-Vorlagen fürs Handwerk | CraftOS",
       "h1": "Arbeitszeitnachweis: Vorlage oder App?",
       "description": "Arbeitszeitnachweis-Vorlagen im Handwerk: welche Angaben Pflicht sind, wann Papier reicht und wie eine App den Nachweis mit Projektbezug erstellt."
+    }
+  },
+  {
+    "path": "/hilfe/kundenportal-kunden-einladen",
+    "status": "geplant",
+    "phase": 9,
+    "primary": null,
+    "reason": "Kein belegtes Suchvolumen: Kandidaten ‚kundenportal einladen‘, ‚kundenportal handwerker‘, ‚kundenportal app‘ ohne Daten (2026-10-22-keyword-metrics-phase09.json); ‚kundenportal software‘ (110/13) gehört /funktionen/kundenportal. Beschreibende Zielwerte nach Regel 05-01.",
+    "secondary": [],
+    "competitors": [],
+    "target": {
+      "title": "Kunden ins Kundenportal einladen | CraftOS",
+      "h1": "Kunden ins Kundenportal einladen und den Zugang verwalten",
+      "description": "Kundenportal in CraftOS: Kunden per E-Mail einladen, den Status der Einladung prüfen und den Zugang zu Angeboten, Rechnungen und Terminen verwalten."
+    }
+  },
+  {
+    "path": "/hilfe/angebot-online-unterschreiben-lassen",
+    "status": "geplant",
+    "phase": 9,
+    "primary": null,
+    "reason": "Kein belegtes Suchvolumen: Kandidaten ‚angebot online unterschreiben‘, ‚angebot unterschreiben lassen‘, ‚angebot digital unterschreiben‘ ohne Daten (2026-10-22-keyword-metrics-phase09.json). Beschreibende Zielwerte nach Regel 05-01.",
+    "secondary": [],
+    "competitors": [],
+    "target": {
+      "title": "Angebot online unterschreiben lassen | CraftOS",
+      "h1": "Ein Angebot online unterschreiben lassen",
+      "description": "Angebote in CraftOS online unterschreiben lassen: Link per E-Mail senden, den Stand der Unterschrift verfolgen und das unterschriebene PDF öffnen."
+    }
+  },
+  {
+    "path": "/hilfe/mahnwesen-einrichten",
+    "status": "geplant",
+    "phase": 9,
+    "primary": {
+      "keyword": "mahnstufen",
+      "volume": 170,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0.25,
+      "source": {
+        "endpoint": "SE Ranking Data API via MCP DATA_getKeywordsMetrics, source=de",
+        "file": "docs/seo/data/2026-10-22-keyword-metrics-phase09.json",
+        "fetchedAt": "2026-10-22T18:20:36.165Z"
+      }
+    },
+    "reason": "Hauptkeyword aus 2026-10-22-keyword-metrics-phase09.json (Gruppe mahnwesen-zahlungserinnerungen); in keinem anderen Map-Eintrag belegt.",
+    "secondary": [
+      "mahnlauf"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Mahnstufen und Mahnwesen einrichten | CraftOS",
+      "h1": "Mahnstufen festlegen und das Mahnwesen einrichten",
+      "description": "Mahnstufen in CraftOS einrichten: Fristen und Gebühren je Stufe festlegen, Vorlagen anpassen und Zahlungserinnerungen für offene Rechnungen planen."
+    }
+  },
+  {
+    "path": "/hilfe/bankumsaetze-abgleichen",
+    "status": "geplant",
+    "phase": 9,
+    "primary": {
+      "keyword": "camt 053",
+      "volume": 390,
+      "difficulty": 13,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0,
+      "source": {
+        "endpoint": "SE Ranking Data API via MCP DATA_getKeywordsMetrics, source=de",
+        "file": "docs/seo/data/2026-10-22-keyword-metrics-phase09.json",
+        "fetchedAt": "2026-10-22T18:20:36.165Z"
+      }
+    },
+    "reason": "Hauptkeyword aus 2026-10-22-keyword-metrics-phase09.json (Gruppe bankumsaetze-abgleichen); ‚zahlungsabgleich‘ gehört /funktionen/bankabgleich.",
+    "secondary": [
+      "bankumsätze abgleichen"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Bankumsätze abgleichen: CAMT 053 importieren | CraftOS",
+      "h1": "Bankumsätze aus camt.053 importieren und Zahlungen zuordnen",
+      "description": "Bankumsätze in CraftOS abgleichen: Kontoauszug als camt.053, CSV oder PDF importieren, Umsätze Belegen und Zahlungen zuordnen und die Zuordnung bestätigen."
+    }
+  },
+  {
+    "path": "/hilfe/daten-importieren",
+    "status": "geplant",
+    "phase": 9,
+    "primary": {
+      "keyword": "datenübernahme",
+      "volume": 110,
+      "difficulty": 9,
+      "intents": [
+        "I"
+      ],
+      "cpc": 0,
+      "source": {
+        "endpoint": "SE Ranking Data API via MCP DATA_getKeywordsMetrics, source=de",
+        "file": "docs/seo/data/2026-10-22-keyword-metrics-phase09.json",
+        "fetchedAt": "2026-10-22T18:20:36.165Z"
+      }
+    },
+    "reason": "Hauptkeyword aus 2026-10-22-keyword-metrics-phase09.json (Gruppe daten-importieren); ‚datenimport‘ und ‚daten importieren‘ gehören /funktionen/datenuebernahme.",
+    "secondary": [
+      "kundendaten importieren"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Datenübernahme: Kunden und Projekte importieren | CraftOS",
+      "h1": "Datenübernahme: Kunden, Projekte und Stammdaten importieren",
+      "description": "Datenübernahme in CraftOS: Kunden, Projekte und Stammdaten aus CSV oder Excel importieren, Spalten zuordnen, Dubletten prüfen und den Import starten."
+    }
+  },
+  {
+    "path": "/hilfe/datanorm-katalog-importieren",
+    "status": "geplant",
+    "phase": 9,
+    "primary": {
+      "keyword": "datanorm",
+      "volume": 390,
+      "difficulty": 18,
+      "intents": [
+        "I"
+      ],
+      "cpc": 1.64,
+      "source": {
+        "endpoint": "SE Ranking Data API via MCP DATA_getKeywordsMetrics, source=de",
+        "file": "docs/seo/data/2026-10-22-keyword-metrics-phase09.json",
+        "fetchedAt": "2026-10-22T18:20:36.165Z"
+      }
+    },
+    "reason": "Hauptkeyword aus 2026-10-22-keyword-metrics-phase09.json (Gruppe datanorm-katalog-importieren); in keinem anderen Map-Eintrag belegt.",
+    "secondary": [
+      "datanorm datei",
+      "datanorm importieren"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "DATANORM-Katalog importieren | CraftOS",
+      "h1": "DATANORM-Katalog des Großhändlers importieren",
+      "description": "DATANORM in CraftOS: Kataloge Ihres Großhändlers als DATANORM 4 oder DATANORM 5 einlesen, Rabatte übernehmen und Artikel im Angebot direkt finden."
+    }
+  },
+  {
+    "path": "/hilfe/lager-scan-app",
+    "status": "geplant",
+    "phase": 9,
+    "primary": {
+      "keyword": "lager app",
+      "volume": 90,
+      "difficulty": 14,
+      "intents": [
+        "I"
+      ],
+      "cpc": 2.85,
+      "source": {
+        "endpoint": "SE Ranking Data API via MCP DATA_getKeywordsMetrics, source=de",
+        "file": "docs/seo/data/2026-10-22-keyword-metrics-phase09.json",
+        "fetchedAt": "2026-10-22T18:20:36.165Z"
+      }
+    },
+    "reason": "Hauptkeyword aus 2026-10-22-keyword-metrics-phase09.json (Gruppe lager-scan-app); ‚lagerverwaltung app‘ gehört /funktionen/lager.",
+    "secondary": [
+      "barcode scanner lager"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Lager-App: Material per Barcode buchen | CraftOS",
+      "h1": "Lager-App: Material per Barcode scannen und buchen",
+      "description": "Lager-App von CraftOS: Barcode scannen, Bestand je Lagerort sehen und Ausgabe, Rücknahme oder Umbuchung direkt auf der Baustelle in der Mobile-App buchen."
+    }
+  },
+  {
+    "path": "/hilfe/besichtigung-durchfuehren",
+    "status": "geplant",
+    "phase": 9,
+    "primary": null,
+    "reason": "Kein belegtes Suchvolumen: Kandidaten ‚besichtigung baustelle‘, ‚baustellenbesichtigung‘, ‚besichtigungsprotokoll‘ ohne Daten (2026-10-22-keyword-metrics-phase09.json); ‚baustellenbegehung‘ (210/8) hat einen anderen Suchzweck. Beschreibende Zielwerte nach Regel 05-01.",
+    "secondary": [],
+    "competitors": [],
+    "target": {
+      "title": "Besichtigung mit der Mobile-App festhalten | CraftOS",
+      "h1": "Eine Besichtigung mit Fotos, Sprachnotizen und Notizen festhalten",
+      "description": "Besichtigung in CraftOS: Fotos, Sprachnotizen und Notizen mit der Mobile-App im Projekt sammeln und in der Web-App daraus ein KI-Angebot erstellen."
+    }
+  },
+  {
+    "path": "/hilfe/projekt-chat-nachrichten",
+    "status": "geplant",
+    "phase": 9,
+    "primary": null,
+    "reason": "Kein belegtes Suchvolumen: Kandidaten ‚projekt chat‘, ‚baustellen chat‘, ‚team chat baustelle‘ ohne Daten (2026-10-22-keyword-metrics-phase09.json); ‚baustellenkommunikation‘ steht schon in der Map. Beschreibende Zielwerte nach Regel 05-01.",
+    "secondary": [],
+    "competitors": [],
+    "target": {
+      "title": "Projekt-Chat und Nachrichten nutzen | CraftOS",
+      "h1": "Im Projekt-Chat schreiben und Direktnachrichten senden",
+      "description": "Projekt-Chat in CraftOS: in der Mobile-App Nachrichten und Fotos im Projekt mit dem Team teilen und Kolleginnen und Kollegen direkt anschreiben."
+    }
+  },
+  {
+    "path": "/hilfe/app-sprache-einstellen",
+    "status": "geplant",
+    "phase": 9,
+    "primary": null,
+    "reason": "Kein belegtes Suchvolumen: Kandidaten ‚app mehrsprachig‘, ‚handwerker app mehrsprachig‘, ‚mehrsprachige app‘ ohne Daten (2026-10-22-keyword-metrics-phase09.json); ‚app sprache ändern‘ (110/10) ist ein allgemeiner Suchzweck. Beschreibende Zielwerte nach Regel 05-01.",
+    "secondary": [],
+    "competitors": [],
+    "target": {
+      "title": "Sprache der Mobile-App einstellen | CraftOS",
+      "h1": "Die Sprache der Mobile-App einstellen",
+      "description": "Sprache der CraftOS Mobile-App einstellen: aus 21 Sprachen wählen, die Vorgabe für neue Mitarbeitende im Büro setzen und die Auswahl in der App ändern."
     }
   }
 ]
