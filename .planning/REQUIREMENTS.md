@@ -75,7 +75,7 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 | PROD-03 | Phase 5 | Complete |
 | PROD-04 | Phase 5 | Complete |
 | DESIGN-01 | Phase 6 | Complete |
-| DESIGN-02 | Phase 5 (Grundlage), Phasen 6–8 (Umsetzung) | In Progress |
+| DESIGN-02 | Phase 5 (Grundlage), Phasen 6–9 (Umsetzung) | In Progress |
 | DESIGN-03 | Phase 6 | Complete |
 | DESIGN-04 | Phase 5 | Complete |
 | DESIGN-05 | Phase 10 | Pending |
@@ -94,7 +94,7 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 | SEO-06 | Phase 8 | Pending |
 | SEO-07 | Phase 5 | Complete |
 | SEO-08 | Phase 5 (Linkplan), laufend bis Phase 10 (≥15 Refdomains) | In Progress |
-| SEO-09 | Phase 8 | Pending |
+| SEO-09 | Phase 8 (kommerzielle Prompts), Phase 9 (Wissenslücken) | Pending |
 | CONTENT-03 | Phase 9 | Pending |
 | CONTENT-04 | Phase 9 | Pending |
 | QA-04 | Phase 10 | Pending |
