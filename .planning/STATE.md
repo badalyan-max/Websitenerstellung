@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-stopped_at: Completed 08-10-PLAN.md
-last_updated: "2026-10-22T19:52:33.621Z"
-last_activity: "2026-10-22 – 08-10 /vergleich als v2-Hub (Marktübersicht 5 Anbieter ohne highlight, Pflichthinweis wörtlich, 4 Alternativen verlinkt), Logos und lib/comparison.ts gelöscht; als Nächstes 08-11 (kleine Betriebe)"
+stopped_at: Completed 08-11-PLAN.md
+last_updated: "2026-10-22T20:31:45.817Z"
+last_activity: "2026-10-22 – 08-11 /vergleich/handwerkersoftware-kleine-betriebe (BMF-Quellen mit Abrufdatum, neutrale Anbietertabelle, nur Unterstütztes), fünfte Hub-Kachel, Footer-Spalte „Vergleiche“, Ratgeber-Links; als Nächstes 08-13"
 progress:
   total_phases: 6
   completed_phases: 3
-  total_plans: 50
-  completed_plans: 34
-  percent: 68
+  total_plans: 55
+  completed_plans: 35
+  percent: 64
 ---
 
 # State
@@ -30,14 +30,14 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 8 (SEO und KI-Sichtbarkeit)
-Plan: 11 of 14 (08-01 bis 08-10 und 08-12 abgeschlossen; offen 08-11, 08-13, 08-14)
+Plan: 13 of 14 (08-01 bis 08-12 abgeschlossen; offen 08-13, 08-14)
 Status: Ready to execute
-Last activity: 2026-10-22 – 08-10 /vergleich als v2-Hub (Marktübersicht 5 Anbieter ohne highlight, Pflichthinweis wörtlich, 4 Alternativen verlinkt), Logos und lib/comparison.ts gelöscht; als Nächstes 08-11 (kleine Betriebe)
+Last activity: 2026-10-22 – 08-11 /vergleich/handwerkersoftware-kleine-betriebe (BMF-Quellen mit Abrufdatum, neutrale Anbietertabelle, nur Unterstütztes), fünfte Hub-Kachel, Footer-Spalte „Vergleiche“, Ratgeber-Links; als Nächstes 08-13
 
-Progress: [███████░░░] 68% (34/50 Pläne des Milestones inkl. geplanter Phase 9; Phase 8: 11/14)
+Progress: [██████░░░░] 64% (35/55 Pläne des Milestones inkl. geplanter Phase 9; Phase 8: 12/14)
 
-Last session: 2026-10-22T19:52:33.190Z
-Stopped at: Completed 08-10-PLAN.md
+Last session: 2026-10-22T20:31:40.165Z
+Stopped at: Completed 08-11-PLAN.md
 Resume file: None
 
 ## Accumulated Context
@@ -115,6 +115,8 @@ Resume file: None
 - [Phase 08]: 08-10: /vergleich ist v2-Hub; Einzelvergleiche md·sm·sm·wide (4 × md nicht erlaubt), 08-11 ergänzt wide zu md·sm·sm·wide·wide
 - [Phase 08]: 08-10: baueMarktuebersicht (lib/seiten/vergleich.ts) ist der gemeinsame Helfer für Marktübersichten – Beleg je Wettbewerberzelle, Pflichthinweis/Disclaimer wörtlich, wirft bei verneinter CraftOS-Zelle
 - [Phase 08]: 08-10: Logos, ProviderLogo, Comparison.module.css und lib/comparison.ts gelöscht; announcements.test prüft nach Inhabervorgabe, dass KI-Telefonie auf keiner Vergleichsseite als CraftOS-Zeile erscheint
+- [Phase 08]: 08-11: Seite kleine Betriebe nur mit Unterstütztem (Inhaber 22.10.2026); Rechtsangaben aus AMTLICH (BMF-FAQ E-Rechnung, GoBD 14.07.2025 + AO-Handbuch) mit Abrufdatum; Spalte Weitere mobile Person aus Moduldaten
+- [Phase 08]: 08-11: Footer-Spalte Vergleiche (Hub, vier Alternativen, kleine Betriebe), Raster 3/5 Spuren; H2 testen ohne Kopfwort wegen Silbentrennung
 
 ### Pending Todos
 
@@ -157,3 +159,4 @@ None yet.
 | Phase 08 P04 | 33min | 3 tasks | 29 files |
 | Phase 08 P05 | 31min | 2 tasks | 36 files |
 | Phase 08 P10 | 33min | 2 tasks | 19 files |
+| Phase 08 P11 | 40min | 2 tasks | 21 files |
