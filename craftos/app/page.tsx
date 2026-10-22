@@ -25,6 +25,7 @@ import {
   type HomeSectionId,
 } from "@/lib/home-content";
 import { pageMetadata } from "@/lib/metadata";
+import { ogBildFuer } from "@/lib/seo-meta";
 import { faqSchema } from "@/lib/schema";
 
 /**
@@ -33,7 +34,9 @@ import { faqSchema } from "@/lib/schema";
  * Organization/SoftwareApplication-JSON-LD kommen unverändert aus app/layout.tsx, hier nur FAQPage
  * für die sichtbaren Fragen.
  */
-export const metadata = pageMetadata(homeMetadata.title, homeMetadata.description, "/");
+// LO-01: OG-Bild mit Versionsschlüssel und Alternativtext „Handwerkersoftware: {OG-Titel}“.
+const ogBild = ogBildFuer("/");
+export const metadata = pageMetadata(homeMetadata.title, homeMetadata.description, "/", ogBild.pfad, ogBild.alt);
 
 const SURFACE = {
   white: "bg-white",

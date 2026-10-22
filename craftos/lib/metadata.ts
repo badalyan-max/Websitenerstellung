@@ -5,10 +5,12 @@ export function pageMetadata(
   description: string,
   path: string,
   imagePath = "/opengraph-image",
+  /** Alternativtext der OG-Grafik (metaFor: „{Seitentyp}: {OG-Titel}“, LO-01); sonst der Seitentitel. */
+  imageAlt: string = title,
 ): Metadata {
   const url = site.url + path;
   const images = [
-    { url: site.url + imagePath, width: 1200, height: 630, alt: title },
+    { url: site.url + imagePath, width: 1200, height: 630, alt: imageAlt },
   ];
   return {
     title,

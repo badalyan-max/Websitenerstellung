@@ -7,7 +7,6 @@ export const size = OG_SIZE;
 export const contentType = "image/png";
 // LO-03: nur die per generateStaticParams erzeugten Bilder; unbekannte Parameter liefern 404 statt 500.
 export const dynamicParams = false;
-export const alt = "Hilfe von CraftOS";
 export async function generateStaticParams() {
   return (await getContentList("hilfe")).map((a) => ({ slug: a.slug }));
 }

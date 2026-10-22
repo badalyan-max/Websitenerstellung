@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { LOGO_PATH } from "@/components/CraftOSLogo";
+import type { OgKind } from "@/lib/og-meta";
 
 /**
  * Eine OG-Vorlage für alle Seiten (08-05, G7, UI-SPEC § 7; D-08, D-20, D-21, C6, C7).
@@ -10,26 +11,8 @@ import { LOGO_PATH } from "@/components/CraftOSLogo";
 
 export const OG_SIZE = { width: 1200, height: 630 } as const;
 
-export const OG_KINDS = [
-  "Handwerkersoftware",
-  "Funktion",
-  "Funktionen",
-  "Mobile-App",
-  "Preise",
-  "Vergleich",
-  "Fakten",
-  "Craft AI",
-  "GoBD",
-  "Gewerk",
-  "Gewerke",
-  "Ratgeber",
-  "Hilfe",
-  "Rechner",
-  "Kontakt",
-  "Rechtliches",
-] as const;
-
-export type OgKind = (typeof OG_KINDS)[number];
+/** Seitentypen und Alternativtext stehen in lib/og-meta.ts (ohne next/og, auch für Seitenmetadaten, LO-01). */
+export { OG_KINDS, ogAlt, type OgKind } from "@/lib/og-meta";
 
 /** Höchstlänge des Titels; darüber bricht der Build mit einem Hinweis auf den Kurztitel ab. */
 export const OG_TITLE_MAX = 90;
@@ -47,10 +30,6 @@ export function ogTitleSize(title: string, path?: string): 72 | 64 | 52 {
   return 52;
 }
 
-/** Alternativtext der OG-Grafik: „{kind}: {title}“. */
-export function ogAlt(kind: OgKind, title: string): string {
-  return `${kind}: ${title}`;
-}
 
 const FLAECHE = "#101014";
 const TEXT = "#F4F4F5";

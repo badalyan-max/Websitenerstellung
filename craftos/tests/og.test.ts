@@ -127,3 +127,56 @@ describe("dynamische OG-Routen ohne On-Demand-Rendering", () => {
     }
   });
 });
+
+// LO-01 (08-REVIEW): og:image:alt = ogAlt(Seitentyp, OG-Titel) und ein Versionsschlüssel an der Bild-URL, damit
+// Facebook, LinkedIn und Slack nach einer Titeländerung das neue Bild laden. Die alt-Exporte der OG-Dateien waren
+// wirkungslos (metaFor setzt openGraph.images) und entfallen.
+describe("OG-Metadaten aus metaFor (alt und Versionsschlüssel)", () => {
+  const root = path.resolve(import.meta.dirname, "..");
+  const ogDateien: string[] = [];
+  const suche = (dir: string) => {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) suche(p);
+      else if (e.name === "opengraph-image.tsx") ogDateien.push(p);
+    }
+  };
+  suche(path.join(root, "app"));
+  const route = (datei: string) =>
+    "/" +
+    path
+      .relative(path.join(root, "app"), path.dirname(datei))
+      .split(path.sep)
+      .filter(Boolean)
+      .map((s) => (s.startsWith("[") ? "beispiel" : s))
+      .join("/");
+
+  it("ogArt kennt für jede OG-Datei denselben Seitentyp wie die Vorlage; keine toten alt-Exporte", async () => {
+    const { ogArt } = await import("@/lib/seo-meta");
+    expect(ogDateien.length).toBeGreaterThanOrEqual(29);
+    for (const d of ogDateien) {
+      const q = fs.readFileSync(d, "utf8");
+      const kind = /kind: "([^"]+)"/.exec(q)?.[1];
+      expect(ogArt(route(d).replace(/^\/\/?$/, "/") || "/"), d).toBe(kind);
+      expect(q, d).not.toMatch(/export const alt/);
+    }
+  });
+
+  it("metaFor: alt = „{Seitentyp}: {OG-Titel}“, URL mit ?v=, og:image und twitter:image gleich", async () => {
+    const { metaFor, ogTitel, ogVersion } = await import("@/lib/seo-meta");
+    for (const [pfad, kind] of [
+      ["/preise", "Preise"],
+      ["/vergleich/hero-alternative", "Vergleich"],
+      ["/blog/handwerkerrechnung-schreiben", "Ratgeber"],
+      ["/funktionen/aufmass", "Funktion"],
+    ] as const) {
+      const meta = metaFor(pfad);
+      const og = (meta.openGraph?.images as { url: string; alt: string }[])[0];
+      expect(og.alt, pfad).toBe(ogAlt(kind, ogTitel(pfad)));
+      expect(og.url, pfad).toBe(`https://craftos.eu${pfad}/opengraph-image?v=${ogVersion(kind, ogTitel(pfad))}`);
+      expect(meta.twitter?.images, pfad).toEqual([og.url]);
+    }
+    expect(ogVersion("Preise", "Titel A")).not.toBe(ogVersion("Preise", "Titel B"));
+    expect(ogVersion("Preise", "Titel A")).toMatch(/^[0-9a-z]{4,8}$/);
+  });
+});
