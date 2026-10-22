@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-stopped_at: Completed 08-11-PLAN.md
-last_updated: "2026-10-22T20:31:45.817Z"
-last_activity: "2026-10-22 – 08-11 /vergleich/handwerkersoftware-kleine-betriebe (BMF-Quellen mit Abrufdatum, neutrale Anbietertabelle, nur Unterstütztes), fünfte Hub-Kachel, Footer-Spalte „Vergleiche“, Ratgeber-Links; als Nächstes 08-13"
+stopped_at: Completed 08-13-PLAN.md
+last_updated: "2026-10-22T21:37:01.284Z"
+last_activity: "2026-10-22 – 08-13 Browserprüfungen Phase 8 (vergleich.pw.cjs), seo-audit sitewide 0 Verstöße, E2E 424/424 grün nach Fixes (Reduced Motion 0 s, FeatureCard-Raster grid-cols-1), Craft AI/Fakten nur Unterstütztes; als Nächstes 08-14 (nach Snapshot-Abgleich)"
 progress:
   total_phases: 6
   completed_phases: 3
   total_plans: 55
-  completed_plans: 35
-  percent: 64
+  completed_plans: 36
+  percent: 65
 ---
 
 # State
@@ -30,14 +30,14 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 8 (SEO und KI-Sichtbarkeit)
-Plan: 13 of 14 (08-01 bis 08-12 abgeschlossen; offen 08-13, 08-14)
+Plan: 14 of 14 (08-01 bis 08-13 abgeschlossen; offen 08-14)
 Status: Ready to execute
-Last activity: 2026-10-22 – 08-11 /vergleich/handwerkersoftware-kleine-betriebe (BMF-Quellen mit Abrufdatum, neutrale Anbietertabelle, nur Unterstütztes), fünfte Hub-Kachel, Footer-Spalte „Vergleiche“, Ratgeber-Links; als Nächstes 08-13
+Last activity: 2026-10-22 – 08-13 Browserprüfungen Phase 8 (vergleich.pw.cjs), seo-audit sitewide 0 Verstöße, E2E 424/424 grün nach Fixes (Reduced Motion 0 s, FeatureCard-Raster grid-cols-1), Craft AI/Fakten nur Unterstütztes; als Nächstes 08-14 (nach Snapshot-Abgleich)
 
 Progress: [██████░░░░] 64% (35/55 Pläne des Milestones inkl. geplanter Phase 9; Phase 8: 12/14)
 
-Last session: 2026-10-22T20:31:40.165Z
-Stopped at: Completed 08-11-PLAN.md
+Last session: 2026-10-22T21:37:01.276Z
+Stopped at: Completed 08-13-PLAN.md
 Resume file: None
 
 ## Accumulated Context
@@ -117,6 +117,9 @@ Resume file: None
 - [Phase 08]: 08-10: Logos, ProviderLogo, Comparison.module.css und lib/comparison.ts gelöscht; announcements.test prüft nach Inhabervorgabe, dass KI-Telefonie auf keiner Vergleichsseite als CraftOS-Zeile erscheint
 - [Phase 08]: 08-11: Seite kleine Betriebe nur mit Unterstütztem (Inhaber 22.10.2026); Rechtsangaben aus AMTLICH (BMF-FAQ E-Rechnung, GoBD 14.07.2025 + AO-Handbuch) mit Abrufdatum; Spalte Weitere mobile Person aus Moduldaten
 - [Phase 08]: 08-11: Footer-Spalte Vergleiche (Hub, vier Alternativen, kleine Betriebe), Raster 3/5 Spuren; H2 testen ohne Kopfwort wegen Silbentrennung
+- [Phase 08]: 08-13: /craft-ai „Wer entscheidet bei Craft AI?“ (id wer-entscheidet) und Kachel „Sie bestätigen jede Buchung“; Fakten-KI-Eintrag positiv; GoBD-Zertifizierungsfrage bleibt als Überclaim-Schutz
+- [Phase 08]: 08-13: Reduced-Motion-Regel mit transition-duration/-delay 0s statt 0.01ms (WebKit erzeugte Hunderte tab-size-Übergänge, Ursache home-navigation:501)
+- [Phase 08]: 08-13: FeatureCard-Raster grid-cols-1 unter 768 px (WebKit-Überlauf nach Größenwechsel); Kartenrahmen unter 362 px nur erste Zeile
 
 ### Pending Todos
 
@@ -160,3 +163,4 @@ None yet.
 | Phase 08 P05 | 31min | 2 tasks | 36 files |
 | Phase 08 P10 | 33min | 2 tasks | 19 files |
 | Phase 08 P11 | 40min | 2 tasks | 21 files |
+| Phase 08 P13 | 59min | 2 tasks | 22 files |
