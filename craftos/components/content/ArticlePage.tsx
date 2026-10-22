@@ -6,7 +6,7 @@ import { getFunktion } from "@/lib/funktionen";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs } from "@/components/v2/Breadcrumbs";
 import { crumbsFor } from "@/lib/breadcrumbs";
-import { zielwerte } from "@/lib/seo-meta";
+import { segmentBild, zielwerte } from "@/lib/seo-meta";
 import { site } from "@/lib/site";
 export async function ArticlePage({ article: a }: { article: ContentArticle }) {
   const all = [
@@ -164,7 +164,8 @@ export async function ArticlePage({ article: a }: { article: ContentArticle }) {
           },
           publisher: { "@id": site.url + "/#organization" },
           mainEntityOfPage: url,
-          image: site.url + "/opengraph-image",
+          // LO-02: dasselbe Hauptbild wie og:image (Segmentbild des Artikels, 08-05).
+          image: site.url + segmentBild("/" + a.kind + "/" + a.slug),
           about: a.relatedFeatures.map((s) => ({
             "@id": site.url + "/funktionen/" + s,
           })),

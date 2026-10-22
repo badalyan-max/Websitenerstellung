@@ -135,6 +135,11 @@ describe("Inhaltsrouten folgen der Keyword-Map (08-04)", () => {
         expect(JSON.stringify(meta.twitter?.images), `${pfad}: twitter:image`).toContain(`${pfad}/opengraph-image`);
         const html = renderToString(await ArticlePage({ article: (await getContentArticle(kind, a.slug))! }));
         expect(h1s(html), `${pfad}: genau eine H1 = Map`).toEqual([z.h1]);
+        // LO-02: Article/TechArticle-Schema nennt dasselbe Hauptbild wie og:image (Segmentbild des Artikels).
+        const ld = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+          .map((m) => JSON.parse(m[1]) as { "@type"?: string; image?: string })
+          .find((d) => d["@type"] === "Article" || d["@type"] === "TechArticle");
+        expect(ld?.image, `${pfad}: Schema-Bild`).toBe(`https://craftos.eu${pfad}/opengraph-image`);
       }
     }
   }, 60_000);
