@@ -161,7 +161,7 @@ export default function Home() {
       <HomeSection id="faq" surface="warm">
         <div className="grid gap-y-0 lg:grid-cols-[5fr_7fr] lg:gap-x-12">
           <SectionHeader id="faq-titel" title={s.faq.title} lead={s.faq.lead} />
-          <FaqList items={faqContent} headingLevel={3} />
+          <FaqList items={faqContent} headingLevel={3} answerMax={300} />
         </div>
         <JsonLd data={faqSchema(faqContent)} />
       </HomeSection>

@@ -9,6 +9,12 @@ for (const route of process.env.AUDIT_ROUTES?.split(",") || [
   "/funktionen/mahnwesen",
   "/funktionen/terminplanung",
   "/preise",
+  "/vergleich",
+  "/vergleich/hero-alternative",
+  "/vergleich/handwerkersoftware-kleine-betriebe",
+  "/fakten-ueber-craftos",
+  "/craft-ai",
+  "/gobd",
   "/blog/handwerkerrechnung-schreiben",
   "/rechner/stundensatz",
 ]) {

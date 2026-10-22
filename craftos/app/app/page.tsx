@@ -127,7 +127,7 @@ export default function AppPage() {
       <Abschnitt id="faq">
         <div className="grid gap-y-0 lg:grid-cols-[5fr_7fr] lg:gap-x-12">
           <SectionHeader id="faq-titel" title={s.faq.title} lead={s.faq.lead} />
-          <FaqList items={appFaq} headingLevel={3} />
+          <FaqList items={appFaq} headingLevel={3} answerMax={300} />
         </div>
         <JsonLd data={faqSchema(appFaq)} />
       </Abschnitt>
