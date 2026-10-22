@@ -218,7 +218,7 @@ Plans:
 
 **Wave 12** *(blocked on Wave 11 completion)*
 
-- [ ] 08-12-PLAN.md — /fakten-ueber-craftos (Was ist CraftOS?, D-25), /craft-ai und /gobd auf v2
+- [x] 08-12-PLAN.md — /fakten-ueber-craftos (Was ist CraftOS?, D-25), /craft-ai und /gobd auf v2
 
 **Wave 13** *(blocked on Wave 12 completion)*
 
