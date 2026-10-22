@@ -430,8 +430,8 @@ export const funktionen: Funktion[] = definitions.map((d) => ({
   helpSlug: d.help,
   related: d.related,
   demo: d.demo,
-  // Stand der Detailseiten (Phase 7 neu gebaut am 2026-10-21); speist lastModified der Sitemap (Code-Review 07 IN-03).
-  checkedAt: "2026-10-21",
+  // Stand der Detailseiten (Phase 7 geprüft und ausgeliefert am 2026-10-22); speist lastModified der Sitemap (Code-Review 07 IN-03).
+  checkedAt: "2026-10-22",
 }));
 export function getFunktion(slug: string): Funktion | undefined {
   return funktionen.find((f) => f.slug === slug);

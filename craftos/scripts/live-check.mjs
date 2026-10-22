@@ -1,6 +1,8 @@
 // Live- bzw. Lokalprüfung des ausgelieferten Stands per Node-fetch (curl/WebFetch werden in dieser
 // Umgebung umgeleitet). Prüft Preise, Ankündigungsfreiheit, Styleguide-Schutz und JSON-LD (Phase 5)
-// sowie Startseite, Mega-Menü und /funktionen nach docs/seo/keyword-map.json (Phase 6).
+// sowie Startseite, Mega-Menü und /funktionen nach docs/seo/keyword-map.json (Phase 6) und
+// /app und alle Detailseiten (Keyword-Map, JSON-LD inkl. MobileApplication, Kennzeichnung,
+// interne Belegpfade, llms.txt; Phase 7).
 //   node scripts/live-check.mjs                                  # gegen https://craftos.eu
 //   LIVE_ORIGIN=http://localhost:3100 node scripts/live-check.mjs  # gegen lokalen Produktionsserver
 // Ausgabe je Prüfung „OK“ oder „FEHLER“; exitCode 1, sobald eine Prüfung fehlschlägt.
@@ -169,7 +171,15 @@ async function detailSlugs() {
   return [...new Set(slugs)];
 }
 
-for (const route of ["/", "/funktionen"]) {
+// Phase 7: dieselbe Prüfung zusätzlich für /app und alle Detailseiten aus der Sitemap.
+const detailPfade = await detailSlugs()
+  .then((slugs) => slugs.map((s) => `/funktionen/${s}`))
+  .catch((err) => {
+    report(false, "Detailseiten aus /sitemap.xml lesen", err instanceof Error ? err.message : String(err));
+    return [];
+  });
+
+for (const route of ["/", "/funktionen", "/app", ...detailPfade]) {
   await check(`${route} Title, H1 und Description nach Keyword-Map`, async () => {
     const r = await get(route);
     if (r.status !== 200) return `HTTP ${r.status}`;
@@ -246,6 +256,103 @@ await check("FAQPage der Startseite mit genau 5 Fragen", async () => {
   if (faq.length !== 1) return `${faq.length} FAQPage-Blöcke`;
   const fragen = findType(faq[0], "Question").length;
   return fragen === 5 || `${fragen} Question statt 5`;
+});
+
+// ---------------------------------------------------------------------------------------------
+// Phase 7: Detailseiten und /app. Detailpfade aus /sitemap.xml, Sollmenge aus docs/seo/keyword-map.json.
+// ---------------------------------------------------------------------------------------------
+const kennzeichnung = "Vereinfachte Darstellung mit Beispieldaten";
+const interneMuster = [
+  'data-evidence="web:src',
+  'data-evidence="mobile:',
+  'data-source="tarife',
+  'data-source="product-register',
+  'data-source="site.',
+];
+
+await check("Alle bestehenden Detailseiten in der Sitemap", async () => {
+  const soll = kmEntries
+    .filter((e) => typeof e.path === "string" && /^\/funktionen\/[a-z0-9-]+$/.test(e.path) && e.status === "bestehend")
+    .map((e) => e.path);
+  if (soll.length === 0) return "keyword-map.json ohne bestehende Detailseiten";
+  const ist = new Set(detailPfade);
+  const fehlt = soll.filter((s) => !ist.has(s));
+  const extra = detailPfade.filter((s) => !soll.includes(s));
+  if (fehlt.length || extra.length) {
+    return [fehlt.length && `fehlt in der Sitemap: ${fehlt.join(", ")}`, extra.length && `nicht in der Keyword-Map: ${extra.join(", ")}`]
+      .filter(Boolean)
+      .join("; ");
+  }
+  return true;
+});
+
+await check(`JSON-LD der Detailseiten (BreadcrumbList 3, FAQPage ≥ 3, WebPage #webpage, kein HowTo)`, async () => {
+  if (detailPfade.length === 0) return "keine Detailseiten";
+  const abw = [];
+  for (const route of detailPfade) {
+    const r = await get(route);
+    if (r.status !== 200) {
+      abw.push(`${route} HTTP ${r.status}`);
+      continue;
+    }
+    const ld = jsonLd(r.text);
+    const crumbs = findType(ld, "BreadcrumbList");
+    const crumbItems = crumbs.length === 1 ? findType(crumbs[0], "ListItem").length : -1;
+    if (crumbItems !== 3) abw.push(`${route} BreadcrumbList ${crumbs.length === 1 ? `${crumbItems} ListItems` : `${crumbs.length} Blöcke`}`);
+    const faq = findType(ld, "FAQPage");
+    const fragen = faq.length === 1 ? findType(faq[0], "Question").length : 0;
+    if (faq.length !== 1 || fragen < 3) abw.push(`${route} FAQPage ${faq.length} Blöcke, ${fragen} Question`);
+    const webpage = findType(ld, "WebPage").filter((w) => typeof w["@id"] === "string" && w["@id"].endsWith(`${route}#webpage`));
+    if (webpage.length !== 1) abw.push(`${route} WebPage mit @id …${route}#webpage fehlt`);
+    if (findType(ld, "HowTo").length > 0) abw.push(`${route} enthält HowTo`);
+  }
+  return abw.length === 0 || abw.join("; ");
+});
+
+await check("JSON-LD der App-Seite: MobileApplication ohne Bewertungen, FAQPage, BreadcrumbList 2", async () => {
+  const r = await get("/app");
+  if (r.status !== 200) return `HTTP ${r.status}`;
+  const ld = jsonLd(r.text);
+  const apps = findType(ld, "MobileApplication");
+  if (apps.length !== 1) return `${apps.length} MobileApplication-Blöcke`;
+  if ("aggregateRating" in apps[0] || "review" in apps[0]) return "MobileApplication mit aggregateRating oder review";
+  if (findType(ld, "AggregateRating").length > 0 || findType(ld, "Review").length > 0) return "Bewertungen im JSON-LD";
+  if (findType(ld, "FAQPage").length !== 1) return "FAQPage fehlt";
+  const crumbs = findType(ld, "BreadcrumbList");
+  if (crumbs.length !== 1) return `${crumbs.length} BreadcrumbList-Blöcke`;
+  const items = findType(crumbs[0], "ListItem").length;
+  return items === 2 || `BreadcrumbList mit ${items} ListItems statt 2`;
+});
+
+await check("Keine internen Belegpfade oder Modulnamen auf /, /funktionen, /app und allen Detailseiten", async () => {
+  const abw = [];
+  for (const route of ["/", "/funktionen", "/app", ...detailPfade]) {
+    const r = await get(route);
+    if (r.status !== 200) {
+      abw.push(`${route} HTTP ${r.status}`);
+      continue;
+    }
+    const treffer = interneMuster.filter((m) => r.text.includes(m));
+    if (treffer.length) abw.push(`${route}: ${treffer.join(", ")}`);
+  }
+  return abw.length === 0 || abw.join("; ");
+});
+
+await check(`Kennzeichnung der Darstellungen auf /app und allen Detailseiten („${kennzeichnung}“)`, async () => {
+  const fehlt = [];
+  for (const route of ["/app", ...detailPfade]) {
+    const r = await get(route);
+    if (r.status !== 200 || !r.text.includes(kennzeichnung)) fehlt.push(r.status === 200 ? route : `${route} HTTP ${r.status}`);
+  }
+  return fehlt.length === 0 || `fehlt: ${fehlt.join(", ")}`;
+});
+
+await check("llms.txt nennt alle Detailseiten und /app", async () => {
+  const r = await get("/llms.txt");
+  if (r.status !== 200) return `HTTP ${r.status}`;
+  if (detailPfade.length === 0) return "keine Detailseiten";
+  const fehlt = [...detailPfade, "/app"].filter((pfad) => !r.text.includes(`${pfad})`));
+  return fehlt.length === 0 || `fehlt: ${fehlt.join(", ")}`;
 });
 
 console.log(fehler === 0 ? "Ergebnis: alle Prüfungen OK" : `Ergebnis: ${fehler} Prüfung(en) FEHLER`);

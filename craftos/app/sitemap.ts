@@ -7,12 +7,12 @@ import { categories } from "@/lib/content-types";
 /** Letzte inhaltliche Änderung je Kernseite; Standard ist der Relaunch-Stand. */
 const pageUpdated: Record<string, string> = {
   "": "2026-10-21",
-  "/funktionen": "2026-10-21",
+  "/funktionen": "2026-10-22",
   "/craft-ai": "2026-10-20",
   "/vergleich": "2026-10-20",
   "/fakten-ueber-craftos": "2026-10-20",
   "/preise": "2026-10-20",
-  "/app": "2026-10-21",
+  "/app": "2026-10-22",
   "/gewerke": "2026-10-20",
 };
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
