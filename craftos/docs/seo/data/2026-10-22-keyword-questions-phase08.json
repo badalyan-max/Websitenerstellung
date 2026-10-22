@@ -1,0 +1,161 @@
+{
+ "source": "SE Ranking Data API via MCP DATA_getKeywordQuestions, source=de, limit=20, sort=volume",
+ "fetchedAt": "2026-10-22T12:27:20.811Z",
+ "seeds": [
+  "handwerkersoftware",
+  "plancraft",
+  "hero software"
+ ],
+ "result": {
+  "handwerkersoftware": {
+   "archetype": "keyword-table",
+   "title": "Question keywords for \"handwerkersoftware\"",
+   "subtitle": "DE • 0 of 0",
+   "summary": "Question keywords for \"handwerkersoftware\" (DE): 0 of 0 question keywords.",
+   "columns": [
+    {
+     "key": "volume",
+     "label": "Volume",
+     "format": "integer"
+    },
+    {
+     "key": "cpc",
+     "label": "CPC",
+     "format": "currency"
+    },
+    {
+     "key": "difficulty",
+     "label": "Difficulty",
+     "format": "integer"
+    },
+    {
+     "key": "competition",
+     "label": "Competition",
+     "format": "decimal"
+    },
+    {
+     "key": "intents",
+     "label": "Intent",
+     "format": "intents"
+    },
+    {
+     "key": "serp_features",
+     "label": "SERP features",
+     "format": "serp_features"
+    }
+   ],
+   "rows": [],
+   "total": 0,
+   "notes": [
+    "Pass history_trend=true for per-row monthly search-volume sparklines."
+   ]
+  },
+  "plancraft": {
+   "archetype": "keyword-table",
+   "title": "Question keywords for \"plancraft\"",
+   "subtitle": "DE • 1 of 1",
+   "summary": "Question keywords for \"plancraft\" (DE): 1 of 1 question keywords.",
+   "columns": [
+    {
+     "key": "volume",
+     "label": "Volume",
+     "format": "integer"
+    },
+    {
+     "key": "cpc",
+     "label": "CPC",
+     "format": "currency"
+    },
+    {
+     "key": "difficulty",
+     "label": "Difficulty",
+     "format": "integer"
+    },
+    {
+     "key": "competition",
+     "label": "Competition",
+     "format": "decimal"
+    },
+    {
+     "key": "intents",
+     "label": "Intent",
+     "format": "intents"
+    },
+    {
+     "key": "serp_features",
+     "label": "SERP features",
+     "format": "serp_features"
+    }
+   ],
+   "rows": [
+    {
+     "keyword": "was kostet plancraft",
+     "cells": {
+      "volume": 50,
+      "cpc": 2.4,
+      "difficulty": 19,
+      "competition": 0.7,
+      "intents": [
+       "I"
+      ],
+      "serp_features": [
+       "reviews",
+       "video",
+       "people_also_ask",
+       "bads",
+       "related_searches"
+      ]
+     },
+     "sparkline": []
+    }
+   ],
+   "total": 1,
+   "notes": [
+    "Pass history_trend=true for per-row monthly search-volume sparklines."
+   ]
+  },
+  "hero software": {
+   "archetype": "keyword-table",
+   "title": "Question keywords for \"hero software\"",
+   "subtitle": "DE • 0 of 0",
+   "summary": "Question keywords for \"hero software\" (DE): 0 of 0 question keywords.",
+   "columns": [
+    {
+     "key": "volume",
+     "label": "Volume",
+     "format": "integer"
+    },
+    {
+     "key": "cpc",
+     "label": "CPC",
+     "format": "currency"
+    },
+    {
+     "key": "difficulty",
+     "label": "Difficulty",
+     "format": "integer"
+    },
+    {
+     "key": "competition",
+     "label": "Competition",
+     "format": "decimal"
+    },
+    {
+     "key": "intents",
+     "label": "Intent",
+     "format": "intents"
+    },
+    {
+     "key": "serp_features",
+     "label": "SERP features",
+     "format": "serp_features"
+    }
+   ],
+   "rows": [],
+   "total": 0,
+   "notes": [
+    "Pass history_trend=true for per-row monthly search-volume sparklines."
+   ]
+  }
+ }
+}

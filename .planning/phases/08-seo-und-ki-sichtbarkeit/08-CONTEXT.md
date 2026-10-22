@@ -49,6 +49,18 @@ Nicht in dieser Phase: Gewerke-Seiten-Umbau und Wissens-/Hilfe-/Blog-Inhalte ink
 - **D-14:** Wie Phase 7: strikt sequentielle Wellen, TDD für Datenmodule/Tests, schwere Läufe lokal einzeln (Port 3100, eigene PID), Code-Review-Gate durch Orchestrator vor dem Rollout-Plan, Ship-Gate, `gh workflow list --all` vor jedem Push, Vercel READY, `live-check.mjs` erweitern, IndexNow, Rollout-Nachweis `docs/releases/PHASE-08-ROLLOUT.md`.
 - **D-15:** Anforderungsstatus: nur im Rollout-Plan markieren – SEO-03, SEO-04, SEO-05, SEO-06 und SEO-02 (Abschluss Keyword-Map-Metadaten sitewide); DESIGN-02 und SEO-09 bleiben „In Progress“ bis Phase 9. Alle anderen Pläne: `requirements-completed: []`.
 
+### Nach der Recherche festgelegt (22.10.2026, Orchestrator)
+- **D-16 (HERO-Preise):** HERO-Preisangaben nur, wenn die Zuordnung Zahl ↔ Zahlweise per Playwright-Screenshot beider Umschalterstellungen der offiziellen Preisseite belegt ist (Screenshot-Pfad + Datum im Datenmodul); sonst nur „Preise je Paket und Zahlweise laut hero-software.de/preise, Stand <Datum>“ ohne Zahlen. Aktionspreise nie als Dauerpreis.
+- **D-17 (H1 sitewide):** Titel, Description UND H1 aller Seiten mit Keyword-Map-Hauptbegriff (inkl. Ratgeber, Hilfe, Gewerke) folgen in Phase 8 der Map – mechanische, minimale Anpassung der H1 (Kopfwort einfügen), kein Umschreiben der Inhalte; damit wird SEO-02 in Phase 8 abgeschlossen. Doppelte H1 („Rechnungen“) auflösen.
+- **D-18 (Tracker-Umfang):** Maßgeblich sind alle aktuell im AI-Tracker stehenden Prompt-Texte (laut Recherche 20 Einträge / 18 Texte); Elektro- und Maler-Prompts werden auf die Gewerke-Seiten gemappt und in Phase 9 ausgebaut.
+- **D-19 (Gewerke-Links):** Links von Gewerkeseiten auf neue Detailseiten folgen in Phase 9 mit dem Gewerke-Umbau; im Rollout-Nachweis Phase 8 klarstellen (korrigiert PHASE-07-ROLLOUT §15h).
+- **D-20 (Rechtsseiten):** Impressum, Datenschutz, AGB bekommen Breadcrumbs, eindeutige Titel/Descriptions und die Standard-OG-Grafik des Seitentyps (keine individuelle Grafik nötig); /styleguide bleibt noindex und ausgenommen.
+- **D-21 (OG-Schrift):** OG-Grafiken nutzen eine im Repo vorhandene, lizenzsichere Schrift im TTF/WOFF-Format (z. B. Geist) – keine Konvertierung der Markenschriften; Markenwirkung über Farben, Logo und Layout. OG für dynamische Routen per generateStaticParams statisch erzeugen, twitter:image mitziehen.
+- **D-22 (Breadcrumbs vs. Designvertrag):** SEO-05 verlangt sichtbare Breadcrumbs; das 08-UI-SPEC hebt die frühere Verwerfung in 06-UI-SPEC/DESIGN-V2.md ausdrücklich als Abweichung auf (dezente Brotkrumen unter dem Header, v2-Stil).
+- **D-23 (Schutztests):** Bestehende Schutztests (Testphasen-Scan, route-audit „14 Tage“, ComparisonTable-Zellbudget, Preisverbot, kwmap-Manifest) werden in Welle 1 so erweitert, dass belegte Wettbewerberangaben in klar gekennzeichneten Wettbewerber-Datenmodulen/-Abschnitten erlaubt sind, CraftOS-eigene Angaben aber weiter streng geprüft bleiben (kein Abschwächen für CraftOS-Texte).
+- **D-24 (SE-Ranking-Budget):** Kontostand 34.671 Units (22.10.2026); Phase 8/9 zusammen höchstens ~8.000 Units, Rest bleibt für Messberichte und Abschlussaudit.
+- **D-25 (Was ist CraftOS):** Für den Prompt „Was ist CraftOS?“ eine eindeutige Entitätsseite/-abschnitt (Fakten-Seite) mit klarer Abgrenzung zu gleichnamigen Projekten (z. B. CraftOS-PC), Organization-Schema mit sameAs; keine Herabsetzung anderer.
+
 ### Claude's Discretion
 - Reihenfolge und Zuschnitt der Pläne; Auswahl der Kriterien in Vergleichstabellen (nur belegte); Gestaltung der OG-Grafik innerhalb der Marke.
 </decisions>

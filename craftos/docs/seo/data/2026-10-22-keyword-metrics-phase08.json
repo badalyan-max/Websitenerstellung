@@ -1,0 +1,727 @@
+{
+ "source": "SE Ranking Data API via MCP DATA_getKeywordsMetrics, source=de",
+ "fetchedAt": "2026-10-22T12:27:20.810Z",
+ "requested": [
+  "plancraft alternative",
+  "craftnote alternative",
+  "hero software alternative",
+  "hero alternative",
+  "tooltime alternative",
+  "alternative zu plancraft",
+  "handwerkersoftware kosten",
+  "handwerkersoftware preise",
+  "was kostet eine handwerkersoftware",
+  "beste handwerkersoftware",
+  "beste handwerkersoftware kleine betriebe",
+  "handwerkersoftware kleine betriebe",
+  "handwerkersoftware für kleine betriebe",
+  "software für kleine handwerksbetriebe",
+  "handwerkersoftware vergleich",
+  "handwerkersoftware test",
+  "günstige handwerkersoftware",
+  "handwerkersoftware günstig",
+  "handwerkersoftware mit app",
+  "handwerker app",
+  "plancraft preise",
+  "craftnote preise",
+  "hero software preise",
+  "tooltime preise",
+  "plancraft erfahrungen",
+  "craftnote erfahrungen",
+  "hero software erfahrungen",
+  "tooltime erfahrungen",
+  "craftos",
+  "craftos software"
+ ],
+ "result": {
+  "archetype": "keyword-table",
+  "title": "Keyword metrics — 30 keyword(s)",
+  "subtitle": "DE",
+  "summary": "30 keyword(s), 20 with data (DE). Volume 10–210.",
+  "columns": [
+   {
+    "key": "volume",
+    "label": "Volume",
+    "format": "integer"
+   },
+   {
+    "key": "cpc",
+    "label": "CPC",
+    "format": "currency"
+   },
+   {
+    "key": "difficulty",
+    "label": "Difficulty",
+    "format": "integer"
+   },
+   {
+    "key": "competition",
+    "label": "Competition",
+    "format": "decimal"
+   },
+   {
+    "key": "intents",
+    "label": "Intent",
+    "format": "intents"
+   }
+  ],
+  "rows": [
+   {
+    "keyword": "plancraft erfahrungen",
+    "cells": {
+     "volume": 210,
+     "cpc": 2.7,
+     "difficulty": 8,
+     "competition": 0.7,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     170,
+     170,
+     170,
+     170,
+     170,
+     170,
+     170,
+     170,
+     210,
+     210
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "tooltime preise",
+    "cells": {
+     "volume": 140,
+     "cpc": 4.18,
+     "difficulty": 15,
+     "competition": 0.67,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     90,
+     90,
+     90,
+     90,
+     90,
+     110,
+     110,
+     110,
+     110,
+     140,
+     140
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "hero software preise",
+    "cells": {
+     "volume": 140,
+     "cpc": 5.03,
+     "difficulty": 17,
+     "competition": 0.8,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     140,
+     140,
+     140,
+     140,
+     140,
+     140,
+     140,
+     140,
+     140,
+     140,
+     140
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "craftnote preise",
+    "cells": {
+     "volume": 110,
+     "cpc": 3.62,
+     "difficulty": 12,
+     "competition": 0.78,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     110,
+     110,
+     90,
+     90,
+     90,
+     90,
+     90,
+     110,
+     110,
+     110,
+     110
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "handwerkersoftware vergleich",
+    "cells": {
+     "volume": 90,
+     "cpc": 7.31,
+     "difficulty": 22,
+     "competition": 0.96,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     90,
+     110,
+     110,
+     110,
+     110,
+     110,
+     90,
+     90,
+     90,
+     90,
+     90
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "beste handwerkersoftware",
+    "cells": {
+     "volume": 90,
+     "cpc": 7.75,
+     "difficulty": 24,
+     "competition": 0.92,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     110,
+     110,
+     110,
+     90,
+     90,
+     90,
+     90,
+     90,
+     90,
+     90
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "tooltime erfahrungen",
+    "cells": {
+     "volume": 70,
+     "cpc": 3.51,
+     "difficulty": 15,
+     "competition": 0.65,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     90,
+     90,
+     90,
+     90,
+     90,
+     90,
+     90,
+     70,
+     70,
+     70,
+     70
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "hero software erfahrungen",
+    "cells": {
+     "volume": 70,
+     "cpc": 4.91,
+     "difficulty": 8,
+     "competition": 0.74,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     90,
+     90,
+     90,
+     90,
+     90,
+     70,
+     70,
+     70,
+     70,
+     70,
+     70
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "software für kleine handwerksbetriebe",
+    "cells": {
+     "volume": 50,
+     "cpc": 5.19,
+     "difficulty": 36,
+     "competition": 0.91,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     70,
+     70,
+     70,
+     70,
+     70,
+     50,
+     50,
+     50,
+     50,
+     50
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "handwerkersoftware preise",
+    "cells": {
+     "volume": 50,
+     "cpc": 3.13,
+     "difficulty": 21,
+     "competition": 0.98,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     40,
+     50,
+     50,
+     50,
+     50,
+     50,
+     50,
+     50,
+     50,
+     50,
+     50
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "plancraft alternative",
+    "cells": {
+     "volume": 30,
+     "cpc": 4.13,
+     "difficulty": 11,
+     "competition": 0.82,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     40,
+     40,
+     30
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "handwerkersoftware test",
+    "cells": {
+     "volume": 30,
+     "cpc": 0,
+     "difficulty": 22,
+     "competition": 0.96,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     90,
+     70,
+     70,
+     70,
+     70,
+     70,
+     70,
+     50,
+     40,
+     30
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "craftnote erfahrungen",
+    "cells": {
+     "volume": 30,
+     "cpc": 3.83,
+     "difficulty": 15,
+     "competition": 0.66,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "craftnote alternative",
+    "cells": {
+     "volume": 30,
+     "cpc": 11.18,
+     "difficulty": 6,
+     "competition": 0.81,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     50,
+     40,
+     40,
+     40,
+     40,
+     30,
+     30,
+     30,
+     30,
+     30,
+     30
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "handwerkersoftware günstig",
+    "cells": {
+     "volume": 20,
+     "cpc": 4,
+     "difficulty": 25,
+     "competition": 0.98,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     30,
+     30,
+     30,
+     30,
+     20,
+     20,
+     20,
+     20,
+     20,
+     20,
+     20
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "handwerker app",
+    "cells": {
+     "volume": 20,
+     "cpc": 4.03,
+     "difficulty": 21,
+     "competition": 0.73,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     0,
+     10,
+     20,
+     40,
+     30,
+     10,
+     20,
+     10,
+     20,
+     10,
+     20
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "günstige handwerkersoftware",
+    "cells": {
+     "volume": 20,
+     "cpc": 4,
+     "difficulty": 39,
+     "competition": 0.98,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     30,
+     30,
+     30,
+     30,
+     20,
+     20,
+     20,
+     20,
+     20,
+     20,
+     20
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "hero software alternative",
+    "cells": {
+     "volume": 10,
+     "cpc": 11.44,
+     "difficulty": 15,
+     "competition": 0.86,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     20,
+     20,
+     20,
+     20,
+     20,
+     10,
+     10,
+     10,
+     10,
+     10,
+     10
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "hero alternative",
+    "cells": {
+     "volume": 10,
+     "cpc": 8.17,
+     "difficulty": 22,
+     "competition": 0.78,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     10,
+     10,
+     10,
+     10,
+     10,
+     10,
+     10,
+     10,
+     10,
+     10,
+     10
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "handwerkersoftware mit app",
+    "cells": {
+     "volume": 10,
+     "cpc": 0,
+     "difficulty": 48,
+     "competition": 0.93,
+     "intents": [
+      "I"
+     ]
+    },
+    "sparkline": [
+     20,
+     20,
+     20,
+     20,
+     20,
+     20,
+     10,
+     10,
+     10,
+     10,
+     10
+    ],
+    "dataFound": true
+   },
+   {
+    "keyword": "was kostet eine handwerkersoftware",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "tooltime alternative",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "plancraft preise",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "handwerkersoftware kosten",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "handwerkersoftware kleine betriebe",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "handwerkersoftware für kleine betriebe",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "craftos software",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "craftos",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "beste handwerkersoftware kleine betriebe",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   },
+   {
+    "keyword": "alternative zu plancraft",
+    "cells": {
+     "volume": null,
+     "cpc": null,
+     "difficulty": null,
+     "competition": null,
+     "intents": null
+    },
+    "sparkline": [],
+    "dataFound": false
+   }
+  ],
+  "notes": [
+   "10 keyword(s) returned no data."
+  ],
+  "sparklineMonths": [
+   "2025-12",
+   "2026-01",
+   "2026-02",
+   "2026-03",
+   "2026-04",
+   "2026-05",
+   "2026-06",
+   "2026-07",
+   "2026-08",
+   "2026-09",
+   "2026-10"
+  ]
+ }
+}

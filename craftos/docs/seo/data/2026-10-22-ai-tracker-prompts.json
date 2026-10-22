@@ -1,0 +1,2201 @@
+{
+ "source": "SE Ranking Project API via MCP (AI Result Tracker), site_id 13094375",
+ "fetchedAt": "2026-10-22T12:31:21.654Z",
+ "engines": [
+  {
+   "engine": {
+    "id": 203632,
+    "site_id": 13094375,
+    "base_name": "chatgpt",
+    "country_code": "de",
+    "region_name": null,
+    "lang_code": "de",
+    "region_settings": []
+   },
+   "prompts": {
+    "site_llm_id": 203632,
+    "site_id": 13094375,
+    "items": [
+     {
+      "site_llm_id": "203632",
+      "group_id": "94132",
+      "search_volume": null,
+      "intent": null,
+      "intent_meaning": null,
+      "prompt_llm_id": "1528441",
+      "prompt": "Welche Handwerkersoftware ist die beste für kleine Betriebe?",
+      "prompt_id": "1518865"
+     },
+     {
+      "site_llm_id": "203632",
+      "group_id": "94132",
+      "search_volume": null,
+      "intent": null,
+      "intent_meaning": null,
+      "prompt_llm_id": "1528444",
+      "prompt": "beste Handwerkersoftware 2026",
+      "prompt_id": "1518868"
+     },
+     {
+      "site_llm_id": "203632",
+      "group_id": "94132",
+      "search_volume": null,
+      "intent": null,
+      "intent_meaning": null,
+      "prompt_llm_id": "1528447",
+      "prompt": "Handwerkersoftware Vergleich",
+      "prompt_id": "1518871"
+     },
+     {
+      "site_llm_id": "203632",
+      "group_id": "94132",
+      "search_volume": null,
+      "intent": null,
+      "intent_meaning": null,
+      "prompt_llm_id": "1528450",
+      "prompt": "Alternative zu Plancraft",
+      "prompt_id": "1518874"
+     },
+     {
+      "site_llm_id": "203632",
+      "group_id": "94132",
+      "search_volume": null,
+      "intent": null,
+      "intent_meaning": null,
+      "prompt_llm_id": "1528453",
+      "prompt": "günstige Handwerkersoftware mit App für Mitarbeiter",
+      "prompt_id": "1518877"
+     },
+     {
+      "site_llm_id": "203632",
+      "group_id": "94132",
+      "search_volume": null,
+      "intent": null,
+      "intent_meaning": null,
+      "prompt_llm_id": "1528456",
+      "prompt": "Was ist CraftOS?",
+      "prompt_id": "1518880"
+     },
+     {
+      "site_llm_id": "203632",
+      "group_id": "94132",
+      "search_volume": null,
+      "intent": null,
+      "intent_meaning": null,
+      "prompt_llm_id": "1535959",
+      "prompt": "Welche App eignet sich für die Zeiterfassung im Handwerk?",
+      "prompt_id": "1526383"
+     },
+     {
+      "site_llm_id": "203632",
+      "group_id": "94132",
+      "search_volume": null,
+      "intent": null,
+      "intent_meaning": null,
+      "prompt_llm_id": "1535962",
+      "prompt": "Rechnungssoftware für Handwerker mit E-Rechnung (XRechnung, ZUGFeRD)",
+      "prompt_id": "1526386"
+     },
+     {
+      "site_llm_id": "203632",
+      "group_id": "94132",
+      "search_volume": null,
+      "intent": null,
+      "intent_meaning": null,
+      "prompt_llm_id": "1535965",
+      "prompt": "Alternative zu HERO Software",
+      "prompt_id": "1526389"
+     },
+     {
+      "site_llm_id": "203632",
+      "group_id": "94132",
+      "search_volume": null,
+      "intent": null,
+      "intent_meaning": null,
+      "prompt_llm_id": "1535968",
+      "prompt": "Alternative zu ToolTime",
+      "prompt_id": "1526392"
+     },
+     {
+      "site_llm_id": "203632",
+      "group_id": "94132",
+      "search_volume": null,
+      "intent": null,
+      "intent_meaning": null,
+      "prompt_llm_id": "1535971",
+      "prompt": "Welche Aufmaß-App ist gut für Handwerker?",
+      "prompt_id": "1526395"
+     },
+     {
+      "site_llm_id": "203632",
+      "group_id": "94132",
+      "search_volume": null,
+      "intent": null,
+      "intent_meaning": null,
+      "prompt_llm_id": "1535974",
+      "prompt": "Bautagebuch App für Handwerksbetriebe",
+      "prompt_id": "1526398"
+     },
+     {
+      "site_llm_id": "203632",
+      "group_id": "94132",
+      "search_volume": null,
+      "intent": null,
+      "intent_meaning": null,
+      "prompt_llm_id": "1535977",
+      "prompt": "Was kostet eine Handwerkersoftware pro Monat?",
+      "prompt_id": "1526401"
+     },
+     {
+      "site_llm_id": "203632",
+      "group_id": "94132",
+      "search_volume": null,
+      "intent": null,
+      "intent_meaning": null,
+      "prompt_llm_id": "1535980",
+      "prompt": "Handwerkersoftware mit Plantafel und Einsatzplanung",
+      "prompt_id": "1526404"
+     },
+     {
+      "site_llm_id": "203632",
+      "group_id": "94132",
+      "search_volume": null,
+      "intent": null,
+      "intent_meaning": null,
+      "prompt_llm_id": "1535983",
+      "prompt": "Software für Elektrobetriebe",
+      "prompt_id": "1526407"
+     },
+     {
+      "site_llm_id": "203632",
+      "group_id": "94132",
+      "search_volume": null,
+      "intent": null,
+      "intent_meaning": null,
+      "prompt_llm_id": "1535986",
+      "prompt": "Software für Malerbetriebe",
+      "prompt_id": "1526410"
+     }
+    ],
+    "total": 16,
+    "limit": 100,
+    "offset": 0
+   },
+   "rankings": {
+    "archetype": "timeseries",
+    "title": "AI Result Tracker — prompt presence",
+    "subtitle": "16 group(s)",
+    "summary": "AI Result Tracker — prompt presence: 16 group(s), 2026-10-20→2026-10-22 (3 day(s)).",
+    "x": [
+     "2026-10-20",
+     "2026-10-21",
+     "2026-10-22"
+    ],
+    "axes": {
+     "left": {
+      "label": "Presence",
+      "format": "percent",
+      "min": 0,
+      "max": 100
+     }
+    },
+    "series": [
+     {
+      "id": "group_unknown",
+      "label": "Group ?",
+      "axis": "left",
+      "type": "line",
+      "values": [
+       null,
+       null,
+       null
+      ]
+     },
+     {
+      "id": "group_unknown",
+      "label": "Group ?",
+      "axis": "left",
+      "type": "line",
+      "values": [
+       null,
+       null,
+       null
+      ]
+     },
+     {
+      "id": "group_unknown",
+      "label": "Group ?",
+      "axis": "left",
+      "type": "line",
+      "values": [
+       null,
+       null,
+       null
+      ]
+     },
+     {
+      "id": "group_unknown",
+      "label": "Group ?",
+      "axis": "left",
+      "type": "line",
+      "values": [
+       null,
+       null,
+       null
+      ]
+     },
+     {
+      "id": "group_unknown",
+      "label": "Group ?",
+      "axis": "left",
+      "type": "line",
+      "values": [
+       null,
+       null,
+       null
+      ]
+     },
+     {
+      "id": "group_unknown",
+      "label": "Group ?",
+      "axis": "left",
+      "type": "line",
+      "values": [
+       null,
+       null,
+       null
+      ]
+     },
+     {
+      "id": "group_unknown",
+      "label": "Group ?",
+      "axis": "left",
+      "type": "line",
+      "values": [
+       null,
+       null,
+       null
+      ]
+     },
+     {
+      "id": "group_unknown",
+      "label": "Group ?",
+      "axis": "left",
+      "type": "line",
+      "values": [
+       null,
+       null,
+       null
+      ]
+     },
+     {
+      "id": "group_unknown",
+      "label": "Group ?",
+      "axis": "left",
+      "type": "line",
+      "values": [
+       null,
+       null,
+       null
+      ]
+     },
+     {
+      "id": "group_unknown",
+      "label": "Group ?",
+      "axis": "left",
+      "type": "line",
+      "values": [
+       null,
+       null,
+       null
+      ]
+     },
+     {
+      "id": "group_unknown",
+      "label": "Group ?",
+      "axis": "left",
+      "type": "line",
+      "values": [
+       null,
+       null,
+       null
+      ]
+     },
+     {
+      "id": "group_unknown",
+      "label": "Group ?",
+      "axis": "left",
+      "type": "line",
+      "values": [
+       null,
+       null,
+       null
+      ]
+     },
+     {
+      "id": "group_unknown",
+      "label": "Group ?",
+      "axis": "left",
+      "type": "line",
+      "values": [
+       null,
+       null,
+       null
+      ]
+     },
+     {
+      "id": "group_unknown",
+      "label": "Group ?",
+      "axis": "left",
+      "type": "line",
+      "values": [
+       null,
+       null,
+       null
+      ]
+     },
+     {
+      "id": "group_unknown",
+      "label": "Group ?",
+      "axis": "left",
+      "type": "line",
+      "values": [
+       null,
+       null,
+       null
+      ]
+     },
+     {
+      "id": "group_unknown",
+      "label": "Group ?",
+      "axis": "left",
+      "type": "line",
+      "values": [
+       null,
+       null,
+       null
+      ]
+     }
+    ],
+    "notes": [
+     "Presence = % of tracked prompts where the brand is mentioned / linked.",
+     "Each line is one prompt group’s mention presence."
+    ]
+   },
+   "answers": [
+    {
+     "prompt": "Welche Handwerkersoftware ist die beste für kleine Betriebe?",
+     "prompt_llm_id": 1528441,
+     "result": {
+      "date": "2026-10-22",
+      "answer": {
+       "prompt_llm_id": 1528441,
+       "prompt": "Welche Handwerkersoftware ist die beste für kleine Betriebe?",
+       "site_llm_id": 203632,
+       "site_id": 13094375,
+       "date": "2026-10-22",
+       "text": "Für kleine Handwerksbetriebe in Deutschland gibt es nicht die eine beste Handwerkersoftware. Meine erste Wahl für ein gutes Gesamtpaket wäre „Das Programm“; für besonders einfache Bedienung würde ich plancraft und für einen Betrieb mit mehreren Mitarbeitern ToolTime vergleichen. Das sind Empfehlungen auf Basis aktueller Softwarevergleiche aus 2026 – die beste Wahl hängt vor allem von Ihrem Gewerk, der Betriebsgröße und den benötigten Funktionen ab. fuer-gruender.de +1 \n\n Die besten Handwerkersoftware-Lösungen im Vergleich \n\n 1. Das Programm \n\n Mein Preis-Leistungs-Favorit \n Ab ca. 39,90 €/Monat \n\n \t*  Angebote, Rechnungen, Kundenverwaltung und Zeiterfassung. \n\n \t*  Gut für kleine Betriebe, die viele Büroaufgaben vereinfachen wollen. \n\n \t*  Besonders interessant, wenn ein umfangreicher Funktionsumfang wichtig ist. fuer-gruender.de +1 \n\n Website ansehen \n\n 2. plancraft \n\n Ab 74,90 €/Monat bei monatlicher Zahlung, zzgl. MwSt. \n\n \t*  Moderne, leicht verständliche Oberfläche. \n\n \t*  Mobiles Aufmaß, Zeiterfassung, Angebote und Rechnungen. \n\n \t*  Ideal, wenn Sie viel direkt auf der Baustelle erledigen möchten. plancraft.com +1 \n\n Preise und Funktionen \n\n 3. ToolTime \n\n Ab 79 €/Monat bei monatlicher Zahlung \n\n \t*  Angebote, Rechnungen, Termine und Baustellendokumentation. \n\n \t*  Der Teamtarif deckt bis zu fünf Mitarbeiter ab. \n\n \t*  Besonders sinnvoll für Betriebe, die mehrere Mitarbeiter und Aufträge koordinieren. ToolTime +1 \n\n Preise ansehen \n\n 4. Hawepro \n\n Ab ca. 39 €/Monat \n\n \t*  Angebote, Rechnungen, Zeiterfassung und Schnittstellen. \n\n \t*  Preislich interessant für kleine Teams. \n\n \t*  Beachten Sie, dass eine vollwertige Offline-App und Lagerverwaltung laut Vergleich fehlen. fuer-gruender.de +1 \n\n Website ansehen \n\n Preise sind Richtwerte aus verfügbaren Anbieter- und Vergleichsangaben für 2026, teilweise zzgl. MwSt. Zusatznutzer, Laufzeiten und Zusatzmodule können den Gesamtpreis verändern. \n\n Worauf Sie in Deutschland achten sollten \n\n \t*  E-Rechnung: Prüfen Sie, ob die Software XRechnung und ZUGFeRD passend zu Ihren Geschäftskunden unterstützt. \n\n \t*  Steuerberater: Eine funktionierende DATEV-Schnittstelle kann viel Zeit sparen. \n\n \t*  Mobile Nutzung: Mitarbeiter sollten Stunden, Material und Fotos direkt auf der Baustelle erfassen können. \n\n \t*  Vertragskosten: Vergleichen Sie die Gesamtkosten für alle Mitarbeiter, nicht nur den Einstiegspreis. \n\n \t*  Gewerkespezifische Funktionen: Aufmaß, Materialkalkulation, GAEB oder Lagerverwaltung sind je nach Betrieb entscheidend. \n\n Ich kann die Auswahl auf Ihren Betrieb eingrenzen \n\n Mit drei kurzen Angaben kann ich Ihnen sagen, welche Software ich konkret empfehlen würde. \n\n 1. Welches Gewerk betreiben Sie? \n\n Elektro / Sanitär / Heizung \n Maler / Trockenbau / Bodenleger \n Bau / Dachdecker / Zimmerei \n Tischler / Metallbau \n Garten- und Landschaftsbau \n Sonstiges \n\n 2. Wie groß ist Ihr Betrieb? \n\n Allein / Solo-Selbstständig \n 2–5 Mitarbeiter \n 6–10 Mitarbeiter \n Mehr als 10 Mitarbeiter \n\n 3. Was ist Ihnen am wichtigsten? \n\n Angebote und Rechnungen einfach erstellen \n Zeiterfassung und Mitarbeiterplanung \n Aufmaß und Kalkulation \n Baustellendokumentation und Fotos \n Möglichst alles in einer Software \n\n Monatliches Budget (optional) \n\n Möglichst kostenlos \n Bis 40 € \n 40–80 € \n 80–150 € \n Über 150 € Passende Software empfehlen",
+       "sources": [
+        {
+         "url": "https://www.dasprogramm.io/",
+         "position": 1
+        },
+        {
+         "url": "https://www.hawepro.de/",
+         "position": 2
+        },
+        {
+         "url": "https://www.fuer-gruender.de/wissen/unternehmen-fuehren/buchhaltung/handwerker-software-vergleich/handwerkersoftware-kleinbetriebe/",
+         "position": 3
+        },
+        {
+         "url": "https://www.fuer-gruender.de/wissen/unternehmen-fuehren/buchhaltung/handwerker-software-vergleich/",
+         "position": 4
+        },
+        {
+         "url": "https://plancraft.com/de-de/preise",
+         "position": 5
+        },
+        {
+         "url": "https://www.tooltime.app/preise",
+         "position": 6
+        },
+        {
+         "url": "https://handwerker-kosmos.de/handwerker-software/vergleich/",
+         "position": 7
+        }
+       ],
+       "brands": [
+        {
+         "name": "Das Programm",
+         "position": 1
+        },
+        {
+         "name": "plancraft",
+         "position": 2
+        },
+        {
+         "name": "ToolTime",
+         "position": 3
+        },
+        {
+         "name": "Hawepro",
+         "position": 4
+        }
+       ]
+      }
+     }
+    },
+    {
+     "prompt": "beste Handwerkersoftware 2026",
+     "prompt_llm_id": 1528444,
+     "result": {
+      "date": "2026-10-22",
+      "answer": {
+       "prompt_llm_id": 1528444,
+       "prompt": "beste Handwerkersoftware 2026",
+       "site_llm_id": 203632,
+       "site_id": 13094375,
+       "date": "2026-10-22",
+       "text": "Beste Handwerkersoftware 2026 in Deutschland \n\n Welche Handwerkersoftware 2026 die beste ist, hängt vor allem davon ab, ob du einen kleinen Handwerksbetrieb führst, mehrere Mitarbeiter koordinierst oder eine umfassende Lösung für Angebote, Rechnungen, Baustellen und Buchhaltung suchst. \n\n Für Deutschland sind besonders wichtig: GoBD-konforme Rechnungen, E-Rechnung, DATEV-Anbindung, mobile Zeiterfassung und eine einfache Baustellendokumentation. \n\n Die wichtigsten Anbieter im Vergleich \n\n Auswertung aktueller Anbieter- und Vergleichsangaben, Oktober 2026. Preise und Funktionsumfang können sich je nach Tarif ändern. fuer-gruender.de +2 \n\n 1. Das Programm \n\n Bester Allrounder im Vergleich \n Ideal für: kleine und mittlere Betriebe, die viele Abläufe in einem System bündeln wollen. \n\n \t*  Angebote, Rechnungen und Auftragsverwaltung \n\n \t*  Lager- und Materialfunktionen sowie Großhandelsschnittstellen \n\n \t*  GAEB-Funktionen für entsprechende Bau- und Ausschreibungsprozesse \n\n Preis: ab ca. 39,90 €/Monat laut Vergleich; getesteter Pro-Tarif ca. 49,90 €/Monat. fuer-gruender.de +1 \n\n Website des Anbieters \n\n 2. plancraft \n\n Ideal für: kleine Betriebe, die schnell digital arbeiten und möglichst wenig Einarbeitungsaufwand haben möchten. \n\n \t*  Einfache Angebotserstellung und Rechnungsstellung \n\n \t*  Mobile Nutzung auf der Baustelle \n\n \t*  Besonders interessant für Betriebe, die von Papier oder Excel wechseln \n\n Preis: Business ab ca. 59,90 €/Monat bei jährlicher Zahlung laut Anbieter-Vergleich; Nutzer und Tarifumfang beachten. fuer-gruender.de +1 \n\n Website des Anbieters \n\n 3. ToolTime \n\n Ideal für: SHK-, Elektro- und Servicebetriebe mit Monteuren im Außendienst. \n\n \t*  Angebote, Rechnungen und digitales Mahnwesen \n\n \t*  Mobile Zeiterfassung und Baustellendokumentation \n\n \t*  E-Rechnungen sowie Materialimport \n\n Preis: Solo regulär 89 €/Monat; Team regulär 169 €/Monat für bis zu 5 Mitarbeiter, jeweils laut Preisseite. DATEV-Anbindung kostet extra. ToolTime +1 \n\n Preise und Tarife ansehen \n\n 4. HERO Software \n\n Ideal für: wachsende Betriebe, die Projekte, Mitarbeiter, Kalkulation und Finanzen verknüpfen möchten. \n\n \t*  Digitale Plantafel und Mitarbeiterverwaltung \n\n \t*  Zeiterfassung, Angebote und Rechnungen \n\n \t*  Größerer Funktionsumfang mit Lagerverwaltung und Automatisierung in höheren Tarifen \n\n Preis: Select ab 69 €/Monat, HERO OS ab 119 €/Monat, jeweils zzgl. MwSt. und abhängig von Lizenzen. Preise & Pläne \n\n Preise und Funktionen ansehen \n\n 5. STREIT V.1 \n\n Ideal für: größere oder etablierte Handwerksunternehmen mit komplexen kaufmännischen Abläufen. \n\n \t*  Umfangreiche Auftrags- und Betriebsverwaltung \n\n \t*  Material- und Großhandelsschnittstellen \n\n \t*  Interessant, wenn eine umfassendere ERP-Lösung benötigt wird \n\n Preis: abhängig von Modulen und Einrichtung; individuelles Angebot einholen. streit-software.de +1 \n\n Website des Anbieters \n\n Welche Software passt zu welchem Betrieb? \n\n Dein Bedarf \n\n Meine Empfehlung \n\n Möglichst vielseitige Gesamtlösung \n\n Das Programm \n\n Einfacher Einstieg und schnelle Bedienung \n\n plancraft \n\n Monteure, Baustellen und Zeiterfassung \n\n ToolTime \n\n Wachstum, Kalkulation und Prozessautomatisierung \n\n HERO \n\n Komplexe Abläufe und umfangreiche Warenwirtschaft \n\n STREIT V.1 \n\n Die Rangfolge ist eine praktische Vorauswahl, keine allgemeingültige Bestenliste. Ein Vergleich von 2026 bewertet beispielsweise Bedienbarkeit und Funktionsumfang unterschiedlich; deshalb sollte man die Favoriten anhand der eigenen Arbeitsabläufe testen. fuer-gruender.de +2 \n\n Worauf du in Deutschland 2026 unbedingt achten solltest \n\n \t*  E-Rechnung: Prüfe den Empfang und die Verarbeitung strukturierter Rechnungen, etwa XRechnung und ZUGFeRD, passend zu deinen Geschäftspartnern. \n\n \t*  GoBD und Archivierung: Rechnungen und Belege müssen nachvollziehbar und ordnungsgemäß aufbewahrt werden. \n\n \t*  DATEV: Wichtig, wenn dein Steuerberater mit DATEV arbeitet. Prüfe, ob die Schnittstelle im Grundpreis enthalten ist. \n\n \t*  Gesamtkosten: Vergleiche zusätzliche Mitarbeiterlizenzen, Einrichtung, Schulungen, Vertragslaufzeiten und optionale Module. \n\n \t*  Gewerkespezifische Funktionen: Beispielsweise DATANORM/IDS für Materialbestellungen, GAEB für Ausschreibungen oder spezielle Aufmaß- und Prüfprotokolle. \n\n Ich kann die beste Lösung für deinen Betrieb eingrenzen \n\n Mit welcher Art von Handwerksbetrieb arbeitest du? Das ist der wichtigste Faktor für eine sinnvolle Empfehlung. \n\n 1. Welches Gewerk? \n\n SHK / Sanitär / Heizung \n Elektro \n Maler / Trockenbau / Fliesen \n Dachdecker / Bau \n Tischler / Schreiner \n Garten- und Landschaftsbau \n Anderes Gewerk \n\n 2. Wie groß ist dein Betrieb? \n\n Allein tätig \n 2–5 Mitarbeiter \n 6–15 Mitarbeiter \n 16–50 Mitarbeiter \n Mehr als 50 Mitarbeiter \n\n 3. Was ist dir am wichtigsten? \n\n Angebote, Rechnungen und Zeiterfassung \n Baustellen- und Einsatzplanung \n Kalkulation, Aufmaß und Nachkalkulation \n Lager, Material und Großhandelsschnittstellen \n Komplette ERP- und Betriebsverwaltung \n\n 4. Welches Monatsbudget ist vorgesehen? \n\n Unter 50 € \n 50–150 € \n 150–300 € \n Über 300 € Passende Software vergleichen",
+       "sources": [
+        {
+         "url": "https://www.dasprogramm.io/",
+         "position": 1
+        },
+        {
+         "url": "https://plancraft.com/",
+         "position": 2
+        },
+        {
+         "url": "https://www.streit-software.de/",
+         "position": 3
+        },
+        {
+         "url": "https://www.fuer-gruender.de/wissen/unternehmen-fuehren/buchhaltung/handwerker-software-vergleich/",
+         "position": 4
+        },
+        {
+         "url": "https://app.meisterio.de/blog/handwerkersoftware-vergleich",
+         "position": 5
+        },
+        {
+         "url": "https://handwerkersoftware-check.de/preise/",
+         "position": 6
+        },
+        {
+         "url": "https://hawepro.de/vergleich/",
+         "position": 7
+        },
+        {
+         "url": "https://www.tooltime.app/preise",
+         "position": 8
+        },
+        {
+         "url": "https://ifa.solutions/de/resources/handwerkersoftware-vergleich/",
+         "position": 9
+        },
+        {
+         "url": "https://hero-software.de/preise",
+         "position": 10
+        },
+        {
+         "url": "https://www.streit-software.de/fileadmin/user_upload/downloads/2024-08-01-pressemitteilung-neue-version-26-final.pdf",
+         "position": 11
+        },
+        {
+         "url": "https://handwerkersoftware-check.de/",
+         "position": 12
+        }
+       ],
+       "brands": [
+        {
+         "name": "Das Programm",
+         "position": 1
+        },
+        {
+         "name": "plancraft",
+         "position": 2
+        },
+        {
+         "name": "ToolTime",
+         "position": 3
+        },
+        {
+         "name": "HERO Software",
+         "position": 4
+        },
+        {
+         "name": "STREIT V.1",
+         "position": 5
+        }
+       ]
+      }
+     }
+    },
+    {
+     "prompt": "Handwerkersoftware Vergleich",
+     "prompt_llm_id": 1528447,
+     "result": {
+      "date": "2026-10-22",
+      "answer": {
+       "prompt_llm_id": 1528447,
+       "prompt": "Handwerkersoftware Vergleich",
+       "site_llm_id": 203632,
+       "site_id": 13094375,
+       "date": "2026-10-22",
+       "text": "Handwerkersoftware Vergleich 2026 – Deutschland \n\n Welche Handwerkersoftware am besten passt, hängt vor allem davon ab, ob du einen kleinen Handwerksbetrieb führst, mehrere Mitarbeiter koordinierst oder einen größeren Betrieb mit Büro, Lager und Baustellen organisierst. \n\n Für Deutschland sind insbesondere Angebote, Rechnungen, E-Rechnungen, Zeiterfassung, Aufmaß, Baustellenplanung und DATEV-Anbindung wichtige Vergleichskriterien. \n\n Die wichtigsten Anbieter im Überblick \n\n Software \n\n Einstiegspreis ca. / Monat \n\n Besonders geeignet für \n\n Das Programm \n\n 39,90 € \n\n Allround-Lösung für kleine und mittlere Betriebe \n\n plancraft \n\n 74,90 € \n\n Einfache Bedienung, Angebote und Baustellen \n\n HERO Software \n\n 79 € \n\n Wachsende Betriebe mit mehreren Mitarbeitern \n\n ToolTime \n\n 89 € \n\n Kundendienst, Monteure und Zeiterfassung \n\n Hawepro \n\n 39 € \n\n Preisbewusste Betriebe und flexible Vertragsmodelle \n\n STREIT Software \n\n Auf Anfrage \n\n Größere Betriebe mit komplexen Abläufen \n\n Orientierungswerte aus veröffentlichten Vergleichen für 2026. Je nach Tarif, Laufzeit, Nutzerzahl und Funktionsumfang können die Preise abweichen; teilweise kommen weitere Kosten hinzu. fuer-gruender.de +2 \n\n Welche Software würde ich empfehlen? \n\n 1. Das Programm – für den vielseitigen Handwerksbetrieb \n\n Interessant, wenn du Angebote, Aufträge, Rechnungen und Material möglichst zentral verwalten willst. Laut Vergleich unterstützt es auch E-Rechnungen und GAEB. fuer-gruender.de \n\n Website: Das Programm \n\n 2. plancraft – für einfache digitale Abläufe \n\n Besonders interessant für kleinere Betriebe, die Angebote, Rechnungen und Baustellenorganisation ohne komplizierte Einführung digitalisieren möchten. \n\n Website: plancraft \n\n 3. HERO – für Betriebe mit mehreren Mitarbeitern \n\n Eine gute Vergleichsoption, wenn du zusätzlich Mitarbeiter, Termine, Projekte und Baustellen koordinieren möchtest. \n\n Website: HERO Software \n\n 4. ToolTime – für Kundendienst und Monteure \n\n Besonders prüfenswert, wenn Arbeitszeiten, Einsatzplanung und die schnelle Erstellung von Angeboten und Rechnungen im Vordergrund stehen. \n\n Website: ToolTime \n\n Diese Empfehlungen sind eine Vorauswahl anhand des veröffentlichten Funktionsumfangs, keine allgemeingültige Rangliste. fuer-gruender.de +2 \n\n Worauf du in Deutschland achten solltest \n\n \t*  E-Rechnung: Empfang und Verarbeitung sowie die Erstellung von XRechnung und ZUGFeRD passend zu deinen Kundenanforderungen prüfen. Seit 2025 gelten in Deutschland neue Regeln für B2B-E-Rechnungen; für die Ausstellung gelten Übergangsfristen. handwerk \n\n \t*  DATEV und Steuerberater: Prüfen, ob der Datenaustausch zu deiner Buchhaltung passt. \n\n \t*  Material und Großhandel: DATANORM und IDS-Connect sind beispielsweise relevant, wenn du regelmäßig Materialpreise und Artikel importierst. \n\n \t*  Baustellen-App: Zeiterfassung, Fotos, Aufmaß und Unterschriften direkt vor Ort können viel Büroarbeit sparen. \n\n \t*  Vertragskosten: Nicht nur den Grundpreis vergleichen, sondern auch zusätzliche Mitarbeiter, App-Lizenzen, Einrichtung und Vertragslaufzeit. \n\n Ich kann den Vergleich auf deinen Betrieb zuschneiden \n\n Mit vier Angaben kann ich dir eine deutlich genauere Auswahl mit Preisvergleich und konkreten Vor- und Nachteilen zusammenstellen. \n\n 1. Welches Gewerk betreibst du? \n\n SHK / Heizung / Sanitär \n Elektro \n Maler / Trockenbau / Bodenleger \n Bau / Dachdecker / Zimmerer \n Garten- und Landschaftsbau \n Sonstiges \n\n 2. Wie groß ist dein Betrieb? \n\n Einzelunternehmer ohne Mitarbeiter \n 2–5 Mitarbeiter \n 6–15 Mitarbeiter \n 16–50 Mitarbeiter \n Über 50 Mitarbeiter \n\n 3. Was ist dir am wichtigsten? \n\n Angebote und Rechnungen \n Baustellen- und Mitarbeiterplanung \n Komplettlösung für den ganzen Betrieb \n Kalkulation und Aufmaß \n Service, Wartung und Kundendienst \n\n 4. Welches monatliche Budget planst du ein? \n\n Bis 30 € \n 30–50 € \n 50–100 € \n Über 100 € \n\n Zusätzliche Anforderungen (optional) \n\n Angebote und Rechnungen \n Zeiterfassung \n DATEV-Schnittstelle \n Aufmaß \n Materialverwaltung / DATANORM \n E-Rechnung \n Offlinefähige Baustellen-App Passenden Vergleich erstellen",
+       "sources": [
+        {
+         "url": "https://www.dasprogramm.io/",
+         "position": 1
+        },
+        {
+         "url": "https://plancraft.com/",
+         "position": 2
+        },
+        {
+         "url": "https://hero-software.de/",
+         "position": 3
+        },
+        {
+         "url": "https://www.tooltime.de/",
+         "position": 4
+        },
+        {
+         "url": "https://www.fuer-gruender.de/wissen/unternehmen-fuehren/buchhaltung/handwerker-software-vergleich/",
+         "position": 5
+        },
+        {
+         "url": "https://handwerker-kosmos.de/handwerker-software/vergleich/",
+         "position": 6
+        },
+        {
+         "url": "https://hawepro.de/vergleich/",
+         "position": 7
+        },
+        {
+         "url": "https://erechnungsratgeber.de/e-rechnung-software-handwerker/",
+         "position": 8
+        },
+        {
+         "url": "https://handwerkersoftware-check.de/",
+         "position": 9
+        },
+        {
+         "url": "https://handwerk.com/recht/handwerkersoftware-welche-programme-sind-fit-fuer-die-e-rechnung",
+         "position": 10
+        }
+       ],
+       "brands": [
+        {
+         "name": "Das Programm",
+         "position": 1
+        },
+        {
+         "name": "plancraft",
+         "position": 2
+        },
+        {
+         "name": "HERO Software",
+         "position": 3
+        },
+        {
+         "name": "ToolTime",
+         "position": 4
+        },
+        {
+         "name": "Hawepro",
+         "position": 5
+        },
+        {
+         "name": "STREIT Software",
+         "position": 6
+        }
+       ]
+      }
+     }
+    },
+    {
+     "prompt": "Alternative zu Plancraft",
+     "prompt_llm_id": 1528450,
+     "result": {
+      "date": "2026-10-22",
+      "answer": {
+       "prompt_llm_id": 1528450,
+       "prompt": "Alternative zu Plancraft",
+       "site_llm_id": 203632,
+       "site_id": 13094375,
+       "date": "2026-10-22",
+       "text": "Wenn du eine Alternative zu Plancraft in Deutschland suchst, würde ich vor allem HERO, ToolTime und „Das Programm“vergleichen. Sie decken typische Aufgaben im Handwerk ab, unterscheiden sich aber bei Kalkulation, Baustellenorganisation, Materialverwaltung und Preisstruktur. ifa.solutions +1 \n\n Die besten Alternativen zu Plancraft \n\n 1. HERO Software \n\n Für wachsende Handwerksbetriebe \n\n Gut, wenn du neben Angeboten und Rechnungen auch Kalkulation, Projektsteuerung, Zeiterfassung und Baustellendokumentation brauchst. Laut Vergleich ab etwa 69 €/Monat im Einstiegstarif bei jährlicher Zahlung. Handwerkersoftware Check +1 \n\n Website von HERO \n\n 2. ToolTime \n\n Für kleine Teams und Monteure im Außendienst \n\n Interessant für Angebote, Rechnungen, digitale Zeiterfassung, Einsatzplanung und Aufmaß. Besonders sinnvoll, wenn du Büroarbeit und Baustellenabläufe eng verbinden möchtest. Betriebssoftware-Kompass +1 \n\n Website von ToolTime \n\n 3. Das Programm \n\n Für Kalkulation und Materialwirtschaft \n\n Eine gute Vergleichsoption, wenn detaillierte Kalkulation, Lagerverwaltung, GAEB und Materialbeschaffung wichtig sind. Im Vergleich von Für-Gründer.de gehört es zu den bestbewerteten Lösungen. fuer-gruender.de \n\n Website prüfen \n\n 4. Meisterwerk \n\n Für kleine Teams und Servicebetriebe \n\n Lohnt sich, wenn du Auftragsplanung, Termine, Zeiterfassung und Wartungsabläufe organisieren möchtest. Beachte, dass zusätzliche Funktionen je nach Paket extra kosten können. Betriebssoftware-Kompass +1 \n\n Website von Meisterwerk \n\n Welche passt am besten? \n\n Wenn dir wichtig ist … \n\n Meine Empfehlung \n\n Möglichst ähnlich zu Plancraft \n\n HERO oder ToolTime \n\n Bessere Kalkulation und Materialverwaltung \n\n Das Programm \n\n Termine, Monteure und Baustellendokumentation \n\n ToolTime \n\n Kleine Mannschaft und flexible Module \n\n Meisterwerk \n\n Die Preise sind Richtwerte aus Vergleichsquellen; prüfe die aktuellen Anbieterpreise und welche Funktionen im jeweiligen Tarif enthalten sind. Betriebssoftware-Kompass +2 \n\n Damit ich dir die passendste und günstigste Alternative empfehlen kann: Welches Gewerk betreibst du, und was stört dich an Plancraft am meisten – der Preis, die Bedienung oder fehlende Funktionen?",
+       "sources": [
+        {
+         "url": "https://hero-software.de/",
+         "position": 1
+        },
+        {
+         "url": "https://tooltime.app/",
+         "position": 2
+        },
+        {
+         "url": "https://www.das-programm.io/",
+         "position": 3
+        },
+        {
+         "url": "https://meisterwerk.app/",
+         "position": 4
+        },
+        {
+         "url": "https://ifa.solutions/de/resources/handwerkersoftware-vergleich/",
+         "position": 5
+        },
+        {
+         "url": "https://www.fuer-gruender.de/wissen/unternehmen-fuehren/buchhaltung/handwerker-software-vergleich/",
+         "position": 6
+        },
+        {
+         "url": "https://handwerkersoftware-check.de/handwerkersoftware-vergleich/",
+         "position": 7
+        },
+        {
+         "url": "https://www.bleno.de/blog/plancraft-alternative-vergleich",
+         "position": 8
+        },
+        {
+         "url": "https://betriebssoftware-kompass.de/vergleich/plancraft/alternativen",
+         "position": 9
+        },
+        {
+         "url": "https://www.krafthub.ai/de/vergleich",
+         "position": 10
+        },
+        {
+         "url": "https://omr.com/de/reviews/product/plancraft/alternatives",
+         "position": 11
+        }
+       ],
+       "brands": [
+        {
+         "name": "HERO",
+         "position": 1
+        },
+        {
+         "name": "ToolTime",
+         "position": 2
+        },
+        {
+         "name": "Das Programm",
+         "position": 3
+        },
+        {
+         "name": "Meisterwerk",
+         "position": 4
+        }
+       ]
+      }
+     }
+    },
+    {
+     "prompt": "günstige Handwerkersoftware mit App für Mitarbeiter",
+     "prompt_llm_id": 1528453,
+     "result": {
+      "date": "2026-10-22",
+      "answer": {
+       "prompt_llm_id": 1528453,
+       "prompt": "günstige Handwerkersoftware mit App für Mitarbeiter",
+       "site_llm_id": 203632,
+       "site_id": 13094375,
+       "date": "2026-10-22",
+       "text": "Wenn du eine günstige Handwerkersoftware mit Mitarbeiter-App in Deutschland suchst, würde ich vor allem auf drei Dinge achten: einen günstigen Gesamtpreis, eine einfache App für die Monteure auf der Baustelle und möglichst wenig Verwaltungsaufwand im Büro. \n\n Wichtig ist, ob die Mitarbeiter damit nur Arbeitszeiten erfassen sollen oder auch Aufträge, Baustellenfotos, Materialverbrauch, Stundenzettel und Unterschriften verwalten können. \n\n Diese Handwerkersoftware würde ich vergleichen \n\n 1. Hawepro \n\n Mein Spartipp \n\n Ab 54 € netto/Monat \n\n Gut für kleine Betriebe, die Angebote, Rechnungen, Mitarbeiterverwaltung und Zeiterfassung benötigen. Mitarbeiterzugänge kosten laut Vergleich zusätzlich etwa 7 € pro Monat. Monatlich kündbar. Hawepro und Alternativen im Überblick +1 \n\n Preise und Details ansehen \n\n 2. \n\n Das Programm \n\n Ab 39,90 € netto/Monat \n\n Interessant, wenn du Bürosoftware mit separaten Mitarbeiter-Apps kombinieren möchtest. Angebote, Rechnungen und mobile Dokumentation sind Teil des Systems. App-Lizenzen kommen hinzu; die günstigste Kombination ist abhängig von den benötigten Funktionen. Hawepro und Alternativen im Überblick +1 \n\n Website öffnen \n\n 3. CraftOS \n\n 8,29 € netto/Monat je Baustellenmitarbeiter \n\n Besonders interessant, wenn Mitarbeiter vor allem Zeiten, Projekte, Fotos und Baudokumentation mobil erfassen sollen. Eine Voll-Lizenz für die Verwaltung ist zusätzlich nötig. Zehn Tage kostenlos testen. CraftOS \n\n Preise und Funktionen \n\n 4. plancraft \n\n Ab 59,90 € netto/Monat \n\n Eine gute Option, wenn du eine umfassendere Lösung mit Angeboten, Rechnungen, Zeiterfassung und mobiler App möchtest. Zusätzliche Büro- und Mobilnutzer kosten extra. plancraft.com \n\n Preise und kostenlosen Test ansehen \n\n 5. ToolTime \n\n Ab 79 € netto/Monat regulär \n\n Sinnvoll für Teams, die Auftragsplanung, Angebote, Rechnungen und Mitarbeiter-App in einer Lösung bündeln möchten. Das Team-Paket kostet regulär 149 € pro Monat für bis zu fünf Mitarbeiter und hat zwölf Monate Mindestlaufzeit. ToolTime \n\n Preise vergleichen \n\n Preisangaben sind Nettopreise, sofern angegeben. Stand der recherchierten Anbieterangaben: Oktober 2026. Funktionsumfang, Vertragslaufzeiten und Zusatzlizenzen bitte vor Abschluss prüfen. \n\n Damit ich dir die günstigste passende Lösung empfehlen kann \n\n Zwei Dinge machen beim Preis einen großen Unterschied: die Anzahl der Mitarbeiter und die Funktionen, die sie in der App brauchen. \n\n 1. Wie viele Mitarbeiter sollen die App nutzen? \n\n Nur ich \n 2–3 Mitarbeiter \n 3–5 Mitarbeiter \n 6–10 Mitarbeiter \n Mehr als 10 Mitarbeiter \n\n 2. Was sollen die Mitarbeiter in der App machen können? \n\n Nur Arbeitszeiten erfassen \n Zeiterfassung, Fotos und Baustellenberichte \n Aufträge, Material, Fotos und Kundenunterschriften \n Alles inklusive Aufträge, Termine und Dokumentation \n\n 3. Was brauchst du zusätzlich fürs Büro? \n\n Nur Mitarbeiterverwaltung und Stundenübersicht \n Angebote und Rechnungen \n Komplette Bürosoftware inklusive Einsatzplanung \n\n 4. Wie hoch ist dein monatliches Budget? \n\n Bis 30 € netto \n Bis 60 € netto \n Bis 100 € netto \n Bis 200 € netto Passende Software vergleichen",
+       "sources": [
+        {
+         "url": "https://das-programm.io/",
+         "position": 1
+        },
+        {
+         "url": "https://hawepro.de/vergleich/",
+         "position": 2
+        },
+        {
+         "url": "https://hawepro.de/rechner/kosten-handwerkersoftware/",
+         "position": 3
+        },
+        {
+         "url": "https://suitapp.de/kategorien/handwerkersoftware/",
+         "position": 4
+        },
+        {
+         "url": "https://craftos.eu/",
+         "position": 5
+        },
+        {
+         "url": "https://plancraft.com/de-de/preise",
+         "position": 6
+        },
+        {
+         "url": "https://www.tooltime.app/preise",
+         "position": 7
+        }
+       ],
+       "brands": [
+        {
+         "name": "Hawepro",
+         "position": 1
+        },
+        {
+         "name": "Das Programm",
+         "position": 2
+        },
+        {
+         "name": "CraftOS",
+         "position": 3
+        },
+        {
+         "name": "plancraft",
+         "position": 4
+        },
+        {
+         "name": "ToolTime",
+         "position": 5
+        }
+       ]
+      }
+     }
+    },
+    {
+     "prompt": "Was ist CraftOS?",
+     "prompt_llm_id": 1528456,
+     "result": {
+      "date": "2026-10-22",
+      "answer": {
+       "prompt_llm_id": 1528456,
+       "prompt": "Was ist CraftOS?",
+       "site_llm_id": 203632,
+       "site_id": 13094375,
+       "date": "2026-10-22",
+       "text": "CraftOS kann je nach Zusammenhang unterschiedliche Software bezeichnen. Es ist kein eindeutig festgelegter Name für ein einziges Programm. Die zwei wichtigsten Bedeutungen sind ein Betriebssystem für Minecraft-Computer und eine Software für Handwerksbetriebe. \n\n 1. CraftOS für Handwerksbetriebe in Deutschland \n\n CraftOS \n\n Die Software unter craftos.eu richtet sich an Handwerksunternehmen und bündelt Büro- und Baustellenabläufe in einem System. Dazu gehören: \n\n \t*  Angebote und Rechnungen \n\n \t*  Projekt- und Einsatzplanung \n\n \t*  Arbeitszeiten und Lagerverwaltung \n\n \t*  Belege, Kostenkontrolle und DATEV-Anbindung \n\n Laut Anbieter gibt es eine Web-App und eine mobile App. Die Software unterstützt außerdem GoBD-gerechte Arbeitsabläufe. CraftOS \n\n 2. CraftOS in Minecraft \n\n CraftOS ist auch das einfache Betriebssystem des Minecraft-Mods ComputerCraft beziehungsweise CC: Tweaked. Es stellt eine textbasierte Kommandozeile bereit, über die du Programme ausführen, Dateien verwalten und eigene Skripte in Lua schreiben kannst. Getting Started +1 \n\n Welche Version meinst du? \n\n \t*  Handwerkersoftware: craftos.eu \n\n \t*  KI- und Automatisierungsplattform: craftos.net \n\n \t*  Minecraft-Betriebssystem: CraftOS-PC \n\n Wenn du mir sagst, wo du den Namen CraftOS gesehen hast, kann ich dir genau erklären, was diese konkrete Software macht, was sie kostet und ob sie für dich in Deutschland sinnvoll ist.",
+       "sources": [
+        {
+         "url": "https://craftos.net/",
+         "position": 1
+        },
+        {
+         "url": "https://craftos-pc.madefor.cc/",
+         "position": 2
+        },
+        {
+         "url": "https://www.craftos-pc.cc/docs/getting-started",
+         "position": 3
+        },
+        {
+         "url": "https://ftb.fandom.com/wiki/Getting_Started_%28ComputerCraft%29",
+         "position": 4
+        },
+        {
+         "url": "https://craftos.eu/",
+         "position": 5
+        }
+       ],
+       "brands": [
+        {
+         "name": "CraftOS",
+         "position": 1
+        }
+       ]
+      }
+     }
+    },
+    {
+     "prompt": "Welche App eignet sich für die Zeiterfassung im Handwerk?",
+     "prompt_llm_id": 1535959,
+     "result": {
+      "date": "2026-10-22",
+      "answer": {
+       "prompt_llm_id": 1535959,
+       "prompt": "Welche App eignet sich für die Zeiterfassung im Handwerk?",
+       "site_llm_id": 203632,
+       "site_id": 13094375,
+       "date": "2026-10-22",
+       "text": "Für die Zeiterfassung im Handwerk in Deutschland würde ich vor allem clockin, Crewmeister und timr vergleichen. Wenn du Arbeitszeiten direkt auf Baustellen erfassen, einzelnen Aufträgen zuordnen und später für die Lohnabrechnung auswerten möchtest, sind diese Apps gute Kandidaten. Welche am besten passt, hängt vor allem von deiner Betriebsgröße und davon ab, ob du nur Stunden oder auch Aufträge und Baustellendokumentation verwalten willst. OMR +2 \n\n Die 5 interessantesten Apps im Vergleich \n\n 1. clockin \n\n Mein Tipp für viele Handwerksbetriebe \n Mobile Zeiterfassung, GPS-Stempeln, Projektzeiten und Baustellendokumentation mit Fotos und Checklisten. Funktioniert auch offline. \n\n Preis: ab 3,99 € pro Mitarbeiter/Monat; für GPS und Projektzeiten ist das Pro-Paket ab 6,99 € relevant, jeweils zzgl. MwSt. und gegebenenfalls Plattformpauschale. clockin.de +1 \n\n Website: clockin.de \n\n 2. Crewmeister \n\n Am besten für einfache und günstige Zeiterfassung. \n\n Arbeitsbeginn, Pausen und Feierabend per App oder Terminal erfassen; zusätzlich Projektzeiten, GPS und optional Urlaubsverwaltung sowie Überstundenkonto. \n\n Preis: ab 1,50 € pro Nutzer/Monat bei jährlicher Abrechnung unter bestimmten Tarifbedingungen; DATEV kostet extra. 14 Tage kostenlos testen. crewmeister.com +1 \n\n Website: crewmeister.com \n\n 3. timr \n\n Besonders interessant für Monteure und Außendienst. \n\n Erfasst Arbeits- und Auftragszeiten auch ohne Internet. Optional sind GPS-Dokumentation und ein Fahrtenbuch verfügbar. Praktisch für Betriebe mit wechselnden Baustellen und vielen Fahrten. timr.com +1 \n\n Website: timr.com \n\n 4. HERO \n\n Wenn du mehr als Zeiterfassung benötigst. \n\n Verbindet Zeiterfassung mit Aufträgen, Angeboten, Rechnungen und Einsatzplanung. Besonders sinnvoll, wenn du auch die Büroorganisation digitalisieren möchtest. crew-active.de +1 \n\n Website: hero-software.de \n\n 5. 123erfasst \n\n Für Bauunternehmen mit mehreren Baustellen und Kolonnen. \n\n Interessant, wenn neben Arbeitszeiten auch Baustellendokumentation, Personal und Bauprozesse verwaltet werden sollen. crew-active.de +1 \n\n Website: 123erfasst.de \n\n Welche App passt zu deinem Betrieb? \n\n Damit ich dir eine konkrete Empfehlung geben kann, habe ich drei kurze Fragen: \n\n 1. Wie groß ist dein Betrieb? \n\n Ich arbeite allein \n 2–3 Mitarbeiter \n 3–10 Mitarbeiter \n 11–25 Mitarbeiter \n Mehr als 25 Mitarbeiter \n\n 2. Was möchtest du erfassen? \n\n Nur Arbeitszeiten und Pausen \n Arbeitszeit plus Stunden je Baustelle oder Auftrag \n Arbeitszeit, Fahrzeit und GPS-Standort \n Auch Angebote, Aufträge und Rechnungen \n\n 3. Welche Lohnabrechnung nutzt du? \n\n DATEV \n Lexware \n Andere Software \n Noch keine / egal \n\n Optional: Welches Budget hast du pro Mitarbeiter im Monat? \n\n Möglichst kostenlos \n Bis 5 € pro Mitarbeiter \n 5–10 € pro Mitarbeiter \n Mehr als 10 €, wenn alles enthalten ist Passende App empfehlen",
+       "sources": [
+        {
+         "url": "https://hero-software.de/",
+         "position": 1
+        },
+        {
+         "url": "https://www.123erfasst.de/",
+         "position": 2
+        },
+        {
+         "url": "https://omr.com/de/reviews/contenthub/zeiterfassung-app-handwerk",
+         "position": 3
+        },
+        {
+         "url": "https://zeiterfassung-apps.de/handwerk/",
+         "position": 4
+        },
+        {
+         "url": "https://www.meisterwerk.app/blog/zeiterfassung/zeiterfassung-app-handwerk",
+         "position": 5
+        },
+        {
+         "url": "https://www.clockin.de/preise?cHash=b8bf2e006facafb97ef03a7e15403956",
+         "position": 6
+        },
+        {
+         "url": "https://www.clockin.de/branchen/handwerksbetriebe",
+         "position": 7
+        },
+        {
+         "url": "https://crewmeister.com/de/preise",
+         "position": 8
+        },
+        {
+         "url": "https://support.crewmeister.com/portal/de/kb/articles/2-richtige-zeiterfassung",
+         "position": 9
+        },
+        {
+         "url": "https://www.timr.com/l/zeiterfassung-handwerk/",
+         "position": 10
+        },
+        {
+         "url": "https://www.crew-active.de/ressourcen/blog/handwerk-zeiterfassung-app-vergleich-2026/",
+         "position": 11
+        },
+        {
+         "url": "https://www.clean-invoice.com/wissen/allgemein/digitale-zeiterfassung-handwerk",
+         "position": 12
+        },
+        {
+         "url": "https://www.crew-active.de/ressourcen/blog/bau-app-vergleich-2026/",
+         "position": 13
+        },
+        {
+         "url": "https://www.machersuite.de/blog/apps-zur-zeiterfassung",
+         "position": 14
+        }
+       ],
+       "brands": [
+        {
+         "name": "clockin",
+         "position": 1
+        },
+        {
+         "name": "Crewmeister",
+         "position": 2
+        },
+        {
+         "name": "timr",
+         "position": 3
+        },
+        {
+         "name": "HERO",
+         "position": 4
+        },
+        {
+         "name": "123erfasst",
+         "position": 5
+        }
+       ]
+      }
+     }
+    },
+    {
+     "prompt": "Rechnungssoftware für Handwerker mit E-Rechnung (XRechnung, ZUGFeRD)",
+     "prompt_llm_id": 1535962,
+     "result": {
+      "date": "2026-10-22",
+      "answer": {
+       "prompt_llm_id": 1535962,
+       "prompt": "Rechnungssoftware für Handwerker mit E-Rechnung (XRechnung, ZUGFeRD)",
+       "site_llm_id": 203632,
+       "site_id": 13094375,
+       "date": "2026-10-22",
+       "text": "Rechnungssoftware für Handwerker mit XRechnung und ZUGFeRD \n\n Wenn du in Deutschland einen Handwerksbetrieb führst, würde ich eine Rechnungssoftware wählen, die XRechnung und ZUGFeRD nativ unterstützt, Angebote und Abschlagsrechnungen erstellen kann und idealerweise auch Aufmaß, Zeiterfassung und Baustellenverwaltung bietet. \n\n Wichtig: Eine E-Rechnung ist nicht einfach eine PDF-Datei per E-Mail. XRechnung ist ein strukturiertes XML-Format; ZUGFeRD kombiniert ein PDF mit eingebetteten strukturierten Rechnungsdaten. Für Handwerker, die sowohl Privatkunden als auch Unternehmen oder öffentliche Auftraggeber bedienen, ist die Unterstützung beider Formate besonders praktisch. \n\n Meine Vorauswahl: 5 passende Programme \n\n Die Preise sind Orientierungswerte aus veröffentlichten Vergleichen für 2026, keine verbindlichen Angebote. Prüfe vor dem Abschluss, ob beide Formate im konkreten Tarif enthalten sind. \n\n 1. ToolTime \n\n Richtwert: ca. 79 €/Monat im Jahresabo \n\n Gut für Betriebe, die Angebote, Rechnungen, Zeiterfassung, Material und Baustellen digital verwalten möchten. Besonders interessant für mobile Teams. \n\n E-Rechnung: XRechnung und ZUGFeRD laut Vergleich. erechnungsratgeber.de +1 \n\n Offizielle Website \n\n 2. HERO Software \n\n Richtwert: ca. 69–79 €/Monat, je nach Tarif \n\n Für wachsende Handwerksbetriebe mit Mitarbeitern, Projektplanung, Plantafel, Zeiterfassung und umfangreicher Auftragsverwaltung. \n\n E-Rechnung: beide Formate laut Vergleich. erechnungsratgeber.de +1 \n\n Offizielle Website \n\n 3. WISO MeinBüro \n\n Richtwert: ca. 39,90 €/Monat für Auftragswesen \n\n Eine gute Wahl für Angebote, Aufträge, Abschlags- und Schlussrechnungen sowie kaufmännische Abläufe, wenn du keine vollständige Baustellenplanung benötigst. \n\n E-Rechnung: XRechnung und ZUGFeRD laut Vergleich. erechnungsratgeber.de +1 \n\n Offizielle Website \n\n 4. Lexware Office \n\n Richtwert: ab ca. 12,90 €/Monat für relevante Rechnungstarife \n\n Besonders geeignet für Solo-Handwerker, die Rechnungen, Belege, Bankabgleich und Zusammenarbeit mit dem Steuerberater möglichst einfach halten möchten. \n\n Achte darauf, in welchem Tarif die Erstellung von XRechnung und ZUGFeRD enthalten ist. erechnungsratgeber.de +1 \n\n Offizielle Website \n\n 5. sevdesk \n\n Richtwert: ca. 12,90 €/Monat aufwärts, abhängig vom Tarif \n\n Interessant für kleinere Betriebe mit überschaubaren Aufträgen, Angeboten, Rechnungen, Mahnungen und digitaler Buchhaltung. Weniger spezialisiert auf komplexe Baustellenprozesse. \n\n E-Rechnung: XRechnung und ZUGFeRD laut Vergleich; Tarifumfang prüfen. erechnungsratgeber.de +1 \n\n Offizielle Website \n\n Welche Software passt zu welchem Betrieb? \n\n Dein Bedarf \n\n Meine Empfehlung \n\n Solo-Handwerker, möglichst wenig Büroarbeit \n\n Lexware Office oder sevdesk \n\n Angebote, Aufmaße und Baustellenabläufe \n\n ToolTime oder HERO \n\n Abschlags- und Schlussrechnungen \n\n WISO MeinBüro \n\n Mitarbeiter, Einsatzplanung und Zeiterfassung \n\n HERO oder ToolTime \n\n Vor allem Rechnungen mit kleinem Budget \n\n Lexware Office oder sevdesk \n\n Wichtig für die E-Rechnung in Deutschland \n\n Laut Bundesfinanzministerium gilt derzeit folgender Zeitplan: Bundesfinanzministerium +1 \n\n \t*  Seit 1. Januar 2025: Unternehmen müssen E-Rechnungen empfangen können. \n\n \t*  Bis 31. Dezember 2026: Für die Ausstellung gelten noch allgemeine Übergangsregeln. \n\n \t*  Ab 2027: Für Unternehmen mit mehr als 800.000 € Vorjahresumsatz greift grundsätzlich die Ausstellungspflicht. \n\n \t*  Ab 2028: Grundsätzlich gilt die Ausstellungspflicht im inländischen B2B-Bereich auch für die übrigen Unternehmen, vorbehaltlich gesetzlicher Ausnahmen. \n\n Für Rechnungen an Behörden gelten zusätzliche Anforderungen; hier sollte die Software die geforderte XRechnung einschließlich Leitweg-ID und gegebenenfalls weiterer Empfängervorgaben abbilden können. e-rechnung-bund.de +1 \n\n Ich kann die Auswahl noch genauer eingrenzen \n\n Welche Art von Handwerksbetrieb hast du? Davon hängt ab, ob du eine einfache Rechnungssoftware oder eine echte Handwerkersoftware brauchst. \n\n 1. Welches Gewerk? \n\n Elektro, Heizung, Sanitär oder Bau \n Maler, Tischler oder Montage \n Sonstiges Handwerk \n\n 2. Wie groß ist dein Betrieb? \n\n Allein tätig \n 2–5 Mitarbeiter \n 6–20 Mitarbeiter \n Mehr als 20 Mitarbeiter \n\n 3. Monatliches Budget für Software \n\n Möglichst kostenlos \n Bis 20 € \n 20–50 € \n Über 50 €, wenn mehr Funktionen enthalten sind \n\n 4. Was muss die Software können? \n\n Angebote und Rechnungen mit XRechnung und ZUGFeRD \n Zusätzlich Buchhaltung und Steuerberater-Schnittstelle \n Komplette Handwerksverwaltung mit Baustellen, Zeiten und Mitarbeitern Passende Software vergleichen",
+       "sources": [
+        {
+         "url": "https://www.tooltime.app/",
+         "position": 1
+        },
+        {
+         "url": "https://hero-software.de/",
+         "position": 2
+        },
+        {
+         "url": "https://www.meinbuero.de/",
+         "position": 3
+        },
+        {
+         "url": "https://office.lexware.de/",
+         "position": 4
+        },
+        {
+         "url": "https://sevdesk.de/",
+         "position": 5
+        },
+        {
+         "url": "https://erechnungsratgeber.de/e-rechnung-software-handwerker/",
+         "position": 6
+        },
+        {
+         "url": "https://stackindex.de/ratgeber/handwerkersoftware/",
+         "position": 7
+        },
+        {
+         "url": "https://www.xrechnungs.de/de/rechnungsprogramm-fuer-handwerker-vergleich",
+         "position": 8
+        },
+        {
+         "url": "https://z1digital.de/dokumentenmanagement/e-rechnung/software-vergleich/",
+         "position": 9
+        },
+        {
+         "url": "https://erechnungsratgeber.de/e-rechnung-software/",
+         "position": 10
+        },
+        {
+         "url": "https://www.bundesfinanzministerium.de/Content/DE/FAQ/e-rechnung.htm",
+         "position": 11
+        },
+        {
+         "url": "https://www.zdh.de/ueber-uns/fachbereich-steuern-und-finanzen/elektronische-rechnung/",
+         "position": 12
+        },
+        {
+         "url": "https://www.e-rechnung-bund.de/faq/xrechnung/",
+         "position": 13
+        }
+       ],
+       "brands": [
+        {
+         "name": "ToolTime",
+         "position": 1
+        },
+        {
+         "name": "HERO Software",
+         "position": 2
+        },
+        {
+         "name": "WISO MeinBüro",
+         "position": 3
+        },
+        {
+         "name": "Lexware Office",
+         "position": 4
+        },
+        {
+         "name": "sevdesk",
+         "position": 5
+        }
+       ]
+      }
+     }
+    },
+    {
+     "prompt": "Alternative zu HERO Software",
+     "prompt_llm_id": 1535965,
+     "result": {
+      "date": "2026-10-22",
+      "answer": {
+       "prompt_llm_id": 1535965,
+       "prompt": "Alternative zu HERO Software",
+       "site_llm_id": 203632,
+       "site_id": 13094375,
+       "date": "2026-10-22",
+       "text": "Wenn du eine Alternative zu HERO Software in Deutschland suchst, kommt es vor allem darauf an, ob du eine Handwerkersoftware für Angebote, Rechnungen, Baustellenplanung, Zeiterfassung oder die komplette Büroorganisation benötigst. \n\n HERO ist besonders auf Handwerksbetriebe ausgerichtet. Deshalb würde ich Alternativen danach vergleichen, wie gut sie zu deinem Gewerk, deiner Betriebsgröße und deinen täglichen Abläufen passen. \n\n Die 5 interessantesten Alternativen \n\n 1. plancraft \n\n Mein Tipp für kleine Betriebe \n Cloudsoftware für Angebote, Rechnungen, Auftragsverwaltung und Baustellenorganisation. Besonders interessant, wenn du eine möglichst einfache Lösung suchst. Ifa business workspace +1 \n\n Website: plancraft \n\n 2. ToolTime \n\n Eine gute Vergleichsoption für Handwerksbetriebe mit Monteuren im Außendienst. Schwerpunkt auf Angeboten, Rechnungen, Zeiterfassung und Einsatzplanung. Ifa business workspace +1 \n\n Website: ToolTime \n\n 3. openHandwerk \n\n Interessant bei vielen gleichzeitigen Aufträgen, mehreren Teams und komplexerer Projektorganisation. Meistron +1 \n\n Website: openHandwerk \n\n 4. STREIT Software \n\n Besonders prüfenswert für SHK- und Elektro-Betriebe, die tiefere Kalkulation, kaufmännische Prozesse und umfangreiche branchenspezifische Funktionen benötigen. Meisterio +1 \n\n Website: STREIT Software \n\n 5. Lexware Office \n\n Sinnvoll, wenn du hauptsächlich Angebote, Rechnungen, Belege und Buchhaltung erledigen möchtest. Kein vollständiger Ersatz für eine spezialisierte Baustellen- und Einsatzplanung. suitApp +1 \n\n Website: Lexware Office \n\n Welche passt am besten zu deinem Betrieb? \n\n Damit ich dir nicht einfach eine beliebige Liste empfehle, habe ich eine kurze Frage: \n\n In welchem Gewerk arbeitest du? \n\n 1. Gewerk \n\n Maler, Trockenbau, Bodenleger \n SHK, Heizung, Sanitär, Elektro \n Bau, Garten- und Landschaftsbau \n Tischler, Schreiner, Holzbau \n Sonstiges Handwerk \n\n 2. Betriebsgröße \n\n Allein / Einzelunternehmer \n 2–5 Mitarbeiter \n 6–15 Mitarbeiter \n Mehr als 15 Mitarbeiter \n\n 3. Was ist dir am wichtigsten? \n\n Möglichst günstig \n Möglichst ähnlich zu HERO, aber besser oder einfacher \n Angebote, Aufmaß und Kalkulation \n Baustellenplanung und Zeiterfassung \n Rechnungen und Buchhaltung \n\n 4. Bevorzugte Software \n\n Cloud mit Handy-App \n Lokal auf dem eigenen PC \n Beides möglich Passende Alternativen vergleichen \n Dann kann ich dir die drei passendsten Programme mit aktuellen Preisen, konkreten Funktionsunterschieden und möglichen Einsparungen gegenüber HERO gegenüberstellen.",
+       "sources": [
+        {
+         "url": "https://plancraft.com/",
+         "position": 1
+        },
+        {
+         "url": "https://www.tooltime.app/",
+         "position": 2
+        },
+        {
+         "url": "https://openhandwerk.de/",
+         "position": 3
+        },
+        {
+         "url": "https://www.streit-software.de/",
+         "position": 4
+        },
+        {
+         "url": "https://office.lexware.de/",
+         "position": 5
+        },
+        {
+         "url": "https://ifa.solutions/de/resources/handwerkersoftware-vergleich/",
+         "position": 6
+        },
+        {
+         "url": "https://handwerkersoftware-check.de/handwerkersoftware-vergleich/",
+         "position": 7
+        },
+        {
+         "url": "https://bauplaner.io/blog/einsatzplanung-software-bau-vergleich/",
+         "position": 8
+        },
+        {
+         "url": "https://meistron.app/handwerkersoftware-vergleich",
+         "position": 9
+        },
+        {
+         "url": "https://app.meisterio.de/blog/handwerkersoftware-vergleich",
+         "position": 10
+        },
+        {
+         "url": "https://www.rechnung-handwerk.de/kalkulationssoftware-handwerk/",
+         "position": 11
+        },
+        {
+         "url": "https://suitapp.de/software/hero-software/alternativen/",
+         "position": 12
+        },
+        {
+         "url": "https://os-factory.de/vergleich/handwerkersoftware",
+         "position": 13
+        }
+       ],
+       "brands": [
+        {
+         "name": "plancraft",
+         "position": 1
+        },
+        {
+         "name": "ToolTime",
+         "position": 2
+        },
+        {
+         "name": "openHandwerk",
+         "position": 3
+        },
+        {
+         "name": "STREIT Software",
+         "position": 4
+        },
+        {
+         "name": "Lexware Office",
+         "position": 5
+        }
+       ]
+      }
+     }
+    },
+    {
+     "prompt": "Alternative zu ToolTime",
+     "prompt_llm_id": 1535968,
+     "result": {
+      "date": "2026-10-22",
+      "answer": {
+       "prompt_llm_id": 1535968,
+       "prompt": "Alternative zu ToolTime",
+       "site_llm_id": 203632,
+       "site_id": 13094375,
+       "date": "2026-10-22",
+       "text": "Wenn du eine Alternative zu ToolTime in Deutschland suchst, würde ich vor allem diese Handwerkersoftware vergleichen: plancraft, HERO, HAWEPRO, openHandwerk und Meisterwerk. Welche am besten passt, hängt davon ab, ob du hauptsächlich Angebote und Rechnungen schreibst oder auch Mitarbeiter, Baustellen und Arbeitszeiten verwalten möchtest. Handwerkersoftware Check +1 \n\n Die besten Alternativen zu ToolTime \n\n 1. plancraft \n\n Beste Allround-Alternative \n Gut für kleine und mittlere Handwerksbetriebe, die Angebote, Rechnungen, Zeiterfassung, Aufmaß und Einsatzplanung in einer Software bündeln möchten. \n\n \t*  Preis: ab 59,90 €/Monat bei jährlicher Zahlung, zzgl. MwSt. \n\n \t*  Kostenlos testen möglich. \n\n \t*  Besonders interessant, wenn du eine moderne Cloud-Lösung mit mobiler App suchst. \n\n Quelle: offizielle Preisseite. plancraft.com \n\n Website und Preise \n\n 2. HAWEPRO \n\n Preis-Leistungs-Tipp \n Eine interessante Wahl, wenn du Kosten senken und trotzdem Angebote, Rechnungen, Kundenverwaltung, Projekte und Zeiterfassung abdecken möchtest. \n\n \t*  Preis: Business ab 35 €/Monat bei jährlicher Zahlung; Professional ab 49 €/Monat. \n\n \t*  Monatlich kündbare Tarife verfügbar. \n\n \t*  Kostenloser Prepaid-Tarif für gelegentliche Nutzung. \n\n Preise netto zzgl. MwSt. hawepro.de +1 \n\n Website und Preise \n\n 3. HERO Software \n\n Geeignet, wenn du neben der Büroorganisation auch Kalkulation, Aufmaß, Projektverwaltung und Baustellendokumentation brauchst. \n\n \t*  Einstieg laut Vergleich ab ca. 69 €/Monat bei jährlicher Zahlung. \n\n \t*  Mobile App und umfangreiche Handwerksfunktionen. \n\n \t*  Besonders für wachsende Betriebe interessant. \n\n Website · Handwerkersoftware Check +1 \n\n 4. Meisterwerk \n\n Besonders interessant für kleinere Teams mit vielen Serviceaufträgen und Wartungsterminen. \n\n \t*  Basispaket laut Vergleich ab 59 €/Monat für drei Nutzer. \n\n \t*  Zusatzkosten für einzelne Module wie Angebote, Rechnungen und Zeiterfassung beachten. \n\n Website · Betriebssoftware-Kompass +1 \n\n 5. openHandwerk \n\n Eine Option für Betriebe mit mehreren Baustellen, Teams und komplexerer Projektorganisation. \n\n \t*  Cloudsoftware mit mobiler App. \n\n \t*  Projekt-, Ressourcen- und Dokumentenverwaltung. \n\n \t*  Preise hängen von Nutzerzahl und Vertragslaufzeit ab. \n\n Website · Handwerkersoftware Check +1 \n\n Welche passt am besten zu deinem Betrieb? \n\n Damit ich dir nicht einfach irgendeine Liste empfehle, sondern die beste Alternative zu ToolTime für deinen konkreten Betrieb, sag mir bitte kurz: \n\n 1. Welches Gewerk betreibst du? \n\n SHK / Heizung / Sanitär \n Elektro \n Maler / Trockenbau \n Bau / Renovierung \n Sonstiges Handwerk \n\n 2. Wie groß ist dein Betrieb? \n\n Allein / Einzelunternehmer \n 2–5 Mitarbeiter \n 6–15 Mitarbeiter \n Mehr als 15 Mitarbeiter \n\n 3. Was ist dir am wichtigsten? \n\n Günstiger als ToolTime \n Einfachere Bedienung \n Angebote, Rechnungen und E-Rechnung \n Zeiterfassung und Mitarbeiterplanung \n Aufmaß, Kalkulation und Material \n Komplettlösung mit allen Funktionen \n\n 4. Welches Monatsbudget bevorzugst du? \n\n Unter 50 € \n 50–100 € \n 100–200 € \n Über 200 € Passende Software vergleichen",
+       "sources": [
+        {
+         "url": "https://hero-software.de/",
+         "position": 1
+        },
+        {
+         "url": "https://meisterwerk.app/",
+         "position": 2
+        },
+        {
+         "url": "https://openhandwerk.de/",
+         "position": 3
+        },
+        {
+         "url": "https://handwerkersoftware-check.de/handwerkersoftware-vergleich/",
+         "position": 4
+        },
+        {
+         "url": "https://hawepro.de/vergleich/",
+         "position": 5
+        },
+        {
+         "url": "https://plancraft.com/de-de/preise",
+         "position": 6
+        },
+        {
+         "url": "https://hawepro.de/preise.html",
+         "position": 7
+        },
+        {
+         "url": "https://hawepro.de/handwerkersoftware/funktionen/",
+         "position": 8
+        },
+        {
+         "url": "https://betriebssoftware-kompass.de/vergleich/tooltime/alternativen",
+         "position": 9
+        },
+        {
+         "url": "https://velohandwerk.de/alternativen/handwerkersoftware/",
+         "position": 10
+        },
+        {
+         "url": "https://betriebssoftware-kompass.de/vergleich/openhandwerk/alternativen",
+         "position": 11
+        }
+       ],
+       "brands": [
+        {
+         "name": "plancraft",
+         "position": 1
+        },
+        {
+         "name": "HAWEPRO",
+         "position": 2
+        },
+        {
+         "name": "HERO",
+         "position": 3
+        },
+        {
+         "name": "Meisterwerk",
+         "position": 4
+        },
+        {
+         "name": "openHandwerk",
+         "position": 5
+        }
+       ]
+      }
+     }
+    },
+    {
+     "prompt": "Welche Aufmaß-App ist gut für Handwerker?",
+     "prompt_llm_id": 1535971,
+     "result": {
+      "date": "2026-10-22",
+      "answer": {
+       "prompt_llm_id": 1535971,
+       "prompt": "Welche Aufmaß-App ist gut für Handwerker?",
+       "site_llm_id": 203632,
+       "site_id": 13094375,
+       "date": "2026-10-22",
+       "text": "Für Handwerker in Deutschland gibt es einige gute Aufmaß-Apps – die beste hängt vor allem davon ab, ob du Räume und Wände ausmessen, Fenster und Türen aufmessen, Baustellen dokumentieren oder direkt Angebote erstellen möchtest. \n\n Wichtig ist auch, ob du mit dem Smartphone allein arbeiten willst oder ein Lasermessgerät verwendest. Manche Apps sparen vor allem Zeit bei der Dokumentation, andere können dir tatsächlich beim Messen helfen. \n\n Meine Top 5 Aufmaß-Apps für Handwerker \n\n 1. magicplan \n\n Beste Allround-Lösung \n Ideal für Maler, Bodenleger, Fliesenleger und Schreiner. Du kannst Grundrisse erstellen, Räume dokumentieren und Flächen berechnen. Je nach Tarif sind Berichte, Kalkulationen und Exporte möglich. CENDAS +1 \n\n Kostenloser Einstieg, erweiterte Funktionen kostenpflichtig. \n\n Website öffnen \n\n 2. Bosch MeasureOn \n\n Beste kostenlose Basis \n Sehr gut, wenn du mit einem kompatiblen Bosch-Lasermessgerät arbeitest. Messwerte, Grundrisse, Fotos und Notizen werden zentral dokumentiert; Flächen lassen sich berechnen. Bosch Professional +1 \n\n Basis kostenlos; optionale Pro-Funktionen. \n\n Offizielle Website \n\n 3. Leica DISTO Plan \n\n Ideal für präzises Messen mit einem kompatiblen Leica-DISTO-Laser. Besonders interessant für Fliesenleger, Innenausbau und Schreiner, die Messwerte in Plänen weiterverarbeiten möchten. CENDAS +1 \n\n Basisversion kostenlos; Funktionen und Exporte abhängig vom Tarif. \n\n Offizielle Website \n\n 4. CENDAS \n\n Für Betriebe, die nicht nur messen, sondern das Aufmaß mit Bauplänen, Mengen und Abrechnung verknüpfen möchten. Interessant für mehrere Mitarbeiter und größere Projekte. CENDAS \n\n Website öffnen \n\n 5. ViSoft Smart \n\n Besonders passend für Sanitärbetriebe und Fliesenleger, die Räume nicht nur vermessen, sondern auch Bäder planen und visualisieren möchten. CENDAS \n\n Website öffnen \n\n Welche App passt zu deinem Gewerk? \n\n Dein Einsatz \n\n Meine Empfehlung \n\n Maler, Bodenleger \n\n magicplan \n\n Fliesenleger \n\n Leica DISTO Plan oder magicplan \n\n Fenster- und Türenbau \n\n Spezialisierte Aufmaß-App \n\n Dachdecker, Fassadenbau \n\n Spezialisierte Außenaufmaß-Lösung \n\n Einfaches Messen mit Bosch-Laser \n\n Bosch MeasureOn \n\n Aufmaß plus Baustellenabrechnung \n\n CENDAS oder eine integrierte Handwerkersoftware \n\n Mein Tipp: Wenn du regelmäßig auf der Baustelle misst, ist die Kombination aus Laser-Entfernungsmesser und passender App meist zuverlässiger als das reine Messen per Smartphone-Kamera. Für millimetergenaue Fertigungsmaße solltest du kritische Maße immer mit einem geeigneten Messgerät prüfen. CENDAS +1 \n\n Ich kann dir eine gezieltere Empfehlung geben \n\n Welches Handwerk machst du? Dann kann ich dir die am besten geeignete App für deinen konkreten Arbeitsalltag empfehlen. \n\n 1. Welches Gewerk? \n\n Maler und Lackierer \n Fliesen und Boden \n Fenster und Türen \n Schreiner und Tischler \n Dachdecker und Fassadenbau \n SHK und Elektro \n Sonstiges Handwerk \n\n 2. Welches Gerät nutzt du? \n\n iPhone \n Android \n iPad oder Tablet \n\n 3. Was soll die App können? \n\n Maße aufnehmen und PDF-Protokoll erstellen \n Grundrisse und Flächen automatisch berechnen \n Fenster und Türen inklusive Montageprotokoll \n Aufmaß direkt in Angebot und Rechnung übernehmen \n Mit Kamera oder Fotos messen \n\n 4. Welches Budget? \n\n Möglichst kostenlos \n Bis 20 € monatlich \n 20–50 € monatlich \n Budget offen – professionelle Lösung Passende Apps vergleichen",
+       "sources": [
+        {
+         "url": "https://www.magicplan.app/",
+         "position": 1
+        },
+        {
+         "url": "https://shop.leica-geosystems.com/leica-disto",
+         "position": 2
+        },
+        {
+         "url": "https://www.cendas.net/",
+         "position": 3
+        },
+        {
+         "url": "https://www.visoft.de/",
+         "position": 4
+        },
+        {
+         "url": "https://www.cendas.net/blog/aufmass-app/",
+         "position": 5
+        },
+        {
+         "url": "https://www.automatisierungsbeispiele.de/wissen/aufmass-app-vergleich",
+         "position": 6
+        },
+        {
+         "url": "https://www.bosch-professional.com/de/de/measureon/",
+         "position": 7
+        },
+        {
+         "url": "https://apps.apple.com/de/app/measureon/id1468079574",
+         "position": 8
+        },
+        {
+         "url": "https://agentino.de/blog/digitale-aufmasse-dokumentation-handwerker-apps/",
+         "position": 9
+        }
+       ],
+       "brands": [
+        {
+         "name": "magicplan",
+         "position": 1
+        },
+        {
+         "name": "Bosch MeasureOn",
+         "position": 2
+        },
+        {
+         "name": "Leica DISTO Plan",
+         "position": 3
+        },
+        {
+         "name": "CENDAS",
+         "position": 4
+        },
+        {
+         "name": "ViSoft Smart",
+         "position": 5
+        }
+       ]
+      }
+     }
+    },
+    {
+     "prompt": "Bautagebuch App für Handwerksbetriebe",
+     "prompt_llm_id": 1535974,
+     "result": {
+      "date": "2026-10-22",
+      "answer": {
+       "prompt_llm_id": 1535974,
+       "prompt": "Bautagebuch App für Handwerksbetriebe",
+       "site_llm_id": 203632,
+       "site_id": 13094375,
+       "date": "2026-10-22",
+       "text": "Die besten Bautagebuch-Apps für Handwerksbetriebe in Deutschland \n\n Wenn du für deinen Handwerksbetrieb in Deutschland eine Bautagebuch-App suchst, würde ich besonders auf einfache Tagesberichte, Fotodokumentation, mobile Nutzung auf der Baustelle und automatische PDF-Berichte achten. Wichtig ist auch, dass du Mängel, Zusatzarbeiten, Behinderungen und die Anwesenheit deiner Mitarbeiter dokumentieren kannst. \n\n Diese Apps würde ich vergleichen \n\n 1. bauTB \n\n Für einfache Tagesberichte \n\n \t*  Tagesberichte mit Wetter, Personal und Fotos \n\n \t*  Spracheingabe und PDF-Export \n\n \t*  Mehrsprachige Berichte \n\n \t*  Laut Anbieter nach kostenloser Testphase 4,90 €/Monat \n\n Gut für kleine Betriebe, die ohne viel Aufwand dokumentieren wollen. \n\n Website und kostenloser Test · bauTB \n\n 2. BauRapport \n\n \t*  Tagesberichte, Arbeitszeiten und Material \n\n \t*  Fotos und Mängel zentral verwalten \n\n \t*  Für Büro und Baustellenteam \n\n Interessant, wenn du neben dem Bautagebuch auch Mitarbeiterzeiten und Leistungen erfassen möchtest. \n\n Website und Demo · baurapport.de \n\n 3. STREIT Bautagebuch+ \n\n \t*  Baustellen und Mitarbeiter zuordnen \n\n \t*  Tagesberichte und Fotodokumentation \n\n \t*  Wetterdaten und PDF-Berichte \n\n \t*  Integration in die STREIT-Handwerkersoftware \n\n Besonders sinnvoll, wenn du STREIT bereits im Büro verwendest. \n\n Produktinformationen · einfache Baustellendokumentation \n\n 4. Bautagebuch.org \n\n \t*  Fotos und Sprachnotizen über App, Browser oder Messenger erfassen \n\n \t*  Berichte automatisch vorbereiten und anschließend freigeben \n\n \t*  Offline-Erfassung und Datenspeicherung in Deutschland laut Anbieter \n\n \t*  Angegebene Tarife: Starter 69 € und Pro 129 € pro Monat; 14 Tage kostenlos testen \n\n Gut, wenn mehrere Mitarbeiter dokumentieren und du die Berichte zentral kontrollieren möchtest. \n\n Website und Testzugang · bautagebuch.org \n\n 5. Capmo \n\n \t*  Bautagebuch und Baustellendokumentation \n\n \t*  Fotos, Personal, Material und besondere Vorkommnisse \n\n \t*  Mobile Offline-Erfassung \n\n \t*  Zusätzliche Funktionen für Mängel und Bauprojektmanagement \n\n Eher für größere Projekte oder Betriebe mit umfangreicheren Dokumentationsanforderungen. \n\n Website · support.capmo.com +1 \n\n Welche App passt zu deinem Betrieb? \n\n Damit ich dir die passende Lösung für Deutschland empfehlen kann, habe ich nur eine Frage: \n\n Für welches Gewerk suchst du die Bautagebuch-App? \n\n 1. Dein Gewerk \n\n Elektro / Sanitär / Heizung \n Maler / Trockenbau \n Dachdecker / Zimmerer \n Bauunternehmen / Rohbau \n Garten- und Landschaftsbau \n Sonstiges Handwerk \n\n 2. Betriebsgröße \n\n Einzelbetrieb \n 2–10 Mitarbeiter \n 11–50 Mitarbeiter \n Mehr als 50 Mitarbeiter \n\n 3. Was ist dir am wichtigsten? \n\n Einfaches Bautagebuch mit Fotos und PDF \n Berichte per Spracheingabe und KI \n Mängel, Zusatzarbeiten und Nachweise \n Bautagebuch und Zeiterfassung \n Komplette Handwerkersoftware \n\n 4. Monatliches Budget \n\n Kostenlos \n Bis 20 € pro Monat \n 20–100 € pro Monat \n Über 100 € pro Monat Passende Apps vergleichen",
+       "sources": [
+        {
+         "url": "https://www.capmo.com/",
+         "position": 1
+        },
+        {
+         "url": "https://www.bautb.com/de",
+         "position": 2
+        },
+        {
+         "url": "https://baurapport.de/",
+         "position": 3
+        },
+        {
+         "url": "https://www.streit-software.de/handwerkersoftware/apps/mobiles-bautagebuch",
+         "position": 4
+        },
+        {
+         "url": "https://support.capmo.com/mobile-das-bautagebuch",
+         "position": 5
+        },
+        {
+         "url": "https://kiolo.com/de-de/blog/bautagebuch-app/",
+         "position": 6
+        },
+        {
+         "url": "https://bautagebuch.org/",
+         "position": 7
+        }
+       ],
+       "brands": [
+        {
+         "name": "bauTB",
+         "position": 1
+        },
+        {
+         "name": "BauRapport",
+         "position": 2
+        },
+        {
+         "name": "STREIT Bautagebuch+",
+         "position": 3
+        },
+        {
+         "name": "Bautagebuch.org",
+         "position": 4
+        },
+        {
+         "name": "Capmo",
+         "position": 5
+        }
+       ]
+      }
+     }
+    },
+    {
+     "prompt": "Was kostet eine Handwerkersoftware pro Monat?",
+     "prompt_llm_id": 1535977,
+     "result": {
+      "date": "2026-10-22",
+      "answer": {
+       "prompt_llm_id": 1535977,
+       "prompt": "Was kostet eine Handwerkersoftware pro Monat?",
+       "site_llm_id": 203632,
+       "site_id": 13094375,
+       "date": "2026-10-22",
+       "text": "In Deutschland kostet eine Handwerkersoftware je nach Funktionsumfang und Anzahl der Mitarbeiter ungefähr 20 bis 150 € pro Monat für kleinere Handwerksbetriebe. Größere Betriebe mit mehreren Mitarbeitern, umfangreicher Einsatzplanung und Lagerverwaltung zahlen häufig mehr. \n\n Was kostet Handwerkersoftware pro Monat? \n\n Software-Kategorie \n\n Typische monatliche Kosten \n\n Einfache Angebote und Rechnungen \n\n 0–30 € \n\n Kleine Handwerksbetriebe, 1–3 Nutzer \n\n 30–70 € \n\n Komplettlösung mit Auftragsverwaltung und Zeiterfassung \n\n 70–150 € \n\n Größere Betriebe mit mehreren Teams \n\n 150–400 € oder mehr \n\n Die Beträge sind grobe Orientierungswerte, keine verbindlichen aktuellen Anbieterpreise. Je nach Tarif können zusätzliche Nutzer, Einrichtung, Support oder Module extra kosten. Preise können netto oder brutto angegeben sein. \n\n Beispiele konkreter Anbieter in Deutschland \n\n Hawepro \n\n ab 39 €/Monat \n\n Für Einzelunternehmer; Teamtarife kosten mehr. Hawepro \n\n Preise und Funktionen ansehen \n\n ToolTime \n\n 89 €/Monat \n\n Solo-Tarif bei monatlicher Zahlung; Team-Paket 169 €/Monat. ToolTime \n\n Preise ansehen \n\n HERO Software \n\n ab ca. 79 €/Monat \n\n Einstiegspreis laut aktuellem Preisvergleich; weitere Lizenzen können extra kosten. suitApp \n\n Anbieter ansehen \n\n Damit ich dir den passenden Preis nennen kann \n\n Für wie viele Personen brauchst du die Software, und welches Gewerk betreibst du? \n\n 1. Betriebsgröße \n\n Einzelunternehmer \n 2–5 Personen \n 6–15 Personen \n Mehr als 15 Personen \n\n 2. Handwerk \n\n Elektro \n Sanitär, Heizung und Klima (SHK) \n Maler und Lackierer \n Bau und Ausbau \n Anderes Gewerk \n\n 3. Wichtigste Funktion \n\n Angebote und Rechnungen \n Zeiterfassung und Baustellenplanung \n Komplettlösung mit allen Funktionen Passende Software und Preise vergleichen",
+       "sources": [
+        {
+         "url": "https://hawepro.de/",
+         "position": 1
+        },
+        {
+         "url": "https://hero-software.de/",
+         "position": 2
+        },
+        {
+         "url": "https://hawepro.de/rechner/kosten-handwerkersoftware/",
+         "position": 3
+        },
+        {
+         "url": "https://www.tooltime.app/preise",
+         "position": 4
+        },
+        {
+         "url": "https://suitapp.de/kategorien/handwerkersoftware/",
+         "position": 5
+        }
+       ],
+       "brands": [
+        {
+         "name": "Hawepro",
+         "position": 1
+        },
+        {
+         "name": "ToolTime",
+         "position": 2
+        },
+        {
+         "name": "HERO Software",
+         "position": 3
+        }
+       ]
+      }
+     }
+    },
+    {
+     "prompt": "Handwerkersoftware mit Plantafel und Einsatzplanung",
+     "prompt_llm_id": 1535980,
+     "result": {
+      "date": "2026-10-22",
+      "answer": {
+       "prompt_llm_id": 1535980,
+       "prompt": "Handwerkersoftware mit Plantafel und Einsatzplanung",
+       "site_llm_id": 203632,
+       "site_id": 13094375,
+       "date": "2026-10-22",
+       "text": "Handwerkersoftware mit Plantafel und Einsatzplanung \n\n Wenn du in Deutschland eine Handwerkersoftware suchst, sind vor allem drei Funktionen entscheidend: eine visuelle Plantafel, eine Einsatzplanung für Mitarbeiter und Teams sowie eine Termin- und Ressourcenplanung, die auch kurzfristige Änderungen abbildet. \n\n Je nachdem, ob du beispielsweise im SHK-Handwerk, Elektrohandwerk, Malerhandwerk oder als Gebäudedienstleister tätig bist, kommen unterschiedliche Lösungen infrage. \n\n 6 empfehlenswerte Lösungen im Vergleich \n\n 1. HERO Software \n\n All-in-one \n Umfangreiche Lösung mit Plantafel, Mitarbeiter- und Fahrzeugeinsatzplanung, Angeboten, Rechnungen und mobiler App. Gut für wachsende Handwerksbetriebe mit mehreren Monteuren. crew-active.de +1 \n\n Website: hero-software.de \n\n 2. Craftboxx \n\n Planung im Fokus \n Besonders interessant, wenn die Einsatzplanung im Mittelpunkt steht: Mitarbeiter, Fahrzeuge und Werkzeuge auf einer visuellen Plantafel zuweisen, Zeiten erfassen und Baustellen dokumentieren. Für Angebote und Rechnungen ist eine ergänzende Lösung nötig. Ifa business workspace \n\n Website: craftboxx.de \n\n 3. plancraft \n\n Geeignet für kleine und mittlere Betriebe, die Angebote, Rechnungen, Baustellenorganisation und Mitarbeiterplanung miteinander verbinden möchten. Prüfe, welcher Tarif die gewünschte Plantafel enthält. Meistron +1 \n\n Website: plancraft.de \n\n 4. ToolTime \n\n Interessant für Betriebe, die Terminplanung, Kundenverwaltung, Auftragsbearbeitung und Rechnungsstellung in einer Lösung suchen. Auch die mobile Nutzung durch Monteure ist ein wichtiger Bestandteil. Ifa business workspace +1 \n\n Website: tooltime.app \n\n 5. mfr \n\n Besonders prüfenswert bei vielen Kundendienst- und Wartungseinsätzen. Bietet laut Vergleich eine Plantafel mit Tages-, Wochen- und Monatsansicht, Ressourcenplanung und Funktionen zur Vermeidung von Planungskonflikten. crew-active.de \n\n Website: mfr-deutschland.de \n\n 6. Planvo \n\n Eine interessante Alternative, wenn du Plantafel, Teams, Abwesenheiten, Zeiterfassung und Rechnungen in einem System kombinieren willst. Der Anbieter nennt eine 14-tägige Testphase. Planvo +1 \n\n Website: planvo.de \n\n Welche Software passt am besten? \n\n Dein Bedarf \n\n Meine Vorauswahl \n\n Alles in einem System \n\n HERO, plancraft, ToolTime \n\n Vor allem Plantafel und Disposition \n\n Craftboxx, mfr \n\n Plantafel plus Zeiten und Abrechnung \n\n Planvo \n\n Viele Service- und Wartungstermine \n\n mfr, HERO \n\n Die Liste ist eine Vorauswahl nach Funktionsumfang, keine unabhängige Rangliste. Preise und Tarifgrenzen solltest du vor einer Entscheidung direkt beim Anbieter prüfen. \n\n Ich kann die Auswahl auf deinen Betrieb eingrenzen \n\n Dafür ist vor allem wichtig, wie groß dein Betrieb ist und welche Art von Einsätzen du planst. \n\n 1. Welches Gewerk betreibst du? \n\n SHK / Elektro \n Maler / Bau / Ausbau \n Kundendienst / Wartung \n Gebäudereinigung / Hausmeisterservice \n Sonstiges Handwerk \n\n 2. Wie viele Mitarbeiter sollen eingeplant werden? \n\n 1–5 Mitarbeiter \n 6–15 Mitarbeiter \n 16–50 Mitarbeiter \n Mehr als 50 Mitarbeiter \n\n 3. Was soll die Software können? \n\n Nur Plantafel und Einsatzplanung \n Planung und Zeiterfassung \n Komplettlösung inklusive Angeboten und Rechnungen \n\n 4. Welches monatliche Budget ist vorgesehen? \n\n Unter 50 € \n 50–150 € \n 150–400 € \n Über 400 € \n Noch offen \n\n 5. Was möchtest du auf der Plantafel planen? \n\n Mitarbeiter und Teams \n Fahrzeuge und Ressourcen \n Kunden- und Wartungstermine \n Baustellen über mehrere Tage \n Automatische Touren- und Routenplanung Passende Software vergleichen",
+       "sources": [
+        {
+         "url": "https://hero-software.de/",
+         "position": 1
+        },
+        {
+         "url": "https://craftboxx.de/",
+         "position": 2
+        },
+        {
+         "url": "https://plancraft.de/",
+         "position": 3
+        },
+        {
+         "url": "https://www.tooltime.app/",
+         "position": 4
+        },
+        {
+         "url": "https://mfr-deutschland.de/",
+         "position": 5
+        },
+        {
+         "url": "https://www.crew-active.de/ressourcen/blog/einsatzplanung-software-vergleich-2026/",
+         "position": 6
+        },
+        {
+         "url": "https://www.rechnung-handwerk.de/einsatzplanung-software-handwerker/",
+         "position": 7
+        },
+        {
+         "url": "https://ifa.solutions/de/resources/handwerkersoftware-vergleich/",
+         "position": 8
+        },
+        {
+         "url": "https://meistron.app/handwerkersoftware-vergleich",
+         "position": 9
+        },
+        {
+         "url": "https://handwerkersoftware-test.de/vergleich/",
+         "position": 10
+        },
+        {
+         "url": "https://planvo.de/",
+         "position": 11
+        },
+        {
+         "url": "https://www.planvo.de/",
+         "position": 12
+        }
+       ],
+       "brands": [
+        {
+         "name": "HERO Software",
+         "position": 1
+        },
+        {
+         "name": "Craftboxx",
+         "position": 2
+        },
+        {
+         "name": "plancraft",
+         "position": 3
+        },
+        {
+         "name": "ToolTime",
+         "position": 4
+        },
+        {
+         "name": "mfr",
+         "position": 5
+        },
+        {
+         "name": "Planvo",
+         "position": 6
+        }
+       ]
+      }
+     }
+    },
+    {
+     "prompt": "Software für Elektrobetriebe",
+     "prompt_llm_id": 1535983,
+     "result": {
+      "date": "2026-10-22",
+      "answer": {
+       "prompt_llm_id": 1535983,
+       "prompt": "Software für Elektrobetriebe",
+       "site_llm_id": 203632,
+       "site_id": 13094375,
+       "date": "2026-10-22",
+       "text": "8s nachgedacht \n\n 13 Websites durchsucht \n\n baumacht.de ifa.solutions www.handwerk-ratgeber.de www.drweb.de www.fuer-gruender.de handwerker-kosmos.de handwerkersoftware-check.de betriebssoftware-kompass.de stackindex.de omr.com meistron.app suitapp.de www.rechnung-handwerk.de 6 more \n\n Onlinesuche läuft \n\n Software für Elektrobetriebe in Deutschland \n\n Für einen Elektrobetrieb ist die passende Handwerkersoftware vor allem davon abhängig, ob du hauptsächlich auf Baustellen arbeitest, Kundendienst machst oder größere Elektroinstallationen planst. \n\n Wichtig sind in Deutschland insbesondere Angebote und Rechnungen, Aufmaß, Zeiterfassung, Materialverwaltung, VDE-konforme Prüfprotokolle und die Anbindung an die Buchhaltung. \n\n Welche Software passt zu deinem Elektrobetrieb? \n\n 1. STREIT V.1 \n Für größere Elektrofachbetriebe \n Umfangreiche Branchenlösung mit Elektro-Leistungskatalog, kaufmännischer Verwaltung und Baustellenorganisation. Interessant bei komplexen Projekten und vielen Monteuren. rechnung-handwerk.de +1 \n\n Website öffnen \n\n 2. plancraft \n\n Besonders interessant für kleine und mittlere Betriebe, die Angebote, Rechnungen, Aufträge und Baustellenberichte einfach digital verwalten wollen. fuer-gruender.de +1 \n\n Website öffnen \n\n 3. Bosch OfficeOn \n\n Eine Option für kleinere Betriebe, die schnell Angebote und Rechnungen erstellen und Materialdaten aus dem Großhandel nutzen möchten. fuer-gruender.de +1 \n\n Website öffnen \n\n 4. ToolTime \n\n Gut zu prüfen, wenn Terminplanung, Monteur-Zeiterfassung, Kundenverwaltung und Rechnungsstellung im Vordergrund stehen. baumacht.de +1 \n\n Website öffnen \n\n 5. Powerbird \n\n Eine weitere Branchenlösung für Elektrotechnikbetriebe mit kaufmännischen und organisatorischen Anforderungen. Preise werden üblicherweise individuell angeboten. baumacht +1 \n\n Website öffnen \n\n Ich kann die Auswahl auf deinen Betrieb zuschneiden \n\n 1. Wie groß ist dein Elektrobetrieb? \n\n Allein / 1 Person \n 2–5 Mitarbeiter \n 6–15 Mitarbeiter \n Mehr als 15 Mitarbeiter \n\n 2. Was ist dir am wichtigsten? \n\n Angebote und Rechnungen \n Elektro-Kalkulation und Großhandelsschnittstellen (z. B. DATANORM, IDS) \n Baustellenplanung und Monteure \n Prüfprotokolle und E-Check \n Komplettlösung für den gesamten Betrieb \n Elektro-CAD und technische Planung \n\n 3. Welches Budget hast du? \n\n Unter 50 € pro Monat \n 50–150 € pro Monat \n Über 150 € pro Monat \n Einmaliger Kauf bevorzugt \n\n 4. Wie möchtest du die Software nutzen? \n\n Cloud (PC und Smartphone) \n Lokal auf dem eigenen Rechner oder Server \n Egal Passende Software vergleichen",
+       "sources": [
+        {
+         "url": "https://ifa.solutions/de/resources/handwerkersoftware-vergleich/",
+         "position": 1
+        },
+        {
+         "url": "https://www.handwerk-ratgeber.de/handwerkersoftware-vergleich/",
+         "position": 2
+        },
+        {
+         "url": "https://www.drweb.de/handwerkersoftware-vergleich/",
+         "position": 3
+        },
+        {
+         "url": "https://handwerker-kosmos.de/handwerker-software/vergleich/",
+         "position": 4
+        },
+        {
+         "url": "https://handwerkersoftware-check.de/",
+         "position": 5
+        },
+        {
+         "url": "https://betriebssoftware-kompass.de/vergleich",
+         "position": 6
+        },
+        {
+         "url": "https://stackindex.de/ratgeber/handwerkersoftware/",
+         "position": 7
+        },
+        {
+         "url": "https://omr.com/de/reviews/contenthub/zeiterfassung-app-handwerk",
+         "position": 8
+        },
+        {
+         "url": "https://meistron.app/handwerkersoftware-vergleich",
+         "position": 9
+        },
+        {
+         "url": "https://suitapp.de/kategorien/handwerkersoftware/",
+         "position": 10
+        },
+        {
+         "url": "https://www.streit-software.de/",
+         "position": 11
+        },
+        {
+         "url": "https://plancraft.com/",
+         "position": 12
+        },
+        {
+         "url": "https://www.bosch-officeon.com/",
+         "position": 13
+        },
+        {
+         "url": "https://www.tooltime.app/",
+         "position": 14
+        },
+        {
+         "url": "https://www.powerbird.de/",
+         "position": 15
+        },
+        {
+         "url": "https://www.rechnung-handwerk.de/elektriker-software-handwerk/",
+         "position": 16
+        },
+        {
+         "url": "https://baumacht.de/vergleich/handwerkersoftware-elektro",
+         "position": 17
+        },
+        {
+         "url": "https://www.fuer-gruender.de/wissen/unternehmen-fuehren/buchhaltung/handwerker-software-vergleich/handwerkersoftware-elektro/",
+         "position": 18
+        }
+       ],
+       "brands": [
+        {
+         "name": "STREIT V.1",
+         "position": 1
+        },
+        {
+         "name": "plancraft",
+         "position": 2
+        },
+        {
+         "name": "Bosch OfficeOn",
+         "position": 3
+        },
+        {
+         "name": "ToolTime",
+         "position": 4
+        },
+        {
+         "name": "Powerbird",
+         "position": 5
+        }
+       ]
+      }
+     }
+    },
+    {
+     "prompt": "Software für Malerbetriebe",
+     "prompt_llm_id": 1535986,
+     "result": {
+      "date": "2026-10-22",
+      "answer": {
+       "prompt_llm_id": 1535986,
+       "prompt": "Software für Malerbetriebe",
+       "site_llm_id": 203632,
+       "site_id": 13094375,
+       "date": "2026-10-22",
+       "text": "Software für Malerbetriebe in Deutschland \n\n Wenn du Software für einen Malerbetrieb in Deutschland suchst, gibt es verschiedene Lösungen für Angebote, Aufmaß, Kalkulation, Rechnungen, Baustellenplanung und Mitarbeiterverwaltung. Welche Software am besten passt, hängt vor allem von der Betriebsgröße und deinen Arbeitsabläufen ab. \n\n 1. Welche Software ist für Malerbetriebe geeignet? \n\n Ich würde insbesondere auf folgende Funktionen achten: \n\n \t* Angebotserstellung: Angebote mit Positionen, Material, Arbeitsstunden und Zuschlägen erstellen. \n \t* Aufmaß und Kalkulation: Flächen berechnen, Materialverbrauch ermitteln und Arbeitszeiten kalkulieren. \n \t* Rechnungen: Abschlags-, Teil- und Schlussrechnungen sowie Gutschriften erstellen. \n \t* Baustellenverwaltung: Aufträge, Termine, Mitarbeiter und offene Arbeiten koordinieren. \n \t* Mobile App: Aufmaße, Fotos, Arbeitszeiten und Unterschriften direkt auf der Baustelle erfassen. \n \t* Buchhaltung: DATEV-Export und Unterstützung für E-Rechnungen. \n \t* Nachkalkulation: Erkennen, ob ein Auftrag tatsächlich Gewinn erwirtschaftet hat. \n\n 2. Die 6 interessantesten Programme im Vergleich \n\n \t\t Software \n \t\t Besonders geeignet für \n \t\t Schwerpunkt \n\n \t\t WinWorker \n \t\t Professionelle Malerbetriebe \n \t\t Aufmaß, Kalkulation, Nachkalkulation \n\n \t\t Malistor \n \t\t Kleine und mittlere Malerbetriebe \n \t\t Branchensoftware speziell für Maler \n\n \t\t Sander & Doll – Chroma \n \t\t Malerbetriebe mit komplexeren Anforderungen \n \t\t Branchenbezogene Kalkulation und kaufmännische Verwaltung \n\n \t\t plancraft \n \t\t Kleine und wachsende Betriebe \n \t\t Angebote, Rechnungen und mobile Auftragsverwaltung \n\n \t\t HERO Software \n \t\t Betriebe mit mehreren Mitarbeitern \n \t\t Auftragsverwaltung, Baustellen und Mitarbeiter \n\n \t\t Das Programm \n \t\t Kleine bis größere Handwerksbetriebe \n \t\t Kaufmännische Prozesse und Auftragsmanagement \n\n Die Auswahl basiert auf den verfügbaren Funktionsbeschreibungen und Marktvergleichen für 2026. Die Eignung im Einzelfall hängt von den tatsächlich benötigten Modulen ab. 【turn0search4】【turn0search9】【turn0search3】 \n\n Meine Empfehlungen im Detail \n\n 1. WinWorker – für professionelle Malerbetriebe \n\n WinWorker ist interessant, wenn du eine umfangreiche Lösung für die tägliche Arbeit suchst. \n\n \t* Aufmaß und Angebotskalkulation \n \t* Nachkalkulation von Aufträgen \n \t* Schnittstellen für DATEV und GAEB \n \t* Möglichkeiten zur mobilen Datenerfassung \n\n Besonders interessant, wenn du deine Aufträge nicht nur verwalten, sondern auch wirtschaftlich auswerten möchtest. \n\n Website: https://www.winworker.de/ \n\n 2. Malistor – für das klassische Malerhandwerk \n\n Malistor ist speziell auf Malerbetriebe ausgerichtet. \n\n \t* Angebote und Rechnungen \n \t* Aufmaß und Kalkulation \n \t* Auftragsverwaltung \n \t* Optionale mobile Aufmaßerfassung \n\n Wenn du eine Software möchtest, die sich an den Abläufen eines Malerbetriebs orientiert, würde ich diese Lösung unbedingt mit WinWorker vergleichen. 【turn0search9】 \n\n Website: https://www.malistor.de/ \n\n 3. Sander & Doll – Chroma \n\n Diese Lösung ist besonders interessant, wenn du eine spezialisierte Branchensoftware mit detaillierten kaufmännischen Funktionen benötigst. \n\n \t* Branchenspezifische Kalkulation \n \t* Aufmaß und Abrechnung \n \t* Auftragsverwaltung \n \t* Erweiterungsmöglichkeiten je nach Bedarf \n\n Website: https://www.sander-doll.com/ \n\n 4. plancraft – für eine moderne, mobile Arbeitsweise \n\n plancraft eignet sich insbesondere für kleinere Betriebe, die ihre Büroarbeit digitalisieren möchten. \n\n \t* Angebote und Rechnungen erstellen \n \t* Aufträge und Projekte verwalten \n \t* Aufmaß mobil erfassen \n \t* Aufträge und Arbeitsabläufe digital organisieren \n\n Website: https://plancraft.de/ \n\n Die Preise und verfügbaren Funktionen unterscheiden sich je nach Tarif. Prüfe deshalb vor dem Abschluss, ob die benötigten Schnittstellen und Kalkulationsfunktionen enthalten sind. 【turn0search4】【turn0search5】 \n\n-------------------------\n\n 3. Welche Software passt zu deinem Malerbetrieb? \n\n Meine Vorauswahl wäre: \n\n \t* Ein-Mann-Betrieb: Malistor oder plancraft. \n \t* Malerbetrieb mit 2–10 Mitarbeitern: WinWorker, Malistor oder HERO. \n \t* Betrieb mit 10–30 Mitarbeitern: WinWorker oder Sander & Doll. \n \t* Betrieb mit Schwerpunkt auf genauer Kalkulation und Nachkalkulation: WinWorker oder Sander & Doll. \n \t* Betrieb mit Schwerpunkt auf einfacher Bedienung per Smartphone: plancraft oder HERO. \n\n Das sind erste Empfehlungen, keine abschließende Rangliste. Entscheidend ist, wie du heute Angebote erstellst, Aufmaße aufnimmst und deine Baustellen organisierst. \n\n 4. Ich kann die Auswahl auf deinen Betrieb zuschneiden \n\n Damit ich dir nicht einfach zehn verschiedene Programme empfehle, sondern die drei am besten passenden Softwarelösungen für deinen Malerbetrieb in Deutschland herausfiltere, habe ich eine Frage: \n\n Wie groß ist dein Malerbetrieb? \n\n \t* A: Ich bin allein selbstständig. \n \t* B: 2–5 Mitarbeiter. \n \t* C: 6–15 Mitarbeiter. \n \t* D: Mehr als 15 Mitarbeiter. \n\n Du kannst einfach mit A, B, C oder D antworten. Danach kann ich dir die passenden Lösungen einschließlich Preisen, Vor- und Nachteilen empfehlen.",
+       "sources": [],
+       "brands": [
+        {
+         "name": "WinWorker",
+         "position": 1
+        },
+        {
+         "name": "Malistor",
+         "position": 2
+        },
+        {
+         "name": "Sander & Doll – Chroma",
+         "position": 3
+        },
+        {
+         "name": "plancraft",
+         "position": 4
+        },
+        {
+         "name": "HERO Software",
+         "position": 5
+        }
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "engine": {
+    "id": 204127,
+    "site_id": 13094375,
+    "base_name": "perplexity",
+    "country_code": "de",
+    "region_name": null,
+    "lang_code": "de",
+    "region_settings": []
+   },
+   "prompts": {
+    "site_llm_id": 204127,
+    "site_id": 13094375,
+    "items": [
+     {
+      "site_llm_id": "204127",
+      "group_id": "94132",
+      "search_volume": null,
+      "intent": null,
+      "intent_meaning": null,
+      "prompt_llm_id": "1528465",
+      "prompt": "Welche Handwerkersoftware ist die beste für kleine Betriebe?",
+      "prompt_id": "1518889"
+     },
+     {
+      "site_llm_id": "204127",
+      "group_id": "94132",
+      "search_volume": null,
+      "intent": null,
+      "intent_meaning": null,
+      "prompt_llm_id": "1528468",
+      "prompt": "Alternative zu HERO Software",
+      "prompt_id": "1518892"
+     }
+    ],
+    "total": 2,
+    "limit": 100,
+    "offset": 0
+   },
+   "rankings": {
+    "archetype": "timeseries",
+    "title": "AI Result Tracker — prompt presence",
+    "subtitle": "0 group(s)",
+    "summary": "AI Result Tracker — prompt presence: no group data returned.",
+    "x": [],
+    "axes": {
+     "left": {
+      "label": "Presence",
+      "format": "percent",
+      "min": 0,
+      "max": 100
+     }
+    },
+    "series": [],
+    "notes": [
+     "Set mode=groups for the share-of-voice chart (per-prompt mode isn't charted)."
+    ]
+   },
+   "answers": [
+    {
+     "prompt": "Welche Handwerkersoftware ist die beste für kleine Betriebe?",
+     "prompt_llm_id": 1528465,
+     "result": {
+      "date": "2026-10-21",
+      "error": "Tool PROJECT_getPromptAnswer meldet Fehler: MCP error -32603: API error (404 Not Found). URL: https://api.seranking.com/v1/project-management/airt/prompts/answe"
+     }
+    },
+    {
+     "prompt": "Alternative zu HERO Software",
+     "prompt_llm_id": 1528468,
+     "result": {
+      "date": "2026-10-21",
+      "error": "Tool PROJECT_getPromptAnswer meldet Fehler: MCP error -32603: API error (404 Not Found). URL: https://api.seranking.com/v1/project-management/airt/prompts/answe"
+     }
+    }
+   ]
+  },
+  {
+   "engine": {
+    "id": 204130,
+    "site_id": 13094375,
+    "base_name": "gemini",
+    "country_code": "de",
+    "region_name": null,
+    "lang_code": "de",
+    "region_settings": []
+   },
+   "prompts": {
+    "site_llm_id": 204130,
+    "site_id": 13094375,
+    "items": [],
+    "total": 0,
+    "limit": 100,
+    "offset": 0
+   },
+   "rankings": {
+    "archetype": "timeseries",
+    "title": "AI Result Tracker — prompt presence",
+    "subtitle": "0 group(s)",
+    "summary": "AI Result Tracker — prompt presence: no group data returned.",
+    "x": [],
+    "axes": {
+     "left": {
+      "label": "Presence",
+      "format": "percent",
+      "min": 0,
+      "max": 100
+     }
+    },
+    "series": [],
+    "notes": [
+     "Set mode=groups for the share-of-voice chart (per-prompt mode isn't charted)."
+    ]
+   },
+   "answers": []
+  },
+  {
+   "engine": {
+    "id": 204133,
+    "site_id": 13094375,
+    "base_name": "google_ai_overview",
+    "country_code": "de",
+    "region_name": null,
+    "lang_code": "de",
+    "region_settings": []
+   },
+   "prompts": {
+    "site_llm_id": 204133,
+    "site_id": 13094375,
+    "items": [
+     {
+      "site_llm_id": "204133",
+      "group_id": "94132",
+      "search_volume": "1300",
+      "intent": "1",
+      "intent_meaning": [
+       "I"
+      ],
+      "prompt_llm_id": "1528459",
+      "prompt": "handwerkersoftware",
+      "prompt_id": "1518883"
+     },
+     {
+      "site_llm_id": "204133",
+      "group_id": "94132",
+      "search_volume": "20",
+      "intent": "1",
+      "intent_meaning": [
+       "I"
+      ],
+      "prompt_llm_id": "1528462",
+      "prompt": "handwerker app",
+      "prompt_id": "1518886"
+     }
+    ],
+    "total": 2,
+    "limit": 100,
+    "offset": 0
+   },
+   "rankings": {
+    "archetype": "timeseries",
+    "title": "AI Result Tracker — prompt presence",
+    "subtitle": "2 group(s)",
+    "summary": "AI Result Tracker — prompt presence: 2 group(s), 2026-10-20→2026-10-21 (2 day(s)).",
+    "x": [
+     "2026-10-20",
+     "2026-10-21"
+    ],
+    "axes": {
+     "left": {
+      "label": "Presence",
+      "format": "percent",
+      "min": 0,
+      "max": 100
+     }
+    },
+    "series": [
+     {
+      "id": "group_unknown",
+      "label": "Group ?",
+      "axis": "left",
+      "type": "line",
+      "values": [
+       null,
+       null
+      ]
+     },
+     {
+      "id": "group_unknown",
+      "label": "Group ?",
+      "axis": "left",
+      "type": "line",
+      "values": [
+       null,
+       null
+      ]
+     }
+    ],
+    "notes": [
+     "Presence = % of tracked prompts where the brand is mentioned / linked.",
+     "Each line is one prompt group’s mention presence."
+    ]
+   },
+   "answers": [
+    {
+     "prompt": "handwerkersoftware",
+     "prompt_llm_id": 1528459,
+     "result": {
+      "date": "2026-10-21",
+      "answer": {
+       "prompt_llm_id": 1528459,
+       "prompt": "handwerkersoftware",
+       "site_llm_id": 204133,
+       "site_id": 13094375,
+       "date": "2026-10-21",
+       "text": "Übersicht mit KI\n\nAntwort des KI-Modus:\n\nModerne Handwerkersoftware digitalisiert Büroarbeit, Angebote, Rechnungen und Zeiterfassung. Zu den führenden Cloud-Lösungen im Jahr 2026 zählen HERO (ab 59 €/Mo), Plancraft (ab 48 €/Mo) sowie Bosch OfficeOn (ab 49,99 €/Mo), die jeweils mobile Apps und Schnittstellen zur Buchhaltung bieten. \nwww.handwerk-digitalisieren.de\n\nBekannte Anbieter & Preise im Vergleich\n\n\t* HERO Software: Ab 59 €/Mo (Bürolizenz inklusive App), stark für SHK und Photovoltaik mit KI-Assistenten und Automatisierungen.\n\t* Plancraft: Ab 48 €/Mo, cloudbasiert mit Fokus auf einfache Bedienung, digitales Aufmaß und Nachkalkulation.\n\t* Bosch OfficeOn: Ab 49,99 €/Mo (Code HD10 gibt 10 % Rabatt bei 12 Monaten), intuitive Oberfläche mit GoBD-Konformität und E-Rechnung.\n\t* ToolTime:\n Ab 28–79 €/Mo je nach Umfang, ideal für kleine bis mittlere Betriebe.\n\n\t* Sage 50 Handwerk: Ab 19,90 €/Mo, skalierbare Lösung für tiefgreifende kaufmännische Prozesse und DATEV-Anbindung.\n\t* Lexware handwerk: Ab 26,40 €/Mo (klassische Windows- oder Cloud-Optionen für Auftragsbearbeitung). \nFuer Gruender\n\nWichtige Funktionen moderner Lösungen\n\n\t* Angebote & Rechnungen: Schnelle Erstellung via Datanorm-, IDS- oder GAEB-Schnittstellen mit Pflicht zur E-Rechnung.\n\t* Mobile Zeiterfassung & Plantafel: Digitale Erfassung von Arbeitszeiten und GPS-Daten direkt über die Monteur-App.\n\t* Künstliche Intelligenz: Sprachgesteuerte Aufmaße, KI-unterstützte Angebotserstellung und automatische Berichte.\n\t* Nachkalkulation: Direkter Abgleich von Materialkosten und geleisteten Stunden mit den geplanten Budgets. \ndas Programm - Handwerkersoftware\n\nWenn Sie mir Ihr Gewerk (z. B. SHK, Elektro, Schreinerei) und die Anzahl der Mitarbeiter nennen, kann ich Ihnen die am besten geeigneten Programme empfehlen. \n\nKI-Antworten können Fehler enthalten. Weitere Informationen\n\nIn Zwischenablage kopiertFehler beim Kopieren in die Zwischenablage. Versuche es später noch einmal.\n\nKopiertFehler beim KopierenKopieren\n\nÖffentlichen Link teilen\n\nÜber diesen öffentlichen Link, der 7 Tage lang gültig ist, wird ein Thread inklusive aller von dir hinzugefügten persönlichen Informationen geteilt. Dieser Link oder Kopien, die andere Nutzer davon erstellen, können nicht gelöscht werden. Wenn du Inhalte mit Dritten teilst, gelten deren Richtlinien.\nKopieren\n\nDer Link kann momentan nicht kopiert werden. Versuche es später noch einmal.\n\nFacebook\nGmail\nX\nReddit\nWhatsApp\n\nTeilen\n\nGute Antwort\n\nSchlechte Antwort\n\nMehr\n\nInformationen zu dieser Antwort\n\nGesparte Zeit\n\nLöschen\n\nHilfreich\n\nUmfassend\n\nSonstiges\n\nFalsch\n\nUnangemessen\n\nFunktioniert nicht\n\nNicht hilfreich\n\nSonstiges\nEine Kopie dieses Chats wird beigefügt.\n\nEine Kopie dieses Chats und die von dir geteilten Inhalte werden beigefügt.\n\nEine Kopie dieses Chats und die von dir geteilten Inhalte werden beigefügt.\n\nSenden\n\nVielen Dank für dein Feedback\n\nGoogle kann Konto- und Systemdaten verwenden, um dein Feedback nachzuvollziehen und seine Dienste zu verbessern. Dabei gelten die Datenschutzerklärung von Google und die Google-Nutzungsbedingungen. Bei rechtlichen Problemen kannst du einen Antrag auf Entfernung aus Rechtsgründen stellen.",
+       "sources": [
+        {
+         "url": "https://www.handwerk-digitalisieren.de/handwerkersoftware-test/",
+         "position": 1
+        },
+        {
+         "url": "https://www.fuer-gruender.de/wissen/unternehmen-fuehren/buchhaltung/handwerker-software-vergleich/",
+         "position": 2
+        },
+        {
+         "url": "https://das-programm.io/",
+         "position": 3
+        },
+        {
+         "url": "https://www.handwerk-digitalisieren.de/handwerkersoftware-test/",
+         "position": 4
+        },
+        {
+         "url": "https://www.fuer-gruender.de/wissen/unternehmen-fuehren/buchhaltung/handwerker-software-vergleich/",
+         "position": 5
+        },
+        {
+         "url": "https://shop.lexware.de/lexware-handwerk",
+         "position": 6
+        },
+        {
+         "url": "https://www.youtube.com/watch?v=PVbt_rWnh68&t=664",
+         "position": 7
+        },
+        {
+         "url": "https://www.youtube.com/watch?v=WA33DNzZQbo&t=1",
+         "position": 8
+        },
+        {
+         "url": "https://www.youtube.com/watch?v=T-fOIKFC1zQ&t=9",
+         "position": 9
+        },
+        {
+         "url": "https://www.youtube.com/watch?v=c6uXUxbeOL0&t=13",
+         "position": 10
+        },
+        {
+         "url": "https://qonto.com/de/blog/business/unternehmensfuehrung/handwerkersoftware",
+         "position": 11
+        },
+        {
+         "url": "https://www.sage.com/de-de/branchen/handwerk/",
+         "position": 12
+        },
+        {
+         "url": "https://das-programm.io/",
+         "position": 13
+        }
+       ],
+       "brands": [
+        {
+         "name": "HERO",
+         "position": 1
+        },
+        {
+         "name": "Plancraft",
+         "position": 2
+        },
+        {
+         "name": "Bosch OfficeOn",
+         "position": 3
+        },
+        {
+         "name": "ToolTime",
+         "position": 4
+        },
+        {
+         "name": "Sage 50 Handwerk",
+         "position": 5
+        },
+        {
+         "name": "Lexware handwerk",
+         "position": 6
+        }
+       ],
+       "organic_urls": [
+        {
+         "url": "https://das-programm.io/",
+         "position": 1
+        },
+        {
+         "url": "https://www.handwerk-digitalisieren.de/handwerkersoftware-test/",
+         "position": 2
+        },
+        {
+         "url": "https://www.fuer-gruender.de/wissen/unternehmen-fuehren/buchhaltung/handwerker-software-vergleich/handwerkersoftware-kleinbetriebe/",
+         "position": 3
+        },
+        {
+         "url": "https://www.handwerksblatt.de/betriebsfuehrung/handwerkersoftware-fuenf-loesungen-im-kurzportraet",
+         "position": 4
+        },
+        {
+         "url": "https://hero-software.de/",
+         "position": 5
+        },
+        {
+         "url": "https://systemhaus.com/handwerkersoftware",
+         "position": 6
+        },
+        {
+         "url": "https://pds.de/software/handwerk",
+         "position": 7
+        },
+        {
+         "url": "https://qonto.com/de/blog/business/unternehmensfuehrung/handwerkersoftware",
+         "position": 8
+        },
+        {
+         "url": "https://www.youtube.com/watch?v=c6uXUxbeOL0",
+         "position": 9
+        },
+        {
+         "url": "https://www.fuer-gruender.de/wissen/unternehmen-fuehren/buchhaltung/handwerker-software-vergleich/",
+         "position": 10
+        },
+        {
+         "url": "https://plancraft.com/de-de",
+         "position": 11
+        },
+        {
+         "url": "https://bosch-officeon.com/de/de/wissen/blog/handwerkersoftware-vergleich/",
+         "position": 12
+        },
+        {
+         "url": "https://hawepro.de/handwerkersoftware/kleinbetriebe/",
+         "position": 13
+        },
+        {
+         "url": "https://conmeet.io/was-ist-eine-handwerkersoftware/",
+         "position": 14
+        },
+        {
+         "url": "https://www.getapp.de/directory/1383/handyman/pricing/free/software",
+         "position": 15
+        },
+        {
+         "url": "https://shk-handwerkersoftware.de/",
+         "position": 16
+        },
+        {
+         "url": "https://www.datext.de/branchenloesungen/handwerker",
+         "position": 17
+        },
+        {
+         "url": "https://www.winworker.de/basis-software/handwerkersoftware/",
+         "position": 18
+        },
+        {
+         "url": "https://www.sage.com/de-de/branchen/handwerk/",
+         "position": 19
+        }
+       ]
+      }
+     }
+    },
+    {
+     "prompt": "handwerker app",
+     "prompt_llm_id": 1528462,
+     "result": {
+      "date": "2026-10-21",
+      "answer": {
+       "prompt_llm_id": 1528462,
+       "prompt": "handwerker app",
+       "site_llm_id": 204133,
+       "site_id": 13094375,
+       "date": "2026-10-21",
+       "text": "Übersicht mit KI\n\nAntwort des KI-Modus:\n\nBeliebte Handwerker-Apps für digitale Zeiterfassung, Bautagebücher und Projektverwaltung sind MeinHandwerker, Plancraft, Craftboxx und Bosch OfficeOn. Sie vernetzen die Baustelle direkt mit dem Büro. \nMeinHandwerker\n\nFunktionen von Handwerker-Apps\n\n\t* Zeiterfassung: Arbeitszeiten, Pausen und Fahrtwege per App direkt per Smartphone stempeln.\n\t* Bautagebuch & Dokumentation: Fotos, Mängel, Notizen und Materialverbrauch direkt vor Ort erfassen.\n\t* Digitale Unterschriften: Regieberichte oder Abnahmen vom Kunden direkt auf dem Display unterzeichnen lassen.\n\t* Projekt-Chat: Sichere, projektbezogene Kommunikation statt unübersichtlicher Privat-Messenger\n.\n\n\t* Schnittstellen: Automatische Datenübertragung zu Büro- und Buchhaltungssoftware (z. B. Lexware Office, Sevdesk). \nSTREIT Software\n\nAuswahl an bekannten Anbietern\n\n\t\tApp\n\t\tTypischer Fokus\n\t\tUngefährer Preis\n\n\t\tMeinHandwerker\n\t\tZeiterfassung, Bautagebuch, Kundenportal\n\t\tAb ca. 12 € / Mitarbeiter / Monat\n\n\t\tPlancraft\n\t\tBaustellendokumentation & Angebote\n\t\tAuf Anfrage / Testversion verfügbar\n\n\t\tCraftboxx\n\t\tEinsatzplanung & mobile Zeiterfassung\n\t\tCa. 19,99 € / Nutzer / Monat\n\n\t\tBosch OfficeOn\n\t\tAll-in-One für Büro & Baustelle\n\t\tAuf Anfrage / Testversion verfügbar\n\nSoll die App vor allem Zeiterfassung, Rechnungsstellung oder die Einsatzplanung für euer Team erleichtern?\n\nKI-Antworten können Fehler enthalten. Weitere Informationen\n\nIn Zwischenablage kopiertFehler beim Kopieren in die Zwischenablage. Versuche es später noch einmal.\n\nKopiertFehler beim KopierenKopieren\n\nÖffentlichen Link teilen\n\nÜber diesen öffentlichen Link, der 7 Tage lang gültig ist, wird ein Thread inklusive aller von dir hinzugefügten persönlichen Informationen geteilt. Dieser Link oder Kopien, die andere Nutzer davon erstellen, können nicht gelöscht werden. Wenn du Inhalte mit Dritten teilst, gelten deren Richtlinien.\nKopieren\n\nDer Link kann momentan nicht kopiert werden. Versuche es später noch einmal.\n\nFacebook\nGmail\nX\nReddit\nWhatsApp\n\nTeilen\n\nGute Antwort\n\nSchlechte Antwort\n\nMehr\n\nInformationen zu dieser Antwort\n\nGesparte Zeit\n\nLöschen\n\nHilfreich\n\nUmfassend\n\nSonstiges\n\nFalsch\n\nUnangemessen\n\nFunktioniert nicht\n\nNicht hilfreich\n\nSonstiges\nEine Kopie dieses Chats wird beigefügt.\n\nEine Kopie dieses Chats und die von dir geteilten Inhalte werden beigefügt.\n\nEine Kopie dieses Chats und die von dir geteilten Inhalte werden beigefügt.\n\nSenden\n\nVielen Dank für dein Feedback\n\nGoogle kann Konto- und Systemdaten verwenden, um dein Feedback nachzuvollziehen und seine Dienste zu verbessern. Dabei gelten die Datenschutzerklärung von Google und die Google-Nutzungsbedingungen. Bei rechtlichen Problemen kannst du einen Antrag auf Entfernung aus Rechtsgründen stellen.",
+       "sources": [
+        {
+         "url": "https://mein-handwerker-app.de/",
+         "position": 1
+        },
+        {
+         "url": "https://plancraft.com/de-de/funktionen/handwerker-app",
+         "position": 2
+        },
+        {
+         "url": "https://www.craftboxx.de/handwerker-app",
+         "position": 3
+        },
+        {
+         "url": "https://bosch-officeon.com/de/de/funktionen/handwerker-app/",
+         "position": 4
+        },
+        {
+         "url": "https://www.streit-software.de/wissen/handwerker-apps",
+         "position": 5
+        },
+        {
+         "url": "https://mein-handwerker-app.de/",
+         "position": 6
+        },
+        {
+         "url": "https://plancraft.com/de-de/funktionen/handwerker-app",
+         "position": 7
+        },
+        {
+         "url": "https://www.streit-software.de/wissen/handwerker-apps",
+         "position": 8
+        },
+        {
+         "url": "https://mein-handwerker-app.de/kunden-bereich-login/",
+         "position": 9
+        },
+        {
+         "url": "https://craftnote.de/",
+         "position": 10
+        },
+        {
+         "url": "https://www.craftboxx.de/handwerker-app",
+         "position": 11
+        },
+        {
+         "url": "https://bosch-officeon.com/de/de/funktionen/handwerker-app/",
+         "position": 12
+        },
+        {
+         "url": "https://das-programm.io/handwerker-app/",
+         "position": 13
+        },
+        {
+         "url": "https://www.lexware.de/partner/meinhandwerker-app/",
+         "position": 14
+        }
+       ],
+       "brands": [
+        {
+         "name": "MeinHandwerker",
+         "position": 1
+        },
+        {
+         "name": "Plancraft",
+         "position": 2
+        },
+        {
+         "name": "Craftboxx",
+         "position": 3
+        },
+        {
+         "name": "Bosch OfficeOn",
+         "position": 4
+        },
+        {
+         "name": "Lexware Office",
+         "position": 5
+        },
+        {
+         "name": "Sevdesk",
+         "position": 6
+        }
+       ],
+       "organic_urls": [
+        {
+         "url": "https://mein-handwerker-app.de/",
+         "position": 1
+        },
+        {
+         "url": "https://hero-software.de/features/app/handwerker-apps",
+         "position": 2
+        },
+        {
+         "url": "https://plancraft.com/de-de/funktionen/handwerker-app",
+         "position": 3
+        },
+        {
+         "url": "https://das-programm.io/handwerker-app/",
+         "position": 4
+        },
+        {
+         "url": "https://www.streit-software.de/wissen/handwerker-apps",
+         "position": 5
+        },
+        {
+         "url": "https://craftnote.de/",
+         "position": 6
+        },
+        {
+         "url": "https://bosch-officeon.com/de/de/funktionen/handwerker-app/",
+         "position": 7
+        },
+        {
+         "url": "https://www.lexware.de/partner/meinhandwerker-app/",
+         "position": 8
+        },
+        {
+         "url": "https://www.smapone.com/app-handwerker/",
+         "position": 9
+        },
+        {
+         "url": "https://www.craftboxx.de/handwerker-app",
+         "position": 10
+        },
+        {
+         "url": "https://www.mfr-deutschland.de/handwerk-mobile-app",
+         "position": 11
+        },
+        {
+         "url": "https://www.tooltime.app/app",
+         "position": 12
+        },
+        {
+         "url": "https://mein-handwerker-app.de/kunden-bereich-login/",
+         "position": 13
+        },
+        {
+         "url": "https://play.google.com/store/apps/details?id=de.bigtown.app.handwerk_doku&hl=de",
+         "position": 14
+        },
+        {
+         "url": "https://123erfasst.de/handwerker-apps/",
+         "position": 15
+        },
+        {
+         "url": "https://apps.apple.com/de/app/meinhandwerker-app/id1660028202",
+         "position": 16
+        },
+        {
+         "url": "https://plancraft.com/de-de/funktionen/zeiterfassung-handwerk",
+         "position": 17
+        },
+        {
+         "url": "https://www.meisterwerk.app/blog/mobile/handwerker-apps-im-vergleich",
+         "position": 18
+        },
+        {
+         "url": "https://www.handwerk-digitalisieren.de/handwerker-app/",
+         "position": 19
+        }
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "engine": {
+    "id": 204136,
+    "site_id": 13094375,
+    "base_name": "google_ai_mode",
+    "country_code": "de",
+    "region_name": null,
+    "lang_code": "de",
+    "region_settings": []
+   },
+   "prompts": {
+    "site_llm_id": 204136,
+    "site_id": 13094375,
+    "items": [],
+    "total": 0,
+    "limit": 100,
+    "offset": 0
+   },
+   "rankings": {
+    "archetype": "timeseries",
+    "title": "AI Result Tracker — prompt presence",
+    "subtitle": "0 group(s)",
+    "summary": "AI Result Tracker — prompt presence: no group data returned.",
+    "x": [],
+    "axes": {
+     "left": {
+      "label": "Presence",
+      "format": "percent",
+      "min": 0,
+      "max": 100
+     }
+    },
+    "series": [],
+    "notes": [
+     "Set mode=groups for the share-of-voice chart (per-prompt mode isn't charted)."
+    ]
+   },
+   "answers": []
+  }
+ ],
+ "unitsLeftBefore": 34671,
+ "unitsLeftAfter": 34671
+}
