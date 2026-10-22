@@ -795,3 +795,26 @@ describe("FactList (08-UI-SPEC G5, § 5.2)", () => {
     );
   });
 });
+
+// ---------------------------------------------------------------------------
+// Globale Reduced-Motion-Regel (08-13, Befund home-navigation.pw.cjs:501 WebKit)
+// ---------------------------------------------------------------------------
+
+describe("globals.css: reduzierte Bewegung ohne Übergänge", () => {
+  // Mit transition-duration 0.01ms erhielt jedes Element (Standard transition-property: all) einen Übergang;
+  // WebKit startete danach Hunderte tab-size-Übergänge, die unter Last sekundenlang „running“ blieben.
+  // Gesamtdauer 0 s (Dauer und Verzögerung) erzeugt laut CSS Transitions gar keinen Übergang.
+  const css = fs.readFileSync(path.resolve(import.meta.dirname, "../app/globals.css"), "utf8");
+  const block = css.match(/@media \(prefers-reduced-motion: reduce\)\s*\{[\s\S]*?\n\}/)?.[0] ?? "";
+
+  it("setzt Übergangsdauer und -verzögerung global auf 0 s", () => {
+    expect(block).toMatch(/transition-duration:\s*0s\s*!important/);
+    expect(block).toMatch(/transition-delay:\s*0s\s*!important/);
+    expect(block).not.toMatch(/transition-duration:\s*0\.01ms/);
+  });
+
+  it("beendet Animationen weiterhin sofort und nur einmal", () => {
+    expect(block).toMatch(/animation-duration:\s*0\.01ms\s*!important/);
+    expect(block).toMatch(/animation-iteration-count:\s*1\s*!important/);
+  });
+});
