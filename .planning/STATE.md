@@ -5,13 +5,13 @@ milestone_name: – Überblick
 status: executing
 stopped_at: Completed 08-05-PLAN.md
 last_updated: "2026-10-22T17:42:48.971Z"
-last_activity: 2026-10-22 – 08-05 OG-Grafik je Seite (pageOg-Vorlage, 24 Bilddateien, 131 statische OG-Bilder = Sitemap-URLs, max. 57,9 KB, twitter:image = og:image, Audit og 0 Verstöße)
+last_activity: 2026-10-22 – 08-06 Wettbewerberdaten (Spur B) nach main gemergt; Parallelbetrieb: 08-07 (Spur B), 08-08 (Spur D), 08-12 (Spur C) laufen
 progress:
   total_phases: 6
   completed_phases: 3
   total_plans: 37
-  completed_plans: 28
-  percent: 76
+  completed_plans: 29
+  percent: 78
 ---
 
 # State

@@ -194,7 +194,7 @@ Plans:
 
 **Wave 6** *(blocked on Wave 5 completion)*
 
-- [ ] 08-06-PLAN.md — Wettbewerber-Datenmodule mit Quelle und Abrufdatum, UWG-Prüfungen, HERO-Screenshot-Beleg (D-16)
+- [x] 08-06-PLAN.md — Wettbewerber-Datenmodule mit Quelle und Abrufdatum, UWG-Prüfungen, HERO-Screenshot-Beleg (D-16)
 
 **Wave 7** *(blocked on Wave 6 completion)*
 
