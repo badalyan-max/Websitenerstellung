@@ -27,8 +27,11 @@ export interface KeywordAssignment {
   reason?: string;
   secondary: string[];
   competitors: { domain: string; position: number | null; url: string | null }[];
-  /** Zielwerte; title inklusive Marken-Suffix " | CraftOS" aus dem Layout-Template */
-  target?: { title?: string; h1?: string; description?: string };
+  /**
+   * Zielwerte; title inklusive Marken-Suffix " | CraftOS" aus dem Layout-Template. ogTitle nur, wenn die H1
+   * länger als 90 Zeichen ist (Kurztitel für die OG-Grafik, 08-05, UI-SPEC § 7).
+   */
+  target?: { title?: string; h1?: string; description?: string; ogTitle?: string };
 }
 
 export const keywordMap = data as KeywordAssignment[];
