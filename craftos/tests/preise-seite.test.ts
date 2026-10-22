@@ -239,12 +239,9 @@ describe("Inhalte", () => {
     const z = (label: string) => m.rows.find((r) => r.label === label)!.cells;
     expect(z("CraftOS")).toEqual({ paket: voll.name, monat: euro(voll.monat), jahr: euro(monatAusJahr([cents(voll.jahr)]) / 100) });
 
-    const cn = paketVon(craftnote.preise.wert, "Büro Plus");
-    expect(z("Craftnote")).toEqual({
-      paket: "Büro Plus",
-      monat: "nicht angegeben",
-      jahr: `${betrag(cn.centsJahrJeMonat as number)} statt ${betrag(cn.stattCents as number)}`,
-    });
+    // HI-01: kleinstes buchbares Paket laut Datenmodul („Büro“); „Baustelle“ nur zusätzlich zu einem Büropaket.
+    const cn = paketVon(craftnote.preise.wert, "Büro");
+    expect(z("Craftnote")).toEqual({ paket: "Büro", monat: "nicht angegeben", jahr: betrag(cn.centsJahrJeMonat as number) });
     const pc = paketVon(plancraft.preise.wert, "Business");
     expect(z("plancraft")).toEqual({ paket: "Business", monat: betrag(pc.centsMonat as number), jahr: betrag(pc.centsJahrJeMonat as number) });
     const tt = paketVon(tooltime.preise.wert, "Solo");
@@ -262,17 +259,46 @@ describe("Inhalte", () => {
     for (const r of m.rows) for (const c of Object.values(r.cells)) expect(charCount(String(c)), String(c)).toBeLessThanOrEqual(24);
   });
 
-  it("Marktspanne: Antwort nennt Min und Max nur aus Zeilen mit belegtem Monatspreis", () => {
-    const monat = [cents(voll.monat), paketVon(plancraft.preise.wert, "Business").centsMonat as number, paketVon(tooltime.preise.wert, "Solo").centsMonat as number];
-    if (heroVariante(hero) === "A") monat.push(paketVon(hero.preise.wert, "HERO Select").centsMonat as number);
-    const min = Math.min(...monat);
-    const max = Math.max(...monat);
+  it("Marktspanne: Antwort nennt Min und Max je Zahlweise aus den Tabellenzeilen, ohne unbelegte Einschränkung", () => {
+    const pc = paketVon(plancraft.preise.wert, "Business");
+    const tt = paketVon(tooltime.preise.wert, "Solo");
+    const cn = paketVon(craftnote.preise.wert, "Büro");
+    const monat = [cents(voll.monat), pc.centsMonat as number, tt.centsMonat as number];
+    const jahr = [monatAusJahr([cents(voll.jahr)]), cn.centsJahrJeMonat as number, pc.centsJahrJeMonat as number, tt.centsJahrJeMonat as number];
+    if (heroVariante(hero) === "A") {
+      const h = paketVon(hero.preise.wert, "HERO Select");
+      monat.push(h.centsMonat as number);
+      jahr.push(h.centsJahrJeMonat as number);
+    }
+    const spanne = (werte: number[]) => ({ minCents: Math.min(...werte), maxCents: Math.max(...werte) });
+    expect(preise.marktspanne.spanne).toEqual({ monat: spanne(monat), jahr: spanne(jahr) });
+    const fmt = (c: number) =>
+      c === cents(voll.monat) || c === monatAusJahr([cents(voll.jahr)]) ? euro(c / 100) : betrag(c);
+    const m = spanne(monat);
+    const j = spanne(jahr);
     const lead = preise.preiseSections["was-kostet-handwerkersoftware"].lead;
-    const fmt = (c: number) => (c === cents(voll.monat) ? euro(voll.monat) : betrag(c));
     expect(lead).toBe(
-      `Das kleinste Paket mit Angeboten und Rechnungen kostet bei den Anbietern mit Monatspreis zwischen ${fmt(min)} und ${fmt(max)} netto im Monat; Jahresabos senken den Monatspreis, weitere Personen kosten je nach Anbieter extra.`,
+      `Das kleinste Paket kostet bei monatlicher Zahlung zwischen ${fmt(m.minCents)} und ${fmt(m.maxCents)} netto im Monat, im Jahresabo zwischen ${fmt(j.minCents)} und ${fmt(j.maxCents)} je Monat; weitere Personen kosten je nach Anbieter extra.`,
     );
-    expect(preise.marktspanne.spanne).toEqual({ minCents: min, maxCents: max });
+    // Craftnote „Büro“ (nur jährliche Abrechnung) liegt in der Jahresspanne.
+    expect(j.minCents).toBeLessThanOrEqual(cn.centsJahrJeMonat as number);
+    expect(j.maxCents).toBeGreaterThanOrEqual(cn.centsJahrJeMonat as number);
+    // Keine Einschränkung, die das Datenmodul nicht belegt (HI-01).
+    for (const t of [lead, preise.marktspanne.caption, ...preise.marktspanne.columns.map((c) => c.label)])
+      expect(t).not.toMatch(/Angebot|Rechnung/);
+  });
+
+  it("Marktspanne: jede Anbieterzeile zeigt das kleinste buchbare Paket (Ausschluss nur mit belegtem Mindestpaket)", () => {
+    const einstieg = (p: { centsMonat?: number; centsJahrJeMonat?: number }) => p.centsMonat ?? p.centsJahrJeMonat ?? Infinity;
+    for (const w of [craftnote, hero, plancraft, tooltime]) {
+      const zeile = preise.marktspanne.rows.find((r) => r.label === w.name)!;
+      const ausgeschlossen = preise.NUR_ZUSAETZLICH[w.slug] ?? [];
+      if (ausgeschlossen.length) expect(w.angaben?.mindestpaket?.quelle.url, w.name).toMatch(/^https:\/\//);
+      const buchbar = w.preise.wert.filter((p) => !ausgeschlossen.includes(p.paket));
+      const kleinstes = [...buchbar].sort((a, b) => einstieg(a) - einstieg(b))[0];
+      expect(String(zeile.cells.paket).startsWith(kleinstes.paket.replace(/^HERO\s+/, "")), w.name).toBe(true);
+    }
+    expect(preise.NUR_ZUSAETZLICH).toEqual({ craftnote: ["Baustelle"] });
   });
 
   it("Marktspanne: Quellenliste enthält alle Preisquellen, Pflichthinweis, Pakethinweis und Disclaimer", () => {

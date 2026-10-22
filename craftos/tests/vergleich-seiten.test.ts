@@ -460,7 +460,7 @@ describe("Craftnote", () => {
   it("Tabelle mit 9 Zeilen und Werten aus den Modulen, nur Funktionen, die CraftOS hat (Inhaber 22.10.2026)", () => {
     const zeilen = inhalt.tabelle.rows.map((r) => [r.label, r.craftos, r.wettbewerber]);
     expect(zeilen).toEqual([
-      ["Bürozugang mit Rechnungen, Jahresabo je Monat", VOLL_JAHR_MONAT, `${e(bueroPlus.centsJahrJeMonat)} statt ${e(bueroPlus.stattCents)}`],
+      ["Bürozugang (Büro Plus), Jahresabo je Monat", VOLL_JAHR_MONAT, `${e(bueroPlus.centsJahrJeMonat)} statt ${e(bueroPlus.stattCents)}`],
       ["Weitere mobile Person, Jahresabo je Monat", `${APP_JAHR_MONAT} (App-Lizenz)`, `${e(baustelle.centsJahrJeMonat)} (Baustelle)`],
       ["Kürzeste Laufzeit", "1 Monat", craftnote.laufzeit.wert],
       ["Testphase", `${site.trialDays} Tage`, `${craftnote.testphaseTage.wert} Tage`],

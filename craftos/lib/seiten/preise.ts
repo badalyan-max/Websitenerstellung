@@ -137,53 +137,79 @@ interface MarktZeile {
   jahr: string;
   /** Belegter Monatspreis in Cent (nur Zeilen mit Wert in Spalte „Monatlich“ zählen für die Spanne). */
   monatCents?: number;
+  /** Belegtes Jahresabo je Monat in Cent (Spalte „Jahresabo je Monat“). */
+  jahrCents?: number;
 }
 
-const heroA = heroVariante(hero) === "A";
-const heroSelect = heroA ? paket(hero, "HERO Select") : undefined;
-const craftnoteBueroPlus = paket(craftnote, "Büro Plus");
-const plancraftBusiness = paket(plancraft, "Business");
-const tooltimeSolo = paket(tooltime, "Solo");
+/**
+ * Pakete, die laut Anbieter nur zusätzlich zu einem anderen Paket buchbar sind und deshalb nicht als kleinstes
+ * Paket zählen (08-REVIEW HI-01). Jeder Eintrag braucht die belegte Angabe `angaben.mindestpaket` im Datenmodul
+ * (Craftnote: „Um Pakete buchen zu können, ist mindestens ein Büro-Paket nötig“).
+ */
+export const NUR_ZUSAETZLICH: Readonly<Partial<Record<Wettbewerber["slug"], readonly string[]>>> = {
+  craftnote: ["Baustelle"],
+};
+
+/** Einstiegspreis eines Pakets: monatliche Zahlweise, sonst Jahresabo je Monat (Anbieter ohne Monatspreis). */
+const einstieg = (p: Preis) => p.centsMonat ?? p.centsJahrJeMonat;
+
+/**
+ * Kleinstes buchbares Paket laut Datenmodul (HI-01): günstigster Einstiegspreis ohne `NUR_ZUSAETZLICH`. Ohne
+ * Preiszahlen (HERO Variante B) das erste genannte Paket. Keine Auswahl nach Funktionsumfang ohne Beleg.
+ */
+function kleinstesPaket(w: Wettbewerber): Preis {
+  const ausgeschlossen = NUR_ZUSAETZLICH[w.slug] ?? [];
+  if (ausgeschlossen.length && !w.angaben?.mindestpaket)
+    throw new Error(`preise: ${w.name} schließt ${ausgeschlossen.join(", ")} ohne belegte Angabe angaben.mindestpaket aus.`);
+  for (const name of ausgeschlossen) paket(w, name);
+  const buchbar = w.preise.wert.filter((p) => !ausgeschlossen.includes(p.paket));
+  const mitPreis = buchbar.filter((p) => einstieg(p) !== undefined);
+  if (mitPreis.length === 0) return buchbar[0];
+  return mitPreis.reduce((a, b) => (einstieg(b)! < einstieg(a)! ? b : a));
+}
+
+function marktZeile(w: Wettbewerber): MarktZeile {
+  const p = kleinstesPaket(w);
+  const name = w.slug === "hero" ? p.paket.replace(/^HERO\s+/, "") : personenPaket(p);
+  if (w.slug === "hero" && heroVariante(hero) !== "A")
+    return { label: w.name, paket: name, monat: HERO_OHNE_ZAHLEN, jahr: HERO_OHNE_ZAHLEN };
+  return {
+    label: w.name,
+    paket: name,
+    monat: monatZelle(p),
+    jahr: jahrZelle(p),
+    monatCents: p.centsMonat,
+    jahrCents: p.centsJahrJeMonat,
+  };
+}
+
+const verglichen = [craftnote, hero, plancraft, tooltime] as const;
+const craftosJahrJeMonatCents = monatAusJahr([cents(voll.jahr)]);
 
 const marktZeilen: MarktZeile[] = [
-  { label: "CraftOS", paket: voll.name, monat: euro(voll.monat), jahr: jahrJeMonat(voll.jahr), monatCents: cents(voll.monat) },
   {
-    label: craftnote.name,
-    paket: craftnoteBueroPlus.paket,
-    monat: monatZelle(craftnoteBueroPlus),
-    jahr: jahrZelle(craftnoteBueroPlus),
-    monatCents: craftnoteBueroPlus.centsMonat,
+    label: "CraftOS",
+    paket: voll.name,
+    monat: euro(voll.monat),
+    jahr: jahrJeMonat(voll.jahr),
+    monatCents: cents(voll.monat),
+    jahrCents: craftosJahrJeMonatCents,
   },
-  heroSelect
-    ? {
-        label: hero.name,
-        paket: heroSelect.paket.replace(/^HERO\s+/, ""),
-        monat: monatZelle(heroSelect),
-        jahr: jahrZelle(heroSelect),
-        monatCents: heroSelect.centsMonat,
-      }
-    : { label: hero.name, paket: "Select", monat: HERO_OHNE_ZAHLEN, jahr: HERO_OHNE_ZAHLEN },
-  {
-    label: plancraft.name,
-    paket: plancraftBusiness.paket,
-    monat: monatZelle(plancraftBusiness),
-    jahr: jahrZelle(plancraftBusiness),
-    monatCents: plancraftBusiness.centsMonat,
-  },
-  {
-    label: tooltime.name,
-    paket: personenPaket(tooltimeSolo),
-    monat: monatZelle(tooltimeSolo),
-    jahr: jahrZelle(tooltimeSolo),
-    monatCents: tooltimeSolo.centsMonat,
-  },
+  ...verglichen.map(marktZeile),
 ];
 
-const monatsWerte = marktZeilen.flatMap((z) => (z.monatCents === undefined ? [] : [z.monatCents]));
-const spanne = { minCents: Math.min(...monatsWerte), maxCents: Math.max(...monatsWerte) };
+/** Kleinster und größter belegter Wert einer Spalte (nur Zeilen mit Betrag in dieser Spalte). */
+function spanneVon(werte: (number | undefined)[]): { minCents: number; maxCents: number } {
+  const belegt = werte.filter((c): c is number => c !== undefined);
+  return { minCents: Math.min(...belegt), maxCents: Math.max(...belegt) };
+}
+const spanne = {
+  monat: spanneVon(marktZeilen.map((z) => z.monatCents)),
+  jahr: spanneVon(marktZeilen.map((z) => z.jahrCents)),
+};
 /** CraftOS-Werte immer mit Cent (Preisliste), Wettbewerber in Anbieterschreibweise. */
-const spannenBetrag = (c: number) => (c === cents(voll.monat) ? euro(voll.monat) : betrag(c));
-const verglichen = [craftnote, hero, plancraft, tooltime] as const;
+const spannenBetrag = (c: number) =>
+  c === cents(voll.monat) || c === craftosJahrJeMonatCents ? euro(c / 100) : betrag(c);
 const anbieterStand = germanDate(verglichen.map(standVon).reduce((a, b) => (b < a ? b : a)));
 
 export const marktspanne: {
@@ -194,7 +220,7 @@ export const marktspanne: {
   note: string;
   sources: ComparisonSource[];
   disclaimer: string;
-  spanne: { minCents: number; maxCents: number };
+  spanne: Record<"monat" | "jahr", { minCents: number; maxCents: number }>;
 } = {
   caption: "Einstiegspakete im Vergleich",
   rowHeader: "Anbieter",
@@ -229,7 +255,8 @@ export const preiseSections = {
   },
   "was-kostet-handwerkersoftware": {
     title: "Was kostet eine Handwerkersoftware pro Monat?",
-    lead: `Das kleinste Paket mit Angeboten und Rechnungen kostet bei den Anbietern mit Monatspreis zwischen ${spannenBetrag(spanne.minCents)} und ${spannenBetrag(spanne.maxCents)} netto im Monat; Jahresabos senken den Monatspreis, weitere Personen kosten je nach Anbieter extra.`,
+    // HI-01: Spannen je Zahlweise aus den Tabellenzeilen; keine Einschränkung, die das Datenmodul nicht belegt.
+    lead: `Das kleinste Paket kostet bei monatlicher Zahlung zwischen ${spannenBetrag(spanne.monat.minCents)} und ${spannenBetrag(spanne.monat.maxCents)} netto im Monat, im Jahresabo zwischen ${spannenBetrag(spanne.jahr.minCents)} und ${spannenBetrag(spanne.jahr.maxCents)} je Monat; weitere Personen kosten je nach Anbieter extra.`,
   },
   faq: {
     title: "Häufige Fragen zu den Preisen",

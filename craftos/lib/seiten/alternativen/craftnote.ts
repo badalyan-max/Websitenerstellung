@@ -32,7 +32,7 @@ export const craftnoteSeite: Seitenmodul = (k) => {
     answer: `CraftOS ist eine Craftnote-Alternative mit Angeboten, Rechnungen, Plantafel und Mobile-App in der Voll-Lizenz für ${c.vollMonat} netto pro Person und Monat. Craftnote Büro Plus kostet laut Preisseite ${bp} statt ${bpStatt} netto pro Nutzer und Monat bei jährlicher Abrechnung.`,
     vertragsname: "Craftnote-Vertrags",
     rows: [
-      k.zeile("Bürozugang mit Rechnungen, Jahresabo je Monat", c.vollJahrJeMonat, `${bp} statt ${bpStatt}`, w.preise),
+      k.zeile("Bürozugang (Büro Plus), Jahresabo je Monat", c.vollJahrJeMonat, `${bp} statt ${bpStatt}`, w.preise),
       k.zeile(
         "Weitere mobile Person, Jahresabo je Monat",
         `${c.appJahrJeMonat} (App-Lizenz)`,
