@@ -170,7 +170,64 @@ Plans:
   4. Zentrale Seiten haben unter jeder Frage-Überschrift eine Antwort in höchstens 300 Zeichen; `llms.txt`, Sitemap und IndexNow-Meldung werden bei jedem Release aktualisiert.
   5. Jede getrackte KI-Frage und jede Content-Lücke mit KD < 20 aus der Keyword-Map hat eine zitierfähige Zielseite oder einen Abschnitt mit Antwort zuerst, belegten Fakten und FAQPage-Schema.
 
-**Plans**: TBD
+**Plans**: 14 plans (14 Wellen, strikt sequentiell)
+Plans:
+**Wave 1**
+
+- [ ] 08-01-PLAN.md — Prüfinfrastruktur: Post-Build-SEO-Audit, D-23-Schutztests, KeyFacts-Kurzform wettbewerber:, metaFor, Prompt-Mapping (20 Einträge), Anker-Konvention
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 08-02-PLAN.md — Brotkrumen sitewide als v2-Baustein mit einer Schemaquelle, neun BreadcrumbList-Stellen in einem Zug ersetzt, Phase-8-Budgets
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [ ] 08-03-PLAN.md — Bausteine G1–G5: FunktionsKopf mit Antwort, SectionHeader-Antwort-Lead, FaqList answerMax, ComparisonTable mit Quellen, FitPanels, FactList
+
+**Wave 4** *(blocked on Wave 3 completion)*
+
+- [ ] 08-04-PLAN.md — Sitewide Titel, Description und H1 aus der Keyword-Map (D-06, D-17, D-20), Audit streng
+
+**Wave 5** *(blocked on Wave 4 completion)*
+
+- [ ] 08-05-PLAN.md — OG-Vorlage pageOg und statische OG-Grafik je Segment mit generateStaticParams, twitter:image = og:image
+
+**Wave 6** *(blocked on Wave 5 completion)*
+
+- [ ] 08-06-PLAN.md — Wettbewerber-Datenmodule mit Quelle und Abrufdatum, UWG-Prüfungen, HERO-Screenshot-Beleg (D-16)
+
+**Wave 7** *(blocked on Wave 6 completion)*
+
+- [ ] 08-07-PLAN.md — /preise answer-first mit Preistabelle, Marktspanne und FAQ auf v2
+
+**Wave 8** *(blocked on Wave 7 completion)*
+
+- [ ] 08-08-PLAN.md — Alternativen-Vorlage mit prüfendem Builder, plancraft- und Craftnote-Alternative
+
+**Wave 9** *(blocked on Wave 8 completion)*
+
+- [ ] 08-09-PLAN.md — HERO- und ToolTime-Alternative
+
+**Wave 10** *(blocked on Wave 9 completion)*
+
+- [ ] 08-10-PLAN.md — /vergleich als v2-Hub mit Marktübersicht und Pflichthinweis, Logos und lib/comparison.ts entfernt, Schutztests synchron
+
+**Wave 11** *(blocked on Wave 10 completion)*
+
+- [ ] 08-11-PLAN.md — Seite „Handwerkersoftware für kleine Betriebe“ mit BMF-Quellen, fünfte Hub-Kachel, Footer-Spalte „Vergleiche“, Ratgeber-Links
+
+**Wave 12** *(blocked on Wave 11 completion)*
+
+- [ ] 08-12-PLAN.md — /fakten-ueber-craftos (Was ist CraftOS?, D-25), /craft-ai und /gobd auf v2
+
+**Wave 13** *(blocked on Wave 12 completion)*
+
+- [ ] 08-13-PLAN.md — Browserprüfungen Phase 8 und vollständiges strenges SEO-Audit
+
+**Wave 14** *(blocked on Wave 13 completion; Code-Review-Gate des Orchestrators vorher)*
+
+- [ ] 08-14-PLAN.md — Phasen-Gate, live-check-Erweiterung, Ship-Gate über Gesamtdiff, Push, IndexNow, SE-Ranking-Abgleich, Etappenmessung, Rollout-Nachweis
+
 **UI hint**: yes
 
 ### Phase 9: Gewerke und Wissensinhalte
@@ -211,6 +268,6 @@ Plans:
 | 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
 | 6. Startseite, Navigation und Funktionsübersicht | 6/6 | Complete    | 2026-10-21 |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 9/9 | Complete    | 2026-10-22 |
-| 8. SEO und KI-Sichtbarkeit | 0/TBD | Not started | - |
+| 8. SEO und KI-Sichtbarkeit | 0/14 | Planned | - |
 | 9. Gewerke und Wissensinhalte | 0/TBD | Not started | - |
 | 10. Abschlussaudit | 0/TBD | Not started | - |
