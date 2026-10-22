@@ -52,6 +52,30 @@
   color: #bcbcc6;
 }
 
+/* Antwortsatz statt Lead (08-UI-SPEC G1): 16/400 < 768, 20/400 ≥ 768, #F4F4F5, max. 60ch, 16 px unter der H1. */
+.answer {
+  margin: 16px 0 0;
+  max-width: 60ch;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-wrap: pretty;
+  color: #f4f4f5;
+}
+/* Stand-Zeile: Label 14/400 #BCBCC6, 8 px unter der Antwort; Stand → CTA 24 px in jeder Breite. */
+.stand {
+  margin: 8px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+  color: #bcbcc6;
+}
+/* Ohne Visual (G1): einspaltig, Textspalte max. 800 px. */
+.kopf[data-layout="einspaltig"] .copy {
+  max-width: 800px;
+}
+
 /* CTA-Gruppe: unter 768 px gestapelt (CTA volle Breite), darüber nebeneinander mit 24 px Lücke. */
 .actions {
   display: flex;
@@ -140,7 +164,8 @@
   .crumbs {
     margin-bottom: 24px;
   }
-  .lead {
+  .lead,
+  .answer {
     font-size: 20px;
     line-height: 1.4;
   }
@@ -152,6 +177,9 @@
     row-gap: 8px;
     margin-top: 32px;
   }
+  .stand + .actions {
+    margin-top: 24px;
+  }
   .secondary {
     align-self: auto;
   }
@@ -162,6 +190,13 @@
 @media (min-width: 1024px) {
   .kopf {
     padding-block: 24px 96px;
+  }
+  /* Kopf unten ohne Visual 48/64/64 (08-UI-SPEC „Spacing Scale“); mit Visual unverändert 96 [07]. */
+  .kopf[data-layout="einspaltig"] {
+    padding-bottom: 64px;
+  }
+  .kopf[data-layout="einspaltig"] .inner {
+    grid-template-columns: minmax(0, 1fr);
   }
   .crumbs {
     margin-bottom: 32px;

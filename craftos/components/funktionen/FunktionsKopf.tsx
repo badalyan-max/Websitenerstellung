@@ -20,11 +20,19 @@ export interface FunktionsKopfProps {
   h1: string;
   /** Kopfwort-Token; steht wörtlich in h1 und wird nie getrennt (nowrap-Span). */
   keyword: string;
-  /** Kurznutzen, genau ein Satz ≤ 110 Zeichen. */
-  lead: string;
+  /** Kurznutzen, genau ein Satz ≤ 110 Zeichen. Nicht zusammen mit answer. */
+  lead?: string;
+  /**
+   * Antwortsatz direkt unter der H1 (08-UI-SPEC G1, D-03/D-05): ≤ TEXT_BUDGET.answer (300), 1–2 Sätze;
+   * rendert den Antwortabsatz mit Anker #antwort und data-answer statt des Leads (Prompt-Ziel).
+   */
+  answer?: string;
+  /** Label-Zeile 8 px unter der Antwort, z. B. „Anbieterangaben Stand …, Quellen unter der Tabelle“. */
+  stand?: string;
   /** Detailseiten: Pflicht; /app (stores): entfällt. */
   secondary?: { label: string; href: string };
-  visual: KopfVisual;
+  /** Optional (G1): ohne Visual kein Produktbereich, einspaltig, Textspalte max. 800 px. */
+  visual?: KopfVisual;
   /** Nur /app: StoreLinks unter dem CTA und QR-Codes ab 1024 px (Abweichung B8). */
   stores?: boolean;
   /** Brotkrumen-Kette aus crumbsFor(path) – erste Zeile des Kopfs (08-UI-SPEC G1/G6). */
@@ -40,6 +48,7 @@ const QR = [
 
 /**
  * Seitenkopf der Funktionsdetailseiten und von /app (07-UI-SPEC F1; D-02, D-15, B1, B8).
+ * Phase 8 (G1, C4): visual optional (dann einspaltig), answer statt lead als Antwortabsatz (#antwort, data-answer), stand als Label-Zeile.
  * Aufbau wie HomeHero, davor die Brotkrumen-Zeile (08-UI-SPEC G1/G6): Eyebrow, Keyword-H1, ein Satz Kurznutzen, Test-CTA und Sekundärlink, daneben die
  * vereinfachte Produktoberfläche im Geräterahmen. Server Component ohne Animation; die H1 ist das
  * LCP-Element, das Visual wird nicht lazy geladen. Budgets und Kopfwort werden beim Rendern geprüft.
@@ -50,6 +59,8 @@ export function FunktionsKopf({
   h1,
   keyword,
   lead,
+  answer,
+  stand,
   secondary,
   visual,
   stores = false,
@@ -62,10 +73,23 @@ export function FunktionsKopf({
   if (position < 0) {
     throw new Error(`FunktionsKopf: H1 enthält das Kopfwort ‚${keyword}‘ nicht – keyword-map.json oder Datenmodul prüfen.`);
   }
-  assertTextBudget("pageHead.kopfLead", lead, TEXT_BUDGET.pageHead.kopfLead);
-  const sentences = sentenceCount(lead);
-  if (sentences !== 1) {
-    throw new Error(`FunktionsKopf: Lead hat ${sentences} Sätze – genau einen Satz schreiben.`);
+  if (lead !== undefined && answer !== undefined) {
+    throw new Error("FunktionsKopf: lead und answer gleichzeitig gesetzt – nur answer verwenden.");
+  }
+  if (answer !== undefined) {
+    assertTextBudget("answer", answer, TEXT_BUDGET.answer);
+    const saetze = sentenceCount(answer);
+    if (saetze < 1 || saetze > 2) {
+      throw new Error(`FunktionsKopf: Antwort hat ${saetze} Sätze – ein bis zwei Sätze schreiben.`);
+    }
+  } else if (lead !== undefined) {
+    assertTextBudget("pageHead.kopfLead", lead, TEXT_BUDGET.pageHead.kopfLead);
+    const sentences = sentenceCount(lead);
+    if (sentences !== 1) {
+      throw new Error(`FunktionsKopf: Lead hat ${sentences} Sätze – genau einen Satz schreiben.`);
+    }
+  } else {
+    throw new Error("FunktionsKopf: lead oder answer angeben.");
   }
   if (!stores && !secondary) {
     throw new Error("FunktionsKopf: Sekundärlink fehlt – secondary angeben (nur die /app-Variante mit stores kommt ohne aus).");
@@ -80,6 +104,7 @@ export function FunktionsKopf({
       data-funktions-kopf=""
       data-abschnitt="kopf"
       data-tone="dark"
+      data-layout={visual ? undefined : "einspaltig"}
     >
       <div className={`site-container ${s.crumbs}`}>
         <Breadcrumbs items={crumbs} tone="dark" schema={crumbsSchema} />
@@ -94,7 +119,18 @@ export function FunktionsKopf({
             </span>
             {nach}
           </h1>
-          <p className={s.lead}>{lead}</p>
+          {answer !== undefined ? (
+            <p id="antwort" data-answer="" className={s.answer}>
+              {answer}
+            </p>
+          ) : (
+            <p className={s.lead}>{lead}</p>
+          )}
+          {stand ? (
+            <p data-stand="" className={s.stand}>
+              {stand}
+            </p>
+          ) : null}
           <div className={s.actions}>
             <a href={site.ctaUrl} className="v2-btn-cta" data-track="trial">
               {`${site.trialDays} Tage kostenlos testen`}
@@ -131,9 +167,11 @@ export function FunktionsKopf({
             </div>
           ) : null}
         </div>
-        <div className={s.product} data-visual={visual.kind}>
-          <KopfVisualRahmen visual={visual} />
-        </div>
+        {visual ? (
+          <div className={s.product} data-visual={visual.kind}>
+            <KopfVisualRahmen visual={visual} />
+          </div>
+        ) : null}
       </div>
     </section>
   );
