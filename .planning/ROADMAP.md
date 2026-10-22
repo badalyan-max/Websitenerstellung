@@ -206,7 +206,7 @@ Plans:
 
 **Wave 9** *(blocked on Wave 8 completion)*
 
-- [ ] 08-09-PLAN.md — HERO- und ToolTime-Alternative
+- [x] 08-09-PLAN.md — HERO- und ToolTime-Alternative
 
 **Wave 10** *(blocked on Wave 9 completion)*
 

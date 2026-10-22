@@ -5,13 +5,13 @@ milestone_name: – Überblick
 status: executing
 stopped_at: Completed 08-05-PLAN.md
 last_updated: "2026-10-22T17:42:48.971Z"
-last_activity: 2026-10-22 – 08-12 Fakten/Craft AI/GoBD (Spur C) gemergt; 08-09 (Spur D) läuft; Phase 9 UI-SPEC in Arbeit
+last_activity: 2026-10-22 – 08-09 HERO/ToolTime-Alternativen + Inhaberregel gemergt; als Nächstes 08-10 (Vergleichshub)
 progress:
   total_phases: 6
   completed_phases: 3
   total_plans: 37
-  completed_plans: 32
-  percent: 86
+  completed_plans: 33
+  percent: 89
 ---
 
 # State
