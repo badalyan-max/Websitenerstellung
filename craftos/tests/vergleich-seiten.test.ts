@@ -1299,7 +1299,10 @@ describe("kleine Betriebe Inhalte", () => {
     const { kleineBetriebe: kb } = await laden();
     const quellen = kb.kriterien.quellen;
     expect(quellen.length).toBeGreaterThanOrEqual(2);
-    const heute = new Date().toISOString().slice(0, 10);
+    // LO-05: lokales Datum wie pruefeWettbewerber (isoHeute), nicht UTC – sonst zwischen 0 und 2 Uhr MESZ sporadisch rot.
+    const jetzt = new Date();
+    const zwei = (n: number) => String(n).padStart(2, "0");
+    const heute = `${jetzt.getFullYear()}-${zwei(jetzt.getMonth() + 1)}-${zwei(jetzt.getDate())}`;
     for (const q of quellen) {
       expect(q.url.startsWith("https://"), q.url).toBe(true);
       expect(new URL(q.url).hostname.endsWith("bundesfinanzministerium.de"), q.url).toBe(true);
