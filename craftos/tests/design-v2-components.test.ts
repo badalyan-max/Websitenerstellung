@@ -818,3 +818,17 @@ describe("globals.css: reduzierte Bewegung ohne Übergänge", () => {
     expect(block).toMatch(/animation-iteration-count:\s*1\s*!important/);
   });
 });
+
+describe("FeatureCard-Raster: einspaltig mit minmax(0, 1fr) unter 768 px", () => {
+  // Ohne explizite Spalte behielt WebKit nach einem Größenwechsel 1440 → 360 px die implizite Spur mit 410 px
+  // (Seitenüberlauf auf /funktionen und den Detailseiten, function-illustrations.pw.cjs:443). grid-cols-1 begrenzt
+  // die Spur auf die Containerbreite.
+  for (const datei of ["app/funktionen/page.tsx", "components/funktionen/FunktionsDetail.tsx", "app/styleguide/page.tsx"]) {
+    it(datei, () => {
+      const quelle = fs.readFileSync(path.resolve(import.meta.dirname, "..", datei), "utf8");
+      const raster = [...quelle.matchAll(/className="(grid [^"]*md:grid-cols-2[^"]*lg:grid-cols-3[^"]*)"/g)].map((m) => m[1]);
+      expect(raster.length, datei).toBeGreaterThan(0);
+      for (const klassen of raster) expect(klassen.split(" "), klassen).toContain("grid-cols-1");
+    });
+  }
+});
