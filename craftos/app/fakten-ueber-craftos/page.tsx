@@ -106,7 +106,7 @@ export default function Page() {
           </div>
           <p className="notice mt-10">
             Portal-Onlinezahlungen werden nicht als verfügbar angeboten.
-            DATANORM-v5-Kompatibilität, automatische ELSTER-Übermittlung und
+            Automatische ELSTER-Übermittlung und
             vollständig autonome Buchhaltung werden nicht zugesagt.
           </p>
           <p className="text-sm text-ink-600 mt-8">
