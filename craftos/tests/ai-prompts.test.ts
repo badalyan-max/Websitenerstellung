@@ -13,6 +13,19 @@ const ROOT = path.resolve(import.meta.dirname, "..");
 const toPath = (url: string) => new URL(url).pathname.replace(/\/$/, "") || "/";
 const ohneAnker = (t: string) => t.split("#")[0];
 
+// Die neun SEO-Wissensseiten der Phase 9 (09-CONTEXT <specifics>, D-11), die die Prompt-Lücken schließen.
+const WISSENSSEITEN_PHASE9 = [
+  "/hilfe/leistungszeitraum-rechnung",
+  "/hilfe/regiebericht",
+  "/hilfe/bedenkenanzeige",
+  "/blog/maengelanzeige",
+  "/blog/reverse-charge-bauleistungen",
+  "/blog/materialliste-vorlage",
+  "/blog/gaeb-formate",
+  "/blog/bauablaufplan",
+  "/blog/arbeitszeitnachweis-vorlage",
+] as const;
+
 type Eintrag = { engine: string; promptLlmId: number; prompt: string; target: string; phase: number };
 type RohEngine = { engine: { base_name: string }; prompts?: { items?: { prompt_llm_id: string; prompt: string }[] } };
 const prompts = mapping.prompts as Eintrag[];
@@ -87,12 +100,18 @@ describe("ai-prompts-targets.json", () => {
     expect(ziel("chatgpt", "Software für Malerbetriebe")).toMatchObject({ target: "/gewerke/maler", phase: 9 });
   });
 
-  it("luecken enthält genau die geplanten Phase-9-Pfade der Keyword-Map (D-11)", () => {
-    const soll = keywordMap.filter((k) => k.status === "geplant" && k.phase === 9).map((k) => k.path).sort();
-    expect(soll.length).toBeGreaterThan(0);
+  it("luecken enthält genau die 9 Wissensseiten der Phase 9 (D-11, K-1)", () => {
+    // K-1: feste Liste statt Kopplung an „geplant“ in der Keyword-Map – die Map führt in Phase 9 weitere
+    // geplante Pfade (Fundament 09-01) und stellt Wissensseiten nach ihrer Veröffentlichung auf „bestehend“.
     const luecken = mapping.luecken as { path: string; phase: number }[];
-    expect(luecken.map((l) => l.path).sort()).toEqual(soll);
-    for (const l of luecken) expect(l.phase, l.path).toBe(9);
+    expect(luecken.map((l) => l.path).sort()).toEqual([...WISSENSSEITEN_PHASE9].sort());
+    for (const l of luecken) {
+      expect(l.phase, l.path).toBe(9);
+      const eintrag = keywordMap.find((k) => k.path === l.path);
+      expect(eintrag, `Keyword-Map-Eintrag für ${l.path}`).toBeDefined();
+      expect(eintrag!.phase, l.path).toBe(9);
+      expect(["geplant", "bestehend"], l.path).toContain(eintrag!.status);
+    }
   });
 });
 
