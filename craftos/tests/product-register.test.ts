@@ -23,7 +23,19 @@ describe("publication basis", () => {
     }
     expect(register.basis.web.tag.startsWith("v4.")).toBe(true);
     expect(register.basis.mobile.tag.startsWith("mobile-v")).toBe(true);
+    // IN-04: echte Tags, keine `git describe`-Ausgabe („…-2-g837aab4f“).
+    for (const repo of [register.basis.web, register.basis.mobile]) expect(repo.tag).not.toMatch(/-\d+-g[0-9a-f]+$/);
     expect(register.basis.checkedAt).toBe("2026-10-22");
+  });
+  it.skipIf(!fs.existsSync(WEB) || !fs.existsSync(MOBILE))("Tags lösen lokal genau auf den eingetragenen Commit auf (IN-04)", () => {
+    const register = getProductRegister();
+    for (const [repo, basis] of [
+      [WEB, register.basis.web],
+      [MOBILE, register.basis.mobile],
+    ] as const) {
+      const commit = execFileSync("git", ["-C", repo, "rev-parse", `${basis.tag}^{commit}`], { encoding: "utf8" }).trim();
+      expect(commit, basis.tag).toBe(basis.commit);
+    }
   });
   it("links every advertised platform to source evidence", () => {
     const register = getProductRegister();

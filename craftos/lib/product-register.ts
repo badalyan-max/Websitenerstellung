@@ -17,7 +17,8 @@ export const productBasis = {
   },
   mobile: {
     ref: "origin/release",
-    tag: "mobile-v1.0.0-test.95-2-g837aab4f",
+    // IN-04: echter Tag auf genau diesem Commit (vorher `git describe`-Ausgabe „mobile-v1.0.0-test.95-2-g837aab4f“).
+    tag: "mobile-v1.0.0-test.96",
     commit: "837aab4f5c1d3cd5411f41e1d720b2aa274e2cac",
   },
 } as const;
