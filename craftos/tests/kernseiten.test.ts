@@ -6,6 +6,8 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import { createElement, type ReactElement } from "react";
+import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { TEXT_BUDGET, charCount, sentenceCount } from "@/components/v2/budgets";
 import { KEY_FACT_SOURCE } from "@/components/v2/KeyFacts";
@@ -13,6 +15,7 @@ import { euro, germanDate } from "@/lib/format";
 import { funktionen } from "@/lib/funktionen";
 import { getFunktionsgruppen } from "@/lib/funktionsgruppen";
 import { mobileLocales, mobileOffline } from "@/lib/product-register";
+import { webPageSchema } from "@/lib/schema";
 import { creditPakete, creditWertEuro, site, startCredits, tarife } from "@/lib/site";
 import { zielwerte } from "@/lib/seo-meta";
 import * as craftAi from "@/lib/seiten/craft-ai";
@@ -387,5 +390,144 @@ describe("Wortregeln und Literale (T-08-32)", () => {
   it("Preisliteral-Prüfung in pricing-parity umfasst die drei Module", () => {
     const parity = read("tests/pricing-parity.test.ts");
     for (const file of MODULE) expect(parity).toContain(`"${file}"`);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Task 2: gerenderte Seiten (renderToString) – Kopf, Abschnitte, Antworten, JSON-LD, Altbausteine
+// ---------------------------------------------------------------------------
+
+type Ld = Record<string, unknown> & { "@type"?: string };
+
+const decode = (v: string) =>
+  v
+    .replace(/<[^>]+>/g, "")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#x27;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/\s+/g, " ")
+    .trim();
+
+function ldBlocks(html: string): Ld[] {
+  return [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]) as Ld);
+}
+
+/** Sichtbare FAQ-Fragen: Text der summary ohne aria-hidden-Symbol. */
+function summaryFragen(html: string): string[] {
+  return [...html.matchAll(/<summary[^>]*>([\s\S]*?)<\/summary>/g)].map((m) =>
+    decode(m[1].replace(/<span[^>]*aria-hidden="true"[^>]*>[\s\S]*?<\/span>/g, "")),
+  );
+}
+
+const SEITEN = [
+  { pfad: "/fakten-ueber-craftos", ids: fakten.FAKTEN_SECTION_IDS, laden: () => import("@/app/fakten-ueber-craftos/page") },
+  { pfad: "/craft-ai", ids: craftAi.CRAFT_AI_SECTION_IDS, laden: () => import("@/app/craft-ai/page") },
+  { pfad: "/gobd", ids: gobd.GOBD_SECTION_IDS, laden: () => import("@/app/gobd/page") },
+] as const;
+
+async function rendern(laden: () => Promise<{ default: () => ReactElement }>) {
+  const Page = (await laden()).default;
+  return renderToString(createElement(Page));
+}
+
+describe("gerendert", () => {
+  for (const seite of SEITEN) {
+    describe(seite.pfad, () => {
+      it("eine H1 aus der Keyword-Map, Abschnittsfolge laut UI-SPEC, H2-ids = Abschnitts-ids", async () => {
+        const html = await rendern(seite.laden);
+        const h1 = [...html.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/g)].map((m) => decode(m[1]));
+        expect(h1).toEqual([zielwerte(seite.pfad).h1]);
+        const abschnitte = [...html.matchAll(/data-abschnitt="([^"]+)"/g)].map((m) => m[1]);
+        expect(abschnitte).toEqual([...seite.ids]);
+        for (const id of seite.ids.filter((i) => i !== "kopf" && i !== "cta")) {
+          expect(html, id).toContain(`aria-labelledby="${id}"`);
+          expect(html, id).toMatch(new RegExp(`<h2 id="${id}"`));
+        }
+      });
+
+      it("jede Frage-H2 hat direkt darunter eine Antwort ≤ 300 mit data-answer", async () => {
+        const html = await rendern(seite.laden);
+        const probleme: string[] = [];
+        for (const m of html.matchAll(/<h2[^>]*>([\s\S]*?)<\/h2>(<p[^>]*>)([\s\S]*?)<\/p>/g)) {
+          const titel = decode(m[1]);
+          if (!titel.endsWith("?")) continue;
+          if (!m[2].includes("data-answer")) probleme.push(`${titel}: ohne data-answer`);
+          if (charCount(decode(m[3])) > 300) probleme.push(`${titel}: Antwort zu lang`);
+        }
+        expect(probleme).toEqual([]);
+      });
+
+      it("JSON-LD: genau eine BreadcrumbList (2 Glieder), eine FAQPage = sichtbare FAQ, ein WebPage", async () => {
+        const html = await rendern(seite.laden);
+        const ld = ldBlocks(html);
+        const typ = (t: string) => ld.filter((b) => b["@type"] === t);
+        expect(ld.filter((b) => Array.isArray(b["@graph"]))).toEqual([]);
+        const crumbs = typ("BreadcrumbList");
+        expect(crumbs).toHaveLength(1);
+        expect((crumbs[0].itemListElement as unknown[]).length).toBe(2);
+        const faqs = typ("FAQPage");
+        expect(faqs).toHaveLength(1);
+        const schemaFragen = (faqs[0].mainEntity as { name: string }[]).map((q) => q.name);
+        expect(schemaFragen).toEqual(summaryFragen(html));
+        const web = typ("WebPage");
+        expect(web).toHaveLength(1);
+        expect(web[0].url).toBe(site.url + seite.pfad);
+        expect(web[0].name).toBe(zielwerte(seite.pfad).h1);
+      });
+
+      it("keine Altbausteine: kein PageHero, kein TrialCta, kein ui/Faq; CTA auf site.ctaUrl", async () => {
+        const html = await rendern(seite.laden);
+        expect(html).not.toContain("craft-page-hero");
+        expect(html).not.toContain("CraftOS kennenlernen");
+        expect(html).not.toContain("group-open:rotate-45");
+        expect(html).toContain(`href="${site.ctaUrl}"`);
+        expect(html).toContain('data-track="trial"');
+      });
+    });
+  }
+
+  it("Fakten: WebPage about → #organization, Abgrenzung sichtbar ohne Links, Stand mit Korrektur-Mail", async () => {
+    const html = await rendern(SEITEN[0].laden);
+    const web = ldBlocks(html).find((b) => b["@type"] === "WebPage")!;
+    expect(web.about).toEqual({ "@id": "https://craftos.eu/#organization" });
+    const abgrenzung = html.match(/<p[^>]*data-abgrenzung[^>]*>([\s\S]*?)<\/p>/);
+    expect(abgrenzung).not.toBeNull();
+    expect(decode(abgrenzung![1])).toBe(fakten.ABGRENZUNG);
+    expect(abgrenzung![1]).not.toContain("<a");
+    expect(html).toContain(`href="mailto:${site.email}"`);
+    expect(html).toMatch(/<dl\b/);
+  });
+
+  it("Craft AI: FeatureSnippet „ki“ in figure mit Kennzeichnung unterhalb des ersten Abschnittskopfs", async () => {
+    const html = await rendern(SEITEN[1].laden);
+    const figur = html.match(/<figure data-figure="snippet"[\s\S]*?<\/figure>/);
+    expect(figur).not.toBeNull();
+    expect(figur![0]).toContain('data-feature-snippet="ki"');
+    expect(figur![0]).toContain("data-illustration-label");
+    expect(html.indexOf('id="so-arbeitet-craft-ai"')).toBeLessThan(html.indexOf('data-feature-snippet="ki"'));
+    expect(html.indexOf('data-feature-snippet="ki"')).toBeLessThan(html.indexOf('data-abschnitt="kosten"'));
+  });
+
+  it("GoBD: FeatureSnippet „rechnung“ im Abschnitt ablauf, FitPanels ohne Quellen, keine unsichtbare FAQPage-Frage", async () => {
+    const html = await rendern(SEITEN[2].laden);
+    const ablauf = html.slice(html.indexOf('data-abschnitt="ablauf"'), html.indexOf('data-abschnitt="zertifizierung"'));
+    expect(ablauf).toContain('data-feature-snippet="rechnung"');
+    expect(ablauf).toContain("data-illustration-label");
+    const zert = html.slice(html.indexOf('data-abschnitt="zertifizierung"'), html.indexOf('data-abschnitt="faq"'));
+    expect(zert).not.toContain("Quelle");
+    const sichtbar = new Set(summaryFragen(html));
+    const faq = ldBlocks(html).find((b) => b["@type"] === "FAQPage")!;
+    for (const q of faq.mainEntity as { name: string }[]) expect(sichtbar.has(q.name), q.name).toBe(true);
+    expect(html).toContain(gobd.gobdGrundlage.quellen[0].href);
+    expect(html).toContain(gobd.gobdGrundlage.quellen[1].href);
+  });
+
+  it("webPageSchema: about überschreibbar, Standard bleibt #software", () => {
+    const standard = webPageSchema({ path: "/x", name: "X", description: "Y" });
+    expect(standard.about).toEqual({ "@id": "https://craftos.eu/#software" });
+    const org = webPageSchema({ path: "/x", name: "X", description: "Y", about: { "@id": "https://craftos.eu/#organization" } });
+    expect(org.about).toEqual({ "@id": "https://craftos.eu/#organization" });
   });
 });
