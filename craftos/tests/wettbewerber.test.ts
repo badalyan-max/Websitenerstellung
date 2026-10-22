@@ -6,6 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 import {
   HERO_VARIANTE_B_HINWEIS,
+  MAX_ALTER_TAGE,
   UWG_WORTLISTE,
   alterWarnung,
   craftosRechenbeispiel,
@@ -18,6 +19,7 @@ import {
   quellenFuer,
   standVon,
   uwgTreffer,
+  veralteteAngaben,
   wettbewerber,
 } from "@/lib/wettbewerber";
 import type { Fakt, Preis, Quelle, Wettbewerber } from "@/lib/wettbewerber/types";
@@ -340,6 +342,25 @@ describe("Datenmodule: Provenienz, UWG, Ankündigungen (alle vier)", () => {
   it("Alterswarnung über alle Module ist nur eine Warnung", () => {
     vi.spyOn(console, "warn").mockImplementation(() => {});
     for (const w of wettbewerber) expect(() => alterWarnung(w)).not.toThrow();
+  });
+
+  // LO-08 (08-REVIEW, D-04): Die Alterswarnung erscheint als eigener Eintrag im Testbericht, nicht nur in stderr.
+  it("veralteteAngaben: ohne Konsolenausgabe, je Anbieter eine Meldung ab 61 Tagen", () => {
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+    expect(veralteteAngaben(wettbewerber, new Date(2026, 9, 22))).toEqual([]);
+    const spaet = veralteteAngaben(wettbewerber, new Date(2026, 11, 25));
+    expect(spaet).toHaveLength(wettbewerber.length);
+    for (const m of spaet) expect(m).toMatch(/älter als 60 Tage – Angaben neu prüfen/);
+    expect(warn).not.toHaveBeenCalled();
+  });
+});
+
+describe("D-04 Stand der Wettbewerberangaben (sichtbarer Hinweis im Testbericht)", () => {
+  const meldungen = veralteteAngaben(wettbewerber);
+  // Ältere Angaben erscheinen als offener Punkt („todo“) mit Meldung im Bericht; aktuelle als bestandener Test.
+  for (const m of meldungen) it.todo(`NEU PRÜFEN: ${m}`);
+  it.skipIf(meldungen.length > 0)(`alle Angaben jünger als ${MAX_ALTER_TAGE} Tage`, () => {
+    expect(meldungen).toEqual([]);
   });
 });
 

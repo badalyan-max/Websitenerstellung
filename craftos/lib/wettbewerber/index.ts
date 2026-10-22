@@ -239,8 +239,8 @@ export function pruefeWettbewerber(w: Wettbewerber, heute: Date = new Date()): v
   }
 }
 
-/** Ältestes Abrufdatum; älter als MAX_ALTER_TAGE → console.warn und Rückgabe der Meldung (D-04, kein Abbruch). */
-export function alterWarnung(w: Wettbewerber, heute: Date = new Date()): string | undefined {
+/** Meldung, wenn das älteste Abrufdatum älter als MAX_ALTER_TAGE ist (D-04); ohne Konsolenausgabe. */
+function alterMeldung(w: Wettbewerber, heute: Date): string | undefined {
   const daten = faktenVon(w)
     .map(({ fakt }) => fakt.abgerufenAm)
     .filter(gueltigesDatum)
@@ -252,9 +252,22 @@ export function alterWarnung(w: Wettbewerber, heute: Date = new Date()): string 
     (Date.UTC(heute.getFullYear(), heute.getMonth(), heute.getDate()) - Date.UTC(y, m - 1, d)) / 86_400_000,
   );
   if (alter <= MAX_ALTER_TAGE) return undefined;
-  const meldung = `Wettbewerber ${w.slug}: Stand ${aeltestes} ist älter als ${MAX_ALTER_TAGE} Tage – Angaben neu prüfen und abgerufenAm aktualisieren.`;
-  console.warn(meldung);
+  return `Wettbewerber ${w.slug}: Stand ${aeltestes} ist älter als ${MAX_ALTER_TAGE} Tage – Angaben neu prüfen und abgerufenAm aktualisieren.`;
+}
+
+/** Ältestes Abrufdatum; älter als MAX_ALTER_TAGE → console.warn und Rückgabe der Meldung (D-04, kein Abbruch). */
+export function alterWarnung(w: Wettbewerber, heute: Date = new Date()): string | undefined {
+  const meldung = alterMeldung(w, heute);
+  if (meldung) console.warn(meldung);
   return meldung;
+}
+
+/**
+ * Meldungen aller Anbieter mit Angaben älter als MAX_ALTER_TAGE, ohne Konsolenausgabe (08-REVIEW LO-08). Der
+ * Testbericht zeigt sie als eigene, offene Einträge (tests/wettbewerber.test.ts), nicht nur im stderr-Rauschen.
+ */
+export function veralteteAngaben(anbieter: readonly Wettbewerber[] = wettbewerber, heute: Date = new Date()): string[] {
+  return anbieter.flatMap((w) => alterMeldung(w, heute) ?? []);
 }
 
 /** `felder` = Feldpfade oder deren Anfang („preise“, „kriterien“, „kriterien.datev“); ohne Angabe alle Fakten. */
