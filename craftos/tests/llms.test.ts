@@ -18,6 +18,10 @@ describe("llms.txt", () => {
     const abschnitt = text.slice(text.indexOf("## Preise und Vergleich"), text.indexOf("## Rechner"));
     expect(abschnitt).toContain(`(${site.url}/vergleich/plancraft-alternative)`);
     expect(abschnitt).toContain(`(${site.url}/vergleich/craftnote-alternative)`);
+    // 08-09: HERO und ToolTime.
+    expect(abschnitt).toContain(`(${site.url}/vergleich/hero-alternative)`);
+    expect(abschnitt).toContain(`(${site.url}/vergleich/tooltime-alternative)`);
+    expect(abschnitt.split("\n").filter((z) => z.includes("-alternative)"))).toHaveLength(4);
     for (const zeile of abschnitt.split("\n").filter((z) => z.includes("-alternative)")))
       expect(zeile, zeile).not.toMatch(/\d+,\d{2}|\d+ Tage/);
   });

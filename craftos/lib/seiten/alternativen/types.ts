@@ -78,6 +78,8 @@ export interface Kontext {
   craftos: CraftosWerte;
   /** Centbetrag → „74,90 €“. */
   euro: (cents: number) => string;
+  /** Centbetrag in Anbieterschreibweise: ganze Euro ohne Cent („69 €“), sonst „74,90 €“ (HERO, ToolTime). */
+  euroKurz: (cents: number) => string;
   /** Freie Zeile mit Belegen aus dem Datenmodul. */
   zeile: (label: string, craftos: Cell, wettbewerber: Cell, ...belege: Fakt<unknown>[]) => AlternativeZeile;
   /** Zeile „Testphase“: CraftOS `${site.trialDays} Tage`, Wettbewerber aus `testphaseTage`. */
@@ -104,6 +106,8 @@ export interface SeitenTexte {
     nichtEnthalten: string;
     /** Optionaler Zusatz nach „Die Pakete unterscheiden sich im Funktionsumfang.“ (z. B. P4). */
     zusatz?: string;
+    /** HERO Variante B: statt Wettbewerberwerten die CraftOS-Lizenzpreise je Monat (Voll, App) als KeyFacts. */
+    craftosLizenzen?: boolean;
   };
   fuerWen: { answer: string; craftos: CraftosPunkt[] };
   /** Text von Schritt 1 „Laufzeit prüfen“ (≤ 80). */

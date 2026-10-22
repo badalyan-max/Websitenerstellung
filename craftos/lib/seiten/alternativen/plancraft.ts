@@ -2,7 +2,8 @@
  * Seitentexte /vergleich/plancraft-alternative (08-08; 08-UI-SPEC § 3.6 „plancraft“, D-01–D-03).
  * Nur Texte und Auswahl der Fakten; alle Zahlen per Vorlage aus dem Kontext (CraftOS: lib/site.ts,
  * plancraft: lib/wettbewerber/plancraft.ts). Rechenbeispiel = Business + 4 Mobilzugänge + Plantafel-Modul,
- * Jahresabo je Monat über monatAusJahr aus den Modulwerten. Prüfung: lib/seiten/alternativen/index.ts.
+ * Jahresabo je Monat über monatAusJahr aus den Modulwerten. Tabelle nur mit Funktionen, die CraftOS hat
+ * (Inhaber 22.10.2026); den KI-Empfang nennt das Panel „Wann plancraft passt“. Prüfung: lib/seiten/alternativen/index.ts.
  */
 import { monatAusJahr } from "@/lib/wettbewerber";
 import type { Preis } from "@/lib/wettbewerber/types";
@@ -46,7 +47,6 @@ export const plancraftSeite: Seitenmodul = (k) => {
       k.kriterium("eRechnung", "E-Rechnung"),
       k.kriterium("datev", "DATEV-Export"),
       k.kriterium("gaeb", "GAEB-Schnittstelle"),
-      k.kriterium("kiTelefon", "KI-Telefonempfang"),
     ],
     kosten: {
       answer: `Für eine Person im Büro und vier auf der Baustelle zahlen Sie im Jahresabo ${c.beispielJahrJeMonat} netto im Monat bei CraftOS und ${jahrJeMonat} bei plancraft Business mit Plantafel; die Pakete unterscheiden sich im Funktionsumfang.`,

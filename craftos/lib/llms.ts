@@ -67,6 +67,9 @@ export function buildLlmsTxt(): string {
     // 08-08: Alternativen-Seiten, ohne Wettbewerberzahlen (Preise mit Quelle und Stand stehen auf der Seite).
     link("plancraft-Alternative", "/vergleich/plancraft-alternative", "CraftOS und plancraft mit Quellen und Stand im Vergleich"),
     link("Craftnote-Alternative", "/vergleich/craftnote-alternative", "CraftOS und Craftnote mit Quellen und Stand im Vergleich"),
+    // 08-09: HERO und ToolTime, ebenfalls ohne Wettbewerberzahlen.
+    link("HERO-Alternative", "/vergleich/hero-alternative", "CraftOS und HERO mit Quellen und Stand im Vergleich"),
+    link("ToolTime-Alternative", "/vergleich/tooltime-alternative", "CraftOS und ToolTime mit Quellen und Stand im Vergleich"),
     link("Fakten über CraftOS", "/fakten-ueber-craftos"),
     link("GoBD", "/gobd"),
     "",

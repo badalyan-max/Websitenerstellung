@@ -12,8 +12,19 @@ import { germanDate, euro } from "@/lib/format";
 import { alternativeAusModul, baueAlternative } from "@/lib/seiten/alternativen";
 import type { AlternativeInhalt, Seitenmodul } from "@/lib/seiten/alternativen/types";
 import { annualSavingPercent, site, tarife } from "@/lib/site";
-import { craftnote, monatAusJahr, plancraft, standVon, UWG_WORTLISTE, uwgTreffer } from "@/lib/wettbewerber";
-import type { Wettbewerber } from "@/lib/wettbewerber/types";
+import {
+  craftnote,
+  hero,
+  heroVariante,
+  monatAusJahr,
+  plancraft,
+  standVon,
+  tooltime,
+  UWG_WORTLISTE,
+  uwgTreffer,
+} from "@/lib/wettbewerber";
+import type { Preis, Wettbewerber } from "@/lib/wettbewerber/types";
+import { heroSeite } from "@/lib/seiten/alternativen/hero";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
 const PFAD = "/vergleich/plancraft-alternative";
@@ -42,7 +53,7 @@ function fixtureSeite(aendern: (t: ReturnType<Seitenmodul>) => void = () => {}):
         k.laufzeit(),
         k.testphase(),
         k.kriterium("datev", "DATEV-Export"),
-        k.kriterium("kiTelefon", "KI-Telefonempfang"),
+        k.kriterium("gaeb", "GAEB-Schnittstelle"),
       ],
       kosten: {
         answer: `Für fünf Personen zahlen Sie im Jahresabo ${k.craftos.beispielJahrJeMonat} netto im Monat bei CraftOS; die Pakete unterscheiden sich im Funktionsumfang.`,
@@ -93,6 +104,23 @@ function alleTexte(inhalt: AlternativeInhalt): string[] {
   };
   for (const [schluessel, wert] of Object.entries(inhalt)) if (schluessel !== "wettbewerber") walk(wert);
   return out;
+}
+
+/**
+ * Inhaber 22.10.2026 („Nur, was unterstützt wird, nicht, was nicht unterstützt wird“; geht U6 vor): keine
+ * CraftOS-Zelle verneint, keine FAQ „Kann/Hat/Bietet … CraftOS …? – Nein“, kein Satz „CraftOS bietet kein …“.
+ */
+function pruefeNurUnterstuetzt(inhalt: AlternativeInhalt) {
+  for (const r of inhalt.tabelle.rows) {
+    expect(r.craftos, `${r.label}: CraftOS-Zelle`).not.toBe(false);
+    if (typeof r.craftos === "string")
+      expect(r.craftos, `${r.label}: CraftOS-Zelle`).not.toMatch(/^\s*(nein|[-–—]|nicht\b)|nicht verfügbar/i);
+  }
+  for (const item of inhalt.faq.items)
+    if (/^(Kann|Hat|Bietet|Unterstützt|Gibt es|Lässt sich)\b/.test(item.q) && /CraftOS/.test(item.q))
+      expect(item.a, item.q).not.toMatch(/^Nein\b/);
+  for (const t of alleTexte(inhalt))
+    expect(t).not.toMatch(/nicht verfügbar|CraftOS (bietet|hat|kann|unterstützt) (kein|nicht)|ohne Bewegungsverläufe/i);
 }
 
 /** Strukturprüfung einer gerenderten Alternativen-Seite (UI-SPEC § 3.1, § 2, § 8). */
@@ -232,16 +260,13 @@ describe("Vorlage", () => {
     expect(alleTexte(inhalt).filter((t) => uwgTreffer(t))).toEqual([]);
   });
 
-  it("Builder wirft bei UWG-Wort, Stärken < 2, fehlender Fairnesszeile und Zelle > 24", () => {
+  it("Builder wirft bei UWG-Wort, Stärken < 2 und Zelle > 24", () => {
     expect(() =>
       alternativeAusModul(fixtureW(), fixtureSeite((t) => (t.answer = "CraftOS ist günstiger als plancraft.")), PFAD),
     ).toThrow(/günstiger als/);
     const wenig = fixtureW();
     wenig.staerken = wenig.staerken.slice(0, 1);
     expect(() => alternativeAusModul(wenig, fixtureSeite(), PFAD)).toThrow(/mindestens 2 belegte Stärken/);
-    expect(() =>
-      alternativeAusModul(fixtureW(), fixtureSeite((t) => (t.rows = t.rows.filter((r) => r.craftos !== false))), PFAD),
-    ).toThrow(/Fairnesszeile/);
     expect(() =>
       alternativeAusModul(
         fixtureW(),
@@ -252,6 +277,54 @@ describe("Vorlage", () => {
     expect(() =>
       alternativeAusModul(fixtureW(), fixtureSeite((t) => (t.rows[0] = { ...t.rows[0], quellen: [] })), PFAD),
     ).toThrow(/Quelle/);
+  });
+
+  it("Inhaber 22.10.2026 „Nur, was unterstützt wird“: keine CraftOS-Fairnesszeile nötig, CraftOS-Negativaussagen werfen", () => {
+    // Ohne Zeile „Wettbewerber ✓ / CraftOS –“ baut die Seite (Abweichung von U6).
+    expect(() => alternativeAusModul(fixtureW(), fixtureSeite(), PFAD)).not.toThrow();
+    pruefeNurUnterstuetzt(alternativeAusModul(fixtureW(), fixtureSeite(), PFAD));
+    // CraftOS-Zelle verneint: false, „Nein“, Strich, „nicht verfügbar“.
+    for (const zelle of [false, "Nein", "–", "—", "-", "nicht verfügbar", "Nicht enthalten"] as const)
+      expect(
+        () =>
+          alternativeAusModul(
+            fixtureW(),
+            fixtureSeite((t) => t.rows.push({ label: "KI-Telefonempfang", craftos: zelle, wettbewerber: true, quellen: [t.rows[0].quellen[0]] })),
+            PFAD,
+          ),
+        String(zelle),
+      ).toThrow(/Inhaber 22\.10\.2026/);
+    // Kriterien, die CraftOS nicht anbietet, haben keine CraftOS-Zelle mehr.
+    for (const id of ["kiTelefon", "fahrzeugortung"] as const)
+      expect(
+        () => alternativeAusModul(fixtureW(), (k) => ({ ...fixtureSeite()(k), rows: [k.kriterium(id, "Kriterium")] }), PFAD),
+        id,
+      ).toThrow(/Inhaber 22\.10\.2026/);
+    // FAQ: Frage nach einer CraftOS-Funktion mit „Nein“-Antwort.
+    expect(() =>
+      alternativeAusModul(
+        fixtureW(),
+        fixtureSeite((t) => (t.faq[3] = { q: "Kann ich mit CraftOS Fahrzeuge orten?", a: "Nein. CraftOS speichert nur Standortpunkte." })),
+        PFAD,
+      ),
+    ).toThrow(/Inhaber 22\.10\.2026/);
+    // Satz, dass CraftOS etwas nicht bietet.
+    for (const satz of ["CraftOS bietet keinen KI-Telefonempfang.", "Bei CraftOS ist das nicht verfügbar."])
+      expect(
+        () => alternativeAusModul(fixtureW(), fixtureSeite((t) => (t.fuerWen.answer = satz)), PFAD),
+        satz,
+      ).toThrow(/Inhaber 22\.10\.2026/);
+    // Belegtes „Nein“ beim Wettbewerber bleibt zulässig, ebenso eine positive „Nein“-Antwort ohne Funktionsfrage.
+    expect(() =>
+      alternativeAusModul(
+        fixtureW(),
+        fixtureSeite((t) => {
+          t.rows.push({ label: "Zeiterfassung", craftos: true, wettbewerber: false, quellen: [t.rows[0].quellen[0]] });
+          t.faq[3] = { q: "Brauche ich bei CraftOS für jede Person eine Voll-Lizenz?", a: "Nein. Mitarbeitende nutzen die App-Lizenz." };
+        }),
+        PFAD,
+      ),
+    ).not.toThrow();
   });
 
   it("renderToString: Struktur, Antwort zuerst, Schema, keine Logos und keine Ankündigungen", () => {
@@ -296,7 +369,7 @@ describe("plancraft", () => {
     );
   });
 
-  it("Tabelle mit 11 Zeilen und Werten aus den Modulen", () => {
+  it("Tabelle mit 10 Zeilen und Werten aus den Modulen, nur Funktionen, die CraftOS hat (Inhaber 22.10.2026)", () => {
     const zeilen = inhalt.tabelle.rows.map((r) => [r.label, r.craftos, r.wettbewerber]);
     expect(zeilen).toEqual([
       ["Bürozugang, monatliche Zahlung", VOLL_MONAT, `${e(business.centsMonat)} (Business)`],
@@ -309,7 +382,6 @@ describe("plancraft", () => {
       ["E-Rechnung", "XRechnung und ZUGFeRD", "XRechnung-Format"],
       ["DATEV-Export", true, "In allen Paketen"],
       ["GAEB-Schnittstelle", "Import X83, Export X84", "ab Pro"],
-      ["KI-Telefonempfang", false, "In allen Paketen"],
     ]);
   });
 
@@ -361,6 +433,7 @@ describe("plancraft", () => {
 
   it("renderToString besteht die Vorlagenprüfung; Seitenmodul ohne Zahlenliterale", () => {
     pruefeHtml(inhalt);
+    pruefeNurUnterstuetzt(inhalt);
     pruefeModulLiterale("lib/seiten/alternativen/plancraft.ts");
   });
 });
@@ -384,7 +457,7 @@ describe("Craftnote", () => {
     );
   });
 
-  it("Tabelle mit 10 Zeilen und Werten aus den Modulen", () => {
+  it("Tabelle mit 9 Zeilen und Werten aus den Modulen, nur Funktionen, die CraftOS hat (Inhaber 22.10.2026)", () => {
     const zeilen = inhalt.tabelle.rows.map((r) => [r.label, r.craftos, r.wettbewerber]);
     expect(zeilen).toEqual([
       ["Bürozugang mit Rechnungen, Jahresabo je Monat", VOLL_JAHR_MONAT, `${e(bueroPlus.centsJahrJeMonat)} statt ${e(bueroPlus.stattCents)}`],
@@ -396,7 +469,6 @@ describe("Craftnote", () => {
       ["E-Rechnung", "XRechnung und ZUGFeRD", "„E-Rechnungsfähig“"],
       ["DATEV-Export", true, "Nur Büro Plus"],
       ["Zeiterfassung", true, "In allen Paketen"],
-      ["Fahrzeugortung per GPS", false, "Zusatzmodul"],
     ]);
   });
 
@@ -438,10 +510,6 @@ describe("Craftnote", () => {
         a: `CraftOS testen Sie ${site.trialDays} Tage ohne Zahlungsdaten. Craftnote nennt ${craftnote.testphaseTage.wert} Tage mit dem Funktionsumfang von Büro Plus, ohne hinterlegte Zahlungsmethode.`,
       },
       {
-        q: "Kann ich mit CraftOS Fahrzeuge orten?",
-        a: "Nein. CraftOS speichert nur beim Start und Stopp der Zeiterfassung und bei Unterschriften je einen Standortpunkt, ohne Bewegungsverläufe.",
-      },
-      {
         q: "Brauche ich bei CraftOS für jede Person eine Voll-Lizenz?",
         a: `Nein. Büro und Bauleitung arbeiten mit der Voll-Lizenz, Mitarbeitende auf der Baustelle mit der App-Lizenz für ${APP_MONAT} netto im Monat.`,
       },
@@ -450,7 +518,239 @@ describe("Craftnote", () => {
 
   it("renderToString besteht die Vorlagenprüfung; Seitenmodul ohne Zahlenliterale", () => {
     pruefeHtml(inhalt);
+    pruefeNurUnterstuetzt(inhalt);
     pruefeModulLiterale("lib/seiten/alternativen/craftnote.ts");
+  });
+});
+
+/** Anbieterschreibweise ganzer Euro („69 €“), sonst mit Cent („74,90 €“). */
+const ek = (c: number | undefined) =>
+  new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR", minimumFractionDigits: c! % 100 === 0 ? 0 : 2 }).format(
+    c! / 100,
+  );
+const APP_JAHR = euro(app.jahr);
+const HERO_PFAD = "/vergleich/hero-alternative";
+
+/** HERO ohne Screenshot-Beleg: Variante B ohne Preiszahlen (D-16, U11). */
+function heroOhneBeleg(): Wettbewerber {
+  const w = structuredClone(hero);
+  w.preiseBelegt = null;
+  w.preise = { ...w.preise, wert: w.preise.wert.map(({ paket, enthalten }) => ({ paket, enthalten })) };
+  delete w.zusatzPreise;
+  return w;
+}
+
+/** HERO-Seite je Variante (UI-SPEC § 3.6 „HERO“, Inhaber 22.10.2026 ohne Zeile KI-Telefonassistent). */
+function pruefeHeroInhalt(w: Wettbewerber, inhalt: AlternativeInhalt) {
+  const variante = heroVariante(w);
+  const preis = (paket: string): Preis => w.preise.wert.find((p) => p.paket === paket)!;
+  const [select, os, osPlus] = [preis("HERO Select"), preis("HERO OS"), preis("HERO OS Plus")];
+  const appLizenz = w.zusatzPreise?.appLizenz?.wert;
+
+  expect(inhalt.path).toBe(HERO_PFAD);
+  expect(inhalt.kopf.h1).toBe("Die HERO-Software-Alternative im Vergleich");
+  expect(inhalt.kopf.keyword).toBe("HERO-Software");
+  const kopfCraftos = `CraftOS ist eine HERO-Alternative mit Preis pro Person: Die Voll-Lizenz mit Web-App, Mobile-App und Plantafel kostet ${VOLL_MONAT} netto im Monat.`;
+  expect(inhalt.kopf.answer).toBe(
+    variante === "A"
+      ? `${kopfCraftos} HERO Select kostet ab ${ek(select.centsJahrJeMonat)} netto im Monat bei jährlicher und ab ${ek(select.centsMonat)} bei monatlicher Zahlweise, jeweils mit einer Standard-Lizenz.`
+      : `${kopfCraftos} HERO nennt Preise je Plan und Zahlweise auf hero-software.de/preise; laut AGB gilt eine Grundlaufzeit von zwölf Monaten, soweit nicht anders vereinbart.`,
+  );
+
+  const preisZeilen =
+    variante === "A"
+      ? [
+          ["Bürozugang, monatliche Zahlung", VOLL_MONAT, `ab ${ek(select.centsMonat)} (Select)`],
+          ["Bürozugang, jährliche Zahlung je Monat", VOLL_JAHR_MONAT, `ab ${ek(select.centsJahrJeMonat)} (Select)`],
+          ["Weitere mobile Person, jährlich je Monat", `${APP_JAHR_MONAT} (App-Lizenz)`, `${ek(appLizenz!.centsJahrJeMonat)} (App-Lizenz)`],
+        ]
+      : [["Preise je Plan und Zahlweise", `${VOLL_JAHR_MONAT} (Voll, jährlich)`, "laut hero-software.de"]];
+  expect(inhalt.tabelle.rows.map((r) => [r.label, r.craftos, r.wettbewerber])).toEqual([
+    ...preisZeilen,
+    ["Grundlaufzeit", "1 Monat", `${w.laufzeit.wert} laut AGB`],
+    ["Testphase", `${site.trialDays} Tage`, `${w.testphaseTage.wert} Tage`],
+    ["Mobile-App für iOS und Android", true, true],
+    ["Plantafel", "In Voll-Lizenz", "Ja, ab Select"],
+    ["E-Rechnung erstellen", "XRechnung und ZUGFeRD", "ZUGFeRD und XRechnung"],
+    ["Zeiterfassung", true, true],
+    ["Lager", true, "ab HERO OS"],
+  ]);
+
+  const jahr5 = appLizenz && ek(monatAusJahr([select.centsJahrJeMonat! * 12, ...Array(4).fill(appLizenz.centsJahrJeMonat! * 12)]));
+  const monat5 = appLizenz && ek(select.centsMonat! + 4 * appLizenz.centsMonat!);
+  if (variante === "A") {
+    expect(jahr5).toBe(ek(15700));
+    expect(monat5).toBe(ek(17900));
+    expect(inhalt.kosten.answer).toBe(
+      `Für eine Person im Büro und vier auf der Baustelle zahlen Sie bei jährlicher Zahlweise ${BEISPIEL_JAHR} netto im Monat bei CraftOS und ab ${jahr5} bei HERO Select; die Pläne unterscheiden sich im Funktionsumfang.`,
+    );
+    expect(inhalt.kosten.facts.map((f) => [f.value, f.label])).toEqual([
+      [BEISPIEL_JAHR, "CraftOS, 5 Personen, Jahresabo je Monat"],
+      [BEISPIEL_MONAT, "CraftOS, 5 Personen, Monatsabo"],
+      [`ab ${jahr5}`, "HERO Select, 5 Personen, jährlich"],
+      [`ab ${monat5}`, "HERO Select, 5 Personen, monatlich"],
+    ]);
+    expect(inhalt.kosten.note).toContain("HERO: HERO Select mit 1 Standard-Lizenz + 4 App-Lizenzen, „ab“-Preise laut Preisseite.");
+  } else {
+    expect(inhalt.kosten.answer).toBe(
+      `HERO nennt Preise je Plan und Zahlweise auf hero-software.de/preise; bei CraftOS zahlen eine Person im Büro und vier auf der Baustelle im Jahresabo ${BEISPIEL_JAHR} netto im Monat.`,
+    );
+    expect(inhalt.kosten.facts.map((f) => [f.value, f.label, f.source])).toEqual([
+      [BEISPIEL_JAHR, "CraftOS, 5 Personen, Jahresabo je Monat", "site:tarife-5p-jahr"],
+      [BEISPIEL_MONAT, "CraftOS, 5 Personen, Monatsabo", "site:tarife-5p-monat"],
+      [VOLL_MONAT, "CraftOS Voll-Lizenz pro Monat", "site:tarife-voll-monat"],
+      [APP_MONAT, "CraftOS App-Lizenz pro Monat", "site:tarife-app-monat"],
+    ]);
+    expect(inhalt.kosten.note).toContain("HERO: Preise je Plan und Zahlweise laut hero-software.de/preise.");
+    // D-16/U11: In Variante B steht keine HERO-Preiszahl in Text oder Zelle.
+    const heroZahlen = hero.preise.wert.flatMap((p) => [p.centsMonat, p.centsJahrJeMonat]).filter(Boolean) as number[];
+    const texte = alleTexte(inhalt).join(" | ");
+    for (const c of heroZahlen) expect(texte, ek(c)).not.toMatch(new RegExp(`(^|[^0-9,])${c / 100} €`));
+  }
+  expect(inhalt.kosten.note).toContain("Nicht enthalten: KI-Verbrauch und Extra-Speicher bei CraftOS.");
+
+  expect(inhalt.fuerWen.answer).toBe(
+    "HERO passt zu Betrieben, die KI-Telefonie, Online-Zahlungen oder einen API-Zugang im selben System nutzen möchten; CraftOS passt zu Betrieben, die pro Person abrechnen und monatlich kündbar bleiben wollen.",
+  );
+  expect(inhalt.fuerWen.panels[0].points.map((p) => p.text)).toEqual(w.staerken.map((s) => s.wert));
+  expect(inhalt.fuerWen.panels[0].points.length).toBeGreaterThanOrEqual(2);
+  expect(inhalt.umstieg.answer).toContain("Ihres HERO-Vertrags");
+  expect(inhalt.umstieg.steps[0].text).toBe("HERO nennt in den AGB einen Monat Frist zum Ende der Laufzeit.");
+  expect(inhalt.faq.items).toEqual([
+    {
+      q: "Was kostet HERO pro Monat?",
+      a:
+        variante === "A"
+          ? `HERO Select kostet ab ${ek(select.centsJahrJeMonat)} netto im Monat bei jährlicher und ab ${ek(select.centsMonat)} bei monatlicher Zahlweise, HERO OS ab ${ek(os.centsJahrJeMonat)} bzw. ${ek(os.centsMonat)}, HERO OS Plus ab ${ek(osPlus.centsJahrJeMonat)} bzw. ${ek(osPlus.centsMonat)}, jeweils mit einer Standard-Lizenz.`
+          : "HERO nennt Preise je Plan (Select, HERO OS, HERO OS Plus) und Zahlweise auf hero-software.de/preise, jeweils zuzüglich Umsatzsteuer und mit einer Standard-Lizenz.",
+    },
+    {
+      q: "Welche Laufzeit hat HERO?",
+      a: "Laut HERO-AGB beträgt die Grundlaufzeit zwölf Monate, soweit in der Bestellung nichts anderes vereinbart ist, mit einem Monat Kündigungsfrist und automatischer Verlängerung.",
+    },
+    {
+      q: "Wie lange kann ich HERO und CraftOS kostenlos testen?",
+      a: `CraftOS testen Sie ${site.trialDays} Tage ohne Zahlungsdaten. HERO nennt eine Testphase von ${w.testphaseTage.wert} Tagen.`,
+    },
+    {
+      q: "Welche Lizenz brauchen Mitarbeitende auf der Baustelle bei CraftOS?",
+      a: `Die App-Lizenz für ${APP_MONAT} netto im Monat oder ${APP_JAHR} im Jahr mit Zeiten, Einsätzen, Aufmaß, Fotos, Baudokumentation und Urlaub in der Mobile-App.`,
+    },
+  ]);
+  // „E-Rechnung erstellen“, kein „Empfangen“ (XRechnung-Import laut HERO nicht verfügbar → nicht erwähnt).
+  expect(alleTexte(inhalt).filter((t) => /empfang/i.test(t))).toEqual([]);
+  expect(alleTexte(inhalt).filter((t) => uwgTreffer(t))).toEqual([]);
+  for (const item of inhalt.faq.items) expect(charCount(item.a), item.q).toBeLessThanOrEqual(300);
+  pruefeHtml(inhalt);
+  pruefeNurUnterstuetzt(inhalt);
+}
+
+describe("HERO", () => {
+  it(`Seite folgt der belegten Variante ${heroVariante(hero)} (heroVariante)`, () => {
+    pruefeHeroInhalt(hero, baueAlternative("hero"));
+  });
+
+  it("Variante B (Fixture ohne Screenshot-Beleg): keine HERO-Zahl, „laut hero-software.de“, nur CraftOS-KeyFacts", () => {
+    const w = heroOhneBeleg();
+    expect(heroVariante(w)).toBe("B");
+    pruefeHeroInhalt(w, alternativeAusModul(w, heroSeite, HERO_PFAD));
+  });
+
+  it("Seitenmodul ohne Zahlenliterale und ohne „empfangen“", () => {
+    pruefeModulLiterale("lib/seiten/alternativen/hero.ts");
+    const quelle = fs.readFileSync(path.join(ROOT, "lib/seiten/alternativen/hero.ts"), "utf8");
+    expect(quelle).toContain("heroVariante");
+    expect(quelle).not.toMatch(/empfangen/i);
+  });
+});
+
+describe("ToolTime", () => {
+  const inhalt = baueAlternative("tooltime");
+  const preis = (paket: string): Preis => tooltime.preise.wert.find((p) => p.paket === paket)!;
+  const [solo, team, max] = [preis("Solo"), preis("Team"), preis("Max")];
+  const teamLizenz = tooltime.zusatzPreise!.teamJeLizenz.wert;
+  const datev = tooltime.zusatzPreise!.datev.wert;
+
+  it("Pfad, H1 aus der Map, Kopfwort und Antwort laut UI-SPEC § 3.6", () => {
+    expect(inhalt.path).toBe("/vergleich/tooltime-alternative");
+    expect(inhalt.kopf.h1).toBe("ToolTime-Alternative: CraftOS im Vergleich");
+    expect(inhalt.kopf.keyword).toBe("ToolTime-Alternative:");
+    expect(inhalt.kopf.answer).toBe(
+      `CraftOS ist eine ToolTime-Alternative mit Preis pro Person und monatlich kündbarem Abo: Die Voll-Lizenz kostet ${VOLL_MONAT} netto im Monat. ToolTime rechnet in Paketen für 1, bis zu 5 oder bis zu 10 Mitarbeitende mit 12 Monaten Mindestlaufzeit ab.`,
+    );
+  });
+
+  it("Tabelle mit 10 Zeilen, nur Funktionen, die CraftOS hat (Inhaber 22.10.2026); Jahresabo nur „1. Jahr“", () => {
+    expect(inhalt.tabelle.rows.map((r) => [r.label, r.craftos, r.wettbewerber])).toEqual([
+      ["Abrechnung", "pro Person", "Paket nach Teamgröße"],
+      ["Preis je Person, monatliche Zahlung", `${VOLL_MONAT} Voll, ${APP_MONAT} App`, `${ek(teamLizenz.centsMonat)} (Team-Paket)`],
+      ["Preis je Person, Jahresabo je Monat", `${VOLL_JAHR_MONAT} Voll, ${APP_JAHR_MONAT} App`, `${ek(teamLizenz.centsJahrJeMonat)} (Team, 1. Jahr)`],
+      ["Kürzeste Laufzeit", "1 Monat", tooltime.laufzeit.wert],
+      ["Testphase", `${site.trialDays} Tage`, `${tooltime.testphaseTage.wert} Tage`],
+      ["Mobile-App für iOS und Android", true, true],
+      ["Plantafel", "In Voll-Lizenz", "Ja, ohne Paketangabe"],
+      ["E-Rechnung", "XRechnung und ZUGFeRD", "XRechnung und ZUGFeRD"],
+      ["DATEV-Export", true, `Erweiterung, ${ek(datev.centsMonat)}/Monat`],
+      ["GAEB-Schnittstelle", "Import X83, Export X84", "Import und Export"],
+    ]);
+    for (const r of inhalt.tabelle.rows.filter((r) => /Jahresabo/.test(r.label)))
+      expect(String(r.wettbewerber), r.label).toMatch(/1\. (Jahr|Vertragsjahr)/);
+  });
+
+  it("Kosten: Team im ersten Vertragsjahr, regulär derzeit, Note mit P4-Satz", () => {
+    expect(inhalt.kosten.answer).toBe(
+      `Für fünf Personen zahlen Sie im Jahresabo ${BEISPIEL_JAHR} netto im Monat bei CraftOS mit einer Voll- und vier App-Lizenzen und ${ek(team.centsJahrJeMonat)} bei ToolTime Team im ersten Vertragsjahr, regulär derzeit ${ek(team.regulaerDerzeitCents)}.`,
+    );
+    expect(inhalt.kosten.facts.map((f) => [f.value, f.label])).toEqual([
+      [BEISPIEL_JAHR, "CraftOS, 5 Personen, Jahresabo je Monat"],
+      [BEISPIEL_MONAT, "CraftOS, 5 Personen, Monatsabo"],
+      [ek(team.centsJahrJeMonat), "ToolTime Team, 1. Vertragsjahr je Monat"],
+      [ek(team.centsMonat), "ToolTime Team, monatliche Zahlung"],
+    ]);
+    expect(inhalt.kosten.note).toContain("ToolTime: Team-Paket für bis zu 5 Mitarbeiter, Jahresabo.");
+    expect(inhalt.kosten.note).toContain(
+      `Die Jahresabo-Preise gelten laut ToolTime nur im ersten Vertragsjahr; regulär nennt ToolTime derzeit ${ek(team.regulaerDerzeitCents)} (Team). Preise späterer Jahre sind nicht zugesagt.`,
+    );
+    for (const t of alleTexte(inhalt)) expect(t).not.toMatch(/ab Jahr 2|danach [0-9]/);
+  });
+
+  it("Für wen, Umstieg und FAQ laut UI-SPEC § 3.6", () => {
+    expect(inhalt.fuerWen.answer).toBe(
+      "ToolTime passt zu Betrieben, die einen festen Paketpreis je Teamgröße, Lexware Office oder offline sichtbare Einsatzpläne wollen; CraftOS passt zu Betrieben, die pro Person abrechnen und monatlich kündbar bleiben wollen.",
+    );
+    expect(inhalt.fuerWen.panels[0].points.map((p) => p.text)).toEqual(tooltime.staerken.map((s) => s.wert));
+    expect(inhalt.umstieg.answer).toContain("Ihres ToolTime-Vertrags");
+    expect(inhalt.umstieg.steps[0].text).toBe(
+      `ToolTime nennt ${tooltime.kuendigungsfristTage!.wert} Tage Frist zum Laufzeitende, in Textform.`,
+    );
+    expect(inhalt.faq.items).toEqual([
+      {
+        q: "Was kostet ToolTime pro Monat?",
+        a: `ToolTime kostet bei monatlicher Zahlung ${ek(solo.centsMonat)} (Solo), ${ek(team.centsMonat)} (Team, bis zu 5) oder ${ek(max.centsMonat)} (Max, bis zu 10); im Jahresabo im ersten Vertragsjahr ${ek(solo.centsJahrJeMonat)}, ${ek(team.centsJahrJeMonat)} oder ${ek(max.centsJahrJeMonat)}, regulär derzeit ${ek(solo.regulaerDerzeitCents)}, ${ek(team.regulaerDerzeitCents)} oder ${ek(max.regulaerDerzeitCents)} pro Monat.`,
+      },
+      {
+        q: "Kann ich CraftOS ohne lange Vertragsbindung nutzen?",
+        a: `Ja. Das Monatsabo ist monatlich kündbar; das Jahresabo kostet rund ${Math.round(annualSavingPercent)} % weniger als zwölf Monatszahlungen und ist zum Ende der Laufzeit kündbar.`,
+      },
+      {
+        q: "Wie lange kann ich ToolTime und CraftOS kostenlos testen?",
+        a: `CraftOS testen Sie ${site.trialDays} Tage ohne Zahlungsdaten. ToolTime nennt eine ${tooltime.testphaseTage.wert}-tägige Testversion ohne Zahlungsinformationen.`,
+      },
+      {
+        q: "Hat CraftOS eine DATEV-Schnittstelle?",
+        a: `Ja. CraftOS erstellt in der Voll-Lizenz einen DATEV-Export für die Steuerberatung; bei ToolTime ist der DATEV Rechnungsdatenservice eine Erweiterung für ${ek(datev.centsMonat)} im Monat.`,
+      },
+    ]);
+  });
+
+  it("renderToString besteht die Vorlagenprüfung; Seitenmodul ohne Zahlenliterale und ohne Folgejahr-Zusage", () => {
+    pruefeHtml(inhalt);
+    pruefeNurUnterstuetzt(inhalt);
+    expect(alleTexte(inhalt).filter((t) => uwgTreffer(t))).toEqual([]);
+    pruefeModulLiterale("lib/seiten/alternativen/tooltime.ts");
+    const quelle = fs.readFileSync(path.join(ROOT, "lib/seiten/alternativen/tooltime.ts"), "utf8");
+    expect(quelle).not.toMatch(/ab Jahr 2|danach [0-9]/);
+    expect(quelle).toContain("ersterJahrespreis");
   });
 });
 
@@ -469,5 +769,21 @@ describe("Routen und OG-Dateien", () => {
     expect(html).toContain('id="antwort"');
     expect(String(mod.metadata.title)).toBe("Craftnote-Alternative: Preise im Vergleich");
     expect(fs.existsSync(path.join(ROOT, "app/vergleich/craftnote-alternative/opengraph-image.tsx"))).toBe(true);
+  });
+
+  it("HERO: Route rendert die Vorlage, Metadaten aus der Map, OG-Datei vorhanden", async () => {
+    const mod = await import("@/app/vergleich/hero-alternative/page");
+    const html = renderToString(createElement(mod.default));
+    expect(html).toContain('id="antwort"');
+    expect(String(mod.metadata.title)).toBe("HERO Software Alternative im Vergleich");
+    expect(fs.existsSync(path.join(ROOT, "app/vergleich/hero-alternative/opengraph-image.tsx"))).toBe(true);
+  });
+
+  it("ToolTime: Route rendert die Vorlage, Metadaten aus der Map, OG-Datei vorhanden", async () => {
+    const mod = await import("@/app/vergleich/tooltime-alternative/page");
+    const html = renderToString(createElement(mod.default));
+    expect(html).toContain('id="antwort"');
+    expect(String(mod.metadata.title)).toBe("ToolTime-Alternative: Preise im Vergleich");
+    expect(fs.existsSync(path.join(ROOT, "app/vergleich/tooltime-alternative/opengraph-image.tsx"))).toBe(true);
   });
 });

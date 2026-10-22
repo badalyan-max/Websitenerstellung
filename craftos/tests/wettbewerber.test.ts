@@ -184,11 +184,12 @@ describe("Preisfelder (U3), Stärken (U6), Ankündigungen (U9), Schreibweise (U8
     const kleiner = fixture({ preise: fakt([{ paket: "Büro Plus", centsJahrJeMonat: 4990, stattCents: 3990 }]) });
     expect(() => pruefeWettbewerber(kleiner, HEUTE)).toThrow(/stattCents/);
   });
-  it("mindestens 2 belegte Stärken und 1 Kriterium, das CraftOS nicht anbietet", () => {
+  it("mindestens 2 belegte Stärken; kein Pflichtkriterium, das CraftOS nicht anbietet (Inhaber 22.10.2026)", () => {
     expect(() => pruefeWettbewerber(fixture({ staerken: [fakt("Nur eine Stärke.")] }), HEUTE)).toThrow(
       "Wettbewerber plancraft: staerken hat 1 Einträge – mindestens 2 belegte Stärken erforderlich (U6).",
     );
-    expect(() => pruefeWettbewerber(fixture({ kriterien: { datev: fakt(true) } }), HEUTE)).toThrow(/\(U6\)/);
+    // Inhaber 22.10.2026 („Nur, was unterstützt wird“): Fairness über die belegten Stärken, nicht über CraftOS-„Nein“.
+    expect(() => pruefeWettbewerber(fixture({ kriterien: { datev: fakt(true) } }), HEUTE)).not.toThrow();
     const doppelt = fixture({ staerken: [fakt("Gleiche Stärke."), fakt("Gleiche Stärke.")] });
     expect(() => pruefeWettbewerber(doppelt, HEUTE)).toThrow(/doppelt/);
   });
@@ -380,9 +381,8 @@ describe("Datenmodule: Werte laut Neuprüfung", () => {
     expect(w.testphaseTage.wert).toBe(7);
   });
 
-  it("U6: jeder Wettbewerber bietet mindestens ein Kriterium, das CraftOS nicht anbietet", () => {
-    for (const w of wettbewerber)
-      expect(Boolean(w.kriterien.kiTelefon?.wert || w.kriterien.fahrzeugortung?.wert), w.slug).toBe(true);
+  it("U6 (Inhaber 22.10.2026): jeder Wettbewerber hat mindestens 2 belegte Stärken für „Wann {Name} passt“", () => {
+    for (const w of wettbewerber) expect(w.staerken.length, w.slug).toBeGreaterThanOrEqual(2);
   });
 });
 
