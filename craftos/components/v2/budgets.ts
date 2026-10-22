@@ -31,6 +31,13 @@ export const TEXT_BUDGET = {
   pageHead: { lead: 140, kopfLead: 110, h1: 60, eyebrow: 24 },
   menuGroup: { description: 60 },
   featureList: { name: 32, benefit: 100 },
+  /**
+   * Phase 9 (09-UI-SPEC G8–G10, § 4): LinkKarten-Felder, Gewerke-Daten (Karte, Beispielkachel) und
+   * Artikelvorlage (H1 im ContentKopf, Prosa-Überschrift, Schritt der obersten Liste).
+   */
+  linkKarte: { label: 24, title: 100, text: 160, meta: 32 },
+  gewerk: { teaser: 100, exampleTitle: 40, example: 200 },
+  artikel: { h1: 100, heading: 80, step: 160 },
   /** Mengen je Baustein */
   count: {
     bento: { min: 3, max: 7 },
@@ -48,6 +55,18 @@ export const TEXT_BUDGET = {
     fitPoints: { min: 2, max: 4 },
     factList: { min: 6, max: 12 },
     crumbs: { min: 2, max: 4 },
+    /**
+     * Phase 9 (09-UI-SPEC G9, § 4): Karten je Raster, Gewerke-Ablauf/-Funktionen/-FAQ/-Weiterlesen,
+     * Schrittliste der Artikel-Prosa, „Passende Funktionen“ und „Weiterlesen“ je Artikel.
+     */
+    linkKarten: { min: 1, max: 60 },
+    gewerkSteps: { min: 4, max: 5 },
+    gewerkFunktionen: { min: 4, max: 6 },
+    gewerkFaq: { min: 3, max: 4 },
+    gewerkArtikel: { min: 2, max: 3 },
+    artikelSchritte: { min: 2, max: 10 },
+    artikelFunktionen: { min: 1, max: 3 },
+    artikelVerwandt: { min: 1, max: 4 },
   },
 } as const;
 

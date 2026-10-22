@@ -564,3 +564,15 @@ Absicherung: `tests/keyword-map.test.ts` („Phase 8 – Zielwerte sitewide“: 
 ### 22.10.2026 – Phase 8 – Seite für kleine Betriebe veröffentlicht (08-11, Pitfall 12)
 
 `/vergleich/handwerkersoftware-kleine-betriebe` wechselt von `geplant` auf `bestehend` – im selben Commit wie Route, OG-Bild, `app/sitemap.ts` (inkl. `pageUpdated`) und `lib/llms.ts`. Hauptkeyword bleibt `null` (ohne Daten, `export--candidates-1.json`); Titel, H1 und Description bleiben die Zielwerte aus 08-UI-SPEC § 8. Die Zeile steht jetzt unter „Kernseiten und Rechtsseiten“ (23), „Geplante Seiten“ zählt 9 (alle Phase 9). Prompt-Ziel #1 (`/vergleich/handwerkersoftware-kleine-betriebe#antwort`) ist damit erfüllt. Absicherung: `tests/keyword-map.test.ts` (Status `bestehend` ⇔ Pfad in der Sitemap, H1 der gerenderten Route = `target.h1`), `tests/ai-prompts.test.ts`, `tests/vergleich-seiten.test.ts`.
+
+### 23.10.2026 – Phase 9: drei Gewerke-H1 gekürzt (09-01 Aufgabe 1, 09-UI-SPEC § 1.3, Annahme A3)
+
+Die Gewerke-Köpfe nutzen den `FunktionsKopf` mit Kopfwort-Span; dessen H1-Budget ist 60 Zeichen (`pageHead.h1`, Above-the-fold 360 × 640). Drei H1 lagen darüber und sind gekürzt; Hauptkeyword bzw. Kopfwort bleiben im H1, Titel und Description sind unverändert.
+
+| Pfad | Bisher | Neu | Kopfwort-Span |
+|---|---|---|---|
+| `/gewerke` | Branchensoftware fürs Handwerk: Anderes Werkzeug. Derselbe Anspruch. (68) | Branchensoftware fürs Handwerk: Software für zwölf Gewerke (58) | „Branchensoftware“ |
+| `/gewerke/bauunternehmen` | Software für Bauunternehmen: von der Bauphase bis zur Schlussrechnung (69) | Software für Bauunternehmen: vom LV bis zur Schlussrechnung (59) | „Bauunternehmen:“ |
+| `/gewerke/allrounder` | Hausmeister-Software: vom kleinen Einsatz bis zum größeren Auftrag (66) | Hausmeister-Software: vom kleinen Einsatz bis zur Rechnung (58) | „Hausmeister-“ |
+
+Bearbeitet per Node-Skript mit Regelprüfung vor dem Schreiben (H1 ≤ 60, Kopfwort des Hauptkeywords im H1, Überclaim-Wörter, H1 sitewide eindeutig, Titel und Description unverändert). Die Zahl „zwölf“ entspricht `gewerke.length` (Test in Paket (a), `tests/gewerke.test.ts`). Absicherung: `tests/keyword-map.test.ts` („Phase 9 – Zielwerte“: Gewerke-H1 ≤ 60, die drei Werte wörtlich).

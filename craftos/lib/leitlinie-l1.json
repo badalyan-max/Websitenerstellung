@@ -1,0 +1,57 @@
+{
+  "quelle": "Leitlinie L-1 des Inhabers vom 22.10.2026: Die Website nennt nur, was unterstützt wird. Wortliste aus 09-UI-SPEC § 5, Altbegriffe aus 09-RESEARCH/09-VALIDATION („Produktwahrheit und L-1“). Prüfung mit Wortgrenzen, ohne Groß-/Kleinschreibung.",
+  "woerter": [
+    "nicht unterstützt",
+    "verspricht keine",
+    "verspricht nicht",
+    "nicht zugesagt",
+    "nicht pauschal",
+    "kein pauschales",
+    "keine Onlinezahlung",
+    "Onlinezahlung",
+    "online bezahlen",
+    "keine vollständige",
+    "kein autonomes Verbuchen",
+    "nicht autonom",
+    "ersetzt keinen",
+    "Videoanalyse",
+    "Videoauswertung",
+    "Bald verfügbar",
+    "DATANORM v5",
+    "vorbereitete Leistungsvorlagen",
+    "Mit vorbereiteten Leistungsvorlagen"
+  ],
+  "altbegriffe": [
+    "Neue Phase",
+    "Asset hinzufügen",
+    "Ressourcen verwalten",
+    "Keine Koordinaten",
+    "Konflikt erkannt",
+    "Finanzen sichtbar",
+    "Teamleitung (Zeiten für andere)",
+    ".x84 und .d83",
+    "Admin-Lizenz",
+    "Büro-Lizenz"
+  ],
+  "ausnahmen": [
+    {
+      "id": "gaeb-formate-fachteil",
+      "datei": "content/blog/gaeb-formate.md",
+      "geltung": "Nur H2-Abschnitte, deren Überschrift und Text „CraftOS“ nicht nennen (neutraler Fachteil). Der Abschnitt „So unterstützt CraftOS“ und alle Abschnitte mit CraftOS-Bezug werden voll geprüft.",
+      "begruendung": "Die Wissensseite erklärt GAEB-Formate (u. a. GAEB 90, GAEB 2000, D83) als Fachwissen; der Produktabschnitt nennt nur Unterstütztes (Import X83, Export X83 und X84). Orchestrator-Entscheidung 1 (09-UI-SPEC § 5)."
+    },
+    {
+      "id": "gobd-faq-zertifiziert",
+      "pfad": "/gobd",
+      "frage": "Ist CraftOS GoBD-zertifiziert?",
+      "geltung": "Nur Frage und Antwort dieser FAQ auf /gobd.",
+      "begruendung": "Die Suchfrage nach einer GoBD-Zertifizierung wird ehrlich beantwortet (eine solche Zertifizierung gibt es für Software nicht); die Antwort ist eine Verbraucherinformation aus Phase 8, keine Negativliste von Produktfunktionen."
+    },
+    {
+      "id": "pflichthinweise",
+      "texte": ["Preise netto zzgl. USt."],
+      "geltung": "Rechtlich nötige Hinweise in genau dieser Form.",
+      "begruendung": "Preisangaben brauchen den Hinweis auf Nettopreise und Umsatzsteuer; er beschreibt keine fehlende Funktion."
+    }
+  ]
+}
