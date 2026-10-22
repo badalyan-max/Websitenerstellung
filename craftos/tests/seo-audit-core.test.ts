@@ -12,6 +12,7 @@ import {
   istZentral,
   jsonLd,
   norm,
+  promptVerstoesse,
   pruefeSeite,
 } from "../scripts/lib/seo-audit-core.mjs";
 
@@ -418,5 +419,50 @@ describe("ctaTestphaseFehler (Ausgleich der /vergleich-Ausnahme)", () => {
 
   it("Login-Links (data-track=login) werden nicht geprüft", () => {
     expect(ctaTestphaseFehler('<a href="https://app.craftos.eu" data-track="login">Anmelden</a>', 10)).toEqual([]);
+  });
+});
+
+// ---------------------------------------------------------------------------------------------
+// Regel prompts (08 D-10): Mapping-Ziele im Build – Seite, Anker-id, Antwort ≤ 300.
+// ---------------------------------------------------------------------------------------------
+describe("promptVerstoesse", () => {
+  const mapping = {
+    prompts: [
+      { engine: "chatgpt", promptLlmId: 1, prompt: "A", target: "/preise#app-lizenz", phase: 8 },
+      { engine: "chatgpt", promptLlmId: 2, prompt: "B", target: "/vergleich/plancraft-alternative#antwort", phase: 8 },
+      { engine: "chatgpt", promptLlmId: 3, prompt: "C", target: "/gewerke/maler", phase: 9 },
+      { engine: "chatgpt", promptLlmId: 4, prompt: "D", target: "/gewerke/elektriker", phase: 9 },
+    ],
+  };
+  const seiten: Record<string, string> = {
+    "/preise": `<h1>Preise</h1><h2 id="app-lizenz">Was kostet die App-Lizenz?</h2><p>${x(179)}</p>`,
+    "/gewerke/maler": "<h1>Maler</h1>",
+  };
+  const getHtml = (p: string) => seiten[p] ?? null;
+
+  it("mit pfadFilter nur Ziele auf diesen Pfaden; fehlende Alternativen-Seiten lösen dann nichts aus", () => {
+    expect(promptVerstoesse(mapping, getHtml, ["/preise"])).toEqual([]);
+  });
+
+  it("Phase-8-Ziel ohne gebaute Seite → Verstoß; Phase-9-Ziel nur Existenz", () => {
+    const v = promptVerstoesse(mapping, getHtml);
+    expect(v.map((e: { problem: string }) => e.problem)).toEqual([
+      "Prompt-Ziel /vergleich/plancraft-alternative#antwort fehlt im Build",
+      "Prompt-Ziel /gewerke/elektriker fehlt im Build",
+    ]);
+    expect(v.every((e: { regel: string }) => e.regel === "prompts")).toBe(true);
+  });
+
+  it("fehlender Anker und Antwort > 300 → Verstoß", () => {
+    const ohneAnker = promptVerstoesse(mapping, (p: string) => (p === "/preise" ? "<h1>Preise</h1>" : null), ["/preise"]);
+    expect(ohneAnker).toHaveLength(1);
+    expect(ohneAnker[0].problem).toContain("Anker #app-lizenz fehlt");
+    const lang = promptVerstoesse(
+      mapping,
+      (p: string) => (p === "/preise" ? `<h2 id="app-lizenz">Was kostet die App-Lizenz?</h2><p>${x(301)}</p>` : null),
+      ["/preise"],
+    );
+    expect(lang).toHaveLength(1);
+    expect(lang[0].problem).toContain("Antwort 301 > 300");
   });
 });
