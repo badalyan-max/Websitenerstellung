@@ -73,25 +73,28 @@ export const craftAiKeyFacts: { facts: KeyFact[]; note: string } = {
   note: `KI-Belegscans werden ebenfalls über Credits abgerechnet; die strukturierte Verarbeitung von E-Rechnungen ist davon getrennt. Stand ${germanDate(site.checkedAt)}.`,
 };
 
-/** Grenzen (BentoGrid): mindestens zwei Kachelgrößen (Baustein-Regel), daher md + 2 × sm. */
-export const craftAiGrenzen: { title: string; text: string; icon: LucideIcon; size: "sm" | "md" }[] = [
+/**
+ * Grenzen (BentoGrid): mindestens zwei Kachelgrößen (Baustein-Regel); wide + 2 × md, damit kein Titel in einer
+ * schmalen sm-Kachel silbengetrennt wird (Sichtprüfung 08-12: „autono-mes“) und die Reihenfolge in allen Breiten bleibt.
+ */
+export const craftAiGrenzen: { title: string; text: string; icon: LucideIcon; size: "md" | "wide" }[] = [
   {
     title: "Mengen und Preise prüfen",
     text: "KI-Ergebnisse vor der Übernahme auf Mengen, Preise, Zeiten und Projektbezug prüfen.",
     icon: ListChecks,
-    size: "md",
+    size: "wide",
   },
   {
     title: "Kein autonomes Verbuchen",
     text: "Craft AI wird nicht als selbstständig verbuchendes Buchhaltungssystem angeboten.",
     icon: Scale,
-    size: "sm",
+    size: "md",
   },
   {
     title: "Zugriff nach Rolle",
     text: "Antworten richten sich nach den Daten, auf die Ihre Rolle Zugriff hat.",
     icon: KeyRound,
-    size: "sm",
+    size: "md",
   },
 ];
 

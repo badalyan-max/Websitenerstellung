@@ -61,7 +61,13 @@ export function softwareApplicationSchema() {
  * WebPage einer Funktionsdetailseite (07 D-11). Verweist per @id auf die globalen Knoten aus
  * app/layout.tsx (#software, #organization). Kein isPartOf, solange das Layout keinen WebSite-Knoten ausgibt.
  */
-export function webPageSchema(p: { path: string; name: string; description: string }) {
+export function webPageSchema(p: {
+  path: string;
+  name: string;
+  description: string;
+  /** Standard #software; die Faktenseite verweist auf die Organization (08 D-25). */
+  about?: { "@id": string };
+}) {
   const url = site.url + p.path;
   return {
     "@context": "https://schema.org",
@@ -71,7 +77,7 @@ export function webPageSchema(p: { path: string; name: string; description: stri
     name: p.name,
     description: p.description,
     inLanguage: "de-DE",
-    about: { "@id": site.url + "/#software" },
+    about: p.about ?? { "@id": site.url + "/#software" },
     publisher: { "@id": site.url + "/#organization" },
   };
 }

@@ -52,8 +52,11 @@ export const gobdSections: Record<Exclude<GobdSectionId, "kopf" | "cta">, { titl
   },
 };
 
-/** Sechs Bestandspunkte: Titel und Ziele unverändert, Text auf einen Satz gekürzt. */
-export const gobdKacheln: { title: string; text: string; href: string; icon: LucideIcon; size: "sm" | "md" }[] = [
+/**
+ * Sechs Bestandspunkte: Titel und Ziele unverändert, Text auf einen Satz gekürzt. Größen md, sm, sm, md, md, wide:
+ * „E-Rechnungsbezug“ steht nicht in einer schmalen sm-Kachel (Sichtprüfung 08-12), Reihenfolge bleibt in allen Breiten.
+ */
+export const gobdKacheln: { title: string; text: string; href: string; icon: LucideIcon; size: "sm" | "md" | "wide" }[] = [
   {
     title: "Rechnungen verbindlich festschreiben",
     text: "Beim Fertigstellen vergibt CraftOS die endgültige Nummer und sperrt den Rechnungsinhalt.",
@@ -80,21 +83,21 @@ export const gobdKacheln: { title: string; text: string; href: string; icon: Luc
     text: "Nach bestätigter Prüfung sperrt CraftOS die Belegangaben und protokolliert Änderungen.",
     href: "/hilfe/beleg-scannen-pruefen",
     icon: FileCheck2,
-    size: "sm",
+    size: "md",
   },
   {
     title: "Zugriffe und E-Rechnungsbezug schützen",
     text: "Berechtigungen begrenzen den Zugriff auf Finanzdaten und die Festschreibung.",
     href: "/funktionen/e-rechnung",
     icon: ShieldCheck,
-    size: "sm",
+    size: "md",
   },
   {
     title: "Die Übergabe vorbereiten",
     text: "Der DATEV-Export unterstützt die Übergabe; den Umfang stimmen Sie mit Ihrer Kanzlei ab.",
     href: "/hilfe/datev-export-erstellen",
     icon: FileOutput,
-    size: "md",
+    size: "wide",
   },
 ];
 

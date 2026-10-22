@@ -661,3 +661,22 @@ Abweichungen **C2–C5** zu [05]/[07] laut 08-UI-SPEC „Ergänzungen“; alle B
 **Musterseite:** `/styleguide` zeigt in Block 0 einen `FunktionsKopf` ohne Visual mit Antwort und Stand (ersetzt den bisherigen `PageHero`-Kopf; Brotkrumen weiterhin mit `crumbsSchema={false}`, genau eine H1), im Block ComparisonTable zusätzlich eine Marktübersicht mit Quellen und Disclaimer sowie die neuen Blöcke FitPanels (Warmfläche) und FactList zwischen Badges und FaqList. Vergleichsmuster nutzen ausschließlich neutrale Beispieldaten („Anbieter A/B“, `https://example.com/…`); Werte der FactList kommen aus `lib/site.ts` und dem Produktregister.
 
 **Prüfung:** `tests/funktionskopf.test.ts`, `tests/design-v2-components.test.ts`, `tests/design-v2-budgets.test.ts` (Sammeltest: Startseite, `/app`, `/funktionen` und 22 Detailseiten erfüllen die Antwort-zuerst-Regeln), `tests/styleguide.test.ts`.
+
+### 17.12 Kernseiten Fakten, Craft AI, GoBD (Plan 08-12, 22.10.2026)
+
+`/fakten-ueber-craftos`, `/craft-ai` und `/gobd` sind nach 08-UI-SPEC §§ 5.2–5.4 aus v2-Bausteinen aufgebaut (D-12): Kopf `FunktionsKopf` G1 ohne Visual mit Brotkrumen, Lead ≤ 110 und Sekundärlink; Abschnitte `section data-abschnitt={id} aria-labelledby={id}` mit H2-`id` = Abschnitts-id (§ 17.1), Flächen Weiß/Warm abwechselnd, `CtaBand` mit dem Standardtext der Detailseiten (`CTA_DETAIL`). Inhalte stehen in `lib/seiten/{fakten,craft-ai,gobd}.ts`; Preise, Credits, Testtage und Sprachenzahl nur per Vorlage aus `lib/site.ts` und dem Produktregister. JSON-LD je Seite: BreadcrumbList (Kopf), FAQPage aus demselben Array wie die sichtbare `FaqList answerMax={300}`, WebPage (Fakten mit `about` → `#organization`, D-25). `PageHero`, `TrialCta` und `components/ui/Faq` entfallen auf diesen Seiten.
+
+**Kaskade:**
+
+1. **frontend-design** (Leitlinie read-only gelesen, nichts kopiert): „Visual structure is information“ – Faktenliste, Kennzahlen und Zuständigkeits-Panels tragen Struktur über Linien und Reihenfolge; keine Einzelwort-Hervorhebung, keine Großbuchstaben-Labels. Der Abgrenzungssatz bleibt ein ruhiger Hinweis (Body 16/400 ink-500, Icon `Info` 16 px), ohne Wertung und ohne Links auf die anderen Projekte.
+2. **ui-ux-pro-max** (22.10.2026, lokal): `py -3.12 -X utf8 c:/Projekte/ai-agent-tools/skills/ui-ux-pro-max/scripts/search.py "product facts entity page ai assistant compliance" --domain ux` – Image Optimization (High): nicht betroffen (Köpfe ohne Bild, LCP = H1); Active State (Medium): Brotkrumen markieren das aktuelle Glied (§ 17.3).
+3. **21st.dev:** `21st_magic_component_inspiration` stand in dieser Sitzung nicht als Werkzeug zur Verfügung; nichts abgerufen oder behauptet.
+4. **Context7:** nicht verfügbar; Ersatz `craftos/node_modules/next/dist/docs`. Keine offenen API-Fragen (Server Components, `metaFor`).
+
+**Abweichungen (begründet):**
+
+- `/craft-ai` „Grenzen“: UI-SPEC nennt 3 × sm; `BentoGrid` verlangt mindestens zwei Kachelgrößen. Umgesetzt als wide + 2 × md – in schmalen sm-Kacheln trennte die globale Silbentrennung der h3 den Titel („Kein autono-mes Verbuchen“, Sichtprüfung 1440 px).
+- `/gobd` Funktionskacheln: Größen md, sm, sm, md, md, wide, damit „Zugriffe und E-Rechnungsbezug schützen“ nicht in einer sm-Kachel getrennt wird („E-Rech-nungsbezug“); Reihenfolge bleibt in allen Breiten gleich.
+- `/fakten-ueber-craftos` Stand-Zeile: eigene Label-Zeile unter der `FactList` (Text plus `mailto:`-Link „Korrektur melden“), weil `FactList.note` nur Text trägt.
+
+**Prüfung:** `tests/kernseiten.test.ts` (Inhalte, Wortregeln, gerenderte Seiten), `tests/design-v2-budgets.test.ts` (Sammeltest 08-12), `tests/seo-brand.test.ts` (Organization-Abgrenzung, `sameAs`), `scripts/seo-audit.mjs --paths=/fakten-ueber-craftos,/craft-ai,/gobd`, `scripts/visual-audit.mjs` (5 Breiten × 2 Engines).

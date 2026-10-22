@@ -1,133 +1,125 @@
-import Link from "next/link";
-import { PageHero } from "@/components/ui/PageHero";
+import type { ReactNode } from "react";
+import { Info } from "lucide-react";
+import { FunktionsKopf } from "@/components/funktionen/FunktionsKopf";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { BentoGrid, BentoTile, TileIcon } from "@/components/v2/BentoGrid";
+import { CtaBand } from "@/components/v2/CtaBand";
+import { FactList } from "@/components/v2/FactList";
+import { FaqList } from "@/components/v2/FaqList";
+import { KeyFacts } from "@/components/v2/KeyFacts";
+import { SectionHeader } from "@/components/v2/SectionHeader";
 import { crumbsFor } from "@/lib/breadcrumbs";
-import { pageMetadata } from "@/lib/metadata";
-import { funktionen } from "@/lib/funktionen";
-import { annualSavingPercent, site, tarife } from "@/lib/site";
-const euro = new Intl.NumberFormat("de-DE", {
-  style: "currency",
-  currency: "EUR",
-});
-const saving = Math.round(annualSavingPercent);
-function lizenz(id: (typeof tarife)[number]["id"]) {
-  const tarif = tarife.find((t) => t.id === id);
-  if (!tarif) throw new Error("Unbekannte Lizenz: " + id);
-  return tarif;
+import { CTA_DETAIL } from "@/lib/funktionsdetails";
+import { faqSchema, webPageSchema } from "@/lib/schema";
+import { metaFor, zielwerte } from "@/lib/seo-meta";
+import {
+  ABGRENZUNG,
+  FAKTEN_PFAD,
+  FAKTEN_SURFACES,
+  faktenFaq,
+  faktenKacheln,
+  faktenKeyFacts,
+  faktenKopf,
+  faktenSections,
+  faktenStand,
+  produktfakten,
+  type FaktenSectionId,
+} from "@/lib/seiten/fakten";
+import { site } from "@/lib/site";
+
+/**
+ * Entitätsseite „Was ist CraftOS?“ (08-UI-SPEC § 5.2; D-09, D-12, D-25, Prompt #6): Kopf G1 ohne Visual,
+ * Antwort mit Kennzahlen und Abgrenzung, Faktenliste mit Stand, Funktionsgruppen, FAQ und CtaBand. Inhalte aus
+ * lib/seiten/fakten.ts; Title, H1 und Description aus der Keyword-Map. JSON-LD: BreadcrumbList (Kopf), FAQPage aus
+ * der sichtbaren FAQ und WebPage mit about → Organization (#organization).
+ */
+const z = zielwerte(FAKTEN_PFAD);
+
+export const metadata = metaFor(FAKTEN_PFAD);
+
+const SURFACE = { white: "bg-white", warm: "bg-[#f7f3eb]" } as const;
+
+function Abschnitt({ id, children }: { id: Exclude<FaktenSectionId, "kopf" | "cta">; children: ReactNode }) {
+  const surface = FAKTEN_SURFACES[id];
+  if (surface === "dark") throw new Error(`Fakten-Seite: Abschnitt ${id} darf nicht dunkel sein – FAKTEN_SURFACES prüfen.`);
+  return (
+    <section data-abschnitt={id} aria-labelledby={id} className={`${SURFACE[surface]} py-12 md:py-16 lg:py-24`}>
+      <div className="site-container">{children}</div>
+    </section>
+  );
 }
-const voll = lizenz("voll");
-const app = lizenz("app");
-export const metadata = pageMetadata(
-  "Fakten über CraftOS: Funktionen, Lizenzen und Verfügbarkeit",
-  `Überprüfbare Produktinformationen zu CraftOS: Web-App, Mobile-App, Lizenzen, ${site.trialDays} Testtage, GoBD-Unterstützung und klar benannte Grenzen.`,
-  "/fakten-ueber-craftos",
-);
-export default function Page() {
+
+export default function FaktenPage() {
+  const s = faktenSections;
   return (
     <>
-      <PageHero
-        crumbs={crumbsFor("/fakten-ueber-craftos")}
-        eyebrow="Produktinformationen"
-        title="CraftOS in klaren Fakten."
-        intro="Eine Übersicht für Betriebe, Redaktionen und alle, die Funktionsumfang und Verfügbarkeit nachvollziehen möchten."
+      <FunktionsKopf
+        id="fakten-titel"
+        eyebrow={faktenKopf.eyebrow}
+        h1={z.h1}
+        keyword={faktenKopf.kopfwort}
+        lead={faktenKopf.lead}
+        secondary={faktenKopf.secondary}
+        crumbs={crumbsFor(FAKTEN_PFAD)}
       />
-      <section className="section-space">
-        <div className="site-container max-w-5xl">
-          <dl className="divide-y divide-ink-200 border-y border-ink-200">
-            {[
-              [
-                "Produkt",
-                "CraftOS ist eine deutschsprachige Software für die Organisation von Handwerksbetrieben.",
-              ],
-              [
-                "Plattformen",
-                "Web-App im Browser und Mobile-App. iOS im App Store und Android bei Google Play.",
-              ],
-              [
-                voll.name,
-                `${euro.format(voll.monat)} netto pro Person und Monat oder ${euro.format(voll.jahr)} netto pro Jahr (rund ${saving} % günstiger). Web-App und Mobile-App für dieselbe Person sind enthalten.`,
-              ],
-              [
-                app.name,
-                `${euro.format(app.monat)} netto pro Person und Monat oder ${euro.format(app.jahr)} netto pro Jahr (rund ${saving} % günstiger). Ergänzung für Mitarbeitende auf der Baustelle; der Betrieb benötigt mindestens eine ${voll.name}.`,
-              ],
-              [
-                "Testphase",
-                "10 Tage ohne Zahlungsdaten. Ein kostenpflichtiges Abo wird aktiv gewählt.",
-              ],
-              [
-                "Module",
-                "Die freigegebenen Kernmodule einschließlich Plantafel gehören zur Voll-Lizenz. Rollen und Rechte begrenzen den individuellen Zugriff. KI-Verbrauch und zusätzlicher Speicher können gesondert kosten.",
-              ],
-              [
-                "GoBD-Unterstützung",
-                "Rechnungsfestschreibung, geschützte Inhalte, Dokumentversionen, Storno-Bezüge und Belegprüfung mit Sperre und Protokollen unterstützen nachvollziehbare Abläufe. Die Organisation des betrieblichen Gesamtverfahrens bleibt erforderlich.",
-              ],
-              [
-                "Offline-Nutzung",
-                "Bereits geladene mobile Daten und ausgewählte Eingaben; keine vollständige Offline-Zusage für Fotos, KI oder neue Downloads.",
-              ],
-              [
-                "GPS-Zeiterfassung",
-                "Die Mobile-App speichert beim Starten und Stoppen des Timers jeweils einen Standortpunkt mit Genauigkeit. Die Web-App zeigt diese Orte am Zeiteintrag. Es werden keine Bewegungsverläufe aufgezeichnet.",
-              ],
-              [
-                "Automatische Projektzuordnung",
-                "Beim mobilen Timerstart wird das nächstgelegene zugängliche Projekt innerhalb des eingestellten Radius zugeordnet. Dafür braucht das Projekt gespeicherte Koordinaten. Eine ausdrückliche Projektwahl hat Vorrang; neue mobile Nachträge für Arbeit oder Fahrt erhalten eine änderbare Vorauswahl.",
-              ],
-              [
-                "Einsatzkarte",
-                "Die Web-App zeigt geplante Einsatzorte mit Tages- und Mitarbeiterfilter. Mobile Mitarbeiter öffnen den Zielort und die Navigation am Einsatz. Die Karte zeigt keine aktuellen Aufenthaltsorte des Teams.",
-              ],
-              [
-                "Unterschriften mit Standort",
-                "Mobile Unterschriften in Berichten, Abnahmen und unterstützten Kundendokumenten werden mit Ort und Zeitpunkt gespeichert und sind in App und Web nachvollziehbar. Die Bestätigung benötigt eine Standortfreigabe und eine ermittelbare Position.",
-              ],
-              [
-                "KI",
-                "Abfragen und unterstützte Entwürfe. Schreibende Übernahme nach Prüfung und Bestätigung, kein pauschales autonomes Verbuchen.",
-              ],
-            ].map(([k, v]) => (
-              <div className="grid md:grid-cols-[200px_1fr] gap-3 py-6" key={k}>
-                <dt className="font-semibold">{k}</dt>
-                <dd className="text-ink-600 leading-7">{v}</dd>
-              </div>
-            ))}
-          </dl>
-          <h2 className="text-3xl font-semibold mt-14 mb-7">
-            Funktionsbereiche
-          </h2>
-          <div className="grid sm:grid-cols-2 gap-4">
-            {funktionen.map((f) => (
-              <Link
-                href={"/funktionen/" + f.slug}
-                key={f.slug}
-                className="border-b border-ink-200 py-4 text-link"
-              >
-                {f.name}
-              </Link>
-            ))}
-          </div>
-          <p className="notice mt-10">
-            Portal-Onlinezahlungen werden nicht als verfügbar angeboten.
-            DATANORM-v5-Kompatibilität, automatische ELSTER-Übermittlung und
-            vollständig autonome Buchhaltung werden nicht zugesagt.
-          </p>
-          <p className="text-sm text-ink-600 mt-8">
-            Stand: 20. Oktober 2026.{" "}
-            <Link className="text-link" href="/gobd">
-              GoBD im Detail
-            </Link>{" "}
-            ·{" "}
-            <Link className="text-link" href="/preise">
-              Preisdetails
-            </Link>{" "}
-            ·{" "}
-            <a href={"mailto:" + site.email} className="text-link">
-              Korrektur melden
-            </a>
-          </p>
+
+      <Abschnitt id="was-ist-craftos">
+        <SectionHeader id="was-ist-craftos" title={s["was-ist-craftos"].title} lead={s["was-ist-craftos"].lead} />
+        <KeyFacts facts={faktenKeyFacts.facts} note={faktenKeyFacts.note} />
+        <p data-abgrenzung="" className="mt-6 flex max-w-[60ch] items-start gap-2 text-base leading-normal text-ink-500">
+          <Info size={16} strokeWidth={1.75} aria-hidden="true" className="mt-1 shrink-0" />
+          <span>{ABGRENZUNG}</span>
+        </p>
+      </Abschnitt>
+
+      <Abschnitt id="produktfakten">
+        <SectionHeader id="produktfakten" title={s.produktfakten.title} lead={s.produktfakten.lead} />
+        <FactList items={produktfakten} />
+        <p data-stand="" className="mt-4 text-sm leading-[1.4] text-ink-500">
+          {faktenStand.text}{" "}
+          <a href={faktenStand.link.href} className="font-semibold text-ink-900 underline underline-offset-4">
+            {faktenStand.link.label}
+          </a>
+        </p>
+      </Abschnitt>
+
+      <Abschnitt id="funktionen">
+        <SectionHeader id="funktionen" title={s.funktionen.title} lead={s.funktionen.lead} />
+        <BentoGrid label={s.funktionen.title}>
+          {faktenKacheln.map((k) => (
+            <BentoTile
+              key={k.title}
+              size={k.size}
+              surface="warm"
+              title={k.title}
+              text={k.text}
+              href={k.href}
+              visual={<TileIcon icon={k.icon} />}
+            />
+          ))}
+        </BentoGrid>
+      </Abschnitt>
+
+      <Abschnitt id="faq">
+        <div className="grid gap-y-0 lg:grid-cols-[5fr_7fr] lg:gap-x-12">
+          <SectionHeader id="faq" title={s.faq.title} lead={s.faq.lead} />
+          <FaqList items={faktenFaq} headingLevel={3} answerMax={300} />
         </div>
-      </section>
+        <JsonLd data={faqSchema(faktenFaq)} />
+      </Abschnitt>
+
+      <div data-abschnitt="cta">
+        <CtaBand title={CTA_DETAIL.title} text={CTA_DETAIL.text} secondary={CTA_DETAIL.secondary} />
+      </div>
+
+      <JsonLd
+        data={webPageSchema({
+          path: FAKTEN_PFAD,
+          name: z.h1,
+          description: z.description,
+          about: { "@id": site.url + "/#organization" },
+        })}
+      />
     </>
   );
 }

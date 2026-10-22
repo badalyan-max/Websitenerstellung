@@ -8,12 +8,13 @@ import { categories } from "@/lib/content-types";
 const pageUpdated: Record<string, string> = {
   "": "2026-10-21",
   "/funktionen": "2026-10-22",
-  "/craft-ai": "2026-10-20",
+  "/craft-ai": "2026-10-22",
   "/vergleich": "2026-10-20",
-  "/fakten-ueber-craftos": "2026-10-20",
+  "/fakten-ueber-craftos": "2026-10-22",
   "/preise": "2026-10-20",
   "/app": "2026-10-22",
   "/gewerke": "2026-10-20",
+  "/gobd": "2026-10-22",
 };
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = [
