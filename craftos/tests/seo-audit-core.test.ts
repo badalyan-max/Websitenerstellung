@@ -474,6 +474,19 @@ describe("promptVerstoesse", () => {
   });
 });
 
+// LO-07 (08-REVIEW): Steht ein Ziel mehrfach im Mapping, gilt die strengste (kleinste) Phase.
+describe("promptVerstoesse: doppelte Ziele", () => {
+  it("Phase 9 zuerst, Phase 8 danach → Anker und Antwort werden trotzdem geprüft", () => {
+    const mapping = [
+      { target: "/preise#app-lizenz", phase: 9 },
+      { target: "/preise#app-lizenz", phase: 8 },
+    ];
+    const v = promptVerstoesse(mapping, (p: string) => (p === "/preise" ? "<h1>Preise</h1>" : null));
+    expect(v).toHaveLength(1);
+    expect(v[0].problem).toContain("Anker #app-lizenz fehlt");
+  });
+});
+
 // ME-05 (08-REVIEW): Tippfehler in --only oder --paths dürfen kein falsches Grün („0 Verstöße“) liefern.
 describe("optionsFehler (seo-audit.mjs --only/--paths)", () => {
   const alleRegeln = ["breadcrumbs", "faq", "duplikate", "prompts"];

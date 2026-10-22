@@ -452,10 +452,11 @@ export function promptVerstoesse(mapping, getHtml, pfadFilter = null) {
   const eintraege = Array.isArray(mapping) ? mapping : mapping.prompts ?? [];
   const filter = pfadFilter ? new Set(pfadFilter) : null;
   const out = [];
-  const gesehen = new Set();
-  for (const e of eintraege) {
-    if (gesehen.has(e.target)) continue;
-    gesehen.add(e.target);
+  // LO-07: je Ziel die strengste (kleinste) Phase, unabhängig von der Reihenfolge im Mapping.
+  const minPhase = new Map();
+  for (const e of eintraege) minPhase.set(e.target, Math.min(minPhase.get(e.target) ?? Infinity, e.phase));
+  for (const [target, phase] of minPhase) {
+    const e = { target, phase };
     const [pfadRoh, anker] = e.target.split("#");
     const pfad = pfadRoh || "/";
     if (filter && !filter.has(pfad)) continue;
