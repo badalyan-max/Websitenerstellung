@@ -289,3 +289,94 @@ describe("Antwort-zuerst-Regeln über Bestandsinhalte (Phase 8)", () => {
     expect(problems).toEqual([]);
   });
 });
+
+/**
+ * Sammeltest 08-12: Inhalte der Kernseiten /fakten-ueber-craftos, /craft-ai und /gobd (lib/seiten/*) im Budget
+ * der Bausteine (G1, G2, G4, G5, C3). Dynamische Imports halten die Importliste oben für parallele Pläne stabil.
+ */
+describe("Kernseiten Fakten, Craft AI, GoBD im Budget (08-12)", () => {
+  it("Abschnitte, Kacheln, Schritte, KeyFacts, FactList, FitPanels und FAQ im Budget", async () => {
+    const fakten = await import("@/lib/seiten/fakten");
+    const craftAi = await import("@/lib/seiten/craft-ai");
+    const gobd = await import("@/lib/seiten/gobd");
+    const checks: Check[] = [];
+    const out: string[] = [];
+    const leads = (sections: Record<string, { title: string; lead: string }>) => {
+      for (const { title, lead } of Object.values(sections)) {
+        checks.push(["sectionHeader.title", title, TEXT_BUDGET.sectionHeader.title]);
+        const frage = title.endsWith("?");
+        checks.push(
+          frage
+            ? ["sectionHeader.answerLead", lead, TEXT_BUDGET.sectionHeader.answerLead]
+            : ["sectionHeader.lead", lead, TEXT_BUDGET.sectionHeader.lead],
+        );
+      }
+    };
+    const kopf = (k: { eyebrow: string; lead: string }) => {
+      checks.push(["pageHead.eyebrow", k.eyebrow, TEXT_BUDGET.pageHead.eyebrow]);
+      checks.push(["pageHead.kopfLead", k.lead, TEXT_BUDGET.pageHead.kopfLead]);
+    };
+    const kacheln = (tiles: { size: string; title: string; text: string }[]) => {
+      out.push(...countViolation("BentoGrid", tiles.length, TEXT_BUDGET.count.bento, "Kacheln"));
+      for (const t of tiles) {
+        checks.push(["bentoTile.title", t.title, TEXT_BUDGET.bentoTile.title]);
+        const gross = t.size === "lg" || t.size === "wide";
+        checks.push(
+          gross
+            ? ["bentoTile.textLarge", t.text, TEXT_BUDGET.bentoTile.textLarge]
+            : ["bentoTile.textSmall", t.text, TEXT_BUDGET.bentoTile.textSmall],
+        );
+      }
+    };
+    const schritte = (steps: { title: string; text: string }[]) => {
+      out.push(...countViolation("StepFlow", steps.length, TEXT_BUDGET.count.steps, "Schritte"));
+      for (const s of steps) {
+        checks.push(["step.title", s.title, TEXT_BUDGET.step.title], ["step.text", s.text, TEXT_BUDGET.step.text]);
+      }
+    };
+    const kennzahlen = (facts: { value: string; label: string }[]) => {
+      out.push(...countViolation("KeyFacts", facts.length, TEXT_BUDGET.count.keyFacts, "Fakten"));
+      for (const f of facts) {
+        checks.push(["keyFact.value", f.value, TEXT_BUDGET.keyFact.value], ["keyFact.label", f.label, TEXT_BUDGET.keyFact.label]);
+      }
+    };
+    const faq = (items: { q: string; a: string }[]) => {
+      out.push(...countViolation("FaqList", items.length, TEXT_BUDGET.count.faq, "Fragen"));
+      for (const i of items) {
+        checks.push(["faq.question", i.q, TEXT_BUDGET.faq.question], ["faq.answerCentral", i.a, TEXT_BUDGET.faq.answerCentral]);
+      }
+    };
+
+    kopf(fakten.faktenKopf);
+    leads(fakten.faktenSections);
+    kennzahlen(fakten.faktenKeyFacts.facts);
+    out.push(...countViolation("FactList", fakten.produktfakten.length, TEXT_BUDGET.count.factList, "Einträge"));
+    for (const f of fakten.produktfakten) {
+      checks.push(["factList.term", f.term, TEXT_BUDGET.factList.term]);
+      checks.push(["factList.definition", f.definition, TEXT_BUDGET.factList.definition]);
+      if (sentenceCount(f.definition) > 2) out.push(`FactList: ${f.term} hat mehr als zwei Sätze`);
+    }
+    kacheln(fakten.faktenKacheln);
+    faq(fakten.faktenFaq);
+
+    kopf(craftAi.craftAiKopf);
+    leads(craftAi.craftAiSections);
+    schritte(craftAi.craftAiSteps);
+    kennzahlen(craftAi.craftAiKeyFacts.facts);
+    kacheln(craftAi.craftAiGrenzen);
+    faq(craftAi.craftAiFaq);
+
+    kopf(gobd.gobdKopf);
+    leads(gobd.gobdSections);
+    kacheln(gobd.gobdKacheln);
+    schritte(gobd.gobdSteps);
+    for (const panel of gobd.gobdPanels) {
+      checks.push(["fitPanel.title", panel.title, TEXT_BUDGET.fitPanel.title]);
+      out.push(...countViolation("FitPanels", panel.points.length, TEXT_BUDGET.count.fitPoints, "Punkte"));
+      for (const p of panel.points) checks.push(["fitPanel.point", p.text, TEXT_BUDGET.fitPanel.point]);
+    }
+    faq(gobd.gobdFaq);
+
+    expect([...out, ...violations(checks)]).toEqual([]);
+  });
+});

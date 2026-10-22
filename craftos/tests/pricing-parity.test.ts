@@ -108,6 +108,9 @@ describe("Preise entsprechen origin/release der Web-App", () => {
       "lib/llms.ts",
       "lib/schema.ts",
       "app/fakten-ueber-craftos/page.tsx",
+      "lib/seiten/fakten.ts",
+      "lib/seiten/craft-ai.ts",
+      "lib/seiten/gobd.ts",
       "lib/funktionsgruppen.ts",
       "components/layout/HeaderShell.tsx",
     ];
