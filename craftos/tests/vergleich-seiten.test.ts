@@ -314,14 +314,19 @@ describe("Vorlage", () => {
         () => alternativeAusModul(fixtureW(), fixtureSeite((t) => (t.fuerWen.answer = satz)), PFAD),
         satz,
       ).toThrow(/Inhaber 22\.10\.2026/);
-    // Belegtes „Nein“ beim Wettbewerber bleibt zulässig, ebenso eine positive „Nein“-Antwort ohne Funktionsfrage.
+    // ME-06 (zentraler Leitlinien-Schutz): jede „Nein“-Antwort über CraftOS ist ein Fehler, nicht nur Funktionsfragen.
     expect(() =>
       alternativeAusModul(
         fixtureW(),
-        fixtureSeite((t) => {
-          t.rows.push({ label: "Zeiterfassung", craftos: true, wettbewerber: false, quellen: [t.rows[0].quellen[0]] });
-          t.faq[3] = { q: "Brauche ich bei CraftOS für jede Person eine Voll-Lizenz?", a: "Nein. Mitarbeitende nutzen die App-Lizenz." };
-        }),
+        fixtureSeite((t) => (t.faq[3] = { q: "Brauche ich bei CraftOS für jede Person eine Voll-Lizenz?", a: "Nein. Mitarbeitende nutzen die App-Lizenz." })),
+        PFAD,
+      ),
+    ).toThrow(/Inhaber 22\.10\.2026/);
+    // Belegtes „Nein“ beim Wettbewerber bleibt zulässig.
+    expect(() =>
+      alternativeAusModul(
+        fixtureW(),
+        fixtureSeite((t) => t.rows.push({ label: "Zeiterfassung", craftos: true, wettbewerber: false, quellen: [t.rows[0].quellen[0]] })),
         PFAD,
       ),
     ).not.toThrow();

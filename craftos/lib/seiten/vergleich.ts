@@ -18,6 +18,7 @@ import type { Step } from "@/components/v2/StepFlow";
 import { TEXT_BUDGET, charCount, sentenceCount } from "@/components/v2/budgets";
 import { germanDate } from "@/lib/format";
 import { ERLAUBTE_ANORDNUNGEN } from "@/lib/funktionsdetails";
+import { NEGATIVSATZ, NUR_UNTERSTUETZT, VERNEINTE_ZELLE, pruefeNurUnterstuetzt } from "@/lib/nur-unterstuetzt";
 import { site, tarife, vertrag } from "@/lib/site";
 import {
   alterWarnung,
@@ -44,12 +45,8 @@ export const NICHT_ANGEGEBEN = "nicht angegeben";
 /** Pflicht-Disclaimer für Marktübersichten (§ 3.2, wörtlich). */
 export const MARKT_DISCLAIMER = "Die Nennung der Anbieter dient der Zuordnung; es besteht keine Geschäftsbeziehung.";
 
-/** Kennzeichnung der Fehlermeldungen (Inhabervorgabe 22.10.2026, DESIGN-V2.md § 17.6). */
-export const NUR_UNTERSTUETZT = "Inhaber 22.10.2026: nur, was CraftOS unterstützt";
-/** CraftOS-Zelle verneint: „Nein“, Strich, „nicht …“, „nicht verfügbar“. */
-const VERNEINTE_ZELLE = /^\s*(nein|[-–—]|nicht\b)|nicht verfügbar/i;
-/** Satz, dass CraftOS etwas nicht kann oder nicht bietet. */
-export const NEGATIVSATZ = /nicht verfügbar|nicht unterstützt|CraftOS (bietet|hat|kann|unterstützt) (kein|nicht)/i;
+/** Leitlinien-Schutz zentral in lib/nur-unterstuetzt.ts (08-REVIEW ME-06); hier für bestehende Importe weitergereicht. */
+export { NEGATIVSATZ, NUR_UNTERSTUETZT };
 
 export interface MarktSpalte {
   key: string;
@@ -478,10 +475,7 @@ export function baueVergleich(anbieter: readonly Wettbewerber[] = alleWettbewerb
   // Antwort zuerst (D-09, C3): Kopf, Frage-H2 und FAQ ≤ 300.
   pruefeAntwort("Kopfantwort", inhalt.kopf.answer);
   pruefeAntwort("Antwort „so-vergleichen“", inhalt.sections["so-vergleichen"].lead);
-  for (const f of inhalt.faq) {
-    pruefeAntwort(`FAQ „${f.q}“`, f.a);
-    if (/^Nein\b/.test(f.a)) throw new Error(`Vergleich: FAQ „${f.q}“ beginnt mit „Nein“ – nur nennen, was unterstützt wird (${NUR_UNTERSTUETZT}).`);
-  }
+  for (const f of inhalt.faq) pruefeAntwort(`FAQ „${f.q}“`, f.a);
 
   // Einzelvergleiche: erlaubte Anordnung (07-UI-SPEC Abschnitt 4).
   const anordnung = inhalt.einzelvergleiche.kacheln.map((k) => k.size).join("·");
@@ -497,11 +491,12 @@ export function baueVergleich(anbieter: readonly Wettbewerber[] = alleWettbewerb
   };
   walk([inhalt.kopf, inhalt.sections, tabelle.rows, tabelle.note, tabelle.disclaimer, inhalt.schritte, inhalt.faq, inhalt.cta]);
   walk(inhalt.einzelvergleiche.kacheln.map(({ title, text }) => ({ title, text })));
-  for (const text of texte) {
-    pruefeText(text);
-    const negativ = NEGATIVSATZ.exec(text)?.[0];
-    if (negativ) throw new Error(`Vergleich: Text enthält „${negativ}“ – nur nennen, was CraftOS unterstützt (${NUR_UNTERSTUETZT}).`);
-  }
+  for (const text of texte) pruefeText(text);
+  // Inhabervorgabe 22.10.2026: zentraler Leitlinien-Schutz (Negativsätze, Nein-FAQ, verneinte CraftOS-Zellen).
+  pruefeNurUnterstuetzt(
+    { ...inhalt, einzelvergleiche: { kacheln: inhalt.einzelvergleiche.kacheln.map(({ title, text }) => ({ title, text })) } },
+    { kontext: "Vergleich" },
+  );
   return inhalt;
 }
 

@@ -16,6 +16,7 @@ import type { KeyFact } from "@/components/v2/KeyFacts";
 import { euro, germanDate } from "@/lib/format";
 import { funktionen } from "@/lib/funktionen";
 import { getFunktionsgruppen } from "@/lib/funktionsgruppen";
+import { pruefeNurUnterstuetzt } from "@/lib/nur-unterstuetzt";
 import { mobileLocales } from "@/lib/product-register";
 import { site, tarife } from "@/lib/site";
 
@@ -192,3 +193,18 @@ export const faktenFaq: { q: string; a: string }[] = [
     a: `${GPS_VORGAENGE}: Die Mobile-App speichert beim Start und Stopp der Zeiterfassung je einen Standortpunkt, bei mobilen Unterschriften Ort und Zeitpunkt.`,
   },
 ];
+
+// Inhabervorgabe 22.10.2026 (08-REVIEW HI-03, ME-06): nur Unterstütztes, positiv formuliert; Prüfung beim Laden.
+pruefeNurUnterstuetzt(
+  {
+    faktenKopf,
+    faktenSections,
+    faktenKeyFacts,
+    ABGRENZUNG,
+    produktfakten,
+    faktenStand,
+    faktenKacheln: faktenKacheln.map(({ title, text }) => ({ title, text })),
+    faktenFaq,
+  },
+  { kontext: "Fakten" },
+);

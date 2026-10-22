@@ -15,6 +15,7 @@ import "server-only";
 import type { Cell } from "@/components/v2/ComparisonTable";
 import { TEXT_BUDGET, charCount } from "@/components/v2/budgets";
 import { euro, germanDate } from "@/lib/format";
+import { NUR_UNTERSTUETZT, nurUnterstuetztVerstoesse } from "@/lib/nur-unterstuetzt";
 import { zielwerte } from "@/lib/seo-meta";
 import { annualSavingPercent, site, tarife, vertrag } from "@/lib/site";
 import {
@@ -89,14 +90,6 @@ const CRAFTOS_KRITERIEN: Partial<Record<KriteriumId, Cell>> = {
   lager: true,
 };
 
-/** Inhaber 22.10.2026: Kennzeichnung der Fehlermeldungen (Abweichung von U6, DESIGN-V2.md § 17.6). */
-const NUR_UNTERSTUETZT = "Inhaber 22.10.2026: nur, was CraftOS unterstützt";
-/** CraftOS-Zelle verneint: „Nein“, Strich, „nicht …“, „nicht verfügbar“. */
-const VERNEINTE_ZELLE = /^\s*(nein|[-–—]|nicht\b)|nicht verfügbar/i;
-/** FAQ-Frage nach einer Funktion („Kann ich mit CraftOS …?“). */
-const FUNKTIONSFRAGE = /^(Kann|Hat|Bietet|Unterstützt|Gibt es|Lässt sich)\b/;
-/** Satz, dass CraftOS etwas nicht kann oder nicht bietet. */
-const NEGATIVSATZ = /nicht verfügbar|nicht unterstützt|CraftOS (bietet|hat|kann|unterstützt) (kein|nicht)|ohne Bewegungsverläufe/i;
 
 /** Panel „Wann CraftOS passt“ (UI-SPEC § 3.6 „Gemeinsam“). */
 const CRAFTOS_PUNKTE: Record<CraftosPunkt, string> = {
@@ -208,10 +201,6 @@ export function alternativeAusModul(w: Wettbewerber, seite: Seitenmodul, path: s
       if (!bekannteQuellen.some((b) => b.url === q.url))
         throw fehler(w, `Zeile „${r.label}“: Quelle ${q.url} steht nicht im Datenmodul (U1).`);
   }
-  // Inhaber 22.10.2026 (geht U6 vor): nur Zeilen, in denen CraftOS die Funktion hat.
-  for (const r of t.rows)
-    if (r.craftos === false || (typeof r.craftos === "string" && VERNEINTE_ZELLE.test(r.craftos)))
-      throw fehler(w, `Zeile „${r.label}“ verneint CraftOS – Zeile weglassen (${NUR_UNTERSTUETZT}).`);
   const zellQuellen = new Set(t.rows.flatMap((r) => r.quellen.map((q) => q.url)));
   for (const f of t.kosten.facts) zellQuellen.add(f.fakt.quelle.url);
   const sources = bekannteQuellen.filter((q) => zellQuellen.has(q.url));
@@ -294,18 +283,17 @@ export function alternativeAusModul(w: Wettbewerber, seite: Seitenmodul, path: s
   pruefeAntwort(w, "Kosten-Antwort", inhalt.kosten.answer);
   pruefeAntwort(w, "Für-wen-Antwort", inhalt.fuerWen.answer);
   pruefeAntwort(w, "Umstieg-Antwort", inhalt.umstieg.answer);
-  for (const item of inhalt.faq.items) {
-    pruefeAntwort(w, `FAQ „${item.q}“`, item.a);
-    if (FUNKTIONSFRAGE.test(item.q) && item.q.includes("CraftOS") && /^Nein\b/.test(item.a))
-      throw fehler(w, `FAQ „${item.q}“ verneint eine CraftOS-Funktion – Frage weglassen (${NUR_UNTERSTUETZT}).`);
-  }
+  for (const item of inhalt.faq.items) pruefeAntwort(w, `FAQ „${item.q}“`, item.a);
   if (!inhalt.kopf.h1.includes(inhalt.kopf.keyword))
     throw fehler(w, `Kopfwort „${inhalt.kopf.keyword}“ steht nicht in der H1 „${inhalt.kopf.h1}“.`);
 
-  // UWG-Wortliste (U7) und Negativaussagen über CraftOS (Inhaber 22.10.2026) über alle Seitentexte.
+  // Inhaber 22.10.2026 (geht U6 vor; zentraler Leitlinien-Schutz, 08-REVIEW ME-06): keine verneinte CraftOS-Zeile,
+  // keine Nein-Antwort, kein Negativsatz über CraftOS; belegte Wettbewerberangaben bleiben außen vor.
+  const [verstoss] = nurUnterstuetztVerstoesse(inhalt);
+  if (verstoss) throw fehler(w, `${verstoss} (${NUR_UNTERSTUETZT})`);
+
+  // UWG-Wortliste (U7) über alle Seitentexte.
   for (const text of texteVon(inhalt)) {
-    const negativ = NEGATIVSATZ.exec(text)?.[0];
-    if (negativ) throw fehler(w, `Text enthält „${negativ}“ – nur nennen, was CraftOS unterstützt (${NUR_UNTERSTUETZT}).`);
     try {
       pruefeText(text);
     } catch (e) {

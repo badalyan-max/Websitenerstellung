@@ -9,6 +9,7 @@ import type { LucideIcon } from "lucide-react";
 import type { FitPanel } from "@/components/v2/FitPanels";
 import type { Step } from "@/components/v2/StepFlow";
 import { germanDate } from "@/lib/format";
+import { pruefeNurUnterstuetzt } from "@/lib/nur-unterstuetzt";
 import { site } from "@/lib/site";
 
 export const GOBD_PFAD = "/gobd" as const;
@@ -159,3 +160,18 @@ export const gobdGrundlage = {
   ],
   stand: `Funktionsstand ${germanDate(site.checkedAt)}.`,
 } as const;
+
+// Inhabervorgabe 22.10.2026 (08-REVIEW ME-06): nur Unterstütztes, positiv formuliert; einzige Ausnahme ist die
+// rechtlich gebotene Antwort auf „Ist CraftOS GoBD-zertifiziert?“. Prüfung beim Laden.
+pruefeNurUnterstuetzt(
+  {
+    gobdKopf,
+    gobdSections,
+    gobdKacheln: gobdKacheln.map(({ title, text }) => ({ title, text })),
+    gobdSteps,
+    gobdPanels,
+    gobdFaq,
+    gobdGrundlage,
+  },
+  { kontext: "GoBD", erlaubt: [gobdSections.zertifizierung.lead] },
+);

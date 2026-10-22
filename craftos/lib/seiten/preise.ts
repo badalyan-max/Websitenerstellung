@@ -15,6 +15,7 @@ import type { KeyFact } from "@/components/v2/KeyFacts";
 import { appTiles, type AppTile } from "@/lib/app-content";
 import { euro, germanDate } from "@/lib/format";
 import type { KernpunktVisual } from "@/lib/funktionsdetails/types";
+import { pruefeNurUnterstuetzt } from "@/lib/nur-unterstuetzt";
 import {
   annualSavingPercent,
   creditPakete,
@@ -411,3 +412,17 @@ function pruefeAlle(wert: unknown): void {
 }
 pruefeAlle([preiseKopf, preiseSections, lizenzTabelle, zusatzkostenFakten, marktspanne, preiseFaq]);
 pruefeAlle(appLizenzKacheln.map(({ title, text }) => ({ title, text })));
+
+// Inhabervorgabe 22.10.2026 (08-REVIEW ME-06): nur Unterstütztes, keine Nein-Antwort und keine Nein-Zelle zu CraftOS.
+pruefeNurUnterstuetzt(
+  {
+    preiseKopf,
+    preiseSections,
+    lizenzTabelle,
+    zusatzkostenFakten,
+    marktspanne,
+    preiseFaq,
+    kacheln: appLizenzKacheln.map(({ title, text }) => ({ title, text })),
+  },
+  { kontext: "Preise" },
+);

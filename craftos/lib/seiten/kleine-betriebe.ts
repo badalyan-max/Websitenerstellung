@@ -19,9 +19,8 @@ import type { Step } from "@/components/v2/StepFlow";
 import { TEXT_BUDGET, charCount, sentenceCount } from "@/components/v2/budgets";
 import { euro } from "@/lib/format";
 import { ERLAUBTE_ANORDNUNGEN } from "@/lib/funktionsdetails";
+import { pruefeNurUnterstuetzt } from "@/lib/nur-unterstuetzt";
 import {
-  NEGATIVSATZ,
-  NUR_UNTERSTUETZT,
   UEBERSICHT_SPALTEN,
   VERGLEICHS_CTA,
   alphabetisch,
@@ -376,10 +375,7 @@ export function baueKleineBetriebe(anbieter: readonly Wettbewerber[] = alleWettb
   pruefeAntwort("Kopfantwort", inhalt.kopf.answer);
   pruefeAntwort("Antwort „kriterien“", inhalt.sections.kriterien.lead);
   pruefeAntwort("Antwort „testen“", inhalt.sections.testen.lead);
-  for (const f of inhalt.faq) {
-    pruefeAntwort(`FAQ „${f.q}“`, f.a);
-    if (/^Nein\b/.test(f.a)) throw new Error(`Kleine Betriebe: FAQ „${f.q}“ beginnt mit „Nein“ – nur nennen, was unterstützt wird (${NUR_UNTERSTUETZT}).`);
-  }
+  for (const f of inhalt.faq) pruefeAntwort(`FAQ „${f.q}“`, f.a);
 
   // Kriterienkacheln: erlaubte Anordnung (07-UI-SPEC Abschnitt 4), amtliche Quellen in der Liste.
   const anordnung = inhalt.kriterien.kacheln.map((k) => k.size).join("·");
@@ -399,11 +395,12 @@ export function baueKleineBetriebe(anbieter: readonly Wettbewerber[] = alleWettb
   };
   walk([inhalt.kopf, inhalt.sections, tabelle.rows, tabelle.note, tabelle.disclaimer, inhalt.schritte, inhalt.faq, inhalt.cta]);
   walk(inhalt.kriterien.kacheln.map(({ title, text }) => ({ title, text })));
-  for (const text of texte) {
-    pruefeText(text);
-    const negativ = NEGATIVSATZ.exec(text)?.[0];
-    if (negativ) throw new Error(`Kleine Betriebe: Text enthält „${negativ}“ – nur nennen, was CraftOS unterstützt (${NUR_UNTERSTUETZT}).`);
-  }
+  for (const text of texte) pruefeText(text);
+  // Inhabervorgabe 22.10.2026: zentraler Leitlinien-Schutz (Negativsätze, Nein-FAQ, verneinte CraftOS-Zellen).
+  pruefeNurUnterstuetzt(
+    { ...inhalt, kriterien: { kacheln: inhalt.kriterien.kacheln.map(({ title, text }) => ({ title, text })) } },
+    { kontext: "Kleine Betriebe" },
+  );
   return inhalt;
 }
 

@@ -9,6 +9,7 @@ import type { LucideIcon } from "lucide-react";
 import type { KeyFact } from "@/components/v2/KeyFacts";
 import type { Step } from "@/components/v2/StepFlow";
 import { euro, germanDate } from "@/lib/format";
+import { pruefeNurUnterstuetzt } from "@/lib/nur-unterstuetzt";
 import { creditPakete, creditWertEuro, site, startCredits } from "@/lib/site";
 
 export const CRAFT_AI_PFAD = "/craft-ai" as const;
@@ -114,3 +115,16 @@ export const craftAiFaq: { q: string; a: string }[] = [
     a: "Ja. Fragen stellen Sie per Text oder per Sprache.",
   },
 ];
+
+// Inhabervorgabe 22.10.2026 (08-REVIEW ME-06): nur Unterstütztes, positiv formuliert; Prüfung beim Laden.
+pruefeNurUnterstuetzt(
+  {
+    craftAiKopf,
+    craftAiSections,
+    craftAiSteps,
+    craftAiKeyFacts,
+    craftAiGrenzen: craftAiGrenzen.map(({ title, text }) => ({ title, text })),
+    craftAiFaq,
+  },
+  { kontext: "Craft AI" },
+);
