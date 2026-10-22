@@ -346,9 +346,9 @@ export function buildFunktionsdetail(input: {
     if (tile.href !== undefined) pruefeKachelLink(slug, tile.title, tile.href, gruppen);
   }
   const grenzen = tiles.filter((t) => t.grenze === true).length;
-  if (grenzen !== 1) {
+  if (grenzen > 1) {
     throw new Error(
-      `Funktionsdetail: ${slug} braucht genau eine Grenze-Kachel (gefunden: ${grenzen}) – grenze: true an genau einer Kachel setzen.`,
+      `Funktionsdetail: ${slug} hat höchstens eine Grenze-Kachel (gefunden: ${grenzen}) – grenze: true an höchstens einer Kachel setzen.`,
     );
   }
   for (const tile of tiles) {

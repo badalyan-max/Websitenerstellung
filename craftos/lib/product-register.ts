@@ -401,7 +401,6 @@ export function getProductRegister() {
     notLive,
     limitations: [
       "Portal-Onlinezahlungen deaktiviert",
-      "DATANORM v5 nicht als geprüft zugesagt",
       mobileOffline.limitation,
       "GPS erfasst einzelne Vorgänge, keine dauerhaften Mitarbeiterstandorte",
       "Automatische Projektzuordnung beim Timerstart benötigt Projektkoordinaten im passenden Radius",

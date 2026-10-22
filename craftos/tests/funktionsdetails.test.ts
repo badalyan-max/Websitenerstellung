@@ -783,11 +783,18 @@ describe("buildFunktionsdetail – Regelverstöße werfen die 07-UI-SPEC-Fehlert
     expect(mit({}, mitBenefit)).toThrow(fehler("lückenlos"));
   });
 
+  it("echte Seite angebote: keine Grenze-Kachel, DATANORM 4 und 5 genannt", () => {
+    const echt = INHALTE.angebote;
+    expect(echt?.kernpunkte.tiles.filter((t) => t.grenze).length).toBe(0);
+    expect(JSON.stringify(echt)).toContain("DATANORM 4 und 5");
+    expect(JSON.stringify(echt)).not.toMatch(/DATANORM[^"]{0,40}(nicht|v5)/);
+  });
+
   it("zwei Grenze-Kacheln", () => {
     const inhalt = angeboteInhalt();
     inhalt.kernpunkte.tiles[3] = { ...inhalt.kernpunkte.tiles[3], zusatz: undefined, grenze: true };
     expect(() => baue(inhalt)).toThrow(
-      "Funktionsdetail: angebote braucht genau eine Grenze-Kachel (gefunden: 2) – grenze: true an genau einer Kachel setzen.",
+      "Funktionsdetail: angebote hat höchstens eine Grenze-Kachel (gefunden: 2) – grenze: true an höchstens einer Kachel setzen.",
     );
   });
 
