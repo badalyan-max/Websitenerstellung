@@ -310,6 +310,6 @@ Plans:
 | 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
 | 6. Startseite, Navigation und Funktionsübersicht | 6/6 | Complete    | 2026-10-21 |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 9/9 | Complete    | 2026-10-22 |
-| 8. SEO und KI-Sichtbarkeit | 14/14 | Complete   | 2026-10-23 |
+| 8. SEO und KI-Sichtbarkeit | 14/14 | Complete    | 2026-10-22 |
 | 9. Gewerke und Wissensinhalte | 0/18 | Not started | - |
 | 10. Abschlussaudit | 0/TBD | Not started | - |
