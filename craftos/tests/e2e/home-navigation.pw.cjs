@@ -502,8 +502,8 @@ test('Funktionsübersicht: Sprunglinks, reduzierte Bewegung, Kurzform-Belege und
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.goto('/funktionen')
   await page.waitForLoadState('networkidle')
-  // WebKit meldet beim Laden kurzzeitig 0,01-ms-Übergänge (globale Reduced-Motion-Regel mit transition: all);
-  // geprüft wird, dass danach nichts mehr läuft.
+  // Bis 08-13 erzeugte die globale Reduced-Motion-Regel (0,01 ms, transition-property: all) in WebKit Hunderte
+  // tab-size-Übergänge; seit der Gesamtdauer 0 s entsteht keiner mehr. Geprüft wird, dass nichts läuft.
   await expect.poll(() => page.evaluate(() => document.getAnimations().length), { timeout: 3_000 }).toBe(0)
 
   const jump = page.getByRole('navigation', { name: 'Funktionsgruppen' })

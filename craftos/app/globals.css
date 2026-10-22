@@ -404,7 +404,10 @@ img {
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    /* Gesamtdauer 0 s: es entsteht kein Übergang. Mit 0.01ms bekam jedes Element (transition-property: all)
+       einen Übergang, und WebKit startete Hunderte tab-size-Übergänge (08-13, home-navigation.pw.cjs:501). */
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
   }
 }
 
