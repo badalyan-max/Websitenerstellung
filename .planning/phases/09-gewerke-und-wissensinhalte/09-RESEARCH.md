@@ -515,7 +515,7 @@ if (aktiv.has("antwort") && mitAntwortRegel(path))
 | A5 | Push-Text „Einsatz geändert“ existiert nicht (nur „Einsatz verschoben“ gefunden) | Faktencheck (e) | evtl. dynamisch zusammengesetzt; Executor prüft `send-push-notification` |
 | A6 | Reverse-Charge-Bezeichnung im Editor/PDF | SEO-09 | Feld belegt, Label nicht gefunden → Executor sucht Label/PDF-Text |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Darf `/blog/gaeb-formate` als neutrale Fachübersicht GAEB 90 (D83) und GAEB 2000 nennen?**
    - Wir wissen: L-1 verbietet Aufzählungen nicht unterstützter Formate „für CraftOS“; Nutzerfragen drehen sich um „was ist gaeb d83“.
