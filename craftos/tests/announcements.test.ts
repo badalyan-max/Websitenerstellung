@@ -67,7 +67,7 @@ describe("keine Ankündigungen nicht-live Funktionen", () => {
     expect("upcomingFeatures" in mod).toBe(false);
     expect("vision" in mod).toBe(false);
   });
-  // 08-10: lib/comparison.ts (Stand 09.09.2026) ist abgelöst. Gleiche Absicht auf den neuen Daten (T-08-30):
+  // 08-10: Die alten Vergleichsdaten (comparison.ts, Stand 09.09.2026) sind abgelöst. Gleiche Absicht auf den neuen Daten (T-08-30):
   // KI-Telefonie ist für CraftOS nicht live und wird nirgends als CraftOS-Leistung oder Ankündigung gezeigt.
   // Nach der Inhabervorgabe vom 22.10.2026 („Nur, was unterstützt wird“, geht UI-SPEC U9/U6 vor) erscheint
   // das Kriterium auch nicht als neutrale Nein-Zeile, sondern gar nicht; der Builder wirft bei CRAFTOS_OHNE.
@@ -87,7 +87,7 @@ describe("keine Ankündigungen nicht-live Funktionen", () => {
     for (const r of t.rows) expect(JSON.stringify(r.cells), r.label).not.toMatch(telefon);
     expect(JSON.stringify(vergleich.faq)).not.toMatch(CODE_PATTERN);
   });
-  it("veraltete Vergleichsdaten lib/comparison.ts sind entfernt", () => {
-    expect(fs.existsSync(path.join(ROOT, "lib/comparison.ts"))).toBe(false);
+  it("veraltete Vergleichsdaten (comparison.ts, Stand 09.09.2026) sind entfernt", () => {
+    expect(fs.existsSync(path.join(ROOT, "lib", "comparison.ts"))).toBe(false);
   });
 });

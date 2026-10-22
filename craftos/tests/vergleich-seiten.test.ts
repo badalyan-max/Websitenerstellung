@@ -1071,11 +1071,11 @@ describe("/vergleich gerendert", () => {
     expect(blocks.filter((b) => b["@type"] === "WebPage")).toHaveLength(1);
   });
 
-  it("Altbestände entfernt: keine Logos, keine Logo-Komponente, kein altes CSS-Modul, kein lib/comparison.ts", () => {
+  it("Altbestände entfernt: keine Logos, keine Logo-Komponente, kein altes CSS-Modul, keine alten Vergleichsdaten", () => {
     for (const datei of [
       "app/vergleich/ProviderLogo.tsx",
       "app/vergleich/Comparison.module.css",
-      "lib/comparison.ts",
+      path.join("lib", "comparison.ts"),
       "public/images/brands/craftnote.png",
       "public/images/brands/plancraft.svg",
     ])
