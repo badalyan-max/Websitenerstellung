@@ -2,11 +2,14 @@
 // Pflichtprovenienz je Angabe, Alterswarnung, UWG-Wortliste, Statt-/Erstjahrespreise, Stärken-Pflicht,
 // HERO-Variante und zentrale Rundung der Monatswerte aus Jahresbeträgen.
 import { afterEach, describe, expect, it, vi } from "vitest";
+import fs from "node:fs";
+import path from "node:path";
 import {
   HERO_VARIANTE_B_HINWEIS,
   UWG_WORTLISTE,
   alterWarnung,
   craftosRechenbeispiel,
+  faktenVon,
   heroPreise,
   heroVariante,
   monatAusJahr,
@@ -15,9 +18,12 @@ import {
   quellenFuer,
   standVon,
   uwgTreffer,
+  wettbewerber,
 } from "@/lib/wettbewerber";
-import type { Fakt, Quelle, Wettbewerber } from "@/lib/wettbewerber/types";
+import type { Fakt, Preis, Quelle, Wettbewerber } from "@/lib/wettbewerber/types";
 import { vertrag } from "@/lib/site";
+
+const ROOT = path.resolve(import.meta.dirname, "..");
 
 const HEUTE = new Date(2026, 9, 22, 12);
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -267,5 +273,181 @@ describe("Stand und Quellen", () => {
 describe("CraftOS-Vertragskonstante (AGB § 5)", () => {
   it("vertrag aus lib/site.ts", () => {
     expect(vertrag).toEqual({ monat: "monatlich kündbar", jahr: "zum Ende der Laufzeit kündbar" });
+  });
+});
+
+// ---------------------------------------------------------------------------------------------------------------
+// Datenmodule (Neuprüfung 22.10.2026): alle vier Wettbewerber
+// ---------------------------------------------------------------------------------------------------------------
+
+const DOMAINS: Record<string, string> = {
+  plancraft: "plancraft.com",
+  craftnote: "craftnote.de",
+  hero: "hero-software.de",
+  tooltime: "tooltime.app",
+};
+const modul = (slug: string) => wettbewerber.find((w) => w.slug === slug)!;
+const quelltext = (slug: string) => fs.readFileSync(path.join(ROOT, "lib/wettbewerber", `${slug}.ts`), "utf8");
+const heute = () => {
+  const d = new Date();
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+};
+const preis = (w: Wettbewerber, paket: string): Preis => w.preise.wert.find((p) => p.paket === paket)!;
+const zusatz = (w: Wettbewerber, key: string): Preis => w.zusatzPreise![key].wert;
+
+describe("Datenmodule: Provenienz, UWG, Ankündigungen (alle vier)", () => {
+  it("Liste in fester Reihenfolge mit Anbieterschreibweise", () => {
+    expect(wettbewerber.map((w) => [w.slug, w.name, w.domain])).toEqual([
+      ["plancraft", "plancraft", "plancraft.com"],
+      ["craftnote", "Craftnote", "craftnote.de"],
+      ["hero", "HERO", "hero-software.de"],
+      ["tooltime", "ToolTime", "tooltime.app"],
+    ]);
+  });
+
+  for (const slug of Object.keys(DOMAINS)) {
+    it(`${slug}: pruefeWettbewerber besteht, jede Quelle https auf ${DOMAINS[slug]}, Datum ≤ heute`, () => {
+      const w = modul(slug);
+      expect(() => pruefeWettbewerber(w)).not.toThrow();
+      for (const { feld, fakt } of faktenVon(w)) {
+        expect(fakt.quelle.url, feld).toMatch(/^https:\/\//);
+        const host = new URL(fakt.quelle.url).hostname;
+        expect(host === DOMAINS[slug] || host.endsWith(`.${DOMAINS[slug]}`), `${feld}: ${host}`).toBe(true);
+        expect(fakt.abgerufenAm <= heute(), feld).toBe(true);
+      }
+      expect(w.staerken.length).toBeGreaterThanOrEqual(2);
+    });
+
+    it(`${slug}: Quelltext ohne Ankündigung, UWG-Wort und http://`, () => {
+      const text = quelltext(slug);
+      expect(text).not.toMatch(/Telefon-Agent|MCP-Server|angekündigt|(?<!\p{L})geplant/u);
+      expect(uwgTreffer(text)).toBeUndefined();
+      expect(text).not.toContain("http://");
+      expect((text.match(/https:\/\//g) ?? []).length).toBeGreaterThanOrEqual(2);
+    });
+  }
+
+  it("Alterswarnung über alle Module ist nur eine Warnung", () => {
+    vi.spyOn(console, "warn").mockImplementation(() => {});
+    for (const w of wettbewerber) expect(() => alterWarnung(w)).not.toThrow();
+  });
+});
+
+describe("Datenmodule: Werte laut Neuprüfung", () => {
+  it("plancraft: Zweijahrespreis, DATEV in allen Paketen, GAEB ab Pro, Testphase", () => {
+    const w = modul("plancraft");
+    expect(preis(w, "Business")).toMatchObject({ centsMonat: 7490, centsJahrJeMonat: 5990, centsZweiJahreJeMonat: 4792 });
+    expect(preis(w, "Pro")).toMatchObject({ centsMonat: 13990, centsJahrJeMonat: 10990, centsZweiJahreJeMonat: 8792 });
+    expect(preis(w, "Premium")).toMatchObject({ centsMonat: 24990, centsJahrJeMonat: 19990, centsZweiJahreJeMonat: 15992 });
+    expect(w.kriterien.datev?.wert).toBe("In allen Paketen");
+    expect(w.kriterien.gaeb?.wert).toBe("ab Pro");
+    expect(w.testphaseTage.wert).toBe(7);
+    expect(w.laufzeit.wert).toBe("1 Monat");
+  });
+
+  it("Craftnote: Laufzeit 12 Monate mit drei Monaten Frist laut Preisseite, Büro Plus mit Statt-Preis", () => {
+    const w = modul("craftnote");
+    expect(w.laufzeit.wert).toBe("12 Monate");
+    expect(w.laufzeit.quelle.url).toBe("https://craftnote.de/preise/");
+    expect(w.kuendigung?.quelle.url).toBe("https://craftnote.de/preise/");
+    expect(w.kuendigung?.zitat).toContain("Kündigungsfrist von drei (3) Monaten");
+    expect(quelltext("craftnote")).not.toContain("hilfe.mycraftnote");
+    expect(preis(w, "Büro Plus")).toMatchObject({ centsJahrJeMonat: 4990, stattCents: 6990 });
+    expect(preis(w, "Baustelle").centsJahrJeMonat).toBe(1490);
+    expect(w.testphaseTage.wert).toBe(30);
+    expect(w.kriterien.gaeb).toBeUndefined();
+  });
+
+  it("HERO: E-Rechnung „erstellen“, kein DATEV/GAEB, Laufzeit laut AGB", () => {
+    const w = modul("hero");
+    expect(String(w.kriterien.eRechnung?.wert)).toContain("erstellen");
+    expect(w.kriterien.datev).toBeUndefined();
+    expect(w.kriterien.gaeb).toBeUndefined();
+    expect(w.laufzeit.quelle.url).toBe("https://hero-software.de/rechtliches/agb");
+    expect(w.testphaseTage.wert).toBe(14);
+    expect(quelltext("hero")).not.toMatch(/Einführungs/);
+  });
+
+  it("ToolTime: Jahresabo-Preise als Erstjahrespreise mit regulär derzeit, Frist in Tagen als Feld", () => {
+    const w = modul("tooltime");
+    for (const p of w.preise.wert) {
+      expect(p.ersterJahrespreis, p.paket).toBe(true);
+      expect(p.regulaerDerzeitCents, p.paket).toBeGreaterThan(p.centsJahrJeMonat!);
+    }
+    expect(preis(w, "Team")).toMatchObject({ centsMonat: 16900, centsJahrJeMonat: 14500, regulaerDerzeitCents: 14900 });
+    expect(w.kuendigungsfristTage?.wert).toBe(30);
+    expect(w.kriterien.eRechnung?.wert).toBe("XRechnung und ZUGFeRD");
+    expect(w.testphaseTage.wert).toBe(7);
+  });
+
+  it("U6: jeder Wettbewerber bietet mindestens ein Kriterium, das CraftOS nicht anbietet", () => {
+    for (const w of wettbewerber)
+      expect(Boolean(w.kriterien.kiTelefon?.wert || w.kriterien.fahrzeugortung?.wert), w.slug).toBe(true);
+  });
+});
+
+describe("HERO-Beleg (D-16): Variante A genau dann, wenn beide Screenshots existieren", () => {
+  const w = () => modul("hero");
+  it("Variante folgt den Dateien unter docs/seo/belege/", () => {
+    const b = w().preiseBelegt;
+    const dateienDa =
+      !!b && fs.existsSync(path.join(ROOT, b.screenshotMonatlich)) && fs.existsSync(path.join(ROOT, b.screenshotJaehrlich));
+    expect(heroVariante(w())).toBe(dateienDa && b?.datum ? "A" : "B");
+    if (b) {
+      for (const datei of [b.screenshotMonatlich, b.screenshotJaehrlich]) {
+        expect(datei).toMatch(/^docs\/seo\/belege\/\d{4}-\d{2}-\d{2}-hero-preise-(monatlich|jaehrlich)\.(png|jpg)$/);
+        expect(fs.statSync(path.join(ROOT, datei)).size).toBeLessThanOrEqual(300 * 1024);
+      }
+    }
+  });
+  it("Variante B: keine Preiszahlen; Variante A: Zuordnung laut Screenshot", () => {
+    const h = w();
+    if (heroVariante(h) === "B") {
+      expect(heroPreise(h)).toEqual([]);
+      for (const p of [...h.preise.wert, ...Object.values(h.zusatzPreise ?? {}).map((f) => f.wert)])
+        expect(Object.keys(p).filter((k) => k.toLowerCase().includes("cents")), p.paket).toEqual([]);
+    } else {
+      expect(heroPreise(h).find((p) => p.paket === "HERO Select")).toMatchObject({ centsJahrJeMonat: 6900, centsMonat: 7900, ab: true });
+      expect(zusatz(h, "appLizenz")).toMatchObject({ centsJahrJeMonat: 2200, centsMonat: 2500 });
+    }
+  });
+});
+
+describe("Rechenbeispiele aus den Daten (UI-SPEC § 3.4/§ 3.6/§ 4, F1)", () => {
+  it("CraftOS 1 Voll + 4 App: 58,13 € im Jahresabo je Monat, 69,75 € im Monatsabo", () => {
+    expect(craftosRechenbeispiel({ voll: 1, app: 4 })).toEqual({ jahrJeMonatCents: 5813, monatCents: 6975 });
+  });
+  it("plancraft Business + 4 Mobilzugänge + Plantafel-Modul: 179,40 € jährlich, 224,40 € monatlich", () => {
+    const w = modul("plancraft");
+    const b = preis(w, "Business");
+    const m = zusatz(w, "mobilzugang");
+    const t = zusatz(w, "plantafel");
+    expect(b.centsJahrJeMonat! + 4 * m.centsJahrJeMonat! + t.centsJahrJeMonat!).toBe(17940);
+    expect(b.centsMonat! + 4 * m.centsMonat! + t.centsMonat!).toBe(22440);
+  });
+  it("Craftnote 1 Büro Plus + 4 Baustelle: 109,50 €, mit Statt-Preis gerechnet 129,50 €", () => {
+    const w = modul("craftnote");
+    const bp = preis(w, "Büro Plus");
+    const bs = preis(w, "Baustelle");
+    expect(bp.centsJahrJeMonat! + 4 * bs.centsJahrJeMonat!).toBe(10950);
+    expect(bp.stattCents! + 4 * bs.centsJahrJeMonat!).toBe(12950);
+  });
+  it("HERO Select + 4 App-Lizenzen (nur Variante A): ab 157 € jährlich, ab 179 € monatlich", () => {
+    const h = modul("hero");
+    if (heroVariante(h) === "B") return;
+    const s = heroPreise(h).find((p) => p.paket === "HERO Select")!;
+    const a = zusatz(h, "appLizenz");
+    expect(s.centsJahrJeMonat! + 4 * a.centsJahrJeMonat!).toBe(15700);
+    expect(s.centsMonat! + 4 * a.centsMonat!).toBe(17900);
+  });
+  it("Marktspanne /preise: kleinstes Paket mit Monatspreis zwischen 29,95 € und 89 €; Testphasen 7 bis 30", () => {
+    const kleinste = wettbewerber
+      .map((w) => (w.slug === "hero" ? heroPreise(w) : w.preise.wert)[0]?.centsMonat)
+      .filter((c): c is number => c !== undefined);
+    const craftos = craftosRechenbeispiel({ voll: 1, app: 0 }).monatCents;
+    expect(Math.min(craftos, ...kleinste)).toBe(2995);
+    expect(Math.max(craftos, ...kleinste)).toBe(8900);
+    const tage = wettbewerber.map((w) => w.testphaseTage.wert);
+    expect([Math.min(...tage), Math.max(...tage)]).toEqual([7, 30]);
   });
 });
