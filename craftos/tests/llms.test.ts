@@ -1,5 +1,8 @@
+import fs from "node:fs";
+import path from "node:path";
 import { describe, it, expect } from "vitest";
 import { buildLlmsTxt } from "@/lib/llms";
+import { wettbewerber } from "@/lib/wettbewerber";
 import { GET } from "@/app/llms.txt/route";
 import { funktionen } from "@/lib/funktionen";
 import { gewerke } from "@/lib/gewerke";
@@ -22,6 +25,10 @@ describe("llms.txt", () => {
     expect(abschnitt).toContain(`(${site.url}/vergleich/hero-alternative)`);
     expect(abschnitt).toContain(`(${site.url}/vergleich/tooltime-alternative)`);
     expect(abschnitt.split("\n").filter((z) => z.includes("-alternative)"))).toHaveLength(4);
+    // LO-04: Alternativen und Anbieterzahl aus der Anbieterliste (lib/wettbewerber), nicht fest geschrieben.
+    for (const w of wettbewerber)
+      expect(abschnitt).toContain(`- [${w.name}-Alternative](${site.url}/vergleich/${w.slug}-alternative): CraftOS und ${w.name} mit Quellen und Stand im Vergleich`);
+    expect(fs.readFileSync(path.join(import.meta.dirname, "../lib/llms.ts"), "utf8")).not.toMatch(/fünf Anbieter|tooltime-alternative/);
     // 08-10: Hub-Label nennt den Vergleich aller fünf Anbieter, nicht mehr nur Craftnote und plancraft.
     expect(abschnitt).toContain(`- [Handwerkersoftware-Vergleich](${site.url}/vergleich)`);
     // 08-11: Seite für kleine Betriebe (Prompt #1), ohne Wettbewerberzahlen.

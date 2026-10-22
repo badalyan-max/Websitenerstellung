@@ -1,6 +1,8 @@
 // Erzeugt /llms.txt aus denselben Daten wie die Website, damit Preise und Seiten nie auseinanderlaufen.
 import { funktionen } from "./funktionen";
 import { gewerke } from "./gewerke";
+import { zahlwort } from "./seiten/vergleich";
+import { wettbewerber } from "./wettbewerber";
 import {
   creditPakete,
   creditUmrechnung,
@@ -63,16 +65,19 @@ export function buildLlmsTxt(): string {
     "## Preise und Vergleich",
     "",
     link("Preise", "/preise"),
-    // 08-10: Hub mit Marktübersicht der fünf Anbieter (Quellen und Stand auf der Seite).
+    // 08-10: Hub mit Marktübersicht aller verglichenen Anbieter (Quellen und Stand auf der Seite).
     link("Handwerkersoftware-Vergleich", "/vergleich"),
-    // 08-08: Alternativen-Seiten, ohne Wettbewerberzahlen (Preise mit Quelle und Stand stehen auf der Seite).
-    link("plancraft-Alternative", "/vergleich/plancraft-alternative", "CraftOS und plancraft mit Quellen und Stand im Vergleich"),
-    link("Craftnote-Alternative", "/vergleich/craftnote-alternative", "CraftOS und Craftnote mit Quellen und Stand im Vergleich"),
-    // 08-09: HERO und ToolTime, ebenfalls ohne Wettbewerberzahlen.
-    link("HERO-Alternative", "/vergleich/hero-alternative", "CraftOS und HERO mit Quellen und Stand im Vergleich"),
-    link("ToolTime-Alternative", "/vergleich/tooltime-alternative", "CraftOS und ToolTime mit Quellen und Stand im Vergleich"),
-    // 08-11: Seite für kleine Betriebe (Kriterien mit amtlichen Quellen, fünf Anbieter), ohne Wettbewerberzahlen.
-    link("Handwerkersoftware für kleine Betriebe", "/vergleich/handwerkersoftware-kleine-betriebe", "Kriterien wie E-Rechnung, Laufzeit und Kosten pro Person, fünf Anbieter mit Quellen und Stand"),
+    // 08-08/08-09: Alternativen-Seiten aus der Anbieterliste (LO-04), ohne Wettbewerberzahlen (Preise mit Quelle und
+    // Stand stehen auf der Seite).
+    ...wettbewerber.map((w) =>
+      link(`${w.name}-Alternative`, `/vergleich/${w.slug}-alternative`, `CraftOS und ${w.name} mit Quellen und Stand im Vergleich`),
+    ),
+    // 08-11: Seite für kleine Betriebe (Kriterien mit amtlichen Quellen, Anbieterzahl aus den Daten), ohne Wettbewerberzahlen.
+    link(
+      "Handwerkersoftware für kleine Betriebe",
+      "/vergleich/handwerkersoftware-kleine-betriebe",
+      `Kriterien wie E-Rechnung, Laufzeit und Kosten pro Person, ${zahlwort(wettbewerber.length + 1)} Anbieter mit Quellen und Stand`,
+    ),
     link("Fakten über CraftOS", "/fakten-ueber-craftos"),
     link("GoBD", "/gobd"),
     "",

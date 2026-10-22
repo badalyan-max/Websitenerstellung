@@ -867,6 +867,30 @@ describe("ME-03: „länger testen“ nur, wenn die Testphase des Anbieters län
   });
 });
 
+describe("LO-04: Verallgemeinerungen entstehen aus den Anbieterdaten", () => {
+  it("Hub-Kopfantwort nennt nur die übergebenen Anbieter, gruppiert nach Abrechnungsmodell", async () => {
+    const { vergleich, baueVergleich } = await import("@/lib/seiten/vergleich");
+    expect(vergleich.kopf.answer).toContain(
+      "plancraft und ToolTime arbeiten mit Paketen, Craftnote mit Paketen pro Nutzer und HERO mit Plänen und Lizenzen.",
+    );
+    const ohneHero = baueVergleich([plancraft, craftnote, tooltime]).kopf.answer;
+    expect(ohneHero).not.toContain("HERO");
+    expect(ohneHero).toContain("plancraft und ToolTime arbeiten mit Paketen und Craftnote mit Paketen pro Nutzer.");
+    expect(baueVergleich([hero, craftnote]).kopf.answer).toContain("Craftnote arbeitet mit Paketen pro Nutzer und HERO mit Plänen und Lizenzen.");
+  });
+
+  it("FAQ „eigene Lizenz“: Anteil aus WEITERE_PERSON, Paket-Hinweis nur für Anbieter mit Personen im Paket", async () => {
+    const { baueKleineBetriebe } = await import("@/lib/seiten/kleine-betriebe");
+    const antwort = (anbieter: Wettbewerber[]) =>
+      baueKleineBetriebe(anbieter).faq.find((f) => f.q.startsWith("Brauchen Mitarbeitende"))!.a;
+    const ohneToolTime = antwort([plancraft, craftnote, hero]);
+    expect(ohneToolTime.startsWith("Bei allen verglichenen Anbietern ja;")).toBe(true);
+    expect(ohneToolTime).not.toContain("ToolTime");
+    expect(antwort([plancraft, craftnote, hero, tooltime]).startsWith("Bei den meisten verglichenen Anbietern ja;")).toBe(true);
+    expect(antwort([tooltime]).startsWith("Bei einigen verglichenen Anbietern ja;")).toBe(true);
+  });
+});
+
 describe("ME-04: ToolTime-Personenpreis auf beiden Seiten in derselben Lesart (Anteil am Paketpreis)", () => {
   it("Alternative „anteilig“, kleine Betriebe „im Paket“ bzw. „bis zur Paketgröße“, nie „Mitarbeitende im Paketpreis“ ohne Grenze", async () => {
     const { baueAlternative } = await import("@/lib/seiten/alternativen");

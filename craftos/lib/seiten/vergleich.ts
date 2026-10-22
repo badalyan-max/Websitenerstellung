@@ -202,6 +202,27 @@ const ABRECHNUNG: Readonly<Record<WettbewerberSlug, (w: Wettbewerber) => string>
   tooltime: () => "Paket nach Teamgröße",
 };
 
+/**
+ * Abrechnungsmodell als Satzteil für die Kopfantwort, je Anbieter neben `ABRECHNUNG` (gleicher Beleg: Preisseite).
+ * Ein neuer Anbieter braucht beide Einträge (Typ `Record<WettbewerberSlug, …>`), LO-04.
+ */
+const ABRECHNUNG_SATZ: Readonly<Record<WettbewerberSlug, string>> = {
+  craftnote: "mit Paketen pro Nutzer",
+  hero: "mit Plänen und Lizenzen",
+  plancraft: "mit Paketen",
+  tooltime: "mit Paketen",
+};
+
+/** „plancraft und ToolTime arbeiten mit Paketen, Craftnote mit … und HERO mit …“ aus den übergebenen Anbietern. */
+function abrechnungSatz(anbieter: readonly Wettbewerber[]): string {
+  const gruppen = new Map<string, string[]>();
+  for (const w of anbieter) gruppen.set(ABRECHNUNG_SATZ[w.slug], [...(gruppen.get(ABRECHNUNG_SATZ[w.slug]) ?? []), w.name]);
+  const sortiert = [...gruppen].sort((a, b) => b[1].length - a[1].length);
+  return undListe(
+    sortiert.map(([satz, namen], i) => `${undListe(namen)}${i === 0 ? (namen.length === 1 ? " arbeitet" : " arbeiten") : ""} ${satz}`),
+  );
+}
+
 /** Plantafel-Angaben der Anbieter als Satzteil für die FAQ; unbekannte Angaben werfen statt geraten zu werden. */
 const PLANTAFEL_SATZ: Readonly<Record<string, string>> = {
   "In allen Plänen": "in allen Plänen",
@@ -432,7 +453,8 @@ export function baueVergleich(anbieter: readonly Wettbewerber[] = alleWettbewerb
     kopf: {
       eyebrow: "Vergleich",
       kopfwort: "Handwerkersoftware",
-      answer: `Handwerkersoftware unterscheidet sich vor allem in Abrechnung, Laufzeit und Plantafel: CraftOS rechnet pro Person ab und ist ${vertrag.monat}, plancraft und ToolTime arbeiten mit Paketen, Craftnote mit Paketen pro Nutzer und HERO mit Plänen und Lizenzen.`,
+      // LO-04: Anbieter und Abrechnungsmodelle aus den übergebenen Daten, nicht fest geschrieben.
+      answer: `Handwerkersoftware unterscheidet sich vor allem in Abrechnung, Laufzeit und Plantafel: CraftOS rechnet pro Person ab und ist ${vertrag.monat}, ${abrechnungSatz(sortiert)}.`,
       stand: `Anbieterangaben Stand ${tabelle.stand}, Quellen unter der Tabelle`,
       secondary: { label: "Zur Übersicht", href: "#ueberblick" },
     },

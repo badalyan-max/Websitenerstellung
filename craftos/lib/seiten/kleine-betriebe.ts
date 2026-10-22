@@ -123,7 +123,8 @@ const euroKurz = (c: number) =>
     c / 100,
   );
 
-type Zelle = { wert: Cell; beleg?: Fakt<unknown> };
+/** `imPaket` = weitere Personen sind bis zur Paketgröße im Paketpreis enthalten (keine eigene Lizenz, LO-04). */
+type Zelle = { wert: Cell; beleg?: Fakt<unknown>; imPaket?: boolean };
 
 /** Preis einer weiteren Person auf der Baustelle, netto je Person und Monat, mit Zahlweise (P3); belegt. */
 const WEITERE_PERSON: Readonly<Record<WettbewerberSlug, (w: Wettbewerber) => Zelle>> = {
@@ -148,7 +149,7 @@ const WEITERE_PERSON: Readonly<Record<WettbewerberSlug, (w: Wettbewerber) => Zel
     const personen = Number(/\d+/.exec(team?.enthalten ?? "")?.[0]);
     if (!Number.isInteger(personen) || personen < 2)
       throw new Error("Kleine Betriebe: ToolTime-Paket „Team“ ohne Personenzahl in „enthalten“ – Datenmodul prüfen.");
-    return { wert: `im Paket, bis ${personen} Personen`, beleg: w.preise };
+    return { wert: `im Paket, bis ${personen} Personen`, beleg: w.preise, imPaket: true };
   },
 };
 
@@ -169,8 +170,22 @@ const PERSON_SPALTE: MarktSpalte = {
   key: "person",
   label: "Weitere mobile Person",
   craftos: `${euro(app.monat)} (Monatsabo)`,
-  wettbewerber: (w) => WEITERE_PERSON[w.slug](w),
+  wettbewerber: (w) => {
+    const { wert, beleg } = WEITERE_PERSON[w.slug](w);
+    return { wert, beleg };
+  },
 };
+
+/**
+ * Antwortanfang „Brauchen Mitarbeitende … eine eigene Lizenz?“ aus `WEITERE_PERSON` (LO-04): Anteil der Anbieter
+ * (einschließlich CraftOS mit App-Lizenz), bei denen eine weitere Person eine eigene Lizenz braucht.
+ */
+function eigeneLizenzAnfang(anbieter: readonly Wettbewerber[]): string {
+  const gesamt = anbieter.length + 1;
+  const eigene = 1 + anbieter.filter((w) => !WEITERE_PERSON[w.slug](w).imPaket).length;
+  if (eigene === gesamt) return "Bei allen verglichenen Anbietern ja";
+  return eigene * 2 > gesamt ? "Bei den meisten verglichenen Anbietern ja" : "Bei einigen verglichenen Anbietern ja";
+}
 
 function hubSpalte(key: string): MarktSpalte {
   const spalte = UEBERSICHT_SPALTEN.find((s) => s.key === key);
@@ -322,7 +337,7 @@ export function baueKleineBetriebe(anbieter: readonly Wettbewerber[] = alleWettb
   });
   const e = AMTLICH.eRechnung;
   const beispiel = craftosRechenbeispiel(BEISPIEL);
-  const paketPersonen = sortiert.find((w) => w.slug === "tooltime");
+  const paketPersonen = sortiert.find((w) => WEITERE_PERSON[w.slug](w).imPaket);
 
   const inhalt: KleineBetriebeInhalt = {
     kopf: {
@@ -376,7 +391,7 @@ export function baueKleineBetriebe(anbieter: readonly Wettbewerber[] = alleWettb
       },
       {
         q: "Brauchen Mitarbeitende auf der Baustelle eine eigene Lizenz?",
-        a: `Bei den meisten verglichenen Anbietern ja; bei CraftOS ist das die ${app.name} für ${euro(app.monat)} netto im Monat${
+        a: `${eigeneLizenzAnfang(sortiert)}; bei CraftOS ist das die ${app.name} für ${euro(app.monat)} netto im Monat${
           paketPersonen ? `, bei ${paketPersonen.name} sind Mitarbeitende bis zur Paketgröße im Paketpreis enthalten (${paketGroessen(paketPersonen)})` : ""
         }.`,
       },
