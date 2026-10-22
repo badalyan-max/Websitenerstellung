@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { LegalShell, LegalSection, DataBlock } from '@/components/legal/Legal'
+import { crumbsFor } from '@/lib/breadcrumbs'
 import { site } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function ImpressumPage() {
   return (
-    <LegalShell title="Impressum">
+    <LegalShell title="Impressum" crumbs={crumbsFor('/impressum')}>
       <p className="text-ink-500">Angaben gemäß § 5 TMG</p>
 
       <LegalSection heading="Anbieter">

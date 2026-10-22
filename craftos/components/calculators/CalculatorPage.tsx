@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { LockKeyhole } from "lucide-react";
+import { Breadcrumbs } from "@/components/v2/Breadcrumbs";
+import { crumbsFor } from "@/lib/breadcrumbs";
 import styles from "./Calculators.module.css";
 
 export function CalculatorPage({
@@ -18,23 +20,13 @@ export function CalculatorPage({
     <div className={styles.page}>
       <div className={styles.container}>
         <header className={styles.hero}>
-          <nav aria-label="Brotkrümelnavigation" className={styles.breadcrumbs}>
-            <Link href="/">CraftOS</Link>
-            <span aria-hidden="true">/</span>
-            {current ? (
-              <>
-                <Link href="/rechner">Kostenlose Rechner</Link>
-                <span aria-hidden="true">/</span>
-                <span aria-current="page">
-                  {current === "stundensatz"
-                    ? "Stundensatz"
-                    : "Angebotskalkulation"}
-                </span>
-              </>
-            ) : (
-              <span aria-current="page">Kostenlose Rechner</span>
-            )}
-          </nav>
+          {/* Brotkrumen-Baustein (08-UI-SPEC § 1, C10): einzige BreadcrumbList der Rechnerseiten */}
+          <div className={styles.crumbs}>
+            <Breadcrumbs
+              items={crumbsFor(current ? "/rechner/" + current : "/rechner")}
+              tone="light"
+            />
+          </div>
           <h1>{title}</h1>
           <p className={styles.intro}>{intro}</p>
           <p className={styles.localPromise}>

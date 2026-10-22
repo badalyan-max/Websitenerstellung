@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { getContentList } from "@/lib/content";
 import { categories, type ContentArticle } from "@/lib/content-types";
 import { getFunktion } from "@/lib/funktionen";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { breadcrumbSchema } from "@/lib/schema";
+import { Breadcrumbs } from "@/components/v2/Breadcrumbs";
+import { crumbsFor } from "@/lib/breadcrumbs";
 import { site } from "@/lib/site";
 export async function ArticlePage({ article: a }: { article: ContentArticle }) {
   const all = [
@@ -17,16 +18,16 @@ export async function ArticlePage({ article: a }: { article: ContentArticle }) {
   const url = site.url + "/" + a.kind + "/" + a.slug;
   return (
     <>
-      <div className="bg-ink-100 py-12 md:py-20">
+      <div className="bg-ink-100 pt-2 pb-12 md:pt-4 md:pb-20 lg:pt-6">
         <div className="site-container">
-          <Link
-            href={"/" + a.kind}
-            className="inline-flex items-center gap-2 text-sm text-ink-600"
-          >
-            <ArrowLeft size={16} />
-            {a.kind === "blog" ? "Alle Ratgeber" : "Hilfezentrum"}
-          </Link>
-          <p className="eyebrow mt-8 block">{categories[a.kind][a.category]}</p>
+          {/* Brotkrumen statt Rücklink (08-UI-SPEC § 1, C11); einzige BreadcrumbList der Seite */}
+          <div className="mb-4 md:mb-6 lg:mb-8">
+            <Breadcrumbs
+              items={crumbsFor("/" + a.kind + "/" + a.slug, a.title)}
+              tone="light"
+            />
+          </div>
+          <p className="eyebrow block">{categories[a.kind][a.category]}</p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl max-w-5xl font-semibold">
             {a.title}
           </h1>
@@ -165,20 +166,6 @@ export async function ArticlePage({ article: a }: { article: ContentArticle }) {
             "@id": site.url + "/funktionen/" + s,
           })),
         }}
-      />
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Start", path: "/" },
-          {
-            name: a.kind === "blog" ? "Ratgeber" : "Hilfe",
-            path: "/" + a.kind,
-          },
-          {
-            name: categories[a.kind][a.category],
-            path: "/" + a.kind + "/kategorie/" + a.category,
-          },
-          { name: a.title, path: "/" + a.kind + "/" + a.slug },
-        ])}
       />
     </>
   );

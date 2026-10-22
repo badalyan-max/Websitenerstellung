@@ -1,18 +1,31 @@
+import { Breadcrumbs } from '@/components/v2/Breadcrumbs'
+import type { Crumb } from '@/lib/breadcrumbs'
+
+/**
+ * Rahmen der Rechtsseiten. Brotkrumen (08-UI-SPEC § 1, D-20) stehen als erste Zeile des ersten
+ * Inhaltscontainers im hellen Ton; der Rechtstext selbst bleibt unverändert.
+ */
 export function LegalShell({
   title,
   updated,
   eyebrow = 'Rechtliches',
+  crumbs,
   children,
 }: {
   title: string
   updated?: string
   eyebrow?: string
+  /** Kette aus crumbsFor(pfad) – einzige BreadcrumbList der Seite. */
+  crumbs: Crumb[]
   children: React.ReactNode
 }) {
   return (
     <section className="bg-white">
       <div className="border-b border-ink-200 bg-ink-50">
-        <div className="mx-auto max-w-3xl px-5 py-14 sm:px-8">
+        <div className="mx-auto max-w-3xl px-5 pt-2 pb-14 sm:px-8 md:pt-4 lg:pt-6">
+          <div className="mb-4 md:mb-6 lg:mb-8">
+            <Breadcrumbs items={crumbs} tone="light" />
+          </div>
           <p className="spec-label text-primary-600">{eyebrow}</p>
           <h1 className="mt-3 font-display text-4xl font-extrabold text-ink-900">{title}</h1>
           {updated && <p className="mt-2 font-mono text-xs text-ink-400">Stand: {updated}</p>}

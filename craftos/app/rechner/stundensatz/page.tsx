@@ -55,29 +55,6 @@ export default function HourlyRatePage() {
               inLanguage: "de-DE",
               offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
             },
-            {
-              "@type": "BreadcrumbList",
-              itemListElement: [
-                {
-                  "@type": "ListItem",
-                  position: 1,
-                  name: "CraftOS",
-                  item: site.url,
-                },
-                {
-                  "@type": "ListItem",
-                  position: 2,
-                  name: "Kostenlose Rechner",
-                  item: `${site.url}/rechner`,
-                },
-                {
-                  "@type": "ListItem",
-                  position: 3,
-                  name: "Stundensatzkalkulator",
-                  item: url,
-                },
-              ],
-            },
           ],
         }}
       />

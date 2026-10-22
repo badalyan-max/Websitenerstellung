@@ -268,8 +268,11 @@ ausschließlich im UI-SPEC; hier werden keine neuen Werte festgelegt.
    Optimization (High), Active State (Medium). Sie decken sich mit der Tabelle in 06-UI-SPEC.md,
    Abschnitt „2. ui-ux-pro-max“; Übernahmen und Verwerfungen gelten unverändert von dort
    (übernommen: Sticky-Ausgleich über `scroll-margin-top`, vorhersagbare Zurück-Taste ohne `pushState`,
-   keine Rasterbilder im Hero, aktiver Navigationszustand; sichtbarer Breadcrumb verworfen, nur
-   BreadcrumbList-Schema).
+   keine Rasterbilder im Hero, aktiver Navigationszustand; ~~sichtbarer Breadcrumb verworfen, nur
+   BreadcrumbList-Schema~~).
+   **Hinweis 22.10.2026: Die Verwerfung sichtbarer Breadcrumbs ist aufgehoben durch Phase 8 (C1, D-22).**
+   Sichtbare Brotkrumen stehen seit Plan 08-02 auf allen indexierten Seiten außer `/` (SEO-05, D-07);
+   Baustein, Ketten und Kaskade siehe § 17.3.
 3. **21st.dev:** `21st_magic_component_inspiration` stand dem Ausführenden in dieser Sitzung **nicht**
    als Werkzeug zur Verfügung; die Suchen „mega menu“, „saas hero device mockup“ und „feature list
    compact“ wurden deshalb nicht ausgeführt. Es wurden keine Referenzen abgerufen oder behauptet; builder
@@ -605,3 +608,27 @@ Fehlertexte (08-UI-SPEC „Copywriting Contract“): „Antwort zuerst: Frage �
 - `scripts/seo-audit.mjs [--only=<regel,…>] [--paths=<pfad,…>] [--report]` prüft jede Sitemap-URL im gebauten HTML (`.next/server/app`): `title`, `description`, `h1`, `duplikate`, `keyword`, `map`, `breadcrumbs`, `og`, `faq-schema`, `schema`, `antwort`, `prompts`. Ergebnis immer in `test-results/seo-audit.json` (inklusive Ist-Werte je Pfad).
 - KeyFacts akzeptiert zusätzlich die Quellen-Kurzform `wettbewerber:<schlüssel>` für belegte Wettbewerberwerte; CraftOS-Werte bleiben `site:`/`register:`.
 - Metadaten neuer und umgebauter Seiten über `metaFor(path)` aus `lib/seo-meta.ts` (Quelle `docs/seo/keyword-map.json`); H1 aus `zielwerte(path).h1`.
+
+### 17.3 Brotkrumen (G6, Plan 08-02, 22.10.2026)
+
+Abweichung **C1** zu § 12: Sichtbare Brotkrumen auf allen indexierten Seiten außer `/` (D-07, D-22, SEO-05). Verbindlich ist 08-UI-SPEC § 1 mit den Farben „Brotkrumen-Farben“ und den Abständen „Kopf mit Brotkrumen“; C10 (Rechner: `aria-label="Brotkrumen"`, Glied „Start“) und C11 (Ratgeber/Hilfe: Rücklink entfällt) sind umgesetzt.
+
+**Kaskade:**
+
+1. **frontend-design** (Leitlinie read-only gelesen, nichts kopiert): Strukturmittel tragen Information – die Brotkrumen sind eine dezente Ortsangabe in Label-Größe, kein Schmuck; kein Amber, keine Pillen oder Hintergründe, damit Eyebrow und H1 die Hierarchie behalten. Gestaltung aus dem Bestand abgeleitet (Unterstrich wie Textlinks, Fokusfarbe [05]).
+2. **ui-ux-pro-max** (ausgeführt am 22.10.2026, lokal):
+   ```
+   py -3.12 -X utf8 c:/Projekte/ai-agent-tools/skills/ui-ux-pro-max/scripts/search.py "breadcrumb navigation seo" --domain ux
+   ```
+   Treffer: Sticky Navigation (Medium) – übernommen (Brotkrumen liegen im Seitenkopf unter dem Header, Anker behalten `scroll-margin-top`); **Breadcrumbs (Low): „Use for sites with 3+ levels of depth / Don't use for flat single-level sites“ – bewusst überstimmt**, weil D-07/D-22/SEO-05 sichtbare Brotkrumen auch auf Ebene 2 (`Start › Preise`) verlangen; genau dieser Treffer war die Grundlage der früheren Verwerfung in § 12. Back Button (High, mobil) – übernommen: Brotkrumen sind normale Links ohne `pushState`.
+3. **21st.dev:** `21st_magic_component_inspiration` („breadcrumb“) stand in dieser Sitzung **nicht** als Werkzeug zur Verfügung; keine Referenzen abgerufen oder behauptet, builder/refiner nicht verwendet.
+4. **Context7:** nicht verfügbar; Ersatz `craftos/node_modules/next/dist/docs` (`next/link` in Server Components). Keine offenen API-Fragen.
+
+**Baustein und Quelle:**
+
+- `lib/breadcrumbs.ts` – `crumbsFor(path, current?)` ist die einzige Kettenquelle (feste Tabelle für statische Pfade, Namen aus `lib/funktionen.ts`, `lib/gewerke.ts`, Kategorien aus `lib/content-types.ts`; Artikeltitel als `current`). Unbekannter Pfad → „Breadcrumbs: Pfad {path} hat keinen Eintrag – lib/breadcrumbs.ts ergänzen.“; 1 oder ≥ 5 Glieder → „Breadcrumbs: {n} Glieder – 2 bis 4 erlaubt.“
+- `components/v2/Breadcrumbs.tsx` (Server Component, kein Client-JS): `nav[aria-label="Brotkrumen"][data-tone]` › `ol` › `li`; Zwischenglieder `next/link` (Budget `crumb.name` ≤ 32), letztes Glied `span[aria-current="page"]`, Trenner `ChevronRight` 16 px `aria-hidden`, 8 px je Seite. `<ol>` und Links mindestens 44 px hoch, „Start“ mindestens 44 × 44 px. Unter 768 px eine Zeile, nur das letzte Glied mit Ellipse (voller Text bleibt im DOM und im Schema). Fokus `3px solid #BB7609`, Offset 4 px; Hover nur unter `@media (hover: hover)`.
+- **Genau eine BreadcrumbList je Seite** entsteht im Baustein (`breadcrumbSchema(items)`); die neun früheren Stellen (FunktionsDetail, `/app`, `/funktionen`, Gewerke-Detail, ArticlePage, ContentIndex, beide Rechner-`@graph`, `/vergleich`-`@graph`) sind entfernt. `/styleguide` zeigt den Baustein nur als Muster mit `schema={false}`.
+- **Position:** erste Zeile im Seitenkopf – dunkel in `FunktionsKopf` (Prop `crumbs`, optional `crumbsSchema`), `FunktionenHead` und `PageHero` (Prop `crumbs`); hell in `ArticlePage`, `CalculatorPage` und `LegalShell` (Rechtsseiten: erste Zeile des ersten Inhaltscontainers, Rechtstext unverändert). Abstände: oben 8/16/24 px, zur Eyebrow/H1 16/24/32 px (< 768 / 768–1023 / ≥ 1024).
+- **Ketten für Artikel:** `Start › Ratgeber|Hilfe › {Artikeltitel}` (3 Glieder laut UI-SPEC-Tabelle); die frühere Schema-Zwischenstufe „Kategorie“ entfällt, die Kategorie steht weiter als Eyebrow über der H1.
+- Geprüft durch `tests/breadcrumbs.test.ts` (Ketten aller Sitemap-Pfade, Markup, Schema-Gleichheit) und die Audit-Regel `node scripts/seo-audit.mjs --only=breadcrumbs` (sitewide streng).

@@ -18,24 +18,31 @@
   margin-inline: auto;
 }
 
+/* Kopf mit Brotkrumen (08-UI-SPEC „Spacing Scale“): oben 8/16/24 → Zeile 44 → H1 16/24/32. */
 .hero {
-  padding-block: clamp(2rem, 5vw, 4.5rem) clamp(2rem, 4vw, 3.5rem);
+  padding-block: 8px clamp(2rem, 4vw, 3.5rem);
 }
 
-.breadcrumbs {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.55rem;
-  font-size: 0.875rem;
-  color: var(--calc-muted);
-  margin-bottom: 2rem;
+.crumbs {
+  margin-bottom: 16px;
 }
 
-.breadcrumbs a {
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-  padding-block: 0.4rem;
+@media (min-width: 768px) {
+  .hero {
+    padding-top: 16px;
+  }
+  .crumbs {
+    margin-bottom: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    padding-top: 24px;
+  }
+  .crumbs {
+    margin-bottom: 32px;
+  }
 }
 
 .hero h1 {
@@ -786,16 +793,6 @@
 @media (max-width: 640px) {
   .container {
     width: calc(100% - 2rem);
-  }
-
-  .hero {
-    padding-top: 1.6rem;
-  }
-
-  .breadcrumbs {
-    font-size: 0.75rem;
-    gap: 0.4rem;
-    margin-bottom: 1.5rem;
   }
 
   .localPromise {

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { LegalShell, LegalSection, DataBlock } from '@/components/legal/Legal'
+import { crumbsFor } from '@/lib/breadcrumbs'
 import { site } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function DatenschutzPage() {
   return (
-    <LegalShell title="Datenschutzerklärung">
+    <LegalShell title="Datenschutzerklärung" crumbs={crumbsFor('/datenschutz')}>
       <p>
         Der Schutz Ihrer personenbezogenen Daten ist uns wichtig. Wir verarbeiten Ihre Daten
         ausschließlich auf Grundlage der gesetzlichen Bestimmungen (DSGVO, BDSG). In dieser

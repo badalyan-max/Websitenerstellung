@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LegalShell, LegalSection } from "@/components/legal/Legal";
+import { crumbsFor } from "@/lib/breadcrumbs";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function AgbPage() {
   return (
-    <LegalShell title="Allgemeine Geschäftsbedingungen">
+    <LegalShell title="Allgemeine Geschäftsbedingungen" crumbs={crumbsFor("/agb")}>
       <LegalSection heading="§ 1 Geltungsbereich">
         <p>
           Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für die Nutzung
