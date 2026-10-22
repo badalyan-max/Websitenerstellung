@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
 import { funktionen } from "@/lib/funktionen";
-import { gewerke } from "@/lib/gewerke";
+import { GEWERKE_STAND, gewerke } from "@/lib/gewerke";
 import { getContentList } from "@/lib/content";
 import { categories } from "@/lib/content-types";
 /** Letzte inhaltliche Änderung je Kernseite; Standard ist der Relaunch-Stand. */
@@ -62,7 +62,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     ...gewerke.map((g) => ({
       url: site.url + "/gewerke/" + g.slug,
-      lastModified: "2026-09-09",
+      // Datum der letzten inhaltlichen Änderung der Gewerke-Daten (09-02, lib/gewerke.ts).
+      lastModified: GEWERKE_STAND,
     })),
     ...(["blog", "hilfe"] as const).flatMap((kind) =>
       Object.keys(categories[kind]).map((c) => ({
