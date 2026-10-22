@@ -12,8 +12,19 @@ import { germanDate, euro } from "@/lib/format";
 import { alternativeAusModul, baueAlternative } from "@/lib/seiten/alternativen";
 import type { AlternativeInhalt, Seitenmodul } from "@/lib/seiten/alternativen/types";
 import { annualSavingPercent, site, tarife } from "@/lib/site";
-import { craftnote, monatAusJahr, plancraft, standVon, UWG_WORTLISTE, uwgTreffer } from "@/lib/wettbewerber";
-import type { Wettbewerber } from "@/lib/wettbewerber/types";
+import {
+  craftnote,
+  hero,
+  heroVariante,
+  monatAusJahr,
+  plancraft,
+  standVon,
+  tooltime,
+  UWG_WORTLISTE,
+  uwgTreffer,
+} from "@/lib/wettbewerber";
+import type { Preis, Wettbewerber } from "@/lib/wettbewerber/types";
+import { heroSeite } from "@/lib/seiten/alternativen/hero";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
 const PFAD = "/vergleich/plancraft-alternative";
@@ -509,6 +520,237 @@ describe("Craftnote", () => {
     pruefeHtml(inhalt);
     pruefeNurUnterstuetzt(inhalt);
     pruefeModulLiterale("lib/seiten/alternativen/craftnote.ts");
+  });
+});
+
+/** Anbieterschreibweise ganzer Euro („69 €“), sonst mit Cent („74,90 €“). */
+const ek = (c: number | undefined) =>
+  new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR", minimumFractionDigits: c! % 100 === 0 ? 0 : 2 }).format(
+    c! / 100,
+  );
+const APP_JAHR = euro(app.jahr);
+const HERO_PFAD = "/vergleich/hero-alternative";
+
+/** HERO ohne Screenshot-Beleg: Variante B ohne Preiszahlen (D-16, U11). */
+function heroOhneBeleg(): Wettbewerber {
+  const w = structuredClone(hero);
+  w.preiseBelegt = null;
+  w.preise = { ...w.preise, wert: w.preise.wert.map(({ paket, enthalten }) => ({ paket, enthalten })) };
+  delete w.zusatzPreise;
+  return w;
+}
+
+/** HERO-Seite je Variante (UI-SPEC § 3.6 „HERO“, Inhaber 22.10.2026 ohne Zeile KI-Telefonassistent). */
+function pruefeHeroInhalt(w: Wettbewerber, inhalt: AlternativeInhalt) {
+  const variante = heroVariante(w);
+  const preis = (paket: string): Preis => w.preise.wert.find((p) => p.paket === paket)!;
+  const [select, os, osPlus] = [preis("HERO Select"), preis("HERO OS"), preis("HERO OS Plus")];
+  const appLizenz = w.zusatzPreise?.appLizenz?.wert;
+
+  expect(inhalt.path).toBe(HERO_PFAD);
+  expect(inhalt.kopf.h1).toBe("Die HERO-Software-Alternative im Vergleich");
+  expect(inhalt.kopf.keyword).toBe("HERO-Software");
+  const kopfCraftos = `CraftOS ist eine HERO-Alternative mit Preis pro Person: Die Voll-Lizenz mit Web-App, Mobile-App und Plantafel kostet ${VOLL_MONAT} netto im Monat.`;
+  expect(inhalt.kopf.answer).toBe(
+    variante === "A"
+      ? `${kopfCraftos} HERO Select kostet ab ${ek(select.centsJahrJeMonat)} netto im Monat bei jährlicher und ab ${ek(select.centsMonat)} bei monatlicher Zahlweise, jeweils mit einer Standard-Lizenz.`
+      : `${kopfCraftos} HERO nennt Preise je Plan und Zahlweise auf hero-software.de/preise; laut AGB gilt eine Grundlaufzeit von zwölf Monaten, soweit nicht anders vereinbart.`,
+  );
+
+  const preisZeilen =
+    variante === "A"
+      ? [
+          ["Bürozugang, monatliche Zahlung", VOLL_MONAT, `ab ${ek(select.centsMonat)} (Select)`],
+          ["Bürozugang, jährliche Zahlung je Monat", VOLL_JAHR_MONAT, `ab ${ek(select.centsJahrJeMonat)} (Select)`],
+          ["Weitere mobile Person, jährlich je Monat", `${APP_JAHR_MONAT} (App-Lizenz)`, `${ek(appLizenz!.centsJahrJeMonat)} (App-Lizenz)`],
+        ]
+      : [["Preise je Plan und Zahlweise", `${VOLL_JAHR_MONAT} (Voll, jährlich)`, "laut hero-software.de"]];
+  expect(inhalt.tabelle.rows.map((r) => [r.label, r.craftos, r.wettbewerber])).toEqual([
+    ...preisZeilen,
+    ["Grundlaufzeit", "1 Monat", `${w.laufzeit.wert} laut AGB`],
+    ["Testphase", `${site.trialDays} Tage`, `${w.testphaseTage.wert} Tage`],
+    ["Mobile-App für iOS und Android", true, true],
+    ["Plantafel", "In Voll-Lizenz", "Ja, ab Select"],
+    ["E-Rechnung erstellen", "XRechnung und ZUGFeRD", "ZUGFeRD und XRechnung"],
+    ["Zeiterfassung", true, true],
+    ["Lager", true, "ab HERO OS"],
+  ]);
+
+  const jahr5 = appLizenz && ek(monatAusJahr([select.centsJahrJeMonat! * 12, ...Array(4).fill(appLizenz.centsJahrJeMonat! * 12)]));
+  const monat5 = appLizenz && ek(select.centsMonat! + 4 * appLizenz.centsMonat!);
+  if (variante === "A") {
+    expect(jahr5).toBe(ek(15700));
+    expect(monat5).toBe(ek(17900));
+    expect(inhalt.kosten.answer).toBe(
+      `Für eine Person im Büro und vier auf der Baustelle zahlen Sie bei jährlicher Zahlweise ${BEISPIEL_JAHR} netto im Monat bei CraftOS und ab ${jahr5} bei HERO Select; die Pläne unterscheiden sich im Funktionsumfang.`,
+    );
+    expect(inhalt.kosten.facts.map((f) => [f.value, f.label])).toEqual([
+      [BEISPIEL_JAHR, "CraftOS, 5 Personen, Jahresabo je Monat"],
+      [BEISPIEL_MONAT, "CraftOS, 5 Personen, Monatsabo"],
+      [`ab ${jahr5}`, "HERO Select, 5 Personen, jährlich"],
+      [`ab ${monat5}`, "HERO Select, 5 Personen, monatlich"],
+    ]);
+    expect(inhalt.kosten.note).toContain("HERO: HERO Select mit 1 Standard-Lizenz + 4 App-Lizenzen, „ab“-Preise laut Preisseite.");
+  } else {
+    expect(inhalt.kosten.answer).toBe(
+      `HERO nennt Preise je Plan und Zahlweise auf hero-software.de/preise; bei CraftOS zahlen eine Person im Büro und vier auf der Baustelle im Jahresabo ${BEISPIEL_JAHR} netto im Monat.`,
+    );
+    expect(inhalt.kosten.facts.map((f) => [f.value, f.label, f.source])).toEqual([
+      [BEISPIEL_JAHR, "CraftOS, 5 Personen, Jahresabo je Monat", "site:tarife-5p-jahr"],
+      [BEISPIEL_MONAT, "CraftOS, 5 Personen, Monatsabo", "site:tarife-5p-monat"],
+      [VOLL_MONAT, "CraftOS Voll-Lizenz pro Monat", "site:tarife-voll-monat"],
+      [APP_MONAT, "CraftOS App-Lizenz pro Monat", "site:tarife-app-monat"],
+    ]);
+    expect(inhalt.kosten.note).toContain("HERO: Preise je Plan und Zahlweise laut hero-software.de/preise.");
+    // D-16/U11: In Variante B steht keine HERO-Preiszahl in Text oder Zelle.
+    const heroZahlen = hero.preise.wert.flatMap((p) => [p.centsMonat, p.centsJahrJeMonat]).filter(Boolean) as number[];
+    const texte = alleTexte(inhalt).join(" | ");
+    for (const c of heroZahlen) expect(texte, ek(c)).not.toMatch(new RegExp(`(^|[^0-9,])${c / 100} €`));
+  }
+  expect(inhalt.kosten.note).toContain("Nicht enthalten: KI-Verbrauch und Extra-Speicher bei CraftOS.");
+
+  expect(inhalt.fuerWen.answer).toBe(
+    "HERO passt zu Betrieben, die KI-Telefonie, Online-Zahlungen oder einen API-Zugang im selben System nutzen möchten; CraftOS passt zu Betrieben, die pro Person abrechnen und monatlich kündbar bleiben wollen.",
+  );
+  expect(inhalt.fuerWen.panels[0].points.map((p) => p.text)).toEqual(w.staerken.map((s) => s.wert));
+  expect(inhalt.fuerWen.panels[0].points.length).toBeGreaterThanOrEqual(2);
+  expect(inhalt.umstieg.answer).toContain("Ihres HERO-Vertrags");
+  expect(inhalt.umstieg.steps[0].text).toBe("HERO nennt in den AGB einen Monat Frist zum Ende der Laufzeit.");
+  expect(inhalt.faq.items).toEqual([
+    {
+      q: "Was kostet HERO pro Monat?",
+      a:
+        variante === "A"
+          ? `HERO Select kostet ab ${ek(select.centsJahrJeMonat)} netto im Monat bei jährlicher und ab ${ek(select.centsMonat)} bei monatlicher Zahlweise, HERO OS ab ${ek(os.centsJahrJeMonat)} bzw. ${ek(os.centsMonat)}, HERO OS Plus ab ${ek(osPlus.centsJahrJeMonat)} bzw. ${ek(osPlus.centsMonat)}, jeweils mit einer Standard-Lizenz.`
+          : "HERO nennt Preise je Plan (Select, HERO OS, HERO OS Plus) und Zahlweise auf hero-software.de/preise, jeweils zuzüglich Umsatzsteuer und mit einer Standard-Lizenz.",
+    },
+    {
+      q: "Welche Laufzeit hat HERO?",
+      a: "Laut HERO-AGB beträgt die Grundlaufzeit zwölf Monate, soweit in der Bestellung nichts anderes vereinbart ist, mit einem Monat Kündigungsfrist und automatischer Verlängerung.",
+    },
+    {
+      q: "Wie lange kann ich HERO und CraftOS kostenlos testen?",
+      a: `CraftOS testen Sie ${site.trialDays} Tage ohne Zahlungsdaten. HERO nennt eine Testphase von ${w.testphaseTage.wert} Tagen.`,
+    },
+    {
+      q: "Welche Lizenz brauchen Mitarbeitende auf der Baustelle bei CraftOS?",
+      a: `Die App-Lizenz für ${APP_MONAT} netto im Monat oder ${APP_JAHR} im Jahr mit Zeiten, Einsätzen, Aufmaß, Fotos, Baudokumentation und Urlaub in der Mobile-App.`,
+    },
+  ]);
+  // „E-Rechnung erstellen“, kein „Empfangen“ (XRechnung-Import laut HERO nicht verfügbar → nicht erwähnt).
+  expect(alleTexte(inhalt).filter((t) => /empfang/i.test(t))).toEqual([]);
+  expect(alleTexte(inhalt).filter((t) => uwgTreffer(t))).toEqual([]);
+  for (const item of inhalt.faq.items) expect(charCount(item.a), item.q).toBeLessThanOrEqual(300);
+  pruefeHtml(inhalt);
+  pruefeNurUnterstuetzt(inhalt);
+}
+
+describe("HERO", () => {
+  it(`Seite folgt der belegten Variante ${heroVariante(hero)} (heroVariante)`, () => {
+    pruefeHeroInhalt(hero, baueAlternative("hero"));
+  });
+
+  it("Variante B (Fixture ohne Screenshot-Beleg): keine HERO-Zahl, „laut hero-software.de“, nur CraftOS-KeyFacts", () => {
+    const w = heroOhneBeleg();
+    expect(heroVariante(w)).toBe("B");
+    pruefeHeroInhalt(w, alternativeAusModul(w, heroSeite, HERO_PFAD));
+  });
+
+  it("Seitenmodul ohne Zahlenliterale und ohne „empfangen“", () => {
+    pruefeModulLiterale("lib/seiten/alternativen/hero.ts");
+    const quelle = fs.readFileSync(path.join(ROOT, "lib/seiten/alternativen/hero.ts"), "utf8");
+    expect(quelle).toContain("heroVariante");
+    expect(quelle).not.toMatch(/empfangen/i);
+  });
+});
+
+describe("ToolTime", () => {
+  const inhalt = baueAlternative("tooltime");
+  const preis = (paket: string): Preis => tooltime.preise.wert.find((p) => p.paket === paket)!;
+  const [solo, team, max] = [preis("Solo"), preis("Team"), preis("Max")];
+  const teamLizenz = tooltime.zusatzPreise!.teamJeLizenz.wert;
+  const datev = tooltime.zusatzPreise!.datev.wert;
+
+  it("Pfad, H1 aus der Map, Kopfwort und Antwort laut UI-SPEC § 3.6", () => {
+    expect(inhalt.path).toBe("/vergleich/tooltime-alternative");
+    expect(inhalt.kopf.h1).toBe("ToolTime-Alternative: CraftOS im Vergleich");
+    expect(inhalt.kopf.keyword).toBe("ToolTime-Alternative:");
+    expect(inhalt.kopf.answer).toBe(
+      `CraftOS ist eine ToolTime-Alternative mit Preis pro Person und monatlich kündbarem Abo: Die Voll-Lizenz kostet ${VOLL_MONAT} netto im Monat. ToolTime rechnet in Paketen für 1, bis zu 5 oder bis zu 10 Mitarbeitende mit 12 Monaten Mindestlaufzeit ab.`,
+    );
+  });
+
+  it("Tabelle mit 10 Zeilen, nur Funktionen, die CraftOS hat (Inhaber 22.10.2026); Jahresabo nur „1. Jahr“", () => {
+    expect(inhalt.tabelle.rows.map((r) => [r.label, r.craftos, r.wettbewerber])).toEqual([
+      ["Abrechnung", "pro Person", "Paket nach Teamgröße"],
+      ["Preis je Person, monatliche Zahlung", `${VOLL_MONAT} Voll, ${APP_MONAT} App`, `${ek(teamLizenz.centsMonat)} (Team-Paket)`],
+      ["Preis je Person, Jahresabo je Monat", `${VOLL_JAHR_MONAT} Voll, ${APP_JAHR_MONAT} App`, `${ek(teamLizenz.centsJahrJeMonat)} (Team, 1. Jahr)`],
+      ["Kürzeste Laufzeit", "1 Monat", tooltime.laufzeit.wert],
+      ["Testphase", `${site.trialDays} Tage`, `${tooltime.testphaseTage.wert} Tage`],
+      ["Mobile-App für iOS und Android", true, true],
+      ["Plantafel", "In Voll-Lizenz", "Ja, ohne Paketangabe"],
+      ["E-Rechnung", "XRechnung und ZUGFeRD", "XRechnung und ZUGFeRD"],
+      ["DATEV-Export", true, `Erweiterung, ${ek(datev.centsMonat)}/Monat`],
+      ["GAEB-Schnittstelle", "Import X83, Export X84", "Import und Export"],
+    ]);
+    for (const r of inhalt.tabelle.rows.filter((r) => /Jahresabo/.test(r.label)))
+      expect(String(r.wettbewerber), r.label).toMatch(/1\. (Jahr|Vertragsjahr)/);
+  });
+
+  it("Kosten: Team im ersten Vertragsjahr, regulär derzeit, Note mit P4-Satz", () => {
+    expect(inhalt.kosten.answer).toBe(
+      `Für fünf Personen zahlen Sie im Jahresabo ${BEISPIEL_JAHR} netto im Monat bei CraftOS mit einer Voll- und vier App-Lizenzen und ${ek(team.centsJahrJeMonat)} bei ToolTime Team im ersten Vertragsjahr, regulär derzeit ${ek(team.regulaerDerzeitCents)}.`,
+    );
+    expect(inhalt.kosten.facts.map((f) => [f.value, f.label])).toEqual([
+      [BEISPIEL_JAHR, "CraftOS, 5 Personen, Jahresabo je Monat"],
+      [BEISPIEL_MONAT, "CraftOS, 5 Personen, Monatsabo"],
+      [ek(team.centsJahrJeMonat), "ToolTime Team, 1. Vertragsjahr je Monat"],
+      [ek(team.centsMonat), "ToolTime Team, monatliche Zahlung"],
+    ]);
+    expect(inhalt.kosten.note).toContain("ToolTime: Team-Paket für bis zu 5 Mitarbeiter, Jahresabo.");
+    expect(inhalt.kosten.note).toContain(
+      `Die Jahresabo-Preise gelten laut ToolTime nur im ersten Vertragsjahr; regulär nennt ToolTime derzeit ${ek(team.regulaerDerzeitCents)} (Team). Preise späterer Jahre sind nicht zugesagt.`,
+    );
+    for (const t of alleTexte(inhalt)) expect(t).not.toMatch(/ab Jahr 2|danach [0-9]/);
+  });
+
+  it("Für wen, Umstieg und FAQ laut UI-SPEC § 3.6", () => {
+    expect(inhalt.fuerWen.answer).toBe(
+      "ToolTime passt zu Betrieben, die einen festen Paketpreis je Teamgröße, Lexware Office oder offline sichtbare Einsatzpläne wollen; CraftOS passt zu Betrieben, die pro Person abrechnen und monatlich kündbar bleiben wollen.",
+    );
+    expect(inhalt.fuerWen.panels[0].points.map((p) => p.text)).toEqual(tooltime.staerken.map((s) => s.wert));
+    expect(inhalt.umstieg.answer).toContain("Ihres ToolTime-Vertrags");
+    expect(inhalt.umstieg.steps[0].text).toBe(
+      `ToolTime nennt ${tooltime.kuendigungsfristTage!.wert} Tage Frist zum Laufzeitende, in Textform.`,
+    );
+    expect(inhalt.faq.items).toEqual([
+      {
+        q: "Was kostet ToolTime pro Monat?",
+        a: `ToolTime kostet bei monatlicher Zahlung ${ek(solo.centsMonat)} (Solo), ${ek(team.centsMonat)} (Team, bis zu 5) oder ${ek(max.centsMonat)} (Max, bis zu 10); im Jahresabo im ersten Vertragsjahr ${ek(solo.centsJahrJeMonat)}, ${ek(team.centsJahrJeMonat)} oder ${ek(max.centsJahrJeMonat)}, regulär derzeit ${ek(solo.regulaerDerzeitCents)}, ${ek(team.regulaerDerzeitCents)} oder ${ek(max.regulaerDerzeitCents)} pro Monat.`,
+      },
+      {
+        q: "Kann ich CraftOS ohne lange Vertragsbindung nutzen?",
+        a: `Ja. Das Monatsabo ist monatlich kündbar; das Jahresabo kostet rund ${Math.round(annualSavingPercent)} % weniger als zwölf Monatszahlungen und ist zum Ende der Laufzeit kündbar.`,
+      },
+      {
+        q: "Wie lange kann ich ToolTime und CraftOS kostenlos testen?",
+        a: `CraftOS testen Sie ${site.trialDays} Tage ohne Zahlungsdaten. ToolTime nennt eine ${tooltime.testphaseTage.wert}-tägige Testversion ohne Zahlungsinformationen.`,
+      },
+      {
+        q: "Hat CraftOS eine DATEV-Schnittstelle?",
+        a: `Ja. CraftOS erstellt in der Voll-Lizenz einen DATEV-Export für die Steuerberatung; bei ToolTime ist der DATEV Rechnungsdatenservice eine Erweiterung für ${ek(datev.centsMonat)} im Monat.`,
+      },
+    ]);
+  });
+
+  it("renderToString besteht die Vorlagenprüfung; Seitenmodul ohne Zahlenliterale und ohne Folgejahr-Zusage", () => {
+    pruefeHtml(inhalt);
+    pruefeNurUnterstuetzt(inhalt);
+    expect(alleTexte(inhalt).filter((t) => uwgTreffer(t))).toEqual([]);
+    pruefeModulLiterale("lib/seiten/alternativen/tooltime.ts");
+    const quelle = fs.readFileSync(path.join(ROOT, "lib/seiten/alternativen/tooltime.ts"), "utf8");
+    expect(quelle).not.toMatch(/ab Jahr 2|danach [0-9]/);
+    expect(quelle).toContain("ersterJahrespreis");
   });
 });
 

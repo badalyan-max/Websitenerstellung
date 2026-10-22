@@ -268,8 +268,8 @@ describe("Antwort-zuerst-Regeln über Bestandsinhalte (Phase 8)", () => {
       `/funktionen/${f.slug}`,
       renderToString(createElement(FunktionsDetail, { detail: getFunktionsdetail(f.slug) })),
     ]),
-    // 08-08: Alternativen-Seiten (Frage-H2 kosten, fuer-wen, umstieg; Nicht-Frage-H2 vergleich, faq).
-    ...(["plancraft", "craftnote"] as const).map((slug): [string, string] => [
+    // 08-08/08-09: Alternativen-Seiten (Frage-H2 kosten, fuer-wen, umstieg; Nicht-Frage-H2 vergleich, faq).
+    ...(["plancraft", "craftnote", "hero", "tooltime"] as const).map((slug): [string, string] => [
       `/vergleich/${slug}-alternative`,
       renderToString(createElement(AlternativePage, { inhalt: baueAlternative(slug) })),
     ]),
@@ -277,8 +277,8 @@ describe("Antwort-zuerst-Regeln über Bestandsinhalte (Phase 8)", () => {
   const decode = (v: string) =>
     v.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#x27;/g, "'").trim();
 
-  it("27 Seiten rendern; Frage-H2 → Antwort-Lead mit data-answer ≤ 300, sonst Lead ≤ 140 mit einem Satz", () => {
-    expect(seiten).toHaveLength(27);
+  it("29 Seiten rendern; Frage-H2 → Antwort-Lead mit data-answer ≤ 300, sonst Lead ≤ 140 mit einem Satz", () => {
+    expect(seiten).toHaveLength(29);
     const problems: string[] = [];
     for (const [pfad, html] of seiten) {
       for (const m of html.matchAll(/<header[^>]*>[\s\S]*?<h2[^>]*>([\s\S]*?)<\/h2>(<p[^>]*>)([\s\S]*?)<\/p>/g)) {
