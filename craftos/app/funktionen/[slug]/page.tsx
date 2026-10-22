@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import { FunktionsDetail } from "@/components/funktionen/FunktionsDetail";
 import { getFunktion, funktionen } from "@/lib/funktionen";
-import { getFunktionsdetail, zielwerte } from "@/lib/funktionsdetails";
-import { pageMetadata } from "@/lib/metadata";
+import { getFunktionsdetail } from "@/lib/funktionsdetails";
+import { metaFor } from "@/lib/seo-meta";
 
 /**
  * Funktionsdetailseiten (07-UI-SPEC „Vorlage Detailseite“; FEAT-02, SEO-02, D-04, D-10, D-22): dünne Route.
@@ -16,9 +16,8 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   if (!getFunktion(slug)) return {};
-  const pfad = "/funktionen/" + slug;
-  const z = zielwerte(pfad);
-  return pageMetadata(z.titleOhneMarke, z.description, pfad);
+  // Title, Description und Segmentbild /funktionen/{slug}/opengraph-image aus der Keyword-Map (08-05).
+  return metaFor("/funktionen/" + slug);
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {

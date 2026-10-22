@@ -40,6 +40,18 @@ describe("metaFor und zielwerte", () => {
     expect(meta.twitter?.images).toEqual([og[0].url]);
   });
 
+  it("/app und /funktionen/aufmass zeigen og:image und twitter:image auf ihr Segmentbild (08-05)", async () => {
+    const app = await import("@/app/app/page");
+    const appOg = app.metadata.openGraph?.images as { url: string }[];
+    expect(appOg[0].url).toBe("https://craftos.eu/app/opengraph-image");
+    expect(app.metadata.twitter?.images).toEqual(["https://craftos.eu/app/opengraph-image"]);
+    const detail = await import("@/app/funktionen/[slug]/page");
+    const meta = await detail.generateMetadata({ params: Promise.resolve({ slug: "aufmass" }) });
+    const og = meta.openGraph?.images as { url: string }[];
+    expect(og[0].url).toBe("https://craftos.eu/funktionen/aufmass/opengraph-image");
+    expect(meta.twitter?.images).toEqual(["https://craftos.eu/funktionen/aufmass/opengraph-image"]);
+  }, 30_000);
+
   it("zielwerte wirft für Pfade ohne Zielwerte mit dem bekannten Fehlertext", () => {
     expect(() => zielwerte("/unbekannt")).toThrow(
       "Keyword-Map: /unbekannt hat keine Zielwerte – target.title, target.h1 und target.description ergänzen.",
