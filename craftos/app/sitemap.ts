@@ -16,6 +16,8 @@ const pageUpdated: Record<string, string> = {
   "/gewerke": "2026-10-20",
   "/vergleich/plancraft-alternative": "2026-10-22",
   "/vergleich/craftnote-alternative": "2026-10-22",
+  "/vergleich/hero-alternative": "2026-10-22",
+  "/vergleich/tooltime-alternative": "2026-10-22",
 };
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = [
@@ -33,6 +35,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/vergleich",
     "/vergleich/plancraft-alternative",
     "/vergleich/craftnote-alternative",
+    "/vergleich/hero-alternative",
+    "/vergleich/tooltime-alternative",
     "/fakten-ueber-craftos",
     "/support",
     "/blog",
