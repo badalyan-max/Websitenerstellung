@@ -149,7 +149,7 @@ describe("Fakten über CraftOS (§ 5.2, D-25)", () => {
       "Einsatzkarte",
       "Unterschriften mit Standort",
       "KI",
-      "Nicht zugesagt",
+      "GAEB und DATANORM",
     ]);
     for (const { term, definition } of items) {
       expect(charCount(term), term).toBeLessThanOrEqual(TEXT_BUDGET.factList.term);
@@ -167,9 +167,8 @@ describe("Fakten über CraftOS (§ 5.2, D-25)", () => {
     expect(def("Offline-Nutzung").startsWith("Teilweise")).toBe(true);
     expect(def("Offline-Nutzung")).toContain(mobileOffline.limitation);
     expect(def("Standort bei der Zeiterfassung")).toMatch(/keine Bewegungsverläufe|Bewegungsverläufe werden nicht/);
-    const nicht = def("Nicht zugesagt");
-    for (const punkt of ["Portal-Onlinezahlung", "DATANORM-v5", "ELSTER", "autonome Buchhaltung"]) expect(nicht).toContain(punkt);
-    expect(nicht).toMatch(/nicht/);
+    // Inhabervorgabe 22.10.2026: nur nennen, was unterstützt wird; DATANORM nur positiv als „DATANORM 4 und 5“.
+    expect(def("GAEB und DATANORM")).toContain("DATANORM 4 und 5");
   });
 
   it("Stand-Zeile mit Datum aus site.checkedAt und Korrektur per E-Mail", () => {
@@ -371,6 +370,11 @@ describe("Wortregeln und Literale (T-08-32)", () => {
   it("kein autonomes Verbuchen als Zusage", () => {
     const funde = alle.filter((t) => /autonom/i.test(t) && !/\b(nicht|kein\w*|Nein)\b/i.test(t));
     expect(funde).toEqual([]);
+  });
+
+  it("keine Negativlisten: DATANORM nur als „DATANORM 4 und 5“, kein „nicht zugesagt“ (Inhabervorgabe 22.10.2026)", () => {
+    expect(alle.filter((t) => /DATANORM/.test(t) && !t.includes("DATANORM 4 und 5"))).toEqual([]);
+    expect(alle.filter((t) => /nicht zugesagt|DATANORM[- ]?v5/i.test(t))).toEqual([]);
   });
 
   it("Offline nur mit Einschränkung, nie „vollständig offline“", () => {
