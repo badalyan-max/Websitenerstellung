@@ -98,7 +98,7 @@ export default function GobdPage() {
         <div className="grid gap-y-0 lg:grid-cols-[5fr_7fr] lg:gap-x-12">
           <SectionHeader id="faq" title={s.faq.title} lead={s.faq.lead} />
           <div className="min-w-0">
-            <FaqList items={gobdFaq} headingLevel={3} answerMax={300} />
+            <FaqList items={gobdFaq} headingLevel={3} zentral />
             <p data-grundlage="" className="mt-4 text-sm leading-[1.4] text-ink-500">
               {"Grundlage: "}
               <a href={gobdGrundlage.quellen[0].href} rel="nofollow" className="text-ink-900 underline underline-offset-4">

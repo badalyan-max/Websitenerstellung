@@ -19,7 +19,8 @@ export const OG_TITLE_MAX = 90;
 
 /** Titelgröße nach Zeichenzahl: bis 40 Zeichen 72 px, 41–60 Zeichen 64 px, 61–90 Zeichen 52 px, darüber Fehler. */
 export function ogTitleSize(title: string, path?: string): 72 | 64 | 52 {
-  const n = title.length;
+  // IN-03: Codepoints wie das SEO-Audit (Array.from), nicht UTF-16-Einheiten.
+  const n = Array.from(title).length;
   if (n > OG_TITLE_MAX) {
     throw new Error(
       `OG: Titel für ${path ?? `„${title}“`} hat ${n} Zeichen – höchstens ${OG_TITLE_MAX}, Kurztitel in den Daten angeben.`,

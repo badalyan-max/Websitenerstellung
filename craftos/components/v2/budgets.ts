@@ -13,7 +13,7 @@ export const TEXT_BUDGET = {
   keyFact: { value: 10, label: 40 },
   comparison: { rowLabel: 48, cell: 24 },
   badge: 16,
-  /** Phase 8 (C3): answerCentral = ganze FAQ-Antwort auf zentralen Seiten (answerMax). */
+  /** Phase 8 (C3): answerCentral = ganze FAQ-Antwort auf zentralen Seiten (FaqList zentral). */
   faq: { question: 90, firstSentence: 300, answer: 600, answerCentral: 300 },
   /** Phase 8 (08-UI-SPEC G1–G7): Antwortsatz im Kopf, FitPanels, FactList, OG-Titel, Brotkrumen-Zwischenglieder. */
   answer: 300,

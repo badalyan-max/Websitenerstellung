@@ -93,7 +93,7 @@ export function AlternativePage({ inhalt }: { inhalt: AlternativeInhalt }) {
       <Abschnitt id="faq" surface="white">
         <div className="grid gap-y-0 lg:grid-cols-[5fr_7fr] lg:gap-x-12">
           <SectionHeader id="faq" title={faq.title} lead={faq.lead} />
-          <FaqList items={faq.items} headingLevel={3} answerMax={300} />
+          <FaqList items={faq.items} headingLevel={3} zentral />
         </div>
         <JsonLd data={faqSchema(faq.items)} />
       </Abschnitt>

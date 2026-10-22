@@ -92,7 +92,7 @@ export default function VergleichPage() {
       <Abschnitt id="faq">
         <div className="grid gap-y-0 lg:grid-cols-[5fr_7fr] lg:gap-x-12">
           <SectionHeader id="faq" title={s.faq.title} lead={s.faq.lead} />
-          <FaqList items={v.faq} headingLevel={3} answerMax={300} />
+          <FaqList items={v.faq} headingLevel={3} zentral />
         </div>
         <JsonLd data={faqSchema(v.faq)} />
       </Abschnitt>

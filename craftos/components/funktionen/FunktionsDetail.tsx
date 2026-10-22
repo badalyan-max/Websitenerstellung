@@ -105,7 +105,7 @@ export function FunktionsDetail({ detail }: { detail: Funktionsdetail }) {
       <Abschnitt id="faq" surface="warm">
         <div className="grid gap-y-0 lg:grid-cols-[5fr_7fr] lg:gap-x-12">
           <SectionHeader id="faq-titel" title={faq.title} lead={faq.lead} />
-          <FaqList items={faq.items} headingLevel={3} answerMax={300} />
+          <FaqList items={faq.items} headingLevel={3} zentral />
         </div>
         <JsonLd data={faqSchema(detail.faq.items)} />
       </Abschnitt>

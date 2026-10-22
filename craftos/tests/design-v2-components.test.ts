@@ -447,17 +447,18 @@ describe("FaqList", () => {
     );
   });
 
-  it("answerMax={300} (C3): Antwort mit 301 Zeichen wirft faq.answerCentral, ohne answerMax gilt 600", () => {
+  // IN-03: boolesches „zentral“ statt answerMax (dessen Wert ignoriert wurde).
+  it("zentral (C3): Antwort mit 301 Zeichen wirft faq.answerCentral, ohne zentral gilt 600", () => {
     // Zwei Sätze: erster Satz 150 Zeichen (≤ firstSentence 300), gesamt 301 (≤ answer 600).
     const lang = `${"a".repeat(149)}. ${"b".repeat(149)}.`;
     expect(Array.from(lang).length).toBe(301);
     const items = [{ q: "Wie lang darf eine Antwort sein?", a: lang }, ...faqs.slice(0, 2)];
-    expect(() => renderToString(createElement(FaqList, { items, answerMax: 300 }))).toThrow(
+    expect(() => renderToString(createElement(FaqList, { items, zentral: true }))).toThrow(
       "Textbudget überschritten: faq.answerCentral hat 301 von 300 Zeichen – Satz kürzen.",
     );
     expect(() => renderToString(createElement(FaqList, { items }))).not.toThrow();
     const ohne = renderToString(createElement(FaqList, { items: faqs.slice(0, 3) }));
-    const mit = renderToString(createElement(FaqList, { items: faqs.slice(0, 3), answerMax: 300 }));
+    const mit = renderToString(createElement(FaqList, { items: faqs.slice(0, 3), zentral: true }));
     expect(mit).toBe(ohne);
   });
 });

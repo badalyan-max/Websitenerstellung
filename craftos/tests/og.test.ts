@@ -19,6 +19,11 @@ describe("ogTitleSize – Titelstufen nach Zeichenzahl", () => {
     expect(ogTitleSize("a".repeat(61))).toBe(52);
     expect(ogTitleSize("a".repeat(90))).toBe(52);
   });
+  it("zählt Codepoints wie das SEO-Audit (Array.from), nicht UTF-16-Einheiten (IN-03)", () => {
+    expect(ogTitleSize("🔧".repeat(40))).toBe(72);
+    expect(ogTitleSize("🔧".repeat(90))).toBe(52);
+    expect(() => ogTitleSize("🔧".repeat(91))).toThrow(/hat 91 Zeichen/);
+  });
   it("> 90 Zeichen → Fehler mit Pfad und Zeichenzahl", () => {
     expect(() => ogTitleSize("a".repeat(91), "/blog/x")).toThrow(
       "OG: Titel für /blog/x hat 91 Zeichen – höchstens 90, Kurztitel in den Daten angeben.",
