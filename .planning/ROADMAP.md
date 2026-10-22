@@ -178,7 +178,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 08-02-PLAN.md — Brotkrumen sitewide als v2-Baustein mit einer Schemaquelle, neun BreadcrumbList-Stellen in einem Zug ersetzt, Phase-8-Budgets
+- [x] 08-02-PLAN.md — Brotkrumen sitewide als v2-Baustein mit einer Schemaquelle, neun BreadcrumbList-Stellen in einem Zug ersetzt, Phase-8-Budgets
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
@@ -268,6 +268,6 @@ Plans:
 | 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
 | 6. Startseite, Navigation und Funktionsübersicht | 6/6 | Complete    | 2026-10-21 |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 9/9 | Complete    | 2026-10-22 |
-| 8. SEO und KI-Sichtbarkeit | 1/14 | In Progress|  |
+| 8. SEO und KI-Sichtbarkeit | 2/14 | In Progress|  |
 | 9. Gewerke und Wissensinhalte | 0/TBD | Not started | - |
 | 10. Abschlussaudit | 0/TBD | Not started | - |

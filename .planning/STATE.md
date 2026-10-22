@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-stopped_at: Completed 08-01-PLAN.md
-last_updated: "2026-10-22T14:47:11.813Z"
-last_activity: 2026-10-22
+stopped_at: Completed 08-02-PLAN.md
+last_updated: "2026-10-22T15:53:26.100Z"
+last_activity: 2026-10-22 – 08-02 Brotkrumen sitewide (crumbsFor, Breadcrumbs-Baustein, neun BreadcrumbList-Stellen ersetzt, Phase-8-Budgets)
 progress:
   total_phases: 6
   completed_phases: 3
   total_plans: 37
-  completed_plans: 24
-  percent: 65
+  completed_plans: 25
+  percent: 68
 ---
 
 # State
@@ -30,14 +30,14 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 8 (SEO und KI-Sichtbarkeit)
-Plan: 2 of 14 (08-01 abgeschlossen)
-Status: In progress
-Last activity: 2026-10-22 – 08-01 Prüf- und Dateninfrastruktur (seo-audit, D-23-Schutztests, metaFor, Prompt-Mapping)
+Plan: 3 of 14 (08-01 und 08-02 abgeschlossen)
+Status: Ready to execute
+Last activity: 2026-10-22 – 08-02 Brotkrumen sitewide (crumbsFor, Breadcrumbs-Baustein, neun BreadcrumbList-Stellen ersetzt, Phase-8-Budgets)
 
-Progress: [███████░░░] 65% (24/37 Pläne des Milestones; Phase 8: 1/14)
+Progress: [███████░░░] 68% (25/37 Pläne des Milestones; Phase 8: 2/14)
 
-Last session: 2026-10-22T14:48:00Z
-Stopped at: Completed 08-01-PLAN.md
+Last session: 2026-10-22T15:53:26.091Z
+Stopped at: Completed 08-02-PLAN.md
 Resume file: None
 
 ## Accumulated Context
@@ -103,6 +103,8 @@ Resume file: None
 - [Phase 08]: 08-01: D-23 – Testphasen-Scan nimmt nur lib/wettbewerber/ aus (dort Tageszahlen nur in testphaseTage/zitat); route-audit erlaubt 14 Tage nur unter /vergleich, dafür prüft ctaTestphaseFehler jeden CraftOS-CTA gegen trialDays
 - [Phase 08]: 08-01: KeyFacts-Quelle wettbewerber:<schlüssel> zulässig; metaFor/zielwerte in lib/seo-meta.ts (Re-Export in lib/funktionsdetails)
 - [Phase 08]: 08-01: Prompt-Mapping docs/seo/ai-prompts-targets.json (20 Einträge aus Rohdaten, Bestandsziele #faq-titel, Gewerke Phase 9, 9 luecken); Anker-Konvention DESIGN-V2 § 17
+- [Phase 08]: 08-02: crumbsFor(path, current?) ist die einzige Brotkrumen-Quelle; Seiten rufen breadcrumbSchema nie direkt auf, Köpfe nehmen crumbs entgegen (FunktionsKopf, FunktionenHead, PageHero, ArticlePage, CalculatorPage, LegalShell)
+- [Phase 08]: 08-02: Artikelketten mit 3 Gliedern (Start › Ratgeber|Hilfe › Titel) laut UI-SPEC; Kategorie-Zwischenstufe der alten BreadcrumbList entfällt
 
 ### Pending Todos
 
@@ -140,3 +142,4 @@ None yet.
 | Phase 07 P08 | 61min | 2 tasks | 13 files |
 | Phase 07 P09 | 20min | 2 tasks | 13 files |
 | Phase 08 P01 | 58min | 3 tasks | 19 files |
+| Phase 08 P02 | 62min | 3 tasks | 39 files |
