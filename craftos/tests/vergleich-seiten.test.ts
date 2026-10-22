@@ -861,11 +861,11 @@ describe("/vergleich Inhalte", () => {
   it("jede Wettbewerberzelle stammt aus einem Modul; jede verwendete Quelle genau einmal in sources", async () => {
     const { vergleich } = await laden();
     const t = vergleich.ueberblick.tabelle;
-    const module = [craftnote, hero, plancraft, tooltime];
+    const datenmodule = [craftnote, hero, plancraft, tooltime];
     const urls = t.sources.map((s) => s.url);
     expect(new Set(urls).size).toBe(urls.length);
     for (const z of t.zeilen.filter((z) => z.slug !== "craftos")) {
-      const w = module.find((m) => m.slug === z.slug)!;
+      const w = datenmodule.find((m) => m.slug === z.slug)!;
       expect(Object.keys(z.belege).sort(), z.anbieter).toEqual(["abrechnung", "laufzeit", "plantafel", "testphase"]);
       for (const beleg of Object.values(z.belege)) {
         expect(beleg.quelle.url.startsWith("https://"), `${z.anbieter}: ${beleg.quelle.url}`).toBe(true);

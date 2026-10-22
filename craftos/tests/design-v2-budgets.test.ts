@@ -466,7 +466,7 @@ describe("Vergleichs-Hub /vergleich im Budget (08-10)", () => {
       ]),
       ...vergleich.einzelvergleiche.kacheln.flatMap((k): Check[] => [
         ["bentoTile.title", k.title, b.bentoTile.title],
-        k.size === "lg" || k.size === "wide"
+        k.size === "wide"
           ? ["bentoTile.textLarge", k.text, b.bentoTile.textLarge]
           : ["bentoTile.textSmall", k.text, b.bentoTile.textSmall],
       ]),
