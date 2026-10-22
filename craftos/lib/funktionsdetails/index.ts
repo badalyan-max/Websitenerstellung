@@ -101,8 +101,8 @@ export const CTA_DETAIL = {
 /** Überclaims (Pitfall 7/8, D-20, D-23); Vergleich ohne Groß-/Kleinschreibung. */
 const VERBOTENE_WOERTER = ["lückenlos", "vollständig offline", "Online-Banking", "Bauphase"] as const;
 
-/** Erster Wert, der mehr als einmal vorkommt, sonst undefined. */
-function ersteDoppelung(werte: readonly string[]): string | undefined {
+/** Erster Wert, der mehr als einmal vorkommt, sonst undefined (auch von lib/wettbewerber genutzt). */
+export function ersteDoppelung(werte: readonly string[]): string | undefined {
   const gesehen = new Set<string>();
   for (const wert of werte) {
     if (gesehen.has(wert)) return wert;
