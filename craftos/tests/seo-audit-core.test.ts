@@ -86,6 +86,12 @@ describe("headTags", () => {
     });
   });
 
+  it("Inline-Tags trennen kein Wort (08-09: Kopfwort-Span „HERO-Software“ direkt vor „-Alternative“)", () => {
+    const h = `<h1 id="kopf">Die <span class="k" data-keyword="">HERO-Software</span>-Alternative im Vergleich</h1>`;
+    expect(headTags(h).h1s).toEqual(["Die HERO-Software-Alternative im Vergleich"]);
+    expect(headTags("<h1>Zeile<br/>zwei</h1>").h1s).toEqual(["Zeile zwei"]);
+  });
+
   it("liefert null für fehlende Tags", () => {
     expect(headTags("<p>leer</p>")).toEqual({
       title: null,
