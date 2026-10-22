@@ -45,6 +45,14 @@
     display: none;
   }
 }
+/* Einspaltig unter 362 px (08-13): Das Raster nutzt grid-cols-1 (minmax(0, 1fr)), die Karte ist so breit wie der
+   Container (324 px bei 360 px) statt 330 px Mindestinhalt. Die Bühne liegt dann unter 324 px, die Kennzeichnung
+   bricht um – wie im Dreispaltenraster zeigt die Karte nur die erste Zeile. */
+@media (max-width: 361.98px) {
+  .stage[data-visual="scene"] [data-frame="browser"] li:nth-child(n + 2) {
+    display: none;
+  }
+}
 
 .stage[data-visual="scene"] figcaption {
   position: absolute;
