@@ -82,7 +82,7 @@ describe("Preise entsprechen origin/release der Web-App", () => {
     const modul = read("lib/seiten/preise.ts");
     expect(modul).toContain("Craft AI und KI-Belegscans (${creditUmrechnung})");
     expect(modul).toContain("einmalig ${startCredits} Credits (${creditUmrechnung})");
-    expect(read("app/preise/page.tsx")).toMatch(/faqSchema\(faqs\)/);
+    expect(read("app/preise/page.tsx")).toMatch(/faqSchema\(preiseFaq\)/);
   });
 
   it("Schema: Offer-Preis aus der Voll-Lizenz, ohne Umsatzsteuer", () => {

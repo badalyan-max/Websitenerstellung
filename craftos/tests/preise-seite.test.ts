@@ -6,12 +6,15 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import { createElement } from "react";
+import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
+import PreisePage, { metadata } from "@/app/preise/page";
 import { TEXT_BUDGET, charCount, sentenceCount } from "@/components/v2/budgets";
 import { KEY_FACT_SOURCE } from "@/components/v2/KeyFacts";
 import { appTiles } from "@/lib/app-content";
 import { euro, germanDate } from "@/lib/format";
-import { zielwerte } from "@/lib/seo-meta";
+import { metaFor, zielwerte } from "@/lib/seo-meta";
 import {
   annualSavingPercent,
   creditPakete,
@@ -339,5 +342,86 @@ describe("Inhalte", () => {
     expect(quelle).not.toContain("Zusatzspeicher");
     expect(quelle).toContain("was-kostet-handwerkersoftware");
     expect(quelle).toContain("app-lizenz");
+  });
+});
+
+describe("gerendert", () => {
+  const html = renderToString(createElement(PreisePage));
+  const text = (v: string) =>
+    v.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#x27;/g, "'").replace(/<!-- -->/g, "").trim();
+  const jsonLd = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(
+    (m) => JSON.parse(m[1]) as Record<string, unknown>,
+  );
+  const vomTyp = (typ: string) => jsonLd.filter((d) => d["@type"] === typ);
+
+  it("Metadaten aus der Keyword-Map", () => {
+    expect(metadata).toEqual(metaFor("/preise"));
+    expect(metadata.description).toBe(zielwerte("/preise").description);
+  });
+
+  it("genau eine H1 = Zielwert, direkt danach der Antwortabsatz #antwort mit data-answer", () => {
+    const h1 = [...html.matchAll(/<h1[^>]*>([\s\S]*?)<\/h1>/g)];
+    expect(h1).toHaveLength(1);
+    expect(text(h1[0][1])).toBe(zielwerte("/preise").h1);
+    const nachH1 = html.slice(h1[0].index! + h1[0][0].length);
+    expect(nachH1).toMatch(/^<p id="antwort" data-answer=""[^>]*>/);
+    expect(text(nachH1.slice(0, nachH1.indexOf("</p>")))).toBe(preise.preiseKopf.answer);
+  });
+
+  it("die Preistabelle folgt vor jeder weiteren H2-Sektion; Abschnitte in der Folge des Seitenvertrags", () => {
+    const ersteTabelle = html.indexOf("<table");
+    expect(ersteTabelle).toBeGreaterThan(html.indexOf('id="antwort"'));
+    expect(ersteTabelle).toBeLessThan(html.indexOf('data-abschnitt="app-lizenz"'));
+    expect(text(html.slice(html.indexOf("<caption"), html.indexOf("</caption>")))).toBe(preise.lizenzTabelle.caption);
+    const folge = [...html.matchAll(/data-abschnitt="([^"]+)"/g)].map((m) => m[1]);
+    expect(folge).toEqual(["kopf", ...preise.PREISE_SECTION_IDS, "cta"]);
+    for (const id of preise.PREISE_SECTION_IDS) {
+      expect(html, id).toContain(`<section data-abschnitt="${id}" aria-labelledby="${id}"`);
+      expect(html.match(new RegExp(`<h2 id="${id}"`, "g")) ?? [], id).toHaveLength(1);
+      const start = html.indexOf(`data-abschnitt="${id}"`);
+      const abschnitt = html.slice(start, html.indexOf("</section>", start));
+      expect(abschnitt.match(/<h2[ >]/g) ?? [], id).toHaveLength(1);
+    }
+    expect(html.match(/<table/g) ?? []).toHaveLength(2);
+  });
+
+  it("JSON-LD: eine BreadcrumbList (Start, Preise), eine FAQPage aus der sichtbaren FAQ, ein WebPage-Knoten", () => {
+    const crumbs = vomTyp("BreadcrumbList");
+    expect(crumbs).toHaveLength(1);
+    const items = crumbs[0].itemListElement as { name: string }[];
+    expect(items.map((i) => i.name)).toEqual(["Start", "Preise"]);
+    const faq = vomTyp("FAQPage");
+    expect(faq).toHaveLength(1);
+    const fragen = (faq[0].mainEntity as { name: string; acceptedAnswer: { text: string } }[]).map((q) => [q.name, q.acceptedAnswer.text]);
+    expect(fragen).toEqual(preise.preiseFaq.map((f) => [f.q, f.a]));
+    for (const f of preise.preiseFaq) expect(html).toContain(f.q);
+    const webPage = vomTyp("WebPage");
+    expect(webPage).toHaveLength(1);
+    expect(webPage[0].url).toBe(`${site.url}/preise`);
+    for (const verboten of ["Product", "Review", "AggregateRating"]) expect(html).not.toContain(`"@type":"${verboten}"`);
+  });
+
+  it("ohne PageHero, PricingTable, ui/Faq und TrialCta; CTAs auf site.ctaUrl mit data-track; Extra-Speicher und Start-Credits sichtbar", () => {
+    expect(html).not.toContain("craft-page-hero");
+    expect(html).not.toContain("Abrechnung wählen");
+    expect(html).not.toContain("group-open:rotate-45");
+    expect(html).not.toContain("CraftOS kennenlernen");
+    const ctas = [...html.matchAll(/<a [^>]*data-track="trial"[^>]*>/g)].map((m) => m[0]);
+    expect(ctas.length).toBeGreaterThanOrEqual(2);
+    for (const a of ctas) expect(a).toContain(`href="${site.ctaUrl}"`);
+    expect(html).toContain('href="#lizenzen"');
+    expect(html).toContain('href="/funktionen"');
+    expect(html).toContain("Extra-Speicher");
+    expect(html).toContain(String(startCredits));
+    expect(html).not.toContain("Zusatzspeicher");
+    expect(html).toContain('rel="nofollow"');
+    expect(html).toContain(preise.marktspanne.disclaimer);
+  });
+
+  it("Quelltext app/preise/page.tsx: v2-Bausteine, FAQ-Schema aus demselben Array", () => {
+    const seite = read("app/preise/page.tsx");
+    expect(seite).not.toMatch(/PageHero|PricingTable|TrialCta|components\/ui\/Faq/);
+    expect(seite.match(/faqSchema\(/g)).toHaveLength(1);
+    expect(seite).toContain("faqSchema(preiseFaq)");
   });
 });
