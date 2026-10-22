@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
-status: verifying
-stopped_at: Completed 07-09-PLAN.md
-last_updated: "2026-10-22T12:17:53.620Z"
+status: executing
+stopped_at: Completed 08-01-PLAN.md
+last_updated: "2026-10-22T14:47:11.813Z"
 last_activity: 2026-10-22
 progress:
   total_phases: 6
   completed_phases: 3
-  total_plans: 23
-  completed_plans: 23
-  percent: 50
+  total_plans: 37
+  completed_plans: 24
+  percent: 65
 ---
 
 # State
@@ -21,7 +21,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-10-20)
 
 **Core value:** Besucher verstehen den Produktablauf anhand lesbarer Beispiele und direkter App-Aufnahmen und können die richtige Funktion und Anleitung schnell finden.
-**Current focus:** Phase 7 — Funktionsdetailseiten und Mobile-App-Seite
+**Current focus:** Phase 8 — SEO und KI-Sichtbarkeit
 
 ## Vorheriger Milestone v1.0 (abgeschlossen)
 
@@ -29,15 +29,15 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 
 ## Current Position
 
-Phase: 8
-Plan: Not started
-Status: Phase complete — ready for verification
-Last activity: 2026-10-22
+Phase: 8 (SEO und KI-Sichtbarkeit)
+Plan: 2 of 14 (08-01 abgeschlossen)
+Status: In progress
+Last activity: 2026-10-22 – 08-01 Prüf- und Dateninfrastruktur (seo-audit, D-23-Schutztests, metaFor, Prompt-Mapping)
 
-Progress: [██████████] 96% (22/23 Pläne des Milestones; Phase 7: 8/9)
+Progress: [███████░░░] 65% (24/37 Pläne des Milestones; Phase 8: 1/14)
 
-Last session: 2026-10-22T12:10:24.873Z
-Stopped at: Completed 07-09-PLAN.md
+Last session: 2026-10-22T14:48:00Z
+Stopped at: Completed 08-01-PLAN.md
 Resume file: None
 
 ## Accumulated Context
@@ -99,6 +99,10 @@ Resume file: None
 - [Phase 07]: 07-08: B10 – große Bento-Kachel mit Phone ab 1024 px mit höhengekoppelter Phone-Breite (160–320 px), ab Seitenverhältnis 4:5 Phone und Text nebeneinander; Leerraum vorher bis 220 px, nachher höchstens 25 px
 - [Phase 07]: 07-08: FeatureSnippet beendet Animationen bei reduzierter Bewegung (finish statt pause); axe-Fälle prüfen den statischen Zustand
 - [Phase 07]: 07-09: Phase 7 live (126f807, Vercel dpl_5xujdhv6bnYnxsHhzNpQUNHPdFyQ READY), live-check 46/46, IndexNow 131 URLs HTTP 200; FEAT-02/FEAT-03/MEDIA-01 erledigt, DESIGN-02/SEO-02 offen bis Phase 8
+- [Phase 08]: 08-01: Post-Build-Audit scripts/seo-audit.mjs (12 Regeln, Ergebnis test-results/seo-audit.json mit Ist-Werten); Baseline 711 Verstöße (title 41, description 65, keyword 75, map 248/88 Seiten, breadcrumbs 140/130, og 130, faq-schema 1, antwort 1, duplikate 2, prompts 8)
+- [Phase 08]: 08-01: D-23 – Testphasen-Scan nimmt nur lib/wettbewerber/ aus (dort Tageszahlen nur in testphaseTage/zitat); route-audit erlaubt 14 Tage nur unter /vergleich, dafür prüft ctaTestphaseFehler jeden CraftOS-CTA gegen trialDays
+- [Phase 08]: 08-01: KeyFacts-Quelle wettbewerber:<schlüssel> zulässig; metaFor/zielwerte in lib/seo-meta.ts (Re-Export in lib/funktionsdetails)
+- [Phase 08]: 08-01: Prompt-Mapping docs/seo/ai-prompts-targets.json (20 Einträge aus Rohdaten, Bestandsziele #faq-titel, Gewerke Phase 9, 9 luecken); Anker-Konvention DESIGN-V2 § 17
 
 ### Pending Todos
 
@@ -135,3 +139,4 @@ None yet.
 | Phase 07 P07 | 32min | 2 tasks | 8 files |
 | Phase 07 P08 | 61min | 2 tasks | 13 files |
 | Phase 07 P09 | 20min | 2 tasks | 13 files |
+| Phase 08 P01 | 58min | 3 tasks | 19 files |

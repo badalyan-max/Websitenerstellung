@@ -174,7 +174,7 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 08-01-PLAN.md — Prüfinfrastruktur: Post-Build-SEO-Audit, D-23-Schutztests, KeyFacts-Kurzform wettbewerber:, metaFor, Prompt-Mapping (20 Einträge), Anker-Konvention
+- [x] 08-01-PLAN.md — Prüfinfrastruktur: Post-Build-SEO-Audit, D-23-Schutztests, KeyFacts-Kurzform wettbewerber:, metaFor, Prompt-Mapping (20 Einträge), Anker-Konvention
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -268,6 +268,6 @@ Plans:
 | 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
 | 6. Startseite, Navigation und Funktionsübersicht | 6/6 | Complete    | 2026-10-21 |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 9/9 | Complete    | 2026-10-22 |
-| 8. SEO und KI-Sichtbarkeit | 0/14 | Planned | - |
+| 8. SEO und KI-Sichtbarkeit | 1/14 | In Progress|  |
 | 9. Gewerke und Wissensinhalte | 0/TBD | Not started | - |
 | 10. Abschlussaudit | 0/TBD | Not started | - |
