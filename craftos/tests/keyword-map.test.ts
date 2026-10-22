@@ -294,3 +294,101 @@ describe("Keyword-Map", () => {
     }
   });
 });
+
+/**
+ * Phase 8 (D-06, D-17, D-20; 08-UI-SPEC § 8): Die Keyword-Map ist die einzige Quelle für Title, H1 und
+ * Description jeder indexierten Seite. Geprüft werden alle bestehenden Einträge und die geplanten Phase-8-Pfade.
+ */
+describe("Phase 8 – Zielwerte sitewide", () => {
+  const sitewide = keywordMap.filter((k) => k.status === "bestehend" || (k.status === "geplant" && k.phase === 8));
+  const kopfwort = (keyword: string) => norm(keyword.split(" ")[0]);
+  // Überclaims in Descriptions (Wortliste wie lib/funktionsdetails, ergänzt um Superlative; T-08-09).
+  const UEBERCLAIM = [/lückenlos/i, /vollständig offline/i, /\bbeste[nrs]?\b/i, /testsieger/i, /\bNr\. ?1\b/i, /marktführer/i];
+
+  it("jeder bestehende und jeder geplante Phase-8-Eintrag hat title, h1 und description", () => {
+    expect(sitewide.length).toBeGreaterThanOrEqual(136);
+    const ohne = sitewide.filter((k) => !(k.target?.title && k.target.h1 && k.target.description)).map((k) => k.path);
+    expect(ohne).toEqual([]);
+  });
+
+  it("gerenderter Title ≤ 60 (mit oder ohne Markenzusatz), Description 120–155", () => {
+    for (const k of sitewide) {
+      const t = k.target ?? {};
+      expect(Array.from(t.title ?? "").length, `${k.path}: Titel`).toBeLessThanOrEqual(60);
+      const d = (t.description ?? "").length;
+      expect(d >= 120 && d <= 155, `${k.path}: Description ${d}`).toBe(true);
+    }
+  });
+
+  it("Titel, Descriptions und H1 sind sitewide eindeutig", () => {
+    for (const feld of ["title", "h1", "description"] as const) {
+      const gesehen = new Map<string, string>();
+      for (const k of sitewide) {
+        const wert = k.target?.[feld];
+        if (!wert) continue;
+        expect(gesehen.get(wert), `${feld} „${wert}“: ${k.path} ↔ ${gesehen.get(wert)}`).toBeUndefined();
+        gesehen.set(wert, k.path);
+      }
+    }
+  });
+
+  it("Seiten mit Hauptkeyword tragen dessen Kopfwort in Titel und H1 (D-17)", () => {
+    for (const k of sitewide) {
+      if (!k.primary) continue;
+      expect(norm(k.target?.title ?? ""), `${k.path}: Titel`).toContain(kopfwort(k.primary.keyword));
+      expect(norm(k.target?.h1 ?? ""), `${k.path}: H1`).toContain(kopfwort(k.primary.keyword));
+    }
+  });
+
+  it("Kategorien heißen „Ratgeber: …“ bzw. „Hilfe: …“ (Pitfall 11)", () => {
+    const kategorien = sitewide.filter((k) => k.path.includes("/kategorie/"));
+    expect(kategorien.length).toBe(15);
+    for (const k of kategorien) {
+      const praefix = k.path.startsWith("/blog/") ? "Ratgeber: " : "Hilfe: ";
+      expect(k.target?.h1?.startsWith(praefix), `${k.path}: ${k.target?.h1}`).toBe(true);
+    }
+  });
+
+  it("Descriptions ohne Superlative und Überclaims (T-08-09)", () => {
+    for (const k of sitewide)
+      for (const re of UEBERCLAIM) expect(k.target?.description ?? "", `${k.path}: ${re}`).not.toMatch(re);
+  });
+
+  it("Werte aus 08-UI-SPEC § 8 und §§ 4–5 stehen exakt in der Map", () => {
+    const soll: Record<string, { title?: string; h1?: string; description?: string }> = {
+      "/vergleich/plancraft-alternative": { title: "plancraft-Alternative: Preise im Vergleich | CraftOS" },
+      "/vergleich/craftnote-alternative": { title: "Craftnote-Alternative: Preise im Vergleich | CraftOS" },
+      "/vergleich/hero-alternative": { title: "HERO Software Alternative im Vergleich | CraftOS" },
+      "/vergleich/tooltime-alternative": { title: "ToolTime-Alternative: Preise im Vergleich | CraftOS" },
+      "/vergleich": {
+        h1: "Handwerkersoftware im Vergleich: fünf Anbieter mit Quellen",
+        description:
+          "Handwerkersoftware-Vergleich mit Quellen: Abrechnung, Laufzeit, Testphase und Plantafel von CraftOS, plancraft, Craftnote, HERO und ToolTime im Überblick.",
+      },
+      "/fakten-ueber-craftos": {
+        title: "Fakten über CraftOS: Funktionen und Lizenzen | CraftOS",
+        h1: "Fakten über CraftOS",
+        description:
+          "Überprüfbare Fakten über CraftOS: was die Handwerkersoftware ist, Plattformen, Lizenzen und Preise, Testphase, GoBD-Unterstützung und benannte Grenzen.",
+      },
+      "/vergleich/handwerkersoftware-kleine-betriebe": {
+        title: "Handwerkersoftware für kleine Betriebe: Kriterien | CraftOS",
+        h1: "Handwerkersoftware für kleine Betriebe im Vergleich",
+      },
+      "/preise": { h1: "Preise der Handwerkersoftware CraftOS" },
+      "/craft-ai": { h1: "KI im Handwerk: Craft AI beantwortet Fragen zu Ihrem Betrieb" },
+      "/gobd": { h1: "GoBD-konforme Software: wie CraftOS Ihre Abläufe unterstützt" },
+    };
+    for (const [p, werte] of Object.entries(soll)) {
+      const t = keywordMap.find((k) => k.path === p)?.target;
+      for (const [feld, wert] of Object.entries(werte)) expect(t?.[feld as "title"], `${p}: ${feld}`).toBe(wert);
+    }
+  });
+
+  it("Rechtsseiten: eindeutige Titel, Impressum-Description ohne Paragrafenangabe (D-20, Open Question 5)", () => {
+    const titel = Object.fromEntries([...LEGAL].map((p) => [p, keywordMap.find((k) => k.path === p)?.target?.title]));
+    expect(titel["/impressum"]).toBe("Impressum | CraftOS");
+    expect(new Set(Object.values(titel)).size).toBe(3);
+    expect(keywordMap.find((k) => k.path === "/impressum")?.target?.description).not.toMatch(/§|DDG|TMG/);
+  });
+});

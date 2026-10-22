@@ -30,6 +30,23 @@ describe("metaFor und zielwerte", () => {
     );
   });
 
+  it("Titel mit „ | CraftOS“ läuft über das Layout-Template (Title ohne Marke)", () => {
+    const meta = metaFor("/hilfe/zeiteintrag-erfassen-korrigieren");
+    expect(meta.title).toBe("Einen Zeiteintrag nachtragen oder korrigieren");
+    expect(meta.openGraph?.title).toBe("Einen Zeiteintrag nachtragen oder korrigieren");
+  });
+
+  it("Titel ohne Markenzusatz rendert als title.absolute (08-04, Entwurfsregel Hilfe)", () => {
+    const z = zielwerte("/hilfe/mitarbeiter-einladen-lizenz-zuweisen");
+    expect(z.title.endsWith(" | CraftOS")).toBe(false);
+    const meta = metaFor("/hilfe/mitarbeiter-einladen-lizenz-zuweisen");
+    expect(meta.title).toEqual({ absolute: z.title });
+    expect(meta.openGraph?.title).toBe(z.title);
+    expect(meta.twitter?.title).toBe(z.title);
+    expect(meta.description).toBe(z.description);
+    expect(String(meta.alternates?.canonical)).toMatch(/\/hilfe\/mitarbeiter-einladen-lizenz-zuweisen$/);
+  });
+
   it("lib/funktionsdetails re-exportiert dieselbe Funktion", () => {
     expect(zielwerteAusFunktionsdetails).toBe(zielwerte);
     expect(zielwerte("/app").titleOhneMarke.endsWith(" | CraftOS")).toBe(false);
