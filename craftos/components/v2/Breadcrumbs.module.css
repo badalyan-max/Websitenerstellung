@@ -1,0 +1,91 @@
+/* Brotkrumen v2 – 08-UI-SPEC § 1 (G6), Farben „Brotkrumen-Farben“, C1/C10.
+   Eine Zeile mit 44 px Mindesthöhe; Label 14 px (400 Links, 600 aktuell); Trenner ChevronRight 16 px
+   mit 8 px Abstand je Seite; unter 768 px kein Umbruch, nur das letzte Glied kürzt mit Ellipse.
+   Kein Amber, Hover nur bei echter Zeigerbedienung. */
+.nav {
+  --crumb-link: #62626e;
+  --crumb-strong: #17171c;
+  min-width: 0;
+  font-family: var(--font-sans, var(--font-general, sans-serif));
+}
+.nav[data-tone="dark"] {
+  --crumb-link: #bcbcc6;
+  --crumb-strong: #f4f4f5;
+}
+
+.list {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  min-height: 44px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.item {
+  display: flex;
+  flex: none;
+  align-items: center;
+  min-width: 0;
+}
+.last {
+  flex: 0 1 auto;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 400;
+  white-space: nowrap;
+  color: var(--crumb-link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+/* „Start“ ist das kürzeste Glied: Touch-Ziel ≥ 44 × 44 px auch ohne Trenner-Abstand (F6). */
+.start {
+  min-width: 44px;
+  justify-content: center;
+}
+.link:focus-visible {
+  outline: 3px solid #bb7609;
+  outline-offset: 4px;
+}
+@media (hover: hover) {
+  .link:hover {
+    color: var(--crumb-strong);
+  }
+}
+
+.separator {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin-inline: 8px;
+  color: #777782;
+}
+
+.current {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--crumb-strong);
+}
+
+/* Ab 768 px darf eine sehr lange Kette umbrechen; das letzte Glied wird dann nicht gekürzt. */
+@media (min-width: 768px) {
+  .list {
+    flex-wrap: wrap;
+  }
+  .current {
+    white-space: normal;
+  }
+}

@@ -5,14 +5,22 @@
  * Produktoberflächen in Geräterahmen liegt getrennt bei den Geräterahmen-Bausteinen (Plan 05-05).
  */
 export const TEXT_BUDGET = {
-  sectionHeader: { eyebrow: 24, title: 60, lead: 140 },
+  /** Phase 8: answerLead gilt für den Antwort-Lead unter Frage-H2 (G2, 1–2 Sätze). */
+  sectionHeader: { eyebrow: 24, title: 60, lead: 140, answerLead: 300 },
   bentoTile: { title: 40, textSmall: 90, textLarge: 120 },
   featureCard: { title: 32, benefit: 100 },
   step: { title: 28, text: 80 },
   keyFact: { value: 10, label: 40 },
   comparison: { rowLabel: 48, cell: 24 },
   badge: 16,
-  faq: { question: 90, firstSentence: 300, answer: 600 },
+  /** Phase 8 (C3): answerCentral = ganze FAQ-Antwort auf zentralen Seiten (answerMax). */
+  faq: { question: 90, firstSentence: 300, answer: 600, answerCentral: 300 },
+  /** Phase 8 (08-UI-SPEC G1–G7): Antwortsatz im Kopf, FitPanels, FactList, OG-Titel, Brotkrumen-Zwischenglieder. */
+  answer: 300,
+  fitPanel: { title: 40, point: 100 },
+  factList: { term: 32, definition: 200 },
+  og: { title: 90 },
+  crumb: { name: 32 },
   ctaBand: { title: 40, text: 80, button: 28 },
   /** Phase 6 (06-UI-SPEC „Textbudgets“): Hero der Startseite, Seitenkopf /funktionen, Mega-Menü, FeatureList */
   hero: { h1: 60, lead: 110 },
@@ -36,6 +44,10 @@ export const TEXT_BUDGET = {
     /** Phase 7 (07-UI-SPEC F4): Ablaufschritte und verwandte Funktionen je Detailseite */
     detailSteps: { min: 3, max: 5 },
     related: { min: 2, max: 3 },
+    /** Phase 8 (08-UI-SPEC G1–G7): Passt-Punkte je Panel, Einträge der Faktenliste, Brotkrumen-Glieder */
+    fitPoints: { min: 2, max: 4 },
+    factList: { min: 6, max: 12 },
+    crumbs: { min: 2, max: 4 },
   },
 } as const;
 
