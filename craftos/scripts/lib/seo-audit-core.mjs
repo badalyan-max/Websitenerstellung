@@ -280,6 +280,32 @@ export function ctaTestphaseFehler(html, trialDays) {
   }
   return out;
 }
+/**
+ * LO-06 (08-REVIEW): Unter /vergleich ist „oldTrial“ ausgesetzt, weil belegte Wettbewerberangaben „14 Tage“ nennen
+ * dürfen. Ersatzweise prüft diese Funktion jeden Satz, der CraftOS und eine Testphase nennt („CraftOS … 14 Tage
+ * kostenlos testen“ in FAQ, Schritt oder Fließtext): er muss genau `trialDays` nennen. Sätze werden je Block
+ * (Absatz, Zelle, Listenpunkt, Überschrift) und an Satzzeichen getrennt, sodass Tabellenzeilen und belegte
+ * Wettbewerbersätze („HERO nennt 14 Tage“) nicht mit CraftOS-Sätzen verschmelzen.
+ * @param {string} html
+ * @param {number} trialDays
+ * @returns {string[]}
+ */
+export function craftosTestphaseSaetze(html, trialDays) {
+  const bloecke = html
+    .replace(/<script\b[\s\S]*?<\/script>/gi, " ")
+    .split(/<\/?(?:p|td|th|li|dd|dt|h[1-6]|caption|figcaption|button|br)\b[^>]*>/i);
+  const out = [];
+  for (const block of bloecke) {
+    for (const satz of plain(block).split(/(?<=[.!?;])\s+/)) {
+      if (!/CraftOS/.test(satz) || !/test|kostenlos/i.test(satz)) continue;
+      const zahlen = [...satz.matchAll(/(\d+)\s*-?\s*Tag/g)].map((z) => Number(z[1]));
+      if (zahlen.length && zahlen.some((z) => z !== trialDays))
+        out.push(`Satz „${satz}“ nennt nicht genau ${trialDays} Tage – CraftOS-Testphase aus site.trialDays übernehmen.`);
+    }
+  }
+  return out;
+}
+
 const VERBOTENE_VERGLEICH_TYPEN = ["Product", "Review", "AggregateRating"];
 
 export const antwortText = (q, path) =>

@@ -3,6 +3,7 @@ import {
   anchorAnswer,
   answerFirstViolations,
   breadcrumbNav,
+  craftosTestphaseSaetze,
   ctaTestphaseFehler,
   duplikate,
   faqFragenSichtbar,
@@ -471,6 +472,21 @@ describe("promptVerstoesse", () => {
     );
     expect(lang).toHaveLength(1);
     expect(lang[0].problem).toContain("Antwort 301 > 300");
+  });
+});
+
+// LO-06 (08-REVIEW): Unter /vergleich prüft route-audit zusätzlich jeden CraftOS-Satz zur Testphase.
+describe("craftosTestphaseSaetze", () => {
+  it("Fließtext „CraftOS 14 Tage kostenlos testen“ in FAQ oder Schritt → Fehler", () => {
+    expect(craftosTestphaseSaetze("<p>Sie können CraftOS 14 Tage kostenlos testen.</p>", 10)).toHaveLength(1);
+    expect(craftosTestphaseSaetze("<li>CraftOS 14 Tage ohne Zahlungsdaten testen.</li>", 10)).toHaveLength(1);
+  });
+  it("belegte Wettbewerberangaben, eigene Sätze und Tabellenzellen bleiben zulässig", () => {
+    const html =
+      "<p>CraftOS testen Sie 10 Tage ohne Zahlungsdaten. HERO nennt eine Testphase von 14 Tagen.</p>" +
+      "<table><tr><th>CraftOS</th><td>10 Tage</td></tr><tr><th>HERO</th><td>14 Tage</td></tr></table>" +
+      "<p>Sie möchten länger testen: Craftnote nennt 30 Tage.</p>";
+    expect(craftosTestphaseSaetze(html, 10)).toEqual([]);
   });
 });
 

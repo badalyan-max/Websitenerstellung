@@ -1,8 +1,9 @@
 import fs from "node:fs/promises";
 import { readFileSync } from "node:fs";
-import { ctaTestphaseFehler, istAlteTestphase } from "./lib/seo-audit-core.mjs";
+import { craftosTestphaseSaetze, ctaTestphaseFehler, istAlteTestphase } from "./lib/seo-audit-core.mjs";
 // D-23: Testphase aus dem Preis-Snapshot (nicht hart kodiert). Auf /vergleich und darunter dürfen belegte
-// Wettbewerberangaben „14 Tage“ nennen; dafür muss dort jeder CraftOS-CTA genau trialDays nennen.
+// Wettbewerberangaben „14 Tage“ nennen; dafür muss dort jeder CraftOS-CTA und jeder CraftOS-Satz zur Testphase
+// genau trialDays nennen (08-REVIEW LO-06: craftosTestphaseSaetze).
 const { trialDays } = JSON.parse(
   readFileSync(new URL("../docs/product-pricing-snapshot.json", import.meta.url), "utf8"),
 );
@@ -40,7 +41,7 @@ for (const url of urls) {
     title,
     hasH1: /<h1\b/.test(body),
     oldTrial: istAlteTestphase(pfad, body),
-    ctaTrial: unterVergleich ? ctaTestphaseFehler(body, trialDays) : [],
+    ctaTrial: unterVergleich ? [...ctaTestphaseFehler(body, trialDays), ...craftosTestphaseSaetze(body, trialDays)] : [],
     // Gleiches Muster wie tests/announcements.test.ts (content) und live-check.mjs:
     // „Stand: Oktober 2026“ ist legitim, nur „… 2026 geplant“ ist eine Ankündigung.
     announcement:
