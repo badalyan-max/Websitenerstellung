@@ -23,7 +23,7 @@ describe("publication basis", () => {
     }
     expect(register.basis.web.tag.startsWith("v4.")).toBe(true);
     expect(register.basis.mobile.tag.startsWith("mobile-v")).toBe(true);
-    expect(register.basis.checkedAt).toBe("2026-10-21");
+    expect(register.basis.checkedAt).toBe("2026-10-22");
   });
   it("links every advertised platform to source evidence", () => {
     const register = getProductRegister();

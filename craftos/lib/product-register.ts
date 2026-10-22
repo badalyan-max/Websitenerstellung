@@ -9,16 +9,16 @@ import { site, tarife } from "./site";
  * dient ausschließlich der internen Abgrenzung.
  */
 export const productBasis = {
-  checkedAt: "2026-10-21",
+  checkedAt: "2026-10-22",
   web: {
     ref: "origin/release",
-    tag: "v4.0.0-test.239",
-    commit: "535206b42aace73bb53b2796c5072cea78ac10fd",
+    tag: "v4.0.0-test.240",
+    commit: "1e9c8bc288dca915e967d3f2050372ab2e673029",
   },
   mobile: {
     ref: "origin/release",
-    tag: "mobile-v1.0.0-test.93",
-    commit: "5610a06415361f5c5a01c90258352ed7f49b7bab",
+    tag: "mobile-v1.0.0-test.95",
+    commit: "6cac36694c4bfc77678ceead023fec70f1022331",
   },
 } as const;
 
