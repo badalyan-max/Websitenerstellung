@@ -289,3 +289,55 @@ describe("Antwort-zuerst-Regeln über Bestandsinhalte (Phase 8)", () => {
     expect(problems).toEqual([]);
   });
 });
+
+/**
+ * Phase 8, Plan 08-07 (08-UI-SPEC § 4): Inhalte der Preisseite aus lib/seiten/preise.ts im Budget –
+ * beide Tabellen (Lizenzen, Marktspanne), Zusatzkosten-KeyFacts, App-Lizenz-Kacheln und FAQ (zentral ≤ 300).
+ */
+describe("Preisseite /preise im Budget (Phase 8)", () => {
+  it("Tabellen, KeyFacts, Bento und FAQ der Preisseite halten die Textbudgets und Mengenregeln ein", async () => {
+    const p = await import("@/lib/seiten/preise");
+    const b = TEXT_BUDGET;
+    const tabellen = [p.lizenzTabelle, p.marktspanne];
+    const checks: Check[] = [
+      ...tabellen.flatMap((t): Check[] =>
+        t.rows.flatMap((r): Check[] => [
+          ["comparison.rowLabel", r.label, b.comparison.rowLabel],
+          ...Object.values(r.cells)
+            .filter((c): c is string => typeof c === "string" && c !== "teilweise")
+            .map((c): Check => ["comparison.cell", c, b.comparison.cell]),
+        ]),
+      ),
+      ...p.zusatzkostenFakten.facts.flatMap((f): Check[] => [
+        ["keyFact.value", f.value, b.keyFact.value],
+        ["keyFact.label", f.label, b.keyFact.label],
+      ]),
+      ...p.appLizenzKacheln.flatMap((t): Check[] => [
+        ["bentoTile.title", t.title, b.bentoTile.title],
+        [
+          t.size === "lg" ? "bentoTile.textLarge" : "bentoTile.textSmall",
+          t.text,
+          t.size === "lg" ? b.bentoTile.textLarge : b.bentoTile.textSmall,
+        ],
+      ]),
+      ...p.preiseFaq.flatMap((f): Check[] => [
+        ["faq.question", f.q, b.faq.question],
+        ["faq.answerCentral", f.a, b.faq.answerCentral],
+      ]),
+      ["ctaBand.title", p.preiseSections.cta.title, b.ctaBand.title],
+      ["ctaBand.text", p.preiseSections.cta.text, b.ctaBand.text],
+    ];
+    expect([
+      ...violations(checks),
+      ...tabellen.flatMap((t) => [
+        ...countViolation("ComparisonTable", t.columns.length, { min: 1, max: b.count.comparison.columns }, "Wertspalten"),
+        ...countViolation("ComparisonTable", t.rows.length, { min: 1, max: b.count.comparison.rows }, "Zeilen"),
+      ]),
+      ...countViolation("KeyFacts", p.zusatzkostenFakten.facts.length, b.count.keyFacts, "Fakten"),
+      ...countViolation("BentoGrid", p.appLizenzKacheln.length, b.count.bento, "Kacheln"),
+      ...countViolation("FaqList", p.preiseFaq.length, b.count.faq, "Fragen"),
+    ]).toEqual([]);
+    expect(p.lizenzTabelle.rows).toHaveLength(12);
+    expect(p.marktspanne.columns.some((c) => "highlight" in c && c.highlight)).toBe(false);
+  });
+});

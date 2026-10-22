@@ -661,3 +661,19 @@ Abweichungen **C2–C5** zu [05]/[07] laut 08-UI-SPEC „Ergänzungen“; alle B
 **Musterseite:** `/styleguide` zeigt in Block 0 einen `FunktionsKopf` ohne Visual mit Antwort und Stand (ersetzt den bisherigen `PageHero`-Kopf; Brotkrumen weiterhin mit `crumbsSchema={false}`, genau eine H1), im Block ComparisonTable zusätzlich eine Marktübersicht mit Quellen und Disclaimer sowie die neuen Blöcke FitPanels (Warmfläche) und FactList zwischen Badges und FaqList. Vergleichsmuster nutzen ausschließlich neutrale Beispieldaten („Anbieter A/B“, `https://example.com/…`); Werte der FactList kommen aus `lib/site.ts` und dem Produktregister.
 
 **Prüfung:** `tests/funktionskopf.test.ts`, `tests/design-v2-components.test.ts`, `tests/design-v2-budgets.test.ts` (Sammeltest: Startseite, `/app`, `/funktionen` und 22 Detailseiten erfüllen die Antwort-zuerst-Regeln), `tests/styleguide.test.ts`.
+
+### 17.5 Preisseite `/preise` answer-first (Plan 08-07, 22.10.2026)
+
+Umsetzung von 08-UI-SPEC § 4 ausschließlich mit v2-Bausteinen: `FunktionsKopf` ohne Visual (Antwortsatz `#antwort`, Stand-Zeile, CTA, Sekundärlink „Lizenzen vergleichen“ → `#lizenzen`), `ComparisonTable` Lizenzen (Voll-Lizenz `highlight`, 12 Zeilen), `BentoGrid` App-Lizenz (vier belegte `/app`-Kacheln, Raster lg, sm, sm, md wie `/app`; Kacheln weiß auf Warmfläche, die Zeitkachel bleibt dunkel; „Aufmaß vor Ort“ als kleine Kachel mit Icon `Ruler`, Text unverändert), `KeyFacts` Zusatzkosten (nur `site:`-Quellen), `ComparisonTable` Marktspanne **ohne** Hervorhebung (C5) mit Quellenliste und Disclaimer, `FaqList answerMax={300}` und `CtaBand`. Flächen Kopf dunkel → Weiß → Warm → Weiß → Warm → Weiß → CTA dunkel; Abschnitte nach § 17.1 (`data-abschnitt` = `aria-labelledby` = H2-`id`). `PageHero`, `PricingTable` (gelöscht), `components/ui/Faq` und `TrialCta` sind nicht mehr eingebunden. Inhalte: `lib/seiten/preise.ts`.
+
+**Kaskade:**
+
+1. **frontend-design** (Leitlinie read-only gelesen, nichts kopiert): Die Seite beantwortet die Preisfrage im ersten Absatz; Struktur über Tabellen und Reihenfolge, keine Preis-Karten mit Schatten, kein Umschalter, keine Empfehlungsmarke in der Marktspanne.
+2. **ui-ux-pro-max** (ausgeführt am 22.10.2026, lokal): `search.py "pricing page answer table saas" --domain ux` → „Table Handling“ (horizontales Scrollen statt Überlauf) übernommen – beide Tabellen scrollen unter 768 px im eigenen Bereich; „Image Optimization“ nicht betroffen (nur Phone-Szenen aus `/app`); „Active State“ nicht betroffen.
+3. **21st.dev:** `21st_magic_component_inspiration` („pricing table answer“) stand in dieser Sitzung nicht als Werkzeug zur Verfügung; nichts abgerufen, builder/refiner nicht verwendet.
+4. **Context7:** nicht verfügbar; keine offenen API-Fragen (Server Component, `metaFor`, JSON-LD über `JsonLd`).
+5. **SEO-Check:** genau eine H1 (Keyword-Map), BreadcrumbList, FAQPage aus dem sichtbaren Array, WebPage; `seo-audit --paths=/preise` mit allen Regeln ohne Verstoß.
+
+**Sichtprüfung** (`scripts/visual-audit.mjs`, Chromium und WebKit 360–1440): Antwort und CTA bei 360 × 640 ohne Scrollen sichtbar, Tabellen scrollen nur im eigenen Bereich, Quellenliste lesbar; kein Überlauf, keine JS-Fehler, keine axe-Befunde.
+
+**Begriff:** sitewide „Extra-Speicher“ (PROD-03); die UI-SPEC-Stellen mit „Zusatzspeicher“ sind so umgesetzt.

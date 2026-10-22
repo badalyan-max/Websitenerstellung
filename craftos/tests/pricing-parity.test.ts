@@ -77,11 +77,12 @@ describe("Preise entsprechen origin/release der Web-App", () => {
     const startEuro = euro(p.FREE_AI_CREDIT);
     expect(creditUmrechnung).toBe(`entspricht ${startEuro}; 1 Credit = ${euro(snapshot.creditValueEur)}`);
     expect(buildLlmsTxt()).toContain(`${p.ADMIN_FREE_CREDITS} Credits Startguthaben (${creditUmrechnung})`);
-    // /preise: Fließtext und FAQ (Quelle des FAQPage-JSON-LD) nutzen beide creditUmrechnung.
-    const seite = read("app/preise/page.tsx");
-    expect(seite).toContain("Craft AI und KI-Belegscans ({creditUmrechnung})");
-    expect(seite).toContain("einmalig ${startCredits} Credits (${creditUmrechnung})");
-    expect(seite).toMatch(/faqSchema\(faqs\)/);
+    // /preise (08-07): Inhalte in lib/seiten/preise.ts. KeyFacts-Note (Zusatzkosten) und FAQ (Quelle des
+    // FAQPage-JSON-LD) nutzen beide creditUmrechnung; die Seite bindet das FAQ-Schema aus demselben Array ein.
+    const modul = read("lib/seiten/preise.ts");
+    expect(modul).toContain("Craft AI und KI-Belegscans (${creditUmrechnung})");
+    expect(modul).toContain("einmalig ${startCredits} Credits (${creditUmrechnung})");
+    expect(read("app/preise/page.tsx")).toMatch(/faqSchema\(preiseFaq\)/);
   });
 
   it("Schema: Offer-Preis aus der Voll-Lizenz, ohne Umsatzsteuer", () => {
@@ -104,7 +105,7 @@ describe("Preise entsprechen origin/release der Web-App", () => {
       "lib/home-content.ts",
       "app/preise/page.tsx",
       "app/page.tsx",
-      "components/preise/PricingTable.tsx",
+      "lib/seiten/preise.ts",
       "lib/llms.ts",
       "lib/schema.ts",
       "app/fakten-ueber-craftos/page.tsx",
@@ -243,7 +244,7 @@ describe("Netto-Hinweis", () => {
     const preisZeilen = fakten.split("\n").filter((l) => l.includes("Lizenz") && l.includes("€"));
     expect(preisZeilen.length).toBeGreaterThan(0);
     for (const line of preisZeilen) expect(line).toContain("netto");
-    const preisSeite = read("components/preise/PricingTable.tsx") + read("app/preise/page.tsx");
+    const preisSeite = read("lib/seiten/preise.ts") + read("app/preise/page.tsx");
     expect(preisSeite).toContain("Alle Preise netto");
     expect(preisSeite).toContain("Umsatzsteuer");
     expect(snapshot.netPrices).toBe(true);

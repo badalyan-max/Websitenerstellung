@@ -11,7 +11,7 @@ const pageUpdated: Record<string, string> = {
   "/craft-ai": "2026-10-20",
   "/vergleich": "2026-10-20",
   "/fakten-ueber-craftos": "2026-10-20",
-  "/preise": "2026-10-20",
+  "/preise": "2026-10-22",
   "/app": "2026-10-22",
   "/gewerke": "2026-10-20",
 };

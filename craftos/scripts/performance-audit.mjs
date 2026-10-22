@@ -54,10 +54,6 @@ for (const route of process.env.AUDIT_ROUTES?.split(",") || [
       await page
         .getByLabel("Personalkosten pro Jahr in Euro", { exact: true })
         .fill("62000");
-    if (route === "/preise")
-      await page
-        .getByRole("button", { name: "Monatlich", exact: true })
-        .click();
     await page.waitForTimeout(300);
     results.push({
       route,
