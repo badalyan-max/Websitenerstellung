@@ -49,6 +49,11 @@ const PHASE6_SEITEN: { path: string; modul: () => Promise<SeitenModul> }[] = [
   // 08-09: HERO und ToolTime.
   { path: "/vergleich/hero-alternative", modul: () => import("@/app/vergleich/hero-alternative/page") },
   { path: "/vergleich/tooltime-alternative", modul: () => import("@/app/vergleich/tooltime-alternative/page") },
+  // 08-11: Seite für kleine Betriebe (primary null, H1 aus zielwerte(path).h1).
+  {
+    path: "/vergleich/handwerkersoftware-kleine-betriebe",
+    modul: () => import("@/app/vergleich/handwerkersoftware-kleine-betriebe/page"),
+  },
 ];
 
 type Row = Record<string, unknown>;
@@ -163,6 +168,11 @@ describe("Keyword-Map", () => {
       expect(e?.phase, marke).toBe(8);
       expect(sitemapPaths.has(`/vergleich/${marke}-alternative`), marke).toBe(true);
     }
+    // 08-11: Seite für kleine Betriebe im selben Commit wie Route, Sitemap und llms.txt veröffentlicht (Pitfall 12).
+    const kleine = keywordMap.find((k) => k.path === "/vergleich/handwerkersoftware-kleine-betriebe");
+    expect(kleine?.status).toBe("bestehend");
+    expect(kleine?.phase).toBe(8);
+    expect(sitemapPaths.has("/vergleich/handwerkersoftware-kleine-betriebe")).toBe(true);
     for (const k of keywordMap) {
       if (k.status === "geplant") {
         expect([6, 7, 8, 9], k.path).toContain(k.phase);

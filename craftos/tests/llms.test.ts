@@ -24,6 +24,11 @@ describe("llms.txt", () => {
     expect(abschnitt.split("\n").filter((z) => z.includes("-alternative)"))).toHaveLength(4);
     // 08-10: Hub-Label nennt den Vergleich aller fünf Anbieter, nicht mehr nur Craftnote und plancraft.
     expect(abschnitt).toContain(`- [Handwerkersoftware-Vergleich](${site.url}/vergleich)`);
+    // 08-11: Seite für kleine Betriebe (Prompt #1), ohne Wettbewerberzahlen.
+    const kleine = abschnitt.split("\n").filter((z) => z.includes(`(${site.url}/vergleich/handwerkersoftware-kleine-betriebe)`));
+    expect(kleine).toHaveLength(1);
+    expect(kleine[0]).toContain("[Handwerkersoftware für kleine Betriebe]");
+    expect(kleine[0]).not.toMatch(/\d+,\d{2}|\d+ Tage/);
     expect(text).not.toContain("Vergleich mit Craftnote und plancraft");
     for (const zeile of abschnitt.split("\n").filter((z) => z.includes("-alternative)")))
       expect(zeile, zeile).not.toMatch(/\d+,\d{2}|\d+ Tage/);

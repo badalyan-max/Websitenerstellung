@@ -170,3 +170,32 @@ describe("navigation: ActiveLink", () => {
     expect(render("/funktionen#baustelle")).not.toContain("aria-current");
   });
 });
+
+/**
+ * Footer (08-UI-SPEC § 8, SEO-03, Plan 08-11): Spalte „Vergleiche“ im Bestandsstil verlinkt den Hub, die vier
+ * Alternativen-Seiten und die Seite für kleine Betriebe; „Warum CraftOS?“ entfällt im Footer (Mega-Menü unverändert).
+ */
+describe("Footer: Spalte „Vergleiche“ (08-11)", () => {
+  it("nennt sechs Vergleichslinks in fester Folge, alle in der Sitemap; „Warum CraftOS?“ nicht mehr im Footer", async () => {
+    const { Footer } = await import("@/components/layout/Footer");
+    const html = renderToString(createElement(Footer));
+    const spalte = html.match(/<h2[^>]*>Vergleiche<\/h2><ul[^>]*>([\s\S]*?)<\/ul>/);
+    expect(spalte, "Spalte Vergleiche").toBeTruthy();
+    expect(links(spalte![1]).map((l) => [l.text, l.href])).toEqual([
+      ["Handwerkersoftware-Vergleich", "/vergleich"],
+      ["plancraft-Alternative", "/vergleich/plancraft-alternative"],
+      ["Craftnote-Alternative", "/vergleich/craftnote-alternative"],
+      ["HERO-Alternative", "/vergleich/hero-alternative"],
+      ["ToolTime-Alternative", "/vergleich/tooltime-alternative"],
+      ["Für kleine Betriebe", "/vergleich/handwerkersoftware-kleine-betriebe"],
+    ]);
+    expect(decode(html)).not.toContain("Warum CraftOS?");
+    const pfade = new Set((await sitemap()).map((e) => new URL(e.url).pathname.replace(/\/$/, "") || "/"));
+    for (const l of links(html).filter((x) => x.href.startsWith("/") && x.href !== "/feed.xml"))
+      expect(pfade.has(l.href), l.href).toBe(true);
+    // Raster: Logo-Spalte plus vier Linkspalten.
+    expect(html).toMatch(/md:grid-cols-\[[^\]]*\]/);
+    const spuren = /md:grid-cols-\[([^\]]*)\]/.exec(html)![1].split("_");
+    expect(spuren).toHaveLength(5);
+  });
+});

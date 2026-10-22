@@ -1306,3 +1306,116 @@ describe("kleine Betriebe Inhalte", () => {
     expect(quelle).not.toMatch(/\bbeste\b|testsieger/i);
   });
 });
+
+describe("kleine Betriebe gerendert", () => {
+  const rendern = async () => {
+    const mod = await import("@/app/vergleich/handwerkersoftware-kleine-betriebe/page");
+    return { mod, html: renderToString(createElement(mod.default)) };
+  };
+  /** HTML eines Abschnitts (bis zum nächsten data-abschnitt). */
+  const abschnitt = (html: string, id: string) => {
+    const start = html.indexOf(`data-abschnitt="${id}"`);
+    const ende = html.indexOf("data-abschnitt=", start + 20);
+    return html.slice(start, ende < 0 ? undefined : ende);
+  };
+
+  it("eine H1 aus der Map, #antwort ≤ 300 direkt danach, Abschnitte in fester Folge, Frage-H2 mit Antwort", async () => {
+    const { mod, html } = await rendern();
+    const { zielwerte } = await import("@/lib/seo-meta");
+    const z = zielwerte(KB_PFAD);
+    expect(String(mod.metadata.title)).toBe(z.titleOhneMarke);
+    expect(mod.metadata.description).toBe(z.description);
+    const h1 = [...html.matchAll(/<h1[^>]*>([\s\S]*?)<\/h1>/g)];
+    expect(h1).toHaveLength(1);
+    expect(decode(h1[0][1])).toBe(z.h1);
+    const nachH1 = html.slice(html.indexOf("</h1>") + 5);
+    const antwort = nachH1.match(/^<p id="antwort" data-answer=""[^>]*>([\s\S]*?)<\/p>/);
+    expect(antwort, "#antwort direkt nach der H1").toBeTruthy();
+    expect(charCount(decode(antwort![1]))).toBeLessThanOrEqual(300);
+
+    const abschnitte = [...html.matchAll(/data-abschnitt="([^"]+)"/g)].map((m) => m[1]).filter((a) => a !== "kopf");
+    expect(abschnitte).toEqual(["kriterien", "anbieter", "testen", "faq", "cta"]);
+    for (const id of ["kriterien", "anbieter", "testen", "faq"]) {
+      expect(html, `section ${id}`).toContain(`data-abschnitt="${id}" aria-labelledby="${id}"`);
+      expect(html, `H2 ${id}`).toMatch(new RegExp(`<h2 id="${id}"`));
+    }
+    for (const id of ["kriterien", "testen"]) {
+      const m = html.match(new RegExp(`<h2 id="${id}"[^>]*>([\s\S]*?)</h2><p[^>]*data-answer=""[^>]*>([\s\S]*?)</p>`));
+      expect(m, `Frage-H2 ${id} mit Antwort`).toBeTruthy();
+      expect(decode(m![1]).endsWith("?"), id).toBe(true);
+      expect(charCount(decode(m![2])), id).toBeLessThanOrEqual(300);
+    }
+    expect(html).toContain('href="#kriterien"');
+  });
+
+  it("Kriterien mit amtlicher Quellenliste darunter; Tabelle mit Pflichthinweis, Quellen und Disclaimer ohne Hervorhebung", async () => {
+    const { html } = await rendern();
+    const { kleineBetriebe: kb } = await import("@/lib/seiten/kleine-betriebe");
+    const kriterien = abschnitt(html, "kriterien");
+    for (const k of kb.kriterien.kacheln) expect(decode(kriterien), k.title).toContain(k.title);
+    const liste = kriterien.match(/<ol[^>]*aria-label="Quellen zu den Kriterien"[^>]*>([\s\S]*?)<\/ol>/);
+    expect(liste, "Quellenliste unter den Kriterien").toBeTruthy();
+    expect(kriterien.indexOf("Quellen zu den Kriterien")).toBeGreaterThan(kriterien.lastIndexOf(kb.kriterien.kacheln.at(-1)!.title));
+    for (const q of kb.kriterien.quellen) {
+      expect(liste![1], q.url).toContain(`href="${q.url}"`);
+      expect(decode(liste![1])).toContain(`${q.anbieter}: ${q.label}, abgerufen am ${germanDate(q.abgerufenAm)}`);
+    }
+
+    const anbieter = abschnitt(html, "anbieter");
+    const text = decode(anbieter);
+    expect(text).toContain(kb.anbieter.tabelle.note);
+    expect(text).toContain("Die Nennung der Anbieter dient der Zuordnung; es besteht keine Geschäftsbeziehung.");
+    for (const s of kb.anbieter.tabelle.sources) expect(anbieter, s.url).toContain(`href="${s.url}"`);
+    expect(html).not.toMatch(/data-highlight="true"|images\/brands|<img/);
+    for (const a of html.matchAll(/<a [^>]*href="https:\/\/(?!app\.craftos\.eu)[^"]*"[^>]*>/g)) {
+      expect(a[0], a[0]).toContain('rel="nofollow"');
+      expect(a[0]).not.toContain("_blank");
+    }
+  });
+
+  it("Testen verlinkt den Ratgeber; CTAs nennen genau site.trialDays", async () => {
+    const { html } = await rendern();
+    const testen = abschnitt(html, "testen");
+    expect(testen).toMatch(/<a [^>]*href="\/blog\/handwerkersoftware-auswaehlen"[^>]*>([\s\S]*?)<\/a>/);
+    expect(decode(testen)).toContain("Ratgeber: Handwerkersoftware auswählen");
+    const ctas = [...html.matchAll(/<a [^>]*data-track="trial"[^>]*>([\s\S]*?)<\/a>/g)].map((m) => decode(m[1]));
+    expect(ctas.length).toBeGreaterThanOrEqual(2);
+    for (const c of ctas) expect(c).toBe(`${site.trialDays} Tage kostenlos testen`);
+  });
+
+  it("JSON-LD: genau eine BreadcrumbList (Start, Vergleich, Für kleine Betriebe), FAQPage = sichtbare FAQ, ein WebPage", async () => {
+    const { html } = await rendern();
+    const { kleineBetriebe: kb } = await import("@/lib/seiten/kleine-betriebe");
+    expect(html).not.toContain("@graph");
+    for (const verboten of ["Product", "Review", "AggregateRating", "Telefon-Agent", "MCP-Server"])
+      expect(html, verboten).not.toContain(verboten);
+    const blocks = jsonLd(html);
+    const crumbs = blocks.filter((b) => b["@type"] === "BreadcrumbList");
+    expect(crumbs).toHaveLength(1);
+    expect((crumbs[0].itemListElement as { name: string }[]).map((i) => i.name)).toEqual(["Start", "Vergleich", "Für kleine Betriebe"]);
+    const faq = blocks.filter((b) => b["@type"] === "FAQPage");
+    expect(faq).toHaveLength(1);
+    const sichtbar = [...html.matchAll(/<summary[^>]*><h3[^>]*>([\s\S]*?)<\/h3>/g)].map((m) => decode(m[1]));
+    expect(sichtbar).toEqual(kb.faq.map((f) => f.q));
+    expect((faq[0].mainEntity as { name: string }[]).map((e) => e.name)).toEqual(sichtbar);
+    expect(blocks.filter((b) => b["@type"] === "WebPage")).toHaveLength(1);
+  });
+
+  it("Route mit eigenem OG-Bild; Seite ohne Sammelgraph, Bild und PageHero", () => {
+    expect(fs.existsSync(path.join(ROOT, "app/vergleich/handwerkersoftware-kleine-betriebe/opengraph-image.tsx"))).toBe(true);
+    const og = fs.readFileSync(path.join(ROOT, "app/vergleich/handwerkersoftware-kleine-betriebe/opengraph-image.tsx"), "utf8");
+    expect(og).toContain('kind: "Vergleich"');
+    const seite = fs.readFileSync(path.join(ROOT, "app/vergleich/handwerkersoftware-kleine-betriebe/page.tsx"), "utf8");
+    expect(seite).toContain("metaFor(");
+    expect(seite).not.toMatch(/@graph|<img|PageHero/);
+  });
+
+  it("beide Ratgeber zur Softwareauswahl verlinken die Seite mit genau einem Satz am Artikelende", () => {
+    for (const slug of ["handwerkersoftware-auswaehlen", "handwerkersoftware-einzelunternehmen"]) {
+      const md = fs.readFileSync(path.join(ROOT, `content/blog/${slug}.md`), "utf8");
+      expect(md.split(KB_PFAD).length - 1, slug).toBe(1);
+      const satz = `Anbieter und Kriterien im Vergleich: [Handwerkersoftware für kleine Betriebe](${KB_PFAD}).`;
+      expect(md.trimEnd().endsWith(satz), slug).toBe(true);
+    }
+  });
+});

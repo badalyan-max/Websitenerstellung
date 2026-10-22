@@ -97,10 +97,10 @@ describe("ai-prompts-targets.json", () => {
 });
 
 describe("Keyword-Map: neue Seite für kleine Betriebe (08-UI-SPEC § 8)", () => {
-  it("ist als geplant (Phase 8) ohne Hauptkeyword mit Zielwerten geführt", () => {
+  it("ist seit 08-11 bestehend (Phase 8) ohne Hauptkeyword mit Zielwerten geführt", () => {
     const e = keywordMap.find((k) => k.path === "/vergleich/handwerkersoftware-kleine-betriebe");
     expect(e).toBeDefined();
-    expect(e).toMatchObject({ status: "geplant", phase: 8, primary: null, secondary: [], competitors: [] });
+    expect(e).toMatchObject({ status: "bestehend", phase: 8, primary: null, secondary: [], competitors: [] });
     expect(e!.reason).toContain("export--candidates-1.json");
     expect(e!.target).toEqual({
       title: "Handwerkersoftware für kleine Betriebe: Kriterien | CraftOS",
