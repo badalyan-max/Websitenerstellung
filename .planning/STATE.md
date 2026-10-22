@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-stopped_at: Completed 08-02-PLAN.md
-last_updated: "2026-10-22T15:53:26.100Z"
-last_activity: 2026-10-22 – 08-02 Brotkrumen sitewide (crumbsFor, Breadcrumbs-Baustein, neun BreadcrumbList-Stellen ersetzt, Phase-8-Budgets)
+stopped_at: Completed 08-03-PLAN.md
+last_updated: "2026-10-22T16:29:04.246Z"
+last_activity: 2026-10-22 – 08-03 Bausteine G1–G5 (FunktionsKopf mit Antwort/Stand ohne Visual, SectionHeader-Antwort-Lead, FaqList answerMax, ComparisonTable mit Quellen, FitPanels, FactList)
 progress:
   total_phases: 6
   completed_phases: 3
   total_plans: 37
-  completed_plans: 25
-  percent: 68
+  completed_plans: 26
+  percent: 70
 ---
 
 # State
@@ -30,14 +30,14 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 8 (SEO und KI-Sichtbarkeit)
-Plan: 3 of 14 (08-01 und 08-02 abgeschlossen)
+Plan: 4 of 14 (08-01 bis 08-03 abgeschlossen)
 Status: Ready to execute
-Last activity: 2026-10-22 – 08-02 Brotkrumen sitewide (crumbsFor, Breadcrumbs-Baustein, neun BreadcrumbList-Stellen ersetzt, Phase-8-Budgets)
+Last activity: 2026-10-22 – 08-03 Bausteine G1–G5 (FunktionsKopf mit Antwort/Stand ohne Visual, SectionHeader-Antwort-Lead, FaqList answerMax, ComparisonTable mit Quellen, FitPanels, FactList)
 
-Progress: [███████░░░] 68% (25/37 Pläne des Milestones; Phase 8: 2/14)
+Progress: [███████░░░] 70% (26/37 Pläne des Milestones; Phase 8: 3/14)
 
-Last session: 2026-10-22T15:53:26.091Z
-Stopped at: Completed 08-02-PLAN.md
+Last session: 2026-10-22T16:29:04.236Z
+Stopped at: Completed 08-03-PLAN.md
 Resume file: None
 
 ## Accumulated Context
@@ -105,6 +105,9 @@ Resume file: None
 - [Phase 08]: 08-01: Prompt-Mapping docs/seo/ai-prompts-targets.json (20 Einträge aus Rohdaten, Bestandsziele #faq-titel, Gewerke Phase 9, 9 luecken); Anker-Konvention DESIGN-V2 § 17
 - [Phase 08]: 08-02: crumbsFor(path, current?) ist die einzige Brotkrumen-Quelle; Seiten rufen breadcrumbSchema nie direkt auf, Köpfe nehmen crumbs entgegen (FunktionsKopf, FunktionenHead, PageHero, ArticlePage, CalculatorPage, LegalShell)
 - [Phase 08]: 08-02: Artikelketten mit 3 Gliedern (Start › Ratgeber|Hilfe › Titel) laut UI-SPEC; Kategorie-Zwischenstufe der alten BreadcrumbList entfällt
+- [Phase 08]: 08-03: /styleguide Block 0 ist ein FunktionsKopf ohne Visual mit answer und stand (ersetzt PageHero), damit die Musterseite genau eine H1 behaelt
+- [Phase 08]: 08-03: FitPanels-Quellenlink zeigt Quelle und traegt das Quellen-Label als sr-only-Zusatz (UI-SPEC 3.5 und U10)
+- [Phase 08]: 08-03: SectionHeader erzwingt jetzt auch fuer Nicht-Frage-Titel genau einen Satz; Frage-Titel bekommen Antwort-Lead mit data-answer bis 300 Zeichen
 
 ### Pending Todos
 
@@ -143,3 +146,4 @@ None yet.
 | Phase 07 P09 | 20min | 2 tasks | 13 files |
 | Phase 08 P01 | 58min | 3 tasks | 19 files |
 | Phase 08 P02 | 62min | 3 tasks | 39 files |
+| Phase 08 P03 | 33min | 2 tasks | 18 files |
