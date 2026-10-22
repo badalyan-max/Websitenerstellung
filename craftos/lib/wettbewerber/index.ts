@@ -5,8 +5,17 @@
  */
 import "server-only";
 import { ersteDoppelung } from "@/lib/funktionsdetails";
+import { getProductRegister } from "@/lib/product-register";
 import { tarife } from "@/lib/site";
+import { craftnote } from "./craftnote";
+import { hero } from "./hero";
+import { plancraft } from "./plancraft";
+import { tooltime } from "./tooltime";
 import type { Fakt, KriteriumId, Preis, QuellenEintrag, Wettbewerber, WettbewerberName, WettbewerberSlug } from "./types";
+
+/** Die vier verglichenen Anbieter in fester Reihenfolge (Datenmodule mit Neuprüfung je Angabe). */
+export const wettbewerber: readonly Wettbewerber[] = [plancraft, craftnote, hero, tooltime];
+export { craftnote, hero, plancraft, tooltime };
 
 /** Ab diesem Alter (in Tagen) warnt `alterWarnung` (D-04); kein Abbruch. */
 export const MAX_ALTER_TAGE = 60;
@@ -32,8 +41,21 @@ export const UWG_WORTLISTE = [
   "Aktionspreis",
 ] as const;
 
-/** Ankündigungen nicht-live Funktionen (U9, PROD-04); Wortgrenzen wie oben. */
-const ANKUENDIGUNGEN = ["Telefon-Agent", "MCP-Server", "angekündigt", "geplant"] as const;
+/** Ganzes Wort bzw. ganze Wortfolge mit Unicode-Wortgrenzen, ohne Groß-/Kleinschreibung. */
+function ganzesWort(wort: string): RegExp {
+  const maskiert = wort.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp(`(?<![\\p{L}\\p{N}])${maskiert}(?![\\p{L}\\p{N}])`, "iu");
+}
+
+/**
+ * Ankündigungen (U9, PROD-04): Namen der nicht-live CraftOS-Funktionen aus dem Produktregister (`notLive`, als
+ * ganze Wörter) und Ankündigungsstämme mit beliebiger Endung („angekündig…“, „geplant…“; „eingeplant“ trifft
+ * nicht). Die Namen stehen bewusst nicht als Literal in dieser Datei (tests/announcements.test.ts prüft lib/).
+ */
+const ANKUENDIGUNG_MUSTER: readonly RegExp[] = [
+  ...getProductRegister().notLive.map((eintrag) => ganzesWort(eintrag.name)),
+  ...["angekündig", "geplant"].map((stamm) => new RegExp(`(?<![\\p{L}\\p{N}])${stamm}\\p{L}*`, "iu")),
+];
 
 /** Anbieterschreibweise je slug (U8). */
 const SCHREIBWEISE: Record<WettbewerberSlug, WettbewerberName> = {
@@ -45,18 +67,14 @@ const SCHREIBWEISE: Record<WettbewerberSlug, WettbewerberName> = {
 
 /**
  * Kriterien, die CraftOS nicht anbietet (U6-Fairnesszeile): KI-Telefonie ist nicht live (lib/product-register.ts
- * `notLive` „Telefon-Agent“), Zeiterfassung speichert nur Standortpunkte ohne Bewegungsverläufe
+ * `notLive`), Zeiterfassung speichert nur Standortpunkte ohne Bewegungsverläufe
  * (lib/funktionen.ts `zeiterfassung`).
  */
 export const CRAFTOS_OHNE: readonly KriteriumId[] = ["kiTelefon", "fahrzeugortung"];
 
 export const HERO_VARIANTE_B_HINWEIS = "HERO-Preise ohne Screenshot-Beleg – Variante B ohne Zahlen rendern (D-16).";
 
-const escape = (wort: string) => wort.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-const wortMuster = <W extends string>(woerter: readonly W[]) =>
-  woerter.map((wort) => ({ wort, re: new RegExp(`(?<![\\p{L}\\p{N}])${escape(wort)}(?![\\p{L}\\p{N}])`, "iu") }));
-const UWG_MUSTER = wortMuster(UWG_WORTLISTE);
-const ANKUENDIGUNG_MUSTER = wortMuster(ANKUENDIGUNGEN);
+const UWG_MUSTER = UWG_WORTLISTE.map((wort) => ({ wort, re: ganzesWort(wort) }));
 
 /** Erstes Wort der UWG-Wortliste im Text, sonst undefined. */
 export function uwgTreffer(text: string): (typeof UWG_WORTLISTE)[number] | undefined {
@@ -184,7 +202,7 @@ export function pruefeWettbewerber(w: Wettbewerber, heute: Date = new Date()): v
       } catch (e) {
         throw new Error(`Wettbewerber ${w.slug}, ${feld}: ${(e as Error).message}`);
       }
-      const ankuendigung = ANKUENDIGUNG_MUSTER.find((m) => m.re.test(text))?.wort;
+      const ankuendigung = ANKUENDIGUNG_MUSTER.map((re) => re.exec(text)?.[0]).find(Boolean);
       if (ankuendigung)
         throw new Error(`Wettbewerber ${w.slug}, ${feld}: enthält ‚${ankuendigung}‘ – keine Ankündigungen in Vergleichsdaten (U9).`);
     }
