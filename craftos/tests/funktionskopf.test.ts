@@ -164,6 +164,89 @@ describe("FunktionsKopf (F1)", () => {
   });
 });
 
+/** 256 Zeichen, zwei Sätze (08-UI-SPEC G1: answer ≤ 300, 1–2 Sätze). */
+const ANTWORT =
+  "CraftOS ist eine Handwerkersoftware für Betriebe für Angebote, Plantafel, Zeiterfassung und Rechnungen in einer Web-App und einer Mobile-App. Die Voll-Lizenz kostet 29,95 € netto je Person und Monat, die App-Lizenz für Mitarbeitende 9,95 € netto pro Monat.";
+
+describe("FunktionsKopf ohne Visual mit Antwort und Stand (08-UI-SPEC G1, C4)", () => {
+  const ohne = (props: Partial<Parameters<typeof FunktionsKopf>[0]> = {}) =>
+    kopf({
+      eyebrow: "Vergleich",
+      h1: "Handwerkersoftware im Vergleich",
+      keyword: "Handwerkersoftware",
+      lead: undefined,
+      answer: ANTWORT,
+      visual: undefined,
+      secondary: { label: "Zur Vergleichstabelle", href: "#vergleich" },
+      crumbs: crumbsFor("/vergleich"),
+      ...props,
+    });
+  const html = ohne({ stand: "Anbieterangaben Stand 22.10.2026, Quellen unter der Tabelle" });
+
+  it("Testantwort hat 256 Zeichen und zwei Sätze", () => {
+    expect(Array.from(ANTWORT).length).toBe(256);
+  });
+
+  it("ohne visual: kein Produkt-Container, einspaltiges Layout gekennzeichnet", () => {
+    expect(html).not.toContain("data-visual=");
+    expect(html).not.toContain("<figure");
+    expect(html).toContain('data-layout="einspaltig"');
+    expect(kopf()).not.toContain('data-layout="einspaltig"');
+  });
+
+  it("answer rendert genau ein <p id=\"antwort\" data-answer> direkt nach der H1, kein Lead-Absatz", () => {
+    expect(count(html, 'id="antwort"')).toBe(1);
+    const nachH1 = html.slice(html.indexOf("</h1>") + 5);
+    expect(nachH1).toMatch(/^<p[^>]*id="antwort"[^>]*data-answer=""[^>]*>/);
+    const p = nachH1.match(/^<p[^>]*>([\s\S]*?)<\/p>/)!;
+    expect(text(p[1])).toBe(ANTWORT);
+    expect(count(html, "data-answer")).toBe(1);
+    expect(html).not.toContain(basis.lead);
+  });
+
+  it("stand rendert eine Label-Zeile direkt nach der Antwort, vor dem CTA", () => {
+    const antwortEnde = html.indexOf("</p>", html.indexOf('id="antwort"'));
+    const rest = html.slice(antwortEnde + 4);
+    expect(rest).toMatch(/^<p[^>]*data-stand=""[^>]*>Anbieterangaben Stand 22\.10\.2026, Quellen unter der Tabelle<\/p>/);
+    expect(html.indexOf("data-stand")).toBeLessThan(html.indexOf('data-track="trial"'));
+    expect(ohne()).not.toContain("data-stand");
+  });
+
+  it("Brotkrumen bleiben die erste Zeile", () => {
+    expect(html.indexOf('aria-label="Brotkrumen"')).toBeLessThan(html.indexOf("<h1"));
+  });
+
+  it("answer mit 301 Zeichen wirft den Budgettext answer", () => {
+    expect(() => ohne({ answer: `${"x".repeat(300)}.` })).toThrow(
+      "Textbudget überschritten: answer hat 301 von 300 Zeichen – Satz kürzen.",
+    );
+  });
+
+  it("answer mit drei Sätzen wirft", () => {
+    expect(() => ohne({ answer: "Erster Satz. Zweiter Satz. Dritter Satz." })).toThrow(
+      "FunktionsKopf: Antwort hat 3 Sätze – ein bis zwei Sätze schreiben.",
+    );
+  });
+
+  it("lead und answer gleichzeitig wirft den Fehlertext aus dem UI-SPEC", () => {
+    expect(() => ohne({ lead: basis.lead })).toThrow(
+      "FunktionsKopf: lead und answer gleichzeitig gesetzt – nur answer verwenden.",
+    );
+  });
+
+  it("weder lead noch answer wirft", () => {
+    expect(() => ohne({ answer: undefined })).toThrow("FunktionsKopf: lead oder answer angeben.");
+  });
+
+  it("Bestandskopf mit visual und lead bleibt unverändert (kein data-answer, kein Stand)", () => {
+    const bestand = kopf();
+    expect(bestand).not.toContain("data-answer");
+    expect(bestand).not.toContain('id="antwort"');
+    expect(bestand).toContain(basis.lead);
+    expect(bestand).toContain('data-visual="browser"');
+  });
+});
+
 const webPanel: PlattformPanel = {
   platform: "web",
   rollen: [{ name: "Admin" }, { name: "Büro-Leitung" }, { name: "Büro-Projektleitung", zusatz: "eigene Projekte" }],

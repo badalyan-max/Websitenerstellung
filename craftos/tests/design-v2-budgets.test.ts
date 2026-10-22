@@ -2,7 +2,13 @@
  * Textbudgets der Musterseite (UI-SPEC „Textbudgets“): Alle Textfelder in lib/styleguide-content.ts
  * liegen im TEXT_BUDGET bzw. im MINI_BUDGET der Geräterahmen. Wird in den Phasen 6–9 auf Seitendaten erweitert.
  */
+import { createElement } from "react";
+import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
+import AppPage from "@/app/app/page";
+import FunktionenPage from "@/app/funktionen/page";
+import Home from "@/app/page";
+import { FunktionsDetail } from "@/components/funktionen/FunktionsDetail";
 import {
   TEXT_BUDGET,
   assertCount,
@@ -13,6 +19,7 @@ import {
 } from "@/components/v2/budgets";
 import { MINI_BUDGET } from "@/components/v2/mini/limits";
 import { funktionen } from "@/lib/funktionen";
+import { getFunktionsdetail } from "@/lib/funktionsdetails";
 import * as content from "@/lib/styleguide-content";
 
 type Check = [field: string, value: string | undefined, max: number];
@@ -239,6 +246,45 @@ describe("Phase-6-Budgets und Satzprüfung", () => {
       if (f.benefit !== ERWARTETE_NUTZENSAETZE[f.slug]) problems.push(`${f.slug}: Nutzensatz weicht ab`);
       if (sentenceCount(f.benefit ?? "") !== 1) problems.push(`${f.slug}: nicht genau ein Satz`);
       if (charCount(f.benefit ?? "") > TEXT_BUDGET.featureCard.benefit) problems.push(`${f.slug}: zu lang`);
+    }
+    expect(problems).toEqual([]);
+  });
+});
+
+/**
+ * Sammeltest Phase 8 (08-UI-SPEC § 2, G1, G2, C2–C4): Alle Bestandsseiten mit v2-Abschnittsköpfen
+ * (Startseite, /app, /funktionen, 22 Detailseiten) rendern mit den neuen Antwort-zuerst-Regeln fehlerfrei.
+ * Jede Frage-H2 eines SectionHeader trägt direkt danach einen Antwort-Lead mit data-answer und ≤ 300 Zeichen,
+ * jeder Nicht-Frage-Lead bleibt bei ≤ 140 Zeichen und genau einem Satz.
+ */
+describe("Antwort-zuerst-Regeln über Bestandsinhalte (Phase 8)", () => {
+  const seiten: [string, string][] = [
+    ["/", renderToString(createElement(Home))],
+    ["/app", renderToString(createElement(AppPage))],
+    ["/funktionen", renderToString(createElement(FunktionenPage))],
+    ...funktionen.map((f): [string, string] => [
+      `/funktionen/${f.slug}`,
+      renderToString(createElement(FunktionsDetail, { detail: getFunktionsdetail(f.slug) })),
+    ]),
+  ];
+  const decode = (v: string) =>
+    v.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#x27;/g, "'").trim();
+
+  it("25 Seiten rendern; Frage-H2 → Antwort-Lead mit data-answer ≤ 300, sonst Lead ≤ 140 mit einem Satz", () => {
+    expect(seiten).toHaveLength(25);
+    const problems: string[] = [];
+    for (const [pfad, html] of seiten) {
+      for (const m of html.matchAll(/<header[^>]*>[\s\S]*?<h2[^>]*>([\s\S]*?)<\/h2>(<p[^>]*>)([\s\S]*?)<\/p>/g)) {
+        const titel = decode(m[1]);
+        const lead = decode(m[3]);
+        const frage = titel.endsWith("?");
+        if (frage && !m[2].includes("data-answer")) problems.push(`${pfad}: ${titel} ohne data-answer`);
+        if (!frage && m[2].includes("data-answer")) problems.push(`${pfad}: ${titel} mit data-answer`);
+        const max = frage ? TEXT_BUDGET.sectionHeader.answerLead : TEXT_BUDGET.sectionHeader.lead;
+        if (charCount(lead) > max) problems.push(`${pfad}: ${titel} Lead ${charCount(lead)} > ${max}`);
+        const n = sentenceCount(lead);
+        if (frage ? n < 1 || n > 2 : n !== 1) problems.push(`${pfad}: ${titel} Lead mit ${n} Sätzen`);
+      }
     }
     expect(problems).toEqual([]);
   });

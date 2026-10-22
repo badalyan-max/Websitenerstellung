@@ -72,6 +72,48 @@ describe("SectionHeader", () => {
   });
 });
 
+describe("SectionHeader mit Frage-Titel (08-UI-SPEC G2, C2)", () => {
+  const FRAGE = "Was kostet die App-Lizenz für Mitarbeitende?";
+  /** 179 Zeichen, ein Satz. */
+  const ANTWORT =
+    "Die App-Lizenz kostet 9,95 € netto je Person und Monat und deckt die Mobile-App für Mitarbeitende auf der Baustelle ab, ohne Zugang zur Web-App im Büro und ohne extra Modulgebühr.";
+  const header = (title: string, lead: string) => renderToString(createElement(SectionHeader, { title, lead, id: "kosten" }));
+
+  it("Antwort-Lead (179 Zeichen, 1 Satz) rendert als <p data-answer>, id an der H2", () => {
+    expect(Array.from(ANTWORT).length).toBe(179);
+    const html = header(FRAGE, ANTWORT);
+    expect(html).toMatch(/<h2[^>]*id="kosten"/);
+    expect(html).toMatch(/<p[^>]*data-answer=""[^>]*>Die App-Lizenz kostet/);
+    expect(count(html, /data-answer/g)).toBe(1);
+  });
+
+  it("Antwort-Lead mit zwei Sätzen ist erlaubt", () => {
+    expect(() => header(FRAGE, "Die App-Lizenz kostet 9,95 € netto je Monat. Sie gilt für die Mobile-App.")).not.toThrow();
+  });
+
+  it("Antwort-Lead über 300 Zeichen wirft sectionHeader.answerLead", () => {
+    expect(() => header(FRAGE, `${"x".repeat(300)}.`)).toThrow(
+      "Textbudget überschritten: sectionHeader.answerLead hat 301 von 300 Zeichen – Satz kürzen.",
+    );
+  });
+
+  it("Antwort-Lead mit drei Sätzen wirft", () => {
+    expect(() => header(FRAGE, "Eins. Zwei. Drei.")).toThrow(
+      "SectionHeader: Antwort-Lead hat 3 Sätze – ein bis zwei Sätze schreiben.",
+    );
+  });
+
+  it("Nicht-Frage-Titel: Lead über 140 wirft sectionHeader.lead, zwei Sätze werfen, kein data-answer", () => {
+    expect(() => header("Ablauf im Überblick", `${"x".repeat(140)}.`)).toThrow(
+      "Textbudget überschritten: sectionHeader.lead hat 141 von 140 Zeichen – Satz kürzen.",
+    );
+    expect(() => header("Ablauf im Überblick", "Erster Satz. Zweiter Satz.")).toThrow(
+      "SectionHeader: Lead hat 2 Sätze – genau einen Satz schreiben.",
+    );
+    expect(header("Ablauf im Überblick", "Genau ein Satz.")).not.toContain("data-answer");
+  });
+});
+
 describe("KeyFacts", () => {
   it("rendert dl mit dt/dd, data-source je Wert und den Pflichthinweis", () => {
     const html = renderToString(createElement(KeyFacts, { facts, note }));
@@ -400,6 +442,20 @@ describe("FaqList", () => {
     expect(() => renderToString(createElement(FaqList, { items: ohneFrage }))).toThrow(
       "FaqList: Frage ‚Preise und Lizenzen‘ endet nicht mit „?“ – als direkte Frage formulieren.",
     );
+  });
+
+  it("answerMax={300} (C3): Antwort mit 301 Zeichen wirft faq.answerCentral, ohne answerMax gilt 600", () => {
+    // Zwei Sätze: erster Satz 150 Zeichen (≤ firstSentence 300), gesamt 301 (≤ answer 600).
+    const lang = `${"a".repeat(149)}. ${"b".repeat(149)}.`;
+    expect(Array.from(lang).length).toBe(301);
+    const items = [{ q: "Wie lang darf eine Antwort sein?", a: lang }, ...faqs.slice(0, 2)];
+    expect(() => renderToString(createElement(FaqList, { items, answerMax: 300 }))).toThrow(
+      "Textbudget überschritten: faq.answerCentral hat 301 von 300 Zeichen – Satz kürzen.",
+    );
+    expect(() => renderToString(createElement(FaqList, { items }))).not.toThrow();
+    const ohne = renderToString(createElement(FaqList, { items: faqs.slice(0, 3) }));
+    const mit = renderToString(createElement(FaqList, { items: faqs.slice(0, 3), answerMax: 300 }));
+    expect(mit).toBe(ohne);
   });
 });
 
