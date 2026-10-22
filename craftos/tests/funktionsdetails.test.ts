@@ -1265,6 +1265,20 @@ describe("Vorlage gerendert", () => {
     expect(html).not.toContain("data-funktion=");
   });
 
+  it("Brotkrumen (08-02, D-07/D-22): genau eine nav Brotkrumen im Kopf vor Eyebrow und H1, 3 Glieder wie die BreadcrumbList", () => {
+    const kopf = abschnitt("kopf");
+    expect(html.split('aria-label="Brotkrumen"').length - 1).toBe(1);
+    const nav = kopf.indexOf('aria-label="Brotkrumen"');
+    expect(nav).toBeGreaterThan(-1);
+    expect(nav).toBeLessThan(kopf.indexOf("v2-eyebrow"));
+    expect(nav).toBeLessThan(kopf.indexOf("<h1"));
+    const navHtml = kopf.slice(kopf.lastIndexOf("<nav", nav), kopf.indexOf("</nav>", nav));
+    expect(navHtml).toContain('data-tone="dark"');
+    expect([...navHtml.matchAll(/<li[\s>]/g)]).toHaveLength(3);
+    expect(navHtml).toMatch(/<a[^>]*href="\/funktionen"[^>]*>Funktionen<\/a>/);
+    expect(navHtml).toContain('aria-current="page"');
+  });
+
   it("JSON-LD: ein FAQPage aus den sichtbaren Fragen, BreadcrumbList mit 3 Ebenen, WebPage, kein HowTo", () => {
     const blocks = jsonLd(html);
     const faq = blocks.filter((b) => b["@type"] === "FAQPage");

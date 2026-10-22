@@ -174,6 +174,15 @@ describe("Funktionsübersicht /funktionen", () => {
       [1, "Start", site.url + "/"],
       [2, "Funktionen", site.url + "/funktionen"],
     ]);
+    // 08-02: genau eine BreadcrumbList, erzeugt vom Brotkrumen-Baustein vor der H1
+    expect(daten.filter((d) => d["@type"] === "BreadcrumbList")).toHaveLength(1);
+    expect(html.split('aria-label="Brotkrumen"').length - 1).toBe(1);
+    const nav = html.indexOf('aria-label="Brotkrumen"');
+    expect(nav).toBeLessThan(html.indexOf("<h1"));
+    const navHtml = html.slice(nav, html.indexOf("</nav>", nav));
+    expect(navHtml).toContain('data-tone="dark"');
+    expect([...navHtml.matchAll(/<li[\s>]/g)]).toHaveLength(2);
+    expect(navHtml).toMatch(/<span[^>]*aria-current="page"[^>]*>Funktionen<\/span>/);
     const list = daten.find((d) => d["@type"] === "ItemList") as {
       name: string;
       itemListElement: { position: number; name: string; url: string }[];

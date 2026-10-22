@@ -10,6 +10,7 @@ import { describe, expect, it } from "vitest";
 import { FunktionsKopf } from "@/components/funktionen/FunktionsKopf";
 import { PlattformRollen } from "@/components/funktionen/PlattformRollen";
 import { BentoTile, TileIcon } from "@/components/v2/BentoGrid";
+import { crumbsFor } from "@/lib/breadcrumbs";
 import type { PlattformPanel } from "@/lib/funktionsdetails/types";
 import { angebotScene, kopfVisuals, zeitenScene } from "@/lib/scenes";
 import { site } from "@/lib/site";
@@ -33,6 +34,7 @@ const basis = {
   lead: "Positionen mit Lohn, Material und Zuschlägen kalkulieren und als PDF mit Ihrem Briefpapier ausgeben.",
   secondary: { label: "Anleitung in der Hilfe", href: "/hilfe/angebot-entwurf-anlegen" },
   visual: kopfVisuals.angebote,
+  crumbs: crumbsFor("/funktionen/angebote"),
 };
 const kopf = (props: Partial<Parameters<typeof FunktionsKopf>[0]> = {}) =>
   renderToString(createElement(FunktionsKopf, { ...basis, ...props }));
@@ -54,6 +56,26 @@ describe("FunktionsKopf (F1)", () => {
     expect(section).toContain('data-abschnitt="kopf"');
     expect(section).toContain('data-tone="dark"');
     expect(section).toContain('aria-labelledby="funktion-titel"');
+  });
+
+  it("Brotkrumen (G1/G6) als erste Zeile im Kopf, dunkler Ton, eine BreadcrumbList aus crumbs", () => {
+    const nav = html.indexOf('aria-label="Brotkrumen"');
+    expect(count(html, 'aria-label="Brotkrumen"')).toBe(1);
+    expect(nav).toBeGreaterThan(html.indexOf("<section"));
+    expect(nav).toBeLessThan(html.indexOf("v2-eyebrow"));
+    expect(nav).toBeLessThan(html.indexOf("<h1"));
+    expect(html.slice(html.lastIndexOf("<nav", nav), nav + 200)).toContain('data-tone="dark"');
+    const lists = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)]
+      .map((m) => JSON.parse(m[1]))
+      .filter((b) => b["@type"] === "BreadcrumbList");
+    expect(lists).toHaveLength(1);
+    expect(lists[0].itemListElement.map((e: { name: string }) => e.name)).toEqual(basis.crumbs.map((c) => c.name));
+  });
+
+  it("crumbsSchema={false} rendert die nav ohne BreadcrumbList", () => {
+    const ohne = kopf({ crumbsSchema: false });
+    expect(count(ohne, 'aria-label="Brotkrumen"')).toBe(1);
+    expect(ohne).not.toContain("application/ld+json");
   });
 
   it("Eyebrow als v2-eyebrow mit dem Gruppennamen", () => {

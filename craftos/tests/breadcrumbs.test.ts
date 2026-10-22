@@ -191,6 +191,51 @@ describe("Breadcrumbs – Baustein (UI-SPEC § 1)", () => {
     ).not.toThrow();
   });
 
+  it("Seiten mit PageHero bzw. ContentIndex: genau eine nav und genau eine BreadcrumbList aus crumbsFor (08-02 Task 2)", async () => {
+    const seiten: [string, () => Promise<string>][] = [
+      ["/gewerke", async () => renderToString(createElement((await import("@/app/gewerke/page")).default))],
+      [
+        "/gewerke/elektriker",
+        async () =>
+          renderToString(await (await import("@/app/gewerke/[slug]/page")).default({ params: Promise.resolve({ slug: "elektriker" }) })),
+      ],
+      ["/support", async () => renderToString(createElement((await import("@/app/support/page")).default))],
+      ["/preise", async () => renderToString(createElement((await import("@/app/preise/page")).default))],
+      ["/vergleich", async () => renderToString(createElement((await import("@/app/vergleich/page")).default))],
+      ["/fakten-ueber-craftos", async () => renderToString(createElement((await import("@/app/fakten-ueber-craftos/page")).default))],
+      ["/craft-ai", async () => renderToString(createElement((await import("@/app/craft-ai/page")).default))],
+      ["/gobd", async () => renderToString(createElement((await import("@/app/gobd/page")).default))],
+      [
+        "/blog",
+        async () => renderToString(await (await import("@/components/content/ContentIndex")).ContentIndex({ kind: "blog" })),
+      ],
+      [
+        "/hilfe/kategorie/rechnungen",
+        async () =>
+          renderToString(
+            await (await import("@/components/content/ContentIndex")).ContentIndex({ kind: "hilfe", category: "rechnungen" }),
+          ),
+      ],
+    ];
+    const problems: string[] = [];
+    for (const [path, rendern] of seiten) {
+      const seite = await rendern();
+      const navs = count(seite, 'aria-label="Brotkrumen"');
+      const lists = ldBlocks(seite).flatMap((b) => (Array.isArray(b["@graph"]) ? b["@graph"] : [b])).filter((b) => b["@type"] === "BreadcrumbList");
+      if (navs !== 1) problems.push(`${path}: ${navs} nav`);
+      if (lists.length !== 1) {
+        problems.push(`${path}: ${lists.length} BreadcrumbList`);
+        continue;
+      }
+      const erwartet = crumbsFor(path).map((c) => [c.name, site.url + c.path]);
+      const ist = lists[0].itemListElement.map((e: { name: string; item: string }) => [e.name, e.item]);
+      if (JSON.stringify(ist) !== JSON.stringify(erwartet)) problems.push(`${path}: Glieder ${JSON.stringify(ist)}`);
+      const nav = seite.indexOf('aria-label="Brotkrumen"');
+      if (nav > seite.indexOf("<h1")) problems.push(`${path}: Brotkrumen nach der H1`);
+    }
+    expect(problems).toEqual([]);
+  });
+
   it("kein Client-JavaScript: Baustein ohne use client", async () => {
     const { readFileSync } = await import("node:fs");
     const source = readFileSync("components/v2/Breadcrumbs.tsx", "utf8");

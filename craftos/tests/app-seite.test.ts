@@ -362,6 +362,14 @@ describe("gerendert", () => {
       ["Start", `${site.url}/`],
       ["Mobile-App", `${site.url}/app`],
     ]);
+    // 08-02: sichtbare Brotkrumen Start › Mobile-App als erste Kopfzeile vor Eyebrow und H1
+    expect(html.split('aria-label="Brotkrumen"').length - 1).toBe(1);
+    const nav = html.indexOf('aria-label="Brotkrumen"');
+    expect(nav).toBeLessThan(html.indexOf("<h1"));
+    expect(nav).toBeLessThan(html.indexOf("v2-eyebrow"));
+    const navHtml = html.slice(nav, html.indexOf("</nav>", nav));
+    expect([...navHtml.matchAll(/<li[\s>]/g)]).toHaveLength(2);
+    expect(navHtml).toMatch(/<span[^>]*aria-current="page"[^>]*>Mobile-App<\/span>/);
 
     const apps = jsonLd.filter((b) => b["@type"] === "MobileApplication");
     expect(apps).toHaveLength(1);

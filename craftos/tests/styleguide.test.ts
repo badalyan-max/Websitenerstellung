@@ -167,6 +167,8 @@ describe("styleguide: Seite", () => {
     expect([...positions].sort((a, b) => a - b)).toEqual(positions);
     expect(html).toContain("Videoplayer: entfällt (Videos sind nicht Teil des Meilensteins).");
     expect(html).not.toContain("application/ld+json");
+    // 08-02: Brotkrumen nur als Muster (schema={false}), kein JSON-LD auf der noindex-Musterseite
+    expect(html.split('aria-label="Brotkrumen"').length - 1).toBe(1);
     expect(html).toContain('data-tab="Zeiten"');
   });
 });
