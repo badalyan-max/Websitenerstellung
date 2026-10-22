@@ -413,6 +413,33 @@ export function duplikate(seiten, pfadFilter = null) {
 }
 
 /**
+ * Prüft die Aufrufoptionen von scripts/seo-audit.mjs (08-REVIEW ME-05): Eine unbekannte Regel in `--only`, eine
+ * leere Regelliste oder ein Pfad in `--paths`, der nicht in der Sitemap steht, ist ein Fehler – sonst meldet das
+ * Audit „0 Verstöße“, ohne etwas geprüft zu haben. Git Bash (MSYS) schreibt Argumente wie `--paths=/preise` zu
+ * `C:/Program Files/Git/preise` um; dafür nennt die Meldung `MSYS_NO_PATHCONV=1`.
+ * @param {{ only: string[] | null, paths: string[] | null, alleRegeln: readonly string[], alleSeiten: readonly string[] }} opts
+ * @returns {string[]} Fehlertexte (leer = Optionen in Ordnung)
+ */
+export function optionsFehler({ only, paths, alleRegeln, alleSeiten }) {
+  const fehler = [];
+  if (only) {
+    if (only.length === 0) fehler.push(`--only ohne Regel – bekannt: ${alleRegeln.join(", ")}.`);
+    for (const r of only.filter((x) => !alleRegeln.includes(x)))
+      fehler.push(`Regel ‚${r}‘ ist unbekannt – bekannt: ${alleRegeln.join(", ")}.`);
+  }
+  if (paths) {
+    if (paths.length === 0) fehler.push("--paths ohne Pfad.");
+    for (const p of paths.filter((x) => !alleSeiten.includes(x))) {
+      const msys = /^\/?[A-Za-z]:[\\/]/.test(p)
+        ? " Der Pfad wurde offenbar von Git Bash umgeschrieben – Aufruf mit MSYS_NO_PATHCONV=1 wiederholen."
+        : "";
+      fehler.push(`Pfad ${p} steht nicht in der Sitemap – nichts geprüft.${msys}`);
+    }
+  }
+  return fehler;
+}
+
+/**
  * Regel `prompts` (08 D-10, D-18): Mapping-Ziele aus docs/seo/ai-prompts-targets.json im Build prüfen.
  * Ziele bis Phase 8: Seite gebaut, Anker-id vorhanden, Antwort darunter ≤ 300 (anchorAnswer). Phase-9-Ziele:
  * nur Existenz der Seite. Mit `pfadFilter` werden nur Ziele geprüft, deren Pfad (ohne Anker) im Filter steht.

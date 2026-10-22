@@ -1,13 +1,14 @@
 // Post-Build-SEO-Audit (Phase 8, D-06 bis D-10): prüft jede Sitemap-URL im gebauten HTML unter
 // .next/server/app gegen die Regeln aus 08-UI-SPEC „Prüfmatrix“ – ohne Server und ohne Netz.
 //   npm run build && node scripts/seo-audit.mjs [--only=<regel,…>] [--paths=<pfad,…>] [--report]
-// Ohne --report endet das Skript mit Exitcode 1, sobald eine Regel verletzt ist. Ergebnis immer nach
+// Ohne --report endet das Skript mit Exitcode 1, sobald eine Regel verletzt ist; unbekannte Regeln in --only oder
+// Pfade in --paths, die nicht in der Sitemap stehen, enden mit Exitcode 2 (unter Git Bash MSYS_NO_PATHCONV=1). Ergebnis nach
 // test-results/seo-audit.json (Verstöße, Zusammenfassung je Regel, Ist-Werte je Pfad).
 // Reine Prüffunktionen: scripts/lib/seo-audit-core.mjs (Vitest: tests/seo-audit-core.test.ts).
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { SEITEN_REGELN, duplikate, headTags, pfadVonUrl, promptVerstoesse, pruefeSeite } from "./lib/seo-audit-core.mjs";
+import { SEITEN_REGELN, duplikate, headTags, optionsFehler, pfadVonUrl, promptVerstoesse, pruefeSeite } from "./lib/seo-audit-core.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const appDir = path.join(root, ".next/server/app");
@@ -28,12 +29,7 @@ const reportOnly = args.includes("--report");
 const only = liste("only");
 const pfadFilter = liste("paths")?.map((p) => pfadVonUrl(p.startsWith("/") ? p : `/${p}`));
 
-let regeln = ALLE_REGELN;
-if (only) {
-  const unbekannt = only.filter((r) => !ALLE_REGELN.includes(r));
-  for (const r of unbekannt) console.log(`Hinweis: Regel ‚${r}‘ ist unbekannt und wird übersprungen (bekannt: ${ALLE_REGELN.join(", ")}).`);
-  regeln = only.filter((r) => ALLE_REGELN.includes(r));
-}
+const regeln = only ?? ALLE_REGELN;
 
 const sitemapFile = path.join(appDir, "sitemap.xml.body");
 if (!fs.existsSync(sitemapFile)) {
@@ -41,6 +37,12 @@ if (!fs.existsSync(sitemapFile)) {
   process.exit(1);
 }
 const alleSeiten = [...new Set([...fs.readFileSync(sitemapFile, "utf8").matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => pfadVonUrl(m[1].trim())))];
+// ME-05: Tippfehler in --only/--paths brechen ab (Exitcode 2), statt still nichts zu prüfen.
+const optionen = optionsFehler({ only, paths: pfadFilter ?? null, alleRegeln: ALLE_REGELN, alleSeiten });
+if (optionen.length) {
+  for (const f of optionen) console.error(`Fehler: ${f}`);
+  process.exit(2);
+}
 const keywordMap = JSON.parse(fs.readFileSync(path.join(root, "docs/seo/keyword-map.json"), "utf8"));
 const mapBy = new Map(keywordMap.map((e) => [e.path, e]));
 const manifest = JSON.parse(fs.readFileSync(path.join(root, ".next/prerender-manifest.json"), "utf8"));
@@ -56,9 +58,6 @@ function ogInfo(ogImage) {
 const verstoesse = [];
 const seiten = [];
 const geprueft = pfadFilter ? alleSeiten.filter((p) => pfadFilter.includes(p)) : alleSeiten;
-if (pfadFilter)
-  for (const p of pfadFilter.filter((x) => !alleSeiten.includes(x)))
-    console.log(`Hinweis: ${p} steht nicht in der Sitemap und wird nicht geprüft.`);
 
 const seitenRegeln = regeln.filter((r) => SEITEN_REGELN.includes(r));
 for (const p of alleSeiten) {

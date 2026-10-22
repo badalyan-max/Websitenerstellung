@@ -12,6 +12,7 @@ import {
   istZentral,
   jsonLd,
   norm,
+  optionsFehler,
   promptVerstoesse,
   pruefeSeite,
 } from "../scripts/lib/seo-audit-core.mjs";
@@ -470,5 +471,36 @@ describe("promptVerstoesse", () => {
     );
     expect(lang).toHaveLength(1);
     expect(lang[0].problem).toContain("Antwort 301 > 300");
+  });
+});
+
+// ME-05 (08-REVIEW): Tippfehler in --only oder --paths dürfen kein falsches Grün („0 Verstöße“) liefern.
+describe("optionsFehler (seo-audit.mjs --only/--paths)", () => {
+  const alleRegeln = ["breadcrumbs", "faq", "duplikate", "prompts"];
+  const alleSeiten = ["/", "/preise", "/vergleich", "/vergleich/hero-alternative"];
+
+  it("gültige Optionen und keine Optionen → keine Fehler", () => {
+    expect(optionsFehler({ only: null, paths: null, alleRegeln, alleSeiten })).toEqual([]);
+    expect(optionsFehler({ only: ["breadcrumbs", "prompts"], paths: ["/preise", "/"], alleRegeln, alleSeiten })).toEqual([]);
+  });
+
+  it("unbekannte Regel → Fehler mit Liste der bekannten Regeln", () => {
+    const f = optionsFehler({ only: ["breadcrumb"], paths: null, alleRegeln, alleSeiten });
+    expect(f).toHaveLength(1);
+    expect(f[0]).toContain("‚breadcrumb‘");
+    expect(f[0]).toContain("breadcrumbs, faq, duplikate, prompts");
+  });
+
+  it("leere Regelliste → Fehler", () => {
+    expect(optionsFehler({ only: [], paths: null, alleRegeln, alleSeiten })).toHaveLength(1);
+  });
+
+  it("Pfad nicht in der Sitemap → Fehler; MSYS-umgeschriebener Pfad mit Hinweis auf MSYS_NO_PATHCONV", () => {
+    const f = optionsFehler({ only: null, paths: ["/vergleich/hero"], alleRegeln, alleSeiten });
+    expect(f).toHaveLength(1);
+    expect(f[0]).toContain("/vergleich/hero");
+    const msys = optionsFehler({ only: null, paths: ["/C:/Program Files/Git/preise"], alleRegeln, alleSeiten });
+    expect(msys).toHaveLength(1);
+    expect(msys[0]).toContain("MSYS_NO_PATHCONV=1");
   });
 });
