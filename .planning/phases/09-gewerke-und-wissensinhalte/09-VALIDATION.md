@@ -40,7 +40,7 @@ revised: 2026-10-22
 
 ## Sperre, Ports und Worktrees (`.planning/EXECUTOR-RULES.md`, D-26, D-28)
 
-- **Schwer und nur unter Sperre:** Build, `next start`, Playwright-E2E, volle Vitest-Suite, Audits nach dem Build, visual/performance-audit, `npm ci`. **Ohne Sperre:** gezielte Vitest-Dateien, Lint, Typcheck, `content-pruefen.mjs`.
+- **Schwer und nur unter Sperre:** Build, `next start`, Playwright-E2E, volle Vitest-Suite, Audits nach dem Build, visual/performance-audit, `npm ci`. **Ohne Sperre:** gezielte Vitest-Dateien (außer `tests/content.test.ts`, das wegen des Renderns aller Artikel immer unter Sperre läuft, W-neu-1), Lint, Typcheck, `content-pruefen.mjs`, `tests/content-produktwahrheit.test.ts`.
 - **Vorher:** `node "$CRAFTOS_WORKSPACE/coordination/client/cli.mjs" status` (kein Website-Rezept → lokal, einzeln).
 - **Sperre:** `until mkdir C:/Projekte/Websitenerstellung/.heavy-lock 2>/dev/null; do sleep 20; done; echo "<plan> $(date -u +%FT%TZ)" > …/owner`; sofort danach `rm -rf …/.heavy-lock`; nie eine fremde Sperre löschen (älter als 90 min → Orchestrator).
 - **Worktrees und Ports:** wt-09basis 3101 (09-01 → 09-15 → 09-12), wt-09a 3102 (09-02 → 09-11 → 09-13), wt-09b 3103 (09-03), wt-09c 3104 (09-04), wt-09d 3105 (09-05), wt-09d2 3109 (09-17), wt-09e 3106 (09-06), wt-09e2 3110 (09-18), wt-09f 3107 (09-07 → 09-14), wt-09g 3108 (09-08); Haupt-Arbeitsbaum 3100 (09-09, 09-16, 09-10).

@@ -18,6 +18,8 @@ Alle Pfade relativ zu `C:/Projekte/Websitenerstellung/craftos/`. Zeilenangaben b
 
 ## Besitz je Datei und Welle (D-27, Parallel-Worktrees)
 
+> **Überholt (Stand vor dem Plan-Check, 22.10.2026).** Maßgeblich sind die `files_modified` der 18 Pläne 09-01 bis 09-18 und die 7 Wellen in ROADMAP.md bzw. 09-VALIDATION.md. Kurzfassung: W1 09-01 (F, inkl. F-A1), 09-02 (a Teil 1) · W2 09-15 (F: Produktbasis, Prüfskript), 09-11 (a Teil 2) · W3 09-03 (b), 09-04 (c), 09-05 (d), 09-17 (d2), 09-06 (e), 09-18 (e2), 09-07 (f Artikel), 09-08 (g), 09-12 (F: Artikelvorlage) · W4 09-14 (f Verdrahtung), 09-13 (a Links) · W5 09-09 (Integration) · W6 09-16 (Phasen-Gate) · W7 09-10 (Rollout). Abweichend von der Tabelle unten: `lib/product-register.ts` und Snapshots in 09-15; `lib/funktion*`, `lib/app-content.ts`, `tests/funktionsdetails.test.ts` in 09-14; `tests/e2e/design-v2.pw.cjs` in 09-16; drei Frontmatter-Listen (B2) in 09-01; `app/gewerke/page.tsx` minimal schon in 09-02.
+
 Paketnamen wie in 09-CONTEXT `<specifics>`; Worktree `C:/Projekte/wt-09<x>`, Branch `phase09-spur-<x>`. **F** = 09-01 Fundament, **F-A1** = „09-01 Aufgabe 1“ (vorgezogener Merge laut 09-UI-SPEC § Design System, Reihenfolge 1), **a**–**h** = Pakete, **I** = 09-09 Integration.
 
 | Datei / Gruppe | W1 | W2 | W3 | W4 | Bemerkung |
