@@ -154,7 +154,10 @@ test('Rechner: Eingaben lösen keine Requests aus und bleiben nicht nach Neulade
 
 test('Preise: Antwortsatz und Preistabelle mit Werten aus dem Produktsnapshot (answer-first, 08-07)', async ({ page }, testInfo) => {
   const p = require('../../docs/product-pricing-snapshot.json').pricing
-  const betrag = (value) => new RegExp(`${value.toFixed(2).replace('.', ',')}\s*€`)
+  const zahl = (value) => value.toFixed(2).replace('.', ',')
+  // Im Fließtext: Betrag nicht als Teil eines größeren Betrags (9,95 in 29,95); in Zellen: ganzer Zellinhalt.
+  const betrag = (value) => new RegExp(`(?<![\\d,])${zahl(value)}\\s*€`)
+  const zelle = (value) => new RegExp(`^${zahl(value)}\\s*€$`)
   const jeMonat = (jahr) => Math.round((jahr * 100) / 12) / 100
   await page.goto('/preise')
   const antwort = page.locator('#antwort')
@@ -164,12 +167,12 @@ test('Preise: Antwortsatz und Preistabelle mit Werten aus dem Produktsnapshot (a
   const table = page.locator('table').filter({ has: page.locator('caption', { hasText: 'Voll-Lizenz und App-Lizenz im Vergleich' }) })
   await expect(table).toHaveCount(1)
   const zeile = (label) => table.locator('tbody tr').filter({ has: page.getByRole('rowheader', { name: label, exact: true }) })
-  await expect(zeile('Monatsabo, netto').locator('td').nth(0)).toHaveText(betrag(p.ADMIN_MONTHLY))
-  await expect(zeile('Monatsabo, netto').locator('td').nth(1)).toHaveText(betrag(p.APP_MONTHLY))
-  await expect(zeile('Jahresabo, netto').locator('td').nth(0)).toHaveText(betrag(p.ADMIN_YEARLY))
-  await expect(zeile('Jahresabo, netto').locator('td').nth(1)).toHaveText(betrag(p.APP_YEARLY))
-  await expect(zeile('Jahresabo je Monat, rechnerisch').locator('td').nth(0)).toHaveText(betrag(jeMonat(p.ADMIN_YEARLY)))
-  await expect(zeile('Jahresabo je Monat, rechnerisch').locator('td').nth(1)).toHaveText(betrag(jeMonat(p.APP_YEARLY)))
+  await expect(zeile('Monatsabo, netto').locator('td').nth(0)).toHaveText(zelle(p.ADMIN_MONTHLY))
+  await expect(zeile('Monatsabo, netto').locator('td').nth(1)).toHaveText(zelle(p.APP_MONTHLY))
+  await expect(zeile('Jahresabo, netto').locator('td').nth(0)).toHaveText(zelle(p.ADMIN_YEARLY))
+  await expect(zeile('Jahresabo, netto').locator('td').nth(1)).toHaveText(zelle(p.APP_YEARLY))
+  await expect(zeile('Jahresabo je Monat, rechnerisch').locator('td').nth(0)).toHaveText(zelle(jeMonat(p.ADMIN_YEARLY)))
+  await expect(zeile('Jahresabo je Monat, rechnerisch').locator('td').nth(1)).toHaveText(zelle(jeMonat(p.APP_YEARLY)))
   const antwortBox = await antwort.boundingBox()
   const tabelleBox = await table.boundingBox()
   expect(antwortBox.y).toBeLessThan(tabelleBox.y)
