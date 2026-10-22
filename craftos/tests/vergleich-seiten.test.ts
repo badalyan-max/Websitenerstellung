@@ -510,8 +510,8 @@ describe("Craftnote", () => {
         a: `CraftOS testen Sie ${site.trialDays} Tage ohne Zahlungsdaten. Craftnote nennt ${craftnote.testphaseTage.wert} Tage mit dem Funktionsumfang von Büro Plus, ohne hinterlegte Zahlungsmethode.`,
       },
       {
-        q: "Brauche ich bei CraftOS für jede Person eine Voll-Lizenz?",
-        a: `Nein. Büro und Bauleitung arbeiten mit der Voll-Lizenz, Mitarbeitende auf der Baustelle mit der App-Lizenz für ${APP_MONAT} netto im Monat.`,
+        q: "Welche Lizenzen braucht mein Team bei CraftOS?",
+        a: `Büro und Bauleitung arbeiten mit der Voll-Lizenz, Mitarbeitende auf der Baustelle mit der App-Lizenz für ${APP_MONAT} netto im Monat.`,
       },
     ]);
   });

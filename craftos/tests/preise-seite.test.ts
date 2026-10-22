@@ -158,7 +158,8 @@ describe("Inhalte", () => {
       const cells = preise.lizenzTabelle.rows.find((r) => r.label === label)!.cells;
       expect(cells.voll, label).toBe(true);
       const imApp = app.highlights.some((h) => h.includes(wort));
-      expect(cells.app, label).toBe(imApp);
+      // ME-01 (Inhaber 22.10.2026): keine „Nein“-Zelle, sondern der Hinweis auf die Lizenz mit dieser Leistung.
+      expect(cells.app, label).toBe(imApp ? true : "mit Voll-Lizenz");
       if (!imApp) expect(voll.highlights.some((h) => h.includes(wort)), label).toBe(true);
     }
   });
@@ -323,18 +324,22 @@ describe("Inhalte", () => {
       "Ist die Mobile-App in der Voll-Lizenz enthalten?",
       "Wie berechnet sich der Jahresrabatt?",
       "Welche Lizenz braucht mein Betrieb mindestens?",
-      "Ist CraftOS ein einmaliger Kauf?",
+      "Wie wird CraftOS abgerechnet?",
       "Was kosten Credit-Pakete?",
     ]);
     expect(new Set(f.map((x) => x.q)).size).toBe(6);
     const a = (i: number) => f[i].a;
-    expect(a(0)).toBe(`Nein. Sie testen CraftOS ${site.trialDays} Tage kostenlos, eine Zahlungsmethode ist dafür nicht erforderlich.`);
+    expect(a(0)).toBe(
+      `Für den Test genügt ein Konto: Sie testen CraftOS ${site.trialDays} Tage kostenlos und hinterlegen eine Zahlungsmethode erst, wenn Sie ein Abo wählen.`,
+    );
     expect(a(1)).toBe("Ja. Die Voll-Lizenz enthält Web-App und Mobile-App für dieselbe Person; wer nur auf der Baustelle arbeitet, erhält die App-Lizenz.");
     expect(a(2)).toBe(
       `Das Jahresabo kostet zehn Monatsbeiträge, also ${euro(voll.jahr)} statt ${euro(voll.monat * 12)} für die Voll-Lizenz, rund ${Math.round(annualSavingPercent)} % weniger als zwölf Monatszahlungen.`,
     );
     expect(a(3)).toBe("Mindestens eine Voll-Lizenz; App-Lizenzen ergänzen sie für Mitarbeitende auf der Baustelle.");
-    expect(a(4)).toBe(`Nein. CraftOS ist ein Abo, im Monatsabo ${vertrag.monat} und im Jahresabo ${vertrag.jahr}, bezahlt per ${zahlung.sepa} oder ${zahlung.karte}.`);
+    expect(a(4)).toBe(`CraftOS ist ein Abo, im Monatsabo ${vertrag.monat} und im Jahresabo ${vertrag.jahr}, bezahlt per ${zahlung.sepa} oder ${zahlung.karte}.`);
+    // ME-01: keine „Nein“-Antwort über CraftOS.
+    for (const x of f) expect(x.a, x.q).not.toMatch(/^Nein/);
     const liste = (werte: number[]) => {
       const t = werte.map((w) => betrag(cents(w)));
       return `${t.slice(0, -1).join(", ")} oder ${t.at(-1)}`;

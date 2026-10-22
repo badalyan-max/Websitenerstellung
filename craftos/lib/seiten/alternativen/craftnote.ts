@@ -76,8 +76,8 @@ export const craftnoteSeite: Seitenmodul = (k) => {
         a: `CraftOS testen Sie ${c.trialDays} Tage ohne Zahlungsdaten. Craftnote nennt ${w.testphaseTage.wert} Tage mit dem Funktionsumfang von Büro Plus, ohne hinterlegte Zahlungsmethode.`,
       },
       {
-        q: "Brauche ich bei CraftOS für jede Person eine Voll-Lizenz?",
-        a: `Nein. Büro und Bauleitung arbeiten mit der Voll-Lizenz, Mitarbeitende auf der Baustelle mit der App-Lizenz für ${c.appMonat} netto im Monat.`,
+        q: "Welche Lizenzen braucht mein Team bei CraftOS?",
+        a: `Büro und Bauleitung arbeiten mit der Voll-Lizenz, Mitarbeitende auf der Baustelle mit der App-Lizenz für ${c.appMonat} netto im Monat.`,
       },
     ],
   };

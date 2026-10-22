@@ -130,17 +130,18 @@ export const gobdPanels: [FitPanel, FitPanel] = [
 ];
 
 export const gobdFaq: { q: string; a: string }[] = [
+  // Inhaber 22.10.2026 (08-REVIEW ME-01): positiv formuliert; verneint bleibt nur die Zertifizierungsfrage.
   {
-    q: "Ersetzt CraftOS die Verfahrensdokumentation?",
-    a: "Nein. Die Verfahrensdokumentation erstellt Ihr Betrieb; CraftOS liefert dafür nachvollziehbare Funktionen wie Festschreibung, Versionen und Protokolle.",
+    q: "Wer erstellt die Verfahrensdokumentation?",
+    a: "Die Verfahrensdokumentation erstellt Ihr Betrieb; CraftOS liefert dafür nachvollziehbare Funktionen wie Festschreibung, Versionen und Protokolle.",
   },
   {
-    q: "Kann ich eine festgeschriebene Rechnung ändern?",
-    a: "Nein. Eine festgeschriebene Rechnung bleibt geschützt; Korrekturen laufen über einen Storno mit Bezug zum Original.",
+    q: "Wie korrigiere ich eine festgeschriebene Rechnung?",
+    a: "Über einen Storno mit eigener Nummer und Bezug zum Original; die festgeschriebene Rechnung bleibt dabei geschützt.",
   },
   {
-    q: "Reicht ein DATEV-Export für die GoBD?",
-    a: "Nein. Ein DATEV-Export allein belegt nicht, dass alle Prüfungs- und Aufbewahrungsanforderungen erfüllt sind; stimmen Sie die Übergabe mit Ihrer Steuerberatung ab.",
+    q: "Was leistet der DATEV-Export für die GoBD?",
+    a: "Der DATEV-Export bereitet die Übergabe an die Steuerberatung vor; Prüfungs- und Aufbewahrungsanforderungen stimmen Sie mit Ihrer Steuerberatung ab.",
   },
 ];
 

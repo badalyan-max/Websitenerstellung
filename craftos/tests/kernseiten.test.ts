@@ -363,13 +363,23 @@ describe("GoBD (§ 5.4)", () => {
   });
 
   it("FAQ: drei Antworten ≤ 300 und Grundlage mit AO-Handbuch und BMF-Schreiben", () => {
-    expect(gobd.gobdFaq.map((f) => f.q)).toEqual([
-      "Ersetzt CraftOS die Verfahrensdokumentation?",
-      "Kann ich eine festgeschriebene Rechnung ändern?",
-      "Reicht ein DATEV-Export für die GoBD?",
+    // ME-01 (Inhaber 22.10.2026): positiv formuliert; einzige Verneinung bleibt die Zertifizierungsfrage.
+    expect(gobd.gobdFaq).toEqual([
+      {
+        q: "Wer erstellt die Verfahrensdokumentation?",
+        a: "Die Verfahrensdokumentation erstellt Ihr Betrieb; CraftOS liefert dafür nachvollziehbare Funktionen wie Festschreibung, Versionen und Protokolle.",
+      },
+      {
+        q: "Wie korrigiere ich eine festgeschriebene Rechnung?",
+        a: "Über einen Storno mit eigener Nummer und Bezug zum Original; die festgeschriebene Rechnung bleibt dabei geschützt.",
+      },
+      {
+        q: "Was leistet der DATEV-Export für die GoBD?",
+        a: "Der DATEV-Export bereitet die Übergabe an die Steuerberatung vor; Prüfungs- und Aufbewahrungsanforderungen stimmen Sie mit Ihrer Steuerberatung ab.",
+      },
     ]);
     expect(faqProbleme(gobd.gobdFaq)).toEqual([]);
-    for (const f of gobd.gobdFaq) expect(f.a.startsWith("Nein."), f.q).toBe(true);
+    for (const f of gobd.gobdFaq) expect(f.a, f.q).not.toMatch(/^Nein/);
     expect(gobd.gobdGrundlage.quellen.map((q) => q.href)).toEqual([
       "https://ao.bundesfinanzministerium.de/ao/2025/Anhaenge/BMF-Schreiben-und-gleichlautende-Laendererlasse/Anhang-33/inhalt.html",
       "https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Weitere_Steuerthemen/Abgabenordnung/2025-07-14-GoBD-2-aenderung.html",

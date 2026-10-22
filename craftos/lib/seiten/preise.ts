@@ -270,8 +270,12 @@ export const preiseSections = {
 } as const;
 
 // ---------------------------------------------------------------------------
-// Lizenztabelle (Abschnitt 1): Werte aus tarife; Ja/Nein laut tarife.highlights (Belege nur Voll-Lizenz, 07 B11)
+// Lizenztabelle (Abschnitt 1): Werte aus tarife; Häkchen laut tarife.highlights (Belege nur Voll-Lizenz, 07 B11).
+// Inhaber 22.10.2026 (08-REVIEW ME-01): Leistungen ohne App-Lizenz zeigen „mit Voll-Lizenz“ statt einer Nein-Zelle.
 // ---------------------------------------------------------------------------
+
+/** Zelle für Leistungen, die nur die Voll-Lizenz enthält (statt „Nein“, ME-01). */
+const MIT_VOLL = `mit ${voll.name}`;
 
 export const lizenzTabelle: {
   caption: string;
@@ -286,7 +290,7 @@ export const lizenzTabelle: {
     { key: "voll", label: voll.name, highlight: true },
     { key: "app", label: app.name },
   ],
-  rows: [
+  rows: ([
     { label: "Monatsabo, netto", cells: { voll: euro(voll.monat), app: euro(app.monat) } },
     { label: "Jahresabo, netto", cells: { voll: euro(voll.jahr), app: euro(app.jahr) } },
     { label: "Jahresabo je Monat, rechnerisch", cells: { voll: jahrJeMonat(voll.jahr), app: jahrJeMonat(app.jahr) } },
@@ -299,7 +303,10 @@ export const lizenzTabelle: {
     { label: "Aufmaß, Fotos und Baudokumentation", cells: { voll: true, app: true } },
     { label: "Urlaub und Abwesenheiten", cells: { voll: true, app: true } },
     { label: "Belege, DATEV und Nachkalkulation", cells: { voll: true, app: false } },
-  ],
+  ] satisfies ComparisonRow[]).map((r) => ({
+    ...r,
+    cells: Object.fromEntries(Object.entries(r.cells).map(([k, v]) => [k, v === false ? MIT_VOLL : v])),
+  })),
   // „Alle Preise netto zzgl. Umsatzsteuer“ statt „Preise netto zzgl. USt.“, damit die Paritätsprüfung greift;
   // Jahresrabatt ohne „günstiger als“ (UWG-Wortliste, U7), Wert aus annualSavingPercent.
   note: `Alle Preise netto zzgl. Umsatzsteuer, pro Person. Jährliches Abo: rund ${rabatt} % weniger als 12 Monatszahlungen. Quelle: Preisliste CraftOS, Stand ${stand}.`,
@@ -369,7 +376,7 @@ const paketGuthaben = oderListe(creditPakete.map((p) => betrag(cents(p.guthaben)
 export const preiseFaq: { q: string; a: string }[] = [
   {
     q: "Brauche ich für den Test eine Zahlungsmethode?",
-    a: `Nein. Sie testen CraftOS ${site.trialDays} Tage kostenlos, eine Zahlungsmethode ist dafür nicht erforderlich.`,
+    a: `Für den Test genügt ein Konto: Sie testen CraftOS ${site.trialDays} Tage kostenlos und hinterlegen eine Zahlungsmethode erst, wenn Sie ein Abo wählen.`,
   },
   {
     q: "Ist die Mobile-App in der Voll-Lizenz enthalten?",
@@ -384,8 +391,8 @@ export const preiseFaq: { q: string; a: string }[] = [
     a: `Mindestens eine ${voll.name}; ${app.name}en ergänzen sie für Mitarbeitende auf der Baustelle.`,
   },
   {
-    q: "Ist CraftOS ein einmaliger Kauf?",
-    a: `Nein. CraftOS ist ein Abo, im Monatsabo ${vertrag.monat} und im Jahresabo ${vertrag.jahr}, bezahlt per ${zahlung.sepa} oder ${zahlung.karte}.`,
+    q: "Wie wird CraftOS abgerechnet?",
+    a: `CraftOS ist ein Abo, im Monatsabo ${vertrag.monat} und im Jahresabo ${vertrag.jahr}, bezahlt per ${zahlung.sepa} oder ${zahlung.karte}.`,
   },
   {
     q: "Was kosten Credit-Pakete?",
