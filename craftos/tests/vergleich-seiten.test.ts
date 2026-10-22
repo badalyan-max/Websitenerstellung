@@ -42,7 +42,7 @@ function fixtureSeite(aendern: (t: ReturnType<Seitenmodul>) => void = () => {}):
         k.laufzeit(),
         k.testphase(),
         k.kriterium("datev", "DATEV-Export"),
-        k.kriterium("kiTelefon", "KI-Telefonempfang"),
+        k.kriterium("gaeb", "GAEB-Schnittstelle"),
       ],
       kosten: {
         answer: `Für fünf Personen zahlen Sie im Jahresabo ${k.craftos.beispielJahrJeMonat} netto im Monat bei CraftOS; die Pakete unterscheiden sich im Funktionsumfang.`,
@@ -93,6 +93,23 @@ function alleTexte(inhalt: AlternativeInhalt): string[] {
   };
   for (const [schluessel, wert] of Object.entries(inhalt)) if (schluessel !== "wettbewerber") walk(wert);
   return out;
+}
+
+/**
+ * Inhaber 22.10.2026 („Nur, was unterstützt wird, nicht, was nicht unterstützt wird“; geht U6 vor): keine
+ * CraftOS-Zelle verneint, keine FAQ „Kann/Hat/Bietet … CraftOS …? – Nein“, kein Satz „CraftOS bietet kein …“.
+ */
+function pruefeNurUnterstuetzt(inhalt: AlternativeInhalt) {
+  for (const r of inhalt.tabelle.rows) {
+    expect(r.craftos, `${r.label}: CraftOS-Zelle`).not.toBe(false);
+    if (typeof r.craftos === "string")
+      expect(r.craftos, `${r.label}: CraftOS-Zelle`).not.toMatch(/^\s*(nein|[-–—]|nicht\b)|nicht verfügbar/i);
+  }
+  for (const item of inhalt.faq.items)
+    if (/^(Kann|Hat|Bietet|Unterstützt|Gibt es|Lässt sich)\b/.test(item.q) && /CraftOS/.test(item.q))
+      expect(item.a, item.q).not.toMatch(/^Nein\b/);
+  for (const t of alleTexte(inhalt))
+    expect(t).not.toMatch(/nicht verfügbar|CraftOS (bietet|hat|kann|unterstützt) (kein|nicht)|ohne Bewegungsverläufe/i);
 }
 
 /** Strukturprüfung einer gerenderten Alternativen-Seite (UI-SPEC § 3.1, § 2, § 8). */
@@ -232,16 +249,13 @@ describe("Vorlage", () => {
     expect(alleTexte(inhalt).filter((t) => uwgTreffer(t))).toEqual([]);
   });
 
-  it("Builder wirft bei UWG-Wort, Stärken < 2, fehlender Fairnesszeile und Zelle > 24", () => {
+  it("Builder wirft bei UWG-Wort, Stärken < 2 und Zelle > 24", () => {
     expect(() =>
       alternativeAusModul(fixtureW(), fixtureSeite((t) => (t.answer = "CraftOS ist günstiger als plancraft.")), PFAD),
     ).toThrow(/günstiger als/);
     const wenig = fixtureW();
     wenig.staerken = wenig.staerken.slice(0, 1);
     expect(() => alternativeAusModul(wenig, fixtureSeite(), PFAD)).toThrow(/mindestens 2 belegte Stärken/);
-    expect(() =>
-      alternativeAusModul(fixtureW(), fixtureSeite((t) => (t.rows = t.rows.filter((r) => r.craftos !== false))), PFAD),
-    ).toThrow(/Fairnesszeile/);
     expect(() =>
       alternativeAusModul(
         fixtureW(),
@@ -252,6 +266,54 @@ describe("Vorlage", () => {
     expect(() =>
       alternativeAusModul(fixtureW(), fixtureSeite((t) => (t.rows[0] = { ...t.rows[0], quellen: [] })), PFAD),
     ).toThrow(/Quelle/);
+  });
+
+  it("Inhaber 22.10.2026 „Nur, was unterstützt wird“: keine CraftOS-Fairnesszeile nötig, CraftOS-Negativaussagen werfen", () => {
+    // Ohne Zeile „Wettbewerber ✓ / CraftOS –“ baut die Seite (Abweichung von U6).
+    expect(() => alternativeAusModul(fixtureW(), fixtureSeite(), PFAD)).not.toThrow();
+    pruefeNurUnterstuetzt(alternativeAusModul(fixtureW(), fixtureSeite(), PFAD));
+    // CraftOS-Zelle verneint: false, „Nein“, Strich, „nicht verfügbar“.
+    for (const zelle of [false, "Nein", "–", "—", "-", "nicht verfügbar", "Nicht enthalten"] as const)
+      expect(
+        () =>
+          alternativeAusModul(
+            fixtureW(),
+            fixtureSeite((t) => t.rows.push({ label: "KI-Telefonempfang", craftos: zelle, wettbewerber: true, quellen: [t.rows[0].quellen[0]] })),
+            PFAD,
+          ),
+        String(zelle),
+      ).toThrow(/Inhaber 22\.10\.2026/);
+    // Kriterien, die CraftOS nicht anbietet, haben keine CraftOS-Zelle mehr.
+    for (const id of ["kiTelefon", "fahrzeugortung"] as const)
+      expect(
+        () => alternativeAusModul(fixtureW(), (k) => ({ ...fixtureSeite()(k), rows: [k.kriterium(id, "Kriterium")] }), PFAD),
+        id,
+      ).toThrow(/Inhaber 22\.10\.2026/);
+    // FAQ: Frage nach einer CraftOS-Funktion mit „Nein“-Antwort.
+    expect(() =>
+      alternativeAusModul(
+        fixtureW(),
+        fixtureSeite((t) => (t.faq[3] = { q: "Kann ich mit CraftOS Fahrzeuge orten?", a: "Nein. CraftOS speichert nur Standortpunkte." })),
+        PFAD,
+      ),
+    ).toThrow(/Inhaber 22\.10\.2026/);
+    // Satz, dass CraftOS etwas nicht bietet.
+    for (const satz of ["CraftOS bietet keinen KI-Telefonempfang.", "Bei CraftOS ist das nicht verfügbar."])
+      expect(
+        () => alternativeAusModul(fixtureW(), fixtureSeite((t) => (t.fuerWen.answer = satz)), PFAD),
+        satz,
+      ).toThrow(/Inhaber 22\.10\.2026/);
+    // Belegtes „Nein“ beim Wettbewerber bleibt zulässig, ebenso eine positive „Nein“-Antwort ohne Funktionsfrage.
+    expect(() =>
+      alternativeAusModul(
+        fixtureW(),
+        fixtureSeite((t) => {
+          t.rows.push({ label: "Zeiterfassung", craftos: true, wettbewerber: false, quellen: [t.rows[0].quellen[0]] });
+          t.faq[3] = { q: "Brauche ich bei CraftOS für jede Person eine Voll-Lizenz?", a: "Nein. Mitarbeitende nutzen die App-Lizenz." };
+        }),
+        PFAD,
+      ),
+    ).not.toThrow();
   });
 
   it("renderToString: Struktur, Antwort zuerst, Schema, keine Logos und keine Ankündigungen", () => {
@@ -296,7 +358,7 @@ describe("plancraft", () => {
     );
   });
 
-  it("Tabelle mit 11 Zeilen und Werten aus den Modulen", () => {
+  it("Tabelle mit 10 Zeilen und Werten aus den Modulen, nur Funktionen, die CraftOS hat (Inhaber 22.10.2026)", () => {
     const zeilen = inhalt.tabelle.rows.map((r) => [r.label, r.craftos, r.wettbewerber]);
     expect(zeilen).toEqual([
       ["Bürozugang, monatliche Zahlung", VOLL_MONAT, `${e(business.centsMonat)} (Business)`],
@@ -309,7 +371,6 @@ describe("plancraft", () => {
       ["E-Rechnung", "XRechnung und ZUGFeRD", "XRechnung-Format"],
       ["DATEV-Export", true, "In allen Paketen"],
       ["GAEB-Schnittstelle", "Import X83, Export X84", "ab Pro"],
-      ["KI-Telefonempfang", false, "In allen Paketen"],
     ]);
   });
 
@@ -361,6 +422,7 @@ describe("plancraft", () => {
 
   it("renderToString besteht die Vorlagenprüfung; Seitenmodul ohne Zahlenliterale", () => {
     pruefeHtml(inhalt);
+    pruefeNurUnterstuetzt(inhalt);
     pruefeModulLiterale("lib/seiten/alternativen/plancraft.ts");
   });
 });
@@ -384,7 +446,7 @@ describe("Craftnote", () => {
     );
   });
 
-  it("Tabelle mit 10 Zeilen und Werten aus den Modulen", () => {
+  it("Tabelle mit 9 Zeilen und Werten aus den Modulen, nur Funktionen, die CraftOS hat (Inhaber 22.10.2026)", () => {
     const zeilen = inhalt.tabelle.rows.map((r) => [r.label, r.craftos, r.wettbewerber]);
     expect(zeilen).toEqual([
       ["Bürozugang mit Rechnungen, Jahresabo je Monat", VOLL_JAHR_MONAT, `${e(bueroPlus.centsJahrJeMonat)} statt ${e(bueroPlus.stattCents)}`],
@@ -396,7 +458,6 @@ describe("Craftnote", () => {
       ["E-Rechnung", "XRechnung und ZUGFeRD", "„E-Rechnungsfähig“"],
       ["DATEV-Export", true, "Nur Büro Plus"],
       ["Zeiterfassung", true, "In allen Paketen"],
-      ["Fahrzeugortung per GPS", false, "Zusatzmodul"],
     ]);
   });
 
@@ -438,10 +499,6 @@ describe("Craftnote", () => {
         a: `CraftOS testen Sie ${site.trialDays} Tage ohne Zahlungsdaten. Craftnote nennt ${craftnote.testphaseTage.wert} Tage mit dem Funktionsumfang von Büro Plus, ohne hinterlegte Zahlungsmethode.`,
       },
       {
-        q: "Kann ich mit CraftOS Fahrzeuge orten?",
-        a: "Nein. CraftOS speichert nur beim Start und Stopp der Zeiterfassung und bei Unterschriften je einen Standortpunkt, ohne Bewegungsverläufe.",
-      },
-      {
         q: "Brauche ich bei CraftOS für jede Person eine Voll-Lizenz?",
         a: `Nein. Büro und Bauleitung arbeiten mit der Voll-Lizenz, Mitarbeitende auf der Baustelle mit der App-Lizenz für ${APP_MONAT} netto im Monat.`,
       },
@@ -450,6 +507,7 @@ describe("Craftnote", () => {
 
   it("renderToString besteht die Vorlagenprüfung; Seitenmodul ohne Zahlenliterale", () => {
     pruefeHtml(inhalt);
+    pruefeNurUnterstuetzt(inhalt);
     pruefeModulLiterale("lib/seiten/alternativen/craftnote.ts");
   });
 });
