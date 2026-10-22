@@ -25,17 +25,15 @@ import type { FunktionsdetailInhalt } from "./types";
  * - 07-UI-SPEC: „Seitentexte“ (Kopfwort, Kurznutzen, Sekundärlink), „Ablaufschritte“, Abschnitt 3 (Rollen),
  *   Abschnitt 4 (Kacheln), Abschnitt 5 (Pflichtfragen), Abschnitt 6 (verwandte Funktionen) – wörtlich übernommen.
  * - lib/funktionen.ts: points, steps, access, note der vier Slugs.
- * - lib/product-register.ts: limitations („Portal-Onlinezahlungen deaktiviert“, „DATANORM v5 nicht als geprüft
- *   zugesagt“), liveExtras „Angebotsunterschrift online“ (web:src/pages/QuoteSigning.tsx) und „Besichtigung“
+ * - lib/product-register.ts: limitations („Portal-Onlinezahlungen deaktiviert“), liveExtras „Angebotsunterschrift online“ (web:src/pages/QuoteSigning.tsx) und „Besichtigung“
  *   (mobile:src/features/site-visit/screens/SiteVisitScreen.tsx), notLive „Portal-Onlinezahlung“.
  * - Hilfeartikel content/hilfe/angebot-entwurf-anlegen.md, raumaufmass-angebot-uebernehmen.md, gaeb-importieren.md.
  * - Release-Belege laut 07-RESEARCH „Neue Detailseiten“: GAEBImportDialog.tsx, GAEBExportDialog.tsx,
  *   DatanormImportDialog.tsx (web), RoomMeasurementsScreen.tsx (mobile).
  *
- * Abweichung von der Kacheltabelle (Orchestrator-Auftrag aus 07-04): Die 07-UI-SPEC-Tabelle für angebote hat keine
- * Grenze-Kachel, der Builder verlangt genau eine (D-04). Die Kachel „Dokumente ausgeben“ (PDF-Ausgabe, steht weiter in
- * Kurznutzen, Ablauf und Panel) weicht der Grenze „DATANORM v5 nicht pauschal zugesagt“ aus funktionen.ts `note` und
- * der Register-Limitation; die Anordnung md·sm·sm·wide·wide bleibt.
+ * Abweichung von der Kacheltabelle: Statt „Dokumente ausgeben“ (PDF-Ausgabe, steht weiter in Kurznutzen, Ablauf und
+ * Panel) zeigt die letzte wide-Kachel „DATANORM 4 und 5“ (Release src/lib/datanorm/datanormParser.ts). Inhaber 22.10.2026:
+ * nur nennen, was unterstützt wird; angebote hat deshalb keine Grenze-Kachel. Anordnung md·sm·sm·wide·wide bleibt.
  */
 export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
   angebote: {
@@ -103,10 +101,9 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
         },
         {
           size: "wide",
-          title: "DATANORM v5 nicht pauschal zugesagt",
-          text: "Prüfen Sie Ihre konkrete Lieferantendatei, eine pauschale Kompatibilität mit DATANORM v5 wird nicht zugesagt.",
-          visual: { kind: "icon", icon: Info },
-          grenze: true,
+          title: "DATANORM 4 und 5",
+          text: "Kataloge Ihres Großhändlers in DATANORM 4 oder DATANORM 5 einlesen und Artikel direkt ins Angebot übernehmen.",
+          visual: { kind: "icon", icon: BookOpen },
         },
       ],
     },
@@ -130,10 +127,10 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
           q: "Kann ich Mengen aus dem Aufmaß übernehmen?",
           a: "Ja. Erfasste Raumflächen übernehmen Sie im Projekt mit „Als Angebotspositionen“ in einen neuen Angebotsentwurf. Leistungen und Preise ergänzen und prüfen Sie anschließend im Editor.",
         },
-        // Quelle: funktionen.ts angebote note; Register limitations „DATANORM v5 nicht als geprüft zugesagt“.
+        // Quelle: funktionen.ts angebote note; Release src/lib/datanorm/datanormParser.ts (DATANORM 4 und 5, Semikolonformat).
         {
           q: "Kann ich Artikel per DATANORM ins Angebot übernehmen?",
-          a: "Der DATANORM-Import unterstützt die Übernahme von Artikeldaten. Prüfen Sie Ihre konkrete Lieferantendatei, denn eine pauschale Kompatibilität mit DATANORM v5 wird nicht zugesagt.",
+          a: "Ja. Der DATANORM-Import liest Kataloge in DATANORM 4 und DATANORM 5 (Semikolonformat) ein; die Artikel übernehmen Sie danach in Ihre Angebotspositionen.",
         },
       ],
     },
@@ -382,7 +379,7 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
         {
           size: "sm",
           title: "DATANORM-Kataloge",
-          text: "Kataloge einlesen und fehlerhafte Zeilen prüfen; DATANORM v5 ist nicht pauschal zugesagt.",
+          text: "Kataloge in DATANORM 4 und 5 einlesen und fehlerhafte Zeilen prüfen.",
           visual: { kind: "icon", icon: BookOpen },
         },
         {
@@ -421,11 +418,11 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
           q: "Wann kann ich ein Angebot als X84 exportieren?",
           a: "Der Export als X84 setzt eine vollständig importierte Original-X83 voraus. Nach der Preisbestätigung erzeugen Sie daraus die Angebotsabgabe.",
         },
-        // Quelle: Register limitations „DATANORM v5 nicht als geprüft zugesagt“; DatanormImportDialog.tsx
+        // Quelle: Release src/lib/datanorm/datanormParser.ts (DATANORM 4 und 5); DatanormImportDialog.tsx
         // („Artikelvorschau“, „Fehlerhafte Zeilen anzeigen“) laut 07-RESEARCH.
         {
-          q: "Wird DATANORM v5 unterstützt?",
-          a: "Eine pauschale Kompatibilität mit DATANORM v5 wird nicht zugesagt. Lesen Sie Ihren Lieferantenkatalog ein und prüfen Sie in der Artikelvorschau und bei den fehlerhaften Zeilen, ob die Daten passen.",
+          q: "Wird DATANORM 5 unterstützt?",
+          a: "Ja. CraftOS liest DATANORM 4 und DATANORM 5 im Semikolonformat, wie Großhändler sie ausliefern. Nach dem Einlesen sehen Sie die Artikelvorschau und übernehmen die Artikel in Ihre Angebote.",
         },
       ],
     },

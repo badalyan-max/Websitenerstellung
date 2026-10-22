@@ -13,7 +13,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { crumbsFor } from "@/lib/breadcrumbs";
 import { TrialCta } from "@/components/ui/TrialCta";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { pageMetadata } from "@/lib/metadata";
+import { metaFor, zielwerte } from "@/lib/seo-meta";
 import { site } from "@/lib/site";
 import {
   comparisonCheckedAt,
@@ -31,10 +31,12 @@ import {
 import styles from "./Comparison.module.css";
 import { ProviderLogo } from "./ProviderLogo";
 
-const title = "CraftOS, Craftnote und plancraft im Vergleich";
-const description =
-  "Handwerkersoftware sachlich vergleichen: CraftOS, Craftnote und plancraft mit Preisen, Laufzeiten, Plantafel, Mobile-App und Quellen. Stand September 2026.";
-export const metadata = pageMetadata(title, description, "/vergleich");
+// Title, Description und H1 aus der Keyword-Map (08-04, D-06; Werte laut 08-UI-SPEC § 8); v2-Umbau folgt in einem
+// späteren Phase-8-Plan.
+const z = zielwerte("/vergleich");
+const title = z.titleOhneMarke;
+const description = z.description;
+export const metadata = metaFor("/vergleich");
 
 function SourceLink({ id, label }: { id: ComparisonSourceId; label?: string }) {
   const source = comparisonSources[id];
@@ -90,13 +92,7 @@ export default function ComparisonPage() {
       <PageHero
         crumbs={crumbsFor("/vergleich")}
         eyebrow="Warum CraftOS?"
-        title={
-          <>
-            Eine Entscheidung,
-            <br />
-            die zum Betrieb passt.
-          </>
-        }
+        title={z.h1}
         intro="Büro und Baustelle arbeiten an denselben Aufträgen. CraftOS verbindet sie in einem System mit klaren Preisen pro Person. Hier sehen Sie unsere Argumente und einen nachvollziehbaren Anbietervergleich."
       />
 

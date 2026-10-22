@@ -116,7 +116,7 @@ const definitions: Definition[] = [
     platforms: ["web", "mobile"],
     access:
       "Die vollständige Tiefenkalkulation steht Büro und Admin im Web zur Verfügung; mobile Dokumentaktionen hängen von Rolle und Freigabe ab.",
-    note: "GAEB- und DATANORM-Import unterstützen die Übernahme von Daten. Prüfen Sie Ihre konkrete Lieferantendatei; eine pauschale DATANORM-v5-Kompatibilität wird nicht zugesagt.",
+    note: "GAEB- und DATANORM-Import unterstützen die Übernahme von Daten. Großhändlerkataloge lesen Sie in DATANORM 4 und DATANORM 5 ein.",
     help: "angebot-entwurf-anlegen",
     related: ["aufmass", "rechnungen", "nachkalkulation"],
     demo: "angebot",

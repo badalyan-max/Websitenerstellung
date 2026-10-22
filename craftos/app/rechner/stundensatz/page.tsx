@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import {
   CalculatorCta,
   CalculatorHelp,
@@ -7,37 +6,21 @@ import {
 import { HourlyRateCalculator } from "@/components/calculators/HourlyRateCalculator";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { site } from "@/lib/site";
+import { metaFor, zielwerte } from "@/lib/seo-meta";
 import styles from "@/components/calculators/Calculators.module.css";
 
-const title = "Stundensatz berechnen – kostenloser Rechner fürs Handwerk";
-const description =
-  "Berechnen Sie Ihren kostendeckenden Stundensatz und Ihren Stundenpreis mit Gewinnmarge aus Jahreskosten und verrechenbaren Stunden. Ohne Anmeldung.";
+// Title, Description, Canonical, Open Graph und Twitter aus der Keyword-Map (08-04, D-06); H1 aus zielwerte (D-17).
+const z = zielwerte("/rechner/stundensatz");
+const description = z.description;
 const url = `${site.url}/rechner/stundensatz`;
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: url },
-  openGraph: {
-    title: "Stundensatzkalkulator fürs Handwerk | CraftOS",
-    description,
-    url,
-    type: "website",
-    siteName: "CraftOS",
-    locale: "de_DE",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Stundensatzkalkulator fürs Handwerk | CraftOS",
-    description,
-  },
-};
+export const metadata = metaFor("/rechner/stundensatz");
 
 export default function HourlyRatePage() {
   return (
     <CalculatorPage
       current="stundensatz"
-      title="Was muss Ihre Arbeitsstunde kosten?"
+      title={z.h1}
       intro="Berechnen Sie Ihren Stundensatz aus den Kosten Ihres Betriebs, Ihren verrechenbaren Stunden und der Gewinnmarge, die Sie erreichen möchten."
     >
       <JsonLd

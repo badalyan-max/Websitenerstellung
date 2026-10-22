@@ -68,6 +68,14 @@ export const zahlung = {
   jahresrabatt: "Jährliches Abo: rund 17 % günstiger als 12 Monatszahlungen",
   trial: `${site.trialDays} Tage kostenlos testen. Ohne Zahlungsdaten.`,
 } as const;
+/**
+ * Laufzeit und Kündigung der CraftOS-Abos für Vergleichsseiten (08-06).
+ * Quelle: AGB § 5 (app/agb/page.tsx), Rechtstext bleibt unverändert.
+ */
+export const vertrag = {
+  monat: "monatlich kündbar",
+  jahr: "zum Ende der Laufzeit kündbar",
+} as const;
 export const creditPakete = [
   { preis: 10, bonus: 0, guthaben: 10 },
   { preis: 25, bonus: 10, guthaben: 27.5 },

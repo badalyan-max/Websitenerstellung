@@ -6,17 +6,13 @@ import { FeatureList } from "@/components/v2/FeatureList";
 import { Frame } from "@/components/v2/SceneContent";
 import { SectionHeader } from "@/components/v2/SectionHeader";
 import { getFunktionsgruppen } from "@/lib/funktionsgruppen";
-import { pageMetadata } from "@/lib/metadata";
+import { metaFor } from "@/lib/seo-meta";
 import { cardScenes } from "@/lib/scenes";
 import { crumbsFor } from "@/lib/breadcrumbs";
 import { itemListSchema } from "@/lib/schema";
 
-// Title-Wert ohne Marke: das Template des Root-Layouts hängt „ | CraftOS“ an (Keyword-Map, D-12).
-export const metadata = pageMetadata(
-  "Software für Handwerksbetriebe: alle Funktionen",
-  "Angebote, Rechnungen, Plantafel, Zeiterfassung, Aufmaß, Lager und Baudokumentation: alle Funktionen der Software für Handwerksbetriebe im Überblick.",
-  "/funktionen",
-);
+// Title, Description und Segmentbild aus der Keyword-Map (D-12; 08-05: twitter:image = og:image).
+export const metadata = metaFor("/funktionen");
 
 /**
  * Funktionsübersicht (06-UI-SPEC „Seite 3“; FEAT-01, D-07, D-08, D-09, D-10, D-18): einzige Datenquelle

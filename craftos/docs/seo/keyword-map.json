@@ -2414,7 +2414,8 @@
     "target": {
       "title": "Beste Handwerkersoftware finden: mit Testauftrag | CraftOS",
       "h1": "Die beste Handwerkersoftware auswählen: mit einem echten Auftrag statt einer Funktionsliste",
-      "description": "Handwerkersoftware auswählen mit einem echten Auftrag statt einer Funktionsliste: Kriterien, Testablauf und Fragen, mit denen Sie die passende finden."
+      "description": "Handwerkersoftware auswählen mit einem echten Auftrag statt einer Funktionsliste: Kriterien, Testablauf und Fragen, mit denen Sie die passende finden.",
+      "ogTitle": "Die beste Handwerkersoftware auswählen: mit einem echten Auftrag"
     }
   },
   {
@@ -2591,7 +2592,8 @@
     "target": {
       "title": "Offline-Zeiterfassung auf der Baustelle | CraftOS",
       "h1": "Offline auf der Baustelle arbeiten: vorbereiten, lokal erfassen und Synchronisierung prüfen",
-      "description": "Offline-Zeiterfassung und Baustellen-App ohne Netz: Arbeit vorbereiten, Daten lokal erfassen und die Synchronisierung danach zuverlässig prüfen."
+      "description": "Offline-Zeiterfassung und Baustellen-App ohne Netz: Arbeit vorbereiten, Daten lokal erfassen und die Synchronisierung danach zuverlässig prüfen.",
+      "ogTitle": "Offline auf der Baustelle arbeiten: vorbereiten, erfassen, synchronisieren"
     }
   },
   {
@@ -2696,7 +2698,8 @@
     "target": {
       "title": "Zuschlagskalkulation Handwerk: Tiefenkalkulation | CraftOS",
       "h1": "Tiefenkalkulation und Zuschlagskalkulation im Handwerk: Material, Lohn und Marge richtig verbinden",
-      "description": "Zuschlagskalkulation im Handwerk als Tiefenkalkulation: Material, Lohn, Gemeinkosten und Marge je Position nachvollziehbar zu einem Preis verbinden."
+      "description": "Zuschlagskalkulation im Handwerk als Tiefenkalkulation: Material, Lohn, Gemeinkosten und Marge je Position nachvollziehbar zu einem Preis verbinden.",
+      "ogTitle": "Tiefenkalkulation und Zuschlagskalkulation: Material, Lohn und Marge verbinden"
     }
   },
   {

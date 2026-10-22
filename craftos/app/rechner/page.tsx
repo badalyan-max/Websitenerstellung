@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Clock3, Calculator } from "lucide-react";
 import {
@@ -8,35 +7,20 @@ import {
 } from "@/components/calculators/CalculatorPage";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { site } from "@/lib/site";
+import { metaFor, zielwerte } from "@/lib/seo-meta";
 import styles from "@/components/calculators/Calculators.module.css";
 
-const title = "Kostenlose Rechner fürs Handwerk";
-const description =
-  "Stundensatz und Angebotspreis berechnen: Kosten, Gewinnmarge und Aufschlag nachvollziehbar kalkulieren. Kostenlos, ohne Anmeldung und ohne Speicherung.";
+// Title, Description, Canonical, Open Graph und Twitter aus der Keyword-Map (08-04, D-06); H1 aus zielwerte (D-17).
+const z = zielwerte("/rechner");
+const title = z.titleOhneMarke;
+const description = z.description;
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: `${site.url}/rechner` },
-  openGraph: {
-    title: `${title} | CraftOS`,
-    description,
-    url: `${site.url}/rechner`,
-    type: "website",
-    siteName: "CraftOS",
-    locale: "de_DE",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${title} | CraftOS`,
-    description,
-  },
-};
+export const metadata = metaFor("/rechner");
 
 export default function CalculatorsPage() {
   return (
     <CalculatorPage
-      title="Gute Angebote beginnen mit Ihren Zahlen."
+      title={z.h1}
       intro="Was muss Ihre Arbeitsstunde kosten? Was bleibt von einem Auftrag übrig? Rechnen Sie beides mit Ihren eigenen Werten durch."
     >
       <JsonLd

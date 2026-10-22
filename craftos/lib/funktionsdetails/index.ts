@@ -101,8 +101,8 @@ export const CTA_DETAIL = {
 /** Überclaims (Pitfall 7/8, D-20, D-23); Vergleich ohne Groß-/Kleinschreibung. */
 const VERBOTENE_WOERTER = ["lückenlos", "vollständig offline", "Online-Banking", "Bauphase"] as const;
 
-/** Erster Wert, der mehr als einmal vorkommt, sonst undefined. */
-function ersteDoppelung(werte: readonly string[]): string | undefined {
+/** Erster Wert, der mehr als einmal vorkommt, sonst undefined (auch von lib/wettbewerber genutzt). */
+export function ersteDoppelung(werte: readonly string[]): string | undefined {
   const gesehen = new Set<string>();
   for (const wert of werte) {
     if (gesehen.has(wert)) return wert;
@@ -328,9 +328,9 @@ export function buildFunktionsdetail(input: {
     if (tile.href !== undefined) pruefeKachelLink(slug, tile.title, tile.href, gruppen);
   }
   const grenzen = tiles.filter((t) => t.grenze === true).length;
-  if (grenzen !== 1) {
+  if (grenzen > 1) {
     throw new Error(
-      `Funktionsdetail: ${slug} braucht genau eine Grenze-Kachel (gefunden: ${grenzen}) – grenze: true an genau einer Kachel setzen.`,
+      `Funktionsdetail: ${slug} hat höchstens eine Grenze-Kachel (gefunden: ${grenzen}) – grenze: true an höchstens einer Kachel setzen.`,
     );
   }
   for (const tile of tiles) {
