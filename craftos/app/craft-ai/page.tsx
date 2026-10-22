@@ -27,7 +27,7 @@ import {
 
 /**
  * Craft AI (08-UI-SPEC § 5.3; D-09, D-12): Kopf G1 ohne Visual, Ablauf mit gekennzeichnetem FeatureSnippet „ki“
- * unterhalb der Falz, Kosten aus site.ts, Grenzen, FAQ und CtaBand. Inhalte aus lib/seiten/craft-ai.ts; Title, H1
+ * unterhalb der Falz, Kosten aus site.ts, „Wer entscheidet bei Craft AI?“, FAQ und CtaBand. Inhalte aus lib/seiten/craft-ai.ts; Title, H1
  * und Description aus der Keyword-Map. JSON-LD: BreadcrumbList (Kopf), FAQPage aus der sichtbaren FAQ, WebPage.
  */
 const z = zielwerte(CRAFT_AI_PFAD);
@@ -80,9 +80,9 @@ export default function CraftAiPage() {
         <KeyFacts facts={craftAiKeyFacts.facts} note={craftAiKeyFacts.note} />
       </Abschnitt>
 
-      <Abschnitt id="grenzen">
-        <SectionHeader id="grenzen" title={s.grenzen.title} lead={s.grenzen.lead} />
-        <BentoGrid label={s.grenzen.title}>
+      <Abschnitt id="wer-entscheidet">
+        <SectionHeader id="wer-entscheidet" title={s["wer-entscheidet"].title} lead={s["wer-entscheidet"].lead} />
+        <BentoGrid label={s["wer-entscheidet"].title}>
           {craftAiGrenzen.map((k) => (
             <BentoTile key={k.title} size={k.size} surface="warm" title={k.title} text={k.text} visual={<TileIcon icon={k.icon} />} />
           ))}

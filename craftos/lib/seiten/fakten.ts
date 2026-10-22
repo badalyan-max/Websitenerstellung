@@ -4,8 +4,8 @@
  * lib/funktionen.ts bzw. lib/funktionsgruppen.ts; Preise und Testtage werden nie als Literal geschrieben
  * (tests/pricing-parity.test.ts). Bestandsfakten sind nur gekürzt, es kommen keine neuen Behauptungen hinzu.
  * Inhabervorgabe 22.10.2026: die Seite nennt nur, was unterstützt wird (keine Negativlisten nicht unterstützter
- * Funktionen oder Versionen); Einschränkungen unterstützter Funktionen (Offline teilweise, KI ohne autonomes
- * Verbuchen, keine GoBD-Zertifizierung) bleiben als Überclaim-Schutz (T-08-32).
+ * Funktionen oder Versionen); Einschränkungen unterstützter Funktionen (Offline teilweise, keine GoBD-Zertifizierung)
+ * bleiben als Überclaim-Schutz (T-08-32); die KI-Zuständigkeit steht positiv („Sie prüfen und bestätigen“).
  * Prüfung: tests/kernseiten.test.ts, tests/design-v2-budgets.test.ts.
  */
 import type { LucideIcon } from "lucide-react";
@@ -142,7 +142,7 @@ export const produktfakten: FactListItem[] = [
   {
     term: "KI",
     definition:
-      "Abfragen und unterstützte Entwürfe; übernommen wird erst nach Ihrer Prüfung und Bestätigung. Kein pauschales autonomes Verbuchen.",
+      "Craft AI macht Vorschläge und bereitet unterstützte Entwürfe vor; Sie prüfen und bestätigen jede Übernahme.",
   },
   {
     // Inhabervorgabe 22.10.2026: nur Unterstütztes nennen, keine Negativlisten; Beleg lib/funktionen.ts (gaeb).

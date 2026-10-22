@@ -1,7 +1,8 @@
 /**
  * Inhalte der Seite `/craft-ai` (08-UI-SPEC § 5.3; D-09, D-12). Credits, Credit-Pakete und Stand kommen aus
  * lib/site.ts; keine Preis- oder Credit-Literale. Wortregeln (T-08-32): Craft AI bereitet Entwürfe vor, die Sie
- * prüfen und bestätigen – kein autonomes Verbuchen. Prüfung: tests/kernseiten.test.ts, tests/design-v2-budgets.test.ts.
+ * prüfen und bestätigen. Inhaber 22.10.2026: nur Unterstütztes nennen – die Zuständigkeit steht positiv („Sie prüfen
+ * und bestätigen“), ohne Verneinungen. Prüfung: tests/kernseiten.test.ts, tests/design-v2-budgets.test.ts.
  */
 import { KeyRound, ListChecks, Scale } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -12,14 +13,14 @@ import { creditPakete, creditWertEuro, site, startCredits } from "@/lib/site";
 
 export const CRAFT_AI_PFAD = "/craft-ai" as const;
 
-export const CRAFT_AI_SECTION_IDS = ["kopf", "so-arbeitet-craft-ai", "kosten", "grenzen", "faq", "cta"] as const;
+export const CRAFT_AI_SECTION_IDS = ["kopf", "so-arbeitet-craft-ai", "kosten", "wer-entscheidet", "faq", "cta"] as const;
 export type CraftAiSectionId = (typeof CRAFT_AI_SECTION_IDS)[number];
 
 export const CRAFT_AI_SURFACES: Readonly<Record<CraftAiSectionId, "dark" | "white" | "warm">> = {
   kopf: "dark",
   "so-arbeitet-craft-ai": "white",
   kosten: "warm",
-  grenzen: "white",
+  "wer-entscheidet": "white",
   faq: "warm",
   cta: "dark",
 };
@@ -48,9 +49,9 @@ export const craftAiSections: Record<Exclude<CraftAiSectionId, "kopf" | "cta">, 
     title: "Was kostet Craft AI?",
     lead: `Craft AI verbraucht Credits: Jeder Betrieb erhält einmalig ${startCredits} Credits Startguthaben, danach kaufen Sie Credit-Pakete ab ${euroGanz(kleinstesPaket)} netto, und 1 Credit entspricht ${euro(creditWertEuro)}.`,
   },
-  grenzen: {
-    title: "Was übernimmt Craft AI nicht?",
-    lead: "Craft AI bucht nicht selbstständig und ersetzt keine Prüfung: Ergebnisse können unvollständig oder falsch sein, und jede Übernahme bestätigen Sie selbst.",
+  "wer-entscheidet": {
+    title: "Wer entscheidet bei Craft AI?",
+    lead: "Sie entscheiden: Craft AI macht Vorschläge und bereitet Entwürfe vor, Sie prüfen jedes Ergebnis auf Vollständigkeit und Richtigkeit und bestätigen jede Übernahme selbst.",
   },
   faq: {
     title: "Häufige Fragen zu Craft AI",
@@ -74,8 +75,9 @@ export const craftAiKeyFacts: { facts: KeyFact[]; note: string } = {
 };
 
 /**
- * Grenzen (BentoGrid): mindestens zwei Kachelgrößen (Baustein-Regel); wide + 2 × md, damit kein Titel in einer
- * schmalen sm-Kachel silbengetrennt wird (Sichtprüfung 08-12: „autono-mes“) und die Reihenfolge in allen Breiten bleibt.
+ * Zuständigkeit (BentoGrid, Abschnitt „Wer entscheidet bei Craft AI?“): mindestens zwei Kachelgrößen (Baustein-Regel);
+ * wide + 2 × md, damit kein Titel in einer schmalen sm-Kachel silbengetrennt wird (Sichtprüfung 08-12) und die
+ * Reihenfolge in allen Breiten bleibt.
  */
 export const craftAiGrenzen: { title: string; text: string; icon: LucideIcon; size: "md" | "wide" }[] = [
   {
@@ -85,8 +87,8 @@ export const craftAiGrenzen: { title: string; text: string; icon: LucideIcon; si
     size: "wide",
   },
   {
-    title: "Kein autonomes Verbuchen",
-    text: "Craft AI wird nicht als selbstständig verbuchendes Buchhaltungssystem angeboten.",
+    title: "Sie bestätigen jede Buchung",
+    text: "Craft AI macht Vorschläge; Sie prüfen und bestätigen jede Buchung.",
     icon: Scale,
     size: "md",
   },
