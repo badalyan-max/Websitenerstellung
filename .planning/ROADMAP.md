@@ -242,7 +242,36 @@ Plans:
   3. Für jede seit 09.09.2026 neue Live-Funktion gibt es mindestens einen Hilfeartikel mit Schritt-für-Schritt-Anleitung, verlinkt von der Detailseite.
   4. Gewerke- und Wissensinhalte erfüllen die Metadaten- und Breadcrumb-Regeln aus Phase 8 und sind nach Ship-Gate live mit IndexNow-Meldung.
 
-**Plans**: TBD
+**Plans**: 13 plans (5 Wellen, parallele Spuren in Worktrees `C:/Projekte/wt-09<x>`, Ports 3101–3108; Integration und Rollout im Haupt-Arbeitsbaum)
+Plans:
+**Wave 1** *(09-01-T1 „F-A1“ und 09-02-T1 „K-1“ werden vorgezogen nach main gemergt)*
+
+- [ ] 09-01-PLAN.md — Fundament: F-A1 (Budgets, LinkKarten, ContentKopf, Leitlinie L-1, Gewerke-H1), Inhaltsvertrag answer/faq/scene, sceneById, Antwort-zuerst-Audit, Produktbasis, Prüfwerkzeug, Map-Einträge Phase 9
+- [ ] 09-02-PLAN.md — (a) Gewerke Teil 1: K-1-Testumstellung, neue Gewerke-Daten, Abschnitte Ablauf, Funktionen, FAQ, CTA
+
+**Wave 2** *(blocked on Wave 1 completion; 09-11 darf nach dem Merge von F-A1 starten)*
+
+- [ ] 09-03-PLAN.md — (b) Ratgeber 1: Rechnungen, Kalkulation, Softwareauswahl (12)
+- [ ] 09-04-PLAN.md — (c) Ratgeber 2: Belege, Projekte, Team (12)
+- [ ] 09-05-PLAN.md — (d) Hilfe 1 Büro: Einrichtung, Belege, Angebote, Rechnungen (21)
+- [ ] 09-06-PLAN.md — (e) Hilfe 2 Baustelle: Projekte, Zeiten, Lager, Craft AI, Baudokumentation (19) inkl. Teilabnahme und Arbeitsabschnitte
+- [ ] 09-07-PLAN.md — (f) Zehn neue Hilfeartikel, Verlinkung von Detailseiten und /app, L-1-Korrekturen in funktionen.ts und Funktionsdetails
+- [ ] 09-08-PLAN.md — (g) Neun SEO-09-Wissensseiten mit Quellen und FAQ
+- [ ] 09-11-PLAN.md — (a) Gewerke Teil 2: Kopf, /gewerke, Weiterlesen, gewerke.test.ts, Prompt-Anker Elektro/Maler
+- [ ] 09-12-PLAN.md — Fundament Teil 2: Artikelvorlage v2 mit Schrittliste, Übersichten, Kategorien, Suche
+
+**Wave 3** *(blocked on Merge von 09-07 und 09-08)*
+
+- [ ] 09-13-PLAN.md — (a) Gewerke Teil 3: Links auf neue Anleitungen und Wissensseiten
+
+**Wave 4** *(blocked on Wave 3 completion)*
+
+- [ ] 09-09-PLAN.md — Integration: Map „bestehend“, answer-Pflicht, Endmengen 30/53, Übergänge zurückgenommen, Querverweise, Release-Delta, Browserprüfungen, sitewide Audit und Linkcheck
+
+**Wave 5** *(blocked on Wave 4 completion; Code-Review-Gate des Orchestrators vorher)*
+
+- [ ] 09-10-PLAN.md — Rollout: Phasen-Gate, live-check-Erweiterung, Ship-Gate über Gesamtdiff, Push, IndexNow, SE-Ranking-Abgleich, Etappenbericht, Rollout-Nachweis
+
 **UI hint**: yes
 
 ### Phase 10: Abschlussaudit
@@ -269,5 +298,5 @@ Plans:
 | 6. Startseite, Navigation und Funktionsübersicht | 6/6 | Complete    | 2026-10-21 |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 9/9 | Complete    | 2026-10-22 |
 | 8. SEO und KI-Sichtbarkeit | 5/14 | In Progress|  |
-| 9. Gewerke und Wissensinhalte | 0/TBD | Not started | - |
+| 9. Gewerke und Wissensinhalte | 0/13 | Not started | - |
 | 10. Abschlussaudit | 0/TBD | Not started | - |
