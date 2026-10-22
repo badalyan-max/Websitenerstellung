@@ -2,14 +2,14 @@
   "source": {
     "repo": "craft-connect-buddy",
     "ref": "origin/release",
-    "tag": "v4.0.0-test.244",
-    "commit": "cd419852b5f47de1f09ebfa99816882fb96c6605",
-    "readAt": "2026-10-22T21:38:12.632Z"
+    "tag": "v4.0.0-test.245",
+    "commit": "6686d05e0aed9d9ed1a9959ddc2142928e874e84",
+    "readAt": "2026-10-22T22:46:57.108Z"
   },
   "mobileSource": {
     "repo": "craftos-mobile",
     "ref": "origin/release",
-    "tag": "mobile-v1.0.0-test.95-2-g837aab4f",
+    "tag": "mobile-v1.0.0-test.96",
     "commit": "837aab4f5c1d3cd5411f41e1d720b2aa274e2cac"
   },
   "pricing": {

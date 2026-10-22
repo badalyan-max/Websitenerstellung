@@ -25,7 +25,7 @@ describe("publication basis", () => {
     expect(register.basis.mobile.tag.startsWith("mobile-v")).toBe(true);
     // IN-04: echte Tags, keine `git describe`-Ausgabe („…-2-g837aab4f“).
     for (const repo of [register.basis.web, register.basis.mobile]) expect(repo.tag).not.toMatch(/-\d+-g[0-9a-f]+$/);
-    expect(register.basis.checkedAt).toBe("2026-10-22");
+    expect(register.basis.checkedAt).toBe("2026-10-23");
   });
   it.skipIf(!fs.existsSync(WEB) || !fs.existsSync(MOBILE))("Tags lösen lokal genau auf den eingetragenen Commit auf (IN-04)", () => {
     const register = getProductRegister();

@@ -9,15 +9,15 @@ import { site, tarife } from "./site";
  * dient ausschließlich der internen Abgrenzung.
  */
 export const productBasis = {
-  checkedAt: "2026-10-22",
+  checkedAt: "2026-10-23",
   web: {
     ref: "origin/release",
-    tag: "v4.0.0-test.244",
-    commit: "cd419852b5f47de1f09ebfa99816882fb96c6605",
+    tag: "v4.0.0-test.245",
+    commit: "6686d05e0aed9d9ed1a9959ddc2142928e874e84",
   },
   mobile: {
     ref: "origin/release",
-    // IN-04: echter Tag auf genau diesem Commit (vorher `git describe`-Ausgabe „mobile-v1.0.0-test.95-2-g837aab4f“).
+    // IN-04: echter Tag auf genau diesem Commit (vorher `git describe`-Ausgabe „mobile-v1.0.0-test.96“).
     tag: "mobile-v1.0.0-test.96",
     commit: "837aab4f5c1d3cd5411f41e1d720b2aa274e2cac",
   },
