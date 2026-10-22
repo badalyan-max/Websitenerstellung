@@ -3,6 +3,9 @@
  * Alle Zahlen kommen aus lib/site.ts (site, tarife), dem Produktregister (mobileLocales, mobileOffline) und
  * lib/funktionen.ts bzw. lib/funktionsgruppen.ts; Preise und Testtage werden nie als Literal geschrieben
  * (tests/pricing-parity.test.ts). Bestandsfakten sind nur gekürzt, es kommen keine neuen Behauptungen hinzu.
+ * Inhabervorgabe 22.10.2026: die Seite nennt nur, was unterstützt wird (keine Negativlisten nicht unterstützter
+ * Funktionen oder Versionen); Einschränkungen unterstützter Funktionen (Offline teilweise, KI ohne autonomes
+ * Verbuchen, keine GoBD-Zertifizierung) bleiben als Überclaim-Schutz (T-08-32).
  * Prüfung: tests/kernseiten.test.ts, tests/design-v2-budgets.test.ts.
  */
 import type { LucideIcon } from "lucide-react";
@@ -142,9 +145,10 @@ export const produktfakten: FactListItem[] = [
       "Abfragen und unterstützte Entwürfe; übernommen wird erst nach Ihrer Prüfung und Bestätigung. Kein pauschales autonomes Verbuchen.",
   },
   {
-    term: "Nicht zugesagt",
+    // Inhabervorgabe 22.10.2026: nur Unterstütztes nennen, keine Negativlisten; Beleg lib/funktionen.ts (gaeb).
+    term: "GAEB und DATANORM",
     definition:
-      "Portal-Onlinezahlung, DATANORM-v5-Kompatibilität, automatische ELSTER-Übermittlung und autonome Buchhaltung werden nicht als verfügbar angeboten.",
+      "Leistungsverzeichnisse als GAEB X83 importieren und Angebote als X84 abgeben. Großhändlerkataloge lesen Sie in DATANORM 4 und 5 ein.",
   },
 ];
 
