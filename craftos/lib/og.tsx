@@ -74,7 +74,8 @@ export function pageOg({ title, kind, path }: { title: string; kind: OgKind; pat
         }}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
-          <svg width={56} height={56} viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* viewBox auf die Markenfläche zugeschnitten (Pfad x 199–824, y 146–876), damit das Zeichen die 56 px ausfüllt */}
+          <svg width={56} height={56} viewBox="140 139 744 744" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill={AMBER} fillRule="evenodd" d={LOGO_PATH} />
           </svg>
           <div style={{ display: "flex", marginLeft: 16, color: TEXT, fontSize: 40, lineHeight: 1 }}>CraftOS</div>
