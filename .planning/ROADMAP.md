@@ -24,7 +24,7 @@ craftos.eu wird klar gegliedert und optisch ansprechend: weniger Fließtext, Kac
 - [x] **Phase 5: Produktwahrheit, Keyword-Map und Designbausteine** - Live-Stand korrigiert, Suchbegriffe je Seite festgelegt, v2-Bausteine bereit (completed 2026-10-20)
 - [x] **Phase 6: Startseite, Navigation und Funktionsübersicht** - Startseite klar gegliedert, Funktionsmenü und nach Ablauf gruppierte Übersicht (completed 2026-10-21)
 - [x] **Phase 7: Funktionsdetailseiten und Mobile-App-Seite** - Einheitliche, kurze Detailseiten mit visuellem Element für jede Live-Funktion (completed 2026-10-22)
-- [ ] **Phase 8: SEO und KI-Sichtbarkeit** - Alternativen-Seiten, Preis-Antwortblock, Metadaten nach Keyword-Map, Breadcrumbs, OG-Grafiken
+- [x] **Phase 8: SEO und KI-Sichtbarkeit** - Alternativen-Seiten, Preis-Antwortblock, Metadaten nach Keyword-Map, Breadcrumbs, OG-Grafiken (completed 2026-10-23)
 - [ ] **Phase 9: Gewerke und Wissensinhalte** - Gewerke-Seiten gegliedert, Ratgeber und Hilfe auf Produktstand, neue Hilfeartikel
 - [ ] **Phase 10: Abschlussaudit** - Barrierefreiheit, Performance und erneuter Audit ohne offene Fehler
 
@@ -168,7 +168,7 @@ Plans:
   2. Die Preisseite beginnt mit einem zitierfähigen Antwortsatz und einer Preistabelle, deren Werte mit dem Produktregister übereinstimmen.
   3. Jede Seite hat einen eindeutigen Titel ≤ 60 Zeichen mit ihrem Hauptkeyword, eine Description mit 120–155 Zeichen, genau eine H1, sichtbare Breadcrumbs mit Schema und eine individuelle OG-Grafik; ein automatischer Test findet keine doppelten Titel.
   4. Zentrale Seiten haben unter jeder Frage-Überschrift eine Antwort in höchstens 300 Zeichen; `llms.txt`, Sitemap und IndexNow-Meldung werden bei jedem Release aktualisiert.
-  5. Jede getrackte KI-Frage und jede Content-Lücke mit KD < 20 aus der Keyword-Map hat eine zitierfähige Zielseite oder einen Abschnitt mit Antwort zuerst, belegten Fakten und FAQPage-Schema.
+  5. Jede getrackte KI-Frage und jede Content-Lücke mit KD < 20 aus der Keyword-Map hat eine zitierfähige Zielseite oder einen Abschnitt mit Antwort zuerst, belegten Fakten und FAQPage-Schema (KD-<20-Lücken → Phase 9, D-11).
 
 **Plans**: 14 plans (14 Wellen, strikt sequentiell)
 Plans:
@@ -226,7 +226,7 @@ Plans:
 
 **Wave 14** *(blocked on Wave 13 completion; Code-Review-Gate des Orchestrators vorher)*
 
-- [ ] 08-14-PLAN.md — Phasen-Gate, live-check-Erweiterung, Ship-Gate über Gesamtdiff, Push, IndexNow, SE-Ranking-Abgleich, Etappenmessung, Rollout-Nachweis
+- [x] 08-14-PLAN.md — Phasen-Gate, live-check-Erweiterung, Ship-Gate über Gesamtdiff, Push, IndexNow, SE-Ranking-Abgleich, Etappenmessung, Rollout-Nachweis
 
 **UI hint**: yes
 
@@ -234,13 +234,15 @@ Plans:
 
 **Goal**: Gewerke-Seiten, Ratgeber und Hilfe sind klar gegliedert, entsprechen dem aktuellen Produktstand und erklären auch die neuen Funktionen Schritt für Schritt.
 **Depends on**: Phase 8
-**Requirements**: FEAT-04, CONTENT-03, CONTENT-04
+**Requirements**: FEAT-04, CONTENT-03, CONTENT-04 (dazu Abschluss SEO-09, DESIGN-02 aus Phase 8)
 **Success Criteria** (what must be TRUE):
 
   1. Die 12 Gewerke-Seiten zeigen gewerktypische Abläufe mit visuellen Elementen statt nur Text und verlinken auf die passenden Funktionsseiten.
   2. Die 24 Ratgeber und 40 Hilfeartikel sind gegen den aktuellen Produktstand geprüft, korrigiert und gegliedert (Antwort zuerst, Schritte, Zwischenüberschriften); keiner beschreibt eine nicht-live Funktion oder einen veralteten Ablauf.
   3. Für jede seit 09.09.2026 neue Live-Funktion gibt es mindestens einen Hilfeartikel mit Schritt-für-Schritt-Anleitung, verlinkt von der Detailseite.
   4. Gewerke- und Wissensinhalte erfüllen die Metadaten- und Breadcrumb-Regeln aus Phase 8 und sind nach Ship-Gate live mit IndexNow-Meldung.
+  5. Jede Content-Lücke mit KD < 20 aus der Keyword-Map hat eine zitierfähige Zielseite oder einen Abschnitt mit Antwort zuerst, belegten Fakten und FAQPage-Schema (Abschluss SEO-09).
+  6. Gewerke-, Ratgeber- und Hilfeseiten nutzen die v2-Bausteine einheitlich (Abschluss DESIGN-02).
 
 **Plans**: 18 plans (7 Wellen, parallele Spuren in Worktrees `C:/Projekte/wt-09<x>`, Ports 3101–3110; Integration, Gate und Rollout im Haupt-Arbeitsbaum)
 Plans:
@@ -308,6 +310,6 @@ Plans:
 | 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
 | 6. Startseite, Navigation und Funktionsübersicht | 6/6 | Complete    | 2026-10-21 |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 9/9 | Complete    | 2026-10-22 |
-| 8. SEO und KI-Sichtbarkeit | 13/14 | In Progress|  |
+| 8. SEO und KI-Sichtbarkeit | 14/14 | Complete   | 2026-10-23 |
 | 9. Gewerke und Wissensinhalte | 0/18 | Not started | - |
 | 10. Abschlussaudit | 0/TBD | Not started | - |

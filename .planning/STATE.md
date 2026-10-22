@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
-status: executing
-stopped_at: Completed 08-13-PLAN.md
-last_updated: "2026-10-22T21:37:01.284Z"
-last_activity: "2026-10-22 – 08-13 Browserprüfungen Phase 8 (vergleich.pw.cjs), seo-audit sitewide 0 Verstöße, E2E 424/424 grün nach Fixes (Reduced Motion 0 s, FeatureCard-Raster grid-cols-1), Craft AI/Fakten nur Unterstütztes; als Nächstes 08-14 (nach Snapshot-Abgleich)"
+status: verifying
+stopped_at: Completed 08-14-PLAN.md
+last_updated: "2026-10-22T23:17:54.045Z"
+last_activity: "2026-10-23 – 08-14 Rollout Phase 8: Phasen-Gate grün (Vitest 863/863, seo-audit 136/0, E2E 333/0), Push f029bc6, Vercel dpl_2avyo678E2VrDE9GTFMc3WL9yTS6 READY, live-check 62/62, IndexNow 136 HTTP 200, SE Ranking --check ohne Abweichung, Messbericht rollout-phase08 (0 Units); SEO-02 bis SEO-06 erledigt; als Nächstes Phase-8-Verifikation, dann Phase 9"
 progress:
   total_phases: 6
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 55
-  completed_plans: 36
-  percent: 65
+  completed_plans: 37
+  percent: 67
 ---
 
 # State
@@ -30,14 +30,14 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 8 (SEO und KI-Sichtbarkeit)
-Plan: 14 of 14 (08-01 bis 08-13 abgeschlossen; offen 08-14)
-Status: Ready to execute
-Last activity: 2026-10-22 – 08-13 Browserprüfungen Phase 8 (vergleich.pw.cjs), seo-audit sitewide 0 Verstöße, E2E 424/424 grün nach Fixes (Reduced Motion 0 s, FeatureCard-Raster grid-cols-1), Craft AI/Fakten nur Unterstütztes; als Nächstes 08-14 (nach Snapshot-Abgleich)
+Plan: 14 of 14 (08-01 bis 08-14 abgeschlossen; Phase 8 live)
+Status: Phase complete — ready for verification
+Last activity: 2026-10-23 – 08-14 Rollout Phase 8: Phasen-Gate grün (Vitest 863/863, seo-audit 136/0, E2E 333/0), Push f029bc6, Vercel dpl_2avyo678E2VrDE9GTFMc3WL9yTS6 READY, live-check 62/62, IndexNow 136 HTTP 200, SE Ranking --check ohne Abweichung, Messbericht rollout-phase08 (0 Units); SEO-02 bis SEO-06 erledigt; als Nächstes Phase-8-Verifikation, dann Phase 9
 
-Progress: [██████░░░░] 64% (35/55 Pläne des Milestones inkl. geplanter Phase 9; Phase 8: 12/14)
+Progress: [███████░░░] 67% (37/55 Pläne des Milestones inkl. geplanter Phase 9; Phase 8: 14/14)
 
-Last session: 2026-10-22T21:37:01.276Z
-Stopped at: Completed 08-13-PLAN.md
+Last session: 2026-10-22T23:17:54.036Z
+Stopped at: Completed 08-14-PLAN.md
 Resume file: None
 
 ## Accumulated Context
@@ -120,6 +120,7 @@ Resume file: None
 - [Phase 08]: 08-13: /craft-ai „Wer entscheidet bei Craft AI?“ (id wer-entscheidet) und Kachel „Sie bestätigen jede Buchung“; Fakten-KI-Eintrag positiv; GoBD-Zertifizierungsfrage bleibt als Überclaim-Schutz
 - [Phase 08]: 08-13: Reduced-Motion-Regel mit transition-duration/-delay 0s statt 0.01ms (WebKit erzeugte Hunderte tab-size-Übergänge, Ursache home-navigation:501)
 - [Phase 08]: 08-13: FeatureCard-Raster grid-cols-1 unter 768 px (WebKit-Überlauf nach Größenwechsel); Kartenrahmen unter 362 px nur erste Zeile
+- [Phase 08]: 08-14: Phase 8 live (dpl_2avyo678E2VrDE9GTFMc3WL9yTS6, f029bc6); live-check 62/62 inkl. sitewide Keyword-Map, Brotkrumen, OG, FAQPage, Prompt-Anker; IndexNow 136; SE Ranking 0 Units (33.921 übrig); SEO-02 bis SEO-06 erledigt, SEO-09 und DESIGN-02 Abschluss Phase 9
 
 ### Pending Todos
 
@@ -164,3 +165,4 @@ None yet.
 | Phase 08 P10 | 33min | 2 tasks | 19 files |
 | Phase 08 P11 | 40min | 2 tasks | 21 files |
 | Phase 08 P13 | 59min | 2 tasks | 22 files |
+| Phase 08 P14 | 28min | 2 tasks | 16 files |
