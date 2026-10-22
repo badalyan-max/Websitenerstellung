@@ -16,7 +16,9 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import type { KeyFact } from "@/components/v2/KeyFacts";
-import type { ComparisonColumn, ComparisonRow } from "@/components/v2/ComparisonTable";
+import type { ComparisonColumn, ComparisonRow, ComparisonSource } from "@/components/v2/ComparisonTable";
+import type { FactListItem } from "@/components/v2/FactList";
+import type { FitPanel } from "@/components/v2/FitPanels";
 import type { Step } from "@/components/v2/StepFlow";
 import { euro, germanDate } from "@/lib/format";
 import { getFunktion, type ProductPlatform } from "@/lib/funktionen";
@@ -60,10 +62,15 @@ const trial = `${site.trialDays}${NBSP}Tage`;
 // Block 0 und 1: Kopf und Tokens
 // ---------------------------------------------------------------------------
 
+/** Block 0 ist seit Phase 8 ein FunktionsKopf ohne Visual mit Antwort und Stand-Zeile (08-UI-SPEC G1). */
 export const pageIntro = {
   eyebrow: "Designsystem v2",
   title: "Designbausteine v2",
-  intro: "Interne Musterseite: alle Bausteine für die Neugestaltung der CraftOS-Website mit echten Inhalten.",
+  keyword: "Designbausteine",
+  answer:
+    "Interne Musterseite: alle Bausteine für die Neugestaltung der CraftOS-Website mit echten Inhalten. Vergleichsmuster mit Quellen nutzen neutrale Beispieldaten ohne echte Anbieter.",
+  stand: `Stand der Produktangaben ${standDatum}`,
+  secondary: { label: "Zu den Bausteinen", href: "#block-tokens" },
 } as const;
 
 export const tokenSwatches = [
@@ -250,6 +257,85 @@ export const comparisonContent: {
     { label: "Preis pro Monat", cells: { voll: euro(voll.monat), app: euro(app.monat) } },
   ],
   note: `Preise netto zzgl. USt. Quelle: Preisliste CraftOS, Stand ${standDatum}.`,
+};
+
+/**
+ * Phase 8 (08-UI-SPEC G3, C5): Marktübersicht ohne Hervorhebung mit Quellenliste und Disclaimer.
+ * Ausschließlich neutrale Beispieldaten („Anbieter A/B“, example.com) – keine echten Wettbewerberwerte.
+ */
+export const marketContent: {
+  caption: string;
+  rowHeader: string;
+  columns: ComparisonColumn[];
+  rows: ComparisonRow[];
+  note: string;
+  sources: ComparisonSource[];
+  disclaimer: string;
+} = {
+  caption: "Marktübersicht mit Beispieldaten",
+  rowHeader: "Anbieter",
+  columns: [
+    { key: "web", label: "Web-App" },
+    { key: "mobil", label: "Mobile-App" },
+    { key: "plantafel", label: "Plantafel" },
+  ],
+  rows: [
+    { label: "Anbieter A", cells: { web: true, mobil: true, plantafel: "Zusatzmodul" } },
+    { label: "Anbieter B", cells: { web: true, mobil: "nicht angegeben", plantafel: true } },
+  ],
+  note: "Beispieldaten ohne Bezug zu realen Anbietern. Angaben ohne Gewähr, Quellen unter der Tabelle.",
+  sources: [
+    { anbieter: "Anbieter A", label: "Preisseite", url: "https://example.com/anbieter-a/preise", abgerufenAm: "2026-10-22" },
+    { anbieter: "Anbieter B", label: "Produktseite", url: "https://example.com/anbieter-b/produkt", abgerufenAm: "2026-10-22" },
+    { anbieter: "Anbieter A", label: "Funktionsübersicht", url: "https://example.com/anbieter-a/funktionen", abgerufenAm: "2026-10-22" },
+  ],
+  disclaimer: "Die Nennung der Anbieter dient der Zuordnung; es besteht keine Geschäftsbeziehung.",
+};
+
+/** Phase 8 (08-UI-SPEC G4): zwei gleichrangige Panels, Beispielanbieter zuerst, Wettbewerberpunkte mit Quelle. */
+export const fitPanelsContent: { label: string; panels: [FitPanel, FitPanel] } = {
+  label: "Für wen passt welche Software (Muster)",
+  panels: [
+    {
+      title: "Wann Anbieter A passt",
+      points: [
+        {
+          text: "Sie planen überwiegend im Büro und brauchen keine Mobile-App.",
+          quelle: { label: "Anbieter A: Produktseite", url: "https://example.com/anbieter-a/produkt" },
+        },
+        {
+          text: "Sie möchten Angebote mit eigenen Vorlagen gestalten.",
+          quelle: { label: "Anbieter A: Vorlagen", url: "https://example.com/anbieter-a/vorlagen" },
+        },
+      ],
+    },
+    {
+      title: "Wann CraftOS passt",
+      points: [
+        { text: "Sie möchten pro Person abrechnen und Mitarbeitende mit einer App-Lizenz ausstatten." },
+        { text: "Sie möchten Büro und Baustelle mit Web-App und Mobile-App verbinden." },
+      ],
+    },
+  ],
+};
+
+/** Phase 8 (08-UI-SPEC G5): Faktenliste mit Werten aus lib/site.ts und dem Produktregister. */
+export const factListContent: { items: FactListItem[]; note: string } = {
+  items: [
+    { term: "Plattformen", definition: "Web-App im Browser und Mobile-App für iOS und Android." },
+    {
+      term: voll.name,
+      definition: `${euro(voll.monat)} netto pro Person und Monat, mit Zugang zur Web-App und zur Mobile-App.`,
+    },
+    { term: app.name, definition: `${euro(app.monat)} netto pro Person und Monat, nur für die Mobile-App.` },
+    { term: "Testphase", definition: `${trial} kostenlos, eine Zahlungsmethode ist dafür nicht erforderlich.` },
+    { term: "Sprachen", definition: `Die Mobile-App ist in ${mobileLocales.length} Sprachen verfügbar.` },
+    {
+      term: "KI-Abrechnung",
+      definition: `Über Credits; jeder Betrieb erhält einmalig ${startCredits}${NBSP}Credits Startguthaben (${creditUmrechnung}).`,
+    },
+  ],
+  note: `Stand ${standDatum}.`,
 };
 
 export const faqContent: { q: string; a: string }[] = [

@@ -1,0 +1,47 @@
+/* Faktenliste v2 – 08-UI-SPEC G5, § 5.2. Zeilen durch 1-px-Linien getrennt (Struktur trägt Information),
+   Zeilen-Innenabstand 16; < 768 px Begriff über der Definition (4 px), ab 768 px zwei Spalten (Lücke 24). */
+.root {
+  min-width: 0;
+}
+.list {
+  margin: 0;
+  border-bottom: 1px solid #e7dcc9;
+}
+.item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 4px;
+  padding-block: 16px;
+  border-top: 1px solid #e7dcc9;
+}
+.term {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #17171c;
+}
+.definition {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+  text-wrap: pretty;
+  color: #17171c;
+}
+.note {
+  margin: 16px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+  color: #62626e;
+}
+@media (min-width: 768px) {
+  .item {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    column-gap: 24px;
+  }
+}

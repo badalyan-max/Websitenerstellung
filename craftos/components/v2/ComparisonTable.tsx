@@ -1,4 +1,5 @@
 import { Check, Minus } from "lucide-react";
+import { germanDate } from "@/lib/format";
 import { TEXT_BUDGET, assertCount, assertTextBudget } from "./budgets";
 import s from "./ComparisonTable.module.css";
 
@@ -17,6 +18,15 @@ export interface ComparisonRow {
   cells: Record<string, Cell>;
 }
 
+/** Beleg einer Tabellenangabe (08-UI-SPEC G3, D-02/D-04): Anbieter, Quellen-Label, https-URL, Abrufdatum (ISO). */
+export interface ComparisonSource {
+  anbieter: string;
+  label: string;
+  url: string;
+  /** ISO-Datum JJJJ-MM-TT; sichtbar als TT.MM.JJJJ. */
+  abgerufenAm: string;
+}
+
 export interface ComparisonTableProps {
   /** Sichtbar, zugleich aria-label des Scrollbereichs. */
   caption: string;
@@ -28,6 +38,10 @@ export interface ComparisonTableProps {
   note: string;
   /** Kopf der Zeilenbeschriftungsspalte, Standard „Leistung“. */
   rowHeader?: string;
+  /** Quellenliste unter der Note, gruppiert nach Anbieter (G3). Links rel="nofollow", gleicher Tab. */
+  sources?: ComparisonSource[];
+  /** Zeile unter der Quellenliste, z. B. „Die Nennung von … dient der Zuordnung; …“ (G3). */
+  disclaimer?: string;
 }
 
 const LIMITS = TEXT_BUDGET.count.comparison;
@@ -35,8 +49,17 @@ const LIMITS = TEXT_BUDGET.count.comparison;
 /**
  * Vergleichstabelle v2 (UI-SPEC §7): echte Tabelle, neutrale Ja/Nein-Darstellung ohne Rot und Grün,
  * hervorgehobene Spalte warm mit Amber-Oberkante. Unter 768 px seitlich scrollbar mit fester erster Spalte.
+ * Phase 8 (G3, C5): optionale Quellenliste und Disclaimer unter der Note; Marktübersichten ohne highlight.
  */
-export function ComparisonTable({ caption, columns, rows, note, rowHeader = "Leistung" }: ComparisonTableProps) {
+export function ComparisonTable({
+  caption,
+  columns,
+  rows,
+  note,
+  rowHeader = "Leistung",
+  sources,
+  disclaimer,
+}: ComparisonTableProps) {
   assertCount("ComparisonTable", columns.length, { min: 1, max: LIMITS.columns }, "Wertspalten");
   assertCount("ComparisonTable", rows.length, { min: 1, max: LIMITS.rows }, "Zeilen");
   if (columns.filter((column) => column.highlight).length > 1) {
@@ -57,6 +80,7 @@ export function ComparisonTable({ caption, columns, rows, note, rowHeader = "Lei
       }
     }
   }
+  const quellen = sources ? gruppiereQuellen(sources) : [];
 
   return (
     <div className={s.root}>
@@ -93,8 +117,43 @@ export function ComparisonTable({ caption, columns, rows, note, rowHeader = "Lei
         </table>
       </div>
       <p className={s.note}>{note}</p>
+      {quellen.length > 0 ? (
+        <ol className={s.sources} aria-label="Quellen zur Tabelle">
+          {quellen.map((quelle) => (
+            <li key={quelle.url + quelle.label} className={s.source}>
+              {`${quelle.anbieter}: `}
+              <a href={quelle.url} rel="nofollow" className={s.sourceLink}>
+                {quelle.label}
+              </a>
+              {`, abgerufen am ${germanDate(quelle.abgerufenAm)}`}
+            </li>
+          ))}
+        </ol>
+      ) : null}
+      {disclaimer ? (
+        <p className={s.note} data-disclaimer="">
+          {disclaimer}
+        </p>
+      ) : null}
     </div>
   );
+}
+
+/**
+ * Prüft jede Quelle (nur https, ISO-Datum; T-08-07) und gruppiert nach Anbieter in der Reihenfolge des
+ * ersten Auftretens, innerhalb eines Anbieters in Eingabereihenfolge.
+ */
+function gruppiereQuellen(sources: ComparisonSource[]): ComparisonSource[] {
+  for (const quelle of sources) {
+    if (!quelle.url.startsWith("https://")) {
+      throw new Error(`ComparisonTable: Quelle ‚${quelle.label}‘ ohne https-Adresse – nur https://-Quellen verlinken.`);
+    }
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(quelle.abgerufenAm)) {
+      throw new Error(`ComparisonTable: Quelle ‚${quelle.label}‘ hat kein Abrufdatum im Format JJJJ-MM-TT.`);
+    }
+  }
+  const reihenfolge = [...new Set(sources.map((quelle) => quelle.anbieter))];
+  return reihenfolge.flatMap((anbieter) => sources.filter((quelle) => quelle.anbieter === anbieter));
 }
 
 function CellValue({ value }: { value: Cell }) {

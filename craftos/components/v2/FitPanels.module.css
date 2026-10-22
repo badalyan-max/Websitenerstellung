@@ -1,0 +1,81 @@
+/* Passt-Panels v2 – 08-UI-SPEC G4, § 3.5. Zwei identisch gestaltete Panels: Weiß auf Warmfläche,
+   1 px #E7DCC9, Radius 16, Innenabstand 16 (< 768) bzw. 24 (≥ 768). Keine Amber-/Grün-/Rotmarkierung. */
+.list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.item {
+  display: flex;
+  min-width: 0;
+}
+.panel {
+  flex: 1;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #e7dcc9;
+  border-radius: var(--radius-tile, 16px);
+  background: #fff;
+}
+.title {
+  margin: 0;
+  font-family: var(--font-display, var(--font-clash, sans-serif));
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: #17171c;
+}
+.points {
+  display: grid;
+  gap: 16px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.point {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #17171c;
+}
+/* Icon auf die erste Textzeile ausgerichtet (24 px Zeilenhöhe, 16 px Icon). */
+.icon {
+  flex: none;
+  margin-top: 4px;
+  color: #17171c;
+}
+.quelle {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #62626e;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  white-space: nowrap;
+}
+@media (hover: hover) {
+  .quelle:hover {
+    color: #17171c;
+  }
+}
+.quelle:focus-visible {
+  outline: 3px solid #bb7609;
+  outline-offset: 4px;
+}
+@media (min-width: 768px) {
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .panel {
+    padding: 24px;
+  }
+}

@@ -632,3 +632,32 @@ Abweichung **C1** zu § 12: Sichtbare Brotkrumen auf allen indexierten Seiten au
 - **Position:** erste Zeile im Seitenkopf – dunkel in `FunktionsKopf` (Prop `crumbs`, optional `crumbsSchema`), `FunktionenHead` und `PageHero` (Prop `crumbs`); hell in `ArticlePage`, `CalculatorPage` und `LegalShell` (Rechtsseiten: erste Zeile des ersten Inhaltscontainers, Rechtstext unverändert). Abstände: oben 8/16/24 px, zur Eyebrow/H1 16/24/32 px (< 768 / 768–1023 / ≥ 1024).
 - **Ketten für Artikel:** `Start › Ratgeber|Hilfe › {Artikeltitel}` (3 Glieder laut UI-SPEC-Tabelle); die frühere Schema-Zwischenstufe „Kategorie“ entfällt, die Kategorie steht weiter als Eyebrow über der H1.
 - Geprüft durch `tests/breadcrumbs.test.ts` (Ketten aller Sitemap-Pfade, Markup, Schema-Gleichheit) und die Audit-Regel `node scripts/seo-audit.mjs --only=breadcrumbs` (sitewide streng).
+
+### 17.4 Bausteinergänzungen G1–G5 (Plan 08-03, 22.10.2026)
+
+Abweichungen **C2–C5** zu [05]/[07] laut 08-UI-SPEC „Ergänzungen“; alle Bausteine bleiben Server Components ohne Client-JavaScript, Farben, Abstände und Schriftgrößen ausschließlich aus den Tokens der UI-SPEC (keine neue Schriftgröße). Budgets in `components/v2/budgets.ts` (Phase-8-Felder seit 08-02).
+
+**Kaskade:**
+
+1. **frontend-design** (Leitlinie read-only gelesen, nichts kopiert): „Visual structure is information“ – die Panels, Quellenliste und Faktenliste tragen Struktur nur über Linien, Überschriften und Reihenfolge; keine Einzelwort-Hervorhebung, keine Großbuchstaben-Labels, kein „Empfohlen“. Beide Passt-Panels bewusst identisch, damit die Form keine Wertung transportiert.
+2. **ui-ux-pro-max** (ausgeführt am 22.10.2026, lokal):
+   ```
+   py -3.12 -X utf8 c:/Projekte/ai-agent-tools/skills/ui-ux-pro-max/scripts/search.py "saas comparison alternative page pricing" --domain ux
+   py -3.12 -X utf8 c:/Projekte/ai-agent-tools/skills/ui-ux-pro-max/scripts/search.py "comparison table pricing faq" --domain landing
+   ```
+   `ux`: Image Optimization (High) – nicht betroffen (die neuen Bausteine haben keine Bilder); Active State (Medium) – nicht betroffen. `landing`: „Comparison Table + CTA“ – Reihenfolge Kopf → Tabelle → … → CTA übernommen (Vorlage 08-UI-SPEC § 3.1); **Farbstrategie „Highlight your product row (light yellow/green)“ und „Recommend plan / most popular badge“ bewusst überstimmt**: keine Amber/Grün/Rot-Zellen und keine Empfehlungsmarke (D-02, UWG § 6, C5 – Marktübersichten ganz ohne Hervorhebung). „Pricing Page + CTA“: FAQ nach der Tabelle übernommen (C3 `answerMax`).
+3. **21st.dev:** `21st_magic_component_inspiration` („comparison table competitor“, „pricing table answer“) stand in dieser Sitzung **nicht** als Werkzeug zur Verfügung; nichts abgerufen oder behauptet, builder/refiner nicht verwendet.
+4. **Context7:** nicht verfügbar; Ersatz `craftos/node_modules/next/dist/docs`. Keine offenen API-Fragen (nur Server Components, `next/link` unverändert).
+
+| # | Baustein | Zweck | Budget / Regel | Fundstelle |
+|---|---|---|---|---|
+| G1 | `FunktionsKopf` | Kopf ohne Visual (einspaltig, Textspalte ≤ 800 px, Kopf unten 48/64/64 px), Antwortsatz `<p id="antwort" data-answer>` direkt nach der H1 (16/400 < 768, 20/400 ≥ 768, `#F4F4F5`, max. 60ch), Stand-Zeile 14/400 `#BCBCC6` 8 px darunter, Stand → CTA 24 px | `answer` ≤ `TEXT_BUDGET.answer` (300), 1–2 Sätze; `lead` und `answer` gleichzeitig → „FunktionsKopf: lead und answer gleichzeitig gesetzt – nur answer verwenden.“; ohne beides → Fehler; Bestandsköpfe (Visual + Lead ≤ 110) unverändert | `components/funktionen/FunktionsKopf.tsx` (`data-layout="einspaltig"`, `data-stand`) |
+| G2 | `SectionHeader` | Frage-Titel (endet auf „?“) → Lead ist die Antwort mit `data-answer`, `id` an der H2 (§ 17.1) | Frage: `sectionHeader.answerLead` ≤ 300, 1–2 Sätze; sonst ≤ 140 und genau 1 Satz (jetzt technisch erzwungen) | `components/v2/SectionHeader.tsx` |
+| C3 | `FaqList` | `answerMax={300}` auf zentralen Seiten | zusätzlich `faq.answerCentral` ≤ 300; ohne Prop bleibt 600; Markup unverändert | `components/v2/FaqList.tsx` |
+| G3 | `ComparisonTable` | Quellenliste `<ol aria-label="Quellen zur Tabelle">` 16 px unter der Note, nach Anbieter gruppiert, Einträge „{Anbieter}: {Label}, abgerufen am {TT.MM.JJJJ}“ (8 px Abstand, 14/400 ink-500, Links unterstrichen, `rel="nofollow"`, gleicher Tab); Disclaimer-Zeile darunter (`data-disclaimer`) | nur `https://`-Quellen (T-08-07), Abrufdatum ISO; Zellbudget 24 und `CellValue` unverändert; `highlight` optional (Marktübersicht ohne) | `components/v2/ComparisonTable.tsx` |
+| G4 | `FitPanels` (neu) | zwei gleichrangige Panels „Wann {Anbieter} passt“ / „Wann CraftOS passt“ als zwei `article` in einer Liste; ≥ 768 px zwei gleich breite Spalten (24), darunter gestapelt (16); Weiß auf Warmfläche, 1 px `#E7DCC9`, Radius 16, Innenabstand 24/16; h3 20/600; Punkte 16/400 mit `Check` 16 px; Link „Quelle“ 14/400 ink-500 `rel="nofollow"` (sr-only Zusatz mit dem Quellen-Label) | `fitPanel.title` ≤ 40, `fitPanel.point` ≤ 100 und genau 1 Satz, 2–4 Punkte („FitPanels: Panel {titel} hat {n} Punkte – 2 bis 4 erforderlich.“); Quellenpflicht für Panel 1 (Standard, `/gobd` setzt `quellenPflicht={false}`): „FitPanels: Wettbewerberpunkt ‚{text}‘ ohne Quelle – im Datenmodul ergänzen.“ | `components/v2/FitPanels.tsx` |
+| G5 | `FactList` (neu) | Begriff-/Definitionsliste `<dl>` mit je einem `div` pro Paar; Begriff 16/600, Definition 16/400; < 768 px untereinander (4 px), ≥ 768 px zwei Spalten 1 : 2 (Lücke 24); Zeilen 16 px Innenabstand mit 1-px-Linien `#E7DCC9`; optionale Label-Zeile | `factList.term` ≤ 32, `factList.definition` ≤ 200 und höchstens 2 Sätze, 6–12 Einträge („FactList: mindestens 6 Einträge erforderlich – Inhalte in lib/… ergänzen.“) | `components/v2/FactList.tsx` |
+
+**Musterseite:** `/styleguide` zeigt in Block 0 einen `FunktionsKopf` ohne Visual mit Antwort und Stand (ersetzt den bisherigen `PageHero`-Kopf; Brotkrumen weiterhin mit `crumbsSchema={false}`, genau eine H1), im Block ComparisonTable zusätzlich eine Marktübersicht mit Quellen und Disclaimer sowie die neuen Blöcke FitPanels (Warmfläche) und FactList zwischen Badges und FaqList. Vergleichsmuster nutzen ausschließlich neutrale Beispieldaten („Anbieter A/B“, `https://example.com/…`); Werte der FactList kommen aus `lib/site.ts` und dem Produktregister.
+
+**Prüfung:** `tests/funktionskopf.test.ts`, `tests/design-v2-components.test.ts`, `tests/design-v2-budgets.test.ts` (Sammeltest: Startseite, `/app`, `/funktionen` und 22 Detailseiten erfüllen die Antwort-zuerst-Regeln), `tests/styleguide.test.ts`.

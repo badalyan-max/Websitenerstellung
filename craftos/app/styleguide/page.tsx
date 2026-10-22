@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import type { CSSProperties, ReactNode } from "react";
-import { PageHero } from "@/components/ui/PageHero";
+import { FunktionsKopf } from "@/components/funktionen/FunktionsKopf";
 import { BadgeGroup, LicenseBadge, PlatformBadge, PlatformBadges } from "@/components/v2/Badges";
 import { BentoGrid, BentoTile, TileIcon } from "@/components/v2/BentoGrid";
 import { ComparisonTable } from "@/components/v2/ComparisonTable";
 import { CtaBand } from "@/components/v2/CtaBand";
 import { DevicePair } from "@/components/v2/DevicePair";
+import { FactList } from "@/components/v2/FactList";
 import { FaqList } from "@/components/v2/FaqList";
 import { FeatureCard } from "@/components/v2/FeatureCard";
+import { FitPanels } from "@/components/v2/FitPanels";
 import { KeyFacts } from "@/components/v2/KeyFacts";
 import { MediaFigure } from "@/components/v2/MediaFigure";
 import { Frame, SceneContent } from "@/components/v2/SceneContent";
@@ -19,10 +21,13 @@ import {
   bentoContent,
   comparisonContent,
   ctaContent,
+  factListContent,
   faqContent,
   featureCardContent,
+  fitPanelsContent,
   frameContent,
   keyFactsContent,
+  marketContent,
   mediaContent,
   pageIntro,
   radii,
@@ -97,11 +102,15 @@ export default function StyleguidePage() {
     <>
       {/* Block 0 */}
       <div data-block="Designbausteine v2">
-        {/* Brotkrumen nur als Muster: noindex-Seite ohne JSON-LD (08-UI-SPEC § 1, schema={false}) */}
-        <PageHero
+        {/* Kopf ohne Visual mit Antwort und Stand (08-UI-SPEC G1); Brotkrumen nur als Muster ohne JSON-LD (§ 1) */}
+        <FunktionsKopf
+          id="styleguide-titel"
           eyebrow={pageIntro.eyebrow}
-          title={pageIntro.title}
-          intro={pageIntro.intro}
+          h1={pageIntro.title}
+          keyword={pageIntro.keyword}
+          answer={pageIntro.answer}
+          stand={pageIntro.stand}
+          secondary={pageIntro.secondary}
           crumbs={[
             { name: "Start", path: "/" },
             { name: "Designbausteine", path: "/styleguide" },
@@ -299,6 +308,10 @@ export default function StyleguidePage() {
           rows={comparisonContent.rows}
           note={comparisonContent.note}
         />
+        <div className="mt-12">
+          {/* Marktübersicht ohne Hervorhebung, mit Quellen und Disclaimer (08-UI-SPEC G3, C5) */}
+          <ComparisonTable {...marketContent} />
+        </div>
       </Block>
 
       {/* Block 9 */}
@@ -327,6 +340,15 @@ export default function StyleguidePage() {
             />
           </div>
         </DarkPanel>
+      </Block>
+
+      {/* Phase 8: FitPanels (G4) auf Warmfläche, FactList (G5) */}
+      <Block name="FitPanels" surface="warm">
+        <FitPanels label={fitPanelsContent.label} panels={fitPanelsContent.panels} />
+      </Block>
+
+      <Block name="FactList">
+        <FactList items={factListContent.items} note={factListContent.note} />
       </Block>
 
       {/* Block 10 */}

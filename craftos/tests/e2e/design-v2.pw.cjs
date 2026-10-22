@@ -10,7 +10,7 @@ const AxeBuilder = require('@axe-core/playwright').default
 const WIDTHS = [360, 390, 768, 1024, 1440]
 const BLOCKS = [
   'Designbausteine v2', 'Tokens', 'SectionHeader', 'BentoGrid', 'StepFlow', 'KeyFacts', 'FeatureCard',
-  'Geräterahmen', 'ComparisonTable', 'Badges', 'FaqList', 'MediaFigure', 'Videoplayer', 'CtaBand',
+  'Geräterahmen', 'ComparisonTable', 'Badges', 'FitPanels', 'FactList', 'FaqList', 'MediaFigure', 'Videoplayer', 'CtaBand',
 ]
 const LABELS = ['Vereinfachte Darstellung mit Beispieldaten', 'Darstellung, KI-gestaltet']
 const BUDGET_ROUTES = ['/', '/funktionen', '/app', '/gewerke', '/preise', '/vergleich', '/funktionen/angebote', '/funktionen/mahnwesen', '/funktionen/terminplanung', '/styleguide']
@@ -154,7 +154,12 @@ test.describe('reduzierte Bewegung', () => {
       await expect(page.locator('[data-block="StepFlow"] ol > li')).toHaveCount(12)
       await expect(page.locator('[data-block="KeyFacts"] dd')).toHaveCount(4)
       await expect(page.locator('[data-block="FaqList"] summary')).toHaveCount(3)
-      await expect(page.locator('[data-block="ComparisonTable"] table')).toBeVisible()
+      // 08-03: zweite Tabelle (Marktübersicht mit Quellenliste, G3); FitPanels (G4) und FactList (G5)
+      await expect(page.locator('[data-block="ComparisonTable"] table')).toHaveCount(2)
+      for (const table of await page.locator('[data-block="ComparisonTable"] table').all()) await expect(table).toBeVisible()
+      await expect(page.locator('[data-block="ComparisonTable"] ol[aria-label="Quellen zur Tabelle"] > li')).toHaveCount(3)
+      await expect(page.locator('[data-block="FitPanels"] article')).toHaveCount(2)
+      await expect(page.locator('[data-block="FactList"] dt')).toHaveCount(6)
       await expect(page.locator('[data-block="CtaBand"] a.v2-btn-cta')).toBeVisible()
     } finally { await context.close() }
   })

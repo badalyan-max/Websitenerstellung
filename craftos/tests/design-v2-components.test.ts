@@ -635,7 +635,7 @@ describe("ComparisonTable mit Quellen und Disclaimer (08-UI-SPEC G3, C5)", () =>
   });
 
   it("jeder Quellenlink rel=nofollow, gleicher Tab, Linktext = Label", () => {
-    const links = [...html.matchAll(/<a[^>]*>[\s\S]*?<\/a>/g)].map((m) => m[0]);
+    const links = [...html.matchAll(/<a\s[^>]*>[\s\S]*?<\/a>/g)].map((m) => m[0]);
     expect(links).toHaveLength(3);
     for (const link of links) {
       expect(link).toMatch(/rel="nofollow"/);
@@ -707,7 +707,7 @@ describe("FitPanels (08-UI-SPEC G4, § 3.5)", () => {
   });
 
   it("Quellenlinks „Quelle“ mit rel=nofollow, gleicher Tab; Icons dekorativ", () => {
-    const links = [...html.matchAll(/<a[^>]*>[\s\S]*?<\/a>/g)].map((m) => m[0]);
+    const links = [...html.matchAll(/<a\s[^>]*>[\s\S]*?<\/a>/g)].map((m) => m[0]);
     expect(links).toHaveLength(2);
     for (const link of links) {
       expect(link).toMatch(/rel="nofollow"/);
