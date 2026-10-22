@@ -16,8 +16,10 @@ import { zielwerte } from "@/lib/seo-meta";
 import { annualSavingPercent, site, tarife, vertrag } from "@/lib/site";
 import {
   alterWarnung,
+  craftnote,
   craftosRechenbeispiel,
   monatAusJahr,
+  plancraft,
   pruefeText,
   pruefeWettbewerber,
   quellenFuer,
@@ -32,6 +34,8 @@ import type {
   Kontext,
   Seitenmodul,
 } from "./types";
+import { craftnoteSeite } from "./craftnote";
+import { plancraftSeite } from "./plancraft";
 
 const cents = (betrag: number) => Math.round(betrag * 100);
 const euroCent = (c: number) => euro(c / 100);
@@ -275,7 +279,10 @@ export function alternativeAusModul(w: Wettbewerber, seite: Seitenmodul, path: s
 }
 
 /** Registrierte Alternativen-Seiten: Datenmodul, Seitenmodul und Pfad (Keyword-Map). */
-const SEITEN: Partial<Record<WettbewerberSlug, { w: Wettbewerber; modul: Seitenmodul; path: string }>> = {};
+const SEITEN: Partial<Record<WettbewerberSlug, { w: Wettbewerber; modul: Seitenmodul; path: string }>> = {
+  plancraft: { w: plancraft, modul: plancraftSeite, path: "/vergleich/plancraft-alternative" },
+  craftnote: { w: craftnote, modul: craftnoteSeite, path: "/vergleich/craftnote-alternative" },
+};
 
 /** Alternativen-Seite eines Wettbewerbers, geprüft (Vorlage UI-SPEC § 3.1). */
 export function baueAlternative(slug: WettbewerberSlug): AlternativeInhalt {

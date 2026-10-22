@@ -3951,7 +3951,7 @@
   },
   {
     "path": "/vergleich/plancraft-alternative",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 8,
     "primary": {
       "keyword": "plancraft alternative",
@@ -3979,7 +3979,7 @@
   },
   {
     "path": "/vergleich/craftnote-alternative",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 8,
     "primary": {
       "keyword": "craftnote alternative",
