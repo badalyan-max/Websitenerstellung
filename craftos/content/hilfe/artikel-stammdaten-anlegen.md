@@ -41,6 +41,6 @@ Bei einer Pflichtfeldmeldung prüfen Sie insbesondere Name, Einheit und VK-Preis
 
 Ändern Sie Einheiten bestehender Artikel nicht beiläufig, wenn bereits Bestände oder Dokumente damit verknüpft sind. Prüfen Sie den Zusammenhang, bevor alte und neue Mengen unverständlich werden.
 
-Für einen Import verwenden Sie nur tatsächlich unterstützte Formate; eine pauschale DATANORM-v5-Unterstützung wird hier nicht vorausgesetzt.
+Kataloge Ihres Großhändlers lesen Sie in DATANORM 4 oder DATANORM 5 ein.
 
 Weiter geht es mit [Wareneingang buchen](/hilfe/wareneingang-buchen); [Positionen verwenden](/hilfe/angebotspositionen-leistungsvorlagen) erklärt die Übernahme in Angebote.
