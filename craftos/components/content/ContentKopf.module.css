@@ -1,0 +1,105 @@
+/* Heller Seitenkopf für Artikel, Übersichten und Kategorien – 09-UI-SPEC G8, § 2.1 (H2, H5).
+   Warme Fläche, einspaltig, Textspalte max. 800 px; kein Amber, kein CTA, keine Animation.
+   Abstände: oben 8/16/24 → Brotkrumen (44) → 16/24/32 → Eyebrow → 24 → H1 → 16 → Antwort → 16 → Metazeile → 16 →
+   Plattformen; unten 48/64/64 (< 768 / 768–1023 / ≥ 1024). */
+.kopf {
+  position: relative;
+  padding-block: 8px 48px;
+  background: #f7f3eb;
+  color: #17171c;
+}
+.crumbs {
+  position: relative;
+  margin-bottom: 16px;
+}
+.inner {
+  position: relative;
+}
+.inner > * {
+  max-width: 800px;
+}
+.inner .eyebrow {
+  margin: 0 0 24px;
+  color: #99600b;
+}
+
+/* H1: Display-Stufe, unter 400 px 28 px; Silbentrennung statt Kopfwort-Span (H5, Typography-Regeln). */
+.title {
+  margin: 0;
+  font-family: var(--font-display, var(--font-clash, sans-serif));
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphenate-limit-chars: 10 4 4;
+  overflow-wrap: break-word;
+  color: #17171c;
+}
+
+/* Antwortsatz (#antwort): 16/400 < 768, 20/400 ≥ 768, #17171C, max. 60ch, 16 px unter der H1. */
+.answer,
+.lead {
+  margin: 16px 0 0;
+  max-width: 60ch;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-wrap: pretty;
+  color: #17171c;
+}
+
+/* Metazeile: Liste ohne Trennzeichen, 14/400 #62626E, Lücke 16 (Zeile 4) – 16 px unter der Antwort. */
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+  color: #62626e;
+}
+.stand {
+  margin: 16px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+  color: #62626e;
+}
+.platforms {
+  margin-top: 16px;
+}
+
+@media (min-width: 400px) {
+  .title {
+    font-size: clamp(32px, 4vw, 48px);
+  }
+}
+@media (min-width: 768px) {
+  .kopf {
+    padding-block: 16px 64px;
+  }
+  .crumbs {
+    margin-bottom: 24px;
+  }
+  .answer,
+  .lead {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+}
+@media (min-width: 1024px) {
+  .kopf {
+    padding-block: 24px 64px;
+  }
+  .crumbs {
+    margin-bottom: 32px;
+  }
+}

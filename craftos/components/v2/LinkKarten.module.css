@@ -1,0 +1,133 @@
+/* LinkKarten – 09-UI-SPEC G9. Flach: kein Schatten, keine Skalierung, keine Pfeilglyphe.
+   Raster 1 / 2 / columns Spalten (< 768 / 768–1023 / ≥ 1024), Lücke 16 / 24 / 24; Karten einer Zeile gleich hoch,
+   unvollständige letzte Zeile linksbündig. Fläche der Karte = Gegenfläche zum Abschnitt (data-surface). */
+.raster {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.eintrag {
+  display: flex;
+  min-width: 0;
+}
+
+.karte {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #e7dcc9;
+  border-radius: var(--radius-tile, 16px);
+  transition: border-color 0.15s ease;
+}
+.raster[data-surface="white"] .karte {
+  background: #fff;
+}
+.raster[data-surface="warm"] .karte {
+  background: #f7f3eb;
+}
+.karte:focus-within {
+  outline: 3px solid #bb7609;
+  outline-offset: 4px;
+}
+
+/* Icon → Label/Titel 16 px. GewerkIcon 48 × 48 ohne Feld; Lucide 24 px im Icon-Feld 48 × 48 (Radius 12). */
+.icon {
+  display: inline-flex;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+}
+.iconFeld {
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  background: #ffefcc;
+  color: #784b10;
+}
+
+.label {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #784b10;
+}
+.titel {
+  margin: 0;
+  font-family: var(--font-display, var(--font-clash, sans-serif));
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  overflow-wrap: break-word;
+  color: #17171c;
+}
+.link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: transparent;
+  text-underline-offset: 5px;
+  transition: text-decoration-color 0.15s ease;
+}
+/* Gestreckter Klickbereich: ein Tabstopp je Karte, die ganze Karte führt zum Ziel. */
+.link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+.link:focus-visible {
+  outline: none;
+}
+.text {
+  margin: 8px 0 0;
+  max-width: 45ch;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #62626e;
+}
+.meta {
+  margin: 16px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+  color: #62626e;
+}
+
+@media (hover: hover) {
+  .karte:hover {
+    border-color: #99600b;
+  }
+  .karte:hover .link {
+    text-decoration-color: currentColor;
+  }
+}
+
+@media (min-width: 768px) {
+  .raster {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .karte {
+    padding: 24px;
+  }
+}
+@media (min-width: 1024px) {
+  .raster[data-columns="3"] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

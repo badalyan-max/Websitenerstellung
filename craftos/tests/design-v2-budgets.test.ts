@@ -23,6 +23,8 @@ import { funktionen } from "@/lib/funktionen";
 import { getFunktionsdetail } from "@/lib/funktionsdetails";
 import { baueAlternative } from "@/lib/seiten/alternativen";
 import * as content from "@/lib/styleguide-content";
+import { l1Treffer, l1Woerter } from "@/lib/leitlinie";
+import leitlinieL1 from "@/lib/leitlinie-l1.json";
 
 type Check = [field: string, value: string | undefined, max: number];
 
@@ -552,5 +554,74 @@ describe("Kleine Betriebe im Budget (08-11)", () => {
     expect(kb.schritte).toHaveLength(4);
     expect(kb.faq).toHaveLength(4);
     expect(t.columns.some((c) => c.highlight)).toBe(false);
+  });
+});
+
+describe("Phase 9 (09-UI-SPEC G8–G10)", () => {
+  it("ergänzt LinkKarten-, Gewerke- und Artikelbudgets samt Mengen additiv", () => {
+    expect(TEXT_BUDGET.linkKarte).toEqual({ label: 24, title: 100, text: 160, meta: 32 });
+    expect(TEXT_BUDGET.gewerk).toEqual({ teaser: 100, exampleTitle: 40, example: 200 });
+    expect(TEXT_BUDGET.artikel).toEqual({ h1: 100, heading: 80, step: 160 });
+    expect(TEXT_BUDGET.count.linkKarten).toEqual({ min: 1, max: 60 });
+    expect(TEXT_BUDGET.count.gewerkSteps).toEqual({ min: 4, max: 5 });
+    expect(TEXT_BUDGET.count.gewerkFunktionen).toEqual({ min: 4, max: 6 });
+    expect(TEXT_BUDGET.count.gewerkFaq).toEqual({ min: 3, max: 4 });
+    expect(TEXT_BUDGET.count.gewerkArtikel).toEqual({ min: 2, max: 3 });
+    expect(TEXT_BUDGET.count.artikelSchritte).toEqual({ min: 2, max: 10 });
+    expect(TEXT_BUDGET.count.artikelFunktionen).toEqual({ min: 1, max: 3 });
+    expect(TEXT_BUDGET.count.artikelVerwandt).toEqual({ min: 1, max: 4 });
+  });
+
+  it("Bestand unverändert (Phasen 5–8)", () => {
+    expect(TEXT_BUDGET.answer).toBe(300);
+    expect(TEXT_BUDGET.pageHead).toEqual({ lead: 140, kopfLead: 110, h1: 60, eyebrow: 24 });
+    expect(TEXT_BUDGET.step).toEqual({ title: 28, text: 80 });
+    expect(TEXT_BUDGET.faq).toEqual({ question: 90, firstSentence: 300, answer: 600, answerCentral: 300 });
+    expect(TEXT_BUDGET.count.steps).toEqual({ min: 3, max: 6 });
+    expect(TEXT_BUDGET.count.faq).toEqual({ min: 3, max: 8 });
+    expect(TEXT_BUDGET.count.related).toEqual({ min: 2, max: 3 });
+    expect(TEXT_BUDGET.count.crumbs).toEqual({ min: 2, max: 4 });
+  });
+
+  it("Fehlertexte der neuen Felder folgen dem UI-SPEC", () => {
+    expect(() => assertTextBudget("linkKarte.title", "x".repeat(101), TEXT_BUDGET.linkKarte.title)).toThrow(
+      "Textbudget überschritten: linkKarte.title hat 101 von 100 Zeichen – Satz kürzen.",
+    );
+    expect(() => assertCount("LinkKarten", 0, TEXT_BUDGET.count.linkKarten, "Einträge")).toThrow(
+      "LinkKarten: mindestens 1 Einträge erforderlich – Inhalte in lib/… ergänzen.",
+    );
+    expect(() => assertTextBudget("artikel.h1", "x".repeat(101), TEXT_BUDGET.artikel.h1)).toThrow(
+      "Textbudget überschritten: artikel.h1 hat 101 von 100 Zeichen – Satz kürzen.",
+    );
+  });
+});
+
+describe("Leitlinie L-1 (09-UI-SPEC § 5, lib/leitlinie-l1.json)", () => {
+  it("Wortliste, Altbegriffe und abschließende Ausnahmen mit Begründung", () => {
+    expect(leitlinieL1.woerter).toEqual(
+      expect.arrayContaining(["nicht unterstützt", "DATANORM v5", "Onlinezahlung", "Bald verfügbar", "ersetzt keinen"]),
+    );
+    expect(leitlinieL1.woerter).toHaveLength(19);
+    expect(leitlinieL1.altbegriffe).toEqual(expect.arrayContaining(["Neue Phase", "Admin-Lizenz", "Büro-Lizenz"]));
+    expect(leitlinieL1.ausnahmen).toHaveLength(3);
+    for (const a of leitlinieL1.ausnahmen) expect(a.begruendung.length, a.id).toBeGreaterThan(20);
+    expect(l1Woerter).toEqual([...leitlinieL1.woerter, ...leitlinieL1.altbegriffe]);
+  });
+
+  it("l1Treffer findet jedes Wort und jeden Altbegriff, ohne Groß-/Kleinschreibung", () => {
+    for (const wort of l1Woerter) {
+      // „keine Onlinezahlung“ enthält zusätzlich „Onlinezahlung“ – daher toContain statt toEqual.
+      expect(l1Treffer(`Vorher ${wort.toUpperCase()} danach.`), wort).toContain(wort);
+      expect(l1Treffer(`(${wort.toLowerCase()})`), wort).toContain(wort);
+    }
+  });
+
+  it("Wortgrenzen: „Onlinezahlung“ wird gefunden, „Überweisung“ und Wortteile nicht", () => {
+    expect(l1Treffer("Im Portal gibt es Onlinezahlung.")).toEqual(["Onlinezahlung"]);
+    expect(l1Treffer("Der Kunde zahlt per Überweisung auf das Konto.")).toEqual([]);
+    expect(l1Treffer("Onlinezahlungen")).toEqual([]);
+    expect(l1Treffer("DATANORM v50")).toEqual([]);
+    expect(l1Treffer("Über „Teamleitung (Zeiten für andere)“ buchen.")).toEqual(["Teamleitung (Zeiten für andere)"]);
+    expect(l1Treffer("Das ist nicht unterstützt und Bald verfügbar.")).toEqual(["nicht unterstützt", "Bald verfügbar"]);
   });
 });

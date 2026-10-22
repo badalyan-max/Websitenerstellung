@@ -412,3 +412,21 @@ describe("Phase 8 – Zielwerte sitewide", () => {
     expect(keywordMap.find((k) => k.path === "/impressum")?.target?.description).not.toMatch(/§|DDG|TMG/);
   });
 });
+
+/**
+ * Phase 9 (09-UI-SPEC § 1.3, § 8): Gewerke-H1 stehen im FunktionsKopf mit Kopfwort-Span und bleiben ≤ 60
+ * (pageHead.h1). Drei H1 hat das Fundament (09-01 Aufgabe 1, F-A1) gekürzt; Titel und Description unverändert.
+ */
+describe("Phase 9 – Zielwerte", () => {
+  it("Gewerke-H1 ≤ 60 (09-UI-SPEC § 1.3)", () => {
+    const gewerke = keywordMap.filter((k) => k.path === "/gewerke" || k.path.startsWith("/gewerke/"));
+    expect(gewerke).toHaveLength(13);
+    for (const k of gewerke) expect(Array.from(k.target?.h1 ?? "").length, `${k.path}: ${k.target?.h1}`).toBeLessThanOrEqual(60);
+    const neu: Record<string, string> = {
+      "/gewerke": "Branchensoftware fürs Handwerk: Software für zwölf Gewerke",
+      "/gewerke/bauunternehmen": "Software für Bauunternehmen: vom LV bis zur Schlussrechnung",
+      "/gewerke/allrounder": "Hausmeister-Software: vom kleinen Einsatz bis zur Rechnung",
+    };
+    for (const [p, h1] of Object.entries(neu)) expect(keywordMap.find((k) => k.path === p)?.target?.h1, p).toBe(h1);
+  });
+});
