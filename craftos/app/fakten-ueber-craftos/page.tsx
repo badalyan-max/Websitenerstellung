@@ -115,7 +115,7 @@ export default function FaktenPage() {
       <JsonLd
         data={webPageSchema({
           path: FAKTEN_PFAD,
-          name: z.h1,
+          name: z.titleOhneMarke,
           description: z.description,
           about: { "@id": site.url + "/#organization" },
         })}

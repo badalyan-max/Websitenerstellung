@@ -429,6 +429,8 @@ describe("gerendert", () => {
     const webPage = vomTyp("WebPage");
     expect(webPage).toHaveLength(1);
     expect(webPage[0].url).toBe(`${site.url}/preise`);
+    // IN-02: WebPage.name = Title ohne Marke (wie og:title).
+    expect(webPage[0].name).toBe(zielwerte("/preise").titleOhneMarke);
     for (const verboten of ["Product", "Review", "AggregateRating"]) expect(html).not.toContain(`"@type":"${verboten}"`);
   });
 

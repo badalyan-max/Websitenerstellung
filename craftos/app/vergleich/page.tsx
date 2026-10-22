@@ -101,7 +101,7 @@ export default function VergleichPage() {
         <CtaBand title={v.cta.title} text={v.cta.text} secondary={v.cta.secondary} />
       </div>
 
-      <JsonLd data={webPageSchema({ path: VERGLEICH_PFAD, name: z.h1, description: z.description })} />
+      <JsonLd data={webPageSchema({ path: VERGLEICH_PFAD, name: z.titleOhneMarke, description: z.description })} />
     </>
   );
 }

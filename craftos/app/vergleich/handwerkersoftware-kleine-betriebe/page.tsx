@@ -116,7 +116,7 @@ export default function KleineBetriebePage() {
         <CtaBand title={kb.cta.title} text={kb.cta.text} secondary={kb.cta.secondary} />
       </div>
 
-      <JsonLd data={webPageSchema({ path: KLEINE_BETRIEBE_PFAD, name: z.h1, description: z.description })} />
+      <JsonLd data={webPageSchema({ path: KLEINE_BETRIEBE_PFAD, name: z.titleOhneMarke, description: z.description })} />
     </>
   );
 }

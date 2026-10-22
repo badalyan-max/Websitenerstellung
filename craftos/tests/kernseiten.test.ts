@@ -520,7 +520,8 @@ describe("gerendert", () => {
         const web = typ("WebPage");
         expect(web).toHaveLength(1);
         expect(web[0].url).toBe(site.url + seite.pfad);
-        expect(web[0].name).toBe(zielwerte(seite.pfad).h1);
+        // IN-02: WebPage.name = Title ohne Marke (wie og:title, Funktions- und Alternativen-Seiten).
+        expect(web[0].name).toBe(zielwerte(seite.pfad).titleOhneMarke);
       });
 
       it("keine Altbausteine: kein PageHero, kein TrialCta, kein ui/Faq; CTA auf site.ctaUrl", async () => {

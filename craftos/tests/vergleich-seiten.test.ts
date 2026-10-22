@@ -9,6 +9,7 @@ import { renderToString } from "react-dom/server";
 import { AlternativePage } from "@/components/vergleich/AlternativePage";
 import { TEXT_BUDGET, charCount } from "@/components/v2/budgets";
 import { germanDate, euro } from "@/lib/format";
+import { zielwerte } from "@/lib/seo-meta";
 import { alternativeAusModul, baueAlternative } from "@/lib/seiten/alternativen";
 import type { AlternativeInhalt, Seitenmodul } from "@/lib/seiten/alternativen/types";
 import { annualSavingPercent, site, tarife } from "@/lib/site";
@@ -1206,6 +1207,8 @@ describe("/vergleich gerendert", () => {
     expect(sichtbar).toEqual(vergleich.faq.map((f) => f.q));
     expect((faq[0].mainEntity as { name: string }[]).map((e) => e.name)).toEqual(sichtbar);
     expect(blocks.filter((b) => b["@type"] === "WebPage")).toHaveLength(1);
+    // IN-02: WebPage.name = Title ohne Marke (wie og:title und die Alternativen-Seiten).
+    expect(blocks.find((b) => b["@type"] === "WebPage")!.name).toBe(zielwerte("/vergleich").titleOhneMarke);
   });
 
   it("Altbestände entfernt: keine Logos, keine Logo-Komponente, kein altes CSS-Modul, keine alten Vergleichsdaten", () => {
@@ -1536,6 +1539,8 @@ describe("kleine Betriebe gerendert", () => {
     expect(sichtbar).toEqual(kb.faq.map((f) => f.q));
     expect((faq[0].mainEntity as { name: string }[]).map((e) => e.name)).toEqual(sichtbar);
     expect(blocks.filter((b) => b["@type"] === "WebPage")).toHaveLength(1);
+    // IN-02: WebPage.name = Title ohne Marke (wie og:title und die Alternativen-Seiten).
+    expect(blocks.find((b) => b["@type"] === "WebPage")!.name).toBe(zielwerte(KB_PFAD).titleOhneMarke);
   });
 
   it("Route mit eigenem OG-Bild; Seite ohne Sammelgraph, Bild und PageHero", () => {

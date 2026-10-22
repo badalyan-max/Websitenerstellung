@@ -131,7 +131,7 @@ export default function PreisePage() {
         <CtaBand title={s.cta.title} text={s.cta.text} secondary={s.cta.secondary} />
       </div>
 
-      <JsonLd data={webPageSchema({ path: "/preise", name: z.h1, description: z.description })} />
+      <JsonLd data={webPageSchema({ path: "/preise", name: z.titleOhneMarke, description: z.description })} />
     </>
   );
 }

@@ -101,7 +101,7 @@ export default function CraftAiPage() {
         <CtaBand title={CTA_DETAIL.title} text={CTA_DETAIL.text} secondary={CTA_DETAIL.secondary} />
       </div>
 
-      <JsonLd data={webPageSchema({ path: CRAFT_AI_PFAD, name: z.h1, description: z.description })} />
+      <JsonLd data={webPageSchema({ path: CRAFT_AI_PFAD, name: z.titleOhneMarke, description: z.description })} />
     </>
   );
 }
