@@ -12,13 +12,13 @@ export const productBasis = {
   checkedAt: "2026-10-22",
   web: {
     ref: "origin/release",
-    tag: "v4.0.0-test.240",
-    commit: "1e9c8bc288dca915e967d3f2050372ab2e673029",
+    tag: "v4.0.0-test.244",
+    commit: "cd419852b5f47de1f09ebfa99816882fb96c6605",
   },
   mobile: {
     ref: "origin/release",
-    tag: "mobile-v1.0.0-test.95",
-    commit: "6cac36694c4bfc77678ceead023fec70f1022331",
+    tag: "mobile-v1.0.0-test.95-2-g837aab4f",
+    commit: "837aab4f5c1d3cd5411f41e1d720b2aa274e2cac",
   },
 } as const;
 
