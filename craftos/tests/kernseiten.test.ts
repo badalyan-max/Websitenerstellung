@@ -204,7 +204,7 @@ describe("Fakten über CraftOS (§ 5.2, D-25)", () => {
 describe("Craft AI (§ 5.3)", () => {
   it("Abschnittsfolge, Flächen und Kopf", () => {
     expect(craftAi.CRAFT_AI_PFAD).toBe("/craft-ai");
-    expect(craftAi.CRAFT_AI_SECTION_IDS).toEqual(["kopf", "so-arbeitet-craft-ai", "kosten", "grenzen", "faq", "cta"]);
+    expect(craftAi.CRAFT_AI_SECTION_IDS).toEqual(["kopf", "so-arbeitet-craft-ai", "kosten", "wer-entscheidet", "faq", "cta"]);
     expect(craftAi.CRAFT_AI_SECTION_IDS.map((id) => craftAi.CRAFT_AI_SURFACES[id])).toEqual([
       "dark",
       "white",
@@ -226,10 +226,14 @@ describe("Craft AI (§ 5.3)", () => {
     const s = craftAi.craftAiSections;
     expect(s["so-arbeitet-craft-ai"].title).toBe("Wie arbeitet Craft AI?");
     expect(s.kosten.title).toBe("Was kostet Craft AI?");
-    expect(s.grenzen.title).toBe("Was übernimmt Craft AI nicht?");
+    // Inhaber 22.10.2026: nur Unterstütztes – Zuständigkeit positiv statt „Was übernimmt Craft AI nicht?“.
+    expect(s["wer-entscheidet"].title).toBe("Wer entscheidet bei Craft AI?");
     expect(s.faq.title).toBe("Häufige Fragen zu Craft AI");
     expect(abschnittsProbleme(s)).toEqual([]);
-    expect(s.grenzen.lead.startsWith("Craft AI bucht nicht selbstständig")).toBe(true);
+    // Überclaim-Schutz bleibt: Sie prüfen jedes Ergebnis und bestätigen jede Übernahme selbst.
+    expect(s["wer-entscheidet"].lead.startsWith("Sie entscheiden:")).toBe(true);
+    expect(s["wer-entscheidet"].lead).toContain("prüfen");
+    expect(s["wer-entscheidet"].lead).toContain("bestätigen");
   });
 
   it("Ablauf: drei Schritte bis zur Bestätigung", () => {
@@ -254,12 +258,13 @@ describe("Craft AI (§ 5.3)", () => {
     expect(craftAi.craftAiKeyFacts.note).toContain(germanDate(site.checkedAt));
   });
 
-  it("Grenzen: drei Kacheln, mindestens zwei Größen, kein autonomes Verbuchen als Zusage", () => {
+  it("Zuständigkeit: drei Kacheln, mindestens zwei Größen, Buchungen bestätigen Sie", () => {
     expect(craftAi.craftAiGrenzen.map((k) => k.title)).toEqual([
       "Mengen und Preise prüfen",
-      "Kein autonomes Verbuchen",
+      "Sie bestätigen jede Buchung",
       "Zugriff nach Rolle",
     ]);
+    expect(craftAi.craftAiGrenzen[1].text).toBe("Craft AI macht Vorschläge; Sie prüfen und bestätigen jede Buchung.");
     expect(new Set(craftAi.craftAiGrenzen.map((k) => k.size)).size).toBeGreaterThanOrEqual(2);
   });
 
@@ -360,7 +365,7 @@ describe("GoBD (§ 5.4)", () => {
 
 describe("Wortregeln und Literale (T-08-32)", () => {
   // Nur Fließtexte (mit Leerzeichen); Abschnitts-ids wie „zertifizierung“ sind keine Aussagen.
-  const alle = [fakten, craftAi, gobd].flatMap((m) => texte(m as Record<string, unknown>)).filter((t) => /s/.test(t));
+  const alle = [fakten, craftAi, gobd].flatMap((m) => texte(m as Record<string, unknown>)).filter((t) => /\s/.test(t));
 
   it("keine positive Zertifizierungsbehauptung", () => {
     const funde = alle.filter((t) => /zertifizier/i.test(t) && !t.endsWith("?") && !/\b(nicht|kein\w*|Nein)\b/i.test(t));
@@ -372,8 +377,20 @@ describe("Wortregeln und Literale (T-08-32)", () => {
     expect(funde).toEqual([]);
   });
 
+  // Inhaber 22.10.2026: „Nur, was unterstützt wird, nicht, was nicht unterstützt wird.“ Craft AI und das
+  // KI-Faktum beschreiben die Zuständigkeit positiv (Sie prüfen und bestätigen); die GoBD-Zertifizierungsfrage
+  // bleibt als gebotener Überclaim-Schutz bewusst verneint.
+  it("nur Unterstütztes: Craft AI und KI-Faktum positiv, ohne Verneinung und ohne „autonom“", () => {
+    const ki = fakten.produktfakten.find((i) => i.term === "KI")!.definition;
+    expect(ki).toBe("Craft AI macht Vorschläge und bereitet unterstützte Entwürfe vor; Sie prüfen und bestätigen jede Übernahme.");
+    const craftAiTexte = texte(craftAi as Record<string, unknown>).filter((t) => /\s/.test(t));
+    expect([...craftAiTexte, ki].filter((t) => /\b(nicht|kein\w*|Nein)\b/i.test(t))).toEqual([]);
+    expect(alle.filter((t) => /autonom/i.test(t))).toEqual([]);
+  });
+
   it("keine Negativlisten: DATANORM nur als „DATANORM 4 und 5“, kein „nicht zugesagt“ (Inhabervorgabe 22.10.2026)", () => {
-    expect(alle.filter((t) => /DATANORM/.test(t) && !t.includes("DATANORM 4 und 5"))).toEqual([]);
+    // Ausnahme: der FactList-Begriff „GAEB und DATANORM“ ist eine Überschrift ohne Versionsaussage.
+    expect(alle.filter((t) => /DATANORM/.test(t) && t !== "GAEB und DATANORM" && !t.includes("DATANORM 4 und 5"))).toEqual([]);
     expect(alle.filter((t) => /nicht zugesagt|DATANORM[- ]?v5/i.test(t))).toEqual([]);
   });
 
