@@ -9,20 +9,13 @@ import sitemap from "@/app/sitemap";
 import { keywordMap } from "@/lib/keyword-map";
 import seeds from "@/docs/seo/keyword-seeds.json";
 import manifest from "@/docs/seo/data/kwmap/manifest.json";
+import { norm } from "../scripts/lib/seo-audit-core.mjs";
 
 const ROOT = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 const DATA_DIR = "docs/seo/data/kwmap";
 const LEGAL = new Set(["/agb", "/datenschutz", "/impressum"]);
 const pageCandidates = seeds.pageCandidates as Record<string, string[]>;
 
-const norm = (k: string) =>
-  k
-    .toLowerCase()
-    .replace(/ß/g, "ss")
-    .replace(/ä/g, "ae")
-    .replace(/ö/g, "oe")
-    .replace(/ü/g, "ue")
-    .replace(/[\s-]+/g, "");
 const toPath = (url: string) => new URL(url).pathname.replace(/\/$/, "") || "/";
 
 /**

@@ -67,7 +67,7 @@ function html(f: Fixture = {}) {
   const blocks = (f.ldBlocks ?? [crumbSchema(PREISE_CRUMBS)]).map(ld).join("");
   return `<html><head>${head}</head><body>${nav}<main>${h1s}${f.body ?? ""}</main>${blocks}</body></html>`;
 }
-const OG_OK = { imInManifest: true, bytes: 80 * 1024 };
+const OG_OK: { imInManifest: boolean; bytes: number | null } = { imInManifest: true, bytes: 80 * 1024 };
 const regeln = (v: { regel: string }[]) => v.map((e) => e.regel).sort();
 
 describe("headTags", () => {
@@ -263,6 +263,14 @@ describe("faqFragenSichtbar", () => {
       ld({ "@type": "FAQPage", mainEntity: [{ "@type": "Question", name: "A?" }, { "@type": "Question", name: "B?" }] }) +
       "<details><summary><h3>A?</h3></summary><p>Ja.</p></details>";
     expect(faqFragenSichtbar(h)).toEqual({ fragen: ["A?", "B?"], fehlend: ["B?"] });
+  });
+
+  it("aria-hidden-Symbole in der summary (z. B. „+“) gehören nicht zum Fragetext", () => {
+    const h =
+      ld({ "@type": "FAQPage", mainEntity: [{ "@type": "Question", name: "A?" }] }) +
+      '<details><summary><span>A?</span><span aria-hidden="true">+</span></summary><p>Ja.</p></details>';
+    expect(faqFragenSichtbar(h).fehlend).toEqual([]);
+    expect(answerFirstViolations(h.replace("<p>Ja.</p>", `<p>${x(301)}</p>`))[0].q).toBe("A?");
   });
 });
 

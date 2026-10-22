@@ -9,6 +9,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { findType, headTags, jsonLd, plain } from "./lib/seo-audit-core.mjs";
 
 const origin = (process.env.LIVE_ORIGIN || "https://craftos.eu").replace(/\/$/, "");
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -124,44 +125,6 @@ const target = (route) => {
   if (!entry) throw new Error(`keyword-map.json ohne Eintrag für ${route}`);
   return entry.target;
 };
-
-const decode = (s) =>
-  s
-    .replace(/&quot;/g, '"')
-    .replace(/&#x27;/g, "'")
-    .replace(/&#39;/g, "'")
-    .replace(/&amp;/g, "&");
-const plain = (html) => decode(html.replace(/<[^>]*>/g, " ")).replace(/\s+/g, " ").trim();
-
-function headTags(html) {
-  const title = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
-  const desc = html.match(/<meta[^>]+name="description"[^>]+content="([^"]*)"/i);
-  const h1s = [...html.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/gi)].map((m) => plain(m[1]));
-  return { title: title ? plain(title[1]) : null, description: desc ? decode(desc[1]) : null, h1s };
-}
-
-function jsonLd(html) {
-  const out = [];
-  for (const m of html.matchAll(/<script[^>]+application\/ld\+json[^>]*>([\s\S]*?)<\/script>/g)) {
-    try {
-      out.push(JSON.parse(m[1]));
-    } catch {
-      // Ungültige Blöcke zählen nicht; die Prüfung schlägt dann über fehlende Typen fehl.
-    }
-  }
-  return out;
-}
-
-/** Alle Objekte mit dem gesuchten @type (auch in @graph oder verschachtelt). */
-function findType(node, type, acc = []) {
-  if (Array.isArray(node)) node.forEach((n) => findType(n, type, acc));
-  else if (node && typeof node === "object") {
-    const t = node["@type"];
-    if (t === type || (Array.isArray(t) && t.includes(type))) acc.push(node);
-    Object.values(node).forEach((v) => findType(v, type, acc));
-  }
-  return acc;
-}
 
 async function detailSlugs() {
   const r = await get("/sitemap.xml");
