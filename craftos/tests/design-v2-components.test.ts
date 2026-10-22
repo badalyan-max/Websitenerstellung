@@ -5,7 +5,10 @@ import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { FileCheck2, ScanLine } from "lucide-react";
 import { BentoGrid, BentoTile, TileIcon, type BentoGridProps, type BentoTileProps } from "@/components/v2/BentoGrid";
+import { ComparisonTable } from "@/components/v2/ComparisonTable";
 import { CtaBand } from "@/components/v2/CtaBand";
+import { FactList } from "@/components/v2/FactList";
+import { FitPanels } from "@/components/v2/FitPanels";
 import { FaqList } from "@/components/v2/FaqList";
 import { FeatureList, type FeatureListItem } from "@/components/v2/FeatureList";
 import { StepFlow, type Step } from "@/components/v2/StepFlow";
@@ -580,5 +583,215 @@ describe("FeatureList (E2)", () => {
     const linkRegel = css.match(/\n\.link\s*\{[^}]*\}/)?.[0] ?? "";
     expect(linkRegel).toMatch(/text-decoration:\s*underline/);
     expect(linkRegel).not.toMatch(/transparent/);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Phase 8 (08-UI-SPEC G3–G5): ComparisonTable mit Quellen, FitPanels, FactList
+// ---------------------------------------------------------------------------
+
+const decodeHtml = (v: string) =>
+  v
+    .replace(/<[^>]+>/g, "")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#x27;/g, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const tabelle = {
+  caption: "Marktübersicht mit Beispieldaten",
+  rowHeader: "Anbieter",
+  columns: [
+    { key: "web", label: "Web-App" },
+    { key: "mobil", label: "Mobile-App" },
+  ],
+  rows: [
+    { label: "Anbieter A", cells: { web: true, mobil: "nicht angegeben" } },
+    { label: "Anbieter B", cells: { web: true, mobil: true } },
+  ],
+  note: "Beispieldaten. Angaben ohne Gewähr, Quellen unter der Tabelle.",
+};
+const quellen = [
+  { anbieter: "Anbieter A", label: "Preisseite", url: "https://example.com/a/preise", abgerufenAm: "2026-10-22" },
+  { anbieter: "Anbieter B", label: "Produktseite", url: "https://example.com/b/produkt", abgerufenAm: "2026-10-22" },
+  { anbieter: "Anbieter A", label: "Funktionsübersicht", url: "https://example.com/a/funktionen", abgerufenAm: "2026-10-22" },
+];
+const DISCLAIMER = "Die Nennung der Anbieter dient der Zuordnung; es besteht keine Geschäftsbeziehung.";
+
+describe("ComparisonTable mit Quellen und Disclaimer (08-UI-SPEC G3, C5)", () => {
+  const html = renderToString(createElement(ComparisonTable, { ...tabelle, sources: quellen, disclaimer: DISCLAIMER }));
+
+  it("Quellenliste <ol aria-label=„Quellen zur Tabelle“> nach der Note, nach Anbieter gruppiert, deutsches Datum", () => {
+    expect(count(html, /aria-label="Quellen zur Tabelle"/g)).toBe(1);
+    const ol = html.match(/<ol[^>]*aria-label="Quellen zur Tabelle"[^>]*>([\s\S]*?)<\/ol>/)!;
+    expect(html.indexOf(ol[0])).toBeGreaterThan(html.indexOf(tabelle.note));
+    const eintraege = [...ol[1].matchAll(/<li[^>]*>([\s\S]*?)<\/li>/g)].map((m) => decodeHtml(m[1]));
+    expect(eintraege).toEqual([
+      "Anbieter A: Preisseite, abgerufen am 22.10.2026",
+      "Anbieter A: Funktionsübersicht, abgerufen am 22.10.2026",
+      "Anbieter B: Produktseite, abgerufen am 22.10.2026",
+    ]);
+  });
+
+  it("jeder Quellenlink rel=nofollow, gleicher Tab, Linktext = Label", () => {
+    const links = [...html.matchAll(/<a[^>]*>[\s\S]*?<\/a>/g)].map((m) => m[0]);
+    expect(links).toHaveLength(3);
+    for (const link of links) {
+      expect(link).toMatch(/rel="nofollow"/);
+      expect(link).not.toContain("target=");
+    }
+    expect(links[0]).toMatch(/href="https:\/\/example\.com\/a\/preise"[^>]*>Preisseite<\/a>/);
+  });
+
+  it("Disclaimer steht nach der Quellenliste", () => {
+    expect(html.indexOf(DISCLAIMER)).toBeGreaterThan(html.indexOf('aria-label="Quellen zur Tabelle"'));
+    expect(html).toMatch(/<p[^>]*data-disclaimer=""[^>]*>Die Nennung der Anbieter/);
+  });
+
+  it("ohne highlight keine hervorgehobene Spalte (Marktübersicht)", () => {
+    expect(html).not.toContain('data-highlight="true"');
+  });
+
+  it("Quelle mit http:// wirft", () => {
+    expect(() =>
+      renderToString(createElement(ComparisonTable, { ...tabelle, sources: [{ ...quellen[0], url: "http://example.com/a" }] })),
+    ).toThrow("ComparisonTable: Quelle ‚Preisseite‘ ohne https-Adresse – nur https://-Quellen verlinken.");
+  });
+
+  it("Zelle mit 25 Zeichen wirft wie bisher", () => {
+    const zu = { ...tabelle, rows: [{ label: "Anbieter A", cells: { web: "x".repeat(25), mobil: true } }] };
+    expect(() => renderToString(createElement(ComparisonTable, zu))).toThrow(
+      "Textbudget überschritten: comparison.cell hat 25 von 24 Zeichen – Satz kürzen.",
+    );
+  });
+
+  it("ohne sources und disclaimer unverändertes Markup (keine Liste, kein Disclaimer)", () => {
+    const ohne = renderToString(createElement(ComparisonTable, tabelle));
+    expect(ohne).not.toContain("Quellen zur Tabelle");
+    expect(ohne).not.toContain("data-disclaimer");
+    expect(ohne).not.toContain("<ol");
+    expect(ohne).not.toContain("<a ");
+  });
+});
+
+const wettbewerber = {
+  title: "Wann Anbieter A passt",
+  points: [
+    { text: "Sie planen überwiegend im Büro und brauchen keine Mobile-App.", quelle: { label: "Anbieter A: Produktseite", url: "https://example.com/a" } },
+    { text: "Sie möchten Angebote mit eigenen Vorlagen gestalten.", quelle: { label: "Anbieter A: Vorlagen", url: "https://example.com/a/vorlagen" } },
+  ],
+};
+const craftosPanel = {
+  title: "Wann CraftOS passt",
+  points: [
+    { text: "Sie möchten pro Person abrechnen und Mitarbeitende mit einer App-Lizenz ausstatten." },
+    { text: "Sie möchten Büro und Baustelle mit Web-App und Mobile-App verbinden." },
+  ],
+};
+const fit = (props: Partial<Parameters<typeof FitPanels>[0]> = {}) =>
+  renderToString(createElement(FitPanels, { label: "Für wen passt was", panels: [wettbewerber, craftosPanel], ...props }));
+
+describe("FitPanels (08-UI-SPEC G4, § 3.5)", () => {
+  const html = fit();
+
+  it("zwei article mit h3 in einer Liste, Wettbewerber zuerst, beide gleich gestaltet", () => {
+    expect(html).toMatch(/^<ul[^>]*aria-label="Für wen passt was"/);
+    expect(count(html, /<article\b/g)).toBe(2);
+    const h3 = [...html.matchAll(/<h3[^>]*>([\s\S]*?)<\/h3>/g)].map((m) => decodeHtml(m[1]));
+    expect(h3).toEqual(["Wann Anbieter A passt", "Wann CraftOS passt"]);
+    const klassen = [...html.matchAll(/<article class="([^"]+)"/g)].map((m) => m[1]);
+    expect(klassen).toHaveLength(2);
+    expect(new Set(klassen).size).toBe(1);
+    expect(html).not.toMatch(/Empfohlen/);
+  });
+
+  it("Quellenlinks „Quelle“ mit rel=nofollow, gleicher Tab; Icons dekorativ", () => {
+    const links = [...html.matchAll(/<a[^>]*>[\s\S]*?<\/a>/g)].map((m) => m[0]);
+    expect(links).toHaveLength(2);
+    for (const link of links) {
+      expect(link).toMatch(/rel="nofollow"/);
+      expect(link).not.toContain("target=");
+      expect(decodeHtml(link)).toMatch(/^Quelle/);
+    }
+    expect(html).not.toMatch(/<svg(?![^>]*aria-hidden="true")[^>]*>/);
+  });
+
+  it("Panel mit 1 oder 5 Punkten wirft den Mengenfehler aus dem UI-SPEC", () => {
+    expect(() => fit({ panels: [{ ...wettbewerber, points: wettbewerber.points.slice(0, 1) }, craftosPanel] })).toThrow(
+      "FitPanels: Panel Wann Anbieter A passt hat 1 Punkte – 2 bis 4 erforderlich.",
+    );
+    const fuenf = Array.from({ length: 5 }, (_, i) => ({ text: `Punkt ${i + 1} ist ein Satz.` }));
+    expect(() => fit({ panels: [wettbewerber, { ...craftosPanel, points: fuenf }] })).toThrow(
+      "FitPanels: Panel Wann CraftOS passt hat 5 Punkte – 2 bis 4 erforderlich.",
+    );
+  });
+
+  it("Wettbewerberpunkt ohne Quelle wirft; quellenPflicht={false} erlaubt ihn", () => {
+    const ohneQuelle = { ...wettbewerber, points: [{ text: "Sie planen im Büro." }, wettbewerber.points[1]] };
+    expect(() => fit({ panels: [ohneQuelle, craftosPanel] })).toThrow(
+      "FitPanels: Wettbewerberpunkt ‚Sie planen im Büro.‘ ohne Quelle – im Datenmodul ergänzen.",
+    );
+    expect(() => fit({ panels: [ohneQuelle, craftosPanel], quellenPflicht: false })).not.toThrow();
+  });
+
+  it("Punkt mit zwei Sätzen oder 101 Zeichen wirft; Titel über 40 wirft", () => {
+    const zweiSaetze = { ...craftosPanel, points: [{ text: "Erster Satz. Zweiter Satz." }, craftosPanel.points[1]] };
+    expect(() => fit({ panels: [wettbewerber, zweiSaetze] })).toThrow(
+      "FitPanels: Nutzen für Wann CraftOS passt hat 2 Sätze – genau einen Satz schreiben.",
+    );
+    const zuLang = { ...craftosPanel, points: [{ text: `${"x".repeat(100)}.` }, craftosPanel.points[1]] };
+    expect(() => fit({ panels: [wettbewerber, zuLang] })).toThrow(
+      "Textbudget überschritten: fitPanel.point hat 101 von 100 Zeichen – Satz kürzen.",
+    );
+    expect(() => fit({ panels: [{ ...wettbewerber, title: "x".repeat(41) }, craftosPanel] })).toThrow(
+      "Textbudget überschritten: fitPanel.title hat 41 von 40 Zeichen – Satz kürzen.",
+    );
+  });
+
+  it("Quelle ohne https wirft", () => {
+    const http = {
+      ...wettbewerber,
+      points: [{ text: "Sie planen im Büro.", quelle: { label: "A", url: "http://example.com" } }, wettbewerber.points[1]],
+    };
+    expect(() => fit({ panels: [http, craftosPanel] })).toThrow(
+      "FitPanels: Quelle ‚A‘ ohne https-Adresse – nur https://-Quellen verlinken.",
+    );
+  });
+});
+
+const fakten = Array.from({ length: 6 }, (_, i) => ({
+  term: `Begriff ${i + 1}`,
+  definition: `Definition ${i + 1} in einem Satz.`,
+}));
+
+describe("FactList (08-UI-SPEC G5, § 5.2)", () => {
+  const html = renderToString(createElement(FactList, { items: fakten, note: "Stand 22.10.2026." }));
+
+  it("<dl> mit n Paaren dt/dd in je einem div, Note danach", () => {
+    expect(count(html, /<dl\b/g)).toBe(1);
+    expect(count(html, /<div[^>]*><dt\b/g)).toBe(6);
+    expect(count(html, /<dd\b/g)).toBe(6);
+    expect(html.indexOf("Stand 22.10.2026.")).toBeGreaterThan(html.indexOf("</dl>"));
+  });
+
+  it("5 Einträge werfen den Mengenfehler", () => {
+    expect(() => renderToString(createElement(FactList, { items: fakten.slice(0, 5) }))).toThrow(
+      "FactList: mindestens 6 Einträge erforderlich – Inhalte in lib/… ergänzen.",
+    );
+  });
+
+  it("Begriff 33 und Definition 201 Zeichen werfen Budgetfehler, drei Sätze werfen", () => {
+    const mit = (eintrag: { term: string; definition: string }) =>
+      renderToString(createElement(FactList, { items: [eintrag, ...fakten.slice(1)] }));
+    expect(() => mit({ term: "x".repeat(33), definition: "Ein Satz." })).toThrow(
+      "Textbudget überschritten: factList.term hat 33 von 32 Zeichen – Satz kürzen.",
+    );
+    expect(() => mit({ term: "Begriff", definition: `${"x".repeat(200)}.` })).toThrow(
+      "Textbudget überschritten: factList.definition hat 201 von 200 Zeichen – Satz kürzen.",
+    );
+    expect(() => mit({ term: "Begriff", definition: "Eins. Zwei. Drei." })).toThrow(
+      "FactList: Definition für Begriff hat 3 Sätze – höchstens zwei Sätze schreiben.",
+    );
   });
 });

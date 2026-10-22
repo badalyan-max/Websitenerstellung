@@ -171,4 +171,44 @@ describe("styleguide: Seite", () => {
     expect(html.split('aria-label="Brotkrumen"').length - 1).toBe(1);
     expect(html).toContain('data-tab="Zeiten"');
   });
+
+  it("Phase 8 (G1–G5): Kopf ohne Visual mit Antwort, Quellen-Tabelle, FitPanels und FactList als Muster", () => {
+    const html = renderToString(createElement(StyleguidePage));
+    // G1: Block 0 ist ein FunktionsKopf ohne Visual mit answer und stand; genau eine H1 auf der Seite.
+    const kopf = html.slice(html.indexOf('data-block="Designbausteine v2"'), html.indexOf('data-block="Tokens"'));
+    expect(kopf).toContain("data-funktions-kopf");
+    expect(kopf).toContain('data-layout="einspaltig"');
+    expect(kopf).toMatch(/<p[^>]*id="antwort"[^>]*data-answer=""/);
+    expect(kopf).toContain("data-stand");
+    expect(kopf).toContain('aria-label="Brotkrumen"');
+    expect(html.match(/<h1\b/g)).toHaveLength(1);
+    // Reihenfolge der neuen Blöcke
+    const blocks = ["ComparisonTable", "Badges", "FitPanels", "FactList", "FaqList"];
+    const positions = blocks.map((b) => html.indexOf(`data-block="${b}"`));
+    expect(positions.every((p) => p >= 0)).toBe(true);
+    expect([...positions].sort((a, b) => a - b)).toEqual(positions);
+    // G3: Marktübersicht mit Quellen und Disclaimer, nur Beispieldaten
+    const tabelle = html.slice(html.indexOf('data-block="ComparisonTable"'), html.indexOf('data-block="Badges"'));
+    expect(tabelle).toContain('aria-label="Quellen zur Tabelle"');
+    expect(tabelle).toContain("data-disclaimer");
+    // G4/G5
+    const panels = html.slice(html.indexOf('data-block="FitPanels"'), html.indexOf('data-block="FactList"'));
+    expect(panels.match(/<article\b/g)).toHaveLength(2);
+    const faktenHtml = html.slice(html.indexOf('data-block="FactList"'), html.indexOf('data-block="FaqList"'));
+    expect(faktenHtml).toMatch(/<dl\b/);
+    expect(faktenHtml.match(/<dt\b/g)!.length).toBeGreaterThanOrEqual(6);
+    // Externe Links nur auf neutrale Beispieladressen, alle nofollow
+    const extern = [...html.matchAll(/<a[^>]*href="(https?:\/\/[^"]+)"[^>]*>/g)].filter((m) => m[1].includes("example.com"));
+    expect(extern.length).toBeGreaterThanOrEqual(4);
+    for (const m of extern) {
+      expect(m[1]).toMatch(/^https:\/\/example\.com\//);
+      expect(m[0]).toContain('rel="nofollow"');
+    }
+  });
+
+  it("Beispieldaten der Vergleichsmuster nennen keine echten Wettbewerber", () => {
+    const daten = JSON.stringify([content.marketContent, content.fitPanelsContent]);
+    expect(daten).not.toMatch(/plancraft|craftnote|hero|tooltime/i);
+    expect(collect(content.marketContent, "anbieter").every((a) => /^Anbieter [A-Z]$/.test(String(a)))).toBe(true);
+  });
 });
