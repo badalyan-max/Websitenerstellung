@@ -20,15 +20,15 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 
 ### Medien (MEDIA)
 
-- [ ] **MEDIA-01**: Jede Live-Funktion hat ein visuelles Element (vereinfachte, im Code gebaute UI-Darstellung im Geräterahmen, Icon-Grafik, Ablaufdiagramm oder vorhandenes Foto); detailgetreue Screenshots sind nicht nötig.
+- [x] **MEDIA-01**: Jede Live-Funktion hat ein visuelles Element (vereinfachte, im Code gebaute UI-Darstellung im Geräterahmen, Icon-Grafik, Ablaufdiagramm oder vorhandenes Foto); detailgetreue Screenshots sind nicht nötig.
 - [x] **MEDIA-03**: Vereinfachte Darstellungen zeigen nur Funktionen, die live sind, und erfinden keine Bedienelemente oder Zahlen, die das Produkt nicht hat; KI-generierte Szenen sind als „Darstellung“ gekennzeichnet.
 - [x] **MEDIA-04**: Bilder halten ein Budget ein (Bild ≤ 150 KB AVIF/WebP je Ansicht) und verursachen keinen Layout-Shift.
 
 ### Funktionen (FEAT)
 
 - [x] **FEAT-01**: Eine Funktionsübersicht zeigt alle Live-Funktionen nach Arbeitsablauf gruppiert (Angebot → Planung → Baustelle → Rechnung → Buchhaltung → Team), jeweils mit visuellem Element und einem Satz Nutzen.
-- [ ] **FEAT-02**: Jede Live-Funktion hat eine Detailseite mit visuellem Element, Kurznutzen, Ablauf in Schritten, Plattformen (Web/Mobile), Rollen und FAQ; neue Seiten für die seit 09.09.2026 hinzugekommenen Funktionen.
-- [ ] **FEAT-03**: Die Mobile-App-Seite zeigt alle Live-Funktionen der App (u. a. Zeiterfassung mit Standort, Einsätze mit Navigation, Aufmaß, Baudoku, Besichtigung, Bautagesbericht, Mängel, Abnahme mit Unterschrift, Arbeitsschritte, Urlaub, Lager-Scan, Belegscan, Chat, Offline, 21 Sprachen) mit Phone-Darstellungen.
+- [x] **FEAT-02**: Jede Live-Funktion hat eine Detailseite mit visuellem Element, Kurznutzen, Ablauf in Schritten, Plattformen (Web/Mobile), Rollen und FAQ; neue Seiten für die seit 09.09.2026 hinzugekommenen Funktionen.
+- [x] **FEAT-03**: Die Mobile-App-Seite zeigt alle Live-Funktionen der App (u. a. Zeiterfassung mit Standort, Einsätze mit Navigation, Aufmaß, Baudoku, Besichtigung, Bautagesbericht, Mängel, Abnahme mit Unterschrift, Arbeitsschritte, Urlaub, Lager-Scan, Belegscan, Chat, Offline, 21 Sprachen) mit Phone-Darstellungen.
 - [ ] **FEAT-04**: Die 12 Gewerke-Seiten zeigen gewerktypische Abläufe mit visuellen Elementen statt nur Text.
 
 ### SEO und KI-Sichtbarkeit (SEO)
@@ -79,13 +79,13 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 | DESIGN-03 | Phase 6 | Complete |
 | DESIGN-04 | Phase 5 | Complete |
 | DESIGN-05 | Phase 10 | Pending |
-| MEDIA-01 | Phase 7 | Pending |
+| MEDIA-01 | Phase 7 | Complete |
 | MEDIA-02 | – | Out of Scope |
 | MEDIA-03 | Phase 5 | Complete |
 | MEDIA-04 | Phase 5 | Complete |
 | FEAT-01 | Phase 6 | Complete |
-| FEAT-02 | Phase 7 | Pending |
-| FEAT-03 | Phase 7 | Pending |
+| FEAT-02 | Phase 7 | Complete |
+| FEAT-03 | Phase 7 | Complete |
 | FEAT-04 | Phase 9 | Pending |
 | SEO-02 | Phase 5 (Keyword-Map), Phasen 6–8 (Titel/H1/Description) | In Progress |
 | SEO-03 | Phase 8 | Pending |

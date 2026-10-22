@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
-status: executing
-stopped_at: Completed 07-08-PLAN.md
-last_updated: "2026-10-21T21:18:54.387Z"
-last_activity: "2026-10-21 – 07-08 Browserprüfungen für 22 Detailseiten und /app (funktionsdetails.pw.cjs, 293 E2E grün), B10 Phone-Kacheln ohne Leerstreifen, scrollbar-gutter nur im Drawer-Scroll-Lock (D-14)"
+status: verifying
+stopped_at: Completed 07-09-PLAN.md
+last_updated: "2026-10-22T12:10:31.244Z"
+last_activity: "2026-10-22 – 07-09 Rollout Phase 7: Push 126f807, Vercel READY, live-check 46/46 OK, IndexNow 131 URLs HTTP 200, Messbericht rollout-phase07; FEAT-02/FEAT-03/MEDIA-01 erledigt"
 progress:
   total_phases: 6
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 23
-  completed_plans: 22
-  percent: 33
+  completed_plans: 23
+  percent: 50
 ---
 
 # State
@@ -30,14 +30,14 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 7
-Plan: 9 of 9 (07-01 bis 07-08 abgeschlossen)
-Status: Ready to execute
-Last activity: 2026-10-21 – 07-08 Browserprüfungen für 22 Detailseiten und /app (funktionsdetails.pw.cjs, 293 E2E grün), B10 Phone-Kacheln ohne Leerstreifen, scrollbar-gutter nur im Drawer-Scroll-Lock (D-14)
+Plan: 9 of 9 (07-01 bis 07-09 abgeschlossen)
+Status: Phase complete — ready for verification
+Last activity: 2026-10-22 – 07-09 Rollout Phase 7: Push 126f807, Vercel READY, live-check 46/46 OK, IndexNow 131 URLs HTTP 200, Messbericht rollout-phase07; FEAT-02/FEAT-03/MEDIA-01 erledigt
 
 Progress: [██████████] 96% (22/23 Pläne des Milestones; Phase 7: 8/9)
 
-Last session: 2026-10-21T21:18:54.378Z
-Stopped at: Completed 07-08-PLAN.md
+Last session: 2026-10-22T12:10:24.873Z
+Stopped at: Completed 07-09-PLAN.md
 Resume file: None
 
 ## Accumulated Context
@@ -98,6 +98,7 @@ Resume file: None
 - [Phase 07]: 07-08: D-14 entschieden – globales scrollbar-gutter entfernt; HeaderShell setzt es nur während des Drawer-Scroll-Locks mit klassischer Scrollleiste (gemessen: 15-px-Leerrinne auf der 404-Seite bei 1920 × 1080 in Chromium)
 - [Phase 07]: 07-08: B10 – große Bento-Kachel mit Phone ab 1024 px mit höhengekoppelter Phone-Breite (160–320 px), ab Seitenverhältnis 4:5 Phone und Text nebeneinander; Leerraum vorher bis 220 px, nachher höchstens 25 px
 - [Phase 07]: 07-08: FeatureSnippet beendet Animationen bei reduzierter Bewegung (finish statt pause); axe-Fälle prüfen den statischen Zustand
+- [Phase 07]: 07-09: Phase 7 live (126f807, Vercel dpl_5xujdhv6bnYnxsHhzNpQUNHPdFyQ READY), live-check 46/46, IndexNow 131 URLs HTTP 200; FEAT-02/FEAT-03/MEDIA-01 erledigt, DESIGN-02/SEO-02 offen bis Phase 8
 
 ### Pending Todos
 
@@ -133,3 +134,4 @@ None yet.
 | Phase 07 P06 | 36min | 3 tasks | 10 files |
 | Phase 07 P07 | 32min | 2 tasks | 8 files |
 | Phase 07 P08 | 61min | 2 tasks | 13 files |
+| Phase 07 P09 | 20min | 2 tasks | 13 files |

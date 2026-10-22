@@ -23,7 +23,7 @@ craftos.eu wird klar gegliedert und optisch ansprechend: weniger Fließtext, Kac
 
 - [x] **Phase 5: Produktwahrheit, Keyword-Map und Designbausteine** - Live-Stand korrigiert, Suchbegriffe je Seite festgelegt, v2-Bausteine bereit (completed 2026-10-20)
 - [x] **Phase 6: Startseite, Navigation und Funktionsübersicht** - Startseite klar gegliedert, Funktionsmenü und nach Ablauf gruppierte Übersicht (completed 2026-10-21)
-- [ ] **Phase 7: Funktionsdetailseiten und Mobile-App-Seite** - Einheitliche, kurze Detailseiten mit visuellem Element für jede Live-Funktion
+- [x] **Phase 7: Funktionsdetailseiten und Mobile-App-Seite** - Einheitliche, kurze Detailseiten mit visuellem Element für jede Live-Funktion (completed 2026-10-22)
 - [ ] **Phase 8: SEO und KI-Sichtbarkeit** - Alternativen-Seiten, Preis-Antwortblock, Metadaten nach Keyword-Map, Breadcrumbs, OG-Grafiken
 - [ ] **Phase 9: Gewerke und Wissensinhalte** - Gewerke-Seiten gegliedert, Ratgeber und Hilfe auf Produktstand, neue Hilfeartikel
 - [ ] **Phase 10: Abschlussaudit** - Barrierefreiheit, Performance und erneuter Audit ohne offene Fehler
@@ -153,7 +153,7 @@ Plans:
 
 **Wave 9** *(blocked on Wave 8 completion; Code-Review-Gate des Orchestrators vorher)*
 
-- [ ] 07-09-PLAN.md — Phasen-Gate, live-check-Erweiterung, Ship-Gate über Gesamtdiff, Push, IndexNow, SE-Ranking-Abgleich, Etappenmessung, Rollout-Nachweis
+- [x] 07-09-PLAN.md — Phasen-Gate, live-check-Erweiterung, Ship-Gate über Gesamtdiff, Push, IndexNow, SE-Ranking-Abgleich, Etappenmessung, Rollout-Nachweis
 
 **UI hint**: yes
 
@@ -210,7 +210,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 5. Produktwahrheit, Keyword-Map und Designbausteine | 8/8 | Complete    | 2026-10-20 |
 | 6. Startseite, Navigation und Funktionsübersicht | 6/6 | Complete    | 2026-10-21 |
-| 7. Funktionsdetailseiten und Mobile-App-Seite | 8/9 | In Progress|  |
+| 7. Funktionsdetailseiten und Mobile-App-Seite | 9/9 | Complete   | 2026-10-22 |
 | 8. SEO und KI-Sichtbarkeit | 0/TBD | Not started | - |
 | 9. Gewerke und Wissensinhalte | 0/TBD | Not started | - |
 | 10. Abschlussaudit | 0/TBD | Not started | - |
