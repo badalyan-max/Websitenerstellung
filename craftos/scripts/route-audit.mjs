@@ -1,4 +1,11 @@
 import fs from "node:fs/promises";
+import { readFileSync } from "node:fs";
+import { ctaTestphaseFehler, istAlteTestphase } from "./lib/seo-audit-core.mjs";
+// D-23: Testphase aus dem Preis-Snapshot (nicht hart kodiert). Auf /vergleich und darunter dürfen belegte
+// Wettbewerberangaben „14 Tage“ nennen; dafür muss dort jeder CraftOS-CTA genau trialDays nennen.
+const { trialDays } = JSON.parse(
+  readFileSync(new URL("../docs/product-pricing-snapshot.json", import.meta.url), "utf8"),
+);
 const base = process.env.AUDIT_ORIGIN || "http://localhost:3101";
 const xml = await (await fetch(base + "/sitemap.xml")).text();
 const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) =>
@@ -12,6 +19,8 @@ for (const url of urls) {
   const body = await r.text();
   const canonical = body.match(/rel="canonical" href="([^"]+)"/)?.[1];
   const title = body.match(/<title>([^<]+)<\/title>/)?.[1];
+  const pfad = new URL(url).pathname.replace(/\/$/, "") || "/";
+  const unterVergleich = pfad === "/vergleich" || pfad.startsWith("/vergleich/");
   for (const m of body.matchAll(/href="([^"]+)"/g)) {
     const h = m[1].replaceAll("&amp;", "&");
     if (
@@ -30,7 +39,8 @@ for (const url of urls) {
     canonical,
     title,
     hasH1: /<h1\b/.test(body),
-    oldTrial: /14 Tage (kostenlos|testen)/i.test(body),
+    oldTrial: istAlteTestphase(pfad, body),
+    ctaTrial: unterVergleich ? ctaTestphaseFehler(body, trialDays) : [],
     // Gleiches Muster wie tests/announcements.test.ts (content) und live-check.mjs:
     // „Stand: Oktober 2026“ ist legitim, nur „… 2026 geplant“ ist eine Ankündigung.
     announcement:
@@ -86,6 +96,7 @@ console.log(
           !x.canonical ||
           !x.hasH1 ||
           x.oldTrial ||
+          x.ctaTrial.length > 0 ||
           x.announcement,
       ),
       badLinks,
@@ -99,4 +110,4 @@ console.log(
   ),
 );
 
-if(results.some(x=>x.status!==200||!x.canonical||!x.hasH1||x.oldTrial||x.announcement)||badLinks.length||unknown.some(x=>x.status!==404)||og.some(x=>x.status!==200))process.exitCode=1;
+if(results.some(x=>x.status!==200||!x.canonical||!x.hasH1||x.oldTrial||x.ctaTrial.length>0||x.announcement)||badLinks.length||unknown.some(x=>x.status!==404)||og.some(x=>x.status!==200))process.exitCode=1;

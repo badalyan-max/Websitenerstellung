@@ -170,6 +170,7 @@ function testphasenFehler(dateien: { rel: string; text: string }[], trialDays = 
   const treffer: string[] = [];
   const fehler: string[] = [];
   for (const { rel: file, text } of dateien) {
+    if (file.startsWith(WETTBEWERBER_DIR)) continue;
     const zeile = (idx: number) => text.slice(0, idx).split("\n").length;
     for (const m of text.matchAll(tagesTemplate)) treffer.push(`${file}:${zeile(m.index!)}: ${m[0]}`);
     for (const m of text.matchAll(tagesLiteral)) {

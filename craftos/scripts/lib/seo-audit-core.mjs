@@ -248,6 +248,35 @@ export function istZentral(path) {
 }
 
 const istVergleich = (path) => path === "/vergleich" || path.startsWith("/vergleich/");
+
+/**
+ * route-audit „oldTrial“ (D-23): „14 Tage kostenlos/testen“ gilt als alte CraftOS-Testphase – außer auf
+ * /vergleich und darunter, wo belegte Wettbewerberangaben stehen dürfen. Dort prüft ctaTestphaseFehler
+ * stattdessen jeden CraftOS-CTA streng.
+ */
+export function istAlteTestphase(path, html) {
+  if (istVergleich(path)) return false;
+  return /14 Tage (kostenlos|testen)/i.test(html);
+}
+
+/**
+ * CraftOS-CTAs (Elemente mit data-track="trial") müssen „{trialDays} Tage“ nennen und dürfen keine andere
+ * Tageszahl enthalten. Liefert je fehlerhaftem CTA einen Fehlertext.
+ * @param {string} html
+ * @param {number} trialDays
+ * @returns {string[]}
+ */
+export function ctaTestphaseFehler(html, trialDays) {
+  const out = [];
+  for (const m of html.matchAll(/<(a|button)\b([^>]*)>([\s\S]*?)<\/\1>/gi)) {
+    if (attrs(m[2])["data-track"] !== "trial") continue;
+    const text = plain(m[3]);
+    const zahlen = [...text.matchAll(/(\d+)\s*-?\s*Tag/g)].map((z) => Number(z[1]));
+    if (!zahlen.includes(trialDays) || zahlen.some((z) => z !== trialDays))
+      out.push(`CTA „${text}“ nennt nicht genau ${trialDays} Tage – Testphase aus site.trialDays übernehmen.`);
+  }
+  return out;
+}
 const VERBOTENE_VERGLEICH_TYPEN = ["Product", "Review", "AggregateRating"];
 
 export const antwortText = (q, path) =>

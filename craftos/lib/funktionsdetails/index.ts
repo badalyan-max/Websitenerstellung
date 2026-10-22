@@ -13,7 +13,7 @@ import {
   getFunktionsgruppen,
   type Funktionsgruppe,
 } from "@/lib/funktionsgruppen";
-import { keywordMap } from "@/lib/keyword-map";
+import { zielwerte, type Zielwerte } from "@/lib/seo-meta";
 import { cardScenes, kopfVisuals, type FrameScene, type KopfVisual } from "@/lib/scenes";
 import {
   PANEL_BUDGET,
@@ -23,8 +23,10 @@ import {
   type FunktionsdetailInhalt,
   type SnippetVariante,
   type VerwandtEintrag,
-  type Zielwerte,
 } from "./types";
+
+// zielwerte() und Zielwerte liegen seit 08-01 in lib/seo-meta.ts (metaFor); Re-Export für bestehende Aufrufer.
+export { zielwerte, type Zielwerte };
 import { angebotInhalte } from "./angebot";
 import { planungInhalte } from "./planung";
 import { baustelleInhalte } from "./baustelle";
@@ -98,26 +100,6 @@ export const CTA_DETAIL = {
 
 /** Überclaims (Pitfall 7/8, D-20, D-23); Vergleich ohne Groß-/Kleinschreibung. */
 const VERBOTENE_WOERTER = ["lückenlos", "vollständig offline", "Online-Banking", "Bauphase"] as const;
-
-const MARKE = " | CraftOS";
-
-/** Zielwerte einer Seite aus keyword-map.json; wirft, wenn title, h1 oder description fehlen. */
-export function zielwerte(path: string): Zielwerte {
-  const eintrag = keywordMap.find((k) => k.path === path);
-  const target = eintrag?.target;
-  if (!eintrag || !target?.title || !target.h1 || !target.description) {
-    throw new Error(
-      `Keyword-Map: ${path} hat keine Zielwerte – target.title, target.h1 und target.description ergänzen.`,
-    );
-  }
-  return {
-    title: target.title,
-    titleOhneMarke: target.title.endsWith(MARKE) ? target.title.slice(0, -MARKE.length) : target.title,
-    h1: target.h1,
-    description: target.description,
-    keyword: eintrag.primary?.keyword ?? null,
-  };
-}
 
 /** Erster Wert, der mehr als einmal vorkommt, sonst undefined. */
 function ersteDoppelung(werte: readonly string[]): string | undefined {

@@ -137,11 +137,5 @@ export interface Funktionsdetail {
   meta: { path: string; title: string; titleOhneMarke: string; description: string };
 }
 
-/** Zielwerte einer Seite aus keyword-map.json (title inklusive „ | CraftOS“). */
-export interface Zielwerte {
-  title: string;
-  titleOhneMarke: string;
-  h1: string;
-  description: string;
-  keyword: string | null;
-}
+/** Zielwerte einer Seite aus keyword-map.json – Definition in lib/seo-meta.ts. */
+export type { Zielwerte } from "@/lib/seo-meta";

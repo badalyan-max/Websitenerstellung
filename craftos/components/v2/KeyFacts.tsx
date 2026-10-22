@@ -8,13 +8,18 @@ export interface KeyFact {
   label: string;
   /**
    * Pflicht, Kurzform-Schlüssel der Quelle (07 D-13), z. B. "site:tarif-app-monat", "site:trialDays",
-   * "register:mobileLocales". Erscheint als data-source im HTML; keine internen Modul- oder Pfadnamen.
+   * "register:mobileLocales" oder für belegte Wettbewerberwerte "wettbewerber:plancraft-business-5p-jahr"
+   * (08 D-04, Wert aus lib/wettbewerber/** mit Quelle und Abrufdatum). Erscheint als data-source im HTML;
+   * keine internen Modul- oder Pfadnamen.
    */
   source: string;
 }
 
-/** Öffentliche Kurzform der Quelle: site:<schlüssel> (site.ts, tarife) oder register:<schlüssel> (Produktregister). */
-export const KEY_FACT_SOURCE = /^(site|register):[A-Za-z0-9.-]+$/;
+/**
+ * Öffentliche Kurzform der Quelle: site:<schlüssel> (site.ts, tarife), register:<schlüssel> (Produktregister)
+ * oder wettbewerber:<schlüssel> (Wettbewerber-Datenmodul). CraftOS-Werte bleiben site:/register:.
+ */
+export const KEY_FACT_SOURCE = /^(site|register|wettbewerber):[A-Za-z0-9.-]+$/;
 
 export interface KeyFactsProps {
   facts: KeyFact[];
@@ -34,7 +39,7 @@ export function KeyFacts({ facts, note, tone = "light" }: KeyFactsProps) {
     }
     if (!KEY_FACT_SOURCE.test(fact.source)) {
       throw new Error(
-        `KeyFacts: Quelle ‚${fact.source}‘ ist keine Kurzform site:… oder register:… – Schlüssel angeben.`,
+        `KeyFacts: Quelle ‚${fact.source}‘ ist keine Kurzform site:…, register:… oder wettbewerber:… – Schlüssel angeben.`,
       );
     }
     assertTextBudget("keyFact.value", fact.value, TEXT_BUDGET.keyFact.value);
