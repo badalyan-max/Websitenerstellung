@@ -138,7 +138,11 @@ function kontext(w: Wettbewerber): Kontext {
     euroKurz,
     zeile,
     testphase: () => zeile("Testphase", `${site.trialDays} Tage`, `${w.testphaseTage.wert} Tage`, w.testphaseTage),
-    laufzeit: () => zeile("Kürzeste Laufzeit", "1 Monat", w.laufzeit.wert, w.laufzeit),
+    // HI-02: Grundlaufzeit laut AGB nie als „Kürzeste Laufzeit“, Vorbehalt in der Beschriftung.
+    laufzeit: () =>
+      w.laufzeitArt === "grundlaufzeit"
+        ? zeile("Grundlaufzeit, soweit nicht anders vereinbart", "1 Monat", `${w.laufzeit.wert} laut AGB`, w.laufzeit)
+        : zeile("Kürzeste Laufzeit", "1 Monat", w.laufzeit.wert, w.laufzeit),
     kriterium: (id, label, zelle) => {
       if (CRAFTOS_OHNE.includes(id))
         throw new Error(`Alternative ${w.slug}: Kriterium ${id} bietet CraftOS nicht – keine Vergleichszeile (${NUR_UNTERSTUETZT}); Stärke im Panel „Wann ${w.name} passt“ nennen.`);

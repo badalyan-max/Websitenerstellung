@@ -365,6 +365,15 @@ describe("Datenmodule: Werte laut Neuprüfung", () => {
     expect(w.kriterien.datev).toBeUndefined();
     expect(w.kriterien.gaeb).toBeUndefined();
     expect(w.laufzeit.quelle.url).toBe("https://hero-software.de/rechtliches/agb");
+    // HI-02: Die AGB nennen eine Grundlaufzeit mit Vorbehalt, keine Mindestlaufzeit.
+    expect(w.laufzeitArt).toBe("grundlaufzeit");
+    expect(w.laufzeit.zitat).toContain("Grundlaufzeit");
+    const ohneArt = structuredClone(w);
+    delete ohneArt.laufzeitArt;
+    expect(() => pruefeWettbewerber(ohneArt, new Date(2026, 9, 22))).toThrow(/laufzeitArt/);
+    const ohneZitat = structuredClone(w);
+    ohneZitat.laufzeit = { ...ohneZitat.laufzeit, zitat: "Die Laufzeit beträgt zwölf Monate." };
+    expect(() => pruefeWettbewerber(ohneZitat, new Date(2026, 9, 22))).toThrow(/Grundlaufzeit/);
     expect(w.testphaseTage.wert).toBe(14);
     expect(quelltext("hero")).not.toMatch(/Einführungs/);
   });

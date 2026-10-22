@@ -567,7 +567,7 @@ function pruefeHeroInhalt(w: Wettbewerber, inhalt: AlternativeInhalt) {
       : [["Preise je Plan und Zahlweise", `${VOLL_JAHR_MONAT} (Voll, jährlich)`, "laut hero-software.de"]];
   expect(inhalt.tabelle.rows.map((r) => [r.label, r.craftos, r.wettbewerber])).toEqual([
     ...preisZeilen,
-    ["Grundlaufzeit", "1 Monat", `${w.laufzeit.wert} laut AGB`],
+    ["Grundlaufzeit, soweit nicht anders vereinbart", "1 Monat", `${w.laufzeit.wert} laut AGB`],
     ["Testphase", `${site.trialDays} Tage`, `${w.testphaseTage.wert} Tage`],
     ["Mobile-App für iOS und Android", true, true],
     ["Plantafel", "In Voll-Lizenz", "Ja, ab Select"],
@@ -799,6 +799,35 @@ const ALTERNATIVEN_PFADE = [
   "/vergleich/tooltime-alternative",
 ];
 const KB_PFAD = "/vergleich/handwerkersoftware-kleine-betriebe";
+/** HI-02: Hinweis zur HERO-Laufzeit unter den Marktübersichten (Wortlaut der AGB: Grundlaufzeit, Vorbehalt). */
+const HERO_GRUNDLAUFZEIT = "HERO: Grundlaufzeit laut AGB, soweit nicht abweichend vereinbart.";
+
+describe("HI-02: HERO-Laufzeit nur als Grundlaufzeit mit Vorbehalt", () => {
+  it("Hub und kleine Betriebe nennen weder Mindestlaufzeit noch kürzeste Laufzeit; HERO-Zelle und Satz mit Grundlaufzeit", async () => {
+    const { vergleich } = await import("@/lib/seiten/vergleich");
+    const { kleineBetriebe } = await import("@/lib/seiten/kleine-betriebe");
+    expect(hero.laufzeitArt).toBe("grundlaufzeit");
+    const texte: string[] = [];
+    const walk = (v: unknown) => {
+      if (typeof v === "string") texte.push(v);
+      else if (Array.isArray(v)) v.forEach(walk);
+      else if (v && typeof v === "object") Object.values(v).forEach(walk);
+    };
+    for (const inhalt of [vergleich, kleineBetriebe]) walk({ ...inhalt, ueberblick: undefined, anbieter: undefined });
+    walk([vergleich.ueberblick.tabelle.rows, vergleich.ueberblick.tabelle.columns, vergleich.ueberblick.tabelle.note]);
+    walk([kleineBetriebe.anbieter.tabelle.rows, kleineBetriebe.anbieter.tabelle.columns, kleineBetriebe.anbieter.tabelle.note]);
+    expect(texte.filter((t) => /Mindestlaufzeit|kürzeste Laufzeit/i.test(t))).toEqual([]);
+    // Jeder Satz mit HERO und der Laufzeitangabe nennt die Grundlaufzeit samt Vorbehalt; die Zelle die Grundlaufzeit.
+    const heroSaetze = texte.filter((t) => t.includes("HERO") && t.includes(hero.laufzeit.wert));
+    expect(heroSaetze.length).toBeGreaterThanOrEqual(2);
+    for (const t of heroSaetze) expect(t, t).toMatch(/Grundlaufzeit, soweit nicht abweichend vereinbart/);
+    for (const tabelle of [vergleich.ueberblick.tabelle, kleineBetriebe.anbieter.tabelle]) {
+      expect(tabelle.rows.find((r) => r.label === "HERO")!.cells.laufzeit).toBe(`${hero.laufzeit.wert} Grundlaufzeit`);
+      expect(tabelle.note).toContain("HERO: Grundlaufzeit laut AGB, soweit nicht abweichend vereinbart.");
+    }
+  });
+});
+
 const juengsterStand = () => germanDate([plancraft, craftnote, hero, tooltime].map(standVon).reduce((a, b) => (b > a ? b : a)));
 
 describe("/vergleich Inhalte", () => {
@@ -820,7 +849,7 @@ describe("/vergleich Inhalte", () => {
     const { vergleich } = await laden();
     const t = vergleich.ueberblick.tabelle;
     expect(t.rows.map((r) => r.label)).toEqual(["CraftOS", "Craftnote", "HERO", "plancraft", "ToolTime"]);
-    expect(t.columns.map((c) => c.label)).toEqual(["Abrechnung", "Kürzeste Laufzeit", "Testphase", "Plantafel"]);
+    expect(t.columns.map((c) => c.label)).toEqual(["Abrechnung", "Laufzeit laut Anbieter", "Testphase", "Plantafel"]);
     expect(t.columns.some((c) => c.highlight)).toBe(false);
     expect(t.rowHeader).toBe("Anbieter");
     for (const r of t.rows)
@@ -841,7 +870,7 @@ describe("/vergleich Inhalte", () => {
     });
     expect(zeile("HERO")).toEqual({
       abrechnung: "Plan plus Lizenzen",
-      laufzeit: `${hero.laufzeit.wert} laut AGB`,
+      laufzeit: `${hero.laufzeit.wert} Grundlaufzeit`,
       testphase: `${hero.testphaseTage.wert} Tage`,
       plantafel: hero.kriterien.plantafel!.wert,
     });
@@ -886,7 +915,7 @@ describe("/vergleich Inhalte", () => {
     const t = vergleich.ueberblick.tabelle;
     expect(t.note.startsWith(`Angaben ohne Gewähr, Stand ${juengsterStand()}, `)).toBe(true);
     expect(t.note).toBe(
-      `Angaben ohne Gewähr, Stand ${juengsterStand()}, Quellen unter der Tabelle. Alle Beträge netto zzgl. USt.; CraftOS-Preise laut Preisliste, Stand ${germanDate(site.checkedAt)}.`,
+      `Angaben ohne Gewähr, Stand ${juengsterStand()}, Quellen unter der Tabelle. Alle Beträge netto zzgl. USt.; CraftOS-Preise laut Preisliste, Stand ${germanDate(site.checkedAt)}. ${HERO_GRUNDLAUFZEIT}`,
     );
     expect(t.disclaimer).toBe("Die Nennung der Anbieter dient der Zuordnung; es besteht keine Geschäftsbeziehung.");
   });
@@ -937,7 +966,7 @@ describe("/vergleich Inhalte", () => {
     const { vergleich, baueVergleich } = await laden();
     const antwort = (v: typeof vergleich, q: string) => v.faq.find((f) => f.q.includes(q))!.a;
     expect(antwort(vergleich, "monatlich kündbar")).toBe(
-      `Von den fünf verglichenen Anbietern sind CraftOS und plancraft monatlich kündbar; Craftnote und ToolTime nennen ${craftnote.laufzeit.wert} Mindestlaufzeit, HERO nennt laut AGB ${hero.laufzeit.wert} Mindestlaufzeit.`,
+      `Von den fünf verglichenen Anbietern sind CraftOS und plancraft monatlich kündbar; Craftnote und ToolTime nennen ${craftnote.laufzeit.wert} Laufzeit, HERO nennt laut AGB ${hero.laufzeit.wert} Grundlaufzeit, soweit nicht abweichend vereinbart.`,
     );
     expect(antwort(vergleich, "Plantafel")).toBe(
       "Alle fünf Anbieter nennen eine Plantafel: CraftOS in der Voll-Lizenz, HERO in allen Plänen, plancraft im Paket Premium, sonst als Modul; Craftnote und ToolTime ohne Paketangabe.",
@@ -1189,7 +1218,7 @@ describe("kleine Betriebe Inhalte", () => {
     const { vergleich } = await import("@/lib/seiten/vergleich");
     const t = kb.anbieter.tabelle;
     expect(t.rows.map((r) => r.label)).toEqual(["CraftOS", "Craftnote", "HERO", "plancraft", "ToolTime"]);
-    expect(t.columns.map((c) => c.label)).toEqual(["Abrechnung", "Kürzeste Laufzeit", "Weitere mobile Person", "Testphase"]);
+    expect(t.columns.map((c) => c.label)).toEqual(["Abrechnung", "Laufzeit laut Anbieter", "Weitere mobile Person", "Testphase"]);
     expect(t.columns.some((c) => c.highlight)).toBe(false);
     for (const r of t.rows)
       for (const zelle of Object.values(r.cells))
@@ -1229,7 +1258,7 @@ describe("kleine Betriebe Inhalte", () => {
     expect(t.note).toContain("Quellen unter der Tabelle.");
     expect(t.note).toContain("Alle Beträge netto zzgl. USt.; CraftOS-Preise laut Preisliste, Stand ");
     expect(t.note).toBe(
-      `Angaben ohne Gewähr, Stand ${juengsterStand()}, Quellen unter der Tabelle. Alle Beträge netto zzgl. USt.; CraftOS-Preise laut Preisliste, Stand ${germanDate(site.checkedAt)}. Weitere mobile Person: netto je Person und Monat, Zahlweise in Klammern.`,
+      `Angaben ohne Gewähr, Stand ${juengsterStand()}, Quellen unter der Tabelle. Alle Beträge netto zzgl. USt.; CraftOS-Preise laut Preisliste, Stand ${germanDate(site.checkedAt)}. Weitere mobile Person: netto je Person und Monat, Zahlweise in Klammern. ${HERO_GRUNDLAUFZEIT}`,
     );
     expect(t.disclaimer).toBe("Die Nennung der Anbieter dient der Zuordnung; es besteht keine Geschäftsbeziehung.");
     const urls = t.sources.map((s) => s.url);

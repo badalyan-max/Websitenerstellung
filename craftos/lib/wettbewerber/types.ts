@@ -83,8 +83,17 @@ export interface Wettbewerber {
   domain: string;
   /** Testphase in Tagen (Zahl, kein Satz; Pitfall 1). */
   testphaseTage: Fakt<number>;
-  /** Kürzeste Laufzeit in Kurzform, z. B. „1 Monat“ oder „12 Monate“. */
+  /**
+   * Laufzeit in Kurzform, z. B. „1 Monat“ oder „12 Monate“: ohne `laufzeitArt` die kürzeste buchbare Laufzeit
+   * laut Quelle, mit `laufzeitArt: "grundlaufzeit"` die Grundlaufzeit der AGB.
+   */
   laufzeit: Fakt<string>;
+  /**
+   * „grundlaufzeit“ = die Quelle nennt eine Grundlaufzeit „soweit nichts Abweichendes vereinbart“ (HERO-AGB); Seiten
+   * schreiben dann „Grundlaufzeit … soweit nicht abweichend vereinbart“, nie Mindest- oder kürzeste Laufzeit
+   * (08-REVIEW HI-02). Pflicht, sobald das Zitat „Grundlaufzeit“ enthält.
+   */
+  laufzeitArt?: "grundlaufzeit";
   /** Kündigungsregel ohne Tageszahl (Tage → `kuendigungsfristTage`). */
   kuendigung?: Fakt<string>;
   /** Kündigungsfrist in Tagen, nur wenn der Anbieter sie in Tagen nennt. */

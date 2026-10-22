@@ -212,6 +212,13 @@ export function pruefeWettbewerber(w: Wettbewerber, heute: Date = new Date()): v
   if (!Number.isInteger(w.testphaseTage.wert) || w.testphaseTage.wert <= 0)
     throw new Error(`Wettbewerber ${w.slug}: testphaseTage ist keine positive ganze Zahl.`);
 
+  // HI-02: Grundlaufzeit („soweit nichts Abweichendes vereinbart“) nie als Mindest- oder kürzeste Laufzeit.
+  const zitatGrundlaufzeit = /Grundlaufzeit/i.test(w.laufzeit.zitat ?? "");
+  if (zitatGrundlaufzeit && w.laufzeitArt !== "grundlaufzeit")
+    throw new Error(`Wettbewerber ${w.slug}: laufzeit zitiert eine Grundlaufzeit – laufzeitArt: "grundlaufzeit" setzen (HI-02).`);
+  if (w.laufzeitArt === "grundlaufzeit" && !zitatGrundlaufzeit)
+    throw new Error(`Wettbewerber ${w.slug}: laufzeitArt „grundlaufzeit“ ohne Zitat mit „Grundlaufzeit“ – Beleg ergänzen (HI-02).`);
+
   w.preise.wert.forEach((p, i) => pruefePreis(w.slug, `preise.${i}`, p));
   for (const [k, f] of Object.entries(w.zusatzPreise ?? {})) pruefePreis(w.slug, `zusatzPreise.${k}`, f.wert);
   const doppeltesPaket = ersteDoppelung(w.preise.wert.map((p) => p.paket));

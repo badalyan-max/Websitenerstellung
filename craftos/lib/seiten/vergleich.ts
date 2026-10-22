@@ -58,6 +58,8 @@ export interface MarktSpalte {
   craftos: Cell;
   /** Zelle des Anbieters mit Beleg (Fakt des Datenmoduls); ohne Beleg nur „nicht angegeben“. */
   wettbewerber: (w: Wettbewerber) => { wert: Cell; beleg?: Fakt<unknown> };
+  /** Satz für den Pflichthinweis, wenn die Zellen einen Vorbehalt brauchen (z. B. Grundlaufzeit, HI-02). */
+  hinweis?: (anbieter: readonly Wettbewerber[]) => string | undefined;
 }
 
 export interface MarktZeile {
@@ -156,13 +158,14 @@ export function baueMarktuebersicht(opts: {
   }
 
   const stand = germanDate(anbieter.map(standVon).reduce((a, b) => (b > a ? b : a)));
+  const zusaetze = [opts.noteZusatz, ...opts.spalten.map((s) => s.hinweis?.(anbieter))].filter((x): x is string => Boolean(x));
   return {
     caption: opts.caption,
     rowHeader: "Anbieter",
     columns: opts.spalten.map(({ key, label }) => ({ key, label })),
     rows,
     zeilen,
-    note: `Angaben ohne Gewähr, Stand ${stand}, Quellen unter der Tabelle. Alle Beträge netto zzgl. USt.; CraftOS-Preise laut Preisliste, Stand ${germanDate(site.checkedAt)}.${opts.noteZusatz ? ` ${opts.noteZusatz}` : ""}`,
+    note: `Angaben ohne Gewähr, Stand ${stand}, Quellen unter der Tabelle. Alle Beträge netto zzgl. USt.; CraftOS-Preise laut Preisliste, Stand ${germanDate(site.checkedAt)}.${zusaetze.map((z) => ` ${z}`).join("")}`,
     sources: [...quellen.values()],
     disclaimer: MARKT_DISCLAIMER,
     stand,
@@ -214,9 +217,22 @@ function plantafelZelle(w: Wettbewerber): { wert: Cell; beleg?: Fakt<unknown> } 
   return { wert: fakt.wert, beleg: fakt };
 }
 
-/** Kürzeste Laufzeit; Angaben aus den AGB mit Zusatz „laut AGB“ (§ 5.1). */
+/** Vorbehalt der Grundlaufzeit (HERO-AGB: „Soweit in der Bestellung nichts Abweichendes vereinbart …“, HI-02). */
+export const GRUNDLAUFZEIT_VORBEHALT = "soweit nicht abweichend vereinbart";
+
+/**
+ * Laufzeit laut Anbieter (§ 5.1): Grundlaufzeit als „12 Monate Grundlaufzeit“ (Vorbehalt im Pflichthinweis, HI-02),
+ * sonst der Wert, Angaben aus den AGB mit Zusatz „laut AGB“.
+ */
 function laufzeitZelle(w: Wettbewerber): string {
+  if (w.laufzeitArt === "grundlaufzeit") return `${w.laufzeit.wert} Grundlaufzeit`;
   return `${w.laufzeit.wert}${w.laufzeit.quelle.label === "AGB" ? " laut AGB" : ""}`;
+}
+
+/** Pflichthinweis zur Laufzeitspalte: Anbieter mit Grundlaufzeit samt Vorbehalt der AGB (HI-02). */
+function laufzeitHinweis(anbieter: readonly Wettbewerber[]): string | undefined {
+  const namen = anbieter.filter((w) => w.laufzeitArt === "grundlaufzeit").map((w) => w.name);
+  return namen.length ? `${undListe(namen)}: Grundlaufzeit laut AGB, ${GRUNDLAUFZEIT_VORBEHALT}.` : undefined;
 }
 
 /** Spalten der Marktübersicht /vergleich; kleine Betriebe übernimmt Abrechnung, Laufzeit und Testphase (§ 6). */
@@ -228,10 +244,12 @@ export const UEBERSICHT_SPALTEN: readonly MarktSpalte[] = [
     wettbewerber: (w) => ({ wert: ABRECHNUNG[w.slug](w), beleg: w.preise }),
   },
   {
+    // HI-02: „Laufzeit laut Anbieter“ statt „Kürzeste Laufzeit“ – die HERO-AGB nennen eine Grundlaufzeit.
     key: "laufzeit",
-    label: "Kürzeste Laufzeit",
+    label: "Laufzeit laut Anbieter",
     craftos: CRAFTOS_LAUFZEIT,
     wettbewerber: (w) => ({ wert: laufzeitZelle(w), beleg: w.laufzeit }),
+    hinweis: laufzeitHinweis,
   },
   {
     key: "testphase",
@@ -316,7 +334,7 @@ function einzelvergleichKacheln(): Vergleichskachel[] {
 const SCHRITTE: Step[] = [
   { title: "Abläufe notieren", text: "Angebot, Planung, Baustelle, Rechnung: was muss die Software abdecken?" },
   { title: "Teamgröße rechnen", text: "Büro- und Baustellenzugänge für Ihre Personenzahl zusammenrechnen." },
-  { title: "Laufzeit prüfen", text: "Mindestlaufzeit, Kündigungsfrist und Preise nach dem ersten Jahr vergleichen." },
+  { title: "Laufzeit prüfen", text: "Laufzeit, Kündigungsfrist und Preise nach dem ersten Jahr vergleichen." },
   { title: "Mit Auftrag testen", text: "Einen echten Auftrag vom Angebot bis zur Rechnung durchspielen." },
 ];
 
@@ -334,17 +352,22 @@ export const VERGLEICHS_CTA = {
 /** Antwortsatz „monatlich kündbar“ aus `laufzeit` der Module (FAQ /vergleich und kleine Betriebe). */
 export function monatlichKuendbar(anbieter: readonly Wettbewerber[]): string {
   const monatlich = ["CraftOS", ...anbieter.filter((w) => w.laufzeit.wert === CRAFTOS_LAUFZEIT).map((w) => w.name)];
-  const gruppen = new Map<string, { namen: string[]; agb: boolean; wert: string }>();
+  const gruppen = new Map<string, { namen: string[]; agb: boolean; wert: string; grund: boolean }>();
   for (const w of anbieter.filter((x) => x.laufzeit.wert !== CRAFTOS_LAUFZEIT)) {
     const agb = w.laufzeit.quelle.label === "AGB";
-    const schluessel = `${w.laufzeit.wert}|${agb}`;
-    const g = gruppen.get(schluessel) ?? { namen: [], agb, wert: w.laufzeit.wert };
+    const grund = w.laufzeitArt === "grundlaufzeit";
+    const schluessel = `${w.laufzeit.wert}|${agb}|${grund}`;
+    const g = gruppen.get(schluessel) ?? { namen: [], agb, wert: w.laufzeit.wert, grund };
     g.namen.push(w.name);
     gruppen.set(schluessel, g);
   }
   const kopf = `Von den ${zahlwort(anbieter.length + 1)} verglichenen Anbietern ${monatlich.length === 1 ? "ist" : "sind"} ${undListe(monatlich)} ${vertrag.monat}`;
+  // HI-02: Grundlaufzeit mit Vorbehalt der AGB, sonst „Laufzeit“ – nie „Mindestlaufzeit“ ohne Beleg.
   const rest = [...gruppen.values()].map(
-    (g) => `${undListe(g.namen)} ${g.namen.length === 1 ? "nennt" : "nennen"}${g.agb ? " laut AGB" : ""} ${g.wert} Mindestlaufzeit`,
+    (g) =>
+      `${undListe(g.namen)} ${g.namen.length === 1 ? "nennt" : "nennen"}${g.agb ? " laut AGB" : ""} ${g.wert} ${
+        g.grund ? `Grundlaufzeit, ${GRUNDLAUFZEIT_VORBEHALT}` : "Laufzeit"
+      }`,
   );
   return rest.length ? `${kopf}; ${rest.join(", ")}.` : `${kopf}.`;
 }
@@ -417,7 +440,7 @@ export function baueVergleich(anbieter: readonly Wettbewerber[] = alleWettbewerb
     sections: {
       ueberblick: {
         title: `${gross(zahlwort(sortiert.length + 1))} Anbieter im Überblick`,
-        lead: "Abrechnung, kürzeste Laufzeit, Testphase und Plantafel laut den Seiten der Anbieter, mit Quelle je Zeile.",
+        lead: "Abrechnung, Laufzeit, Testphase und Plantafel laut den Seiten der Anbieter, mit Quelle je Zeile.",
       },
       einzelvergleiche: {
         title: "Einzelvergleiche mit Quellen",

@@ -22,9 +22,8 @@ export const heroSeite: Seitenmodul = (k) => {
   };
 
   const kopfCraftos = `CraftOS ist eine HERO-Alternative mit Preis pro Person: Die Voll-Lizenz mit Web-App, Mobile-App und Plantafel kostet ${c.vollMonat} netto im Monat.`;
-  const laufzeit = k.zeile("Grundlaufzeit", "1 Monat", `${w.laufzeit.wert} laut AGB`, w.laufzeit);
   const weitere = [
-    laufzeit,
+    k.laufzeit(),
     k.testphase(),
     k.kriterium("mobileApp", "Mobile-App für iOS und Android", true),
     k.kriterium("plantafel", "Plantafel", "Ja, ab Select"),

@@ -55,6 +55,7 @@ export const hero: Wettbewerber = {
   laufzeit: fakt("12 Monate", QUELLEN.agb, {
     zitat: "Soweit in der Bestellung nichts Abweichendes vereinbart, beträgt die Grundlaufzeit zwölf (12) Monate",
   }),
+  laufzeitArt: "grundlaufzeit",
   kuendigung: fakt("einen Monat zum Ende der Vertragslaufzeit, sonst automatische Verlängerung", QUELLEN.agb, {
     zitat: "die Kündigungsfrist beträgt einen (1) Monat",
   }),
