@@ -4,7 +4,7 @@ import { crumbsFor } from "@/lib/breadcrumbs";
 import { PricingTable } from "@/components/preise/PricingTable";
 import { Faq } from "@/components/ui/Faq";
 import { TrialCta } from "@/components/ui/TrialCta";
-import { pageMetadata } from "@/lib/metadata";
+import { metaFor, zielwerte } from "@/lib/seo-meta";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { faqSchema } from "@/lib/schema";
 import {
@@ -31,11 +31,8 @@ const teamApps = 4;
 const beispielMonat = voll.monat + teamApps * app.monat;
 const beispielJahr = voll.jahr + teamApps * app.jahr;
 const extraSpeicherText = `${extraSpeicher.gb} GB Extra-Speicher kosten ${euro(extraSpeicher.monat)} netto pro Monat oder ${euro(extraSpeicher.jahr)} netto pro Jahr`;
-export const metadata = pageMetadata(
-  "Preise: Voll-Lizenz inklusive Mobile-App",
-  `CraftOS ${voll.name} ${euro(voll.monat)} netto/Monat inklusive Web-App und Handy-App. ${app.name} ${euro(app.monat)}. Jahresabo rund ${ersparnisRund} % günstiger. ${site.trialDays} Tage testen.`,
-  "/preise",
-);
+// Title, Description und H1 aus der Keyword-Map (08-04, D-06, D-17); v2-Umbau folgt in einem späteren Phase-8-Plan.
+export const metadata = metaFor("/preise");
 const faqs = [
   {
     q: "Ist die Handy-App in der Voll-Lizenz dabei?",
@@ -68,13 +65,7 @@ export default function Page() {
       <PageHero
         crumbs={crumbsFor("/preise")}
         eyebrow="Preise"
-        title={
-          <>
-            Ihr Betrieb wächst.
-            <br />
-            Ihre Software wächst mit.
-          </>
-        }
+        title={zielwerte("/preise").h1}
         intro="Ein klarer Preis pro Person. Alle Kernmodule, die Web-App und die Handy-App sind in der Voll-Lizenz enthalten."
       />
       <section className="section-space">

@@ -2,18 +2,18 @@ import type { Metadata } from 'next'
 import { LegalShell, LegalSection, DataBlock } from '@/components/legal/Legal'
 import { crumbsFor } from '@/lib/breadcrumbs'
 import { site } from '@/lib/site'
+import { metaFor, zielwerte } from '@/lib/seo-meta'
 
+// Nur Metadaten und H1 aus der Keyword-Map (08-04, D-20); der Rechtstext bleibt unverändert.
 export const metadata: Metadata = {
-  title: 'Impressum',
-  description: 'Impressum und Anbieterkennzeichnung von CraftOS gemäß § 5 TMG.',
-  alternates: { canonical: `${site.url}/impressum` },
+  ...metaFor('/impressum'),
   robots: { index: true, follow: true },
 }
 
 export default function ImpressumPage() {
   return (
-    <LegalShell title="Impressum" crumbs={crumbsFor('/impressum')}>
-      <p className="text-ink-500">Angaben gemäß § 5 TMG</p>
+    <LegalShell title={zielwerte('/impressum').h1} crumbs={crumbsFor('/impressum')}>
+      <p className="text-ink-500">Angaben gemäß § 5 DDG</p>
 
       <LegalSection heading="Anbieter">
         <DataBlock
@@ -40,8 +40,8 @@ export default function ImpressumPage() {
         <p>
           Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit,
           Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.
-          Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten
-          nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als
+          Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten
+          nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir als
           Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde
           Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige
           Tätigkeit hinweisen.

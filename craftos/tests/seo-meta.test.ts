@@ -5,10 +5,10 @@ import { pageMetadata } from "@/lib/metadata";
 
 // lib/seo-meta.ts (08-01, D-06): Title/Description/Canonical aus docs/seo/keyword-map.json.
 describe("metaFor und zielwerte", () => {
-  it("metaFor('/app') entspricht dem bisherigen pageMetadata-Aufruf der App-Seite", () => {
+  it("metaFor('/app') entspricht pageMetadata mit dem Segmentbild der App-Seite (08-05)", () => {
     const z = zielwerte("/app");
     const meta = metaFor("/app");
-    const bisher = pageMetadata(z.titleOhneMarke, z.description, "/app");
+    const bisher = pageMetadata(z.titleOhneMarke, z.description, "/app", "/app/opengraph-image");
     expect(meta.title).toEqual(bisher.title);
     expect(meta.description).toEqual(bisher.description);
     expect(meta.alternates).toEqual(bisher.alternates);
@@ -21,6 +21,22 @@ describe("metaFor und zielwerte", () => {
     const meta = metaFor("/app", { imagePath: "/app/opengraph-image" });
     const og = meta.openGraph?.images as { url: string }[];
     expect(og[0].url).toMatch(/\/app\/opengraph-image$/);
+    expect(meta.twitter?.images).toEqual([og[0].url]);
+  });
+
+  it("metaFor setzt standardmäßig das Segmentbild für og:image und twitter:image (08-05, Pitfall 8)", () => {
+    for (const pfad of ["/preise", "/blog/handwerkerrechnung-schreiben", "/hilfe/kategorie/rechnungen", "/impressum"]) {
+      const meta = metaFor(pfad);
+      const og = meta.openGraph?.images as { url: string }[];
+      expect(og[0].url, pfad).toBe("https://craftos.eu" + pfad + "/opengraph-image");
+      expect(meta.twitter?.images, pfad).toEqual([og[0].url]);
+    }
+  });
+
+  it("metaFor('/') behält das Root-Bild /opengraph-image", () => {
+    const meta = metaFor("/");
+    const og = meta.openGraph?.images as { url: string }[];
+    expect(og[0].url).toBe("https://craftos.eu/opengraph-image");
     expect(meta.twitter?.images).toEqual([og[0].url]);
   });
 

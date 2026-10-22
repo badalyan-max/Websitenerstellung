@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-stopped_at: Completed 08-03-PLAN.md
-last_updated: "2026-10-22T16:29:04.246Z"
-last_activity: 2026-10-22 – 08-03 Bausteine G1–G5 (FunktionsKopf mit Antwort/Stand ohne Visual, SectionHeader-Antwort-Lead, FaqList answerMax, ComparisonTable mit Quellen, FitPanels, FactList)
+stopped_at: Completed 08-04-PLAN.md
+last_updated: "2026-10-22T17:09:09.026Z"
+last_activity: 2026-10-22 – 08-04 Sitewide Titel, Description und H1 aus der Keyword-Map (18 Zielwerte ergänzt, 62 H1 nach D-17, alle Routen über metaFor/zielwerte, Audit title/description/h1/duplikate/keyword/map 0 Verstöße)
 progress:
   total_phases: 6
   completed_phases: 3
   total_plans: 37
-  completed_plans: 26
-  percent: 70
+  completed_plans: 27
+  percent: 73
 ---
 
 # State
@@ -30,14 +30,14 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 8 (SEO und KI-Sichtbarkeit)
-Plan: 4 of 14 (08-01 bis 08-03 abgeschlossen)
+Plan: 5 of 14 (08-01 bis 08-04 abgeschlossen)
 Status: Ready to execute
-Last activity: 2026-10-22 – 08-03 Bausteine G1–G5 (FunktionsKopf mit Antwort/Stand ohne Visual, SectionHeader-Antwort-Lead, FaqList answerMax, ComparisonTable mit Quellen, FitPanels, FactList)
+Last activity: 2026-10-22 – 08-04 Sitewide Titel, Description und H1 aus der Keyword-Map (18 Zielwerte ergänzt, 62 H1 nach D-17, alle Routen über metaFor/zielwerte, Audit title/description/h1/duplikate/keyword/map 0 Verstöße)
 
-Progress: [███████░░░] 70% (26/37 Pläne des Milestones; Phase 8: 3/14)
+Progress: [███████░░░] 73% (27/37 Pläne des Milestones; Phase 8: 4/14)
 
-Last session: 2026-10-22T16:29:04.236Z
-Stopped at: Completed 08-03-PLAN.md
+Last session: 2026-10-22T17:09:09.013Z
+Stopped at: Completed 08-04-PLAN.md
 Resume file: None
 
 ## Accumulated Context
@@ -108,6 +108,9 @@ Resume file: None
 - [Phase 08]: 08-03: /styleguide Block 0 ist ein FunktionsKopf ohne Visual mit answer und stand (ersetzt PageHero), damit die Musterseite genau eine H1 behaelt
 - [Phase 08]: 08-03: FitPanels-Quellenlink zeigt Quelle und traegt das Quellen-Label als sr-only-Zusatz (UI-SPEC 3.5 und U10)
 - [Phase 08]: 08-03: SectionHeader erzwingt jetzt auch fuer Nicht-Frage-Titel genau einen Satz; Frage-Titel bekommen Antwort-Lead mit data-answer bis 300 Zeichen
+- [Phase 08]: 08-04: Keyword-Map ist einzige Metadatenquelle – alle indexierten Routen rendern metaFor(pfad) und zielwerte(pfad).h1; Titel ohne Markenzusatz als title.absolute; Gewerke-Felder seoTitle/seoDescription entfallen
+- [Phase 08]: 08-04: H1-Regel D-17 wörtlich – bisher gerenderte H1 bleibt, wenn sie das Kopfwort enthält; sonst Kopfwort vorangestellt oder Synonym ersetzt (62 H1, Tabelle KEYWORD-MAP.md § 6)
+- [Phase 08]: 08-04: Kategorien einheitlich „Ratgeber: …“/„Hilfe: …“ (mit Hauptkeyword per Synonym-Ersatz); Gewerke-H1 = Gewerk-Software-Bezeichnung + bisheriger Slogan; Descriptions ohne Superlative (Überclaim-Test)
 
 ### Pending Todos
 
@@ -147,3 +150,4 @@ None yet.
 | Phase 08 P01 | 58min | 3 tasks | 19 files |
 | Phase 08 P02 | 62min | 3 tasks | 39 files |
 | Phase 08 P03 | 33min | 2 tasks | 18 files |
+| Phase 08 P04 | 33min | 3 tasks | 29 files |
