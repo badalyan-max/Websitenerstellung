@@ -9,7 +9,7 @@ import { renderToString } from "react-dom/server";
 import { AlternativePage } from "@/components/vergleich/AlternativePage";
 import { TEXT_BUDGET, charCount } from "@/components/v2/budgets";
 import { germanDate, euro } from "@/lib/format";
-import { baueAlternativeAus } from "@/lib/seiten/alternativen";
+import { alternativeAusModul } from "@/lib/seiten/alternativen";
 import type { AlternativeInhalt, Seitenmodul } from "@/lib/seiten/alternativen/types";
 import { site, tarife } from "@/lib/site";
 import { monatAusJahr, plancraft, standVon, UWG_WORTLISTE, uwgTreffer } from "@/lib/wettbewerber";
@@ -91,8 +91,7 @@ function alleTexte(inhalt: AlternativeInhalt): string[] {
     else if (Array.isArray(v)) v.forEach(walk);
     else if (v && typeof v === "object") Object.values(v).forEach(walk);
   };
-  const { wettbewerber: _w, ...rest } = inhalt;
-  walk(rest);
+  for (const [schluessel, wert] of Object.entries(inhalt)) if (schluessel !== "wettbewerber") walk(wert);
   return out;
 }
 
@@ -154,7 +153,7 @@ function pruefeHtml(inhalt: AlternativeInhalt) {
 
 describe("Vorlage", () => {
   const w = fixtureW();
-  const inhalt = baueAlternativeAus(w, fixtureSeite(), PFAD);
+  const inhalt = alternativeAusModul(w, fixtureSeite(), PFAD);
 
   it("Tabelle: ≤ 12 Zeilen, Zellen ≤ 24, Beschriftung ≤ 48, Pflichthinweis und Disclaimer wörtlich", () => {
     const { tabelle } = inhalt;
@@ -235,23 +234,23 @@ describe("Vorlage", () => {
 
   it("Builder wirft bei UWG-Wort, Stärken < 2, fehlender Fairnesszeile und Zelle > 24", () => {
     expect(() =>
-      baueAlternativeAus(fixtureW(), fixtureSeite((t) => (t.answer = "CraftOS ist günstiger als plancraft.")), PFAD),
+      alternativeAusModul(fixtureW(), fixtureSeite((t) => (t.answer = "CraftOS ist günstiger als plancraft.")), PFAD),
     ).toThrow(/günstiger als/);
     const wenig = fixtureW();
     wenig.staerken = wenig.staerken.slice(0, 1);
-    expect(() => baueAlternativeAus(wenig, fixtureSeite(), PFAD)).toThrow(/mindestens 2 belegte Stärken/);
+    expect(() => alternativeAusModul(wenig, fixtureSeite(), PFAD)).toThrow(/mindestens 2 belegte Stärken/);
     expect(() =>
-      baueAlternativeAus(fixtureW(), fixtureSeite((t) => (t.rows = t.rows.filter((r) => r.craftos !== false))), PFAD),
+      alternativeAusModul(fixtureW(), fixtureSeite((t) => (t.rows = t.rows.filter((r) => r.craftos !== false))), PFAD),
     ).toThrow(/Fairnesszeile/);
     expect(() =>
-      baueAlternativeAus(
+      alternativeAusModul(
         fixtureW(),
         fixtureSeite((t) => (t.rows[0] = { ...t.rows[0], wettbewerber: "x".repeat(25) })),
         PFAD,
       ),
     ).toThrow(/24/);
     expect(() =>
-      baueAlternativeAus(fixtureW(), fixtureSeite((t) => (t.rows[0] = { ...t.rows[0], quellen: [] })), PFAD),
+      alternativeAusModul(fixtureW(), fixtureSeite((t) => (t.rows[0] = { ...t.rows[0], quellen: [] })), PFAD),
     ).toThrow(/Quelle/);
   });
 
