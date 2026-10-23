@@ -1,57 +1,83 @@
 ---
 title: "Einen Bautagesbericht erstellen"
-description: "So dokumentieren Sie Arbeiten, Material und Besonderheiten und erfassen mobile Unterschriften mit Ort und Zeitpunkt."
+description: "So dokumentieren Sie Arbeiten, Personal, Material und Besonderheiten als Bautagesbericht, Regiebericht oder Bedenkenanzeige und lassen mobil unterschreiben."
 category: "baudokumentation"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["baudokumentation", "arbeitsanweisungen"]
-relatedArticles: ["/blog/digitale-bautagesberichte", "/hilfe/berichte-abrechnen"]
-sources: []
+relatedArticles: ["/blog/digitale-bautagesberichte", "/hilfe/berichte-abrechnen", "/hilfe/mangel-erfassen-bearbeiten", "/hilfe/abnahme-dokumentieren"]
+sources: [{"url": "https://dejure.org/gesetze/VOB-B/4.html", "label": "§ 4 VOB/B: Ausführung", "checkedAt": "2026-10-23"}]
 platforms: ["web", "mobile"]
+answer: "Einen Bautagesbericht erstellen Sie in der Mobile-App im Projekt über „Tagesbericht“ und in der Web-App im Reiter „Baudokumentation“ über „Neuer Bericht“. Sie wählen die Berichtsart, erfassen Arbeiten, Personal, Material und Fotos und lassen den Bericht unterschreiben."
 ---
 
-Ein Bautagesbericht hält die tatsächliche Ausführung fest; wählen Sie Projekt, Datum und Berichtstyp bewusst.
+Beide Plattformen bieten dieselben Berichtsarten, benennen zwei davon aber unterschiedlich:
 
-Sie benötigen Zugriff auf das Projekt und die Baudokumentation. Fotos und einzelne Zusatzfunktionen benötigen eine passende Verbindung beziehungsweise Freigabe.
+| Mobile-App | Web-App | Wofür |
+|---|---|---|
+| Tagesbericht | Bautagesbericht | täglicher Baufortschritt |
+| Stundenbericht | Regiebericht | Zusatzarbeiten und Stunden |
+| Bedenkenanzeige | Bedenkenanzeige | schriftliche Bedenken an den Auftraggeber |
+| eigene Vorlage | eigene Vorlage | Berichte nach Ihrer Vorlage |
 
-## In der Mobile-App
+## Voraussetzungen
 
-1. Öffnen Sie das Projekt und wählen Sie „Tagesbericht“.
-2. Wählen Sie in „Bautagesberichte“ die Aktion „Neuen Bericht erstellen“.
-3. Prüfen Sie „Berichtstyp“ und „Datum“.
-4. Erfassen Sie unter „Ausgeführte Arbeiten“ eine konkrete Beschreibung.
-5. Ergänzen Sie relevante anwesende Personen und „Materialverbrauch“.
-6. Tragen Sie besondere Vorkommnisse und „Nächste Schritte“ ein.
-7. Fügen Sie bei Bedarf geeignete Fotos und die vorgesehenen Unterschriften hinzu.
-8. Wählen Sie „Bericht speichern“ und prüfen Sie den Status.
+- Sie haben Zugriff auf das Projekt und seine Baudokumentation; auf der Baustelle arbeiten Sie mit der Mobile-App (App-Lizenz oder Voll-Lizenz).
+- Mitarbeitende und Subunternehmer, die Sie als anwesend eintragen, sind im Betrieb angelegt.
+- Für Unterschriften darf die Mobile-App den Standort verwenden; Fotos laden Sie mit Internetverbindung hoch.
 
-## In der Web-App
+## Schritt für Schritt in der Mobile-App
 
-1. Öffnen Sie „Projekte → gewünschtes Projekt → Baudokumentation → Berichte“.
-2. Wählen Sie „Neuer Bericht“ und die passende Vorlage beziehungsweise Art.
-3. Ergänzen Sie die angebotenen Berichtsfelder und speichern Sie.
-4. Öffnen Sie den Bericht erneut zur Kontrolle.
+1. Öffnen Sie das Projekt und tippen Sie auf „Tagesbericht“.
+2. Tippen Sie unter „Bautagesberichte“ auf „Neuen Bericht erstellen“.
+3. Wählen Sie unter „Berichtstyp & Datum“ den „Berichtstyp“ und das „Datum“.
+4. Beschreiben Sie unter „Ausgeführte Arbeiten“, was heute erledigt wurde.
+5. Wählen Sie unter „Anwesende Mitarbeiter“ und „Anwesende Subunternehmer“ die Beteiligten.
+6. Tragen Sie unter „Materialverbrauch“ jede Materialzeile mit Menge und Einheit ein.
+7. Fügen Sie unter „Fotos“ die Baustellen-Fotos hinzu.
+8. Ergänzen Sie unter „Weitere Angaben“ die Felder „Besondere Vorkommnisse“ und „Nächste Schritte“.
+9. Lassen Sie unter „Bauherr & Unterschriften“ Bauleiter und Bauherr unterschreiben.
+10. Tippen Sie auf „Bericht speichern“.
+
+Texte sprechen Sie auf Wunsch mit „Diktieren“ ein: bis zu 60 Sekunden je Aufnahme, Sie prüfen den Text und übernehmen ihn mit „Text übernehmen“. Das Diktat verbraucht KI-Credits. Bei einer Bedenkenanzeige tragen Sie zusätzlich die „Rechtliche Grundlage“ ein.
+
+## Schritt für Schritt in der Web-App
+
+1. Öffnen Sie das Projekt und den Reiter „Baudokumentation“.
+2. Klicken Sie im Bereich „Berichte“ auf „Neuer Bericht“.
+3. Wählen Sie die Vorlage „Bautagesbericht“, „Regiebericht“, „Bedenkenanzeige“ oder eine eigene Vorlage.
+4. Prüfen Sie das Datum und den „Status“.
+5. Beschreiben Sie unter „Ausgeführte Arbeiten“, was erledigt wurde.
+6. Wählen Sie unter „Anwesendes Team“ die Beteiligten.
+7. Erfassen Sie unter „Verbrauchtes Material“ jede Position mit Menge und Einheit.
+8. Ergänzen Sie „Besondere Vorkommnisse“, „Nächste Schritte“ und „Fotos“.
+9. Klicken Sie auf „Speichern“.
+
+Ein Bericht durchläuft die Status „Entwurf“, „Unterschrieben“ und „Abgeschlossen“. Die Bedenkenanzeige erklärt [Bedenkenanzeige schreiben](/hilfe/bedenkenanzeige), den Regiebericht [Regiebericht erstellen](/hilfe/regiebericht).
 
 ## Ergebnis prüfen
 
-Der Bericht erscheint mit Datum und Status im Projekt. Ein Entwurf ist nicht automatisch unterschrieben oder abgeschlossen.
-
-## Mobile Unterschriften mit Ort und Zeitpunkt
-
-Lassen Sie die vorgesehenen Personen auf dem Gerät unterschreiben und bestätigen Sie jede Unterschrift. Bei dieser Bestätigung erfasst die App jeweils den aktuellen Standort mit der gemeldeten Genauigkeit und dem Zeitpunkt. Die Standortfreigabe und eine erfolgreiche Ortung sind dafür erforderlich.
-
-Nach dem Speichern sehen berechtigte Personen die Unterschriften samt Standortangaben im Bericht, sowohl mobil als auch nach der Synchronisierung im Web. Die Kartenverknüpfung öffnet den erfassten Punkt. Bei mehreren Unterzeichnenden werden die Angaben getrennt je Unterschrift gespeichert.
-
-Kann der Standort nicht ermittelt werden, wird die Unterschrift noch nicht bestätigt; die Zeichnung bleibt erhalten. Prüfen Sie die Standortfreigabe und versuchen Sie die Bestätigung erneut. Ort und Zeitpunkt dokumentieren die konkrete Bestätigung auf dem Gerät; eine laufende Ortung findet dabei nicht statt.
-
-Für die Lindenstraße sollte beispielsweise nachvollziehbar sein, welche Wandflächen bearbeitet wurden und welche Zusatzvorbereitung noch abgestimmt werden muss. Eine Beschreibung wie „alles erledigt“ ist dafür zu ungenau.
+- In der Web-App steht der Bericht im Bereich „Berichte“, gruppiert nach Kalenderwoche, mit Datum, Art und Status.
+- Ein Klick auf den Bericht öffnet die PDF-Vorschau; mit „Als PDF herunterladen“ speichern Sie ihn.
+- In der Mobile-App filtern Sie die Liste nach „Berichtstyp“ und „Status“; jede Unterschrift zeigt unter „Unterschrifts-Orte“ Ort und Zeitpunkt.
+- Die Beschreibung nennt Ort und Arbeit, zum Beispiel *Wohnung Lindenstraße, Wohnzimmer: Wände grundiert, Decke gespachtelt*.
 
 ## Häufige Probleme
 
-Fehlende Fotos prüfen Sie anhand des Upload- beziehungsweise Synchronisierungsstatus. Die Aufnahme auf dem Gerät bestätigt noch keine erfolgreiche Ablage.
+### Warum zeigt die App „Nicht synchronisiert“?
 
-Vor einer Abrechnung muss der Bericht einen passenden abgeschlossenen Stand und übernehmbare Positionen haben. Erfassen Sie dieselben Stunden nicht zugleich mehrfach über Bericht und Projektzeiten.
+Der Bericht ist auf dem Gerät gespeichert und wird übertragen, sobald die App wieder Verbindung hat. Öffnen Sie die App mit Internetverbindung; danach erscheint der Bericht auch in der Web-App.
 
-Der [Bautagesbericht-Ratgeber](/blog/digitale-bautagesberichte) zeigt ein Muster; [Berichte abrechnen](/hilfe/berichte-abrechnen) beschreibt die weitere Nutzung.
+### Was tun, wenn eine Unterschrift nicht bestätigt wird?
+
+Die App bestätigt eine Unterschrift, sobald sie den Standort ermittelt hat. Erlauben Sie den Standortzugriff, warten Sie auf Empfang und bestätigen Sie erneut; die Zeichnung bleibt dabei erhalten.
+
+### Wie rechne ich einen Regiebericht ab?
+
+Abgeschlossene Berichte mit übernehmbaren Positionen rechnen Sie mit „Rechnung aus Bericht erstellen“ ab, mehrere zusammen mit „Sammelabrechnung“. Den Ablauf beschreibt [Berichte abrechnen](/hilfe/berichte-abrechnen).
+
+### Wann schreibe ich eine Bedenkenanzeige?
+
+Wenn Sie Bedenken gegen die vorgesehene Ausführung, gelieferte Stoffe oder Vorleistungen anderer Unternehmer haben. Nach § 4 Abs. 3 VOB/B teilen Sie diese dem Auftraggeber unverzüglich schriftlich mit, möglichst vor Beginn der Arbeiten.
