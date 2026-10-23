@@ -162,7 +162,8 @@ describe("backlink-register.json – Statuspflege (10-11, D-29)", () => {
     const texte = [...register.map((e) => e.browserPrompt), uebergabe2];
     for (const t of texte) {
       for (const preis of t.match(/\d+,\d{2} €/g) ?? []) expect(llms, preis).toContain(preis);
-      for (const tage of t.match(/\d+ Tage\b/g) ?? []) expect(llms, tage).toContain(tage);
+      // Testtage von CraftOS (Portalangaben wie „30 Tage Premium“ bei ProvenExpert sind keine CraftOS-Fakten).
+      for (const tage of t.match(/\d+ Tage(?= kostenlos| testen| Test)/g) ?? []) expect(llms, tage).toContain(tage);
       for (const lizenz of t.match(/\b[A-ZÄÖÜ][a-zäöü]+-Lizenz\b/g) ?? []) expect(llms, lizenz).toContain(lizenz);
       for (const plattform of ["iOS", "Android", "Web-App", "Mobile-App"])
         if (t.includes(plattform)) expect(llms, plattform).toContain(plattform);
