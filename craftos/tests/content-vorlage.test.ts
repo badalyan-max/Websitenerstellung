@@ -486,7 +486,8 @@ describe("ContentSearch v2 (09-UI-SPEC § 3, § 5)", () => {
   it("leerer Zustand Hilfe: h3, Text mit Support-Link, Text-Button „Suche zurücksetzen“", async () => {
     const html = await suche({ kind: "hilfe" });
     expect(html).toMatch(/<h3[^>]*>Keine passende Anleitung gefunden\.<\/h3>/);
-    expect(text(html)).toContain(
+    // Ohne Leerzeichen an Tag-Grenzen: der Link „Support“ steht mitten im Satz.
+    expect(decode(html.replace(/<[^>]+>/g, ""))).toContain(
       "Versuchen Sie einen kürzeren Suchbegriff, wählen Sie alle Themen oder fragen Sie den Support.",
     );
     expect(html).toMatch(/<a[^>]*href="\/support"[^>]*>Support<\/a>/);
