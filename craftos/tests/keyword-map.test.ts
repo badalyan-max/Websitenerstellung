@@ -326,7 +326,8 @@ describe("Keyword-Map", () => {
     }
     const leer = await generateMetadata({ params: Promise.resolve({ slug: "gibt-es-nicht" }) });
     expect(leer).toEqual({});
-  });
+    // Dynamische Importe der Detailseiten dauern unter Volllast der Suite länger als 5 s (10-07, Muster 08-09/10-06).
+  }, 60_000);
 
   it("statische Seiten (/, /funktionen, /app) folgen den Zielwerten (D-12, 07 D-10)", async () => {
     for (const seite of PHASE6_SEITEN) {
