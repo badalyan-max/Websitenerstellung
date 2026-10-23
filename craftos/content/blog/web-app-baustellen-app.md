@@ -1,9 +1,10 @@
 ---
 title: "Web-App und Baustellen-App: Aufgaben zwischen Büro und Team sinnvoll verteilen"
 description: "So verbinden Sie Planung, mobile Rückmeldungen und kaufmännische Prüfung mit passenden Rollen und klaren Übergaben."
+answer: "Im Büro planen, kalkulieren und prüfen Sie in der Web-App, auf der Baustelle erfasst das Team Zeiten, Fotos und Rückmeldungen in der Mobile-App. Beide Seiten arbeiten am selben Projekt, und Rollen legen fest, wer welche Daten sieht."
 category: "softwareauswahl"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["team", "arbeitsanweisungen", "plantafel"]
@@ -12,17 +13,15 @@ sources: []
 platforms: ["web", "mobile"]
 ---
 
-Büro und Baustelle arbeiten am selben Auftrag, benötigen aber unterschiedliche Ansichten. Im Büro stehen Planung, Preise und Dokumentprüfung im Vordergrund. Vor Ort zählen der aktuelle Einsatz, verständliche Arbeitsanweisungen und eine schnelle Rückmeldung. Gute Zusammenarbeit entsteht, wenn beide Seiten denselben Projektbezug verwenden.
-
 ## Welche Aufgaben gehören typischerweise ins Büro?
 
-Das Büro legt Kunden und Projekte an, kalkuliert Angebote und plant Einsätze. Es prüft eingehende Belege, bereitet Rechnungen vor und kontrolliert finanzielle Auswertungen. Ein großer Bildschirm ist dafür hilfreich, weil mehrere Positionen, Zeiträume und Zusammenhänge gleichzeitig sichtbar sein sollen.
+Ins Büro gehören Kunden und Projekte anlegen, Angebote kalkulieren, Einsätze planen, Belege prüfen, Rechnungen vorbereiten und Auswertungen kontrollieren. Dafür hilft ein großer Bildschirm, auf dem Positionen, Zeiträume und Zusammenhänge gleichzeitig sichtbar sind.
 
-Die Web-App bietet diesen breiten Überblick. Eine mobile Darstellung muss dagegen nicht sämtliche Tabellen gleichzeitig zeigen, um nützlich zu sein. Sie soll die Aufgabe vor Ort eindeutig machen.
+Die Web-App bietet diesen breiten Überblick. Die Mobile-App konzentriert sich dagegen auf die Aufgabe vor Ort und macht sie eindeutig.
 
 ## Was braucht das Team auf der Baustelle?
 
-Mitarbeiter benötigen den richtigen Projektort, den vereinbarten Arbeitsumfang und die passenden Unterlagen. Sie erfassen Arbeitszeit, dokumentieren Leistungen und melden Hindernisse. Die Teamleitung kann je nach Freigabe zusätzliche Verantwortung für Mitarbeiterzeiten und Abstimmung übernehmen.
+Das Team braucht den richtigen Projektort, den vereinbarten Arbeitsumfang und die passenden Unterlagen. Vor Ort erfasst es Arbeitszeit, dokumentiert Leistungen und meldet Hindernisse; die Mobil-Teamleitung erfasst und korrigiert zusätzlich Zeiten im Projekt.
 
 | Aufgabe | Büro | Baustelle |
 |---|---|---|
@@ -32,36 +31,56 @@ Mitarbeiter benötigen den richtigen Projektort, den vereinbarten Arbeitsumfang 
 | Rechnung vorbereiten | Prüft Umfang und Betrag. | Liefert vollständige Nachweise. |
 | Abweichung klären | Entscheidet über weiteres Vorgehen. | Meldet den konkreten Sachverhalt. |
 
-Die Rollenverteilung verhindert, dass eine Person Informationen erfasst, die sie nicht zuverlässig beurteilen kann.
+Die klare Aufteilung sorgt dafür, dass jede Person das erfasst, was sie zuverlässig beurteilen kann.
 
 ## Wie sieht eine gute Übergabe aus?
 
-Im Musterprojekt „Wohnung Lindenstraße“ plant das Büro zwei Mitarbeiter für die Wandbeschichtung ein. Die Arbeitsanweisung nennt Räume, Material und den Zustand, der vor Beginn geprüft werden soll. Das Team sieht den zugewiesenen Einsatz und dokumentiert, dass eine Wand zusätzliche Vorarbeiten benötigt.
+Eine gute Übergabe nennt Ort, Beobachtung und Auswirkung. Im Musterprojekt Wohnung Lindenstraße plant das Büro zwei Mitarbeiter für die Wandbeschichtung ein; die Arbeitsanweisung nennt Räume, Material und den Zustand, der vor Beginn zu prüfen ist.
 
-Die Rückmeldung enthält Ort, Beobachtung und Auswirkung. „Wohnzimmer Nordwand: Altbeschichtung löst sich; Zusatzvorbereitung vor dem Anstrich erforderlich“ ist hilfreicher als „Problem auf Baustelle“. Das Büro kann daraufhin mit dem Kunden abstimmen und den weiteren Ablauf festlegen.
+Das Team sieht den zugewiesenen Einsatz und meldet, dass sich an der Nordwand im Wohnzimmer die Altbeschichtung löst und vor dem Anstrich zusätzliche Vorarbeit nötig ist. Diese Rückmeldung hilft mehr als ein allgemeiner Hinweis auf ein Problem.
+
+Das Büro stimmt sich daraufhin mit dem Kunden ab und legt den weiteren Ablauf fest.
 
 ## Welche Rechte sollten die Personen erhalten?
 
-In CraftOS stehen Admin-, Büro- und App-Lizenzen mit dazugehörigen Rollen und Freigaben zur Verfügung. Admin und Büro können die Web-App und Mobile-App verwenden. Eine reine App-Lizenz ist auf die Mobile-App ausgerichtet und erhält Zugriff auf zugewiesene Arbeitsbereiche.
+Jede Person erhält eine von fünf Rollen: Admin, Büro-Leitung, Büro-Projektleitung, Mobil-Teamleitung oder Mobil-Teammitglied. Die ersten drei arbeiten mit einer Voll-Lizenz in Web-App und Mobile-App, die beiden Mobil-Rollen mit einer App-Lizenz in der Mobile-App.
 
-Finanzdaten und die Sichtbarkeit sämtlicher Projekte sind eigene Entscheidungen. Eine Person muss nicht alle Preise sehen, nur weil sie eine Arbeitszeit erfassen soll. Umgekehrt benötigt die kaufmännische Leitung ausreichenden Zugriff, um Belege und Projektkosten prüfen zu können.
+| Rolle | Lizenz | Arbeitsbereich |
+|---|---|---|
+| Admin | Voll-Lizenz | Verwaltet den Betrieb. |
+| Büro-Leitung | Voll-Lizenz | Büro, alle Projekte und Finanzen. |
+| Büro-Projektleitung | Voll-Lizenz | Zugewiesene und selbst angelegte Projekte. |
+| Mobil-Teamleitung | App-Lizenz | Eigene und fremde Projektzeiten. |
+| Mobil-Teammitglied | App-Lizenz | Eigene Zeiten in zugewiesenen Projekten. |
 
-Die [Hilfe zu Rollen und Zugriffsrechten](/hilfe/rollen-zugriffsrechte-einstellen) erklärt die aktuellen Einstellungen. Testen Sie Änderungen anschließend mit der betroffenen Rolle.
+Finanzdaten und die Sicht auf alle Projekte vergeben Sie gezielt. Wer nur Zeiten erfasst, braucht keine Preise; die kaufmännische Leitung braucht dagegen genug Zugriff, um Belege und Projektkosten zu prüfen.
 
-## Wie gehen Sie mit fehlender Verbindung um?
+Die [Hilfe zu Rollen und Zugriffsrechten](/hilfe/rollen-zugriffsrechte-einstellen) erklärt die Einstellungen. Testen Sie Änderungen anschließend mit der betroffenen Rolle.
 
-Vor dem Einsatz sollten die benötigten Ansichten einmal mit Internetverbindung geöffnet werden. Offline-Verfügbarkeit hängt von der Funktion und den bereits geladenen Daten ab. Eine lokale Speicherung bedeutet noch nicht, dass die Rückmeldung im Büro angekommen ist.
+## Wie arbeitet die Mobile-App ohne Netz?
 
-Kontrollieren Sie nach Wiederherstellung der Verbindung den Synchronisierungsstatus. Für Uploads, Anmeldung oder einzelne geschäftliche Aktionen kann weiterhin eine Verbindung notwendig sein. Der Ratgeber zur [Offline-Nutzung](/blog/offline-baustellen-app) beschreibt die Grenzen ohne ein pauschales Vollständigkeitsversprechen.
+Zeiten und Berichte werden ohne Netz auf dem Gerät vorgemerkt und später übertragen; Fotos laden Sie mit Internetverbindung hoch. Öffnen Sie die benötigten Ansichten vor dem Einsatz einmal mit Verbindung.
+
+Kontrollieren Sie nach der Rückkehr ins Netz den Synchronisierungsstatus. Erst dann ist die Rückmeldung im Büro angekommen. Was offline bereitsteht, beschreibt der Ratgeber zur [Offline-Nutzung](/blog/offline-baustellen-app).
 
 ## Wie bleibt die Zusammenarbeit im Alltag übersichtlich?
 
-Vereinbaren Sie wenige verbindliche Gewohnheiten: Zeiten dem richtigen Projekt zuordnen, Abweichungen mit Kontext melden und Berichte zeitnah prüfen. Ein Projektchat ergänzt diese Informationen, ersetzt aber keine strukturierte Rechnung oder einen unterschriftsbezogenen Nachweis.
+Vereinbaren Sie wenige feste Gewohnheiten: Zeiten dem richtigen Projekt zuordnen, Abweichungen mit Kontext melden und Berichte zeitnah prüfen. Für Rückfragen nutzt das Team den Projekt-Chat und Direktnachrichten.
 
-Nutzen Sie [Arbeitsanweisungen](/funktionen/arbeitsanweisungen), [Plantafel](/funktionen/plantafel) und [Teamverwaltung](/funktionen/team) als zusammenhängenden Ablauf. So erhält jede Person die Informationen, die sie für ihre Aufgabe benötigt, und das Büro kann Rückmeldungen tatsächlich weiterverwenden.
+In der Mobile-App öffnen Mitarbeitende im Projekt die Kachel „Chat“ („Projekt-Nachrichten“) und schreiben dort mit allen, die dem Projekt zugeordnet sind, auch mit Foto. Direktnachrichten an einen Kollegen starten sie unter „Nachrichten“ mit „Neue Nachricht“; die Anleitung [Projekt-Chat und Nachrichten](/hilfe/projekt-chat-nachrichten) zeigt die Schritte.
+
+Was abgerechnet oder unterschrieben werden muss, gehört in Rechnung, Bericht oder Protokoll; der Chat hält die Abstimmung dazu fest. [Arbeitsanweisungen](/funktionen/arbeitsanweisungen), [Plantafel](/funktionen/plantafel) und [Teamverwaltung](/funktionen/team) bilden zusammen den Ablauf.
+
+## In welchen Sprachen arbeitet das Team?
+
+Die Mobile-App gibt es in 21 Sprachen, darunter Deutsch, Englisch, Polnisch, Rumänisch, Türkisch und Ukrainisch. Jede Person wählt ihre Sprache in der App unter „Einstellungen“ bei „Sprache / Language“; das Büro kann beim Anlegen eine Vorgabe setzen.
+
+Die Web-App und die Dokumente für Ihre Kunden erstellt das Büro auf Deutsch. Wie Mitarbeitende die Sprache umstellen, zeigt die Anleitung [App-Sprache einstellen](/hilfe/app-sprache-einstellen).
 
 ## Welche Übergabe sollte am Tagesende erfolgen?
 
-Vereinbaren Sie eine kurze Abschlussroutine für den Einsatz: Timer beendet, Projekt richtig zugeordnet, relevante Abweichung dokumentiert und ausstehende Übertragungen geprüft. Das Büro kontrolliert anschließend, welche Rückmeldungen eine Entscheidung erfordern.
+Am Tagesende beendet das Team den Timer, prüft die Projektzuordnung, dokumentiert relevante Abweichungen und kontrolliert ausstehende Übertragungen. Das Büro sieht anschließend, welche Rückmeldungen eine Entscheidung brauchen.
 
-Diese Routine ersetzt keine ausführliche Besprechung bei schwierigen Fällen, verhindert aber viele kleine Informationslücken. Halten Sie insbesondere fest, wenn eine Arbeit nicht begonnen werden konnte oder zusätzliches Material fehlt. Am nächsten Morgen kann die Planung dadurch auf dem tatsächlichen Stand aufbauen. Die Verantwortung bleibt klar: Das Team beschreibt die Ausführung, das Büro klärt die daraus folgenden kaufmännischen und organisatorischen Schritte.
+Halten Sie besonders fest, wenn eine Arbeit nicht beginnen konnte oder Material fehlte. So plant das Büro am nächsten Morgen auf dem tatsächlichen Stand.
+
+Schwierige Fälle besprechen Sie weiterhin persönlich. Die Verantwortung bleibt klar: Das Team beschreibt die Ausführung, das Büro klärt die kaufmännischen und organisatorischen Folgen.
