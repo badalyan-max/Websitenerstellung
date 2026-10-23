@@ -8,7 +8,8 @@ import {
   renderMarkdown,
 } from "@/lib/content";
 import { funktionen } from "@/lib/funktionen";
-import { categories, categoryIcons } from "@/lib/content-types";
+import { categories } from "@/lib/content-types";
+import { categoryIcons } from "@/lib/content-icons";
 import { keywordMap } from "@/lib/keyword-map";
 import * as szenen from "@/lib/scenes";
 import { allScenes, sceneById, sceneFrame } from "@/lib/scenes";
@@ -528,5 +529,12 @@ describe("Kategorie-Icons (09-UI-SPEC § 3)", () => {
     expect(Object.keys(categories.hilfe)).toHaveLength(9);
     expect(categoryIcons.hilfe.lager.displayName).toBe("Warehouse");
     expect(categoryIcons.blog.rechnungen.displayName).toBe("Receipt");
+  });
+
+  it("content-types bleibt ohne Icon-Importe, die Icons liegen serverseitig in lib/content-icons.ts (IN-02)", async () => {
+    const quelle = await fs.readFile(new URL("../lib/content-types.ts", import.meta.url), "utf8");
+    expect(quelle).not.toContain("lucide-react");
+    const icons = await fs.readFile(new URL("../lib/content-icons.ts", import.meta.url), "utf8");
+    expect(icons).toContain('import "server-only";');
   });
 });

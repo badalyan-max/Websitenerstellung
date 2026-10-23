@@ -3,7 +3,8 @@ import { ContentSearch } from "./ContentSearch";
 import { ContentKopf } from "./ContentKopf";
 import { CONTENT_CTA } from "./ArticlePage";
 import { getContentList } from "@/lib/content";
-import { categories, categoryIcons, type ContentKind, type ContentSummary } from "@/lib/content-types";
+import { categories, type ContentKind, type ContentSummary } from "@/lib/content-types";
+import { categoryIcons } from "@/lib/content-icons";
 import { CtaBand } from "@/components/v2/CtaBand";
 import { LinkKarten, type LinkKarte } from "@/components/v2/LinkKarten";
 import { SectionHeader } from "@/components/v2/SectionHeader";
@@ -56,7 +57,7 @@ function themenKarten(kind: ContentKind, items: ContentSummary[], ohne?: string)
     .filter(([slug]) => slug !== ohne)
     .map(([slug, name]) => {
       const Icon = categoryIcons[kind][slug];
-      if (!Icon) throw new Error(`Kategorie ${kind}/${slug}: Icon fehlt – categoryIcons in lib/content-types.ts ergänzen.`);
+      if (!Icon) throw new Error(`Kategorie ${kind}/${slug}: Icon fehlt – categoryIcons in lib/content-icons.ts ergänzen.`);
       const n = items.filter((a) => a.category === slug).length;
       return {
         href: "/" + kind + "/kategorie/" + slug,
