@@ -9,7 +9,7 @@ author: "CraftOS Redaktion"
 draft: false
 scene: "import"
 relatedFeatures: ["datenuebernahme", "projektverwaltung"]
-relatedArticles: ["/hilfe/kunden-ansprechpartner-anlegen", "/hilfe/artikel-stammdaten-anlegen", "/hilfe/gaeb-importieren", "/hilfe/firmenprofil-einrichten"]
+relatedArticles: ["/hilfe/kunden-ansprechpartner-anlegen", "/hilfe/artikel-stammdaten-anlegen", "/hilfe/datanorm-katalog-importieren", "/hilfe/firmenprofil-einrichten"]
 sources: []
 platforms: ["web"]
 ---
