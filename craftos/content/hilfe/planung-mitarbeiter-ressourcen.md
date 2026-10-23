@@ -1,52 +1,78 @@
 ---
 title: "Mitarbeiter, Fahrzeuge und Geräte einem Einsatz zuordnen"
-description: "So ergänzen Sie die Personalplanung um Ressourcen und prüfen die Verfügbarkeit für den richtigen Zeitraum."
+description: "So planen Sie Personal sowie Geräte und Fahrzeuge auf der Plantafel und prüfen die Verfügbarkeit für den richtigen Zeitraum."
 category: "projekte"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
+answer: "Mitarbeiter planen Sie auf der Plantafel über „Einplanen“, Geräte und Fahrzeuge mit der Art „Gerät/Fahrzeug“ im selben Dialog. Neue Geräte und Fahrzeuge legen Sie unter „Verwalten“ → „Geräte & Fahrzeuge verwalten“ an."
 relatedFeatures: ["plantafel", "team"]
 relatedArticles: ["/hilfe/plantafel-einsatz-planen", "/hilfe/urlaub-beantragen-bearbeiten"]
 sources: []
 platforms: ["web"]
 ---
 
-Personal und Arbeitsmittel werden getrennt geplant; prüfen Sie beide, damit der Einsatz tatsächlich ausführbar ist.
+Personal sowie Geräte und Fahrzeuge planen Sie getrennt auf der Plantafel. Prüfen Sie beide Zuordnungen, damit der Einsatz mit Team und Arbeitsmittel ausführbar ist.
 
-Sie benötigen Zugriff auf die Plantafel in der Web-App. Mitarbeiter müssen im Team vorhanden sein; Fahrzeuge, Maschinen oder Werkzeuge werden als Ressourcen gepflegt.
+## Voraussetzungen
 
-## Mitarbeiter zuordnen
+- Web-App mit Voll-Lizenz (Admin oder Büro) und Zugriff auf „Plantafel“.
+- Mitarbeiter sind unter „Mitarbeiter“ angelegt.
+- Geräte und Fahrzeuge stehen im gemeinsamen Verzeichnis für Plantafel und Lager.
 
-1. Öffnen Sie „Plantafel“ und den betreffenden Einsatz.
-2. Prüfen Sie die ausgewählte Person und das Projekt.
-3. Kontrollieren Sie Zeitraum, Abwesenheiten und weitere Einsätze.
-4. Speichern Sie eine geänderte Zuordnung und prüfen Sie die Plantafel erneut.
+## Schritt für Schritt in der Web-App
 
-Die richtige Qualifikation und die organisatorische Vertretung müssen Sie inhaltlich beurteilen. Ein freier Kalenderplatz bestätigt diese Voraussetzungen nicht automatisch.
+### Einen Mitarbeiter zuordnen
 
-## Ressourcen einrichten und einplanen
+1. Öffnen Sie „Plantafel“ und klicken Sie auf den Einsatz.
+2. Prüfen Sie im Dialog „Einsatz bearbeiten“ die ausgewählte Person und das Projekt.
+3. Wählen Sie bei Bedarf unter „Mitarbeiter *“ eine andere Person.
+4. Prüfen Sie Zeitraum und Uhrzeiten.
+5. Klicken Sie auf „Speichern“.
 
-1. Öffnen Sie auf der Plantafel „Verwalten → Ressourcen verwalten“.
-2. Prüfen Sie, ob das benötigte Arbeitsmittel bereits angelegt ist.
-3. Erfassen Sie eine fehlende Ressource mit verständlichem Namen und passender Art.
-4. Wählen Sie „Ressource erstellen“.
-5. Öffnen Sie den zugehörigen Ressourcen-Einsatz beziehungsweise „Ressource einplanen“.
-6. Wählen Sie Ressource, Projekt und Zeitraum und speichern Sie.
-7. Kontrollieren Sie Überschneidungen mit anderen Reservierungen.
+Für einen neuen Einsatz verwenden Sie „Einplanen“; die Anleitung [Einsatz planen](/hilfe/plantafel-einsatz-planen) zeigt alle Felder.
 
-„Transporter 1“ und „Transporter 2“ sollten sich eindeutig unterscheiden lassen. Gleichlautende Namen erschweren die Disposition.
+### Ein Gerät oder Fahrzeug anlegen
+
+1. Klicken Sie auf der Plantafel auf „Verwalten“.
+2. Wählen Sie „Geräte & Fahrzeuge verwalten“.
+3. Prüfen Sie in der Liste, ob das Arbeitsmittel bereits angelegt ist.
+4. Tragen Sie unter „Neues Gerät oder Fahrzeug“ einen eindeutigen Namen ein.
+5. Wählen Sie die Art „Fahrzeug“, „Maschine“ oder „Gerät/Werkzeug“.
+6. Lassen Sie „In der Plantafel einplanen“ für planbare Arbeitsmittel angehakt.
+7. Klicken Sie auf „Anlegen“.
+
+Was Sie hier anlegen, steht auch im Lager unter „Geräte & Fahrzeuge“. Ausgabe an Mitarbeiter, Kennungen und Fotos pflegen Sie dort.
+
+### Ein Gerät oder Fahrzeug einplanen
+
+1. Klicken Sie auf der Plantafel auf „Einplanen“.
+2. Wählen Sie als Art „Gerät/Fahrzeug“.
+3. Wählen Sie das Projekt und den Zeitraum.
+4. Wählen Sie unter „Geräte & Fahrzeuge *“ das Arbeitsmittel.
+5. Klicken Sie auf „Einplanen“.
+
+Alternativ klicken Sie in der Zeile des Geräts auf den gewünschten Tag; Gerät und Datum sind dann vorbelegt. Einen bestehenden Einsatz ändern Sie im Dialog „Geräte-Einsatz bearbeiten“.
 
 ## Ergebnis prüfen
 
-Mitarbeiter und Arbeitsmittel sind im vorgesehenen Zeitraum dem richtigen Projekt zugeordnet. Wenn ein Einsatz verschoben wird, kontrollieren Sie beide Arten von Zuordnungen erneut.
+Mitarbeiter sowie Geräte und Fahrzeuge stehen im vorgesehenen Zeitraum beim richtigen Projekt. Verschieben Sie einen Einsatz, prüfen Sie auch die zugehörige Gerätezeile.
 
-Für die Lindenstraße können beispielsweise zwei Mitarbeiter und ein bestimmtes Fahrzeug benötigt werden. Eine Personaländerung verschiebt die Fahrzeugreservierung nicht automatisch inhaltlich passend.
+Ein Beispiel: Für die Wohnung Lindenstraße planen Sie zwei Mitarbeiter und den Transporter für dieselben Tage. Ein eindeutiger Name wie „Transporter VW T6“ unterscheidet ihn von weiteren Fahrzeugen.
 
 ## Häufige Probleme
 
-Unsichtbare Ressourcen können durch Filter ausgeblendet sein. Prüfen Sie die Anzeige, bevor Sie Dubletten anlegen.
+### Warum ist ein Gerät in der Auswahl nicht zu sehen?
 
-Bei einer Überschneidung klären Sie, welcher Auftrag Priorität hat und welches Ersatzmittel verfügbar ist. Bestätigte Abwesenheiten gehören ebenfalls in diesen Abgleich.
+Ausgemusterte Geräte stehen in „Geräte & Fahrzeuge verwalten“ unter „Ausgemustert“; mit „Wieder aktivieren“ sind sie wieder wählbar. Prüfen Sie auch, ob „In der Plantafel einplanen“ für das Gerät gesetzt ist.
 
-Die [Plantafel](/funktionen/plantafel) und [Urlaubsanleitung](/hilfe/urlaub-beantragen-bearbeiten) unterstützen den zusammenhängenden Planungsprozess.
+### Was tue ich bei einer Doppelbelegung?
+
+Die Planungsprüfung zeigt „Hinweis zur Planung“ mit der Überschneidung. Klären Sie, welcher Auftrag Vorrang hat, und planen Sie ein anderes Arbeitsmittel oder einen anderen Zeitraum ein.
+
+### Wie berücksichtige ich Urlaub bei der Planung?
+
+Genehmigte Abwesenheiten prüft die Plantafel beim Einplanen mit. Wie Anträge entschieden werden, zeigt die [Urlaubsanleitung](/hilfe/urlaub-beantragen-bearbeiten).
+
+Die [Plantafel](/funktionen/plantafel) erklärt den zusammenhängenden Planungsprozess.

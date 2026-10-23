@@ -1,52 +1,76 @@
 ---
 title: "Offline- und Synchronisierungsstatus der Mobile-App verstehen"
-description: "So prüfen Sie gespeicherte Ansichten, ausstehende Änderungen und fehlgeschlagene Übertragungen."
+description: "So arbeiten Sie ohne Netz, erkennen ausstehende Änderungen und übertragen sie nach dem Einsatz sicher ins Büro."
 category: "zeiten"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
+answer: "Ohne Netz speichert die Mobile-App Zeiten, Berichte, Mängel, Nachrichten und Lagerbuchungen auf dem Gerät und überträgt sie, sobald wieder eine Verbindung besteht. Die Statusanzeige zeigt, wie viele Änderungen ausstehen und welche Sie erneut senden."
 relatedFeatures: ["zeiterfassung", "baudokumentation", "aufmass"]
-relatedArticles: ["/blog/offline-baustellen-app", "/hilfe/mobilen-timer-bedienen"]
+relatedArticles: ["/blog/offline-baustellen-app", "/hilfe/mobilen-timer-bedienen", "/hilfe/zeiteintrag-erfassen-korrigieren"]
 sources: []
 platforms: ["mobile"]
 ---
 
-Die Statusanzeige unterscheidet fehlende Verbindung, ausstehende Änderungen und abgelehnte Übertragungen; behandeln Sie diese Zustände getrennt.
+Die Statusanzeige der Mobile-App unterscheidet drei Zustände: keine Verbindung, ausstehende Änderungen und Änderungen, die der Server abgelehnt hat. Behandeln Sie diese Zustände getrennt.
 
-Sie benötigen eine bereits angemeldete Sitzung. Öffnen Sie benötigte Projekte und Ansichten möglichst vor dem Einsatz mit Verbindung.
+## Voraussetzungen
 
-## Vor dem Offline-Einsatz
+- Mobile-App mit App-Lizenz oder Voll-Lizenz.
+- Eine Anmeldung mit Internetverbindung vor dem Einsatz.
+- Projekte und Ansichten, die Sie unterwegs brauchen, haben Sie einmal mit Verbindung geöffnet.
+
+## Schritt für Schritt in der Mobile-App
+
+### Vor dem Einsatz vorbereiten
 
 1. Melden Sie sich mit Internetverbindung an.
-2. Öffnen Sie die benötigten Projekte und Arbeitsansichten.
-3. Prüfen Sie, ob die relevanten Inhalte sichtbar sind.
-4. Kontrollieren Sie, ob bereits ausstehende Änderungen vorhanden sind.
+2. Öffnen Sie die benötigten Projekte und Arbeitsansichten einmal.
+3. Prüfen Sie, ob die Inhalte sichtbar sind.
+4. Lassen Sie ausstehende Änderungen vor der Abfahrt übertragen.
 
-„Offline, noch nicht geladen“ bedeutet, dass die betreffende Ansicht zunächst mit Verbindung geöffnet werden muss.
+### Ohne Netz arbeiten
 
-## Nach dem Einsatz synchronisieren
+1. Erfassen Sie Zeiten, Berichte oder Mängel wie gewohnt.
+2. Achten Sie auf die Bestätigung „Offline gespeichert, wird synchronisiert“.
+3. Prüfen Sie in der Statusanzeige die Zahl der ausstehenden Änderungen.
+
+Nachrichten im Projekt-Chat sendet die App, sobald wieder Verbindung besteht. Lagerbuchungen erscheinen als „Auf Gerät vorgemerkt“; den verfügbaren Bestand prüft der Server nach der Verbindung. Fotos laden Sie mit Internetverbindung hoch.
+
+### Nach dem Einsatz übertragen
 
 1. Stellen Sie die Internetverbindung wieder her.
-2. Lassen Sie die App die ausstehenden Vorgänge übertragen.
-3. Prüfen Sie „Synchronisiere…“ beziehungsweise die Anzahl ausstehender Änderungen.
-4. Öffnen Sie bei einem Fehler die angezeigten Hinweise.
-5. Beheben Sie die Ursache und verwenden Sie „Erneut versuchen“.
+2. Lassen Sie die App geöffnet, bis „Synchronisiere…“ endet.
+3. Öffnen Sie bei nicht synchronisierten Änderungen die Statusanzeige.
+4. Beheben Sie die genannte Ursache und tippen Sie auf „Erneut versuchen“.
 
-„Vom Server abgelehnt“ kann beispielsweise auf fehlende Berechtigung oder einen gesperrten Zugang hinweisen. Eine gute Internetverbindung allein behebt diese Ursache nicht.
+## Ergebnis prüfen
 
-## Wann dürfen Sie verwerfen?
+Die Statusanzeige zeigt keine ausstehenden Änderungen mehr. Der Eintrag ist im Projekt sichtbar und nach der Übertragung auch im Büro in der Web-App.
 
-„Verwerfen“ entfernt einen ausstehenden Vorgang. Nutzen Sie die Aktion nur, wenn dessen Inhalt tatsächlich nicht mehr übertragen werden soll und die Folgen geklärt sind.
+Karten, Routen und Unterschriften an Kundendokumenten nutzen Sie mit Internetverbindung. Beim Starten und Stoppen des Timers erfasst die App auch ohne Netz einen GPS-Punkt; geben Sie dafür den Standort frei.
 
-Melden Sie sich bei ausstehenden Änderungen nicht vorschnell ab. Ohne Verbindung ist eine erneute Anmeldung nicht möglich. Auch das Löschen von App-Daten ist kein erster Reparaturschritt.
+## Häufige Probleme
 
-## Ergebnis und Grenzen
+### Was bedeutet „Offline, noch nicht geladen“?
 
-Der gewünschte Vorgang ist nach erfolgreicher Synchronisierung im gemeinsamen Datenbestand sichtbar. Prüfen Sie wichtige Einträge anschließend im Projekt.
+Die Ansicht wurde auf diesem Gerät noch nie mit Verbindung geöffnet. Öffnen Sie sie einmal mit Internet; danach steht sie auch offline mit dem gespeicherten Stand bereit.
 
-Foto- und Dateifunktionen können andere Voraussetzungen haben als strukturierte Einträge. Bei „Offline hier noch nicht möglich“ ergänzen Sie die Datei später mit Verbindung; daraus folgt kein pauschales Offline-Fotoversprechen.
+### Was bedeutet „Vom Server abgelehnt“?
 
-Karten, Routen und die Unterschrift an einem Kundendokument benötigen eine Verbindung. Die Standortfreigabe bleibt auch bei unterstützter Offline-Erfassung erforderlich: Timerstart und -stopp sowie die Bestätigung mobiler Unterschriften benötigen einen ermittelbaren GPS-Punkt. Prüfen Sie nach der Rückkehr ins Netz, ob der zugehörige Eintrag beziehungsweise Bericht erfolgreich übertragen wurde.
+Der Server hat die Änderung nicht angenommen, zum Beispiel weil die Berechtigung fehlt oder das Abo abgelaufen ist. Klären Sie die Ursache mit dem Büro; eine bessere Verbindung allein löst sie nicht.
 
-Der [Offline-Ratgeber](/blog/offline-baustellen-app) erklärt die Vorbereitung; die [Zeiterfassung](/funktionen/zeiterfassung) zeigt einen typischen unterstützten Arbeitsablauf.
+### Warum meldet die App eine abgerechnete Zeit?
+
+Die Zeit gehört zu einer ausgestellten Rechnung. Die App zeigt „Diese Zeit ist bereits abgerechnet. Änderungen nur nach Storno der Rechnung.“; die [Korrekturanleitung](/hilfe/zeiteintrag-erfassen-korrigieren) zeigt den Weg über das Büro.
+
+### Wann verwende ich „Verwerfen“?
+
+Nur wenn eine nicht synchronisierte Änderung nicht mehr übertragen werden soll. „Verwerfen“ löscht sie endgültig von diesem Gerät; klären Sie die Folgen vorher mit dem Büro.
+
+### Was passiert beim Abmelden mit ausstehenden Änderungen?
+
+Nicht synchronisierte Änderungen und Fotos bleiben für Ihre nächste Anmeldung mit demselben Konto auf dem Gerät. Stoppen Sie einen offline gestarteten Timer vor dem Abmelden; zum erneuten Anmelden brauchen Sie Internet.
+
+Der [Offline-Ratgeber](/blog/offline-baustellen-app) erklärt die Vorbereitung; die [Zeiterfassung](/funktionen/zeiterfassung) zeigt einen typischen Arbeitsablauf.

@@ -1,52 +1,73 @@
 ---
 title: "Urlaub beantragen und Anträge bearbeiten"
-description: "So erfassen Sie einen Zeitraum, verfolgen den Status und prüfen die Auswirkungen auf bestehende Einsätze."
+description: "So beantragen Sie Urlaub in der Mobile-App, entscheiden Anträge im Web und prüfen die Wirkung auf die Einsatzplanung."
 category: "zeiten"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
+answer: "Mitarbeitende beantragen Urlaub in der Mobile-App unter „Zeiten“ → „Urlaub“ mit „Neuer Antrag“. Das Büro entscheidet unter „Plantafel“ → „Verwalten“ → „Urlaubsanträge“; genehmigter Urlaub erscheint als Abwesenheit auf der Plantafel."
 relatedFeatures: ["team", "plantafel"]
 relatedArticles: ["/blog/urlaub-abwesenheiten-einsatzplanung", "/hilfe/plantafel-einsatz-planen"]
 sources: []
 platforms: ["web", "mobile"]
 ---
 
-Ein eingereichter Urlaubsantrag bleibt ausstehend, bis die berechtigte Person eine Entscheidung getroffen hat.
+Ein eingereichter Urlaubsantrag bleibt „Ausstehend“, bis eine berechtigte Person ihn genehmigt oder ablehnt. Danach berücksichtigt die Plantafel den Urlaub bei der Einsatzplanung.
 
-Sie benötigen ein mit Ihrem Konto verknüpftes Mitarbeiterprofil. Die Bearbeitung fremder Anträge ist nur mit den entsprechenden Verwaltungsrechten sichtbar.
+## Voraussetzungen
 
-## In der Mobile-App beantragen
+- Ein mit Ihrem Konto verknüpftes Mitarbeiterprofil.
+- Für Entscheidungen: Verwaltungsrechte für Urlaubsanträge in der Web-App oder in der Mobile-App.
+- Arbeitszeiten, Feiertage und Urlaubskonto sind in den Einstellungen der Web-App gepflegt.
 
-1. Öffnen Sie die Zeiterfassung und wechseln Sie zu „Urlaub“.
-2. Wählen Sie „Neuer Antrag“.
-3. Erfassen Sie „Von“ und „Bis“.
-4. Prüfen Sie die angezeigte Dauer und ergänzen Sie bei Bedarf eine Beschreibung.
-5. Senden beziehungsweise speichern Sie den Antrag.
-6. Kontrollieren Sie ihn unter „Meine Anträge“.
+## Schritt für Schritt in der Mobile-App
 
-Die Statusanzeige unterscheidet „Ausstehend“, „Genehmigt“ und „Abgelehnt“. Ein sichtbarer Antrag ist noch keine bestätigte Freigabe.
+### Urlaub beantragen
 
-## Im Web bearbeiten
+1. Tippen Sie auf „Zeiten“ (mit Voll-Lizenz unter „Mehr“) und dann auf „Urlaub“.
+2. Tippen Sie auf „Neuer Antrag“.
+3. Wählen Sie „Von“ und „Bis“.
+4. Prüfen Sie die angezeigte „Dauer“ und ergänzen Sie bei Bedarf eine „Beschreibung“.
+5. Tippen Sie auf „Antrag einreichen“.
+6. Prüfen Sie den Antrag unter „Meine Anträge“.
 
-1. Öffnen Sie „Plantafel → Verwalten → Urlaubsanträge“.
-2. Prüfen Sie Mitarbeiter, Zeitraum und die angezeigten Kontoinformationen.
-3. Vergleichen Sie den Antrag mit bestehenden Einsätzen und Abwesenheiten.
-4. Verwenden Sie „Genehmigen“ oder „Ablehnen“ entsprechend Ihrer Entscheidung.
-5. Kontrollieren Sie danach die betroffene Einsatzplanung.
+Einen ausstehenden Antrag ändern Sie mit „Antrag speichern“ oder ziehen ihn mit „Antrag zurückziehen“ zurück.
 
-Berechtigte mobile Prüfer finden entsprechende Aufgaben unter „Offene Anträge“ und verwenden „Freigeben“ beziehungsweise „Ablehnen“.
+### Anträge in der Mobile-App entscheiden
+
+1. Öffnen Sie unter „Urlaub“ den Bereich „Offene Anträge“.
+2. Prüfen Sie Person und Zeitraum.
+3. Tippen Sie auf „Freigeben“ oder „Ablehnen“.
+
+## Schritt für Schritt in der Web-App
+
+1. Öffnen Sie „Plantafel“ und klicken Sie auf „Verwalten“.
+2. Wählen Sie „Urlaubsanträge“.
+3. Prüfen Sie Mitarbeiter, Zeitraum, Arbeitstage und den Rest des Urlaubskontos.
+4. Vergleichen Sie den Antrag mit bestehenden Einsätzen.
+5. Klicken Sie auf „Genehmigen“ oder „Ablehnen“.
+
+Im selben Dialog stellen Sie unter „Neuer Antrag“ einen Antrag für eine Person und senden ihn mit „Antrag stellen“. Übersteigt ein Antrag den Rest, kennzeichnet der Dialog das; mit „Trotzdem genehmigen“ entscheiden Sie bewusst.
 
 ## Ergebnis prüfen
 
-Die Entscheidung ist am Antrag erkennbar. Prüfen Sie bei einer Genehmigung zusätzlich, ob Personalbesetzung und Vertretungen angepasst werden müssen.
+Der Antrag zeigt „Genehmigt“ oder „Abgelehnt“. Genehmigter Urlaub erscheint als Abwesenheit auf der Plantafel; prüfen Sie dort Einsätze und Vertretungen für den Zeitraum.
 
-Arbeitszeitmodell und Feiertage beeinflussen die betrieblich relevante Dauer. Diese Grundlagen werden administrativ in den Einstellungen gepflegt.
+Die Dauer richtet sich nach Arbeitszeitmodell und Feiertagen. Diese Grundlagen pflegen Sie unter „Einstellungen“ in „Arbeitszeiten“, „Feiertage“ und „Urlaubskonto“.
 
 ## Häufige Probleme
 
-Bei „Kein Mitarbeiterprofil verknüpft“ muss die Büroverwaltung die Zuordnung prüfen. Ist das Enddatum vor dem Startdatum, korrigieren Sie den Zeitraum.
+### Was bedeutet „Kein Mitarbeiterprofil verknüpft“?
 
-Weicht die erwartete Dauer ab, prüfen Sie Arbeitszeitmodell und Feiertage, statt den Antrag mit einem künstlich veränderten Zeitraum zu versehen.
+Ihr Konto ist noch keinem Mitarbeiterprofil zugeordnet. Bitten Sie die Büroverwaltung, die Zuordnung unter „Mitarbeiter“ zu prüfen; danach können Sie Urlaub beantragen.
+
+### Warum lässt sich der Antrag nicht einreichen?
+
+Prüfen Sie den Zeitraum: Das Enddatum liegt am selben Tag wie das Startdatum oder danach. Tragen Sie beide Daten ein und reichen Sie den Antrag erneut ein.
+
+### Warum weicht die berechnete Dauer ab?
+
+Die Dauer zählt Arbeitstage nach Arbeitszeitmodell und Feiertagen. Prüfen Sie diese Einstellungen, statt den Zeitraum künstlich zu verändern.
 
 Die [Teamfunktion](/funktionen/team) und der [Ratgeber zu Abwesenheiten](/blog/urlaub-abwesenheiten-einsatzplanung) erklären die Verbindung zur Planung.
