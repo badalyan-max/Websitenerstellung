@@ -1,9 +1,10 @@
 ---
 title: "Tiefenkalkulation im Handwerk: Material, Lohn und Marge richtig verbinden"
 description: "Ein durchgerechnetes Beispiel zeigt den Aufbau einer tief kalkulierten Position und den Unterschied zwischen Kostenaufschlag und Marge."
+answer: "Die Tiefenkalkulation zerlegt eine Angebotsposition in Arbeitszeit, Material und weitere Kosten und leitet daraus den Verkaufspreis mit einer Zielmarge ab. So sehen Sie, welcher Bestandteil den Preis trägt, wenn sich ein Einkaufspreis ändert oder die Nachkalkulation eine Abweichung zeigt."
 category: "kalkulation"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["angebote", "nachkalkulation"]
@@ -12,17 +13,15 @@ sources: []
 platforms: ["web"]
 ---
 
-Die Tiefenkalkulation zerlegt eine Angebotsposition in ihre wirtschaftlichen Bestandteile. Sie sehen dadurch, wie viel Material, Arbeitszeit und weitere Kosten für eine bestimmte Menge vorgesehen sind. Das ist besonders hilfreich, wenn sich ein Einkaufspreis ändert oder die Nachkalkulation später eine Abweichung zeigt.
-
 ## Wann ist eine tiefere Kalkulation sinnvoll?
 
-Für eine bekannte Standardleistung mit stabilen Bedingungen kann eine geprüfte Vorlage genügen. Eine neue Bauweise, ein schwieriger Untergrund oder ein hoher Materialanteil verdient mehr Aufmerksamkeit. Der Aufwand sollte zur Unsicherheit und zum möglichen Verlust passen.
+Eine tiefere Kalkulation lohnt sich bei neuen Bauweisen, schwierigem Untergrund oder hohem Materialanteil, also überall, wo Unsicherheit und Verlustrisiko groß sind. Für eine bekannte Standardleistung genügt oft eine geprüfte Kalkulation aus einem früheren Auftrag.
 
-Verwechseln Sie die interne Rechentiefe nicht mit der Kundendarstellung. Kunden benötigen einen verständlichen Leistungsumfang und einen Preis. Ob Sie intern zehn Materialanteile und drei Lohngruppen rechnen, muss nicht in derselben Detailtiefe auf dem Angebot erscheinen.
+Trennen Sie die interne Rechentiefe von der Darstellung für den Kunden. Er braucht einen verständlichen Leistungsumfang und einen Preis; zehn Materialanteile und drei Lohngruppen müssen nicht im Angebot stehen.
 
 ## Wie kalkulieren Sie eine Position vom Einzelwert zur Auftragssumme?
 
-Im Musterprojekt werden 48 m² Wandfläche bearbeitet. Die intern erwarteten Gesamtkosten lauten:
+Addieren Sie Arbeitszeit, Material und sonstige Auftragskosten zu den Gesamtkosten, teilen Sie durch die Menge und schlagen Sie die Zielmarge auf den Verkaufspreis auf. Im Musterprojekt werden 48 m² Wandfläche bearbeitet:
 
 | Bestandteil | Berechnung | Kosten |
 |---|---|---:|
@@ -31,38 +30,44 @@ Im Musterprojekt werden 48 m² Wandfläche bearbeitet. Die intern erwarteten Ges
 | Sonstige Auftragskosten | Einrichtung und Hilfsmittel | 130 € |
 | Gesamtkosten | 720 € + 350 € + 130 € | 1.200 € |
 
-Die Kosten je Quadratmeter betragen 25 €. Bei einer Zielmarge von 20 % ergibt sich ein Gesamtverkaufspreis von 1.500 € netto beziehungsweise 31,25 € je Quadratmeter.
+Die Kosten je Quadratmeter betragen 25 €. Bei einer Zielmarge von 20 % ergibt sich ein Verkaufspreis von 1.500 € netto, also 31,25 € je Quadratmeter.
 
-Alle Zahlen sind Beispiele. Der Materialbedarf hängt von Produkt, Untergrund und Schichtaufbau ab. Eine Rechenvorlage sollte diese technischen Bedingungen nennen, damit sie nicht unbemerkt für einen ungeeigneten Auftrag verwendet wird.
+Alle Zahlen sind Beispiele. Der Materialbedarf hängt von Produkt, Untergrund und Schichtaufbau ab; notieren Sie diese Bedingungen an der Kalkulation, damit sie nicht für einen ungeeigneten Auftrag wiederverwendet wird.
 
 ## Warum sind Aufschlag und Marge unterschiedlich?
 
-Der Aufschlag bezieht den Gewinn auf die Kosten. Die Marge bezieht ihn auf den Umsatz. Bei 1.200 € Kosten und 1.500 € Verkaufspreis beträgt der Gewinn 300 €. Das sind 25 % der Kosten und 20 % des Umsatzes.
+Der Aufschlag bezieht den Gewinn auf die Kosten, die Marge auf den Umsatz. Bei 1.200 € Kosten und 1.500 € Verkaufspreis beträgt der Gewinn 300 €: Das sind 25 % der Kosten und 20 % des Umsatzes.
 
-Diese Unterscheidung wird beim Nachlass sichtbar. Gewähren Sie auf 1.500 € einen Rabatt von 10 %, bleiben 1.350 € Umsatz und 150 € Gewinn. Die Umsatzmarge sinkt auf rund 11,11 %. Der Rabatt halbiert in diesem Beispiel den Gewinn.
+Beim Nachlass wird der Unterschied sichtbar. Gewähren Sie auf 1.500 € einen Rabatt von 10 %, bleiben 1.350 € Umsatz und 150 € Gewinn; die Marge sinkt auf rund 11,11 %, der Gewinn halbiert sich.
 
-Nutzen Sie den [Angebots- und Margenrechner](/rechner/angebotskalkulation), um einen vorhandenen Angebotspreis zu prüfen. So erkennen Sie auch negative Ergebnisse, statt sie hinter einem vermeintlich ausreichenden Aufschlag zu verstecken.
+Mit dem [Angebots- und Margenrechner](/rechner/angebotskalkulation) prüfen Sie einen vorhandenen Angebotspreis. So erkennen Sie auch negative Ergebnisse, die ein scheinbar ausreichender Aufschlag verdeckt.
 
 ## Welche Doppelzählungen sollten Sie vermeiden?
 
-Ein interner Stundensatz kann bereits Gemeinkosten enthalten. Wenn Sie dieselben Kosten zusätzlich noch einmal als Gemeinkostenzuschlag auf die gesamte Position legen, überschätzen Sie die Kostenbasis. Umgekehrt fehlen Kosten, wenn Sie nur den Bruttolohn des Mitarbeiters verwenden und betriebliche Nebenkosten vollständig auslassen.
+Enthält Ihr interner Stundensatz bereits Gemeinkosten, legen Sie dieselben Kosten nicht noch einmal als Gemeinkostenzuschlag auf die Position. Sonst überschätzen Sie die Kostenbasis.
 
-Dokumentieren Sie, was der verwendete Kostensatz enthält. Der [Stundensatzratgeber](/blog/stundenverrechnungssatz-berechnen) erklärt eine einfache Gesamtkostenmethode. Ein externer Verkaufssatz einschließlich Gewinn gehört nicht unverändert als interner Kostensatz in eine Kalkulation, die anschließend erneut Gewinn aufschlägt.
+Umgekehrt fehlen Kosten, wenn Sie nur den Bruttolohn verwenden und betriebliche Nebenkosten auslassen. Dokumentieren Sie deshalb, was der verwendete Kostensatz enthält.
 
-## Wie nutzen Sie das in CraftOS?
+Ein Verkaufssatz einschließlich Gewinn gehört nicht als interner Kostensatz in eine Kalkulation, die danach erneut Gewinn aufschlägt. Der [Stundensatzratgeber](/blog/stundenverrechnungssatz-berechnen) erklärt eine einfache Gesamtkostenmethode.
 
-Öffnen Sie im Angebotseditor die betreffende Position und ihre Kalkulation. Ordnen Sie Material und Lohn passend zur Leistung zu. Prüfen Sie Einheiten, Bezugsmenge und die übernommenen Einstellungen. Die [Hilfe zur Positionskalkulation](/hilfe/position-tiefenkalkulieren) beschreibt die überprüften Bedienpunkte.
+## So unterstützt CraftOS
 
-Bei Vorlagenänderungen ist besondere Aufmerksamkeit nötig: Ein aktualisierter Materialpreis und eine abweichende Mengeneinheit können die Gesamtsumme unterschiedlich beeinflussen. Kontrollieren Sie daher zunächst eine Position vollständig, bevor Sie viele ähnliche Positionen übernehmen.
+In der Web-App hinterlegen Sie unter „Einstellungen → Lohngruppen“ je Lohngruppe die Lohnkosten und den Verrechnungssatz pro Stunde. Unter „Zuschläge & Margen“ legen Sie die Vorbelegung für neue Positionen fest, etwa „Lohnaufschlag“, „Materialaufschlag“, „Wagnis“ und „Gewinn“.
+
+Im Angebotseditor öffnen Sie an der Position die „Preiskalkulation“. Unter „Kostenzeilen (EK)“ erfassen Sie Lohn mit Lohngruppe, Material, Geräte, Fremdleistung und Sonstiges; daraus ergibt sich der „Verkaufspreis (VK)“.
+
+Prüfen Sie Einheiten, Bezugsmenge und die übernommenen Zuschläge. Ändern sich Einkaufspreise im Artikelstamm, kontrollieren Sie zuerst eine Position vollständig, bevor Sie viele ähnliche anpassen. Die [Hilfe zur Positionskalkulation](/hilfe/position-tiefenkalkulieren) beschreibt jeden Schritt.
 
 ## Was bringt die spätere Nachkalkulation?
 
-Wenn tatsächlich 15 statt 12 Stunden benötigt wurden, entstehen bei 60 € internem Kostensatz 180 € Mehrkosten. Bleiben Material und Verkaufspreis gleich, sinkt der Gewinn von 300 € auf 120 €. Diese Information zeigt präziser als ein Gesamtgefühl, wo der Auftrag vom Plan abwich.
+Sie zeigt genau, wo ein Auftrag vom Plan abwich. Wurden 15 statt 12 Stunden gebraucht, entstehen bei 60 € internem Kostensatz 180 € Mehrkosten; bei gleichem Material und Preis sinkt der Gewinn von 300 € auf 120 €.
 
-Klären Sie anschließend die Ursache: unrealistischer Zeitansatz, veränderter Umfang, Wartezeit oder eine nicht berechnete Zusatzleistung. Aktualisieren Sie Vorlagen erst, wenn der Grund verstanden ist. Die [Nachkalkulation](/funktionen/nachkalkulation) wird damit zur Grundlage besserer Angebote und nicht nur zur rückblickenden Kontrolle.
+Klären Sie danach die Ursache: unrealistischer Zeitansatz, veränderter Umfang, Wartezeit oder eine nicht berechnete Zusatzleistung. Passen Sie Ihre Kalkulationsannahmen erst an, wenn der Grund verstanden ist; so wird die [Nachkalkulation](/funktionen/nachkalkulation) zur Grundlage besserer Angebote.
 
 ## Wie prüfen Sie eine Preisänderung vor dem Versand?
 
-Ändern Sie probeweise genau einen Einflussfaktor und beobachten Sie den Rechenweg. Steigt im Beispiel der Materialaufwand von 350 € auf 400 €, wachsen die Selbstkosten auf 1.250 €. Bei unveränderter Zielmarge von 20 % wären 1.562,50 € netto erforderlich.
+Ändern Sie probeweise genau einen Einflussfaktor und beobachten Sie den Rechenweg. Steigt im Beispiel das Material von 350 € auf 400 €, wachsen die Selbstkosten auf 1.250 €; bei 20 % Zielmarge wären 1.562,50 € netto nötig.
 
-Bleibt der Angebotspreis dagegen bei 1.500 €, sinkt der Gewinn auf 250 € und die Umsatzmarge auf rund 16,67 %. Diese Gegenüberstellung hilft bei einer bewussten Entscheidung: Preis anpassen, Ausführung verändern oder geringere Marge akzeptieren. Dokumentieren Sie die gewählte Annahme, damit später nachvollziehbar bleibt, warum der Auftrag so kalkuliert wurde.
+Bleibt der Angebotspreis bei 1.500 €, sinkt der Gewinn auf 250 € und die Marge auf rund 16,67 %. Entscheiden Sie dann bewusst: Preis anpassen, Ausführung ändern oder geringere Marge akzeptieren.
+
+Halten Sie die gewählte Annahme fest. So bleibt später nachvollziehbar, warum der Auftrag so kalkuliert wurde.
