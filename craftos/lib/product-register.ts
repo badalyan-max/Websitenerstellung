@@ -114,8 +114,10 @@ const evidence: Record<string, string[]> = {
     "src/pages/portal/CustomerPortalHome.tsx",
     "src/pages/portal/CustomerQuote.tsx",
     "src/pages/portal/CustomerInvoice.tsx",
-    "src/pages/portal/CustomerSchedule.tsx",
-    "src/pages/portal/CustomerMessages.tsx",
+    // 09-09: nur geroutete Portalseiten (Release src/App.tsx: /portal/login, /portal/einladung, /portal/quotes/:id,
+    // /portal/invoices/:id, sonst „Ihre Unterlagen“); Termine und Nachrichten sind nicht erreichbar.
+    "src/pages/portal/CustomerLogin.tsx",
+    "src/pages/portal/CustomerInviteAccept.tsx",
     "src/components/portal/PortalPaymentNotice.tsx",
   ],
   aufmass: ["src/api/roomMeasurements.ts"],

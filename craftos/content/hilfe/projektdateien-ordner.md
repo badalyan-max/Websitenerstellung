@@ -42,7 +42,7 @@ Alternativ ziehen Sie die Dateien direkt in den Bereich („Dateien hier ablegen
 4. Wählen Sie „Für Kunde freigeben“ oder „Nur intern“.
 5. Laden Sie die Datei bei Bedarf über „Herunterladen“ herunter.
 
-Freigegebene Dateien sieht Ihr Kunde im [Kundenportal](/hilfe/kundenportal-kunden-einladen). Die Sichtbarkeit filtern Sie mit „Nur intern“ oder „Für Kunde“.
+Mit „Für Kunde freigeben“ kennzeichnen Sie Dateien, die für Ihren Kunden bestimmt sind. Die Sichtbarkeit filtern Sie mit „Nur intern“ oder „Für Kunde“.
 
 Fotos und Aufnahmen einer Besichtigung liegen im Ordner „Besichtigung“; die Anleitung [Besichtigung durchführen](/hilfe/besichtigung-durchfuehren) zeigt den Ablauf. Sind Dateien mit KI analysiert, erstellen Sie mit „Angebot aus diesen Daten erstellen“ einen Angebotsentwurf.
 

@@ -160,8 +160,8 @@ describe("Textbudgets der Musterseite", () => {
 const ERWARTETE_NUTZENSAETZE: Record<string, string> = {
   angebote: "Positionen mit Lohn, Material und Zuschlägen kalkulieren und als PDF mit Briefpapier ausgeben.",
   aufmass: "Räume, Flächen und Abzüge vor Ort erfassen und die Mengen ins Angebot übernehmen.",
-  // 09-14: Release-Stand des Portals (Angebote und Rechnungen, Online-Unterschrift), Leitlinie L-1.
-  kundenportal: "Kunden öffnen Angebote und Rechnungen im Browser und unterschreiben Angebote online.",
+  // 09-14/09-09: Release-Stand (Angebotsmail mit Unterschriftslink, Rechnungsmail mit PDF), Leitlinie L-1.
+  kundenportal: "Kunden unterschreiben Angebote online und erhalten Rechnungen als PDF per E-Mail.",
   plantafel: "Einsätze für das Team planen und die Einsatzorte auf der Karte im Blick behalten.",
   projektverwaltung: "Kunden, Phasen, Aufgaben, Termine und Dokumente bleiben beim jeweiligen Auftrag.",
   arbeitsanweisungen: "Leistungen und Materialbedarf ohne Verkaufspreise für die Ausführung bereitstellen.",

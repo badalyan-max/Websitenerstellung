@@ -991,11 +991,16 @@ describe("getFunktionsdetail und Inhaltstabelle", () => {
   it("kundenportal (09-14): nur am Release erreichbare Portalinhalte, Pflichtantwort positiv", () => {
     const inhalt = INHALTE.kundenportal;
     // Release 6686d05: src/App.tsx routet nur /portal/quotes/:id und /portal/invoices/:id (09-f.md Befund 1).
+    // 09-09 (Release a0e27c42, Befund 7): Angebotsmail → Unterschriftsseite, Rechnungsmail mit PDF; keine Mail
+    // verlinkt Portal-Belegseiten – die Seite behauptet daher nicht, dass Kunden Belege im Portal öffnen.
     expect(JSON.stringify(inhalt)).not.toMatch(/Termin|Nachricht|Chat|online bezahlen|Onlinezahlung/i);
+    expect(JSON.stringify(inhalt)).not.toMatch(/im Browser und laden|Dokumente im Browser|aus dem Portal/);
     const antwort = inhalt.faq.items.find((f) => f.q === "Was können Kunden im Kundenportal erledigen?")!.a;
     expect(antwort).toMatch(/Angebote und Rechnungen/);
     expect(antwort).toMatch(/unterschreib/);
     expect(antwort).toContain("Überweisung");
+    expect(antwort).toMatch(/persönlichen Link/);
+    expect(antwort).toMatch(/als PDF/);
     expect(antwort.startsWith("Nein")).toBe(false);
     const f = getFunktion("kundenportal")!;
     expect([f.benefit, f.heroIntro].join(" ")).not.toMatch(/Termin|Nachricht/);

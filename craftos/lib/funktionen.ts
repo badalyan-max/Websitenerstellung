@@ -313,14 +313,14 @@ const definitions: Definition[] = [
     slug: "kundenportal",
     name: "Kundenportal",
     benefit:
-      "Kunden öffnen Angebote und Rechnungen im Browser und unterschreiben Angebote online.",
+      "Kunden unterschreiben Angebote online und erhalten Rechnungen als PDF per E-Mail.",
     icon: Globe,
     intro:
-      "Sie laden Ihre Kunden per E-Mail ins Portal ein. Dort öffnen sie Angebote und Rechnungen als PDF im Browser und nehmen Angebote online an und unterschreiben sie.",
+      "Sie laden Ihre Kunden per E-Mail ins Portal ein, dort melden sie sich mit eigenem Zugang an. Angebote öffnen sie über einen persönlichen Link und unterschreiben sie online; Rechnungen erhalten sie als PDF.",
     platforms: ["web"],
     access:
       "Separater Kundenbereich mit eigenem Login; Einladung und Zugang verwalten berechtigte Büro- und Admin-Zugänge im Kundenstamm.",
-    note: "Rechnungen aus dem Portal begleicht der Kunde per Überweisung auf das Konto, das auf dem Rechnungs-PDF steht.",
+    note: "Rechnungen begleicht der Kunde per Überweisung auf das Konto, das auf dem Rechnungs-PDF steht.",
     help: "kundenportal-kunden-einladen",
     related: ["angebote", "rechnungen", "projektverwaltung"],
   },

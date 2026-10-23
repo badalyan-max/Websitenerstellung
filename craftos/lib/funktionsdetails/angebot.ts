@@ -117,7 +117,7 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
         // (web:src/pages/QuoteSigning.tsx), funktionen.ts kundenportal points „Angebote beantworten“.
         {
           q: "Kann mein Kunde das Angebot online unterschreiben?",
-          a: "Ja. Ihr Kunde nimmt das Angebot online an und unterschreibt es oder sendet Ihnen eine Ablehnung. Im Kundenportal kann er freigegebene Angebote ebenfalls annehmen oder mit Rückmeldung ablehnen.",
+          a: "Ja. Über den persönlichen Link in Ihrer Angebotsmail nimmt Ihr Kunde das Angebot online an und unterschreibt es oder sendet Ihnen eine Ablehnung.",
         },
         // Quelle: funktionen.ts angebote points „Kosten nachvollziehen“, „Positionen wiederverwenden“.
         {
@@ -251,19 +251,22 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
     kopfwort: "Kundenportal:",
     // 09-14 (Orchestrator-Entscheidung 2, L-1): nur am Release geroutete Inhalte. Web 6686d05 src/App.tsx Z. 235–238
     // routet /portal/quotes/:id und /portal/invoices/:id, alles andere zeigt „Ihre Unterlagen“ (09-f.md Befund 1).
-    lead: "Ihre Kunden öffnen Angebote und Rechnungen im Browser und unterschreiben Angebote online.",
+    // 09-09 (Release a0e27c42, 09-f.md Befund 7): Die Angebotsmail verlinkt die öffentliche Unterschriftsseite
+    // (supabase/functions/_shared/quoteSigning.ts SIGNING_PAGE_PATH, src/pages/QuoteSigning.tsx), die Rechnungsmail
+    // trägt das PDF (send-document-email, _shared/mailAttachment.ts); keine Mail verlinkt Portal-Belegseiten.
+    lead: "Ihre Kunden unterschreiben Angebote online und erhalten Rechnungen als PDF per E-Mail.",
     secondary: { label: "Anleitung in der Hilfe", href: "/hilfe/kundenportal-kunden-einladen" },
     ablauf: {
-      title: "Das Kundenportal in vier Schritten",
+      title: "Kundenportal und Online-Unterschrift in vier Schritten",
       lead: "Von der Einladung bis zur Antwort auf ein Angebot arbeitet Ihr Kunde im Browser.",
       steps: [
         { title: "Kunden einladen", text: "E-Mail-Adresse im Kundenstamm hinterlegen und den Kunden einladen." },
         // Beleg: src/pages/portal/CustomerInviteAccept.tsx („Anmeldecode senden“, „Code aus der E-Mail“).
         { title: "Kunde meldet sich an", text: "Der Kunde öffnet die Einladung und meldet sich mit einem Code aus der E-Mail an." },
-        // Beleg: src/components/portal/PortalDocumentPdf.tsx (PDF mit Briefpapier, „PDF herunterladen“).
-        { title: "Unterlagen öffnen", text: "Angebote und Rechnungen öffnet der Kunde als PDF mit Ihrem Briefpapier." },
-        // Beleg: src/components/portal/PortalQuotePresentation.tsx („Annehmen und unterschreiben“, „Ablehnen“).
-        { title: "Angebot beantworten", text: "Der Kunde nimmt Angebote online an und unterschreibt sie oder lehnt sie ab." },
+        // Beleg: supabase/functions/_shared/quoteSigning.ts (SIGNING_PAGE_PATH „/angebot-unterschreiben“).
+        { title: "Angebot öffnen", text: "Der Kunde öffnet das Angebot über den persönlichen Link in Ihrer Angebotsmail." },
+        // Beleg: src/pages/QuoteSigning.tsx („Angebot annehmen und unterschreiben“, „Ablehnung senden“).
+        { title: "Angebot beantworten", text: "Der Kunde nimmt das Angebot an und unterschreibt es oder sendet eine Ablehnung." },
       ],
     },
     rollen: {
@@ -288,7 +291,7 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
     },
     kernpunkte: {
       title: "Was das Kundenportal bietet",
-      lead: "Einladung, Unterlagen und Online-Unterschrift liegen für Ihre Kunden im Browser.",
+      lead: "Eigener Zugang, Online-Unterschrift und Rechnungen als PDF für Ihre Kunden.",
       tiles: [
         {
           // Beleg: supabase/functions/_shared/customerInvite.ts (INVITE_VALID_DAYS = 14), CustomerInviteAccept.tsx.
@@ -298,22 +301,23 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
           visual: { kind: "icon", icon: Mail },
         },
         {
+          // Beleg: supabase/functions/send-document-email (Anhang über _shared/mailAttachment.ts).
           size: "sm",
-          title: "Dokumente im Browser",
-          text: "Angebote und Rechnungen als PDF mit Ihrem Briefpapier ansehen und herunterladen.",
+          title: "Rechnung als PDF",
+          text: "Rechnungen erhält Ihr Kunde als PDF-Anhang Ihrer E-Mail.",
           visual: { kind: "icon", icon: Globe },
         },
         {
           size: "sm",
           title: "Angebote unterschreiben",
-          text: "Kunden nehmen Angebote online an und unterschreiben sie oder lehnen sie ab.",
+          text: "Per persönlichem Link nimmt Ihr Kunde das Angebot an und unterschreibt oder lehnt es ab.",
           visual: { kind: "icon", icon: CheckCheck },
         },
         {
           // Beleg: src/components/portal/PortalPaymentNotice.tsx (Überweisung auf das Konto aus dem Rechnungs-PDF).
           size: "wide",
           title: "Zahlung per Überweisung",
-          text: "Rechnungen aus dem Portal begleicht der Kunde per Überweisung auf das Konto im Rechnungs-PDF.",
+          text: "Rechnungen begleicht der Kunde per Überweisung auf das Konto im Rechnungs-PDF.",
           visual: { kind: "icon", icon: Info },
           grenze: true,
         },
@@ -324,21 +328,22 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
       lead: "Kurze Antworten zu Funktionen, Zugang, Zahlung und Vorschau des Portals.",
       items: [
         // Pflichtfrage nach Orchestrator-Entscheidung 2 (09-RESEARCH) positiv: was das Portal am Release kann.
-        // Belege: CustomerQuote.tsx, CustomerInvoice.tsx, PortalDocumentPdf.tsx, PortalQuotePresentation.tsx,
-        // QuoteApproval.tsx („Grund für die Ablehnung (optional)“), PortalPaymentNotice.tsx.
+        // Belege (Release a0e27c42): CustomerInviteAccept.tsx, CustomerLogin.tsx, CustomerPortalHome.tsx („Ihre Unterlagen“),
+        // _shared/quoteSigning.ts + QuoteSigning.tsx (Unterschriftsseite aus der Angebotsmail), send-document-email (PDF),
+        // PortalPaymentNotice.tsx (Überweisung).
         {
           q: "Was können Kunden im Kundenportal erledigen?",
-          a: "Ihre Kunden öffnen Angebote und Rechnungen im Browser und laden sie als PDF herunter. Angebote nehmen sie online an und unterschreiben sie oder lehnen sie ab. Rechnungen begleichen sie per Überweisung auf das Konto, das auf dem Rechnungs-PDF steht.",
+          a: "Ihre Kunden melden sich mit eigenem Zugang und einem Code aus der E-Mail an. Angebote und Rechnungen senden Sie per E-Mail: Angebote unterschreibt Ihr Kunde online über den persönlichen Link, Rechnungen erhält er als PDF und begleicht sie per Überweisung.",
         },
         // Quelle: CustomerPortalAccessCard.tsx, CustomerPortalInviteDialog.tsx (14 Tage), CustomerInviteAccept.tsx,
         // CustomerPortalHome.tsx („Ihre Unterlagen öffnen Sie über den Link in der E-Mail Ihres Handwerksbetriebs.“).
         {
           q: "Wie bekommt mein Kunde Zugang zum Kundenportal?",
-          a: "Sie hinterlegen die E-Mail-Adresse im Kundenstamm und senden über die Karte „Kundenportal“ eine Einladung, die 14 Tage gilt. Ihr Kunde meldet sich mit einem Code aus der E-Mail an und öffnet seine Unterlagen über den Link in Ihrer E-Mail.",
+          a: "Sie hinterlegen die E-Mail-Adresse im Kundenstamm und senden über die Karte „Kundenportal“ eine Einladung, die 14 Tage gilt. Ihr Kunde meldet sich danach mit einem Code aus der E-Mail an.",
         },
         // Quelle: PortalPaymentNotice.tsx; Hilfeartikel bankumsaetze-abgleichen (Zahlungseingang erfassen).
         {
-          q: "Wie bezahlen Kunden Rechnungen aus dem Portal?",
+          q: "Wie bezahlen Kunden Ihre Rechnungen?",
           a: "Per Überweisung auf das Konto, das auf dem Rechnungs-PDF steht. Den Zahlungseingang erfassen Sie wie gewohnt in der Web-App, zum Beispiel über den Abgleich der Bankumsätze.",
         },
         // Quelle: src/components/customers/PortalPreviewEntry.tsx („Portal-Vorschau öffnen“), CustomerPortalPreview.tsx.

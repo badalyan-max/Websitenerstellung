@@ -164,7 +164,7 @@ const definitions: Gewerk[] = [
     faq: [
       {
         q: "Wie unterschreibt mein Kunde das Angebot?",
-        a: "Online. Ihr Kunde nimmt das Angebot an und unterschreibt es oder sendet Ihnen eine Ablehnung; im Kundenportal kann er freigegebene Angebote ebenfalls annehmen.",
+        a: "Online. Über den persönlichen Link in Ihrer Angebotsmail nimmt Ihr Kunde das Angebot an und unterschreibt es oder sendet Ihnen eine Ablehnung.",
       },
       {
         q: "Kann ich den Katalog meines Großhändlers einlesen?",
@@ -495,8 +495,8 @@ const definitions: Gewerk[] = [
         a: "Ja. Am Arbeitsabschnitt wählen Sie das Gewerk aus Ihren Stammdaten; bei der Auswahl von Firmen zeigt der Schalter „Nur passendes Gewerk“ dann nur Firmen dieses Gewerks.",
       },
       {
-        q: "Was sieht der Bauherr im Kundenportal?",
-        a: "Freigegebene Angebote, Rechnungen und Termine seiner Projekte im Browser. Über Nachrichten schreibt er Ihnen direkt zum Projekt, und Angebote nimmt er an oder lehnt sie mit Rückmeldung ab.",
+        q: "Wie erhält der Bauherr Angebote und Rechnungen?",
+        a: "Per E-Mail. Angebote öffnet er über einen persönlichen Link, nimmt sie online an und unterschreibt sie oder lehnt sie ab; Rechnungen erhält er als PDF. Im Kundenportal meldet er sich mit eigenem Zugang an.",
       },
       FAQ_APP,
     ],

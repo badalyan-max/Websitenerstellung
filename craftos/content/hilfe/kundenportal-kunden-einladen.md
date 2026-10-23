@@ -1,20 +1,19 @@
 ---
 title: "Kunden ins Kundenportal einladen"
 description: "So laden Sie einen Kunden ins Kundenportal ein, prüfen den Stand der Einladung und verwalten seinen Zugang."
-answer: "Kunden laden Sie in der Web-App über die Karte „Kundenportal“ beim Kunden ein; die Einladung geht an die hinterlegte E-Mail-Adresse und gilt 14 Tage. Im Portal öffnet Ihr Kunde danach die Angebote und Rechnungen, die Sie ihm per E-Mail senden."
+answer: "Kunden laden Sie in der Web-App über die Karte „Kundenportal“ beim Kunden ein; die Einladung geht an die hinterlegte E-Mail-Adresse und gilt 14 Tage. Danach meldet sich Ihr Kunde mit eigenem Zugang und einem Code aus der E-Mail an."
 category: "angebote"
 publishedAt: "2026-10-23"
 updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
-scene: "portal"
 relatedFeatures: ["kundenportal", "angebote", "rechnungen"]
 relatedArticles: ["/hilfe/angebot-online-unterschreiben-lassen", "/hilfe/kunden-ansprechpartner-anlegen", "/hilfe/zahlungen-erfassen"]
 sources: []
 platforms: ["web"]
 ---
 
-Mit dem Kundenportal sieht Ihr Kunde seine Unterlagen an einem Ort und kann Angebote online annehmen und unterschreiben. Die Einladung starten Sie beim Kunden in der Web-App.
+Mit dem Kundenportal erhält Ihr Kunde einen eigenen Zugang zu CraftOS, den Sie im Kundenstamm verwalten. Die Einladung starten Sie beim Kunden in der Web-App.
 
 ## Voraussetzungen
 
@@ -45,7 +44,7 @@ Die Karte „Kundenportal“ zeigt den Stand der Einladung:
 - „Einladung abgelaufen“: Senden Sie mit „Erneut einladen“ eine neue Einladung.
 - „Zugang entzogen“: Ihr Kunde meldet sich erst nach einer neuen Einladung wieder an.
 
-Angebote und Rechnungen öffnet Ihr Kunde über den Link in der E-Mail, mit der Sie ihm den Beleg senden. Rechnungen aus dem Portal begleicht der Kunde per Überweisung auf das Konto, das auf dem Rechnungs-PDF steht.
+Angebote und Rechnungen senden Sie Ihrem Kunden per E-Mail: Ein Angebot öffnet er über den persönlichen Link in der Angebotsmail und unterschreibt es online, eine Rechnung erhält er als PDF. Rechnungen begleicht der Kunde per Überweisung auf das Konto, das auf dem Rechnungs-PDF steht.
 
 ## Häufige Probleme
 
