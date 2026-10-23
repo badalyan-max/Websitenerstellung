@@ -10,6 +10,7 @@ import { keywordMap } from "@/lib/keyword-map";
 import seeds from "@/docs/seo/keyword-seeds.json";
 import manifest from "@/docs/seo/data/kwmap/manifest.json";
 import { norm } from "../scripts/lib/seo-audit-core.mjs";
+import { nurUnterstuetztVerstoesse } from "@/lib/nur-unterstuetzt";
 
 const ROOT = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 const DATA_DIR = "docs/seo/data/kwmap";
@@ -287,6 +288,14 @@ describe("Keyword-Map", () => {
     }
   });
 
+  it("Zielwerte nennen nur Unterstütztes, keine Negativlisten (Inhaberregel, ME-03)", () => {
+    for (const k of keywordMap) {
+      const t = k.target;
+      if (!t) continue;
+      expect(nurUnterstuetztVerstoesse({ title: t.title, h1: t.h1, description: t.description }), k.path).toEqual([]);
+    }
+  });
+
   it("Phase-7-Detailseiten folgen den Zielwerten (D-10, D-22, SEO-02)", async () => {
     // Pitfall 1: Detailseiten haben generateMetadata (params als Promise) und eine async Page; gerendert wird
     // deshalb die synchrone Vorlage FunktionsDetail mit getFunktionsdetail(slug).
@@ -421,7 +430,7 @@ describe("Phase 8 – Zielwerte sitewide", () => {
         title: "Fakten über CraftOS: Funktionen und Lizenzen | CraftOS",
         h1: "Fakten über CraftOS",
         description:
-          "Überprüfbare Fakten über CraftOS: was die Handwerkersoftware ist, Plattformen, Lizenzen und Preise, Testphase, GoBD-Konformität und benannte Grenzen.",
+          "Überprüfbare Fakten über CraftOS: was die Handwerkersoftware ist, Plattformen, Lizenzen und Preise, Testphase, GoBD-Konformität und Datenstandort.",
       },
       "/vergleich/handwerkersoftware-kleine-betriebe": {
         title: "Handwerkersoftware für kleine Betriebe: Kriterien | CraftOS",
