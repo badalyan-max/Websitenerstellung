@@ -1007,6 +1007,21 @@ describe("getFunktionsdetail und Inhaltstabelle", () => {
     expect([f.benefit, f.heroIntro].join(" ")).not.toMatch(/Termin|Nachricht/);
   });
 
+  it("kundenportal (09-16): Kopf- und Karten-Szene zeigen die Unterschriftsseite aus der Angebotsmail", () => {
+    // Release a0e27c42: Die Angebotsmail verlinkt die öffentliche Unterschriftsseite (QuoteSigning.tsx);
+    // keine Mail verlinkt die Portal-Rechnungsansicht (CustomerInvoice.tsx).
+    const kopf = kopfVisuals.kundenportal;
+    expect(kopf.kind).toBe("browser");
+    const scene = (kopf as { scene: FrameScene }).scene;
+    expect(cardScenes.kundenportal?.scene).toBe(scene);
+    expect(scene.evidence).toBe("web:src/pages/QuoteSigning.tsx");
+    expect(scene.title).toMatch(/^Angebot /);
+    expect(scene.rows?.map((r) => r.primary)).toEqual(["Vor- und Nachname", "Unterschrift", "Kommentar (optional)"]);
+    expect(scene.description).toMatch(/Angebot/);
+    expect(scene.description).toMatch(/unterschreib|Unterschrift/);
+    expect(JSON.stringify(scene)).not.toMatch(/Rechnung|Fällig|Zahlungsstatus|CustomerInvoice/);
+  });
+
   it("Inhabervorgabe L-1 (09-09): FAQ-Antworten, Grenze-Kacheln und Grenze-Sätze nennen nur Unterstütztes", () => {
     const negativ = /(?<![\p{L}])(kein|keine|keinen|keiner|nicht)(?![\p{L}])/iu;
     for (const [slug, inhalt] of Object.entries(INHALTE)) {
@@ -1213,6 +1228,13 @@ describe.skipIf(rollenSuite.skip)(rollenSuite.titel, () => {
   it("Kundenportal: Kunden haben keine Lizenzstufe (LicenseType nur admin, buero, app) und einen eigenen Login (B13)", () => {
     expect(releaseDatei("src/types/license.ts")).toMatch(/export type LicenseType = 'admin' \| 'buero' \| 'app';/);
     expect(releaseDatei("src/pages/portal/CustomerLogin.tsx")).toContain("Kundenportal");
+  });
+
+  it("Kundenportal-Szene (09-16): Titelmuster und Feldnamen stehen wörtlich auf der Unterschriftsseite", () => {
+    const seite = releaseDatei("src/pages/QuoteSigning.tsx");
+    expect(seite).toContain("`Angebot ${data.document.number}`");
+    const scene = (kopfVisuals.kundenportal as { scene: FrameScene }).scene;
+    for (const row of scene.rows ?? []) expect(seite, row.primary).toContain(`>${row.primary}</Label>`);
   });
 
   it("die fünf Preset-Namen stehen in roles.ts; Büro-Leitung mit, Büro-Projektleitung ohne Finanzschalter", () => {
