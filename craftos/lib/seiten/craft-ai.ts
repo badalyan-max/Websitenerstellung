@@ -12,7 +12,8 @@
  * - Diktieren in Berichten (Mobile): features/construction-reports/components/ReportDictationField.tsx,
  *   locales/de/construction.json voice.start „Diktieren“.
  * - Foto-Erkennung im Lager (Mobile): features/inventory/screens/InventoryDraftScreen.tsx, locales/de/common.json
- *   inventory.recognize „Foto mit KI erkennen“.
+ *   inventory.recognize „Foto mit KI erkennen“. Credits je Foto datiert aus lib/site.ts (`lagerfotoCreditsText`,
+ *   Beleg web:supabase/functions/_shared/aiPricing.ts 'analyze-inventory-photo'; 10-13, D-22).
  * - Freigabe zentral und je Person: Web src/lib/ai/aiFeatures.ts (KiSettings, MemberAiDialog).
  * Prüfung zusätzlich: tests/nur-unterstuetzt.test.ts (Hotfix 23.10.2026).
  */
@@ -22,7 +23,7 @@ import type { KeyFact } from "@/components/v2/KeyFacts";
 import type { Step } from "@/components/v2/StepFlow";
 import { euro, germanDate } from "@/lib/format";
 import { pruefeNurUnterstuetzt } from "@/lib/nur-unterstuetzt";
-import { creditPakete, creditWertEuro, site, startCredits } from "@/lib/site";
+import { creditPakete, creditWertEuro, lagerfotoCreditsText, site, startCredits } from "@/lib/site";
 
 export const CRAFT_AI_PFAD = "/craft-ai" as const;
 
@@ -120,7 +121,7 @@ export const craftAiFaq: { q: string; a: string }[] = [
   },
   {
     q: "Welche KI-Funktionen umfasst Craft AI?",
-    a: "Craft AI umfasst den Angebotschat im Angebotseditor, den Belegscan für Eingangsrechnungen, das Diktieren in Berichten und die Foto-Erkennung im Lager der Mobile-App.",
+    a: `Craft AI umfasst den Angebotschat im Angebotseditor, den Belegscan für Eingangsrechnungen, das Diktieren in Berichten und die Foto-Erkennung im Lager der Mobile-App. Die Foto-Erkennung verbraucht je Foto ${lagerfotoCreditsText}.`,
   },
   {
     q: "Kann ich Craft AI per Sprache nutzen?",
