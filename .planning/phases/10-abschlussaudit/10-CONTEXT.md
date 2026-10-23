@@ -262,3 +262,17 @@ Nicht in dieser Phase: Änderungen an Rechtstexten (Wortlaut), Datenschutzabschn
 
 - **D-40:** D-21 Menü-Präsenz wird in 10-06 umgesetzt (Dateieigentum Spur a). Die Zusatzfunktionen erscheinen auf `/funktionen`, am Ziel als Kachel und im Mega-Menü; Paket (d) lässt `components/layout/MegaMenu.tsx` unverändert und übergibt den Punkt; 10-06 ergänzt Menüeintrag und Test auf dem zusammengeführten Stand.
 - Weitere Checker-Entscheidungen (B1–B4, W1–W11) sind in den Plänen umgesetzt: Merge-Reihenfolge e → c → a → b → d; `MSYS_NO_PATHCONV=1` vor jedem `--paths=/…`; Credit-Wert als eigener Plan 10-13; Ablauf 10-06 → Code-Review → Fixer → 10-12 → 10-07.
+
+## Nachtrag Inhaber (23.10.2026)
+
+- **D-41 Einrichtungsservice:**
+  - **Inhaberangabe (wörtlich sinngemäß):** Die Einrichtung ist kostenlos. CraftOS begleitet persönlich und erledigt sie selbst. Die aus der alten Software exportierten Daten importiert CraftOS selbst und richtet das Konto des Handwerkers ein. Er kann direkt loslegen und muss sich nicht um die Einrichtung kümmern. Bei Fragen ist CraftOS direkt erreichbar und hilft.
+  - **Quelle:** Geschäftsangabe des Inhabers, kein Produktcode. Der Code belegt bisher nur den kostenlosen Selbst-Import mit KI (`Datenimport.tsx`).
+  - **Umsetzung:** als Spur f (`wt-10f`, Branch `phase10-spur-f`, Port 3106), Merge nach d und vor 10-06.
+  - **Zielorte:**
+    - `/preise` (FAQ und Hinweis an den Tarifen)
+    - die Alternativen-Seiten und `/vergleich` (Wechsel)
+    - `/fakten-ueber-craftos` und `llms.txt`
+    - Datenimport-FAQ auf `/funktionen/team` und Hilfeartikel `daten-importieren`
+    - die Startseiten-FAQ, falls eine passende Frage existiert
+  - **Formulierung:** positiv und knapp, ohne Negativlisten. Kein messbares Versprechen (keine Reaktionszeit, kein „rund um die Uhr“). Die Einrichtung heißt „kostenlos“.
