@@ -95,6 +95,12 @@ describe("Zertifizierungsfrage positiv beantwortet (D-43)", () => {
     expect(nurUnterstuetztVerstoesse({ title: FRAGE, lead })).toEqual([]);
     expect(nurUnterstuetztVerstoesse({ text: "Geprüfte Eingangsrechnungen werden gesperrt." })).toEqual([]);
   });
+
+  it("Helfer prüft je Satz und erkennt die Nomen Zertifikat und Testat (LO-02)", () => {
+    for (const fall of ["CraftOS ist GoBD-zertifiziert. Was heißt das für Sie?", "CraftOS hat ein GoBD-Testat", "Rechnungen mit GoBD-Zertifikat", "Für CraftOS liegen Zertifikate vor."])
+      expect(nurUnterstuetztVerstoesse({ text: fall }), fall).not.toEqual([]);
+    expect(nurUnterstuetztVerstoesse({ text: "Gibt es ein GoBD-Zertifikat? Eine amtliche GoBD-Zertifizierung gibt es nicht." })).toEqual([]);
+  });
 });
 
 describe("Altformulierungen entfernt (D-43)", () => {
