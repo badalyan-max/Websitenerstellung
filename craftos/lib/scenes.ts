@@ -272,20 +272,19 @@ export const kalkulationScene: FrameScene = {
 };
 
 /**
- * Kundenportal: Die Startansicht am Release (CustomerPortalHome) zeigt nur „Ihre Unterlagen“ und einen
- * Hinweistext, keine Belegliste. Deshalb zeigt die Szene die Rechnungsansicht des Portals mit ihren
- * Release-Feldnamen (A3: Label ersetzen statt erfinden).
+ * Kundenportal (09-16, Release a0e27c42): Die Angebotsmail verlinkt die öffentliche Unterschriftsseite
+ * (QuoteSigning.tsx); keine Mail verlinkt die Portal-Rechnungsansicht. Die Szene zeigt deshalb das Angebot
+ * mit den Feldnamen des Formulars „Angebot annehmen und unterschreiben“ (A3: wörtlich aus dem Release).
  */
 export const portalScene: FrameScene = {
-  title: "Rechnungsdetails",
-  evidence: "web:src/pages/portal/CustomerInvoice.tsx",
-  screen: "web:Kundenportal",
-  description: "Rechnung im Kundenportal mit Rechnungsdatum, Fälligkeit, Steuersatz und Zahlungsstatus aus Sicht des Kunden.",
+  title: "Angebot AN-2026-018",
+  evidence: "web:src/pages/QuoteSigning.tsx",
+  screen: "web:Angebotsunterschrift",
+  description: "Angebot online ansehen und unterschreiben: Formular mit Name, Unterschriftsfeld und optionalem Kommentar aus Sicht des Kunden.",
   rows: [
-    { primary: "Rechnungsdatum", value: "14.10.2026" },
-    { primary: "Fällig am", value: "28.10.2026" },
-    { primary: "MwSt.-Satz", value: "19%" },
-    { primary: "Zahlungsstatus", status: "Offen" },
+    { primary: "Vor- und Nachname", value: "Petra Bergmann" },
+    { primary: "Unterschrift" },
+    { primary: "Kommentar (optional)" },
   ],
 };
 
