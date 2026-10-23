@@ -3,26 +3,25 @@ title: "Digitale Bautagesberichte: Leistungen und Abweichungen so dokumentieren,
 description: "Ein praktischer Aufbau für Tagesberichte mit verständlichen Tätigkeiten, Mengen, Fotos und klaren nächsten Schritten."
 category: "team"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
+answer: "Ein hilfreicher Bautagesbericht nennt Projekt, Datum, ausgeführte Leistungen mit Mengen, Abweichungen und den nächsten Schritt, ergänzt um aussagekräftige Fotos. In CraftOS erstellen Sie ihn in der Mobile-App als „Tagesbericht“, in der Web-App heißt er „Bautagesbericht“."
 relatedFeatures: ["baudokumentation", "rechnungen", "arbeitsanweisungen"]
-relatedArticles: ["/hilfe/bautagesbericht-erstellen", "/hilfe/berichte-abrechnen"]
+relatedArticles: ["/hilfe/bautagesbericht-erstellen", "/hilfe/berichte-abrechnen", "/hilfe/abnahme-dokumentieren"]
 sources: []
 platforms: ["web", "mobile"]
 ---
 
-Ein Bautagesbericht soll später erklären können, was an einem bestimmten Tag auf der Baustelle passiert ist. Dafür braucht er konkrete Angaben zur Leistung und zu relevanten Abweichungen. Viele Fotos und ein allgemeiner Satz wie „Arbeiten durchgeführt“ reichen dafür nicht aus.
-
 ## Welche Angaben gehören in einen hilfreichen Bericht?
 
-Erfassen Sie Projekt, Datum, ausgeführte Tätigkeiten und die dafür relevanten Mengen. Ergänzen Sie beteiligte Personen, Material und besondere Bedingungen, soweit sie für den Vorgang wichtig sind. Eine kurze, verständliche Beschreibung ist oft wertvoller als mehrere unklare Stichwörter.
+In einen hilfreichen Bericht gehören Projekt, Datum, ausgeführte Tätigkeiten mit Mengen, beteiligte Personen, Material und besondere Bedingungen. Eine kurze, verständliche Beschreibung ist dabei wertvoller als viele Stichwörter.
 
-Trennen Sie Beobachtung und Bewertung. „Untergrund an der Nordwand löst sich beim Anschleifen“ beschreibt eine Beobachtung. „Kunde hat schlechte Vorarbeit geliefert“ ist eine Wertung, die den Sachverhalt nicht präziser macht.
+Trennen Sie Beobachtung und Bewertung. ‚Untergrund an der Nordwand löst sich beim Anschleifen‘ beschreibt eine Beobachtung. ‚Kunde hat schlechte Vorarbeit geliefert‘ ist eine Wertung, die den Sachverhalt nicht präziser macht. Ein allgemeiner Satz wie ‚Arbeiten durchgeführt‘ hilft später niemandem.
 
 ## Wie sieht ein eigener Musterbericht aus?
 
-Für die „Wohnung Lindenstraße“ könnte der Kern eines Tagesberichts so aussehen:
+Ein Musterbericht für das Projekt Lindenstraße nennt Bereich, Leistung, Menge, Abweichung und nächsten Schritt in je einer Zeile. Der Kern könnte so aussehen:
 
 | Feld | Beispiel |
 |---|---|
@@ -33,46 +32,70 @@ Für die „Wohnung Lindenstraße“ könnte der Kern eines Tagesberichts so aus
 | Abweichung | Zusätzliche Untergrundvorbereitung erforderlich. |
 | Nächster Schritt | Büro klärt Freigabe und Auswirkung auf den Termin. |
 
-Der Bericht behauptet damit nicht, dass die Zusatzleistung bereits beauftragt oder bezahlt ist. Er schafft die Grundlage für die nachfolgende Entscheidung.
+Der Bericht hält die Zusatzleistung fest und schafft die Grundlage für die Entscheidung, ob sie beauftragt und abgerechnet wird.
+
+## Welche Berichtsarten gibt es in CraftOS?
+
+CraftOS kennt vier Berichtsarten, deren Namen sich zwischen Web-App und Mobile-App teils unterscheiden. Wählen Sie die Art nach dem Zweck: täglicher Fortschritt, Zusatzarbeiten mit Stunden, rechtliche Bedenken oder eine eigene Vorlage.
+
+| Zweck | Web-App | Mobile-App |
+|---|---|---|
+| Täglicher Baufortschritt | „Bautagesbericht“ | „Tagesbericht“ |
+| Zusatzarbeiten & Stunden | „Regiebericht“ | „Stundenbericht“ |
+| Rechtliche Bedenkenmeldung | „Bedenkenanzeige“ | „Bedenkenanzeige“ |
+| Bericht aus eigener Vorlage | „Bericht“ | „Bericht“ |
+
+Eigene Vorlagen legen Sie in der Web-App unter „Einstellungen → Berichtsvorlagen“ an. Wie Sie einen Regiebericht schreiben und abrechnen, zeigt die Anleitung [Regiebericht](/hilfe/regiebericht); den Ablauf einer Bedenkenanzeige erklärt die Anleitung [Bedenkenanzeige](/hilfe/bedenkenanzeige).
 
 ## Welche Fotos sind sinnvoll?
 
-Fotografieren Sie den relevanten Zustand so, dass Ort und Zusammenhang erkennbar bleiben. Eine Übersicht und eine gezielte Detailaufnahme ergänzen sich. Ein sehr enger Ausschnitt ohne Orientierung kann später schwer zugeordnet werden.
+Sinnvoll sind Fotos, auf denen Ort und Zusammenhang erkennbar bleiben: eine Übersicht und eine gezielte Detailaufnahme. Beschreiben Sie kurz, was das Bild zeigt.
 
-Beschreiben Sie, was das Bild zeigt. Vermeiden Sie unnötige Aufnahmen von Personen oder privaten Gegenständen, wenn sie für die Dokumentation keine Rolle spielen. Bei Uploads prüfen Sie, ob die Datei tatsächlich im Projekt angekommen ist; die lokale Aufnahme allein bestätigt noch keine erfolgreiche Übertragung.
+Fotografieren Sie Personen und private Gegenstände nur, wenn sie für die Dokumentation wichtig sind. Prüfen Sie nach dem Hochladen, ob die Datei im Projekt angekommen ist; Fotos laden Sie mit Internetverbindung hoch.
 
 ## Wie verbinden Sie Bericht und Arbeitszeit?
 
-Ein Bericht beschreibt die Ausführung, während die Zeiterfassung den zeitlichen Aufwand abbildet. Beide Informationen können sich ergänzen. Sie sollten aber nicht unbemerkt dieselben abrechenbaren Stunden mehrfach erzeugen.
+Der Bericht beschreibt die Ausführung, die Zeiterfassung den zeitlichen Aufwand; beide ergänzen sich. Achten Sie darauf, dass dieselben abrechenbaren Stunden nur einmal in eine Rechnung gelangen.
 
-Wenn ein Bericht Arbeitszeit enthält und zusätzlich offene Projektstunden übernommen werden, prüfen Sie die Auswahl genau. Die Tätigkeit kann bereits in einer Angebotsposition oder einer vorherigen Rechnung enthalten sein. Ein vollständiger Bericht ist noch keine automatische zusätzliche Forderung.
+Enthält ein Bericht Arbeitszeit und übernehmen Sie zusätzlich offene Projektstunden, prüfen Sie die Auswahl genau. Die Tätigkeit kann bereits in einer Angebotsposition oder einer früheren Rechnung enthalten sein.
 
 ## Wie erstellen Sie den Bericht in CraftOS?
 
-In der Mobile-App öffnen Sie das Projekt und dessen Bautagesberichte. Über „Neuen Bericht erstellen“ wählen Sie Typ und Datum und ergänzen die vorhandenen Felder. Die Web-App zeigt die Baudokumentation im Projektzusammenhang und unterstützt die weitere Prüfung.
+In der Mobile-App öffnen Sie das Projekt, tippen auf die Kachel „Tagesbericht“ und legen mit „Neuen Bericht erstellen“ einen Bericht an. Die Web-App zeigt alle Berichte im Projekt im Reiter „Baudokumentation“.
 
-Die [Hilfe zum Bautagesbericht](/hilfe/bautagesbericht-erstellen) führt durch den aktuellen Ablauf. Wenn Leistungen abgerechnet werden sollen, erklärt [Berichte abrechnen](/hilfe/berichte-abrechnen) die Auswahl und Kontrolle des Rechnungsentwurfs.
+1. Öffnen Sie in der Mobile-App das Projekt.
+2. Tippen Sie auf die Kachel „Tagesbericht“.
+3. Tippen Sie auf „Neuen Bericht erstellen“.
+4. Wählen Sie Berichtsart und Datum.
+5. Füllen Sie die Felder aus und fügen Sie Fotos hinzu.
+6. Lassen Sie den Bericht bei Bedarf unterschreiben.
+
+Die [Hilfe zum Bautagesbericht](/hilfe/bautagesbericht-erstellen) führt durch den Ablauf. Sollen Leistungen abgerechnet werden, erklärt [Berichte abrechnen](/hilfe/berichte-abrechnen) die Auswahl und die Kontrolle des Rechnungsentwurfs.
 
 ## Wie wird der Ort einer Unterschrift dokumentiert?
 
-Bestätigen Beteiligte einen Bericht in der Mobile-App mit ihrer Unterschrift, erfasst CraftOS dabei den Standort mit Genauigkeit und Zeitpunkt. Diese Angaben bleiben an der jeweiligen Unterschrift sichtbar, nach erfolgreicher Synchronisierung auch im Büro. Bei mehreren Unterzeichnenden werden die Angaben je Person getrennt festgehalten.
+Unterschreiben Beteiligte einen Bericht in der Mobile-App, speichert CraftOS zur Unterschrift den Ort mit Genauigkeit und Zeitpunkt. Dafür geben Sie auf dem Gerät den Standort frei.
 
-Die Standortfreigabe und eine erfolgreiche Ortung sind für die Bestätigung erforderlich. Erfasst wird der Ort dieser konkreten Aktion auf dem Gerät, kein fortlaufender Bewegungsverlauf. Derselbe Zusammenhang steht bei mobilen Abnahmeprotokollen zur Verfügung; die [Abnahme-Anleitung](/hilfe/abnahme-dokumentieren) erklärt den Ablauf.
+Die Angaben stehen an der jeweiligen Unterschrift, nach der Synchronisierung auch im Büro, und bei mehreren Unterzeichnenden je Person getrennt. Erfasst wird der Ort dieser einen Aktion, kein Bewegungsverlauf.
+
+Dasselbe gilt für Abnahmeprotokolle in der Mobile-App; die [Abnahme-Anleitung](/hilfe/abnahme-dokumentieren) erklärt den Ablauf.
 
 ## Was unterscheidet Bericht, Mangel und Abnahme?
 
-Der Tagesbericht hält die Arbeit und relevante Ereignisse fest. Ein Mangelvorgang verfolgt einen konkreten zu bearbeitenden Sachverhalt. Eine Abnahme dokumentiert einen eigenen Abschluss- oder Übergabevorgang mit dem dazugehörigen Inhalt.
+Der Bericht hält Arbeit und Ereignisse eines Tages fest, ein Mangel verfolgt einen konkreten Sachverhalt bis zur Erledigung, und eine Abnahme dokumentiert die Übergabe einer Leistung. Nutzen Sie für jede Aufgabe den passenden Bereich.
 
-Verwenden Sie für diese Aufgaben die passenden Bereiche. Ein Foto im Tagesbericht ersetzt nicht automatisch einen vollständig bearbeiteten Mangel oder eine Abnahme. Halten Sie die Zusammenhänge nachvollziehbar, ohne alle Informationen mehrfach abzuschreiben.
+Abnahmen gibt es als Teilabnahme für einzelne Arbeitsabschnitte und als Abnahme des ganzen Auftrags; diese heißt in der Mobile-App „Endabnahme“ und in der Web-App „Schlussabnahme“. Ein Foto im Tagesbericht verweist auf einen Mangel, die Bearbeitung läuft im Mangel selbst.
 
 ## Wann sollte der Bericht geprüft werden?
 
-Am besten zeitnah nach dem Einsatz. Das Büro kontrolliert Vollständigkeit, offene Rückfragen und Auswirkungen auf Planung oder Abrechnung. Unklare Mengen lassen sich am nächsten Morgen leichter klären als nach mehreren Wochen.
+Prüfen Sie den Bericht am besten zeitnah nach dem Einsatz. Das Büro kontrolliert Vollständigkeit, offene Rückfragen und Auswirkungen auf Planung oder Abrechnung, solange sich alle an den Tag erinnern.
 
-Mit [Baudokumentation](/funktionen/baudokumentation) und [Arbeitsanweisungen](/funktionen/arbeitsanweisungen) entsteht ein Kreislauf: Auftrag erklären, Ausführung dokumentieren, Abweichungen prüfen und den nächsten Schritt festlegen.
+Lesen Sie den Bericht zuerst ohne Fotos: Sind Ort, Tätigkeit und Besonderheiten verständlich? Prüfen Sie danach, ob die Bilder die Angaben ergänzen und zum Tag gehören. Klären Sie fehlende Mengen oder unklare Kürzel, bevor der Bericht Grundlage einer Rechnung wird.
 
-## Wie prüfen Sie einen Bericht vor der Weiterverwendung?
+Achten Sie dabei auf den Status: „Entwurf“, „Unterschrieben“ und „Abgeschlossen“ sind unterschiedliche Stände.
 
-Lesen Sie den Bericht zuerst ohne die zugehörigen Fotos. Sind Ort, ausgeführte Tätigkeit und Besonderheiten bereits verständlich? Prüfen Sie danach, ob die Bilder diese Angaben nachvollziehbar ergänzen und zum genannten Tag beziehungsweise Vorgang gehören.
+## So unterstützt CraftOS
 
-Vergleichen Sie Material und Stunden mit anderen Projektaufzeichnungen. Klären Sie fehlende Mengen oder unverständliche Kürzel, bevor der Bericht als Grundlage für eine Rechnung verwendet wird. Halten Sie dabei den Status im Blick: Entwurf, unterschrieben und abgeschlossen sind unterschiedliche Zustände. Die bloße Existenz eines Berichts bestätigt weder eine vollständige Prüfung noch die Berechtigung, alle Inhalte zusätzlich abzurechnen.
+Die [Baudokumentation](/funktionen/baudokumentation) sammelt Berichte, Mängel und Abnahmen im Projekt, die [Arbeitsanweisungen](/funktionen/arbeitsanweisungen) erklären dem Team den Auftrag, und aus Regieberichten entstehen über die [Rechnungen](/funktionen/rechnungen) abrechenbare Positionen.
+
+So entsteht ein Kreislauf: Auftrag erklären, Ausführung dokumentieren, Abweichungen prüfen und den nächsten Schritt festlegen.
