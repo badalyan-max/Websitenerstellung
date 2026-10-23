@@ -9,7 +9,7 @@ import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { ArticlePage } from "@/components/content/ArticlePage";
 import { getContentArticle, getContentList, parseContent, renderMarkdown } from "@/lib/content";
-import type { ContentArticle, ContentKind } from "@/lib/content-types";
+import { categories, type ContentArticle, type ContentKind } from "@/lib/content-types";
 import { zielwerte } from "@/lib/seo-meta";
 
 const decode = (s: string) =>
@@ -335,4 +335,170 @@ describe("Bestand: alle realen Artikel rendern in der v2-Vorlage", () => {
       }
     expect(probleme).toEqual([]);
   }, 120_000);
+});
+
+/**
+ * Übersichten /blog, /hilfe und Kategorieseiten (09-UI-SPEC § 3, § 5; H2, H3, H9) sowie ContentSearch v2.
+ */
+describe("Übersichten und Kategorien v2 (09-UI-SPEC § 3)", () => {
+  const ANTWORT_BLOG =
+    "Der CraftOS-Ratgeber erklärt Rechnungen, Kalkulation, Belege, Projekte und Teamarbeit im Handwerk mit Beispielen und Quellen. Jeder Artikel beantwortet seine Frage zuerst und zeigt dann das Vorgehen.";
+  const ANTWORT_HILFE =
+    "Die CraftOS-Hilfe führt Schritt für Schritt durch Web-App und Mobile-App, von der Einrichtung über Angebote und Rechnungen bis zu Zeiten, Lager und Baudokumentation. Suchen Sie nach einer Aufgabe oder wählen Sie ein Thema.";
+  const index = async (kind: ContentKind, category?: string) => {
+    const { ContentIndex } = await import("@/components/content/ContentIndex");
+    return renderToString(await ContentIndex({ kind, category }));
+  };
+  const abschnitt = (html: string, id: string) => block(html, `<section data-abschnitt="${id}"`, "section");
+  const stand = async (kind: ContentKind, category?: string) => {
+    const liste = (await getContentList(kind)).filter((a) => !category || a.category === category);
+    const d = liste.map((a) => a.updatedAt).sort().at(-1)!.split("-").reverse().join(".");
+    return { n: liste.length, d };
+  };
+  const karten = (html: string) =>
+    [...html.matchAll(/<article[^>]*>([\s\S]*?)<\/article>/g)].map((m) => ({
+      titel: text(/<h3[^>]*>([\s\S]*?)<\/h3>/.exec(m[1])?.[1] ?? ""),
+      meta: m[1],
+    }));
+
+  it("/blog und /hilfe: ContentKopf mit Antwort § 5 und Stand-Zeile, kein PageHero", async () => {
+    for (const [kind, antwort, wort] of [
+      ["blog", ANTWORT_BLOG, "Artikel"],
+      ["hilfe", ANTWORT_HILFE, "Anleitungen"],
+    ] as const) {
+      const html = await index(kind);
+      expect(h1s(html), kind).toEqual([zielwerte("/" + kind).h1]);
+      expect(text(block(html, '<p id="antwort"', "p")), kind).toBe(antwort);
+      const { n, d } = await stand(kind);
+      expect(text(block(html, "<p data-stand", "p")), kind).toBe(`${n} ${wort}, zuletzt aktualisiert am ${d}`);
+      expect(html).not.toContain("craft-page-hero");
+      expect(text(block(html, "<section", "section"))).toContain(kind === "blog" ? "Ratgeber" : "Hilfe");
+    }
+  });
+
+  it("/blog und /hilfe: #themen (Weiß, Karten warm) mit allen Kategorien, Icon und Mengenangabe", async () => {
+    for (const kind of ["blog", "hilfe"] as const) {
+      const html = await index(kind);
+      const themen = abschnitt(html, "themen");
+      expect(themen, kind).toContain("bg-white");
+      expect(themen).toMatch(/<h2[^>]*id="themen"[^>]*>Themen (im Ratgeber|der Hilfe)<\/h2>/);
+      expect(text(themen)).toContain(
+        kind === "blog"
+          ? "Wählen Sie ein Thema, um nur die passenden Artikel zu sehen."
+          : "Wählen Sie ein Thema, um nur die passenden Anleitungen zu sehen.",
+      );
+      expect(themen).toContain('data-surface="warm"');
+      const k = karten(themen);
+      expect(k.map((x) => x.titel)).toEqual(Object.values(categories[kind]).map((v) => decode(v)));
+      for (const slug of Object.keys(categories[kind])) {
+        expect(themen).toContain(`href="/${kind}/kategorie/${slug}"`);
+        const n = (await getContentList(kind)).filter((a) => a.category === slug).length;
+        const erwartet = kind === "blog" ? `${n} Artikel` : n === 1 ? "1 Anleitung" : `${n} Anleitungen`;
+        const karte = k.find((x) => x.titel === decode(categories[kind][slug]))!;
+        expect(text(karte.meta), `${kind}/${slug}`).toContain(erwartet);
+        expect(karte.meta, `${kind}/${slug}: Icon`).toContain("<svg");
+      }
+    }
+  });
+
+  it("/blog und /hilfe: #alle (Warm) mit Suche, Ergebnisse als LinkKarten (weiß) mit h3, danach CTA-Band", async () => {
+    const html = await index("hilfe");
+    const alle = abschnitt(html, "alle");
+    expect(alle).toContain("bg-[#f7f3eb]");
+    expect(alle).toMatch(/<h2[^>]*id="alle"[^>]*>Alle Anleitungen<\/h2>/);
+    expect(text(alle)).toContain("Suchen Sie nach einem Begriff oder filtern Sie nach Thema.");
+    expect(alle).toContain('data-surface="white"');
+    const n = (await getContentList("hilfe")).length;
+    expect(count(alle, "<h3")).toBe(n);
+    expect(alle).not.toMatch(/<h2[^>]*>[^<]*<\/h2>[\s\S]*<h2/);
+    expect(text(alle)).toContain("Min. Lesezeit");
+    expect(html.indexOf('data-abschnitt="themen"')).toBeLessThan(html.indexOf('data-abschnitt="alle"'));
+    expect(html.indexOf('data-abschnitt="alle"')).toBeLessThan(html.indexOf('data-abschnitt="cta"'));
+    expect(html).toMatch(/href="\/support"[^>]*>Support kontaktieren</);
+    const blog = await index("blog");
+    expect(abschnitt(blog, "alle")).toMatch(/<h2[^>]*id="alle"[^>]*>Alle Ratgeber<\/h2>/);
+    expect(blog).toMatch(/href="\/rechner\/stundensatz"[^>]*>Stundensatz berechnen</);
+  });
+
+  it("keine Hinweisbox mehr (H9)", async () => {
+    for (const kind of ["blog", "hilfe"] as const) {
+      const html = decode(await index(kind));
+      expect(html).not.toContain("Vom Lesen ins Machen");
+      expect(html).not.toContain("Ihre Frage ist noch offen");
+      expect(html).not.toContain('class="notice');
+    }
+  });
+
+  it("Kategorie: ContentKopf ohne Antwort mit Stand-Zeile; #alle vorgefiltert (Weiß), #themen mit den übrigen Kategorien (Warm)", async () => {
+    const html = await index("hilfe", "rechnungen");
+    expect(h1s(html)).toEqual([zielwerte("/hilfe/kategorie/rechnungen").h1]);
+    expect(html).not.toContain('id="antwort"');
+    const { n, d } = await stand("hilfe", "rechnungen");
+    expect(text(block(html, "<p data-stand", "p"))).toBe(`${n} Anleitungen in diesem Thema, zuletzt aktualisiert am ${d}`);
+    const alle = abschnitt(html, "alle");
+    expect(alle).toContain("bg-white");
+    expect(alle).toMatch(/<h2[^>]*id="alle"[^>]*>Alle Anleitungen zu Rechnungen<\/h2>/);
+    expect(text(alle)).toContain("Suchen Sie nach einem Begriff oder wechseln Sie das Thema.");
+    expect(alle).toContain('data-surface="warm"');
+    expect(count(alle, "<h3")).toBe(n);
+    const themen = abschnitt(html, "themen");
+    expect(themen).toContain("bg-[#f7f3eb]");
+    expect(themen).toMatch(/<h2[^>]*id="themen"[^>]*>Weitere Themen der Hilfe<\/h2>/);
+    expect(text(themen)).toContain("Wählen Sie ein anderes Thema.");
+    expect(themen).toContain('data-surface="white"');
+    expect(themen).not.toContain('href="/hilfe/kategorie/rechnungen"');
+    expect(count(themen, "<article")).toBe(Object.keys(categories.hilfe).length - 1);
+    expect(html.indexOf('data-abschnitt="alle"')).toBeLessThan(html.indexOf('data-abschnitt="themen"'));
+    const blog = await index("blog", "kalkulation");
+    expect(text(block(blog, "<p data-stand", "p"))).toMatch(/^\d+ Artikel in diesem Thema, zuletzt aktualisiert am \d\d\.\d\d\.\d{4}$/);
+    expect(decode(abschnitt(blog, "alle"))).toMatch(/<h2[^>]*id="alle"[^>]*>Alle Ratgeber zu Angebote & Kalkulation<\/h2>/);
+    expect(abschnitt(blog, "themen")).toMatch(/<h2[^>]*id="themen"[^>]*>Weitere Themen im Ratgeber<\/h2>/);
+  });
+});
+
+describe("ContentSearch v2 (09-UI-SPEC § 3, § 5)", () => {
+  const suche = async (props: { kind: ContentKind; items?: { slug: string; title: string; description: string; category: string; readingMinutes: number }[]; initialCategory?: string }) => {
+    const { ContentSearch } = await import("@/components/content/ContentSearch");
+    const { createElement } = await import("react");
+    return renderToString(createElement(ContentSearch, { items: [], ...props }));
+  };
+  const EINTRAG = {
+    slug: "rechnung-fertigstellen",
+    title: "Eine Rechnung fertigstellen",
+    description: "So stellen Sie eine Rechnung fertig und versenden sie.",
+    category: "rechnungen",
+    readingMinutes: 3,
+  };
+
+  it("funktionsgleich: Labels, Statuszeile, Ergebnisse als LinkKarten mit h3, Label = Kategorie, Lesezeit", async () => {
+    const html = await suche({ kind: "hilfe", items: [EINTRAG] });
+    expect(html).toMatch(/<label[^>]*for="artikel-suche"[^>]*>Artikel suchen<\/label>/);
+    expect(html).toMatch(/<label[^>]*for="artikel-kategorie"[^>]*>Themenbereich<\/label>/);
+    expect(html).toMatch(/<p[^>]*role="status"/);
+    expect(html).toContain('<ul role="list"');
+    expect(html).toMatch(/<h3[^>]*><a[^>]*href="\/hilfe\/rechnung-fertigstellen"/);
+    expect(html).not.toContain("<h2");
+    expect(text(html)).toContain("Rechnungen");
+    expect(text(html)).toContain("3 Min. Lesezeit");
+    expect(html).not.toContain("Anleitung öffnen");
+  });
+
+  it("leerer Zustand Hilfe: h3, Text mit Support-Link, Text-Button „Suche zurücksetzen“", async () => {
+    const html = await suche({ kind: "hilfe" });
+    expect(html).toMatch(/<h3[^>]*>Keine passende Anleitung gefunden\.<\/h3>/);
+    expect(text(html)).toContain(
+      "Versuchen Sie einen kürzeren Suchbegriff, wählen Sie alle Themen oder fragen Sie den Support.",
+    );
+    expect(html).toMatch(/<a[^>]*href="\/support"[^>]*>Support<\/a>/);
+    expect(html).toMatch(/<button[^>]*type="button"[^>]*>Suche zurücksetzen<\/button>/);
+    expect(html).not.toContain("btn-secondary");
+    expect(html).not.toContain('<ul role="list"');
+  });
+
+  it("leerer Zustand Ratgeber: eigener Text ohne Support-Link", async () => {
+    const html = await suche({ kind: "blog" });
+    expect(html).toMatch(/<h3[^>]*>Kein passender Artikel gefunden\.<\/h3>/);
+    expect(text(html)).toContain("Versuchen Sie einen kürzeren Suchbegriff oder wählen Sie alle Themen.");
+    expect(html).not.toContain('href="/support"');
+  });
 });
