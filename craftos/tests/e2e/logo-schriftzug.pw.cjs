@@ -56,8 +56,7 @@ for (const bereich of ['header', 'footer']) {
   })
 }
 
-// Im Referenz-Commit fixme: Die Schnitte werden vor der Umstellung noch geladen (10-09 Aufgabe 2).
-test.fixme('Netz: keine entfallenen Schnitte, genau drei Schrift-Preloads', async ({ page }, testInfo) => {
+test('Netz: keine entfallenen Schnitte, genau drei Schrift-Preloads', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'chromium-1440', 'Netzfall einmal je Lauf')
   const verboten = new Map(ENTFALLENE_SCHNITTE.map((datei) => [sha256(fs.readFileSync(path.join(FONT_DIR, datei))), datei]))
   const { GATE_ROUTEN } = await import(pathToFileURL(path.join(__dirname, '..', '..', 'scripts', 'lib', 'lighthouse-core.mjs')).href)
