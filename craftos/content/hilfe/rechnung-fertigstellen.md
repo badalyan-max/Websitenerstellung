@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "Mit „Dokument fertigstellen“ vergibt CraftOS die endgültige Rechnungsnummer, legt den Dokumentstand als Version ab und sperrt die Rechnung für Änderungen. Prüfen Sie vorher Empfänger, Positionen, Steuerart und Zahlungsziel im Entwurf."
 relatedFeatures: ["rechnungen", "e-rechnung", "mahnwesen"]
-relatedArticles: ["/hilfe/rechnung-stornieren", "/hilfe/e-rechnung-herunterladen", "/hilfe/zahlungen-erfassen"]
+relatedArticles: ["/hilfe/leistungszeitraum-rechnung", "/blog/reverse-charge-bauleistungen", "/hilfe/mahnwesen-einrichten", "/hilfe/rechnung-stornieren"]
 sources: [{"url": "https://ao.bundesfinanzministerium.de/ao/2025/Anhaenge/BMF-Schreiben-und-gleichlautende-Laendererlasse/Anhang-33/inhalt.html", "label": "Bundesfinanzministerium: GoBD im Amtlichen AO-Handbuch 2025", "checkedAt": "2026-10-23"}, {"url": "https://www.gesetze-im-internet.de/ustg_1980/__14.html", "label": "Umsatzsteuergesetz § 14 – Ausstellung von Rechnungen", "checkedAt": "2026-10-23"}, {"url": "https://www.gesetze-im-internet.de/ustg_1980/__13b.html", "label": "Umsatzsteuergesetz § 13b – Leistungsempfänger als Steuerschuldner", "checkedAt": "2026-10-23"}]
 platforms: ["web"]
 ---

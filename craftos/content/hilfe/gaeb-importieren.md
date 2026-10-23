@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "CraftOS importiert Leistungsverzeichnisse als X83 im Format GAEB DA XML 3.2 (2013-10) oder 3.3 (2021-05) über „GAEB importieren“ im Angebotseditor. Nach dem Bepreisen geben Sie das Angebot mit „GAEB exportieren“ als X84 ab."
 relatedFeatures: ["gaeb", "angebote"]
-relatedArticles: ["/hilfe/angebotspositionen-leistungsvorlagen", "/hilfe/position-tiefenkalkulieren", "/hilfe/angebot-entwurf-anlegen"]
+relatedArticles: ["/blog/gaeb-formate", "/hilfe/angebotspositionen-leistungsvorlagen", "/hilfe/position-tiefenkalkulieren", "/hilfe/angebot-entwurf-anlegen"]
 sources: []
 platforms: ["web"]
 ---

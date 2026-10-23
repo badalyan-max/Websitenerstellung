@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "Ohne Netz speichert die Mobile-App Zeiten, Berichte, Mängel, Nachrichten und Lagerbuchungen auf dem Gerät und überträgt sie, sobald wieder eine Verbindung besteht. Die Statusanzeige zeigt, wie viele Änderungen ausstehen und welche Sie erneut senden."
 relatedFeatures: ["zeiterfassung", "baudokumentation", "aufmass"]
-relatedArticles: ["/blog/offline-baustellen-app", "/hilfe/mobilen-timer-bedienen", "/hilfe/zeiteintrag-erfassen-korrigieren"]
+relatedArticles: ["/blog/offline-baustellen-app", "/hilfe/mobilen-timer-bedienen", "/hilfe/zeiteintrag-erfassen-korrigieren", "/hilfe/lager-scan-app"]
 sources: []
 platforms: ["mobile"]
 ---

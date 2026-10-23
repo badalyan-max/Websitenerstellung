@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "Projektbezogene Zeiterfassung verbindet jede Arbeitszeit mit Projekt, Tätigkeit, Beginn, Ende und Pause und macht sie so für Abrechnung und Nachkalkulation nutzbar. In CraftOS erfasst das Team Zeiten in der Mobile-App im Tab „Zeiten“, das Büro prüft und korrigiert sie in der Web-App."
 relatedFeatures: ["zeiterfassung", "nachkalkulation"]
-relatedArticles: ["/hilfe/mobilen-timer-bedienen", "/hilfe/zeiteintrag-erfassen-korrigieren"]
+relatedArticles: ["/hilfe/mobilen-timer-bedienen", "/hilfe/zeiteintrag-erfassen-korrigieren", "/blog/arbeitszeitnachweis-vorlage"]
 sources: [{"url": "https://www.gesetze-im-internet.de/arbzg/__4.html", "label": "Arbeitszeitgesetz § 4 Ruhepausen (gesetze-im-internet.de)", "checkedAt": "2026-10-23"}]
 platforms: ["web", "mobile"]
 ---

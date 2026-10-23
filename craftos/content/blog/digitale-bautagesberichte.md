@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "Ein hilfreicher Bautagesbericht nennt Projekt, Datum, ausgeführte Leistungen mit Mengen, Abweichungen und den nächsten Schritt, ergänzt um aussagekräftige Fotos. In CraftOS erstellen Sie ihn in der Mobile-App als „Tagesbericht“, in der Web-App heißt er „Bautagesbericht“."
 relatedFeatures: ["baudokumentation", "rechnungen", "arbeitsanweisungen"]
-relatedArticles: ["/hilfe/bautagesbericht-erstellen", "/hilfe/berichte-abrechnen", "/hilfe/abnahme-dokumentieren"]
+relatedArticles: ["/hilfe/bautagesbericht-erstellen", "/hilfe/regiebericht", "/hilfe/bedenkenanzeige", "/hilfe/berichte-abrechnen"]
 sources: []
 platforms: ["web", "mobile"]
 ---

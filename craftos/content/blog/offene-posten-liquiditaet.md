@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "Offene Posten zeigen erwartete Zahlungen, verfügbares Geld ergibt sich erst aus Kontostand und anstehenden Ausgaben. Planen Sie Liquidität mit Fälligkeiten und Restbeträgen und gleichen Sie Zahlungseingänge regelmäßig mit Ihren Bankumsätzen ab."
 relatedFeatures: ["bankabgleich", "dashboard", "rechnungen"]
-relatedArticles: ["/hilfe/zahlungen-erfassen", "/blog/zahlungserinnerung-mahnung-handwerk"]
+relatedArticles: ["/hilfe/bankumsaetze-abgleichen", "/hilfe/zahlungen-erfassen", "/blog/zahlungserinnerung-mahnung-handwerk"]
 sources: []
 platforms: ["web"]
 ---

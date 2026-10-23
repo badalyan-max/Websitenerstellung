@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "Öffnen Sie die Rechnung in der Web-App, wählen Sie unter „Weitere Aktionen“ den Punkt „E-Rechnung herunterladen (XRechnung/ZUGFeRD)“ und entscheiden Sie sich für „XRechnung“ als XML oder „ZUGFeRD“ als hybrides PDF. CraftOS prüft vor dem Download die Pflichtangaben."
 relatedFeatures: ["e-rechnung", "rechnungen"]
-relatedArticles: ["/blog/xrechnung-zugferd-pdf-unterschiede", "/hilfe/rechnung-fertigstellen", "/hilfe/kunden-ansprechpartner-anlegen"]
+relatedArticles: ["/blog/xrechnung-zugferd-pdf-unterschiede", "/hilfe/rechnung-fertigstellen", "/blog/reverse-charge-bauleistungen", "/hilfe/kunden-ansprechpartner-anlegen"]
 sources: [{"url": "https://www.bundesfinanzministerium.de/Content/DE/FAQ/e-rechnung.html", "label": "Bundesfinanzministerium: FAQ zur E-Rechnung, Stand März 2026", "checkedAt": "2026-10-23"}, {"url": "https://www.gesetze-im-internet.de/ustg_1980/__14a.html", "label": "Umsatzsteuergesetz § 14a – Rechnungsangabe bei § 13b", "checkedAt": "2026-10-23"}]
 platforms: ["web"]
 ---

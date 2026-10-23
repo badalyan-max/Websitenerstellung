@@ -1,7 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { describe, it, expect } from "vitest";
-import { buildLlmsTxt } from "@/lib/llms";
+import { buildLlmsTxt, LLMS_ANLEITUNGEN, LLMS_WISSENSSEITEN } from "@/lib/llms";
+import { keywordMap } from "@/lib/keyword-map";
 import { wettbewerber } from "@/lib/wettbewerber";
 import { GET } from "@/app/llms.txt/route";
 import { funktionen } from "@/lib/funktionen";
@@ -58,6 +59,19 @@ describe("llms.txt", () => {
     expect(abschnitt).toContain(`(${site.url}/app)`);
     expect(abschnitt).toContain("nur teilweise");
     expect(abschnitt).not.toMatch(/vollständig offline/i);
+  });
+  // 09-09 (SEO-09, CONTENT-04): neun Wissensseiten und elf Anleitungen mit Map-Titel, nur veröffentlichte Pfade.
+  it("lists the knowledge pages and the new how-to articles under Wissen", () => {
+    const abschnitt = text.slice(text.indexOf("## Wissen"));
+    expect(LLMS_WISSENSSEITEN).toHaveLength(9);
+    expect(LLMS_ANLEITUNGEN).toHaveLength(11);
+    for (const p of [...LLMS_WISSENSSEITEN, ...LLMS_ANLEITUNGEN]) {
+      const e = keywordMap.find((k) => k.path === p)!;
+      expect(e.status, p).toBe("bestehend");
+      expect(abschnitt, p).toContain(`- [${e.target!.title!.replace(/ \| CraftOS$/, "")}](${site.url}${p})`);
+    }
+    expect(abschnitt).toContain("### Wissensseiten");
+    expect(abschnitt).toContain("### Anleitungen zu neuen Funktionen");
   });
   it("lists every trade page", () => {
     for (const g of gewerke)

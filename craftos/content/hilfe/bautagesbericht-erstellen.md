@@ -7,7 +7,7 @@ updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["baudokumentation", "arbeitsanweisungen"]
-relatedArticles: ["/blog/digitale-bautagesberichte", "/hilfe/berichte-abrechnen", "/hilfe/mangel-erfassen-bearbeiten", "/hilfe/abnahme-dokumentieren"]
+relatedArticles: ["/hilfe/regiebericht", "/hilfe/bedenkenanzeige", "/hilfe/berichte-abrechnen", "/blog/digitale-bautagesberichte"]
 sources: [{"url": "https://dejure.org/gesetze/VOB-B/4.html", "label": "§ 4 VOB/B: Ausführung", "checkedAt": "2026-10-23"}]
 platforms: ["web", "mobile"]
 answer: "Einen Bautagesbericht erstellen Sie in der Mobile-App im Projekt über „Tagesbericht“ und in der Web-App im Reiter „Baudokumentation“ über „Neuer Bericht“. Sie wählen die Berichtsart, erfassen Arbeiten, Personal, Material und Fotos und lassen den Bericht unterschreiben."

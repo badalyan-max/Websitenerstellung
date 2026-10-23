@@ -7,7 +7,7 @@ updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["baudokumentation", "maengelmanagement", "rechnungen"]
-relatedArticles: ["/hilfe/mangel-erfassen-bearbeiten", "/hilfe/abschlagsrechnung-erstellen", "/hilfe/schlussrechnung-erstellen", "/hilfe/projekt-phasen-anlegen"]
+relatedArticles: ["/hilfe/mangel-erfassen-bearbeiten", "/blog/maengelanzeige", "/hilfe/abschlagsrechnung-erstellen", "/hilfe/schlussrechnung-erstellen"]
 sources: [{"url": "https://www.gesetze-im-internet.de/bgb/__640.html", "label": "§ 640 BGB: Abnahme", "checkedAt": "2026-10-23"}, {"url": "https://www.gesetze-im-internet.de/bgb/__641.html", "label": "§ 641 BGB: Fälligkeit der Vergütung", "checkedAt": "2026-10-23"}, {"url": "https://dejure.org/gesetze/VOB-B/12.html", "label": "§ 12 VOB/B: Abnahme", "checkedAt": "2026-10-23"}]
 platforms: ["web", "mobile"]
 answer: "In der Mobile-App erstellen Sie ein Abnahmeprotokoll als Teilabnahme oder Endabnahme mit Prüfpunkten, Ergebnis und beiden Unterschriften. In der Web-App führen Sie die Schlussabnahme durch und schlagen aus einer Teilabnahme eine Abschlagsrechnung vor."

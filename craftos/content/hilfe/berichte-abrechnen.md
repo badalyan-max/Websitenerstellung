@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "Abgeschlossene Bautagesberichte und Regieberichte rechnen Sie in der Web-App im Projekt unter „Baudokumentation“ ab: einzeln mit „Rechnung aus Bericht erstellen“ oder mehrere zusammen über „Sammelabrechnung“. CraftOS legt daraus einen Rechnungsentwurf an, in dem Sie die Preise ergänzen."
 relatedFeatures: ["baudokumentation", "rechnungen"]
-relatedArticles: ["/hilfe/bautagesbericht-erstellen", "/hilfe/rechnung-fertigstellen", "/hilfe/zeiten-pruefen-exportieren"]
+relatedArticles: ["/hilfe/regiebericht", "/hilfe/bautagesbericht-erstellen", "/hilfe/rechnung-fertigstellen", "/hilfe/zeiten-pruefen-exportieren"]
 sources: []
 platforms: ["web"]
 ---

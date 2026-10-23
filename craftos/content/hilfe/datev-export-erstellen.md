@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "Den DATEV-Export starten Sie unter „Buchhaltung → Steuerberater“ oder im „Buchungsjournal“ mit „An Steuerberater übergeben“: Zeitraum wählen, prüfen, festschreiben und das Paket herunterladen. Voraussetzung sind hinterlegte DATEV-Einstellungen mit Kontenrahmen."
 relatedFeatures: ["buchhaltung", "eingangsrechnungen"]
-relatedArticles: ["/blog/datev-export-vorbereiten", "/hilfe/beleg-kontieren-zuordnen", "/hilfe/firmenprofil-einrichten"]
+relatedArticles: ["/blog/datev-export-vorbereiten", "/hilfe/kassenbuch-fuehren", "/hilfe/beleg-kontieren-zuordnen", "/hilfe/firmenprofil-einrichten"]
 sources: [{"url": "https://ao.bundesfinanzministerium.de/ao/2025/Anhaenge/BMF-Schreiben-und-gleichlautende-Laendererlasse/Anhang-33/inhalt.html", "label": "Bundesfinanzministerium: GoBD im Amtlichen AO-Handbuch 2025", "checkedAt": "2026-10-23"}, {"url": "https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Weitere_Steuerthemen/Abgabenordnung/2025-07-14-GoBD-2-aenderung.html", "label": "Bundesfinanzministerium: zweite GoBD-Änderung vom 14. Juli 2025", "checkedAt": "2026-10-23"}]
 platforms: ["web"]
 ---

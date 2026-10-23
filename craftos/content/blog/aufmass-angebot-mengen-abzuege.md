@@ -8,7 +8,7 @@ updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["aufmass", "angebote"]
-relatedArticles: ["/hilfe/raumaufmass-angebot-uebernehmen", "/blog/handwerkerangebot-erstellen"]
+relatedArticles: ["/hilfe/raumaufmass-angebot-uebernehmen", "/hilfe/besichtigung-durchfuehren", "/blog/handwerkerangebot-erstellen"]
 sources: []
 platforms: ["web", "mobile"]
 ---

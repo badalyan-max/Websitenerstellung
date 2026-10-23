@@ -1,6 +1,7 @@
 // Erzeugt /llms.txt aus denselben Daten wie die Website, damit Preise und Seiten nie auseinanderlaufen.
 import { funktionen } from "./funktionen";
 import { gewerke } from "./gewerke";
+import { keywordMap } from "./keyword-map";
 import { zahlwort } from "./seiten/vergleich";
 import { wettbewerber } from "./wettbewerber";
 import {
@@ -13,6 +14,41 @@ import {
   tarife,
   zahlung,
 } from "./site";
+
+/**
+ * 09-09 (SEO-09, CONTENT-04): Wissensseiten und Anleitungen zu den seit dem 09.09.2026 neuen Live-Funktionen.
+ * Linktext = Map-Titel ohne Markenzusatz (eine Quelle mit der Seite); jeder Pfad muss als „bestehend“ in der Map stehen.
+ */
+export const LLMS_WISSENSSEITEN = [
+  "/hilfe/leistungszeitraum-rechnung",
+  "/hilfe/regiebericht",
+  "/hilfe/bedenkenanzeige",
+  "/blog/maengelanzeige",
+  "/blog/reverse-charge-bauleistungen",
+  "/blog/gaeb-formate",
+  "/blog/materialliste-vorlage",
+  "/blog/bauablaufplan",
+  "/blog/arbeitszeitnachweis-vorlage",
+] as const;
+export const LLMS_ANLEITUNGEN = [
+  "/hilfe/kundenportal-kunden-einladen",
+  "/hilfe/angebot-online-unterschreiben-lassen",
+  "/hilfe/mahnwesen-einrichten",
+  "/hilfe/bankumsaetze-abgleichen",
+  "/hilfe/daten-importieren",
+  "/hilfe/datanorm-katalog-importieren",
+  "/hilfe/lager-scan-app",
+  "/hilfe/besichtigung-durchfuehren",
+  "/hilfe/projekt-chat-nachrichten",
+  "/hilfe/app-sprache-einstellen",
+  "/hilfe/kassenbuch-fuehren",
+] as const;
+function mapTitel(pfad: string): string {
+  const e = keywordMap.find((k) => k.path === pfad);
+  if (!e || e.status !== "bestehend" || !e.target?.title)
+    throw new Error(`llms.txt: ${pfad} ist nicht als bestehender Map-Eintrag mit Titel geführt – keyword-map.json prüfen.`);
+  return e.target.title.replace(/ \| CraftOS$/, "");
+}
 
 const euro = (value: number) => value.toFixed(2).replace(".", ",") + " €";
 const link = (name: string, path: string, note?: string) =>
@@ -96,6 +132,14 @@ export function buildLlmsTxt(): string {
     "",
     link("Ratgeber", "/blog"),
     link("Hilfe-Center", "/hilfe"),
+    "",
+    "### Wissensseiten",
+    "",
+    ...LLMS_WISSENSSEITEN.map((p) => link(mapTitel(p), p)),
+    "",
+    "### Anleitungen zu neuen Funktionen",
+    "",
+    ...LLMS_ANLEITUNGEN.map((p) => link(mapTitel(p), p)),
     "",
   ].join("\n");
 }

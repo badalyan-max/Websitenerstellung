@@ -14,6 +14,7 @@ import {
   ScanLine,
   TrendingUp,
   Upload,
+  Wallet,
 } from "lucide-react";
 import type { FunktionsdetailInhalt } from "./types";
 
@@ -90,6 +91,15 @@ export const buchhaltungInhalte: Record<string, FunktionsdetailInhalt> = {
           title: "DATEV-Ausgabe",
           text: "Ein Assistent erstellt CSV- oder ZIP-Dateien zur Weiterverarbeitung.",
           visual: { kind: "icon", icon: FileOutput },
+        },
+        {
+          // D-32 (09-09): Kassenbuch live seit test.242–244 (Register liveExtras „Kassenbuch“, web:src/pages/Kassenbuch.tsx);
+          // Übergabeliste 09-f: Verlinkung des Hilfeartikels über eine Kernpunkt-Kachel.
+          size: "wide",
+          title: "Kassenbuch",
+          text: "Bargeld mit Anfangsbestand buchen, den Kassensturz speichern und den Monat für DATEV exportieren.",
+          visual: { kind: "icon", icon: Wallet },
+          href: "/hilfe/kassenbuch-fuehren",
         },
         {
           size: "wide",

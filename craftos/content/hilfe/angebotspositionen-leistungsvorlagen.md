@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "Im Angebotseditor suchen Sie unter „Artikel oder Leistung suchen“ nach Ihren Leistungen, eigenen Artikeln und Artikeln aus DATANORM-Katalogen und übernehmen sie als Position. Häufig genutzte Positionen speichern Sie mit „In Stammdaten übernehmen“ als Leistung oder Artikel."
 relatedFeatures: ["angebote", "lager"]
-relatedArticles: ["/hilfe/position-tiefenkalkulieren", "/hilfe/artikel-stammdaten-anlegen", "/hilfe/angebot-entwurf-anlegen"]
+relatedArticles: ["/hilfe/datanorm-katalog-importieren", "/hilfe/position-tiefenkalkulieren", "/hilfe/artikel-stammdaten-anlegen", "/hilfe/angebot-entwurf-anlegen"]
 sources: []
 platforms: ["web"]
 ---

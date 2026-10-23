@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "Öffnen Sie im Projekt den Reiter „Dateien“, wählen Sie den Ordner und klicken Sie auf „Dateien hochladen“ oder ziehen Sie die Dateien in den Bereich. Über das Menü einer Datei geben Sie sie mit „Für Kunde freigeben“ frei oder setzen sie auf „Nur intern“."
 relatedFeatures: ["projektverwaltung", "baudokumentation"]
-relatedArticles: ["/blog/digitale-projektakte", "/hilfe/beleg-scannen-pruefen"]
+relatedArticles: ["/blog/digitale-projektakte", "/hilfe/besichtigung-durchfuehren", "/hilfe/kundenportal-kunden-einladen", "/hilfe/beleg-scannen-pruefen"]
 sources: []
 platforms: ["web", "mobile"]
 ---

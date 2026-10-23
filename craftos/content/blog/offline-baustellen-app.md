@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "Offline arbeiten Sie mit der CraftOS-Mobile-App in Ansichten, die Sie vorher einmal mit Verbindung geöffnet haben. Zeiten, Berichte, Mängel, Nachrichten und Lagerbuchungen werden ohne Netz auf dem Gerät vorgemerkt und später übertragen; Fotos laden Sie mit Internetverbindung hoch."
 relatedFeatures: ["zeiterfassung", "baudokumentation", "aufmass"]
-relatedArticles: ["/hilfe/mobile-offline-synchronisierung", "/hilfe/mobilen-timer-bedienen"]
+relatedArticles: ["/hilfe/mobile-offline-synchronisierung", "/hilfe/mobilen-timer-bedienen", "/hilfe/besichtigung-durchfuehren"]
 sources: []
 platforms: ["web", "mobile"]
 ---

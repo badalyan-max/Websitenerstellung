@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "Ein Angebot legen Sie in der Web-App unter „Dokumente“ mit „Neues Dokument“ und „Angebot“ an, wählen Kunde und Projekt und erfassen die Positionen. Versendet erhält Ihr Kunde das PDF und einen persönlichen Link, um das Angebot online zu unterschreiben."
 relatedFeatures: ["angebote"]
-relatedArticles: ["/hilfe/angebotspositionen-leistungsvorlagen", "/hilfe/position-tiefenkalkulieren", "/blog/handwerkerangebot-erstellen"]
+relatedArticles: ["/hilfe/angebot-online-unterschreiben-lassen", "/hilfe/angebotspositionen-leistungsvorlagen", "/hilfe/position-tiefenkalkulieren", "/blog/handwerkerangebot-erstellen"]
 sources: []
 platforms: ["web"]
 ---

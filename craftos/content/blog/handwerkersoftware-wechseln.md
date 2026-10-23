@@ -8,7 +8,7 @@ updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["datenuebernahme", "projektverwaltung", "team"]
-relatedArticles: ["/blog/handwerkersoftware-auswaehlen", "/hilfe/firmenprofil-einrichten"]
+relatedArticles: ["/hilfe/daten-importieren", "/hilfe/datanorm-katalog-importieren", "/blog/handwerkersoftware-auswaehlen", "/hilfe/firmenprofil-einrichten"]
 sources: []
 platforms: ["web", "mobile"]
 ---

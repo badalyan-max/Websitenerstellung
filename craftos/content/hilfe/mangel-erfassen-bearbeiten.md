@@ -7,7 +7,7 @@ updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["maengelmanagement", "baudokumentation", "projektverwaltung"]
-relatedArticles: ["/hilfe/abnahme-dokumentieren", "/hilfe/bautagesbericht-erstellen"]
+relatedArticles: ["/hilfe/abnahme-dokumentieren", "/blog/maengelanzeige", "/hilfe/bautagesbericht-erstellen"]
 sources: []
 platforms: ["web", "mobile"]
 answer: "Einen Mangel erfassen Sie in der Mobile-App im Projekt unter „Mängel“ und in der Web-App im Reiter „Baudokumentation“ mit „Mangel erfassen“. Sie halten Ort, Frist, Zuständigkeit und Fotos fest und führen den Status von „Offen“ bis „Geprüft“."

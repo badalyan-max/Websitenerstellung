@@ -479,13 +479,14 @@ const ERWARTET: Record<string, Erwartung> = {
     pflichtfrage: "Wer reicht die Steuererklärung bei ELSTER ein?",
     pflichtAntwort: "Sie oder Ihre Steuerberatung",
     verwandt: ["bankabgleich", "eingangsrechnungen", "rechnungen"],
-    anordnung: "md·sm·sm·wide",
+    // 09-09 (D-32): Kassenbuch-Kachel mit Ziel Hilfeartikel.
+    anordnung: "md·sm·sm·wide·wide",
     webRollen: ["Admin", "Büro-Leitung"],
     mobileRollen: null,
     sekundaer: { label: HILFE, href: "/hilfe/datev-export-erstellen" },
     snippet: null,
     zusatz: [],
-    hrefs: { "Steuererklärung über die Kanzlei": "/gobd" },
+    hrefs: { "Steuererklärung über die Kanzlei": "/gobd", Kassenbuch: "/hilfe/kassenbuch-fuehren" },
   },
   eingangsrechnungen: {
     pflichtfrage: "Verbraucht das Auslesen von Belegen Credits?",

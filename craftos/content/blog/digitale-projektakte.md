@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "Eine digitale Projektakte bündelt Auftrag, Termine, Dokumente, Ausführung, Zeiten und Dateien an einem Ort, sodass jede berechtigte Person den Stand ohne Nachfragen versteht. In CraftOS gliedert sich jedes Projekt in feste Reiter von „Übersicht“ bis „Dateien“."
 relatedFeatures: ["projektverwaltung", "arbeitsanweisungen", "baudokumentation"]
-relatedArticles: ["/hilfe/projektdateien-ordner", "/hilfe/projekt-phasen-anlegen"]
+relatedArticles: ["/hilfe/projektdateien-ordner", "/hilfe/projekt-phasen-anlegen", "/hilfe/besichtigung-durchfuehren", "/hilfe/projekt-chat-nachrichten"]
 sources: []
 platforms: ["web", "mobile"]
 ---

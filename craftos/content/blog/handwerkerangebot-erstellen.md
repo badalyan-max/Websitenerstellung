@@ -8,7 +8,7 @@ updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["angebote", "aufmass", "gaeb"]
-relatedArticles: ["/hilfe/angebot-entwurf-anlegen", "/blog/tiefenkalkulation-handwerk", "/blog/aufmass-angebot-mengen-abzuege"]
+relatedArticles: ["/hilfe/angebot-entwurf-anlegen", "/hilfe/angebot-online-unterschreiben-lassen", "/blog/tiefenkalkulation-handwerk", "/blog/aufmass-angebot-mengen-abzuege"]
 sources: []
 platforms: ["web", "mobile"]
 ---

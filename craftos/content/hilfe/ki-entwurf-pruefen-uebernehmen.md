@@ -6,7 +6,7 @@ publishedAt: "2026-09-09"
 updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
-relatedFeatures: ["angebote", "plantafel", "zeiterfassung"]
+relatedFeatures: ["angebote"]
 relatedArticles: ["/hilfe/craft-ai-betriebsdaten-fragen", "/hilfe/rechnung-fertigstellen"]
 sources: []
 platforms: ["web"]

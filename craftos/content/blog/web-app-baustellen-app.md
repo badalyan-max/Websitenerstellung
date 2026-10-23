@@ -8,7 +8,7 @@ updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["team", "arbeitsanweisungen", "plantafel"]
-relatedArticles: ["/hilfe/rollen-zugriffsrechte-einstellen", "/blog/offline-baustellen-app"]
+relatedArticles: ["/hilfe/rollen-zugriffsrechte-einstellen", "/blog/offline-baustellen-app", "/hilfe/projekt-chat-nachrichten", "/hilfe/app-sprache-einstellen"]
 sources: []
 platforms: ["web", "mobile"]
 ---

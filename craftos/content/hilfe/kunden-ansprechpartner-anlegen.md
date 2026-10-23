@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "Kunden legen Sie in der Web-App unter „Kunden“ mit „Neuer Kunde“ an, in der Mobile-App im Tab „Kunden“. Ansprechpartner ergänzen Sie im gespeicherten Kunden; mit hinterlegter E-Mail-Adresse laden Sie den Kunden ins Kundenportal ein."
 relatedFeatures: ["projektverwaltung", "angebote", "kundenportal"]
-relatedArticles: ["/hilfe/projekt-phasen-anlegen", "/hilfe/angebot-entwurf-anlegen"]
+relatedArticles: ["/hilfe/kundenportal-kunden-einladen", "/hilfe/projekt-phasen-anlegen", "/hilfe/angebot-entwurf-anlegen"]
 sources: []
 platforms: ["web", "mobile"]
 ---

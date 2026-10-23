@@ -7,7 +7,7 @@ updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["lager", "nachkalkulation"]
-relatedArticles: ["/blog/materialverbrauch-baustelle-zuordnen", "/hilfe/inventur-durchfuehren", "/hilfe/wareneingang-buchen"]
+relatedArticles: ["/blog/materialverbrauch-baustelle-zuordnen", "/blog/materialliste-vorlage", "/hilfe/inventur-durchfuehren", "/hilfe/wareneingang-buchen"]
 sources: []
 platforms: ["web", "mobile"]
 answer: "Material entnehmen Sie in der Web-App unter „Lager“ mit „Buchen“ → „Warenausgang“ und wählen „Kunde“ und „Auftrag / Projekt“; das belastet die Nachkalkulation. Nicht verbrauchtes Material buchen Sie mit „Rückbuchung vom Auftrag“ zur ursprünglichen Entnahme zurück."

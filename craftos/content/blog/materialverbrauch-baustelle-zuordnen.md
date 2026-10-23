@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "Ordnen Sie Materialverbrauch über Entnahmen aus dem Lager einem Auftrag zu und buchen Sie unverbrauchtes Material mit Bezug auf die ursprüngliche Entnahme zurück. Der Einkauf erhöht nur den Bestand, erst die Entnahme belastet das Projekt."
 relatedFeatures: ["lager", "nachkalkulation"]
-relatedArticles: ["/hilfe/material-entnehmen-zurueckbuchen", "/hilfe/wareneingang-buchen", "/blog/nachkalkulation-handwerk"]
+relatedArticles: ["/hilfe/material-entnehmen-zurueckbuchen", "/hilfe/lager-scan-app", "/blog/materialliste-vorlage", "/blog/nachkalkulation-handwerk"]
 sources: []
 platforms: ["web", "mobile"]
 ---

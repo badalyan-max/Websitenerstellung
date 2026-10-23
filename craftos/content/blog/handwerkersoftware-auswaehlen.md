@@ -8,7 +8,7 @@ updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["projektverwaltung", "angebote", "zeiterfassung"]
-relatedArticles: ["/blog/web-app-baustellen-app", "/blog/handwerkersoftware-wechseln"]
+relatedArticles: ["/blog/web-app-baustellen-app", "/blog/handwerkersoftware-wechseln", "/hilfe/daten-importieren"]
 sources: []
 platforms: ["web", "mobile"]
 ---

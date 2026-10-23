@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "Legen Sie das Projekt unter „Projekte“ an und gliedern Sie es unter „Terminplanung“ mit „Abschnitt anlegen“ in Arbeitsabschnitte (Bauphasen). Geplant wird in der Web-App; die Mobile-App zeigt die Abschnitte mit Status im Projekt und am Einsatz."
 relatedFeatures: ["terminplanung", "projektverwaltung", "plantafel"]
-relatedArticles: ["/hilfe/plantafel-einsatz-planen", "/hilfe/mobilen-timer-bedienen", "/hilfe/projektdateien-ordner"]
+relatedArticles: ["/blog/bauablaufplan", "/hilfe/plantafel-einsatz-planen", "/hilfe/mobilen-timer-bedienen", "/hilfe/projektdateien-ordner"]
 sources: []
 platforms: ["web", "mobile"]
 ---

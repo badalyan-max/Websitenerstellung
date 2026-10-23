@@ -8,7 +8,7 @@ updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["rechnungen", "baudokumentation"]
-relatedArticles: ["/hilfe/rechnung-fertigstellen", "/blog/xrechnung-zugferd-pdf-unterschiede", "/blog/abschlagsrechnung-schlussrechnung"]
+relatedArticles: ["/hilfe/rechnung-fertigstellen", "/hilfe/leistungszeitraum-rechnung", "/blog/reverse-charge-bauleistungen", "/blog/xrechnung-zugferd-pdf-unterschiede"]
 sources: [{"url": "https://www.gesetze-im-internet.de/ustg_1980/__14.html", "label": "§ 14 UStG: Ausstellung von Rechnungen", "checkedAt": "2026-10-23"}, {"url": "https://ao.bundesfinanzministerium.de/ao/2025/Anhaenge/BMF-Schreiben-und-gleichlautende-Laendererlasse/Anhang-33/inhalt.html", "label": "Bundesfinanzministerium: GoBD im Amtlichen AO-Handbuch 2025", "checkedAt": "2026-10-23"}, {"url": "https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Weitere_Steuerthemen/Abgabenordnung/2025-07-14-GoBD-2-aenderung.html", "label": "Bundesfinanzministerium: zweite GoBD-Änderung vom 14. Juli 2025", "checkedAt": "2026-10-23"}]
 platforms: ["web"]
 ---

@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "Eine eingegangene Zahlung erfassen Sie an der Rechnung im Abschnitt „Zahlungen“ mit „Zahlung erfassen“. Zahlungen aus importierten Bankumsätzen ordnen Sie unter „Buchhaltung → Bankumsätze“ zu; alle erfassten Zahlungen listet „Buchhaltung → Belege → Zahlungseingänge“."
 relatedFeatures: ["bankabgleich", "rechnungen", "buchhaltung"]
-relatedArticles: ["/blog/offene-posten-liquiditaet", "/hilfe/schlussrechnung-erstellen", "/hilfe/rechnung-fertigstellen"]
+relatedArticles: ["/hilfe/bankumsaetze-abgleichen", "/blog/offene-posten-liquiditaet", "/hilfe/schlussrechnung-erstellen", "/hilfe/rechnung-fertigstellen"]
 sources: []
 platforms: ["web"]
 ---

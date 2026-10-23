@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "Planen Sie Baustellen, indem Sie Umfang, Kapazität, Abwesenheiten, Material sowie Geräte und Fahrzeuge vor der Zuordnung prüfen. In CraftOS gliedern Sie das Projekt im Reiter „Terminplanung“ in Arbeitsabschnitte und planen die Einsätze auf der „Plantafel“."
 relatedFeatures: ["plantafel", "terminplanung", "arbeitsanweisungen"]
-relatedArticles: ["/hilfe/plantafel-einsatz-planen", "/hilfe/projekt-phasen-anlegen", "/blog/urlaub-abwesenheiten-einsatzplanung"]
+relatedArticles: ["/hilfe/plantafel-einsatz-planen", "/hilfe/projekt-phasen-anlegen", "/blog/bauablaufplan", "/blog/urlaub-abwesenheiten-einsatzplanung"]
 sources: []
 platforms: ["web", "mobile"]
 ---

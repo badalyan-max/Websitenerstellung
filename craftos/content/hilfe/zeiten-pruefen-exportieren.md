@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "Öffnen Sie in der Web-App „Zeiten“, setzen Sie Zeitraum und Filter und prüfen Sie die Einträge. Klicken Sie dann auf „Export“, wählen Sie die „Spalten“ und das Format „CSV“ oder „Excel (.xlsx)“ und bestätigen Sie mit „Exportieren“."
 relatedFeatures: ["zeiterfassung", "team"]
-relatedArticles: ["/hilfe/zeiteintrag-erfassen-korrigieren", "/blog/projektbezogene-zeiterfassung"]
+relatedArticles: ["/hilfe/zeiteintrag-erfassen-korrigieren", "/blog/projektbezogene-zeiterfassung", "/blog/arbeitszeitnachweis-vorlage"]
 sources: [{"url": "https://www.gesetze-im-internet.de/arbzg/__4.html", "label": "Arbeitszeitgesetz § 4 Ruhepausen (gesetze-im-internet.de)", "checkedAt": "2026-10-23"}]
 platforms: ["web"]
 ---

@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "Der Inhaber legt Mitarbeiter in der Web-App unter „Mitarbeiter“ mit „Mitarbeiter hinzufügen“ an, wählt Lizenz und Rolle und sendet die Einladung an die persönliche E-Mail-Adresse. Die Person legt ihr Passwort über den Link selbst fest."
 relatedFeatures: ["team"]
-relatedArticles: ["/hilfe/rollen-zugriffsrechte-einstellen", "/hilfe/anmelden-web-mobile"]
+relatedArticles: ["/hilfe/rollen-zugriffsrechte-einstellen", "/hilfe/anmelden-web-mobile", "/hilfe/app-sprache-einstellen"]
 sources: []
 platforms: ["web"]
 ---

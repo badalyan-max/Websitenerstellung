@@ -8,7 +8,7 @@ author: "CraftOS Redaktion"
 draft: false
 answer: "Organisieren Sie Eingangsrechnungen in einem festen Ablauf: Eingang erfassen, Angaben mit dem Original prüfen, Projekt und Konto zuordnen, Zahlung abgleichen. In CraftOS liegen sie in der Web-App unter „Buchhaltung → Belege → Eingangsbelege“."
 relatedFeatures: ["eingangsrechnungen", "buchhaltung", "bankabgleich"]
-relatedArticles: ["/hilfe/beleg-scannen-pruefen", "/hilfe/beleg-kontieren-zuordnen", "/blog/datev-export-vorbereiten"]
+relatedArticles: ["/hilfe/beleg-scannen-pruefen", "/hilfe/beleg-kontieren-zuordnen", "/hilfe/bankumsaetze-abgleichen", "/blog/datev-export-vorbereiten"]
 sources: [{"url": "https://ao.bundesfinanzministerium.de/ao/2025/Anhaenge/BMF-Schreiben-und-gleichlautende-Laendererlasse/Anhang-33/inhalt.html", "label": "Bundesfinanzministerium: GoBD im Amtlichen AO-Handbuch 2025", "checkedAt": "2026-10-23"}, {"url": "https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Weitere_Steuerthemen/Abgabenordnung/2025-07-14-GoBD-2-aenderung.html", "label": "Bundesfinanzministerium: zweite GoBD-Änderung vom 14. Juli 2025", "checkedAt": "2026-10-23"}]
 platforms: ["web", "mobile"]
 ---
