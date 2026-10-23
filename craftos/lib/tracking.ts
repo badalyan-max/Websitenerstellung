@@ -72,6 +72,21 @@ export function detectAiSource(referrer: string, search: string): AiSource | nul
   return aiUtmMarkers.find(([marker]) => utm.includes(marker))?.[1] ?? null;
 }
 
+/** Schutz für `ai_visit`: nur im Arbeitsspeicher, gilt bis zum nächsten Seitenladevorgang (ME-04). */
+let aiVisitGemeldet = false;
+
+/**
+ * Liefert die KI-Quelle höchstens einmal je Seitenladevorgang (ME-04). Es wird nichts im Browser gespeichert
+ * (kein sessionStorage, kein localStorage, keine Cookies); Referrer und utm_source sind ohnehin nur beim Einstieg
+ * von außen gesetzt. Besuche ohne KI-Quelle verbrauchen den Schutz nicht.
+ */
+export function aiVisitOnce(referrer: string, search: string): AiSource | null {
+  if (aiVisitGemeldet) return null;
+  const source = detectAiSource(referrer, search);
+  if (source) aiVisitGemeldet = true;
+  return source;
+}
+
 /** Unterscheidet Klicks auf die Web-App in Testen und Anmelden (`data-track="login"`). */
 export function classifyAppLink(
   href: string,

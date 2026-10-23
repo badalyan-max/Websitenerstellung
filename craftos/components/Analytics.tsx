@@ -5,25 +5,19 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { track } from "@vercel/analytics";
 import {
+  aiVisitOnce,
   classifyAppLink,
-  detectAiSource,
   ensureAnalyticsQueue,
   stripQuery,
 } from "@/lib/tracking";
-const aiVisitKey = "craftos_ai_visit";
 export function Analytics() {
   const pathname = usePathname();
   const enabled = process.env.NEXT_PUBLIC_ANALYTICS_ENABLED === "true";
   useEffect(() => {
     if (!enabled) return;
-    const source = detectAiSource(document.referrer, window.location.search);
+    // ME-04: höchstens einmal je Seitenladevorgang, ohne Speicherzugriff im Browser.
+    const source = aiVisitOnce(document.referrer, window.location.search);
     if (!source) return;
-    try {
-      if (sessionStorage.getItem(aiVisitKey)) return;
-      sessionStorage.setItem(aiVisitKey, source);
-    } catch {
-      // Ohne Speicherzugriff (z. B. Privatmodus) wird pro Seitenaufruf gezählt.
-    }
     ensureAnalyticsQueue(window);
     track("ai_visit", { source });
   }, [enabled]);

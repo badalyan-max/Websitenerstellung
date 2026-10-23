@@ -1,4 +1,6 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi, afterEach } from "vitest";
+import fs from "node:fs";
+import path from "node:path";
 import {
   classifyAppLink,
   detectAiSource,
@@ -83,5 +85,52 @@ describe("classifyAppLink", () => {
     expect(classifyAppLink("https://app.craftos.eu.evil.com/", null)).toBeNull();
     expect(classifyAppLink("https://craftos.eu/preise", null)).toBeNull();
     expect(classifyAppLink("kein-url", null)).toBeNull();
+  });
+});
+
+// ME-04: Die KI-Besuchserkennung speichert nichts im Browser (kein sessionStorage/localStorage, keine Cookies);
+// ein Modulschutz sendet ai_visit höchstens einmal je Seitenladevorgang.
+describe("aiVisitOnce (ME-04)", () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    vi.resetModules();
+  });
+
+  it("liefert die Quelle nur beim ersten Aufruf je Seitenladevorgang", async () => {
+    vi.resetModules();
+    const { aiVisitOnce } = await import("@/lib/tracking");
+    expect(aiVisitOnce("https://chatgpt.com/", "")).toBe("chatgpt");
+    expect(aiVisitOnce("https://chatgpt.com/", "")).toBeNull();
+    expect(aiVisitOnce("", "?utm_source=perplexity")).toBeNull();
+  });
+
+  it("lässt Besuche ohne KI-Quelle unverändert und verbraucht den Schutz nicht", async () => {
+    vi.resetModules();
+    const { aiVisitOnce } = await import("@/lib/tracking");
+    expect(aiVisitOnce("https://www.google.com/", "")).toBeNull();
+    expect(aiVisitOnce("https://claude.ai/chat", "")).toBe("claude");
+  });
+
+  it("greift weder auf sessionStorage noch localStorage noch Cookies zu", async () => {
+    const zugriff = vi.fn(() => {
+      throw new Error("Speicherzugriff");
+    });
+    const speicher = { getItem: zugriff, setItem: zugriff, removeItem: zugriff, clear: zugriff, key: zugriff, length: 0 };
+    const doc = {};
+    Object.defineProperty(doc, "cookie", { get: zugriff, set: zugriff });
+    vi.stubGlobal("sessionStorage", speicher);
+    vi.stubGlobal("localStorage", speicher);
+    vi.stubGlobal("document", doc);
+    vi.resetModules();
+    const { aiVisitOnce } = await import("@/lib/tracking");
+    expect(aiVisitOnce("https://gemini.google.com/app", "")).toBe("gemini");
+    expect(aiVisitOnce("https://gemini.google.com/app", "")).toBeNull();
+    expect(zugriff).not.toHaveBeenCalled();
+  });
+
+  it("die Analytics-Komponente nutzt keinen Browserspeicher", () => {
+    const quelle = fs.readFileSync(path.join(__dirname, "..", "components", "Analytics.tsx"), "utf8");
+    expect(quelle).not.toMatch(/sessionStorage|localStorage|document\.cookie/);
+    expect(quelle).toContain("aiVisitOnce(");
   });
 });

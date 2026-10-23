@@ -8,12 +8,14 @@ Bei aktivierter Einbindung sind diese Ereignisse vorgesehen:
 | --- | --- |
 | trial_click | Keine Eigenschaften; Klick auf einen Test- bzw. Registrierungslink zur CraftOS Web-App (bis 20.10.2026 zusammen mit Anmelden als `registration_click`) |
 | login_click | Keine Eigenschaften; Klick auf „Anmelden“ (Link mit `data-track="login"`) |
-| ai_visit | Nur `source` (`chatgpt`, `perplexity`, `copilot`, `gemini` oder `claude`); einmal pro Sitzung, erkannt am Referrer oder an `utm_source` |
+| ai_visit | Nur `source` (`chatgpt`, `perplexity`, `copilot`, `gemini` oder `claude`); höchstens einmal pro Seitenladevorgang, erkannt am Referrer oder an `utm_source` |
 | store_click | Nur `ios` oder `android` |
 | demo_use | Nur der feste Name einer der sechs Beispieldemos |
 | calculator_use | Nur `stundensatz` oder `angebot`, einmal pro Seitenaufruf bei Bedienung |
 
 Bei aktivierter Einbindung läuft zusätzlich Vercel Speed Insights in der kostenlosen Stufe (ohne Speed Insights Plus); auch dort wird die URL auf Ursprung und Pfad begrenzt. Die kostenlose Stufe ist laut Vercel auf allen Plänen ohne Projekt- oder Ereignisgebühr enthalten (10.000 Ereignisse in 30 Tagen, teamweit geteilt; danach pausiert die Erfassung). Speed Insights Plus (10 $ pro Projekt und Monat) wird für dieses Projekt nicht aktiviert. Im Projekt `craftos` muss der Reiter „Speed Insights“ eingerichtet sein, sonst liefert `/_vercel/speed-insights/script.js` keinen Inhalt.
+
+`ai_visit` speichert nichts im Browser: kein `sessionStorage`, kein `localStorage` und keine Cookies. Ein Schutz im Arbeitsspeicher (`aiVisitOnce` in `lib/tracking.ts`) sendet das Ereignis höchstens einmal je Seitenladevorgang; Referrer und `utm_source` liegen ohnehin nur beim Einstieg von außen vor. Ein erneuter Einstieg über einen KI-Dienst in einem neuen Tab oder nach einem Neuladen wird erneut gezählt.
 
 `ai_visit` legt vor dem Senden die Warteschlange von Vercel Analytics selbst an (`ensureAnalyticsQueue`), weil `track()` Ereignisse ohne geladenes Skript sonst verwirft; der Query-Filter steht dabei vor dem ersten Ereignis.
 
