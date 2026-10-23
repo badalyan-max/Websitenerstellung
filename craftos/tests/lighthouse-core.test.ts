@@ -150,13 +150,14 @@ describe("hauptbefunde", () => {
 });
 
 describe("Routenlisten (D-11, K13)", () => {
-  it("enthält die Startwerte der Gate-, Info- und A11y-Listen", () => {
+  it("GATE_ROUTEN hat sechs Einträge, je Vorlage einer (Auswahl 10-09); Info- und A11y-Listen", () => {
+    expect(GATE_ROUTEN).toHaveLength(6);
     expect(GATE_ROUTEN).toEqual([
       "/",
       "/funktionen",
-      "/funktionen/zeiterfassung",
-      "/gewerke/elektriker",
-      "/vergleich/plancraft-alternative",
+      "/funktionen/angebote",
+      "/gewerke/shk",
+      "/vergleich/handwerkersoftware-kleine-betriebe",
       "/blog/handwerkerrechnung-schreiben",
     ]);
     expect(INFO_ROUTEN).toEqual(["/preise", "/app", "/hilfe/rechnung-fertigstellen", "/rechner/stundensatz"]);

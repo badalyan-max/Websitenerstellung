@@ -13,13 +13,17 @@
  * @typedef {{ herkunft: string, kennzeichnung: string, urls: Record<string, UrlErgebnis>, gateVerletzt: boolean }} Zusammenfassung
  */
 
-/** Gate-Seiten je Vorlage (Startwerte D-11; 10-09 ersetzt je Vorlage durch die schwerste Seite). */
+/**
+ * Gate-Seiten je Vorlage (D-11): je Vorlage die Seite mit dem schlechtesten Median-LCP aus der Ausgangsmessung
+ * 10-09 (23.10.2026, Labordaten, mobil, lokal, Median aus 3 Läufen; Begründung im 10-09-SUMMARY).
+ * Reihenfolge: Start, Funktionsübersicht, Funktionsdetail, Gewerke, Vergleich, Ratgeber.
+ */
 export const GATE_ROUTEN = [
   "/",
   "/funktionen",
-  "/funktionen/zeiterfassung",
-  "/gewerke/elektriker",
-  "/vergleich/plancraft-alternative",
+  "/funktionen/angebote",
+  "/gewerke/shk",
+  "/vergleich/handwerkersoftware-kleine-betriebe",
   "/blog/handwerkerrechnung-schreiben",
 ];
 
