@@ -108,6 +108,15 @@ describe("published content", () => {
     expect(rendered.html).not.toContain('href="javascript:');
     expect(rendered.toc.map((h) => h.id)).toEqual(["beispiel", "beispiel-1"]);
   });
+  it("Tabellen-Regionen unter derselben H2 erhalten eindeutige Namen (IN-07)", async () => {
+    const tabelle = "| A |\n|---|\n| 1 |";
+    const { html } = await renderMarkdown(`## Kosten\n\n${tabelle}\n\nText.\n\n${tabelle}\n\n## Zeiten\n\n${tabelle}`);
+    expect([...html.matchAll(/aria-label="([^"]+)"/g)].map((m) => m[1])).toEqual([
+      "Tabelle: Kosten",
+      "Tabelle 2: Kosten",
+      "Tabelle: Zeiten",
+    ]);
+  });
   it("Inhaltsverzeichnis aus dem hast-Baum: Titel ohne HTML-Entities, mit Inline-Code und Links (LO-02)", async () => {
     const { toc } = await renderMarkdown(
       '## Gilt die Grenze < 250 €?\n\nText.\n\n### A & B "zitiert"\n\nText.\n\n## Feld `Betrag` und [Link](/hilfe)\n\nText.\n\n#### Tiefer\n\nText.',

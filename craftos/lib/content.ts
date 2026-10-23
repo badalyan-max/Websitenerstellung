@@ -206,16 +206,23 @@ const isElement = (node: Root | RootContent | ElementContent): node is Element =
 function rehypeArtikel() {
   return (tree: Root, file: VFile) => {
     let h2 = "";
+    let tabellen = 0;
     // 09-REVIEW LO-02: Inhaltsverzeichnis direkt aus dem Baum (Text statt HTML, keine Entities, Reihenfolge des Texts).
     const toc: TocEintrag[] = [];
     const besuche = (parent: Root | Element) => {
       parent.children = parent.children.map((kind) => {
         if (!isElement(kind)) return kind;
-        if (kind.tagName === "h2") h2 = kurz(textOf(kind));
+        if (kind.tagName === "h2") {
+          h2 = kurz(textOf(kind));
+          tabellen = 0;
+        }
         if ((kind.tagName === "h2" || kind.tagName === "h3") && typeof kind.properties?.id === "string")
           toc.push({ level: kind.tagName === "h2" ? 2 : 3, id: kind.properties.id, title: kurz(textOf(kind)) });
         if (kind.tagName === "ol" && parent.type === "root") kind.properties = { ...kind.properties, role: "list" };
         if (kind.tagName === "table") {
+          // 09-REVIEW IN-07: weitere Tabellen unter derselben H2 erhalten eine Nummer, damit die Regionen unterscheidbar sind.
+          tabellen += 1;
+          const nummer = tabellen > 1 ? ` ${tabellen}` : "";
           const huelle: Element = {
             type: "element",
             tagName: "div",
@@ -223,7 +230,7 @@ function rehypeArtikel() {
               className: ["table-scroll"],
               role: "region",
               tabIndex: 0,
-              ariaLabel: h2 ? `Tabelle: ${h2}` : "Tabelle",
+              ariaLabel: h2 ? `Tabelle${nummer}: ${h2}` : `Tabelle${nummer}`,
             },
             children: [kind],
           };
