@@ -184,7 +184,7 @@ Die Spec lief lokal auf `chromium-1440` mit 3 von 3 grün.
 
 **Datei:** `craftos/app/agb/page.tsx:90-94`
 **Grund (ursprünglich):** Es handelt sich um einen Rechtstext. Laut Vorgabe werden Rechtstexte nicht geändert; nötig ist eine Inhaberentscheidung (AGB prüfen lassen oder den Stand mit Datum angeben).
-**Nachtrag 10-12:** behoben 19dd8ed nach Inhaberfreigabe vom 23.10.2026. Der Hinweis ist durch den Absatz „Stand: 23. Oktober 2026“ ersetzt (wie ), der übrige AGB-Text ist unverändert; die Referenz  wurde bewusst neu erzeugt.  enthält keinen gleichartigen Hinweis.
+**Nachtrag 10-12:** behoben 19dd8ed nach Inhaberfreigabe vom 23.10.2026. Der Hinweis ist durch den Absatz „Stand: 23. Oktober 2026“ ersetzt (wie `/datenschutz`), der übrige AGB-Text ist unverändert; die Referenz `tests/fixtures/rechtstexte/agb.txt` wurde bewusst neu erzeugt. `/impressum` enthält keinen gleichartigen Hinweis.
 **Ursprünglicher Befund:** Der Vorlagenhinweis steht weiter sichtbar unter den AGB.
 
 ### IN-02: Die Zusatzlinks im Mega-Menü führen auf den Seitenanfang der Detailseite
