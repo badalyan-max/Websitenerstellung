@@ -276,3 +276,19 @@ Nicht in dieser Phase: Änderungen an Rechtstexten (Wortlaut), Datenschutzabschn
     - Datenimport-FAQ auf `/funktionen/team` und Hilfeartikel `daten-importieren`
     - die Startseiten-FAQ, falls eine passende Frage existiert
   - **Formulierung:** positiv und knapp, ohne Negativlisten. Kein messbares Versprechen (keine Reaktionszeit, kein „rund um die Uhr“). Die Einrichtung heißt „kostenlos“.
+- **D-42 Freigabe Aufräumen und Impressum** (Inhaber 23.10.2026: „mach was du richtig findest“ zur Liste „Freigabe zum Entfernen nötig“). Umsetzung in 10-06 auf dem zusammengeführten Stand:
+  - **Ungenutzten Code entfernen**, jeweils nach Nachweis per Suche und Build, dass nichts mehr rendert oder importiert:
+    - `components/layout/PageHero.tsx` bzw. Fundort
+    - `CalculatorCta`
+    - die in 10-03 und 10-10 gelisteten Altklassen in `globals.css`
+    - die nicht mehr geladenen Schriftdateien (z. B. Clash 500)
+    - `components/product-demo` samt `lib/demo`, sofern nur dort genutzt
+    - Schutztests, die das Behalten erzwingen (D-23), anpassen
+  - **Impressum:**
+    - Den Satz bzw. Link zur EU-OS-Plattform entfernen. Die Plattform ist seit 20.07.2025 eingestellt, die Hinweispflicht entfällt.
+    - Eine vorhandene Erklärung zur Verbraucherschlichtung (VSBG) bleibt wörtlich.
+    - Den Wortlaut-Schutztest bewusst auf den neuen Text aktualisieren.
+    - Den Title über die Keyword-Map verlängern, z. B. „Impressum – CraftOS Handwerkersoftware“. Der Rechtstext bleibt sonst unverändert.
+  - **Ausdrücklich nicht Teil von D-42:**
+    - der Satz „Server in der EU“ in `/datenschutz` (Prüfung offen, Rechtstext)
+    - die EU-Jurisdiktion der R2-Buckets (Produkt-Repo)
