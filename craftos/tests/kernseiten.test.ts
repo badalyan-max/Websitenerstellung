@@ -810,6 +810,12 @@ describe("404-Seite auf v2 (D-18; 10-UI-SPEC § 4)", () => {
     expect(ueberschriften(html)).toEqual([1, 2, 3, 3, 3]);
   });
 
+  it("Metadaten (10-05 Behebungsliste, Ebene 9): kein geerbter Canonical, kein geerbtes robots-Meta – noindex setzt Next", async () => {
+    const { metadata } = (await import("@/app/not-found")) as unknown as { metadata?: Record<string, unknown> };
+    expect(metadata, "app/not-found.tsx exportiert metadata").toBeDefined();
+    expect(metadata?.alternates).toEqual({ canonical: null });
+    expect(metadata?.robots).toBeNull();
+  });
 });
 
 describe("/support auf v2 (D-16, K-2; 10-UI-SPEC § 2)", () => {

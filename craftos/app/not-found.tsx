@@ -1,4 +1,5 @@
 import { BookOpen, House, LayoutGrid } from "lucide-react";
+import type { Metadata } from "next";
 import { ContentKopf } from "@/components/content/ContentKopf";
 import { Abschnitt } from "@/components/v2/Abschnitt";
 import { LinkKarten } from "@/components/v2/LinkKarten";
@@ -10,6 +11,15 @@ import { SectionHeader } from "@/components/v2/SectionHeader";
  * Kein CtaBand, keine Altklassen, kein Amber. HTTP-Status 404 und `noindex` setzt Next selbst.
  * Flächen: Kopf Warm → Einstiege Weiß (Karten Warm) → Fußleiste.
  */
+/**
+ * 10-05 Behebungsliste (Ebene 9): Das Root-Layout setzt Canonical auf die Startseite und `index, follow`. Beides darf
+ * die 404-Seite nicht erben – `null` setzt die Felder zurück; das einzige robots-Meta (`noindex`) ergänzt Next selbst.
+ */
+export const metadata: Metadata = {
+  alternates: { canonical: null },
+  robots: null,
+};
+
 export default function NotFound() {
   return (
     <>
