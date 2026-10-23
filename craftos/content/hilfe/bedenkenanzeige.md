@@ -7,7 +7,7 @@ updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["baudokumentation", "maengelmanagement"]
-relatedArticles: ["/hilfe/bautagesbericht-erstellen", "/hilfe/regiebericht", "/hilfe/mangel-erfassen-bearbeiten", "/blog/digitale-projektakte"]
+relatedArticles: ["/hilfe/bautagesbericht-erstellen", "/hilfe/regiebericht", "/hilfe/mangel-erfassen-bearbeiten", "/blog/maengelanzeige"]
 sources: [{"url": "https://www.fib-bund.de/Inhalt/Vergabe/VOB/VOB-B_2016_nichtamtliche_Fassung.pdf", "label": "VOB/B Ausgabe 2016, § 4 Absatz 3 und § 13 Absatz 3 (Fachinformation Bundesbau, BMWSB)", "checkedAt": "2026-10-23"}]
 platforms: ["web", "mobile"]
 answer: "Mit einer Bedenkenanzeige teilen Sie dem Auftraggeber schriftlich mit, dass Sie Bedenken gegen die vorgesehene Ausführung, gelieferte Stoffe oder Bauteile oder Leistungen anderer Unternehmer haben. Bei vereinbarter VOB/B verlangt § 4 Absatz 3 das unverzüglich, möglichst vor Beginn der Arbeiten."

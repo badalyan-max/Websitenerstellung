@@ -7,7 +7,7 @@ updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["rechnungen", "baudokumentation"]
-relatedArticles: ["/hilfe/rechnung-fertigstellen", "/hilfe/berichte-abrechnen", "/blog/handwerkerrechnung-schreiben", "/hilfe/schlussrechnung-erstellen"]
+relatedArticles: ["/hilfe/rechnung-fertigstellen", "/hilfe/berichte-abrechnen", "/blog/handwerkerrechnung-schreiben", "/blog/reverse-charge-bauleistungen"]
 sources: [{"url": "https://www.gesetze-im-internet.de/ustg_1980/__14.html", "label": "§ 14 UStG: Ausstellung von Rechnungen", "checkedAt": "2026-10-23"}, {"url": "https://www.gesetze-im-internet.de/ustdv_1980/__31.html", "label": "§ 31 UStDV: Angaben in der Rechnung", "checkedAt": "2026-10-23"}, {"url": "https://www.gesetze-im-internet.de/ustg_1980/__13.html", "label": "§ 13 UStG: Entstehung der Steuer", "checkedAt": "2026-10-23"}]
 platforms: ["web"]
 answer: "Der Leistungszeitraum zeigt, wann Sie die abgerechnete Arbeit ausgeführt haben, und gehört nach § 14 Absatz 4 Nummer 6 UStG zu den Pflichtangaben einer Rechnung. Für eine Arbeit an einem Tag genügt das Leistungsdatum, als Zeitpunkt darf auch der Kalendermonat der Ausführung stehen."
