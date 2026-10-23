@@ -10,6 +10,7 @@ import * as siteModule from "@/lib/site";
 import { buildLlmsTxt } from "@/lib/llms";
 import { softwareApplicationSchema } from "@/lib/schema";
 import { productBasis } from "@/lib/product-register";
+import { pruefeReleaseStand, releaseSuite, WEB_REPO } from "./release-repos";
 
 const { tarife, creditPakete, site } = siteModule;
 const root = path.resolve(import.meta.dirname, "..");
@@ -147,7 +148,8 @@ const zahlwoerter: Record<string, number> = { sieben: 7, zehn: 10, vierzehn: 14,
 // Komposita wie „Testtage“ zählen mit (LO-01).
 const tagesLiteral = /(?<![\p{L}\d.,])(\d+|sieben|zehn|vierzehn|dreißig)(?:\s*-\s*|\s*)(?:(?:Test)?Tagen?|tägig)(?![\p{L}])/giu;
 const tagesTemplate = /\$?\{[^{}]*trialDays\}\s*(?:-\s*)?(?:(?:Test)?[Tt]agen?|tägig)(?![\p{L}])/gu;
-const testKontext = /test|kostenlos|ohne zahlungs/i;
+// „test“ nur am Wortanfang (nach Nicht-Buchstabe): „Testtage“ zählt, „Spätestens“ und „Bestandstest“ nicht (09-09).
+const testKontext = /(?<!\p{L})test|kostenlos|ohne zahlungs/iu;
 
 function satzFenster(text: string, start: number, end: number): string {
   let before = text.slice(Math.max(0, start - 60), start);
@@ -270,10 +272,12 @@ describe("Netto-Hinweis", () => {
   });
 });
 
-const WEB = process.env.CRAFTOS_WEB_REPO || "C:/Projekte/craft-connect-buddy";
-describe.skipIf(!fs.existsSync(WEB))("Snapshot ist aktuell (nur lokal)", () => {
+// Sichtbarer Skip mit Grund bzw. Pflichtmodus (CRAFTOS_REQUIRE_RELEASE=1, CI) aus tests/release-repos.ts (D-14).
+const snapshotSuite = releaseSuite("Snapshot ist aktuell (nur lokal)", ["web"]);
+describe.skipIf(snapshotSuite.skip)(snapshotSuite.titel, () => {
   it("Snapshot ist aktuell: Commit entspricht origin/release", () => {
-    const head = execFileSync("git", ["-C", WEB, "rev-parse", "origin/release"], {
+    pruefeReleaseStand("web");
+    const head = execFileSync("git", ["-C", WEB_REPO, "rev-parse", "origin/release"], {
       encoding: "utf8",
     }).trim();
     expect(snapshot.source.ref).toBe("origin/release");
