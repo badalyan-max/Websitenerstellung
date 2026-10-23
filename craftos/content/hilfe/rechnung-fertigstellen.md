@@ -3,42 +3,62 @@ title: "Eine Rechnung prüfen und endgültig fertigstellen"
 description: "So kontrollieren Sie einen Rechnungsentwurf, vergeben die endgültige Nummer und erhalten einen gesperrten Dokumentstand."
 category: "rechnungen"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
-relatedFeatures: ["rechnungen", "e-rechnung"]
-relatedArticles: ["/hilfe/rechnung-stornieren", "/hilfe/e-rechnung-herunterladen"]
-sources: [{"url": "https://ao.bundesfinanzministerium.de/ao/2025/Anhaenge/BMF-Schreiben-und-gleichlautende-Laendererlasse/Anhang-33/inhalt.html", "label": "Bundesfinanzministerium: GoBD im Amtlichen AO-Handbuch 2025", "checkedAt": "2026-09-09"}]
+answer: "Mit „Dokument fertigstellen“ vergibt CraftOS die endgültige Rechnungsnummer, legt den Dokumentstand als Version ab und sperrt die Rechnung für Änderungen. Prüfen Sie vorher Empfänger, Positionen, Steuerart und Zahlungsziel im Entwurf."
+relatedFeatures: ["rechnungen", "e-rechnung", "mahnwesen"]
+relatedArticles: ["/hilfe/rechnung-stornieren", "/hilfe/e-rechnung-herunterladen", "/hilfe/zahlungen-erfassen"]
+sources: [{"url": "https://ao.bundesfinanzministerium.de/ao/2025/Anhaenge/BMF-Schreiben-und-gleichlautende-Laendererlasse/Anhang-33/inhalt.html", "label": "Bundesfinanzministerium: GoBD im Amtlichen AO-Handbuch 2025", "checkedAt": "2026-10-23"}, {"url": "https://www.gesetze-im-internet.de/ustg_1980/__14.html", "label": "Umsatzsteuergesetz § 14 – Ausstellung von Rechnungen", "checkedAt": "2026-10-23"}, {"url": "https://www.gesetze-im-internet.de/ustg_1980/__13b.html", "label": "Umsatzsteuergesetz § 13b – Leistungsempfänger als Steuerschuldner", "checkedAt": "2026-10-23"}]
 platforms: ["web"]
 ---
 
-„Fertigstellen“ vergibt die endgültige Rechnungsnummer, hält den Dokumentstand fest und sperrt die normale Bearbeitung; prüfen Sie den Entwurf deshalb vorher vollständig.
+## Voraussetzungen
 
-Sie benötigen einen bearbeitbaren Rechnungsentwurf und die passende Rechnungsberechtigung in der Web-App.
+- Voll-Lizenz (Admin oder Büro) mit Zugriff auf Rechnungen in der Web-App.
+- Ein gespeicherter Rechnungsentwurf mit Kunde und Positionen.
+- Vollständige Firmendaten in den Einstellungen, damit alle Pflichtangaben auf der Rechnung stehen.
 
 ## Schritt für Schritt
 
-1. Öffnen Sie die Rechnung unter „Dokumente“ oder „Rechnungen“.
+1. Öffnen Sie die Rechnung unter „Dokumente“ im Editor.
 2. Prüfen Sie Rechnungsempfänger, Projekt, Leistungszeitpunkt und Positionen.
 3. Vergleichen Sie Mengen, Netto-, Steuer- und Bruttosummen mit dem tatsächlichen Auftrag.
-4. Öffnen Sie die Dokumentvorschau und kontrollieren Sie die sichtbaren Angaben.
-5. Wählen Sie „Fertigstellen“.
-6. Bearbeiten Sie angezeigte fehlende Pflichtangaben und prüfen Sie weitere Hinweise.
-7. Bestätigen Sie den vorgesehenen Abschluss und warten Sie auf die Erfolgsmeldung.
-8. Kontrollieren Sie die vergebene Nummer und den gesperrten Dokumentstand.
+4. Prüfen Sie den Schalter „Rechnung nach § 13b (ohne USt.)“, wenn Sie Bauleistungen an einen Bauleister abrechnen.
+5. Legen Sie das „Zahlungsziel“ fest.
+6. Speichern Sie den Entwurf und prüfen Sie die „PDF-Vorschau“.
+7. Öffnen Sie im Editor das Menü „Weitere Aktionen“ und wählen Sie „Dokument fertigstellen“.
+8. Ergänzen Sie gemeldete Angaben im Entwurf, wenn der Dialog „Pflichtangaben fehlen“ erscheint.
+9. Bestätigen Sie den Abschluss, wenn der Dialog „Vor dem Festschreiben prüfen“ nur Hinweise zeigt.
 
-Bei Abschlags- oder Schlussrechnungen gehören bisherige Rechnungen, Zahlungen und Projektstatus zur Prüfung. Ein unvollständiger Zusammenhang sollte vor dem Abschluss geklärt werden.
+## Ergebnis prüfen
 
-## Ergebnis und GoBD-Einordnung
+Die Rechnung trägt ihre endgültige Nummer und ist gesperrt; CraftOS hat den Dokumentstand als Version abgelegt. Abschlags- und Schlussrechnungen prüfen Sie zusätzlich gegen bisherige Rechnungen, Zahlungen und den Projektstatus.
 
-Die Rechnung ist kein frei bearbeitbarer Entwurf mehr. CraftOS verbindet die Nummernvergabe mit der Fertigstellung, legt den Dokumentstand als Version ab und schützt relevante Rechnungsdaten vor normalem Überschreiben.
+Nach dem Zahlungsziel gilt die Rechnung als überfällig. Sind unter „Einstellungen → Mahnwesen“ die „Automatische Mahnungen“ eingeschaltet, mahnt CraftOS überfällige normale Rechnungen täglich nach Ihren Fristen per E-Mail. Die Einrichtung zeigt [Mahnwesen einrichten](/hilfe/mahnwesen-einrichten).
 
-Diese Funktionen unterstützen die Nachvollziehbarkeit des Ablaufs. Die [GoBD](https://ao.bundesfinanzministerium.de/ao/2025/Anhaenge/BMF-Schreiben-und-gleichlautende-Laendererlasse/Anhang-33/inhalt.html) betreffen daneben Ihre betrieblichen Verfahren und Kontrollen; die Funktion ist keine pauschale Zertifizierung Ihres Betriebs.
+## Wie stelle ich eine Rechnung nach § 13b fertig?
+
+Schalten Sie im Editor „Rechnung nach § 13b (ohne USt.)“ ein, bevor Sie fertigstellen. Die Rechnung weist dann keine Umsatzsteuer aus und trägt den Hinweis „Steuerschuldnerschaft des Leistungsempfängers gemäß § 13b UStG.“
+
+Der Schalter steht umsatzsteuerpflichtigen Betrieben zur Verfügung. Bei Kunden mit „Bauleister nach § 13b“ ist er für neue Belege vorbelegt. Die Steuerart gilt für die ganze Rechnungsfolge: Seit der ersten festgeschriebenen Rechnung zeigt der Editor „Die Steuerart ist seit der ersten festgeschriebenen Rechnung festgelegt.“
 
 ## Häufige Probleme
 
-Fehlen Pflichtangaben, korrigieren Sie die genannten Daten und starten Sie die Prüfung erneut. Bei einem Fehler nach dem Abschluss laden Sie zunächst den bestehenden Vorgang neu, statt sofort eine zweite Rechnung anzulegen.
+### Was tun, wenn „Pflichtangaben fehlen“ erscheint?
 
-Eine bereits fertige falsche Rechnung wird über [Storno oder Korrektur](/hilfe/rechnung-stornieren) behandelt. Bearbeiten Sie nicht die heruntergeladene Datei unabhängig vom gespeicherten Beleg.
+Der Dialog nennt die fehlenden Angaben nach § 14 Absatz 4 UStG. Ergänzen Sie sie im Entwurf oder in den Firmendaten und wählen Sie danach erneut „Dokument fertigstellen“.
+
+### Warum meldet CraftOS „Entwurf gespeichert“ statt der fertigen Rechnung?
+
+CraftOS hat zuerst Ihre letzten Änderungen gespeichert. Klicken Sie erneut auf „Fertigstellen“, um die Rechnung festzuschreiben.
+
+### Wie korrigiere ich eine fertiggestellte Rechnung?
+
+Über ein Storno mit Gegenbeleg; mit „Rechnung neu ausstellen“ öffnet CraftOS danach einen neuen Entwurf. Die Schritte stehen unter [Rechnung stornieren](/hilfe/rechnung-stornieren).
+
+### Wie unterstützt das Fertigstellen die GoBD?
+
+Nummernvergabe, Versionierung und Sperre machen den Ablauf nachvollziehbar. Ihre betrieblichen Abläufe und Kontrollen beschreiben Sie zusätzlich in Ihrer Verfahrensdokumentation; die [GoBD](https://ao.bundesfinanzministerium.de/ao/2025/Anhaenge/BMF-Schreiben-und-gleichlautende-Laendererlasse/Anhang-33/inhalt.html) nennen die Anforderungen.
 
 Weitere Informationen finden Sie unter [GoBD in CraftOS](/gobd) und beim [E-Rechnungsdownload](/hilfe/e-rechnung-herunterladen).
