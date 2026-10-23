@@ -1,7 +1,7 @@
 /**
  * Funktionsübersicht `/funktionen` (Phase 6, Plan 06-05; FEAT-01, D-07, D-08, D-09, D-10, D-11, D-18):
  * Seitenkopf mit Keyword-H1 und Sprungnavigation, sechs Gruppenabschnitte aus getFunktionsgruppen(),
- * 22 Detailkarten + 8 Zusatzfunktionen (Phase 7, D-07), CtaBand sowie BreadcrumbList- und ItemList-JSON-LD.
+ * 22 Detailkarten + 10 Zusatzfunktionen (Phase 7, D-07; Phase 10 + Kassenbuch und § 13b, D-21), CtaBand sowie BreadcrumbList- und ItemList-JSON-LD.
  */
 import { createElement } from "react";
 import { renderToString } from "react-dom/server";
@@ -96,9 +96,9 @@ describe("Funktionsübersicht /funktionen", () => {
     }
   });
 
-  it("30 Funktionen: 22 Detailkarten mit Visual und 8 Zusatzfunktionen je Gruppe in Modellreihenfolge", () => {
+  it("32 Funktionen: 22 Detailkarten mit Visual und 10 Zusatzfunktionen je Gruppe in Modellreihenfolge", () => {
     const erwartet = gruppen.flatMap((g) => [...g.details.map((d) => d.slug), ...g.extras.map((x) => x.id)]);
-    expect(erwartet).toHaveLength(30);
+    expect(erwartet).toHaveLength(32);
     expect(all(/data-funktion="([^"]+)"/g)).toEqual(erwartet);
     const details = gruppen.flatMap((g) => g.details);
     expect(details).toHaveLength(22);
@@ -129,7 +129,13 @@ describe("Funktionsübersicht /funktionen", () => {
       expect(text(figure), `${d.slug}: Kennzeichnung`).toContain("Vereinfachte Darstellung mit Beispieldaten");
     }
     expect(html.match(/>Weitere Funktionen<\/h3>/g)).toHaveLength(gruppen.filter((g) => g.extras.length > 0).length);
-    expect(gruppen.filter((g) => g.extras.length > 0).map((g) => g.id)).toEqual(["angebot", "baustelle", "team"]);
+    expect(gruppen.filter((g) => g.extras.length > 0).map((g) => g.id)).toEqual([
+      "angebot",
+      "baustelle",
+      "rechnung",
+      "buchhaltung",
+      "team",
+    ]);
   });
 
   it("Kartenvariante: Browser-Szenen zeigen höchstens KARTEN_ZEILEN Zeilen, die ersten der Szene (07-04, keine angeschnittene Zeile)", () => {
@@ -147,11 +153,11 @@ describe("Funktionsübersicht /funktionen", () => {
     }
   });
 
-  it("Zusatzfunktionen verlinken nur mit Ziel (8 mit Link, 0 ohne)", () => {
+  it("Zusatzfunktionen verlinken nur mit Ziel (10 mit Link, 0 ohne)", () => {
     const extras = gruppen.flatMap((g) => g.extras);
-    expect(extras).toHaveLength(8);
+    expect(extras).toHaveLength(10);
     const mitZiel = extras.filter((x) => x.target);
-    expect(mitZiel).toHaveLength(8);
+    expect(mitZiel).toHaveLength(10);
     expect(extras.filter((x) => !x.target)).toHaveLength(0);
     for (const x of extras) {
       const li = eintrag(x.id);

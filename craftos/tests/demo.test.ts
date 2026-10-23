@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -374,5 +376,61 @@ describe("Produktdemo: nachvollziehbare Beispielabläufe", () => {
     state = advance(state);
     state = act(state, { type: "confirm-ai" });
     expect(state.ai.savedHours).toBe(2);
+  });
+});
+
+/**
+ * D-23 (10-04, Schutztest): Die ProductDemo zeigt in der Szene „ki“ den nicht freigeschalteten KI-Agenten und ist
+ * deshalb auf keiner Seite eingebunden. Keine Datei unter app/ darf components/product-demo oder lib/demo importieren.
+ * Diese Testdatei selbst importiert die Demo (oben) – geprüft wird nur app/**. Ob die Demo archiviert oder gelöscht
+ * wird, entscheidet der Inhaber (Inhaberfrage im 10-04-SUMMARY); bis dahin bleibt sie unverändert.
+ */
+const ROOT = path.resolve(import.meta.dirname, "..");
+const DEMO_IMPORT = /(?:\bfrom\s*|\bimport\s*\(?\s*)["'][^"']*(?:components\/product-demo|lib\/demo)(?:\/[^"']*)?["']/;
+
+function quelldateien(dir: string): string[] {
+  const out: string[] = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) out.push(...quelldateien(full));
+    else if ([".ts", ".tsx"].includes(path.extname(entry.name))) out.push(full);
+  }
+  return out;
+}
+
+function demoImporte(dir: string): string[] {
+  const treffer: string[] = [];
+  for (const datei of quelldateien(path.join(ROOT, dir))) {
+    const rel = path.relative(ROOT, datei).split(path.sep).join("/");
+    fs.readFileSync(datei, "utf8")
+      .split(/\r?\n/)
+      .forEach((zeile, i) => {
+        if (DEMO_IMPORT.test(zeile)) treffer.push(`${rel}:${i + 1}`);
+      });
+  }
+  return treffer;
+}
+
+describe("Produktdemo: keine Einbindung unter app/ (D-23)", () => {
+  it("das Importmuster erkennt statische, dynamische und Alias-Importe und nur diese", () => {
+    for (const zeile of [
+      'import { ProductDemo } from "@/components/product-demo/ProductDemo";',
+      "import { demoReducer } from '../../lib/demo/machine';",
+      'const Demo = dynamic(() => import("@/components/product-demo/ProductDemo"));',
+      'export { ProductDemo } from "@/components/product-demo";',
+      'import { daten } from "@/lib/demo";',
+    ])
+      expect(DEMO_IMPORT.test(zeile), zeile).toBe(true);
+    for (const zeile of [
+      'import { site } from "@/lib/site";',
+      'import { x } from "@/lib/demos";',
+      "// die Produktdemo (components/product-demo) bleibt ausgebaut",
+    ])
+      expect(DEMO_IMPORT.test(zeile), zeile).toBe(false);
+  });
+
+  it("keine Datei unter app/ importiert components/product-demo oder lib/demo", () => {
+    expect(quelldateien(path.join(ROOT, "app")).length).toBeGreaterThan(20);
+    expect(demoImporte("app")).toEqual([]);
   });
 });

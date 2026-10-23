@@ -347,15 +347,17 @@ const liveExtras: {
   },
   {
     // D-32 (09-09): live seit test.242–244. Beschrieben im Hilfeartikel /hilfe/kassenbuch-fuehren und als Kachel auf
-    // /funktionen/buchhaltung; als eigene Zusatzkarte auf /funktionen und im Mega-Menü erst nach Entscheidung (Phase 10).
+    // /funktionen/buchhaltung. Phase 10 (D-21, 10-04): beworben als Zusatzkarte auf /funktionen (Gruppe Buchhaltung) und
+    // als Extra der Kassenbuch-Kachel; die Menü-Präsenz setzt 10-06 auf dem zusammengeführten Stand um (D-40).
     name: "Kassenbuch",
     platforms: ["web"],
     evidence: web("src/pages/Kassenbuch.tsx", "supabase/migrations/20261022150000_kassenbuch_kb.sql"),
-    advertised: false,
+    advertised: true,
   },
   {
     // D-32 (09-09): live seit test.242. Beschrieben in hilfe/rechnung-fertigstellen, hilfe/e-rechnung-herunterladen
-    // und blog/reverse-charge-bauleistungen; Zusatzkarte wie Kassenbuch erst nach Entscheidung (Phase 10).
+    // und blog/reverse-charge-bauleistungen. Phase 10 (D-21, 10-04): beworben als Zusatzkarte auf /funktionen (Gruppe
+    // Rechnung) und als Kachel auf /funktionen/rechnungen; die Menü-Präsenz setzt 10-06 um (D-40).
     name: "Rechnung nach § 13b",
     platforms: ["web"],
     evidence: web(
@@ -363,7 +365,7 @@ const liveExtras: {
       "src/lib/invoiceNoticeTexts.ts",
       "supabase/functions/generate-einvoice/index.ts",
     ),
-    advertised: false,
+    advertised: true,
   },
   {
     // Umfang ungeprüft (RESEARCH Open Question 7): nicht bewerben.

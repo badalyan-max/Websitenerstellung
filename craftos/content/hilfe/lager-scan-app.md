@@ -44,7 +44,7 @@ Neue Ware buchen Sie beim Artikel mit „Zubuchen“ ein.
 4. Wählen Sie „Anfangsbestand bewusst einbuchen“ oder „Zunächst ohne Bestand anlegen“.
 5. Tippen Sie „Geprüften Eintrag anlegen“.
 
-Die KI-Erkennung holen Sie auf Anforderung; sie braucht eine Internetverbindung und verbraucht Betriebscredits. Die App nennt den Verbrauch vor dem Start.
+Die KI-Erkennung holen Sie auf Anforderung; sie braucht eine Internetverbindung und verbraucht Betriebscredits. Die App nennt den Verbrauch vor dem Start. Je Foto fallen bis zu 2 Credits an, ab dem 1. Januar 2027 bis zu 3 Credits.
 
 ## Ergebnis prüfen
 

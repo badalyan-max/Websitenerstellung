@@ -46,15 +46,32 @@ import { buchhaltungInhalte } from "./buchhaltung";
 /**
  * Inhaltsmodule je Slug aus den Gruppenmodulen (lib/funktionsdetails/{gruppe}.ts): alle 22 Detailfunktionen in
  * der Gruppenreihenfolge Angebot, Planung, Baustelle (07-05), Rechnung, Buchhaltung, Team (07-06).
+ * D-24 (10-04): über `vereinigeInhalte` statt Objekt-Spread, damit ein doppelter Slug wirft statt still zu überschreiben.
  */
-export const INHALTE: Readonly<Record<string, FunktionsdetailInhalt>> = {
-  ...angebotInhalte,
-  ...planungInhalte,
-  ...baustelleInhalte,
-  ...rechnungInhalte,
-  ...buchhaltungInhalte,
-  ...teamInhalte,
-};
+export const INHALTE: Readonly<Record<string, FunktionsdetailInhalt>> = vereinigeInhalte([
+  angebotInhalte,
+  planungInhalte,
+  baustelleInhalte,
+  rechnungInhalte,
+  buchhaltungInhalte,
+  teamInhalte,
+]);
+
+/**
+ * Vereinigt Inhaltsmodule zu einer Tabelle je Slug (D-24). Steht ein Slug in mehr als einem Modul, ist das ein
+ * Entwicklerfehler: Der Objekt-Spread würde den früheren Eintrag still überschreiben, deshalb bricht die Funktion ab.
+ */
+export function vereinigeInhalte(
+  module: readonly Readonly<Record<string, FunktionsdetailInhalt>>[],
+): Readonly<Record<string, FunktionsdetailInhalt>> {
+  const doppelt = ersteDoppelung(module.flatMap((m) => Object.keys(m)));
+  if (doppelt) {
+    throw new Error(
+      `Funktionsdetail: Slug ${doppelt} steht in mehreren Inhaltsmodulen – Eintrag in genau einem Modul unter lib/funktionsdetails/ belassen.`,
+    );
+  }
+  return Object.assign({}, ...module);
+}
 
 /** FeatureSnippet nur auf diesen 8 Detailseiten, als einziges animiertes Element im Ablauf (D-19). */
 export const SNIPPET_VARIANTE: Readonly<Record<string, SnippetVariante>> = {
@@ -79,6 +96,8 @@ export const ERLAUBTE_ANORDNUNGEN: readonly string[] = [
   "md·sm·sm",
   "md·sm·sm·wide",
   "md·sm·sm·wide·wide",
+  // 10-UI-SPEC § 5 (D-21): /funktionen/rechnungen mit Kachel „Rechnung nach § 13b“, lückenlos ab 768 und 1024 px.
+  "md·sm·sm·wide·wide·wide",
   "sm·sm·sm·sm·wide",
   "md·sm·sm·md·md",
   "md·sm·sm·md·sm·sm",

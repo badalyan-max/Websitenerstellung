@@ -27,6 +27,32 @@ export const creditWertEuro = 0.01;
 const euroKurz = (value: number) => value.toFixed(2).replace(".", ",") + " €";
 /** Einordnung der Start-Credits für /preise, FAQ-Schema und llms.txt: „entspricht 1,50 €; 1 Credit = 0,01 €“. */
 export const creditUmrechnung = `entspricht ${euroKurz(startCredits * creditWertEuro)}; 1 Credit = ${euroKurz(creditWertEuro)}`;
+/**
+ * Höchstpreis der Foto-Erkennung im Lager („Foto mit KI erkennen“, Mobile-App) je Foto in Credits, datiert (D-22).
+ * Beleg: web:supabase/functions/_shared/aiPricing.ts, Eintrag 'analyze-inventory-photo' (Label „Inventurfoto“):
+ * `tariff: { kind: 'fixed', maxCredits: 2, steps: [{ from: '2027-01-01T00:00:00Z', maxCredits: 3 }] }`; in SQL
+ * datiert mit Migration 20261009200000_inventory_photo_dated_price.sql. Stichtag als Kalendertag (00:00 UTC).
+ * Geprüft durch tests/credit-paritaet.test.ts gegen den Release-Commit aus productBasis.
+ */
+export const lagerfotoCredits = [
+  { ab: null, max: 2 },
+  { ab: "2027-01-01", max: 3 },
+] as const;
+/** Höchstpreis der Lagerfoto-KI am Tag `datum` (ISO, „2027-01-01“ oder mit Uhrzeit; maßgeblich ist der UTC-Kalendertag). */
+export function lagerfotoCreditsAm(datum: string): number {
+  const tag = datum.slice(0, 10);
+  let max: number = lagerfotoCredits[0].max;
+  for (const stufe of lagerfotoCredits) if (stufe.ab !== null && tag >= stufe.ab) max = stufe.max;
+  return max;
+}
+const datumLang = (iso: string) =>
+  new Intl.DateTimeFormat("de-DE", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(
+    new Date(`${iso}T00:00:00Z`),
+  );
+/** „bis zu 2 Credits, ab dem 1. Januar 2027 bis zu 3 Credits“ – Anzeige auf /craft-ai. */
+export const lagerfotoCreditsText = lagerfotoCredits
+  .map((s) => (s.ab === null ? `bis zu ${s.max} Credits` : `ab dem ${datumLang(s.ab)} bis zu ${s.max} Credits`))
+  .join(", ");
 export const annualSavingPercent = 100 * (1 - 10 / 12);
 export const tarife = [
   {

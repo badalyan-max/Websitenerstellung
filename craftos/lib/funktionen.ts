@@ -416,6 +416,15 @@ const definitions: Definition[] = [
     related: ["baudokumentation", "projektverwaltung"],
   },
 ];
+/**
+ * Abweichender Prüfstand einzelner Detailseiten (K-5): 10-04 (D-21) ergänzt auf /funktionen/rechnungen die Kachel
+ * „Rechnung nach § 13b“ und auf /funktionen/buchhaltung das Extra der Kassenbuch-Kachel.
+ */
+const GEPRUEFT_AM: Readonly<Record<string, string>> = {
+  rechnungen: "2026-10-23",
+  buchhaltung: "2026-10-23",
+};
+
 export const funktionen: Funktion[] = definitions.map((d) => ({
   slug: d.slug,
   name: d.name,
@@ -431,7 +440,7 @@ export const funktionen: Funktion[] = definitions.map((d) => ({
   related: d.related,
   demo: d.demo,
   // Stand der Detailseiten (Phase 7 geprüft und ausgeliefert am 2026-10-22); speist lastModified der Sitemap (Code-Review 07 IN-03).
-  checkedAt: "2026-10-22",
+  checkedAt: GEPRUEFT_AM[d.slug] ?? "2026-10-22",
 }));
 export function getFunktion(slug: string): Funktion | undefined {
   return funktionen.find((f) => f.slug === slug);

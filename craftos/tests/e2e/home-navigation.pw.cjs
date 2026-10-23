@@ -381,7 +381,7 @@ async function overviewDetails(request) {
   expect(response.status()).toBe(200)
   const html = await response.text()
   const ids = [...html.matchAll(/data-funktion="([^"]+)"/g)].map((m) => m[1])
-  expect(ids).toHaveLength(30)
+  expect(ids).toHaveLength(32)
   // Detail-Einträge sind die Karten mit Link „Mehr zu …“ auf /funktionen/<slug>.
   return ids.filter((id) => new RegExp(`href="/funktionen/${id}"[^>]*>Mehr zu `).test(html))
 }
@@ -432,7 +432,7 @@ test('Zwei Klicks: Mobil – ein Tap auf „Menü öffnen“ zeigt alle Funktion
   testInfo.annotations.push({ type: 'Zwei Klicks', description: `Mobil: ${details.length} Funktionslinks und ${GROUP_ANCHORS.length} Gruppenlinks nach 1 Tap sichtbar` })
 })
 
-test('Zwei Klicks: Zuordnung – alle 30 Einträge auf /funktionen liegen in einer Gruppe, deren Link im geöffneten Menü sichtbar war', async ({ page, hasTouch }, testInfo) => {
+test('Zwei Klicks: Zuordnung – alle 32 Einträge auf /funktionen liegen in einer Gruppe, deren Link im geöffneten Menü sichtbar war', async ({ page, hasTouch }, testInfo) => {
   await page.goto('/')
   const panel = await openFunctionsMenu(page, hasTouch)
   const visibleGroups = []
@@ -445,7 +445,7 @@ test('Zwei Klicks: Zuordnung – alle 30 Einträge auf /funktionen liegen in ein
     id: el.getAttribute('data-funktion'),
     gruppe: el.closest('[data-gruppe]')?.getAttribute('data-gruppe') ?? null,
   })))
-  expect(entries).toHaveLength(30)
+  expect(entries).toHaveLength(32)
   for (const e of entries) expect(visibleGroups, `${e.id} in ${e.gruppe}`).toContain(e.gruppe)
   const detailCount = entries.filter((e) => DETAIL_SLUGS.includes(e.id)).length
   expect(detailCount).toBe(22)
@@ -459,8 +459,8 @@ test('Zwei Klicks: Ziele – alle Links der Übersichtseinträge und des Funktio
   test.skip(testInfo.project.use.hasTouch, 'Serverantworten sind geräteunabhängig.')
   await page.goto('/funktionen')
   const entryLinks = await page.locator('[data-funktion] a[href]').evaluateAll((els) => els.map((el) => el.getAttribute('href')))
-  // 22 Detailkarten („Mehr zu …“) + 8 Zusatzfunktionen mit Ziel (07-UI-SPEC Zusatzliste, D-21) = 30
-  expect(entryLinks).toHaveLength(22 + 8)
+  // 22 Detailkarten („Mehr zu …“) + 10 Zusatzfunktionen mit Ziel (07-UI-SPEC Zusatzliste, D-21; Phase 10 + Kassenbuch, § 13b) = 32
+  expect(entryLinks).toHaveLength(22 + 10)
   expect(entryLinks).toContain('/app')
   const panelLinks = await page.locator('#navigation-funktionen a[href]').evaluateAll((els) => els.map((el) => el.getAttribute('href')))
   for (const href of ['/funktionen', '/app', '/craft-ai', '/gobd', '/vergleich']) expect(panelLinks, href).toContain(href)
@@ -566,7 +566,7 @@ test('Funktionsübersicht: Browser-Rahmen der Karten zeigen nur vollständige Ze
   }
 })
 
-test('Funktionsübersicht: ohne JavaScript stehen alle 30 Funktionen im Dokument', async ({ browser, baseURL }, testInfo) => {
+test('Funktionsübersicht: ohne JavaScript stehen alle 32 Funktionen im Dokument', async ({ browser, baseURL }, testInfo) => {
   test.skip(testInfo.project.use.hasTouch, 'Die Serverausgabe ist unabhängig von Touch.')
   const origin = new URL(baseURL).origin
   const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } })
@@ -574,7 +574,7 @@ test('Funktionsübersicht: ohne JavaScript stehen alle 30 Funktionen im Dokument
   await page.route('**/*', (route) => new URL(route.request().url()).origin === origin ? route.continue() : route.abort())
   try {
     await page.goto(new URL('/funktionen', baseURL).href)
-    await expect(page.locator('[data-funktion]')).toHaveCount(30)
+    await expect(page.locator('[data-funktion]')).toHaveCount(32)
     await expect(page.locator('[data-gruppe]')).toHaveCount(6)
     await expect(page.getByRole('link', { name: /^Mehr zu / })).toHaveCount(22)
   } finally { await context.close() }

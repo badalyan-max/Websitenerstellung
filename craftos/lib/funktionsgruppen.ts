@@ -11,9 +11,11 @@ import {
   MessagesSquare,
   NotebookPen,
   Receipt,
+  ReceiptText,
   ScanBarcode,
   Signature,
   Users,
+  Wallet,
   type LucideIcon,
 } from "lucide-react";
 import {
@@ -30,7 +32,7 @@ import { getProductRegister, mobileLocales } from "./product-register";
  * Gruppenmodell der Funktionen (Phase 6, D-05, D-07, D-08, D-09, D-15, D-18).
  *
  * Einzige Quelle für Mega-Menü, Startseite und /funktionen: sechs Arbeitsablauf-Gruppen mit allen
- * Live-Funktionen – den 22 Detailseiten aus lib/funktionen.ts und den 8 beworbenen Zusatzfunktionen
+ * Live-Funktionen – den 22 Detailseiten aus lib/funktionen.ts und den 10 beworbenen Zusatzfunktionen
  * (`liveExtras` mit `advertised: true`) aus dem Produktregister. Name, Icon, Plattformen und
  * Nutzensatz der Detailfunktionen werden nie doppelt gepflegt, sondern aus `input.funktionen`
  * übernommen; Plattformen der Zusatzfunktionen kommen immer aus dem Registereintrag.
@@ -159,7 +161,10 @@ const GRUPPEN: Record<GruppenId, GruppenKopf> = {
  * Mahnwesen → Rechnung, Bankabgleich → Buchhaltung, Datenübernahme → Team. Die 8 verbleibenden
  * Zusatzfunktionen behalten ihre Gruppe (Angebot 3, Baustelle 3, Team 2) und verweisen auf die
  * Detailseite, die sie beschreibt; „21 Sprachen“ verweist auf die Seite /app (D-21, kind „seite“).
- * Rechnung, Planung und Buchhaltung haben danach keine Zusatzfunktion mehr (keine Liste, kein Platzhalter).
+ * Planung hat danach keine Zusatzfunktion (keine Liste, kein Platzhalter).
+ * Phase 10 (D-21, 10-UI-SPEC § 5): „Rechnung nach § 13b“ (Rechnung) und „Kassenbuch“ (Buchhaltung) sind beworben und
+ * dort je die einzige Zusatzfunktion; zusammen 10 Zusatzfunktionen. Das Mega-Menü zeigt weiter nur Detailfunktionen,
+ * die Menü-Präsenz der Zusatzfunktionen setzt 10-06 auf dem zusammengeführten Stand um (D-40).
  */
 
 /** Detailfunktionen (Slugs aus lib/funktionen.ts) je Gruppe; Reihenfolge = Anzeigereihenfolge. */
@@ -186,6 +191,8 @@ export const REGISTER_IDS: Record<string, string> = {
   "Abnahme und Teilabnahme": "abnahme",
   Bautagesbericht: "bautagesbericht",
   "Lager-Scan und Wareneingang": "lager-scan",
+  "Rechnung nach § 13b": "rechnung-13b",
+  Kassenbuch: "kassenbuch",
   "Projekt-Chat und Nachrichten": "projekt-chat",
   [sprachenName]: "sprachen",
 };
@@ -256,6 +263,24 @@ const ZUSATZ: Record<string, ZusatzDefinition> = {
     icon: ScanBarcode,
     benefit: "Artikel per Barcode scannen und Wareneingänge am Lager buchen.",
     target: { href: "/funktionen/lager", kind: "funktion", label: "Lager & Material" },
+  },
+  // Phase 10 (D-21): Belege web:src/components/customers/CustomerDialog.tsx („Bauleister nach § 13b“),
+  // web:src/lib/invoiceNoticeTexts.ts; Rechnungen laufen über LicenseProtectedRoute feature="dokumente" (Voll-Lizenz).
+  "rechnung-13b": {
+    gruppe: "rechnung",
+    name: "Rechnung nach § 13b",
+    icon: ReceiptText,
+    benefit: "Bauleistungen ohne Umsatzsteuer mit Hinweis nach § 13b UStG abrechnen, mit Voll-Lizenz.",
+    target: { href: "/funktionen/rechnungen", kind: "funktion", label: "Rechnungen" },
+  },
+  // Phase 10 (D-21): Belege web:src/pages/Kassenbuch.tsx Z. 45/113 („täglich … mit laufendem Bestand“),
+  // web:src/App.tsx Z. 271 (feature="finanzen"), web:src/hooks/useLicense.ts canSeeFinance (Admin oder Büro mit Schalter).
+  kassenbuch: {
+    gruppe: "buchhaltung",
+    name: "Kassenbuch",
+    icon: Wallet,
+    benefit: "Bargeld täglich mit laufendem Bestand buchen, für Admin und Büro-Zugänge mit Finanzberechtigung.",
+    target: { href: "/funktionen/buchhaltung", kind: "funktion", label: "Buchhaltung & DATEV" },
   },
   "projekt-chat": {
     gruppe: "team",

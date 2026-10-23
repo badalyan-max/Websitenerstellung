@@ -95,11 +95,13 @@ export const buchhaltungInhalte: Record<string, FunktionsdetailInhalt> = {
         {
           // D-32 (09-09): Kassenbuch live seit test.242–244 (Register liveExtras „Kassenbuch“, web:src/pages/Kassenbuch.tsx);
           // Übergabeliste 09-f: Verlinkung des Hilfeartikels über eine Kernpunkt-Kachel.
+          // 10-04 (D-21): Die Kachel trägt das beworbene Extra „Kassenbuch“; Text und href unverändert.
           size: "wide",
           title: "Kassenbuch",
           text: "Bargeld mit Anfangsbestand buchen, den Kassensturz speichern und den Monat für DATEV exportieren.",
           visual: { kind: "icon", icon: Wallet },
           href: "/hilfe/kassenbuch-fuehren",
+          zusatz: "kassenbuch",
         },
         {
           size: "wide",

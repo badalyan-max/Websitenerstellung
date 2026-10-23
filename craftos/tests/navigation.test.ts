@@ -82,9 +82,10 @@ describe("navigation: Zielprüfung", () => {
     const routes = await sitemapPfade();
     const extras = gruppen.flatMap((g) => g.extras.flatMap((x) => (x.target ? [x.target.href] : [])));
     // 06-REVIEW WR-04: Ziele werden auf /funktionen als Link gerendert; ein umbenannter Hilfeartikel muss hier auffallen.
-    // Phase 7 (07-UI-SPEC Zusatzliste, D-21): 7 Ziele auf Funktions-Detailseiten, „21 Sprachen“ auf /app.
-    expect(extras).toHaveLength(8);
-    expect(extras.filter((href) => href.startsWith("/funktionen/")).length).toBe(7);
+    // Phase 7 (07-UI-SPEC Zusatzliste, D-21): Ziele auf Funktions-Detailseiten, „21 Sprachen“ auf /app;
+    // Phase 10 (D-21): + Kassenbuch und § 13b → 9 Ziele auf Funktions-Detailseiten.
+    expect(extras).toHaveLength(10);
+    expect(extras.filter((href) => href.startsWith("/funktionen/")).length).toBe(9);
     expect(extras.filter((href) => href === "/app")).toHaveLength(1);
     for (const href of extras) expect(routes.has(href), href).toBe(true);
     expect(checkNavigationTargets(extras, routes)).toEqual([]);
