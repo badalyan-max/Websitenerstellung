@@ -61,13 +61,39 @@ function Abschnitt({
   );
 }
 
-/** Einträge des Inhaltsverzeichnisses (H2, H3 eingerückt); Links mindestens 44 px hoch. */
+type TocEintrag = ContentArticle["toc"][number];
+
+/** H3-Einträge unter den vorangehenden H2-Eintrag gruppieren (eine H3 vor der ersten H2 bleibt oben). */
+function tocBaum(toc: ContentArticle["toc"]): { eintrag: TocEintrag; kinder: TocEintrag[] }[] {
+  const baum: { eintrag: TocEintrag; kinder: TocEintrag[] }[] = [];
+  for (const h of toc) {
+    const letzter = baum.at(-1);
+    if (h.level > 2 && letzter && letzter.eintrag.level === 2) letzter.kinder.push(h);
+    else baum.push({ eintrag: h, kinder: [] });
+  }
+  return baum;
+}
+
+/**
+ * Einträge des Inhaltsverzeichnisses; Links mindestens 44 px hoch. 09-REVIEW LO-03: role="list" erhält die
+ * Listensemantik trotz list-style: none (WebKit, wie bei der Schrittliste), H3-Einträge stehen als Unterliste im
+ * H2-Eintrag, damit gleichlautende Fragen (z. B. „Eine Zeit nachtragen“ unter Web und Mobile) ihren Bezug behalten.
+ */
 function TocListe({ toc }: { toc: ContentArticle["toc"] }) {
   return (
-    <ol className="artikel-toc-liste">
-      {toc.map((h) => (
-        <li key={h.id} data-ebene={h.level}>
-          <a href={"#" + h.id}>{h.title}</a>
+    <ol className="artikel-toc-liste" role="list">
+      {tocBaum(toc).map(({ eintrag, kinder }) => (
+        <li key={eintrag.id} data-ebene={eintrag.level}>
+          <a href={"#" + eintrag.id}>{eintrag.title}</a>
+          {kinder.length > 0 ? (
+            <ol className="artikel-toc-unterliste" role="list">
+              {kinder.map((h) => (
+                <li key={h.id} data-ebene={h.level}>
+                  <a href={"#" + h.id}>{h.title}</a>
+                </li>
+              ))}
+            </ol>
+          ) : null}
         </li>
       ))}
     </ol>
@@ -142,6 +168,8 @@ export async function ArticlePage({ article: a }: { article: ContentArticle }) {
         />
         <div className="bg-white py-12 md:py-16 lg:py-24">
           <div className="site-container artikel-raster">
+            {/* 09-REVIEW LO-03: Das Verzeichnis steht bewusst vor dem Text im DOM. Es dient wie ein Sprunglink als
+                Navigation zu den Abschnitten; Tastaturnutzer erreichen es vor der Prosa, nicht erst am Artikelende. */}
             {mitToc ? (
               <nav aria-label="Inhaltsverzeichnis" className="artikel-toc" data-toc="seite">
                 <p className="artikel-toc-label">In diesem Artikel</p>

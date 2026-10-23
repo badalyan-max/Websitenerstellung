@@ -179,6 +179,19 @@ describe("Artikelvorlage v2: Inhalt (09-UI-SPEC § 2.2)", () => {
     expect(html).toMatch(/<details[^>]*>\s*<summary[^>]*>[\s\S]*?Inhalt dieses Artikels/);
   });
 
+  it("Inhaltsverzeichnis: Listen mit role=list, H3 verschachtelt unter der H2 (LO-03)", async () => {
+    const html = await seite();
+    const nav = block(html, '<nav aria-label="Inhaltsverzeichnis"', "nav");
+    // Oberste Liste und Unterliste behalten die Listensemantik trotz list-style: none (WebKit).
+    expect(nav).toMatch(/<ol class="artikel-toc-liste" role="list">/);
+    expect(nav).toMatch(/<ol class="artikel-toc-unterliste" role="list">/);
+    // „Rückgabe buchen“ (H3) steht in der Unterliste des H2-Eintrags „Schritt für Schritt“.
+    expect(nav).toMatch(
+      /<li data-ebene="2"><a href="#schritt-für-schritt">Schritt für Schritt<\/a><ol class="artikel-toc-unterliste" role="list"><li data-ebene="3"><a href="#rückgabe-buchen">Rückgabe buchen<\/a><\/li><\/ol><\/li>/,
+    );
+    expect(count(nav, 'data-ebene="3"')).toBe(1);
+  });
+
   it("kein Inhaltsverzeichnis unter 3 Einträgen", async () => {
     const html = await seite({ body: "## Erste Frage\n\nText.\n\n## Zweite Frage\n\nText.\n" });
     expect(html).not.toContain('aria-label="Inhaltsverzeichnis"');
