@@ -1,7 +1,8 @@
 /**
  * Inhalte der Seite `/gobd` (08-UI-SPEC § 5.4; D-09, D-12). Funktionspunkte aus dem Bestand gekürzt (Titel und
- * Ziele unverändert), Stand aus site.checkedAt. Wortregeln (T-08-32): keine behördliche GoBD-Zertifizierung;
- * CraftOS unterstützt das Verfahren, die Verfahrensdokumentation bleibt beim Betrieb. Die FAQPage der Seite
+ * Ziele unverändert), Stand aus site.checkedAt. D-43 (Inhaber 23.10.2026): Die Seite sagt positiv „CraftOS ist
+ * GoBD-konform“ (Wortlaut und Belege aus lib/gobd-konform.ts); die Zertifizierungsfrage beantwortet sie mit der
+ * amtlichen Einordnung und den Belegen, ohne Zertifikats- oder Testatbehauptung (T-08-32). Die FAQPage der Seite
  * entsteht aus demselben Array wie die sichtbare FAQ (T-08-33). Prüfung: tests/kernseiten.test.ts.
  */
 import { FileCheck2, FileOutput, Files, History, LockKeyhole, ShieldCheck } from "lucide-react";
@@ -9,6 +10,7 @@ import type { LucideIcon } from "lucide-react";
 import type { FitPanel } from "@/components/v2/FitPanels";
 import type { Step } from "@/components/v2/StepFlow";
 import { germanDate } from "@/lib/format";
+import { gobdKonform } from "@/lib/gobd-konform";
 import { pruefeNurUnterstuetzt } from "@/lib/nur-unterstuetzt";
 import { site } from "@/lib/site";
 
@@ -30,14 +32,14 @@ export const GOBD_SURFACES: Readonly<Record<GobdSectionId, "dark" | "white" | "w
 export const gobdKopf = {
   eyebrow: "GoBD",
   kopfwort: "GoBD-konforme",
-  lead: "Festschreibung, geschützte Rechnungen, Versionen und Protokolle für nachvollziehbare Abläufe im Betrieb.",
+  lead: `${gobdKonform.aussage}: Festschreibung mit Löschsperre, gesperrte Eingangsbelege und ein Änderungsprotokoll.`,
   secondary: { label: "Anleitung in der Hilfe", href: "/hilfe/rechnung-fertigstellen" },
 } as const;
 
 export const gobdSections: Record<Exclude<GobdSectionId, "kopf" | "cta">, { title: string; lead: string }> = {
   funktionen: {
-    title: "Wie unterstützt CraftOS GoBD-konforme Abläufe?",
-    lead: "Mit festgeschriebenen Rechnungen, geschützten Inhalten, Dokumentversionen, nachvollziehbaren Stornos sowie Prüfung, Sperre und Protokoll von Eingangsbelegen.",
+    title: "Wie ist CraftOS GoBD-konform?",
+    lead: "Mit festgeschriebenen Ausgangsrechnungen, gesperrten Eingangsrechnungen, Dokumentversionen, nachvollziehbaren Stornos und einem unveränderlichen Protokoll jeder Änderung an festgeschriebenen Belegen.",
   },
   ablauf: {
     title: "Ein typischer Ablauf bis zur Übergabe",
@@ -45,7 +47,7 @@ export const gobdSections: Record<Exclude<GobdSectionId, "kopf" | "cta">, { titl
   },
   zertifizierung: {
     title: "Ist CraftOS GoBD-zertifiziert?",
-    lead: "Nein. CraftOS behauptet keine behördliche GoBD-Zertifizierung: GoBD-Konformität betrifft das gesamte Verfahren in Ihrem Betrieb, und die Funktionen von CraftOS unterstützen dieses Verfahren.",
+    lead: gobdKonform.zertifizierung,
   },
   faq: {
     title: "Häufige Fragen zur GoBD",
@@ -60,7 +62,7 @@ export const gobdSections: Record<Exclude<GobdSectionId, "kopf" | "cta">, { titl
 export const gobdKacheln: { title: string; text: string; href: string; icon: LucideIcon; size: "sm" | "md" | "wide" }[] = [
   {
     title: "Rechnungen verbindlich festschreiben",
-    text: "Beim Fertigstellen vergibt CraftOS die endgültige Nummer und sperrt den Rechnungsinhalt.",
+    text: "Fertige Ausgangsrechnungen tragen die endgültige Nummer und sind gegen Löschen gesperrt.",
     href: "/hilfe/rechnung-fertigstellen",
     icon: LockKeyhole,
     size: "md",
@@ -88,14 +90,14 @@ export const gobdKacheln: { title: string; text: string; href: string; icon: Luc
   },
   {
     title: "Zugriffe und E-Rechnungsbezug schützen",
-    text: "Berechtigungen begrenzen den Zugriff auf Finanzdaten und die Festschreibung.",
+    text: "Berechtigungen schützen Finanzdaten, das E-Rechnungs-XML bleibt unverändert archiviert.",
     href: "/funktionen/e-rechnung",
     icon: ShieldCheck,
     size: "md",
   },
   {
     title: "Die Übergabe vorbereiten",
-    text: "Der DATEV-Export unterstützt die Übergabe; den Umfang stimmen Sie mit Ihrer Kanzlei ab.",
+    text: "Der DATEV-Export liefert den Buchungsstapel im EXTF-Format und die Belege als ZIP für Ihre Kanzlei.",
     href: "/hilfe/datev-export-erstellen",
     icon: FileOutput,
     size: "wide",
@@ -110,31 +112,31 @@ export const gobdSteps: Step[] = [
   { title: "Übergabe abstimmen", text: "Zahlungen nachführen, Unterlagen aufbewahren und Übergabe abstimmen." },
 ];
 
-/** Zuständigkeiten (FitPanels ohne Quellenpflicht): was CraftOS unterstützt, was der Betrieb organisiert. */
+/** FitPanels ohne Quellenpflicht (D-43): wie CraftOS GoBD-konform ist und wie der Betrieb damit arbeitet. */
 export const gobdPanels: [FitPanel, FitPanel] = [
   {
-    title: "Was CraftOS unterstützt",
+    title: "So ist CraftOS GoBD-konform",
     points: [
-      { text: "Rechnungen werden nach der Prüfung festgeschrieben und bleiben geschützt." },
-      { text: "Dokumentversionen und Protokolle machen Änderungen nachvollziehbar." },
-      { text: "Der DATEV-Export bereitet die Übergabe an die Steuerberatung vor." },
+      { text: "Ausgangsrechnungen werden festgeschrieben und sind gegen Löschen gesperrt." },
+      { text: "Geprüfte Eingangsrechnungen sperrt CraftOS gegen weitere Änderungen." },
+      { text: "Jede Änderung an festgeschriebenen Belegen landet in einem unveränderlichen Protokoll." },
     ],
   },
   {
-    title: "Was Ihr Betrieb organisiert",
+    title: "So arbeiten Sie damit im Betrieb",
     points: [
-      { text: "Sie führen eine Verfahrensdokumentation mit klaren Zuständigkeiten." },
-      { text: "Sie erfassen alle Belege vollständig und zeitnah." },
-      { text: "Sie bewahren Originaldaten auf und klären den Datenzugriff mit Ihrer Steuerberatung." },
+      { text: "Sie erfassen Belege zeitnah und prüfen sie direkt in CraftOS." },
+      { text: "Ihre Verfahrensdokumentation beschreibt, wer prüft und wer festschreibt." },
+      { text: "Der DATEV-Export übergibt Buchungsstapel und Belege an Ihre Steuerberatung." },
     ],
   },
 ];
 
 export const gobdFaq: { q: string; a: string }[] = [
-  // Inhaber 22.10.2026 (08-REVIEW ME-01): positiv formuliert; verneint bleibt nur die Zertifizierungsfrage.
+  // Inhaber 22.10.2026 (08-REVIEW ME-01) und D-43 (23.10.2026): durchgehend positiv formuliert.
   {
-    q: "Wer erstellt die Verfahrensdokumentation?",
-    a: "Die Verfahrensdokumentation erstellt Ihr Betrieb; CraftOS liefert dafür nachvollziehbare Funktionen wie Festschreibung, Versionen und Protokolle.",
+    q: "Wie hilft CraftOS bei der Verfahrensdokumentation?",
+    a: "Festschreibung, Dokumentversionen und Protokolle bilden Ihre Abläufe in CraftOS nachvollziehbar ab; in der Verfahrensdokumentation beschreiben Sie, wie Ihr Betrieb damit arbeitet.",
   },
   {
     q: "Wie korrigiere ich eine festgeschriebene Rechnung?",
@@ -142,7 +144,7 @@ export const gobdFaq: { q: string; a: string }[] = [
   },
   {
     q: "Was leistet der DATEV-Export für die GoBD?",
-    a: "Der DATEV-Export bereitet die Übergabe an die Steuerberatung vor; Prüfungs- und Aufbewahrungsanforderungen stimmen Sie mit Ihrer Steuerberatung ab.",
+    a: "Er übergibt Ihre Buchungen als DATEV-Buchungsstapel im EXTF-Format und die Belege als ZIP an Ihre Steuerberatung; das E-Rechnungs-XML ist als Original enthalten.",
   },
 ];
 
@@ -161,8 +163,8 @@ export const gobdGrundlage = {
   stand: `Funktionsstand ${germanDate(site.checkedAt)}.`,
 } as const;
 
-// Inhabervorgabe 22.10.2026 (08-REVIEW ME-06): nur Unterstütztes, positiv formuliert; einzige Ausnahme ist die
-// rechtlich gebotene Antwort auf „Ist CraftOS GoBD-zertifiziert?“. Prüfung beim Laden.
+// Inhabervorgabe 22.10.2026 (08-REVIEW ME-06) und D-43 (23.10.2026): nur Unterstütztes, durchgehend positiv, auch die
+// Antwort auf die Zertifizierungsfrage; keine Ausnahme. Prüfung beim Laden.
 pruefeNurUnterstuetzt(
   {
     gobdKopf,
@@ -173,5 +175,5 @@ pruefeNurUnterstuetzt(
     gobdFaq,
     gobdGrundlage,
   },
-  { kontext: "GoBD", erlaubt: [gobdSections.zertifizierung.lead] },
+  { kontext: "GoBD" },
 );

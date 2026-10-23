@@ -282,7 +282,8 @@ function kriterienKacheln(anbieter: readonly Wettbewerber[]): Kriterienkachel[] 
       quellen: [],
     },
     {
-      title: "GoBD-gerechte Abläufe",
+      // D-43 (Inhaber 23.10.2026): Kriterium „GoBD-Konformität“ statt „GoBD-gerechte Abläufe“.
+      title: "GoBD-Konformität",
       text: "Festgeschriebene Rechnungen und nachvollziehbare Korrekturen gehören zur Buchführung.",
       size: "sm",
       icon: FileCheck2,
@@ -352,7 +353,7 @@ export function baueKleineBetriebe(anbieter: readonly Wettbewerber[] = alleWettb
     sections: {
       kriterien: {
         title: "Welche Kriterien zählen für kleine Betriebe?",
-        lead: "Wichtig sind E-Rechnung, Kosten für Ihre Personenzahl, Laufzeit, eine Mobile-App fürs Team, GoBD-gerechte Abläufe und ein Test mit echtem Auftrag.",
+        lead: "Wichtig sind E-Rechnung, Kosten für Ihre Personenzahl, Laufzeit, eine Mobile-App fürs Team, GoBD-Konformität und ein Test mit echtem Auftrag.",
       },
       anbieter: {
         title: `${gross(zahlwort(sortiert.length + 1))} Anbieter für kleine Betriebe im Überblick`,

@@ -2,8 +2,8 @@
  * Leitlinien-Schutz „Nur, was unterstützt wird, nicht, was nicht unterstützt wird“ (Inhaber 22.10.2026;
  * 08-REVIEW ME-06). Ein zentraler Helfer in lib/nur-unterstuetzt.ts prüft alle Inhaltsmodule unter lib/seiten
  * (Kernseiten, Preise, Vergleich, kleine Betriebe, Alternativen) und das gerenderte HTML der zehn Phase-8-Seiten.
- * Einzige Ausnahme ist die GoBD-Zertifizierungsfrage auf /gobd (rechtlich geboten). Artikel und Gewerke folgen in
- * Phase 9.
+ * Seit D-43 (Inhaber 23.10.2026) ist auch die GoBD-Zertifizierungsantwort positiv; es gibt keine Ausnahme mehr.
+ * Artikel und Gewerke folgen in Phase 9.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -11,10 +11,8 @@ import { createElement } from "react";
 import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { NEGATIVSATZ, nurUnterstuetztVerstoesse, pruefeNurUnterstuetzt } from "@/lib/nur-unterstuetzt";
-import { gobdSections } from "@/lib/seiten/gobd";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
-const ERLAUBT = [gobdSections.zertifizierung.lead];
 
 describe("Helfer nurUnterstuetztVerstoesse", () => {
   it("meldet Negativsätze, Nein-Antworten und verneinte CraftOS-Zellen", () => {
@@ -70,9 +68,9 @@ describe("alle Inhaltsmodule unter lib/seiten", () => {
   });
 
   for (const name of dateien)
-    it(`lib/seiten/${name}.ts nennt nur Unterstütztes (Ausnahme GoBD-Zertifizierung)`, async () => {
+    it(`lib/seiten/${name}.ts nennt nur Unterstütztes (ohne Ausnahme, D-43)`, async () => {
       const mod = (await import(`@/lib/seiten/${name}`)) as Record<string, unknown>;
-      expect(nurUnterstuetztVerstoesse(mod, { erlaubt: ERLAUBT })).toEqual([]);
+      expect(nurUnterstuetztVerstoesse(mod)).toEqual([]);
     });
 
   it("Alternativen-Seiten nennen nur Unterstütztes", async () => {
@@ -200,10 +198,10 @@ describe("gerendertes HTML der zehn Phase-8-Seiten", () => {
   ];
 
   for (const seite of SEITEN)
-    it(`/${seite}: keine Negativsätze, keine Nein- oder Teilweise-Antwort (Ausnahme GoBD-Zertifizierung)`, async () => {
+    it(`/${seite}: keine Negativsätze, keine Nein- oder Teilweise-Antwort (ohne Ausnahme, D-43)`, async () => {
       const mod = (await import(`@/app/${seite}/page`)) as { default: () => React.ReactElement };
       const html = renderToString(createElement(mod.default));
-      const texte = [...bloecke(html), ...faqAntworten(html)].filter((t) => !ERLAUBT.includes(t));
+      const texte = [...bloecke(html), ...faqAntworten(html)];
       expect(texte.length).toBeGreaterThan(5);
       expect(texte.filter((t) => NEGATIVSATZ.test(t) || /^(Nein|Teilweise)\b/.test(t))).toEqual([]);
     });

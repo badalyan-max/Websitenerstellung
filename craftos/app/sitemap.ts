@@ -6,7 +6,8 @@ import { getContentList, uebersichtStand } from "@/lib/content";
 import { categories } from "@/lib/content-types";
 /** Letzte inhaltliche Änderung je Kernseite; Standard ist der Relaunch-Stand. */
 const pageUpdated: Record<string, string> = {
-  "": "2026-10-21",
+  // D-43 (10-g): Startseiten-FAQ „Ist CraftOS GoBD-konform?“.
+  "": "2026-10-23",
   "/funktionen": "2026-10-22",
   "/craft-ai": "2026-10-23",
   "/vergleich": "2026-10-23",

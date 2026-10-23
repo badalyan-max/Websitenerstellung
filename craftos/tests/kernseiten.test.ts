@@ -147,7 +147,7 @@ describe("Fakten über CraftOS (§ 5.2, D-25)", () => {
       "App-Lizenz",
       "Testphase",
       "Module",
-      "GoBD-Unterstützung",
+      "GoBD-Konformität",
       "Offline-Nutzung",
       "Standort bei der Zeiterfassung",
       "Einsatzkarte",
@@ -199,11 +199,11 @@ describe("Fakten über CraftOS (§ 5.2, D-25)", () => {
     );
   });
 
-  it("FAQ: sechs Antworten ≤ 300, nur positiv formuliert (HI-03): Offline-Aufzählung, GoBD-Zuständigkeit, Standort je Vorgang, Einrichtung und Datenstandort (10-f)", () => {
+  it("FAQ: sechs Antworten ≤ 300, nur positiv formuliert (HI-03): Offline-Aufzählung, GoBD-konform (D-43), Standort je Vorgang, Einrichtung und Datenstandort (10-f)", () => {
     expect(fakten.faktenFaq.map((f) => f.q)).toEqual([
       "Wer bietet CraftOS an?",
       "Was funktioniert in CraftOS offline?",
-      "Unterstützt CraftOS die GoBD?",
+      "Ist CraftOS GoBD-konform?",
       "Welche Standortdaten speichert die Mobile-App?",
       "Was kostet die Einrichtung von CraftOS?",
       "Wo speichert CraftOS die Daten?",
@@ -212,8 +212,9 @@ describe("Fakten über CraftOS (§ 5.2, D-25)", () => {
     expect(fakten.faktenFaq[1].a).toBe(
       "In der Mobile-App erfassen Sie Zeiten, Bautagesberichte, Mängel, Aufmaße und Urlaubsanträge auch ohne Empfang; die App überträgt sie, sobald wieder eine Verbindung besteht, und geladene Projekte hält sie bis zu 24 Stunden offline bereit.",
     );
+    // D-43 (Inhaber 23.10.2026): Kernaussage mit Belegen aus lib/gobd-konform.ts.
     expect(fakten.faktenFaq[2].a).toBe(
-      "CraftOS unterstützt GoBD-konforme Abläufe mit Festschreibung, Dokumentversionen und Protokollen; die GoBD-Konformität des gesamten Verfahrens organisiert Ihr Betrieb.",
+      "CraftOS ist GoBD-konform: Ausgangsrechnungen werden festgeschrieben und gegen Löschen gesperrt, geprüfte Eingangsrechnungen gesperrt, und jede Änderung an festgeschriebenen Belegen landet in einem unveränderlichen Protokoll.",
     );
     expect(fakten.faktenFaq[3].a).toBe(
       "GPS erfasst nur einzelne Vorgänge wie das Ein- und Ausstempeln: Die Mobile-App speichert beim Start und Stopp der Zeiterfassung je einen Standortpunkt, bei mobilen Unterschriften Ort und Zeitpunkt.",
@@ -318,12 +319,12 @@ describe("GoBD (§ 5.4)", () => {
     expect(kopfProbleme(gobd.gobdKopf, gobd.GOBD_PFAD)).toEqual([]);
   });
 
-  it("Abschnitte: Frage-H2 mit Antwort, Ablauf als Nicht-Frage, Zertifizierung beginnt mit „Nein.“", () => {
+  it("Abschnitte: Frage-H2 mit Antwort, Ablauf als Nicht-Frage, Zertifizierung positiv beantwortet (D-43)", () => {
     const s = gobd.gobdSections;
-    expect(s.funktionen.title).toBe("Wie unterstützt CraftOS GoBD-konforme Abläufe?");
+    expect(s.funktionen.title).toBe("Wie ist CraftOS GoBD-konform?");
     expect(s.ablauf.title).toBe("Ein typischer Ablauf bis zur Übergabe");
     expect(s.zertifizierung.title).toBe("Ist CraftOS GoBD-zertifiziert?");
-    expect(s.zertifizierung.lead.startsWith("Nein.")).toBe(true);
+    expect(s.zertifizierung.lead.startsWith("Eine amtliche GoBD-Zertifizierung gibt es nicht. CraftOS ist GoBD-konform aufgebaut:")).toBe(true);
     expect(sentenceCount(s.zertifizierung.lead)).toBe(2);
     expect(s.faq.title).toBe("Häufige Fragen zur GoBD");
     expect(abschnittsProbleme(s)).toEqual([]);
@@ -357,8 +358,8 @@ describe("GoBD (§ 5.4)", () => {
     ]);
   });
 
-  it("Zuständigkeiten: zwei Panels mit je drei Punkten ohne Quellen", () => {
-    expect(gobd.gobdPanels.map((p) => p.title)).toEqual(["Was CraftOS unterstützt", "Was Ihr Betrieb organisiert"]);
+  it("Panels (D-43): zwei Panels mit je drei Punkten ohne Quellen", () => {
+    expect(gobd.gobdPanels.map((p) => p.title)).toEqual(["So ist CraftOS GoBD-konform", "So arbeiten Sie damit im Betrieb"]);
     for (const panel of gobd.gobdPanels) {
       expect(panel.points).toHaveLength(3);
       for (const pt of panel.points) {
@@ -370,11 +371,11 @@ describe("GoBD (§ 5.4)", () => {
   });
 
   it("FAQ: drei Antworten ≤ 300 und Grundlage mit AO-Handbuch und BMF-Schreiben", () => {
-    // ME-01 (Inhaber 22.10.2026): positiv formuliert; einzige Verneinung bleibt die Zertifizierungsfrage.
+    // ME-01 (Inhaber 22.10.2026) und D-43 (23.10.2026): durchgehend positiv formuliert.
     expect(gobd.gobdFaq).toEqual([
       {
-        q: "Wer erstellt die Verfahrensdokumentation?",
-        a: "Die Verfahrensdokumentation erstellt Ihr Betrieb; CraftOS liefert dafür nachvollziehbare Funktionen wie Festschreibung, Versionen und Protokolle.",
+        q: "Wie hilft CraftOS bei der Verfahrensdokumentation?",
+        a: "Festschreibung, Dokumentversionen und Protokolle bilden Ihre Abläufe in CraftOS nachvollziehbar ab; in der Verfahrensdokumentation beschreiben Sie, wie Ihr Betrieb damit arbeitet.",
       },
       {
         q: "Wie korrigiere ich eine festgeschriebene Rechnung?",
@@ -382,7 +383,7 @@ describe("GoBD (§ 5.4)", () => {
       },
       {
         q: "Was leistet der DATEV-Export für die GoBD?",
-        a: "Der DATEV-Export bereitet die Übergabe an die Steuerberatung vor; Prüfungs- und Aufbewahrungsanforderungen stimmen Sie mit Ihrer Steuerberatung ab.",
+        a: "Er übergibt Ihre Buchungen als DATEV-Buchungsstapel im EXTF-Format und die Belege als ZIP an Ihre Steuerberatung; das E-Rechnungs-XML ist als Original enthalten.",
       },
     ]);
     expect(faqProbleme(gobd.gobdFaq)).toEqual([]);
@@ -411,7 +412,7 @@ describe("Wortregeln und Literale (T-08-32)", () => {
 
   // Inhaber 22.10.2026: „Nur, was unterstützt wird, nicht, was nicht unterstützt wird.“ Craft AI und das
   // KI-Faktum beschreiben die Zuständigkeit positiv (Sie prüfen und bestätigen); die GoBD-Zertifizierungsfrage
-  // bleibt als gebotener Überclaim-Schutz bewusst verneint.
+  // beantwortet seit D-43 die amtliche Einordnung positiv („CraftOS ist GoBD-konform aufgebaut“).
   it("nur Unterstütztes: Craft AI und KI-Faktum positiv, ohne Verneinung und ohne „autonom“", () => {
     const ki = fakten.produktfakten.find((i) => i.term === "KI")!.definition;
     // Hotfix 23.10.2026: belegte KI-Funktionen auf Anforderung.

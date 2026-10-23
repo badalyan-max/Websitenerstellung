@@ -95,7 +95,7 @@ describe("Leitlinie L-1 in Ratgebern, Hilfe, Gewerke- und Produktdaten", () => {
   });
 
   it("Ausnahmen sind abschließend: genau drei mit Begründung", () => {
-    expect(leitlinie.ausnahmen.map((a) => a.id)).toEqual(["gaeb-formate-fachteil", "gobd-faq-zertifiziert", "pflichthinweise"]);
+    expect(leitlinie.ausnahmen.map((a) => a.id)).toEqual(["gaeb-formate-fachteil", "gobd-zertifizierungsfrage", "pflichthinweise"]);
     for (const a of leitlinie.ausnahmen) expect(a.begruendung.length, a.id).toBeGreaterThan(20);
   });
 });

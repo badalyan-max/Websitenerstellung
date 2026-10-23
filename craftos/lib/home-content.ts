@@ -11,6 +11,7 @@ import type { KeyFact } from "@/components/v2/KeyFacts";
 import type { Step } from "@/components/v2/StepFlow";
 import { euro, germanDate } from "@/lib/format";
 import { getFunktionsgruppen, type GruppenId } from "@/lib/funktionsgruppen";
+import { gobdKonform } from "@/lib/gobd-konform";
 import { mobileLocales, mobileOffline, productBasis } from "@/lib/product-register";
 import {
   aufmassScene,
@@ -206,10 +207,8 @@ export const faqContent: { q: string; a: string }[] = [
     q: "Kostet die Plantafel zusätzlich?",
     a: "Nein, die Plantafel gehört zur Voll-Lizenz, ebenso Angebote, Rechnungen, Projekte, Lager und Nachkalkulation. KI-Verbrauch und zusätzlicher Speicher werden gesondert abgerechnet.",
   },
-  {
-    q: "Wie unterstützt CraftOS die GoBD?",
-    a: "CraftOS unterstützt GoBD-gerechte Abläufe durch festgeschriebene Rechnungen, geschützte Beleginhalte und nachvollziehbare Stornierungen. Vollständige Belegerfassung, Verfahrensdokumentation und Aufbewahrung bleiben Aufgabe Ihres Betriebs.",
-  },
+  // D-43 (Inhaber 23.10.2026): „CraftOS ist GoBD-konform“, Wortlaut und Belege aus lib/gobd-konform.ts.
+  { ...gobdKonform.faq },
   {
     q: "Kann ich auf der Baustelle ohne Internet arbeiten?",
     // 09-10: positiv aufgezählt (Inhaberregel „nur nennen, was unterstützt wird“; Register mobileOffline.erfassung).

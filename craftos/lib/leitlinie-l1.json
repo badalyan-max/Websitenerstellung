@@ -42,11 +42,11 @@
       "begruendung": "Die Wissensseite erklärt GAEB-Formate (u. a. GAEB 90, GAEB 2000, D83) als Fachwissen; der Produktabschnitt nennt nur Unterstütztes (Import X83, Export X83 und X84). Orchestrator-Entscheidung 1 (09-UI-SPEC § 5)."
     },
     {
-      "id": "gobd-faq-zertifiziert",
+      "id": "gobd-zertifizierungsfrage",
       "pfad": "/gobd",
       "frage": "Ist CraftOS GoBD-zertifiziert?",
       "geltung": "Nur Frage und Antwort dieser FAQ auf /gobd.",
-      "begruendung": "Die Suchfrage nach einer GoBD-Zertifizierung wird ehrlich beantwortet (eine solche Zertifizierung gibt es für Software nicht); die Antwort ist eine Verbraucherinformation aus Phase 8, keine Negativliste von Produktfunktionen."
+      "begruendung": "Die Suchfrage nach einer GoBD-Zertifizierung wird positiv beantwortet (D-43, Inhaber 23.10.2026): Eine amtliche GoBD-Zertifizierung gibt es nicht, CraftOS ist GoBD-konform aufgebaut, mit den Belegen aus lib/gobd-konform.ts; keine Negativliste von Produktfunktionen."
     },
     {
       "id": "pflichthinweise",

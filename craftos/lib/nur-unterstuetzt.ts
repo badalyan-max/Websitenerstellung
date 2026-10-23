@@ -2,10 +2,12 @@
  * Leitlinien-Schutz der Inhabervorgabe vom 22.10.2026: „Nur, was unterstützt wird, nicht, was nicht unterstützt
  * wird.“ (08-REVIEW ME-06, DESIGN-V2.md § 17.6). Ein Helfer für alle Inhaltsmodule unter lib/seiten (Kernseiten,
  * Preise, Vergleich, kleine Betriebe, Alternativen); die Module rufen ihn beim Laden auf, ein Verstoß ist ein
- * Build- und Testfehler. Einzige Ausnahme ist die GoBD-Zertifizierungsfrage auf /gobd (`erlaubt`).
+ * Build- und Testfehler. Seit D-43 (Inhaber 23.10.2026, „CraftOS ist GoBD-konform“) ist auch die Antwort auf die
+ * GoBD-Zertifizierungsfrage positiv; Ausnahmen (`erlaubt`) gibt es derzeit keine.
  *
  * Geprüft wird:
  * - jeder Text auf Negativsätze über CraftOS (`NEGATIVSATZ`),
+ * - jede Aussage (kein Fragesatz) auf eine Zertifikats-, Prüf- oder Testatbehauptung (`ZERTIFIKATSBEHAUPTUNG`, D-43),
  * - jede FAQ-Antwort (`{ q, a }`) auf „Nein“ am Anfang,
  * - CraftOS-Zellen auf Verneinung (`false`, „Nein“, Strich, „nicht …“): in Tabellen mit Zeile „CraftOS“ nur diese
  *   Zeile, in reinen CraftOS-Tabellen (z. B. Lizenzen) alle Zellen, in Alternativen-Zeilen die Spalte `craftos`.
@@ -39,13 +41,22 @@ export const NEGATIVSATZ = new RegExp(
   "iu",
 );
 
+/**
+ * D-43 (Inhaber 23.10.2026): CraftOS ist GoBD-konform; eine amtliche GoBD-Zertifizierung gibt es nicht. Keine Aussage
+ * darf CraftOS oder seinen Abläufen ein Zertifikat, eine GoBD-Prüfung oder ein Testat zuschreiben. Fragesätze (die
+ * Zertifizierungsfrage selbst) und das Nomen „Zertifizierung“ bleiben außen vor; „geprüfte Eingangsrechnungen“ ist
+ * eine Funktionsbeschreibung und kein Prüfsiegel.
+ */
+export const ZERTIFIKATSBEHAUPTUNG =
+  /(?<![\p{L}])(zertifizier(?:t|te[nrs]?)|testiert(?:e[nrs]?)?|GoBD-geprüft(?:e[nrs]?)?)(?![\p{L}])/iu;
+
 const NEIN_ANTWORT = /^Nein(?![\p{L}])/u;
 
 /** Schlüssel mit Wettbewerber-Datenmodul, Belegen oder Quellen: nicht Teil der CraftOS-Aussagen. */
 const AUSSEN_VOR = new Set(["wettbewerber", "belege", "zeilen", "sources", "quellen"]);
 
 export interface NurUnterstuetztOptionen {
-  /** Texte, die wörtlich erlaubt sind (nur die GoBD-Zertifizierungsantwort). */
+  /** Texte, die wörtlich erlaubt sind (derzeit keine; die GoBD-Zertifizierungsantwort ist seit D-43 positiv). */
   erlaubt?: readonly string[];
 }
 
@@ -76,6 +87,9 @@ export function nurUnterstuetztVerstoesse(inhalt: unknown, opts: NurUnterstuetzt
       if (erlaubt.has(v)) return;
       const treffer = NEGATIVSATZ.exec(v)?.[0];
       if (treffer) out.push(`Text enthält „${treffer}“: „${v.slice(0, 80)}“ – nur nennen, was CraftOS unterstützt.`);
+      const behauptung = v.trim().endsWith("?") ? undefined : ZERTIFIKATSBEHAUPTUNG.exec(v)?.[0];
+      if (behauptung)
+        out.push(`Text behauptet „${behauptung}“: „${v.slice(0, 80)}“ – CraftOS ist GoBD-konform, ohne Zertifikat oder Testat (D-43).`);
       return;
     }
     if (Array.isArray(v)) {

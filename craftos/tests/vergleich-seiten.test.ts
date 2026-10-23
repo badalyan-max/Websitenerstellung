@@ -1267,7 +1267,7 @@ describe("kleine Betriebe Inhalte", () => {
     const { ERLAUBTE_ANORDNUNGEN } = await import("@/lib/funktionsdetails");
     expect(kb.sections.kriterien).toEqual({
       title: "Welche Kriterien zählen für kleine Betriebe?",
-      lead: "Wichtig sind E-Rechnung, Kosten für Ihre Personenzahl, Laufzeit, eine Mobile-App fürs Team, GoBD-gerechte Abläufe und ein Test mit echtem Auftrag.",
+      lead: "Wichtig sind E-Rechnung, Kosten für Ihre Personenzahl, Laufzeit, eine Mobile-App fürs Team, GoBD-Konformität und ein Test mit echtem Auftrag.",
     });
     const k = kb.kriterien.kacheln;
     expect(k.map((x) => [x.title, x.text])).toEqual([
@@ -1275,7 +1275,7 @@ describe("kleine Betriebe Inhalte", () => {
       ["Kosten für Ihre Personenzahl", "Rechnen Sie Büro- und Baustellenzugänge für Ihr Team, nicht nur den Einstiegspreis."],
       ["Laufzeit und Kündigungsfrist", "Die verglichenen Anbieter reichen von monatlich kündbar bis zwölf Monate Laufzeit."],
       ["Mobile-App fürs Team", "Zeiten, Einsätze und Fotos gehören aufs Handy, oft mit eigener, günstigerer Lizenz."],
-      ["GoBD-gerechte Abläufe", "Festgeschriebene Rechnungen und nachvollziehbare Korrekturen gehören zur Buchführung."],
+      ["GoBD-Konformität", "Festgeschriebene Rechnungen und nachvollziehbare Korrekturen gehören zur Buchführung."],
       [
         "Test mit echtem Auftrag",
         `Die Testphasen der verglichenen Anbieter reichen von ${TESTTAGE_MIN()} bis ${TESTTAGE_MAX()} Tagen.`,
@@ -1319,7 +1319,7 @@ describe("kleine Betriebe Inhalte", () => {
     expect(quellen.some((q) => /E-Rechnung/.test(q.label))).toBe(true);
     expect(quellen.some((q) => /GoBD/.test(q.label) && /14\.07\.2025/.test(q.label))).toBe(true);
     // Jede amtlich belegte Kachel verweist auf einen Eintrag der Liste.
-    for (const titel of ["E-Rechnung empfangen und erstellen", "GoBD-gerechte Abläufe"]) {
+    for (const titel of ["E-Rechnung empfangen und erstellen", "GoBD-Konformität"]) {
       const kachel = kb.kriterien.kacheln.find((x) => x.title === titel)!;
       expect(kachel.quellen.length, titel).toBeGreaterThanOrEqual(1);
       for (const url of kachel.quellen) expect(quellen.map((q) => q.url), titel).toContain(url);
