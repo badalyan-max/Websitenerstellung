@@ -45,6 +45,21 @@ Der Abschlag steht mit Nummer unter „Dokumente“ des Projekts. Der Rechnungsd
 
 Bei Verbraucherbauverträgen begrenzt CraftOS die Abschläge auf 90 % der Auftragssumme (§ 650m BGB). Die Summe aller Abschläge bleibt innerhalb der Auftragssumme.
 
+## Welche Angaben gehören in eine Abschlagsrechnung?
+
+Eine Abschlagsrechnung braucht die Pflichtangaben einer Rechnung nach § 14 UStG und den Bezug zum Auftrag. CraftOS verlangt beim pauschalen Abschlag zusätzlich Leistungsstand, Nummer und Datum des Auftrags sowie den Leistungszeitraum. Die Tabelle zeigt ein Muster mit Beispielwerten.
+
+| Angabe | Muster |
+|---|---|
+| Bezeichnung auf dem Beleg | Abschlagsrechnung Nr. 2 |
+| Bezug zum Auftrag | Auftrag AB-2026-0017 vom 01.09.2026 |
+| Leistungsstand | Rohbau und Installation fertig, 60 % der vereinbarten Leistung |
+| Leistungszeitraum | 01.09.2026 bis 30.09.2026 |
+| Abschlag netto | 6.000,00 € |
+| Umsatzsteuer 19 % | 1.140,00 € |
+| Abschlag brutto | 7.140,00 € |
+| Bisher angefordert | 7.140,00 € aus Abschlag Nr. 1 |
+
 ## Häufige Probleme
 
 ### Warum ist ein Abschlagstyp nicht wählbar?

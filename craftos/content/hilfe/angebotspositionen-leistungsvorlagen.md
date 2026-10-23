@@ -3,43 +3,50 @@ title: "Angebotspositionen und Leistungsvorlagen verwenden"
 description: "So übernehmen Sie Artikel oder Leistungen in ein Angebot und prüfen Menge, Einheit und Preis für den konkreten Auftrag."
 category: "angebote"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
+answer: "Im Angebotseditor suchen Sie unter „Artikel oder Leistung suchen“ nach Ihren Leistungen, eigenen Artikeln und Artikeln aus DATANORM-Katalogen und übernehmen sie als Position. Häufig genutzte Positionen speichern Sie mit „In Stammdaten übernehmen“ als Leistung oder Artikel."
 relatedFeatures: ["angebote", "lager"]
-relatedArticles: ["/hilfe/position-tiefenkalkulieren", "/hilfe/artikel-stammdaten-anlegen"]
+relatedArticles: ["/hilfe/position-tiefenkalkulieren", "/hilfe/artikel-stammdaten-anlegen", "/hilfe/angebot-entwurf-anlegen"]
 sources: []
 platforms: ["web"]
 ---
 
-Vorhandene Artikel und Leistungen sparen Eingaben; ihre Werte müssen trotzdem zum neuen Auftrag passen.
+## Voraussetzungen
 
-Sie benötigen einen bearbeitbaren Angebotsentwurf und einen Admin- oder Büro-Zugang in der Web-App.
+- Voll-Lizenz (Admin oder Büro) und ein bearbeitbarer Angebotsentwurf in der Web-App.
+- Leistungen und Artikel in den „Stammdaten“; DATANORM-Kataloge importieren Sie dort im Reiter „Kataloge“, siehe [DATANORM-Katalog importieren](/hilfe/datanorm-katalog-importieren).
 
 ## Schritt für Schritt
 
-1. Öffnen Sie das Angebot unter „Dokumente“ zur Bearbeitung.
-2. Verwenden Sie im Werkzeugbereich eine neue „Position“ oder suchen Sie nach „Artikel oder Leistung“.
-3. Wählen Sie den passenden vorhandenen Eintrag aus.
-4. Prüfen Sie die übernommene Beschreibung und passen Sie sie an den vereinbarten Umfang an.
-5. Erfassen Sie die benötigte Menge und kontrollieren Sie die Einheit.
-6. Prüfen Sie Einzelpreis und Positionssumme; öffnen Sie bei Bedarf die detaillierte Kalkulation.
-7. Speichern Sie und kontrollieren Sie die Dokumentvorschau.
+1. Öffnen Sie das Angebot unter „Dokumente“ im Editor.
+2. Geben Sie im Feld „Artikel oder Leistung suchen“ einen Suchbegriff ein.
+3. Grenzen Sie die Treffer bei Bedarf mit „Leistungen“ oder „Artikel“ ein.
+4. Wählen Sie den passenden Eintrag aus, um ihn als Position einzufügen.
+5. Passen Sie die übernommene Beschreibung an den vereinbarten Umfang an.
+6. Tragen Sie die Menge ein und kontrollieren Sie die Einheit.
+7. Prüfen Sie Einzelpreis und Positionssumme; öffnen Sie bei Bedarf die „Detaillierte Kalkulation“.
+8. Speichern Sie und kontrollieren Sie die „PDF-Vorschau“.
 
-Die Suche kann Artikel und Leistungen liefern. Ein ähnlich klingender Eintrag ist nicht automatisch fachlich passend; prüfen Sie Material, Ausführung und Bezugsgröße.
+## Ergebnis prüfen
 
-## Beispiel und Ergebnis
+Die Position steht im Angebot mit der Leistung, die der Kunde sieht, und der passenden Menge. Interne Kostenbestandteile prüfen Sie in der Kalkulation der Position.
 
-Eine Vorlage für Wandbeschichtung wird mit 48 m² verwendet. Der Preis bezieht sich auf einen Quadratmeter, während Material möglicherweise intern in Gebinden kalkuliert wird. Die Einheiten dürfen nicht vertauscht werden.
-
-Nach der Übernahme erscheint die Position im Angebot. Sie enthält die für den Kunden sichtbare Leistung und die passende Menge. Interne Kostenbestandteile werden in der Kalkulation geprüft.
+Beispiel: Eine Leistung Wandbeschichtung mit Preis je Quadratmeter wird mit 48 m² übernommen. Material, das intern in Gebinden kalkuliert ist, bleibt Teil der Kalkulation und erscheint nicht als eigene Kundenposition.
 
 ## Häufige Probleme
 
-Eine Position mit alter Preisbasis sollte vor dem Versand aktualisiert werden. Kontrollieren Sie bei ungewöhnlichen Summen zuerst, ob eine Menge als Stück statt Quadratmeter übernommen wurde.
+### Warum erscheint ein Katalogartikel nicht in der Suche?
 
-Wird eine Leistung nicht gefunden, prüfen Sie Suchbegriff und die vorhandenen Stammdaten. Legen Sie nur dann eine neue Vorlage an, wenn der gewünschte Eintrag tatsächlich fehlt.
+Katalogartikel erscheinen nur unter „Alle Kategorien“. Setzen Sie den Kategoriefilter zurück; Artikel aus DATANORM-Katalogen übernehmen Sie bei Bedarf unter „Stammdaten“ im Reiter „Kataloge“ in Ihre eigenen Artikel.
 
-Erfassen Sie enthaltenes Material nicht nochmals als zusätzliche Kundenposition, wenn es bereits im vereinbarten Leistungspreis steckt.
+### Wie speichere ich eine Position als wiederverwendbare Leistung?
 
-Die [Tiefenkalkulationsanleitung](/hilfe/position-tiefenkalkulieren) erklärt die interne Preisbildung; die [Angebotsfunktion](/funktionen/angebote) zeigt den Zusammenhang zum fertigen Dokument.
+Öffnen Sie das Menü der Position und wählen Sie „In Stammdaten übernehmen“. Legen Sie Art, Bezeichnung, Langtext und Einheit fest; danach finden Sie den Eintrag in der Suche.
+
+### Warum ist die Summe einer Position ungewöhnlich hoch?
+
+Prüfen Sie zuerst die Einheit, etwa Stück statt Quadratmeter, und die Preisbasis des Eintrags. Aktualisieren Sie ältere Preise vor dem Versand.
+
+Die [Tiefenkalkulation](/hilfe/position-tiefenkalkulieren) erklärt die interne Preisbildung; die [Angebotsfunktion](/funktionen/angebote) zeigt den Weg zum fertigen Dokument.
