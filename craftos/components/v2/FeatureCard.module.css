@@ -33,6 +33,10 @@
    knapp über 1024 px), ragt der Rahmen gleichmäßig in den 24-px-Innenabstand statt rechts abgeschnitten zu werden. */
 .stage[data-visual="scene"] > figure {
   flex-shrink: 0;
+  /* 09-16: Höchstens Bühnenbreite bzw. 280 px. Ohne Obergrenze nimmt die figure die max-content-Breite der
+     Szene an; die Wochenansicht (Plantafel, nowrap-Blöcke in fr-Spalten) wurde so 375 px breit und ragte bei
+     360 und 1024 px beidseitig über die Karte. Mit fester Breite kürzen die Blöcke per Ellipse. */
+  max-width: max(280px, 100%);
 }
 /* Kartenvariante der Browser-Szenen (07-04, Befund 07-03): Der Rahmen ist 280 × 175 px (Mindestbreite) und
    rendert höchstens zwei Zeilen (KARTEN_ZEILEN). Ist die Bühne schmaler als 324 px, bricht die Kennzeichnung
