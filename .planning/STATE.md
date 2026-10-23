@@ -121,10 +121,10 @@ Resume file: None
 - [Phase 08]: 08-13: Reduced-Motion-Regel mit transition-duration/-delay 0s statt 0.01ms (WebKit erzeugte Hunderte tab-size-Übergänge, Ursache home-navigation:501)
 - [Phase 08]: 08-13: FeatureCard-Raster grid-cols-1 unter 768 px (WebKit-Überlauf nach Größenwechsel); Kartenrahmen unter 362 px nur erste Zeile
 - [Phase 08]: 08-14: Phase 8 live (dpl_2avyo678E2VrDE9GTFMc3WL9yTS6, f029bc6); live-check 62/62 inkl. sitewide Keyword-Map, Brotkrumen, OG, FAQPage, Prompt-Anker; IndexNow 136; SE Ranking 0 Units (33.921 übrig); SEO-02 bis SEO-06 erledigt, SEO-09 und DESIGN-02 Abschluss Phase 9
-- [Phase ?]: [Phase 09]: 09-09: Endmengen 30 Ratgeber, 54 Hilfeartikel (Kassenbuch veröffentlicht, digitales kassenbuch 320/8)
-- [Phase ?]: [Phase 09]: 09-09: Kundenportal nach Release a0e27c42 – Angebotsmail mit Unterschriftslink, Rechnung als PDF, ohne Termine/Nachrichten
-- [Phase ?]: [Phase 09]: 09-09: Produktdaten ohne Negativsätze, einzige Ausnahme FAQ GoBD-zertifiziert
-- [Phase ?]: [Phase 09]: 09-09: Produktbasis Web v4.0.0-test.246 (a0e27c42); liveExtras Kassenbuch und § 13b nicht beworben bis Phase 10
+- [Phase 09]: 09-09: Endmengen 30 Ratgeber, 54 Hilfeartikel (Kassenbuch veröffentlicht, digitales kassenbuch 320/8)
+- [Phase 09]: 09-09: Kundenportal nach Release a0e27c42 – Angebotsmail mit Unterschriftslink, Rechnung als PDF, ohne Termine/Nachrichten
+- [Phase 09]: 09-09: Produktdaten ohne Negativsätze, einzige Ausnahme FAQ GoBD-zertifiziert
+- [Phase 09]: 09-09: Produktbasis Web v4.0.0-test.246 (a0e27c42); liveExtras Kassenbuch und § 13b nicht beworben bis Phase 10
 
 ### Pending Todos
 
