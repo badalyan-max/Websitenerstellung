@@ -159,6 +159,7 @@ export async function ArticlePage({ article: a }: { article: ContentArticle }) {
       <article aria-labelledby="artikel-titel">
         <ContentKopf
           id="artikel-titel"
+          region={false}
           crumbs={crumbsFor(pfad, a.title)}
           eyebrow={categories[a.kind][a.category]}
           h1={h1}

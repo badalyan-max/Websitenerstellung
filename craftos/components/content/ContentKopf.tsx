@@ -24,6 +24,11 @@ export interface ContentKopfProps {
   platforms?: ProductPlatform[];
   /** id der H1; die section verweist per aria-labelledby darauf. Standard „artikel-titel“. */
   id?: string;
+  /**
+   * 09-REVIEW IN-05: Ob die section als benannte Region gilt (aria-labelledby auf die H1). Im Artikel trägt bereits
+   * <article aria-labelledby> den Namen der H1; dort `false`, sonst gäbe es zwei Landmarken mit demselben Namen.
+   */
+  region?: boolean;
 }
 
 /**
@@ -42,6 +47,7 @@ export function ContentKopf({
   stand,
   platforms,
   id = "artikel-titel",
+  region = true,
 }: ContentKopfProps) {
   assertTextBudget("artikel.h1", h1, TEXT_BUDGET.artikel.h1);
   assertTextBudget("pageHead.eyebrow", eyebrow, TEXT_BUDGET.pageHead.eyebrow);
@@ -57,7 +63,12 @@ export function ContentKopf({
   }
 
   return (
-    <section className={s.kopf} aria-labelledby={id} data-abschnitt="kopf" data-tone="light">
+    <section
+      className={s.kopf}
+      aria-labelledby={region ? id : undefined}
+      data-abschnitt="kopf"
+      data-tone="light"
+    >
       <div className={`site-container ${s.crumbs}`}>
         <Breadcrumbs items={crumbs} tone="light" />
       </div>

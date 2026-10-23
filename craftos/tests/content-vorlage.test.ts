@@ -169,6 +169,13 @@ describe("Artikelvorlage v2: Inhalt (09-UI-SPEC § 2.2)", () => {
     expect(a).toContain('id="quellen"');
   });
 
+  it("nur <article> trägt den Namen der H1, der Kopf ist darin keine zweite Region (IN-05)", async () => {
+    const html = await seite();
+    expect(count(html, 'aria-labelledby="artikel-titel"')).toBe(1);
+    expect(html).toMatch(/<section[^>]*data-abschnitt="kopf"/);
+    expect(html).not.toMatch(/<section[^>]*aria-labelledby="artikel-titel"/);
+  });
+
   it("Inhaltsverzeichnis ab 3 Einträgen: nav mit Label-Absatz und details mit summary", async () => {
     const html = await seite();
     expect(count(html, 'aria-label="Inhaltsverzeichnis"')).toBeGreaterThanOrEqual(1);
