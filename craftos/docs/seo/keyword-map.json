@@ -1101,7 +1101,7 @@
     "target": {
       "title": "Kundenportal-Software für Handwerksbetriebe | CraftOS",
       "h1": "Kundenportal: ein gemeinsamer Ort für Ihre Kunden",
-      "description": "Kundenportal-Software für Handwerker: Angebote, Dokumente und Kommunikation für Ihre Kunden im Browser bereitstellen – mit Einladung und eigenem Zugang."
+      "description": "Kundenportal-Software für Handwerker: Kunden mit eigenem Zugang einladen, Angebote online unterschreiben lassen und Rechnungen als PDF per E-Mail senden."
     }
   },
   {
@@ -2163,7 +2163,7 @@
     ],
     "target": {
       "title": "Baustellenplanung: Kapazität und Einsätze | CraftOS",
-      "h1": "Baustellenplanung und Ressourcen: Kapazität, Abwesenheiten und Übergaben verbinden",
+      "h1": "Baustellenplanung: Kapazität, Abwesenheiten und Übergaben verbinden",
       "description": "Baustellenplanung: Kapazitäten, Abwesenheiten und Übergaben verbinden, damit Team, Fahrzeuge und Material zur richtigen Zeit am Einsatzort sind."
     }
   },
@@ -2375,7 +2375,7 @@
     "target": {
       "title": "Handwerkerrechnung schreiben: Pflichtangaben | CraftOS",
       "h1": "Handwerkerrechnung schreiben: vom Leistungsnachweis zum prüfbaren Dokument",
-      "description": "Handwerkerrechnung schreiben: Pflichtangaben, Leistungsnachweis und Lohnanteil richtig darstellen, damit Ihre Rechnung prüfbar ist und bezahlt wird."
+      "description": "Handwerkerrechnung schreiben: Pflichtangaben, Leistungsnachweis und Leistungszeitraum richtig darstellen, damit Ihre Rechnung prüfbar ist und bezahlt wird."
     }
   },
   {
@@ -2857,7 +2857,7 @@
     "target": {
       "title": "Bauabnahme-Protokoll in CraftOS erstellen | CraftOS",
       "h1": "Eine Bauabnahme mit Prüfpunkten und Ergebnis dokumentieren",
-      "description": "Bauabnahme-Protokoll in CraftOS: Prüfpunkte festhalten, Ergebnis und Vorbehalte dokumentieren und die Abnahme mobil unterschreiben lassen."
+      "description": "Bauabnahme-Protokoll in CraftOS: Teilabnahme und Endabnahme mit Prüfpunkten, Vorbehalten und mobiler Unterschrift dokumentieren."
     }
   },
   {
@@ -2988,7 +2988,7 @@
     "target": {
       "title": "Leistungsverzeichnis-Vorlage für Angebote | CraftOS",
       "h1": "Leistungsverzeichnis: Angebotspositionen und Leistungsvorlagen verwenden",
-      "description": "Leistungsverzeichnis-Vorlage in CraftOS: wiederkehrende Angebotspositionen als Leistungsvorlagen speichern und in neuen Angeboten schnell wiederverwenden."
+      "description": "Leistungsverzeichnis-Vorlage in CraftOS: wiederkehrende Angebotspositionen als Leistungen in den Stammdaten speichern und in neuen Angeboten nutzen."
     }
   },
   {
@@ -3549,7 +3549,7 @@
     "target": {
       "title": "Einsatzplanung auf der Plantafel | CraftOS",
       "h1": "Einsatzplanung: einen Einsatz auf der Plantafel planen oder verschieben",
-      "description": "Einsatzplanung auf der Plantafel: so planen oder verschieben Sie einen Einsatz in CraftOS und Ihr Team sieht die Änderung sofort in der Mobile-App."
+      "description": "Einsatzplanung auf der Plantafel: so planen oder verschieben Sie einen Einsatz in CraftOS und Ihr Team sieht die Änderung in der Mobile-App."
     }
   },
   {
@@ -3726,7 +3726,7 @@
     "target": {
       "title": "Rechnung korrigieren und fertigstellen | CraftOS",
       "h1": "Eine Rechnung prüfen und endgültig fertigstellen",
-      "description": "Rechnung korrigieren, solange sie ein Entwurf ist: in CraftOS Angaben prüfen, Fehler beheben und die Rechnung danach GoBD-gerecht fertigstellen."
+      "description": "Rechnung korrigieren, solange sie ein Entwurf ist: in CraftOS Angaben prüfen, Fehler beheben und die Rechnung danach mit endgültiger Nummer fertigstellen."
     }
   },
   {
@@ -3919,7 +3919,7 @@
     "target": {
       "title": "Einen Zeiteintrag nachtragen oder korrigieren | CraftOS",
       "h1": "Einen Zeiteintrag nachtragen oder korrigieren",
-      "description": "So tragen Sie einen Zeiteintrag in der Web-App oder Mobile-App von CraftOS nach oder korrigieren ihn und beachten die unterschiedlichen Eingabefelder."
+      "description": "So tragen Sie einen Zeiteintrag in der Web-App oder Mobile-App von CraftOS nach und korrigieren Beginn, Ende und Pause eines Eintrags."
     }
   },
   {
@@ -4288,7 +4288,7 @@
   },
   {
     "path": "/hilfe/leistungszeitraum-rechnung",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 9,
     "primary": {
       "keyword": "leistungszeitraum rechnung",
@@ -4324,7 +4324,7 @@
   },
   {
     "path": "/hilfe/regiebericht",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 9,
     "primary": {
       "keyword": "regiebericht",
@@ -4369,7 +4369,7 @@
   },
   {
     "path": "/hilfe/bedenkenanzeige",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 9,
     "primary": {
       "keyword": "bedenkenanzeige",
@@ -4404,7 +4404,7 @@
   },
   {
     "path": "/blog/maengelanzeige",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 9,
     "primary": {
       "keyword": "mängelanzeige",
@@ -4440,7 +4440,7 @@
   },
   {
     "path": "/blog/reverse-charge-bauleistungen",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 9,
     "primary": {
       "keyword": "reverse charge rechnungsstellung",
@@ -4473,7 +4473,7 @@
   },
   {
     "path": "/blog/materialliste-vorlage",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 9,
     "primary": {
       "keyword": "materialliste vorlage",
@@ -4508,7 +4508,7 @@
   },
   {
     "path": "/blog/gaeb-formate",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 9,
     "primary": {
       "keyword": "gaeb formate",
@@ -4554,7 +4554,7 @@
   },
   {
     "path": "/blog/bauablaufplan",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 9,
     "primary": {
       "keyword": "bauablaufplan",
@@ -4590,7 +4590,7 @@
   },
   {
     "path": "/blog/arbeitszeitnachweis-vorlage",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 9,
     "primary": {
       "keyword": "arbeitszeitnachweis vorlagen",
@@ -4625,7 +4625,7 @@
   },
   {
     "path": "/hilfe/kundenportal-kunden-einladen",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 9,
     "primary": null,
     "reason": "Kein belegtes Suchvolumen: Kandidaten ‚kundenportal einladen‘, ‚kundenportal handwerker‘, ‚kundenportal app‘ ohne Daten (2026-10-22-keyword-metrics-phase09.json); ‚kundenportal software‘ (110/13) gehört /funktionen/kundenportal. Beschreibende Zielwerte nach Regel 05-01.",
@@ -4634,12 +4634,12 @@
     "target": {
       "title": "Kunden ins Kundenportal einladen | CraftOS",
       "h1": "Kunden ins Kundenportal einladen und den Zugang verwalten",
-      "description": "Kundenportal in CraftOS: Kunden per E-Mail einladen, den Status der Einladung prüfen und den Zugang zu Angeboten, Rechnungen und Terminen verwalten."
+      "description": "Kundenportal in CraftOS: Kunden per E-Mail einladen, den Status der Einladung prüfen und den Portal-Zugang mit Vorschau und Entzug verwalten."
     }
   },
   {
     "path": "/hilfe/angebot-online-unterschreiben-lassen",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 9,
     "primary": null,
     "reason": "Kein belegtes Suchvolumen: Kandidaten ‚angebot online unterschreiben‘, ‚angebot unterschreiben lassen‘, ‚angebot digital unterschreiben‘ ohne Daten (2026-10-22-keyword-metrics-phase09.json). Beschreibende Zielwerte nach Regel 05-01.",
@@ -4653,7 +4653,7 @@
   },
   {
     "path": "/hilfe/mahnwesen-einrichten",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 9,
     "primary": {
       "keyword": "mahnstufen",
@@ -4682,7 +4682,7 @@
   },
   {
     "path": "/hilfe/bankumsaetze-abgleichen",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 9,
     "primary": {
       "keyword": "camt 053",
@@ -4711,7 +4711,7 @@
   },
   {
     "path": "/hilfe/daten-importieren",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 9,
     "primary": {
       "keyword": "datenübernahme",
@@ -4740,7 +4740,7 @@
   },
   {
     "path": "/hilfe/datanorm-katalog-importieren",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 9,
     "primary": {
       "keyword": "datanorm",
@@ -4770,7 +4770,7 @@
   },
   {
     "path": "/hilfe/lager-scan-app",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 9,
     "primary": {
       "keyword": "lager app",
@@ -4799,7 +4799,7 @@
   },
   {
     "path": "/hilfe/besichtigung-durchfuehren",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 9,
     "primary": null,
     "reason": "Kein belegtes Suchvolumen: Kandidaten ‚besichtigung baustelle‘, ‚baustellenbesichtigung‘, ‚besichtigungsprotokoll‘ ohne Daten (2026-10-22-keyword-metrics-phase09.json); ‚baustellenbegehung‘ (210/8) hat einen anderen Suchzweck. Beschreibende Zielwerte nach Regel 05-01.",
@@ -4813,7 +4813,7 @@
   },
   {
     "path": "/hilfe/projekt-chat-nachrichten",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 9,
     "primary": null,
     "reason": "Kein belegtes Suchvolumen: Kandidaten ‚projekt chat‘, ‚baustellen chat‘, ‚team chat baustelle‘ ohne Daten (2026-10-22-keyword-metrics-phase09.json); ‚baustellenkommunikation‘ steht schon in der Map. Beschreibende Zielwerte nach Regel 05-01.",
@@ -4827,7 +4827,7 @@
   },
   {
     "path": "/hilfe/app-sprache-einstellen",
-    "status": "geplant",
+    "status": "bestehend",
     "phase": 9,
     "primary": null,
     "reason": "Kein belegtes Suchvolumen: Kandidaten ‚app mehrsprachig‘, ‚handwerker app mehrsprachig‘, ‚mehrsprachige app‘ ohne Daten (2026-10-22-keyword-metrics-phase09.json); ‚app sprache ändern‘ (110/10) ist ein allgemeiner Suchzweck. Beschreibende Zielwerte nach Regel 05-01.",
@@ -4837,6 +4837,36 @@
       "title": "Sprache der Mobile-App einstellen | CraftOS",
       "h1": "Die Sprache der Mobile-App einstellen",
       "description": "Sprache der CraftOS Mobile-App einstellen: aus 21 Sprachen wählen, die Vorgabe für neue Mitarbeitende im Büro setzen und die Auswahl in der App ändern."
+    }
+  },
+  {
+    "path": "/hilfe/kassenbuch-fuehren",
+    "status": "bestehend",
+    "phase": 9,
+    "primary": {
+      "keyword": "digitales kassenbuch",
+      "volume": 320,
+      "difficulty": 8,
+      "intents": [
+        "I"
+      ],
+      "cpc": 2.02,
+      "source": {
+        "endpoint": "SE Ranking Data API via MCP DATA_getKeywordsMetrics, source=de",
+        "file": "docs/seo/data/2026-10-23-keyword-metrics-kassenbuch-phase09.json",
+        "fetchedAt": "2026-10-23T04:04:05.426Z"
+      }
+    },
+    "reason": "Hauptkeyword aus 2026-10-23-keyword-metrics-kassenbuch-phase09.json (Gruppe kassenbuch-fuehren); „kassenbuch“ (6.600/88) zu schwer, „kassenbuch führen“ nur 10 Suchanfragen; in keinem anderen Map-Eintrag belegt.",
+    "secondary": [
+      "kassenbuch datev",
+      "elektronisches kassenbuch"
+    ],
+    "competitors": [],
+    "target": {
+      "title": "Digitales Kassenbuch führen und exportieren | CraftOS",
+      "h1": "Ein digitales Kassenbuch führen: Kasse eröffnen, buchen, exportieren",
+      "description": "Digitales Kassenbuch in CraftOS: Kasse mit Anfangsbestand eröffnen, Bargeld buchen, Kassensturz speichern und den Monat für DATEV exportieren."
     }
   }
 ]

@@ -1,0 +1,327 @@
+{
+  "source": "SE Ranking Data API via MCP DATA_getKeywordsMetrics, source=de",
+  "fetchedAt": "2026-10-23T04:04:05.426Z",
+  "groups": {
+    "kassenbuch-fuehren": [
+      "kassenbuch führen",
+      "kassenbuch",
+      "digitales kassenbuch",
+      "kassenbuch online",
+      "kassenbuch app",
+      "kassenbuch software",
+      "kassenbuch datev",
+      "kassenbuch handwerker",
+      "kassensturz",
+      "elektronisches kassenbuch"
+    ]
+  },
+  "requested": [
+    "kassenbuch führen",
+    "kassenbuch",
+    "digitales kassenbuch",
+    "kassenbuch online",
+    "kassenbuch app",
+    "kassenbuch software",
+    "kassenbuch datev",
+    "kassenbuch handwerker",
+    "kassensturz",
+    "elektronisches kassenbuch"
+  ],
+  "unitsBefore": {
+    "units_left": 26309,
+    "units_limit": 100000,
+    "checkedAt": "2026-10-23T04:04:01.656Z"
+  },
+  "unitsAfter": {
+    "units_left": 26309,
+    "units_limit": 100000,
+    "checkedAt": "2026-10-23T04:04:05.571Z"
+  },
+  "result": {
+    "archetype": "keyword-table",
+    "title": "Keyword metrics — 10 keyword(s)",
+    "subtitle": "DE",
+    "summary": "10 keyword(s), 9 with data (DE). Volume 10–6,600.",
+    "columns": [
+      {
+        "key": "volume",
+        "label": "Volume",
+        "format": "integer"
+      },
+      {
+        "key": "cpc",
+        "label": "CPC",
+        "format": "currency"
+      },
+      {
+        "key": "difficulty",
+        "label": "Difficulty",
+        "format": "integer"
+      },
+      {
+        "key": "competition",
+        "label": "Competition",
+        "format": "decimal"
+      },
+      {
+        "key": "intents",
+        "label": "Intent",
+        "format": "intents"
+      }
+    ],
+    "rows": [
+      {
+        "keyword": "kassenbuch software",
+        "cells": {
+          "volume": 390,
+          "cpc": 2.77,
+          "difficulty": 9,
+          "competition": 1,
+          "intents": [
+            "I"
+          ]
+        },
+        "sparkline": [
+          10,
+          10,
+          10,
+          10,
+          590,
+          590,
+          480,
+          480,
+          480,
+          390
+        ],
+        "dataFound": true
+      },
+      {
+        "keyword": "kassenbuch online",
+        "cells": {
+          "volume": 320,
+          "cpc": 2.44,
+          "difficulty": 13,
+          "competition": 0.84,
+          "intents": [
+            "I"
+          ]
+        },
+        "sparkline": [
+          390,
+          390,
+          390,
+          390,
+          390,
+          390,
+          390,
+          390,
+          320,
+          320
+        ],
+        "dataFound": true
+      },
+      {
+        "keyword": "elektronisches kassenbuch",
+        "cells": {
+          "volume": 320,
+          "cpc": 2.06,
+          "difficulty": 8,
+          "competition": 0.97,
+          "intents": [
+            "I"
+          ]
+        },
+        "sparkline": [
+          480,
+          480,
+          480,
+          480,
+          390,
+          390,
+          390,
+          390,
+          390,
+          320
+        ],
+        "dataFound": true
+      },
+      {
+        "keyword": "digitales kassenbuch",
+        "cells": {
+          "volume": 320,
+          "cpc": 2.02,
+          "difficulty": 8,
+          "competition": 0.97,
+          "intents": [
+            "I"
+          ]
+        },
+        "sparkline": [
+          390,
+          390,
+          390,
+          390,
+          390,
+          390,
+          320,
+          320,
+          320,
+          320
+        ],
+        "dataFound": true
+      },
+      {
+        "keyword": "kassenbuch app",
+        "cells": {
+          "volume": 390,
+          "cpc": 1.97,
+          "difficulty": 10,
+          "competition": 0.72,
+          "intents": [
+            "I"
+          ]
+        },
+        "sparkline": [
+          480,
+          480,
+          480,
+          480,
+          480,
+          390,
+          390,
+          390,
+          390,
+          390
+        ],
+        "dataFound": true
+      },
+      {
+        "keyword": "kassenbuch datev",
+        "cells": {
+          "volume": 170,
+          "cpc": 1.48,
+          "difficulty": 9,
+          "competition": 1,
+          "intents": [
+            "I"
+          ]
+        },
+        "sparkline": [
+          210,
+          210,
+          210,
+          210,
+          210,
+          210,
+          210,
+          210,
+          170,
+          170
+        ],
+        "dataFound": true
+      },
+      {
+        "keyword": "kassenbuch",
+        "cells": {
+          "volume": 6600,
+          "cpc": 1.17,
+          "difficulty": 88,
+          "competition": 1,
+          "intents": [
+            "I"
+          ]
+        },
+        "sparkline": [
+          8000,
+          8000,
+          8000,
+          8000,
+          8000,
+          6600,
+          6600,
+          6600,
+          6600,
+          6600
+        ],
+        "dataFound": true
+      },
+      {
+        "keyword": "kassenbuch führen",
+        "cells": {
+          "volume": 10,
+          "cpc": 0.78,
+          "difficulty": 9,
+          "competition": 0.88,
+          "intents": [
+            "I"
+          ]
+        },
+        "sparkline": [
+          40,
+          40,
+          30,
+          80,
+          10,
+          10,
+          80,
+          40,
+          10,
+          10
+        ],
+        "dataFound": true
+      },
+      {
+        "keyword": "kassensturz",
+        "cells": {
+          "volume": 360,
+          "cpc": 0,
+          "difficulty": 31,
+          "competition": 0,
+          "intents": [
+            "I"
+          ]
+        },
+        "sparkline": [
+          260,
+          360,
+          240,
+          260,
+          260,
+          240,
+          70,
+          240,
+          240,
+          360
+        ],
+        "dataFound": true
+      },
+      {
+        "keyword": "kassenbuch handwerker",
+        "cells": {
+          "volume": null,
+          "cpc": null,
+          "difficulty": null,
+          "competition": null,
+          "intents": null
+        },
+        "sparkline": [],
+        "dataFound": false
+      }
+    ],
+    "notes": [
+      "1 keyword(s) returned no data."
+    ],
+    "sparklineMonths": [
+      "2026-01",
+      "2026-02",
+      "2026-03",
+      "2026-04",
+      "2026-05",
+      "2026-06",
+      "2026-07",
+      "2026-08",
+      "2026-09",
+      "2026-10"
+    ]
+  }
+}

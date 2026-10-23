@@ -20,6 +20,9 @@ const pageUpdated: Record<string, string> = {
   "/vergleich/hero-alternative": "2026-10-23",
   "/vergleich/tooltime-alternative": "2026-10-23",
   "/vergleich/handwerkersoftware-kleine-betriebe": "2026-10-23",
+  // K-11 (09-09): Übersichten nach der Phase-9-Überarbeitung der Ratgeber und Hilfeartikel.
+  "/blog": "2026-10-23",
+  "/hilfe": "2026-10-23",
 };
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = [

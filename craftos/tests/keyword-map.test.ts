@@ -476,12 +476,13 @@ describe("Phase 9 – Zielwerte", () => {
     "projekt-chat-nachrichten",
     "app-sprache-einstellen",
   ].map((s) => `/hilfe/${s}`);
-  const phase9 = keywordMap.filter((k) => k.status === "geplant" && k.phase === 9);
+  // 09-09: alle Phase-9-Einträge veröffentlicht (19 aus 09-01/09-08 plus Kassenbuch, D-32).
+  const phase9 = keywordMap.filter((k) => k.phase === 9);
 
-  it("die zehn neuen Hilfe-Pfade sind geplant (Phase 9); Hauptkeywords nur mit Daten, sonst primary null", () => {
+  it("die zehn neuen Hilfe-Pfade sind veröffentlicht (Phase 9); Hauptkeywords nur mit Daten, sonst primary null", () => {
     for (const p of NEUE_HILFE) {
       const e = keywordMap.find((k) => k.path === p);
-      expect(e?.status, p).toBe("geplant");
+      expect(e?.status, p).toBe("bestehend");
       expect(e?.phase, p).toBe(9);
       expect(e?.target?.title && e.target.h1 && e.target.description, p).toBeTruthy();
     }
@@ -500,18 +501,35 @@ describe("Phase 9 – Zielwerte", () => {
       "/hilfe/projekt-chat-nachrichten": null,
       "/hilfe/app-sprache-einstellen": null,
     });
-    expect(phase9).toHaveLength(19);
+    expect(phase9).toHaveLength(20);
+    for (const k of phase9) expect(k.status, k.path).toBe("bestehend");
     expect(keywordMap.find((k) => k.path === "/hilfe/abnahme-dokumentieren")?.secondary).toContain("teilabnahme vob");
+  });
+
+  // 09-09 (D-32, Übergabeliste 09-f): Kassenbuch mit belegtem Hauptkeyword; Korrekturen aus den Übergabelisten.
+  it("Kassenbuch-Eintrag und Map-Korrekturen der Integration", () => {
+    const kb = keywordMap.find((k) => k.path === "/hilfe/kassenbuch-fuehren");
+    expect(kb?.primary?.keyword).toBe("digitales kassenbuch");
+    expect(kb?.primary?.source.file).toBe("docs/seo/data/2026-10-23-keyword-metrics-kassenbuch-phase09.json");
+    expect(kb?.target?.title).toBe("Digitales Kassenbuch führen und exportieren | CraftOS");
+    const ziel = (p: string) => keywordMap.find((k) => k.path === p)?.target;
+    expect(ziel("/blog/baustellen-einsatzplanung")?.h1).not.toMatch(/Ressourcen/);
+    expect(ziel("/blog/handwerkerrechnung-schreiben")?.description).not.toMatch(/Lohnanteil/);
+    expect(ziel("/hilfe/rechnung-fertigstellen")?.description).not.toMatch(/GoBD/);
+    expect(ziel("/hilfe/plantafel-einsatz-planen")?.description).not.toMatch(/sofort/);
+    expect(ziel("/hilfe/abnahme-dokumentieren")?.description).toMatch(/Teilabnahme/);
+    for (const p of ["/funktionen/kundenportal", "/hilfe/kundenportal-kunden-einladen"])
+      expect(ziel(p)?.description, p).not.toMatch(/Termin|Kommunikation|Nachricht/);
   });
 
   it("H1 neuer Phase-9-Einträge ≤ 70, Artikel-H1 ≤ 100 (09-UI-SPEC § 4, § 8)", () => {
     for (const k of phase9) expect(Array.from(k.target?.h1 ?? "").length, `${k.path}: ${k.target?.h1}`).toBeLessThanOrEqual(70);
     const artikel = keywordMap.filter((k) => /^\/(blog|hilfe)\/[^/]+$/.test(k.path) && !k.path.includes("/kategorie/"));
-    expect(artikel.length).toBeGreaterThanOrEqual(83);
+    expect(artikel.length).toBe(84);
     for (const k of artikel) expect(Array.from(k.target?.h1 ?? "").length, `${k.path}: ${k.target?.h1}`).toBeLessThanOrEqual(100);
   });
 
-  it("geplante Phase-9-Einträge folgen den sitewide Regeln (Titel, Description, Eindeutigkeit, Kopfwort, Überclaim; W5)", () => {
+  it("Phase-9-Einträge folgen den sitewide Regeln (Titel, Description, Eindeutigkeit, Kopfwort, Überclaim; W5)", () => {
     const UEBERCLAIM = [/lückenlos/i, /vollständig offline/i, /\bbeste[nrs]?\b/i, /testsieger/i, /\bNr\. ?1\b/i, /marktführer/i, /automatisch/i];
     for (const k of phase9) {
       expect(zielwertFehler(k), k.path).toEqual([]);

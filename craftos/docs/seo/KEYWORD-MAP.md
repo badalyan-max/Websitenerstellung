@@ -134,28 +134,34 @@ Kontingent laut `/v1/account/subscription`: vor dem Lauf 78.093 Units, danach 65
 | `/hilfe/kategorie/baudokumentation` | bestehend | baustellendokumentation | 210 | 10 | I | craftnote.de (57), plancraft.com (70) | `export--candidates-1.json` |
 | `/hilfe/kategorie/craft-ai` | bestehend | – (keine Daten) | – | – | – | – | – |
 
-### Ratgeber (Blog) (24)
+### Ratgeber (Blog) (30)
 
 | Pfad | Status | Hauptkeyword | Volumen | KD | Intent | Wettbewerber (Position) | Quelle |
 |---|---|---|---|---|---|---|---|
 | `/blog/abschlagsrechnung-schlussrechnung` | bestehend | abschlagsrechnung schlussrechnung | 70 | 6 | I | plancraft.com (32) | `export--candidates-1.json` |
+| `/blog/arbeitszeitnachweis-vorlage` | bestehend | arbeitszeitnachweis vorlagen | 480 | 8 | I | streit-software.de (19) | `export--candidates-1.json` |
 | `/blog/aufmass-angebot-mengen-abzuege` | bestehend | aufmaß erstellen | 210 | 8 | I | plancraft.com (1), hero-software.de (7), craftnote.de (17) +1 | `export--candidates-1.json` |
+| `/blog/bauablaufplan` | bestehend | bauablaufplan | 390 | 10 | I | craftnote.de (50) | `export--candidates-1.json` |
 | `/blog/baustellen-einsatzplanung` | bestehend | baustellenplanung | 70 | 8 | I | craftnote.de (40) | `export--candidates-1.json` |
 | `/blog/datev-export-vorbereiten` | bestehend | belege für steuerberater vorbereiten | 10 | 8 | I | – | `export--candidates-1.json` |
 | `/blog/digitale-bautagesberichte` | bestehend | bautagesbericht | 320 | 11 | I | plancraft.com (30) | `export--candidates-1.json` |
 | `/blog/digitale-projektakte` | bestehend | digitale projektakte | 30 | 7 | I | – | `export--candidates-1.json` |
 | `/blog/eingangsrechnungen-digital-organisieren` | bestehend | eingangsrechnungen verwalten | 70 | 9 | I | plancraft.com (6) | `export--candidates-1.json` |
+| `/blog/gaeb-formate` | bestehend | gaeb formate | 590 | 12 | I | streit-software.de (6), hero-software.de (10), das-programm.io (48) | `export--candidates-1.json` |
 | `/blog/handwerkerangebot-erstellen` | bestehend | angebot handwerker | 170 | 6 | I | streit-software.de (3), das-programm.io (7), openhandwerk.de (14) +2 | `export--candidates-1.json` |
 | `/blog/handwerkerrechnung-schreiben` | bestehend | handwerkerrechnung | 590 | 13 | I | streit-software.de (4) | `export--candidates-1.json` |
 | `/blog/handwerkersoftware-auswaehlen` | bestehend | beste handwerkersoftware | 90 | 24 | I | das-programm.io (18), plancraft.com (23) | `export--candidates-1.json` |
 | `/blog/handwerkersoftware-einzelunternehmen` | bestehend | software für kleine handwerksbetriebe | 50 | 36 | I | hero-software.de (3), das-programm.io (20), openhandwerk.de (48) | `export--candidates-1.json` |
 | `/blog/handwerkersoftware-wechseln` | bestehend | – (keine Daten) | – | – | – | – | – |
 | `/blog/ki-belegscan-pruefen` | bestehend | – (keine Daten) | – | – | – | – | – |
+| `/blog/maengelanzeige` | bestehend | mängelanzeige | 810 | 8 | I | craftnote.de (9) | `export--candidates-1.json` |
+| `/blog/materialliste-vorlage` | bestehend | materialliste vorlage | 210 | 8 | I | craftnote.de (39) | `export--candidates-1.json` |
 | `/blog/materialverbrauch-baustelle-zuordnen` | bestehend | – (keine Daten) | – | – | – | – | – |
 | `/blog/nachkalkulation-handwerk` | bestehend | nachkalkulation | 590 | 7 | I | hero-software.de (1), openhandwerk.de (11) | `export--candidates-1.json` |
 | `/blog/offene-posten-liquiditaet` | bestehend | offene posten | 390 | 9 | I | – | `export--candidates-1.json` |
 | `/blog/offline-baustellen-app` | bestehend | offline zeiterfassung | 10 | 0 | I | – | `export--candidates-1.json` |
 | `/blog/projektbezogene-zeiterfassung` | bestehend | projektzeiterfassung | 320 | 17 | I | – | `export--candidates-1.json` |
+| `/blog/reverse-charge-bauleistungen` | bestehend | reverse charge rechnungsstellung | 590 | 9 | I | hero-software.de (1) | `export--candidates-1.json` |
 | `/blog/stundenverrechnungssatz-berechnen` | bestehend | stundenverrechnungssatz berechnen | 480 | 6 | I | – | `export--candidates-1.json` |
 | `/blog/tiefenkalkulation-handwerk` | bestehend | zuschlagskalkulation handwerk | 10 | 8 | I | streit-software.de (4), craftnote.de (12), das-programm.io (77) +1 | `export--candidates-1.json` |
 | `/blog/urlaub-abwesenheiten-einsatzplanung` | bestehend | urlaubsplanung mitarbeiter | 480 | 8 | I | – | `export--candidates-1.json` |
@@ -163,7 +169,7 @@ Kontingent laut `/v1/account/subscription`: vor dem Lauf 78.093 Units, danach 65
 | `/blog/xrechnung-zugferd-pdf-unterschiede` | bestehend | xrechnung zugferd unterschied | 70 | 17 | I | – | `export--candidates-1.json` |
 | `/blog/zahlungserinnerung-mahnung-handwerk` | bestehend | zahlungserinnerung muster | 260 | 21 | I | streit-software.de (27) | `export--candidates-1.json` |
 
-### Hilfeartikel (40)
+### Hilfeartikel (54)
 
 | Pfad | Status | Hauptkeyword | Volumen | KD | Intent | Wettbewerber (Position) | Quelle |
 |---|---|---|---|---|---|---|---|
@@ -171,22 +177,34 @@ Kontingent laut `/v1/account/subscription`: vor dem Lauf 78.093 Units, danach 65
 | `/hilfe/abschlagsrechnung-erstellen` | bestehend | abschlagsrechnung muster | 480 | 8 | I | streit-software.de (1) | `export--candidates-1.json` |
 | `/hilfe/angebot-entwurf-anlegen` | bestehend | angebot erstellen | 480 | 10 | I | – | `export--candidates-1.json` |
 | `/hilfe/angebot-in-rechnung-uebernehmen` | bestehend | handwerker angebot in rechnung stellen | 20 | 9 | I | openhandwerk.de (27) | `export--candidates-1.json` |
+| `/hilfe/angebot-online-unterschreiben-lassen` | bestehend | – | – | – | – | – | `2026-10-22-keyword-metrics-phase09.json` |
 | `/hilfe/angebotspositionen-leistungsvorlagen` | bestehend | leistungsverzeichnis vorlage | 210 | 6 | I | streit-software.de (2) | `export--candidates-1.json` |
 | `/hilfe/anmelden-web-mobile` | bestehend | – (keine Daten) | – | – | – | – | – |
+| `/hilfe/app-sprache-einstellen` | bestehend | – | – | – | – | – | `2026-10-22-keyword-metrics-phase09.json` |
 | `/hilfe/artikel-stammdaten-anlegen` | bestehend | artikelstammdaten | 110 | 8 | I | – | `export--candidates-1.json` |
+| `/hilfe/bankumsaetze-abgleichen` | bestehend | camt 053 | 390 | 13 | I | – | `2026-10-22-keyword-metrics-phase09.json` |
 | `/hilfe/bautagesbericht-erstellen` | bestehend | bautagesbericht vorlage | 320 | 10 | I | streit-software.de (3), plancraft.com (28) | `export--candidates-1.json` |
+| `/hilfe/bedenkenanzeige` | bestehend | bedenkenanzeige | 390 | 7 | I | plancraft.com (24) | `export--candidates-1.json` |
 | `/hilfe/beleg-kontieren-zuordnen` | bestehend | beleg kontieren | 170 | 8 | I | – | `export--candidates-1.json` |
 | `/hilfe/beleg-scannen-pruefen` | bestehend | beleg hochladen | 10 | 22 | I | – | `export--candidates-1.json` |
 | `/hilfe/berichte-abrechnen` | bestehend | – (keine Daten) | – | – | – | – | – |
+| `/hilfe/besichtigung-durchfuehren` | bestehend | – | – | – | – | – | `2026-10-22-keyword-metrics-phase09.json` |
 | `/hilfe/craft-ai-betriebsdaten-fragen` | bestehend | ki fragen stellen | 4.400 | 82 | I | – | `export--candidates-1.json` |
+| `/hilfe/datanorm-katalog-importieren` | bestehend | datanorm | 390 | 18 | I | – | `2026-10-22-keyword-metrics-phase09.json` |
+| `/hilfe/daten-importieren` | bestehend | datenübernahme | 110 | 9 | I | – | `2026-10-22-keyword-metrics-phase09.json` |
 | `/hilfe/datev-export-erstellen` | bestehend | datev export | 210 | 10 | I | – | `export--candidates-1.json` |
 | `/hilfe/e-rechnung-herunterladen` | bestehend | zugferd rechnung erstellen | 10 | 26 | I | das-programm.io (18), streit-software.de (23), hero-software.de (32) | `export--candidates-1.json` |
 | `/hilfe/firmenprofil-einrichten` | bestehend | briefpapier rechnung | 20 | 8 | I | – | `export--candidates-1.json` |
 | `/hilfe/gaeb-importieren` | bestehend | gaeb datei öffnen | 390 | 21 | I | streit-software.de (6) | `export--candidates-1.json` |
 | `/hilfe/inventur-durchfuehren` | bestehend | inventur lager | 70 | 9 | I | – | `export--candidates-1.json` |
+| `/hilfe/kassenbuch-fuehren` | bestehend | digitales kassenbuch | 320 | 8 | I | – | `2026-10-23-keyword-metrics-kassenbuch-phase09.json` |
 | `/hilfe/ki-entwurf-pruefen-uebernehmen` | bestehend | – (keine Daten) | – | – | – | – | – |
 | `/hilfe/kunden-ansprechpartner-anlegen` | bestehend | kundenverwaltung | 140 | 8 | I | – | `export--candidates-1.json` |
+| `/hilfe/kundenportal-kunden-einladen` | bestehend | – | – | – | – | – | `2026-10-22-keyword-metrics-phase09.json` |
+| `/hilfe/lager-scan-app` | bestehend | lager app | 90 | 14 | I | – | `2026-10-22-keyword-metrics-phase09.json` |
 | `/hilfe/lagerorte-lagerplaetze-einrichten` | bestehend | lagerplatzverwaltung | 20 | 6 | I | – | `export--candidates-1.json` |
+| `/hilfe/leistungszeitraum-rechnung` | bestehend | leistungszeitraum rechnung | 390 | 8 | I | plancraft.com (24) | `export--candidates-1.json` |
+| `/hilfe/mahnwesen-einrichten` | bestehend | mahnstufen | 170 | 8 | I | – | `2026-10-22-keyword-metrics-phase09.json` |
 | `/hilfe/mangel-erfassen-bearbeiten` | bestehend | mängelliste | 480 | 9 | I | – | `export--candidates-1.json` |
 | `/hilfe/material-entnehmen-zurueckbuchen` | bestehend | materialentnahmeschein | 170 | 7 | I | – | `export--candidates-1.json` |
 | `/hilfe/mitarbeiter-einladen-lizenz-zuweisen` | bestehend | – (keine Daten) | – | – | – | – | – |
@@ -195,11 +213,13 @@ Kontingent laut `/v1/account/subscription`: vor dem Lauf 78.093 Units, danach 65
 | `/hilfe/plantafel-einsatz-planen` | bestehend | einsatzplanung | 390 | 12 | I | – | `export--candidates-1.json` |
 | `/hilfe/planung-mitarbeiter-ressourcen` | bestehend | ressourcenplanung | 440 | 9 | I | – | `export--candidates-1.json` |
 | `/hilfe/position-tiefenkalkulieren` | bestehend | preise kalkulieren | 140 | 12 | I | – | `export--candidates-2.json` |
+| `/hilfe/projekt-chat-nachrichten` | bestehend | – | – | – | – | – | `2026-10-22-keyword-metrics-phase09.json` |
 | `/hilfe/projekt-phasen-anlegen` | bestehend | bauphasen | 590 | 16 | I | – | `export--candidates-1.json` |
 | `/hilfe/projektdateien-ordner` | bestehend | ordnerstruktur projekte | 30 | 12 | I | – | `export--candidates-1.json` |
 | `/hilfe/raumaufmass-angebot-uebernehmen` | bestehend | aufmaß raum | 10 | 7 | I | – | `export--candidates-1.json` |
 | `/hilfe/rechnung-fertigstellen` | bestehend | rechnung korrigieren | 170 | 9 | I | das-programm.io (6) | `export--candidates-1.json` |
 | `/hilfe/rechnung-stornieren` | bestehend | storno rechnung | 590 | 9 | I | openhandwerk.de (60) | `export--candidates-1.json` |
+| `/hilfe/regiebericht` | bestehend | regiebericht | 390 | 4 | I | plancraft.com (8), openhandwerk.de (26), craftnote.de (33) | `export--candidates-1.json` |
 | `/hilfe/rollen-zugriffsrechte-einstellen` | bestehend | zugriffsrechte | 260 | 19 | I | – | `export--candidates-1.json` |
 | `/hilfe/schlussrechnung-erstellen` | bestehend | schlussrechnung muster | 480 | 7 | I | plancraft.com (62) | `export--candidates-1.json` |
 | `/hilfe/urlaub-beantragen-bearbeiten` | bestehend | urlaub beantragen | 390 | 12 | I | – | `export--candidates-1.json` |
@@ -208,31 +228,9 @@ Kontingent laut `/v1/account/subscription`: vor dem Lauf 78.093 Units, danach 65
 | `/hilfe/zeiteintrag-erfassen-korrigieren` | bestehend | – (keine Daten) | – | – | – | – | – |
 | `/hilfe/zeiten-pruefen-exportieren` | bestehend | stundenzettel excel | 320 | 9 | I | – | `export--candidates-1.json` |
 
-### Geplante Seiten (19)
+### Geplante Seiten (0)
 
-| Pfad | Zielphase | Hauptkeyword | Volumen | KD | Intent | Wettbewerber (Position) | Quelle |
-|---|---|---|---|---|---|---|---|
-| `/hilfe/leistungszeitraum-rechnung` | 9 | leistungszeitraum rechnung | 390 | 8 | I | plancraft.com (24) | `export--candidates-1.json` |
-| `/hilfe/regiebericht` | 9 | regiebericht | 390 | 4 | I | plancraft.com (8), openhandwerk.de (26), craftnote.de (33) | `export--candidates-1.json` |
-| `/hilfe/bedenkenanzeige` | 9 | bedenkenanzeige | 390 | 7 | I | plancraft.com (24) | `export--candidates-1.json` |
-| `/blog/maengelanzeige` | 9 | mängelanzeige | 810 | 8 | I | craftnote.de (9) | `export--candidates-1.json` |
-| `/blog/reverse-charge-bauleistungen` | 9 | reverse charge rechnungsstellung | 590 | 9 | I | hero-software.de (1) | `export--candidates-1.json` |
-| `/blog/materialliste-vorlage` | 9 | materialliste vorlage | 210 | 8 | I | craftnote.de (39) | `export--candidates-1.json` |
-| `/blog/gaeb-formate` | 9 | gaeb formate | 590 | 12 | I | streit-software.de (6), hero-software.de (10), das-programm.io (48) | `export--candidates-1.json` |
-| `/blog/bauablaufplan` | 9 | bauablaufplan | 390 | 10 | I | craftnote.de (50) | `export--candidates-1.json` |
-| `/blog/arbeitszeitnachweis-vorlage` | 9 | arbeitszeitnachweis vorlagen | 480 | 8 | I | streit-software.de (19) | `export--candidates-1.json` |
-| `/hilfe/kundenportal-kunden-einladen` | 9 | – | – | – | – | – | `2026-10-22-keyword-metrics-phase09.json` |
-| `/hilfe/angebot-online-unterschreiben-lassen` | 9 | – | – | – | – | – | `2026-10-22-keyword-metrics-phase09.json` |
-| `/hilfe/mahnwesen-einrichten` | 9 | mahnstufen | 170 | 8 | I | – | `2026-10-22-keyword-metrics-phase09.json` |
-| `/hilfe/bankumsaetze-abgleichen` | 9 | camt 053 | 390 | 13 | I | – | `2026-10-22-keyword-metrics-phase09.json` |
-| `/hilfe/daten-importieren` | 9 | datenübernahme | 110 | 9 | I | – | `2026-10-22-keyword-metrics-phase09.json` |
-| `/hilfe/datanorm-katalog-importieren` | 9 | datanorm | 390 | 18 | I | – | `2026-10-22-keyword-metrics-phase09.json` |
-| `/hilfe/lager-scan-app` | 9 | lager app | 90 | 14 | I | – | `2026-10-22-keyword-metrics-phase09.json` |
-| `/hilfe/besichtigung-durchfuehren` | 9 | – | – | – | – | – | `2026-10-22-keyword-metrics-phase09.json` |
-| `/hilfe/projekt-chat-nachrichten` | 9 | – | – | – | – | – | `2026-10-22-keyword-metrics-phase09.json` |
-| `/hilfe/app-sprache-einstellen` | 9 | – | – | – | – | – | `2026-10-22-keyword-metrics-phase09.json` |
-
-Die zehn neuen Hilfe-Pfade (09-01, CONTENT-04) sind Anleitungen zu Funktionen, die seit dem 09.09.2026 live sind (09-CONTEXT D-19). Fünf haben ein Hauptkeyword mit Daten aus `2026-10-22-keyword-metrics-phase09.json`; die übrigen fünf (Kandidaten ohne Daten, `dataFound: false`) tragen beschreibende Zielwerte ohne Hauptkeyword (Regel 05-01) und stehen mit ihren Kandidaten in `docs/seo/keyword-seeds.json`.
+Keine. Die 19 Phase-9-Pfade (neun Wissensseiten, zehn Anleitungen) sind seit dem 23.10.2026 veröffentlicht und stehen oben unter „Ratgeber“ bzw. „Hilfeartikel“ mit Status `bestehend`; dazu kommt `/hilfe/kassenbuch-fuehren` (D-32). Änderungsnachweis in § 6 („Phase 9 veröffentlicht“).
 
 ### Seiten ohne belegtes Hauptkeyword (15)
 
@@ -316,6 +314,8 @@ Weitere geplante Einträge unterhalb der Lückenschwelle, aber als Seite vorgeme
 | 7 | `/funktionen/bankabgleich` | zahlungsabgleich | 20 | 8 | live, aber noch ohne Seite (RESEARCH Tabelle B) |
 
 **Umgesetzt (21.10.2026, Phase 7):** Die Einträge mit Zielphase 7 in beiden Tabellen oben (`/funktionen/gaeb`, `/funktionen/terminplanung`, `/funktionen/maengelmanagement`, `/funktionen/datenuebernahme`, `/funktionen/mahnwesen`, `/funktionen/bankabgleich`) sind als Detailseiten angelegt und stehen in der Map als `bestehend` (§ 2 „Funktionsseiten“). Die Zeilen bleiben hier als Nachweis der Lückenanalyse stehen.
+
+**Umgesetzt (23.10.2026, Phase 9):** Alle Einträge mit Zielphase 9 in beiden Tabellen oben sind veröffentlicht (09-07, 09-08) und stehen in der Map als `bestehend` (§ 2 „Ratgeber“ und „Hilfeartikel“). Die Zeilen bleiben als Nachweis der Lückenanalyse stehen.
 
 **Bewusst nicht vorgemerkt:** „ki telefonassistent handwerk“ (140/5, `domain-keywords--hero-software.de.json`) – ein Telefon-Agent ist in CraftOS nicht live und wird nicht angekündigt (D-12). Begriffe mit hoher Schwierigkeit wie „stundenzettel vorlage“ (6.600/79), „rechnung schreiben“ (8.000/90) oder „zuschlagskalkulation“ (910/13) werden nicht als eigene Seiten vorgemerkt; „zuschlagskalkulation“ ist Nebenbegriff von `/blog/tiefenkalkulation-handwerk`, „stundenzettel vorlage“ von `/blog/arbeitszeitnachweis-vorlage`.
 
@@ -605,3 +605,33 @@ Neue Einträge mit Status `geplant`, Zielphase 9 und vollständigem `target` (Ti
 - **Übergang bis 09-09 (K-3):** Geplante Phase-9-Pfade dürfen schon in der Sitemap stehen, weil die Inhaltspakete die Artikel vor dem Statuswechsel anlegen. Die Integration (09-09) setzt alle Phase-9-Einträge auf `bestehend` und stellt die strenge Regel wieder her.
 
 Bearbeitet per Node-Skript mit Regelprüfung vor dem Schreiben – dieselben sitewide Regeln wie 08-04: Titel ≤ 60 mit „ | CraftOS“, Description 120–155, H1 ≤ 70, Hauptkeyword im Titel, Kopfwort in Titel und H1, Überclaim-Wörter (inkl. „automatisch“), L-1-Wortliste (`lib/leitlinie-l1.json`), Kategorie-Präfix, Eindeutigkeit von Titel, H1 und Description über alle Einträge, Kannibalisierung (Haupt- gegen Nebenbegriffe) und Herkunft. Ergebnis für alle zehn Einträge: 0 Fehler. Kein neuer API-Abruf (0 Units). Absicherung: `tests/keyword-map.test.ts` („Phase 9 – Zielwerte“), `tests/keyword-seeds.test.ts`.
+
+### 23.10.2026 – Phase 9 veröffentlicht: Status, Kassenbuch und Korrekturen aus den Übergabelisten (09-09, D-12, D-24, D-32, K-3)
+
+**Status.** Alle 19 Einträge mit `phase: 9` stehen auf `bestehend` (neun Wissensseiten aus 09-08, zehn Anleitungen aus 09-07). Der Übergang K-3 aus 09-01 ist zurückgenommen: `tests/keyword-map.test.ts` verlangt wieder ausnahmslos „geplant ⇒ nicht in der Sitemap“ und prüft, dass jeder Phase-9-Eintrag `bestehend` ist. Für die sechs Ratgeber-Wissensseiten stehen jetzt `pageCandidates` in `docs/seo/keyword-seeds.json` (Hauptkeyword und belegte Nebenbegriffe aus `export--candidates-1.json`).
+
+**Neuer Eintrag `/hilfe/kassenbuch-fuehren` (D-32, Übergabeliste 09-f).** Keyword-Metriken am 23.10.2026 über SE Ranking (MCP `DATA_getKeywordsMetrics`, source=de) für zehn Kandidaten abgerufen; Rohdaten mit Herkunftskopf in `docs/seo/data/2026-10-23-keyword-metrics-kassenbuch-phase09.json`. Kontostand vorher 26.309, nachher 26.309 Units (0 verbraucht). Ergebnis: kassenbuch (6.600/88, zu schwer), kassenbuch software (390/9, kommerziell), kassenbuch app (390/10, Funktion liegt in der Web-App), digitales kassenbuch (320/8), elektronisches kassenbuch (320/8), kassenbuch online (320/13), kassensturz (360/31), kassenbuch datev (170/9), kassenbuch führen (10/9), kassenbuch handwerker (keine Daten). Gewählt: Hauptkeyword „digitales kassenbuch“ (320/8), Nebenbegriffe „kassenbuch datev“ und „elektronisches kassenbuch“; Kategorie `belege`, Status `bestehend`, Phase 9.
+
+| Feld | Wert |
+|---|---|
+| Titel | Digitales Kassenbuch führen und exportieren \| CraftOS (53) |
+| H1 | Ein digitales Kassenbuch führen: Kasse eröffnen, buchen, exportieren (68) |
+| Description | Digitales Kassenbuch in CraftOS: Kasse mit Anfangsbestand eröffnen, Bargeld buchen, Kassensturz speichern und den Monat für DATEV exportieren. (142) |
+
+**Korrekturen aus den Übergabelisten (alt → neu).**
+
+| Pfad | Feld | Alt | Neu | Grund |
+|---|---|---|---|---|
+| `/blog/handwerkerrechnung-schreiben` | Description | … Leistungsnachweis und Lohnanteil richtig darstellen … | … Leistungsnachweis und Leistungszeitraum richtig darstellen … (155) | 09-b: Artikel behandelt den Lohnanteil nicht, wohl aber den Leistungszeitraum |
+| `/blog/baustellen-einsatzplanung` | H1 | Baustellenplanung und Ressourcen: Kapazität, Abwesenheiten und Übergaben verbinden | Baustellenplanung: Kapazität, Abwesenheiten und Übergaben verbinden (67) | 09-c: Produktbegriff „Geräte & Fahrzeuge“ statt „Ressourcen“; Kopfwort bleibt |
+| `/hilfe/rechnung-fertigstellen` | Description | … und die Rechnung danach GoBD-gerecht fertigstellen. | … und die Rechnung danach mit endgültiger Nummer fertigstellen. (154) | 09-d2: keine GoBD-Zertifizierung (Register) |
+| `/hilfe/angebotspositionen-leistungsvorlagen` | Description | … als Leistungsvorlagen speichern und in neuen Angeboten schnell wiederverwenden. | … als Leistungen in den Stammdaten speichern und in neuen Angeboten nutzen. (148) | 09-d2: belegter Weg „In Stammdaten übernehmen“ |
+| `/hilfe/zeiteintrag-erfassen-korrigieren` | Description | … nach oder korrigieren ihn und beachten die unterschiedlichen Eingabefelder. | … nach und korrigieren Beginn, Ende und Pause eines Eintrags. (134) | 09-e: Web und App nutzen seit a9319e5 Beginn, Ende, Pause |
+| `/hilfe/plantafel-einsatz-planen` | Description | … sieht die Änderung sofort in der Mobile-App. | … sieht die Änderung in der Mobile-App. (140) | 09-e: Anzeige nach der Synchronisierung |
+| `/hilfe/abnahme-dokumentieren` | Description | … Prüfpunkte festhalten, Ergebnis und Vorbehalte dokumentieren … | … Teilabnahme und Endabnahme mit Prüfpunkten, Vorbehalten und mobiler Unterschrift dokumentieren. (128) | 09-e2: Teilabnahme (Nebenbegriff „teilabnahme vob“) |
+| `/funktionen/kundenportal` | Description | … Angebote, Dokumente und Kommunikation für Ihre Kunden im Browser bereitstellen … | … Kunden mit eigenem Zugang einladen, Angebote online unterschreiben lassen und Rechnungen als PDF per E-Mail senden. (153) | 09-f Befund 1/7: Termine und Nachrichten im Portal nicht erreichbar; Angebotsmail mit Unterschriftslink, Rechnungsmail mit PDF |
+| `/hilfe/kundenportal-kunden-einladen` | Description | … den Zugang zu Angeboten, Rechnungen und Terminen verwalten. | … den Portal-Zugang mit Vorschau und Entzug verwalten. (141) | wie oben |
+
+Nicht umgesetzt mit Begründung: `/hilfe/berichte-abrechnen` bleibt ohne Hauptkeyword – die Kandidaten „regiebericht abrechnen“, „stundenlohnarbeiten abrechnen“ und „leistungen abrechnen“ haben laut Rohdaten keine Daten (09-d2 schlug nur eine Recherche vor). `/hilfe/projekt-phasen-anlegen` behält „Bauphasen“ als Suchbegriff in Titel und H1 (09-e: zulässig, Angleichung optional). `/hilfe/craft-ai-betriebsdaten-fragen`, `/hilfe/ki-entwurf-pruefen-uebernehmen`, `/hilfe/kategorie/craft-ai` und `/craft-ai` sind bereits mit dem Craft-AI-Hotfix (d778c31) angeglichen.
+
+Bearbeitet per Node-Skript mit Regelprüfung vor dem Schreiben (Titel ≤ 60, Description 120–155, H1 ≤ 70 für Phase 9, Hauptkeyword und Kopfwort, Überclaim-Wörter inkl. „automatisch“, L-1-Wortliste, Eindeutigkeit, Kannibalisierung): 0 Fehler. Absicherung: `tests/keyword-map.test.ts` („Phase 9 – Zielwerte“, „Kassenbuch-Eintrag und Map-Korrekturen der Integration“), `tests/keyword-seeds.test.ts`, `tests/content.test.ts` (Endmengen 30/54).

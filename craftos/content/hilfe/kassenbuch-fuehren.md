@@ -6,7 +6,7 @@ category: "belege"
 publishedAt: "2026-10-23"
 updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
-draft: true
+draft: false
 relatedFeatures: ["buchhaltung", "eingangsrechnungen"]
 relatedArticles: ["/hilfe/datev-export-erstellen", "/hilfe/beleg-kontieren-zuordnen", "/hilfe/bankumsaetze-abgleichen"]
 sources: []

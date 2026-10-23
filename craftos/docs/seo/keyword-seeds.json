@@ -236,6 +236,13 @@
     "/hilfe/lager-scan-app": ["lager app", "barcode scanner lager", "materialentnahme app"],
     "/hilfe/besichtigung-durchfuehren": ["besichtigung baustelle", "baustellenbesichtigung", "besichtigungsprotokoll"],
     "/hilfe/projekt-chat-nachrichten": ["projekt chat", "baustellen chat", "team chat baustelle"],
-    "/hilfe/app-sprache-einstellen": ["app mehrsprachig", "handwerker app mehrsprachig", "mehrsprachige app"]
+    "/hilfe/app-sprache-einstellen": ["app mehrsprachig", "handwerker app mehrsprachig", "mehrsprachige app"],
+    "/blog/maengelanzeige": ["mängelanzeige", "mängelanzeige vob", "mängelrüge frist"],
+    "/blog/reverse-charge-bauleistungen": ["reverse charge rechnungsstellung", "13b ustg"],
+    "/blog/materialliste-vorlage": ["materialliste vorlage", "materialliste erstellen"],
+    "/blog/gaeb-formate": ["gaeb formate", "gaeb format", "gaeb datei"],
+    "/blog/bauablaufplan": ["bauablaufplan", "bauzeitenplan"],
+    "/blog/arbeitszeitnachweis-vorlage": ["arbeitszeitnachweis vorlagen", "stundenzettel vorlage"],
+    "/hilfe/kassenbuch-fuehren": ["digitales kassenbuch", "kassenbuch datev", "kassenbuch führen"]
   }
 }

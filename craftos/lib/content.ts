@@ -31,10 +31,11 @@ function strings(value: unknown): string[] {
     throw new Error("Expected content string array");
   return value;
 }
-/** Phase 9 (D-18): Antwort zuerst – optional bis zur Integration, dann Pflicht (09-09). ≤ 300 Zeichen, 1–2 Sätze. */
-function answerFeld(data: Record<string, unknown>, slug: string): string | undefined {
-  if (data.answer === undefined) return undefined;
-  if (typeof data.answer !== "string" || !data.answer.trim())
+/** Phase 9 (D-18): Antwort zuerst – seit der Integration (09-09) Pflicht für jeden Artikel. ≤ 300 Zeichen, 1–2 Sätze. */
+function answerFeld(data: Record<string, unknown>, slug: string): string {
+  if (data.answer === undefined || (typeof data.answer === "string" && !data.answer.trim()))
+    throw new Error(`Artikel ${slug}: Antwort fehlt – Frontmatter answer mit ein bis zwei Sätzen (≤ 300 Zeichen) ergänzen.`);
+  if (typeof data.answer !== "string")
     throw new Error("Invalid answer in " + slug);
   assertTextBudget("answer", data.answer, TEXT_BUDGET.answer);
   const saetze = sentenceCount(data.answer);
