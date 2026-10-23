@@ -84,10 +84,16 @@ export function ComparisonTable({
 
   return (
     <div className={s.root}>
+      {/* 10-UI-SPEC § 6.2 (J4): sichtbare Überschrift außerhalb des Scrollbereichs, damit sie bei 360 px nicht
+          angeschnitten wird. Die Semantik trägt weiter das <caption> in der Tabelle (sr-only) und das aria-label
+          des Scrollbereichs; deshalb ist die sichtbare Zeile aria-hidden. */}
+      <p className={s.caption} data-caption="" aria-hidden="true">
+        {caption}
+      </p>
       <p className={s.hint}>Zum Vergleichen seitlich wischen</p>
       <div className={s.scroll} role="region" aria-label={caption} tabIndex={0}>
         <table className={s.table}>
-          <caption className={s.caption}>{caption}</caption>
+          <caption className="sr-only">{caption}</caption>
           <thead>
             <tr>
               <th scope="col" className={s.rowHead}>
