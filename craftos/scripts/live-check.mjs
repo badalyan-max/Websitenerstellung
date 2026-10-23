@@ -632,22 +632,38 @@ await check(
     }),
 );
 
-// Detailseite → zugehörige Anleitung (09-14; die Anleitung muss als Phase-9-Pfad in der Map stehen).
-const DETAIL_ANLEITUNG = [
-  ["/funktionen/kundenportal", "/hilfe/kundenportal-kunden-einladen"],
-  ["/funktionen/mahnwesen", "/hilfe/mahnwesen-einrichten"],
-  ["/funktionen/bankabgleich", "/hilfe/bankumsaetze-abgleichen"],
-  ["/funktionen/datenuebernahme", "/hilfe/daten-importieren"],
-];
-await check(`Detailseiten verlinken Anleitungen (${DETAIL_ANLEITUNG.map(([d]) => d.split("/").pop()).join(", ")})`, () =>
-  jedeSeite(
-    DETAIL_ANLEITUNG.map(([d]) => d),
-    (route, r) => {
-      const ziel = DETAIL_ANLEITUNG.find(([d]) => d === route)[1];
-      if (!PHASE9_MAP.includes(ziel)) return `${ziel} ist kein Phase-9-Pfad der Map`;
-      return r.text.includes(`href="${ziel}"`) ? "" : `kein Link auf ${ziel}`;
-    },
-  ),
+// Detailseite → Anleitungen (CONTENT-04, Abdeckungstabelle docs/content-pruefung/09-integration.md § 7:
+// 14 neue Live-Funktionen plus Kassenbuch auf 14 Detailseiten; gleiche Liste wie CONTENT04_ANLEITUNGEN in
+// tests/funktionsdetails.test.ts). Jede Anleitung muss in der Sitemap stehen und auf der Detailseite verlinkt sein.
+const DETAIL_ANLEITUNG = {
+  "/funktionen/terminplanung": ["/hilfe/projekt-phasen-anlegen"],
+  "/funktionen/baudokumentation": ["/hilfe/abnahme-dokumentieren", "/hilfe/bautagesbericht-erstellen"],
+  "/funktionen/maengelmanagement": ["/hilfe/mangel-erfassen-bearbeiten"],
+  "/funktionen/mahnwesen": ["/hilfe/mahnwesen-einrichten"],
+  "/funktionen/bankabgleich": ["/hilfe/bankumsaetze-abgleichen"],
+  "/funktionen/gaeb": ["/hilfe/datanorm-katalog-importieren"],
+  "/funktionen/angebote": ["/hilfe/datanorm-katalog-importieren", "/hilfe/angebot-online-unterschreiben-lassen"],
+  "/funktionen/datenuebernahme": ["/hilfe/daten-importieren"],
+  "/funktionen/kundenportal": ["/hilfe/kundenportal-kunden-einladen"],
+  "/funktionen/lager": ["/hilfe/lager-scan-app"],
+  "/funktionen/aufmass": ["/hilfe/besichtigung-durchfuehren"],
+  "/funktionen/team": ["/hilfe/projekt-chat-nachrichten", "/hilfe/app-sprache-einstellen"],
+  "/funktionen/projektverwaltung": ["/hilfe/projekt-chat-nachrichten"],
+  "/funktionen/buchhaltung": ["/hilfe/kassenbuch-fuehren"],
+};
+const DETAIL_LINKS = Object.values(DETAIL_ANLEITUNG).flat();
+await check(
+  `Detailseiten verlinken Anleitungen (${Object.keys(DETAIL_ANLEITUNG).length} Seiten, ${DETAIL_LINKS.length} Links, ${new Set(DETAIL_LINKS).size} Anleitungen)`,
+  () =>
+    jedeSeite(Object.keys(DETAIL_ANLEITUNG), (route, r) =>
+      DETAIL_ANLEITUNG[route]
+        .map((ziel) => {
+          if (!sitemapPfade.includes(ziel)) return `${ziel} fehlt in der Sitemap`;
+          return r.text.includes(`href="${ziel}"`) ? "" : `kein Link auf ${ziel}`;
+        })
+        .filter(Boolean)
+        .join(", "),
+    ),
 );
 
 await check("Prompt-Anker live: jedes Phase-9-Ziel mit Anker und Antwort ≤ 300", async () => {
