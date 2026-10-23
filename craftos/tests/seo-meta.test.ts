@@ -70,13 +70,14 @@ describe("metaFor und zielwerte", () => {
     expect(meta.openGraph?.title).toBe("Einen Zeiteintrag nachtragen oder korrigieren");
   });
 
-  it("Titel ohne Markenzusatz rendert als title.absolute (08-04, Entwurfsregel Hilfe)", () => {
+  // 10-05 (D-38): Der Title dieser Hilfeseite trägt seit der Map-Korrektur „ | CraftOS“, damit Title und H1
+  // sich unterscheiden. Eine Hilfeseite ohne Markenzusatz gibt es in der Map seitdem nicht mehr.
+  it("Hilfeseite mit Markenzusatz läuft über das Layout-Template, Title und H1 unterscheiden sich (10-05)", () => {
     const z = zielwerte("/hilfe/mitarbeiter-einladen-lizenz-zuweisen");
-    expect(z.title.endsWith(" | CraftOS")).toBe(false);
+    expect(z.title.endsWith(" | CraftOS")).toBe(true);
+    expect(z.titleOhneMarke).not.toBe(z.h1);
     const meta = metaFor("/hilfe/mitarbeiter-einladen-lizenz-zuweisen");
-    expect(meta.title).toEqual({ absolute: z.title });
-    expect(meta.openGraph?.title).toBe(z.title);
-    expect(meta.twitter?.title).toBe(z.title);
+    expect(meta.title).toBe(z.titleOhneMarke);
     expect(meta.description).toBe(z.description);
     expect(String(meta.alternates?.canonical)).toMatch(/\/hilfe\/mitarbeiter-einladen-lizenz-zuweisen$/);
   });
