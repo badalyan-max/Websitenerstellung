@@ -128,6 +128,7 @@ export function ContentSearch({
         <LinkKarten
           label={kind === "hilfe" ? "Gefundene Anleitungen" : "Gefundene Artikel"}
           surface={surface}
+          ohneMaximum
           items={filtered.map((a) => ({
             href: "/" + kind + "/" + a.slug,
             label: categories[kind][a.category],

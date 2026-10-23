@@ -20,7 +20,7 @@ export interface LinkKarte {
 }
 
 export interface LinkKartenProps {
-  /** 1–60 Einträge. */
+  /** 1–60 Einträge (mit `ohneMaximum` ab 1 ohne Obergrenze). */
   items: LinkKarte[];
   /** aria-label der Liste. */
   label: string;
@@ -28,6 +28,11 @@ export interface LinkKartenProps {
   surface: "white" | "warm";
   /** Spalten ab 1024 px, Standard 3. */
   columns?: 2 | 3;
+  /**
+   * 09-REVIEW LO-04: Suchergebnisse (ContentSearch) sind durch die Zahl veröffentlichter Artikel begrenzt und brauchen
+   * kein festes Maximum; das Minimum von 1 Eintrag gilt weiter. Alle anderen Raster bleiben bei höchstens 60.
+   */
+  ohneMaximum?: boolean;
 }
 
 /**
@@ -36,8 +41,11 @@ export interface LinkKartenProps {
  * ganze Karte gestreckt; kein „Weiterlesen“-Text, keine Pfeilglyphe. Ohne Hooks, ohne Client-Direktive und
  * ohne Server-Import – die Client-Insel ContentSearch rendert dieselbe Komponente. Budgets beim Rendern geprüft.
  */
-export function LinkKarten({ items, label, surface, columns = 3 }: LinkKartenProps) {
-  assertCount("LinkKarten", items.length, TEXT_BUDGET.count.linkKarten, "Einträge");
+export function LinkKarten({ items, label, surface, columns = 3, ohneMaximum = false }: LinkKartenProps) {
+  const range = ohneMaximum
+    ? { min: TEXT_BUDGET.count.linkKarten.min, max: Number.POSITIVE_INFINITY }
+    : TEXT_BUDGET.count.linkKarten;
+  assertCount("LinkKarten", items.length, range, "Einträge");
   for (const item of items) {
     assertTextBudget("linkKarte.title", item.title, TEXT_BUDGET.linkKarte.title);
     if (item.label !== undefined) assertTextBudget("linkKarte.label", item.label, TEXT_BUDGET.linkKarte.label);

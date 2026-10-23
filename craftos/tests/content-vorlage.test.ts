@@ -497,6 +497,24 @@ describe("ContentSearch v2 (09-UI-SPEC § 3, § 5)", () => {
     expect(html).not.toContain("Anleitung öffnen");
   });
 
+  it("Suchergebnisse ohne festes Maximum: 70 Anleitungen rendern, andere Raster bleiben bei 60 (LO-04)", async () => {
+    const viele = Array.from({ length: 70 }, (_, i) => ({ ...EINTRAG, slug: `anleitung-${i + 1}` }));
+    const html = await suche({ kind: "hilfe", items: viele });
+    expect(count(html, 'href="/hilfe/anleitung-')).toBe(70);
+    const { LinkKarten } = await import("@/components/v2/LinkKarten");
+    const { createElement } = await import("react");
+    const karten = viele.slice(0, 61).map((e) => ({ href: `/hilfe/${e.slug}`, title: e.title }));
+    expect(() => renderToString(createElement(LinkKarten, { items: karten, label: "x", surface: "white" }))).toThrow(
+      "LinkKarten: höchstens 60 Einträge",
+    );
+  });
+
+  it("Abstand der realen Hilfe-Suche zum festen Raster-Maximum ist bekannt (LO-04)", async () => {
+    const n = (await getContentList("hilfe")).length;
+    // Die Suche ist seit LO-04 vom Maximum 60 befreit; dieser Wert dokumentiert, wie weit sie heute davon entfernt wäre.
+    expect(n, `Hilfe-Suche: ${n} Anleitungen, Abstand zum Maximum 60: ${60 - n}`).toBeGreaterThan(0);
+  });
+
   it("leerer Zustand Hilfe: h3, Text mit Support-Link, Text-Button „Suche zurücksetzen“", async () => {
     const html = await suche({ kind: "hilfe" });
     expect(html).toMatch(/<h3[^>]*>Keine passende Anleitung gefunden\.<\/h3>/);
