@@ -10,9 +10,10 @@ const { pathToFileURL } = require('node:url')
  * Screenshot-Vergleich nur des Schriftzugs ([data-logo-schriftzug]) im Header und in der Fußleiste bei 1440 und
  * 390 px mit deviceScaleFactor 2 gegen Referenzen, die VOR der Umstellung auf SVG im eigenen Commit entstanden
  * sind (tests/e2e/logo-schriftzug.pw.cjs-snapshots/). Nach der Umstellung ist --update-snapshots verboten.
- * Boxgröße gleich der Referenz ±0,5 px. Netzfall: auf den Lighthouse-Gate-Seiten und /impressum keine Anfrage an
- * Clash 500, Clash 700 oder General 500 (Vergleich per Inhalts-Hash, next/font benennt die Dateien um) und genau
- * drei Schrift-Preloads. Nur Chromium. Läuft lokal gegen next start; externe Requests werden abgebrochen.
+ * Boxgröße gleich der Referenz ±0,5 px. Netzfall: auf den Lighthouse-Gate-Seiten und /impressum lädt die Seite nur
+ * die drei verbliebenen Schnitte Clash 600, General 400 und General 600 (Vergleich per Inhalts-Hash, next/font
+ * benennt die Dateien um) und genau drei Schrift-Preloads. Seit 10-06 (D-42) liegen Clash 500/700 und General 500
+ * nicht mehr im Repo; der Fall prüft deshalb die erlaubten statt der entfallenen Schnitte. Nur Chromium. Läuft lokal gegen next start; externe Requests werden abgebrochen.
  */
 
 // Gemessene Box des Schriftzugs vor der Umstellung (Build vor 10-09 Aufgabe 2, Chromium, `md`).
@@ -21,6 +22,7 @@ const BOX_TOLERANZ = 0.5
 
 const BREITEN = { 'chromium-1440': 1440, 'chromium-390-touch': 390 }
 const ENTFALLENE_SCHNITTE = ['clash-display-500.woff2', 'clash-display-700.woff2', 'general-sans-500.woff2']
+const GELADENE_SCHNITTE = ['clash-display-600.woff2', 'general-sans-400.woff2', 'general-sans-600.woff2']
 const FONT_DIR = path.join(__dirname, '..', '..', 'public', 'fonts')
 
 const sha256 = (buf) => crypto.createHash('sha256').update(buf).digest('hex')
@@ -58,7 +60,8 @@ for (const bereich of ['header', 'footer']) {
 
 test('Netz: keine entfallenen Schnitte, genau drei Schrift-Preloads', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'chromium-1440', 'Netzfall einmal je Lauf')
-  const verboten = new Map(ENTFALLENE_SCHNITTE.map((datei) => [sha256(fs.readFileSync(path.join(FONT_DIR, datei))), datei]))
+  for (const datei of ENTFALLENE_SCHNITTE) expect(fs.existsSync(path.join(FONT_DIR, datei)), `${datei} entfernt (D-42)`).toBe(false)
+  const erlaubt = new Set(GELADENE_SCHNITTE.map((datei) => sha256(fs.readFileSync(path.join(FONT_DIR, datei)))))
   const { GATE_ROUTEN } = await import(pathToFileURL(path.join(__dirname, '..', '..', 'scripts', 'lib', 'lighthouse-core.mjs')).href)
   for (const route of ['/impressum', ...GATE_ROUTEN]) {
     const geladen = []
@@ -66,8 +69,7 @@ test('Netz: keine entfallenen Schnitte, genau drei Schrift-Preloads', async ({ p
     const beiAntwort = (antwort) => {
       if (!/\.woff2(\?|$)/.test(antwort.url())) return
       warten.push(antwort.body().then((body) => {
-        const datei = verboten.get(sha256(body))
-        if (datei) geladen.push(`${datei} (${antwort.url()})`)
+        if (!erlaubt.has(sha256(body))) geladen.push(antwort.url())
       }).catch(() => {}))
     }
     page.on('response', beiAntwort)
@@ -75,7 +77,7 @@ test('Netz: keine entfallenen Schnitte, genau drei Schrift-Preloads', async ({ p
     await page.evaluate(() => document.fonts.ready)
     await Promise.all(warten)
     page.off('response', beiAntwort)
-    expect(geladen, `${route}: entfallene Schnitte angefordert`).toEqual([])
+    expect(geladen, `${route}: andere als die drei geladenen Schnitte angefordert`).toEqual([])
     await expect(page.locator('link[rel="preload"][as="font"]'), `${route}: Schrift-Preloads`).toHaveCount(3)
   }
 })

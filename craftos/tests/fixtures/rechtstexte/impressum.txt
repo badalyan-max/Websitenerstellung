@@ -20,4 +20,4 @@
 [h2] Urheberrecht
 [p] Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
 [h2] Streitschlichtung
-[p] Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: [a href="https://ec.europa.eu/consumers/odr"]https://ec.europa.eu/consumers/odr[/a]. Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+[p] Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.

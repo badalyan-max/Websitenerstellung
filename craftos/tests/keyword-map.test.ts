@@ -438,9 +438,9 @@ describe("Phase 8 – Zielwerte sitewide", () => {
     }
   });
 
-  it("Rechtsseiten: eindeutige Titel, Impressum-Description ohne Paragrafenangabe (D-20, Open Question 5)", () => {
+  it("Rechtsseiten: eindeutige Titel, Impressum-Title verlängert (D-42), Description ohne Paragrafenangabe (D-20)", () => {
     const titel = Object.fromEntries([...LEGAL].map((p) => [p, keywordMap.find((k) => k.path === p)?.target?.title]));
-    expect(titel["/impressum"]).toBe("Impressum | CraftOS");
+    expect(titel["/impressum"]).toBe("Impressum – CraftOS Handwerkersoftware");
     expect(new Set(Object.values(titel)).size).toBe(3);
     expect(keywordMap.find((k) => k.path === "/impressum")?.target?.description).not.toMatch(/§|DDG|TMG/);
   });

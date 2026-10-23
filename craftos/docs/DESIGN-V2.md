@@ -586,7 +586,8 @@ angeschnitten (06-UI-SPEC, Kennzeichnungsleiste an der Bühnenunterkante).
 Grenze-Kachel (D-04); das Inhaltsmodul muss daher eine Kachel als Grenze führen.
 
 **Vermerk Phase 10:** `components/product-demo`, `MobileAppGallery` und die zwei übersprungenen Specs bleiben
-unverändert bis zur Inhaberfreigabe; `FunktionsDetail` importiert `components/product-demo` nicht.
+unverändert bis zur Inhaberfreigabe; `FunktionsDetail` importiert `components/product-demo` nicht. Nachtrag 10-06:
+Mit der Inhaberfreigabe D-42 sind `components/product-demo` und die zwei Specs entfernt (§ 19.9); `MobileAppGallery` bleibt.
 
 ## 17. Phase 8 (Plan 08-01, 22.10.2026)
 
@@ -843,7 +844,7 @@ Verbindlicher Vertrag ist `.planning/phases/10-abschlussaudit/10-UI-SPEC.md` (st
 | `/impressum`, `/datenschutz`, `/agb` | Kopf Warm → Rechtstext Weiß → Fußleiste |
 | 404 | Kopf Warm ohne Brotkrumen → `#einstiege` Weiß (Karten Warm) → Fußleiste |
 
-Rechner-Darstellung (`components/calculators/Calculators.module.css`, 10-UI-SPEC § 1.3): Umbrüche 1024/768 px (Formular und Ergebnis nebeneinander ab 1024 px, Feldpaare und Vergleich zweispaltig ab 768 px), Formular-Panel Weiß mit `#DEDEE3`, Ergebnis-Panel `#F7F3EB` mit `#E7DCC9`, Radius 16, Innenabstand 16/24/32; Felder 48 px, Rahmen `#777782`, Radius 6, Fokusring an `.inputWrap:focus-within`; ungültiges Feld mit 1-px-Rahmen plus `box-shadow: inset 0 0 0 1px #B32F28` ohne Höhenänderung; Reset, Übernahme-Link und Kartenlinks als Sekundärbutton; Legenden fließen (`float`), damit die 1-px-Linie zwischen den Fieldsets sichtbar ist; eigene Fokusregeln entfallen (globale Regel). Rechenlogik, Feldnamen, Beschriftungen, Fehlertexte, `noscript` und JSON-LD sind unverändert. `CalculatorCta` bleibt ungerendert in der Datei (Inhaberliste).
+Rechner-Darstellung (`components/calculators/Calculators.module.css`, 10-UI-SPEC § 1.3): Umbrüche 1024/768 px (Formular und Ergebnis nebeneinander ab 1024 px, Feldpaare und Vergleich zweispaltig ab 768 px), Formular-Panel Weiß mit `#DEDEE3`, Ergebnis-Panel `#F7F3EB` mit `#E7DCC9`, Radius 16, Innenabstand 16/24/32; Felder 48 px, Rahmen `#777782`, Radius 6, Fokusring an `.inputWrap:focus-within`; ungültiges Feld mit 1-px-Rahmen plus `box-shadow: inset 0 0 0 1px #B32F28` ohne Höhenänderung; Reset, Übernahme-Link und Kartenlinks als Sekundärbutton; Legenden fließen (`float`), damit die 1-px-Linie zwischen den Fieldsets sichtbar ist; eigene Fokusregeln entfallen (globale Regel). Rechenlogik, Feldnamen, Beschriftungen, Fehlertexte, `noscript` und JSON-LD sind unverändert. `CalculatorCta` samt `.ctaSection`/`.primaryLink` ist seit 10-06 entfernt (D-42, § 19.9).
 
 ### 19.5 Messwerte (10-10)
 
@@ -868,3 +869,15 @@ Eingetragen von 10-06 nach dem Merge (Nachweise 10-09, Commits `106a83b`, `79e51
 - **Geladene Schnitte:** `app/layout.tsx` lädt nur noch Clash 600 sowie General 400 und 600 (drei Preloads, `display: swap`). Clash 500/700 und General 500 entfallen; ihre Dateien hat 10-06 nach der Inhaberfreigabe D-42 entfernt (§ 19.9).
 - **`inlineCss`:** verworfen, weil der LCP auf allen sechs Gate-Seiten schlechter wurde (+32 bis +755 ms, HTML von `/` rund 750 KB).
 - **Screenshot-Vergleich (§ 7.4):** `tests/e2e/logo-schriftzug.pw.cjs` vergleicht Text gegen SVG mit Graustufen-Glättung (`--disable-lcd-text`, `scale: 'device'`), weil Pfade nie LCD-geglättet werden; die Referenzen sind an `chromium-1243` und Windows gebunden (Suffix `-win32`).
+
+### 19.9 Aufräumen nach Inhaberfreigabe D-42 (10-06)
+
+Entfernt nach Nachweis per Suche (keine Importe, kein Rendern) und Build:
+
+- `components/ui/PageHero.tsx` und das nur noch dort genutzte Muster `components/ui/TrialCta.tsx` (beide seit Phase 10 auf keiner Seite gerendert).
+- `CalculatorCta` in `components/calculators/CalculatorPage.tsx` samt `.ctaSection`/`.primaryLink`.
+- Altklassen in `app/globals.css`: `.section-space`, `.split-section`, `.soft-panel`, `.section-intro`, `.btn-cta`, `.btn-secondary`, `.eyebrow`, `.spec-label` mit ihren Varianten und Media-Regeln. Die v2-Klassen `.v2-eyebrow`, `.v2-btn-cta` bleiben.
+- Schriftdateien `clash-display-500`, `clash-display-700`, `general-sans-500` (seit 10-09 nicht mehr geladen; der Logo-Schriftzug liegt als SVG-Pfad vor).
+- `components/product-demo/**` und `lib/demo/**` samt der nur sie prüfenden Specs `tests/demo.test.ts`, `demo-planning.pw.cjs`, `mobile-step-flow.pw.cjs`, `browser-product-demo.archive.cjs`.
+
+Schutz: `tests/aufraeumen-d42.test.ts` (ersetzt den D-23-Schutztest). Nicht entfernt, weil nicht auf der Freigabeliste: `.craft-page-hero`/`.craft-watermark` (nur von PageHero genutzt), `.dark-section` (Footer) und der Selektorteil `:not([data-product-demo] p)` in `.dark-section p` (Spezifität bleibt gleich).

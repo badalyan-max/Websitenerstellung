@@ -1091,12 +1091,12 @@ describe("Rechnerseiten auf v2 (D-15; 10-UI-SPEC § 1, J6–J8, J12)", () => {
     ]);
   });
 
-  it("Quelle: CalculatorPage nutzt ContentKopf mit Hinweis und Notiz, CalculatorCta bleibt erhalten (Inhaberliste)", () => {
+  it("Quelle: CalculatorPage nutzt ContentKopf mit Hinweis und Notiz, CalculatorCta entfernt (D-42)", () => {
     const src = read("components/calculators/CalculatorPage.tsx");
     expect(src).toContain("ContentKopf");
     expect(src).toContain(RECHNER_HINWEIS);
     expect(src).toContain("data-notiz");
-    expect(count(src, /function CalculatorCta\b/g)).toBe(1);
+    expect(count(src, /CalculatorCta\b/g)).toBe(0);
     for (const datei of ["app/rechner/page.tsx", "app/rechner/stundensatz/page.tsx", "app/rechner/angebotskalkulation/page.tsx"]) {
       expect(read(datei), datei).not.toMatch(/<CalculatorCta\b|PageHero|section-space|btn-cta/);
     }

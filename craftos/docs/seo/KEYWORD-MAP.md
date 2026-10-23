@@ -645,3 +645,11 @@ Das SE-Ranking-Audit 485185 vom 23.10.2026 meldet „Title und H1 identisch“ (
 | `/hilfe/mitarbeiter-einladen-lizenz-zuweisen` | Titel | Mitarbeiter einladen und eine passende Lizenz zuweisen (54, gerendert als `title.absolute`) | Mitarbeiter einladen und Lizenz zuweisen \| CraftOS (50) |
 
 Der neue Titel nutzt nur Wörter des bisherigen Titels und wieder das Layout-Template mit Markenzusatz; damit rendert kein Eintrag mehr `title.absolute`. Die OG-Grafik ist unverändert, weil sie aus der H1 entsteht. Bearbeitet per Node-Skript mit Regelprüfung vor dem Schreiben (Titel ≤ 60, Titel ≠ H1, Titel sitewide eindeutig, kein Hauptkeyword betroffen, Überclaim-Wörter, nur vorhandene Wörter): 0 Fehler. Absicherung: `tests/keyword-map.test.ts`, `seo-audit.mjs --paths=/hilfe/mitarbeiter-einladen-lizenz-zuweisen`. Kein API-Abruf (0 Units).
+
+### 23.10.2026 – Phase 10: längerer Title für /impressum (10-06, Inhaberfreigabe D-42)
+
+| Pfad | Feld | Alt | Neu |
+|---|---|---|---|
+| `/impressum` | Titel | Impressum \| CraftOS (19) | Impressum – CraftOS Handwerkersoftware (37, gerendert als `title.absolute`) |
+
+Der Inhaber hat den kurzen Title am 23.10.2026 zur Verlängerung freigegeben (D-38 Inhaberpunkt, D-42). H1 „Impressum“ und Description bleiben; die Rechtsseite hat weiter kein Keyword (D-07). Der Title endet bewusst nicht auf „ | CraftOS“, damit die Marke nicht doppelt erscheint; `metaFor` rendert ihn deshalb als `title.absolute`.

@@ -128,24 +128,3 @@ export function CalculatorNotiz() {
     </p>
   );
 }
-
-/**
- * Frühere CTA-Aside der Rechner. Seit Phase 10 nicht mehr gerendert (CtaBand + CalculatorNotiz); bleibt bis zur
- * Inhaberfreigabe erhalten (10-UI-SPEC § 12, Inhaberliste „Freigabe zum Entfernen nötig“).
- */
-export function CalculatorCta() {
-  return (
-    <aside className={styles.ctaSection} aria-labelledby="calculator-cta-title">
-      <div>
-        <h2 id="calculator-cta-title">Von der Kalkulation zum Angebot.</h2>
-        <p>
-          Lernen Sie die Angebotsfunktionen von CraftOS kennen und bringen Sie
-          Ihre Aufträge ins System.
-        </p>
-      </div>
-      <Link href="/funktionen/angebote" className={styles.primaryLink}>
-        Angebotsfunktionen ansehen
-      </Link>
-    </aside>
-  );
-}

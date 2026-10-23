@@ -48,7 +48,7 @@
   --spacing-section: 96px;     /* ≥ 1024 px – Ausnahme „Abschnittsabstand Desktop“ */
   --spacing-section-md: 64px;  /* 768–1023 px */
   --spacing-section-sm: 48px;  /* < 768 px */
-  /* Warme Kachelkante (bisher nur als Literal in .soft-panel) */
+  /* Warme Kachelkante */
   --color-line-warm: #e7dcc9;
 }
 :root {
@@ -119,9 +119,6 @@ img {
   width: min(1280px, calc(100% - 64px));
   margin-inline: auto;
 }
-.section-space {
-  padding-block: 96px;
-}
 .dark-section {
   background: #101014;
   color: #f4f4f5;
@@ -129,72 +126,13 @@ img {
 .dark-section p:not([data-product-demo] p):not([data-feature-snippet] p) {
   color: #bcbcc6;
 }
-.eyebrow,
-.spec-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: #895509;
-  margin-bottom: 18px;
-}
-.dark-section .eyebrow {
-  color: #f2af38;
-}
-.eyebrow::before {
-  content: "";
-  width: 22px;
-  height: 2px;
-  background: currentColor;
-}
 .section-title {
   font-size: clamp(32px, 4vw, 56px);
   font-weight: 600;
   max-width: 800px;
   margin: 0;
 }
-.section-intro {
-  font-size: 18px;
-  color: #62626e;
-  max-width: 660px;
-  margin-top: 22px;
-}
-.btn-cta,
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  min-height: 48px;
-  padding: 13px 22px;
-  border-radius: 9px;
-  font-weight: 600;
-  font-size: 15px;
-  text-decoration: none;
-}
-.btn-cta {
-  background: #f2af38;
-  color: #17171c;
-  border: 1px solid #f2af38;
-}
-.btn-cta:hover {
-  background: #ffc04b;
-  border-color: #ffc04b;
-}
-.btn-secondary {
-  background: transparent;
-  color: inherit;
-  border: 1px solid #b8b8c2;
-}
-.btn-secondary:hover {
-  border-color: #99600b;
-}
-.dark-section .btn-secondary {
-  border-color: #575762;
-}
-/* Designsystem v2: eigene Klassen, erben nichts von .eyebrow/.btn-cta (UI-SPEC Typography). */
+/* Designsystem v2: eigene Klassen (UI-SPEC Typography); die Altklassen sind seit 10-06 (D-42) entfernt. */
 .v2-eyebrow {
   display: inline-flex;
   align-items: center;
@@ -254,12 +192,6 @@ img {
 .text-link:hover {
   color: #99600b;
 }
-.split-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 72px;
-  align-items: center;
-}
 .rule-list {
   list-style: none;
   padding: 0;
@@ -278,11 +210,6 @@ img {
   margin-top: 3px;
   width: 20px;
   height: 20px;
-}
-.soft-panel {
-  padding: 32px;
-  background: #f4f4f5;
-  border-radius: 16px;
 }
 .notice {
   border-left: 3px solid #f2af38;
@@ -693,30 +620,9 @@ img {
 .skip-link:focus {
   top: 12px;
 }
-@media (max-width: 1023px) {
-  .split-section {
-    gap: 40px;
-  }
-  .section-space {
-    padding-block: 72px;
-  }
-}
 @media (max-width: 767px) {
   .site-container {
     width: calc(100% - 36px);
-  }
-  .section-space {
-    padding-block: 56px;
-  }
-  .split-section {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .section-intro {
-    font-size: 17px;
-  }
-  .soft-panel {
-    padding: 24px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -756,9 +662,6 @@ h4 {
   --color-ink-100: #f7f3eb;
   --color-primary-50: #fff4d9;
 }
-.section-space {
-  padding-block: 72px;
-}
 .craft-page-hero {
   position: relative;
   isolation: isolate;
@@ -776,38 +679,7 @@ h4 {
   z-index: -1;
   pointer-events: none;
 }
-.dark-section .eyebrow {
-  font-size: 13px;
-  background: #f2af3814;
-  border: 1px solid #f2af3838;
-  border-radius: 6px;
-  padding: 7px 11px;
-  letter-spacing: 0.025em;
-}
-.dark-section .eyebrow::before {
-  width: 6px;
-  height: 6px;
-  border-radius: 1px;
-}
-.btn-cta {
-  background: linear-gradient(135deg, #ffc44e, #f2af38);
-  box-shadow: 0 2px 0 #ba7b16;
-  transition:
-    transform 0.18s,
-    box-shadow 0.18s,
-    background 0.18s;
-}
-.btn-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px #f2af3830;
-}
-.soft-panel {
-  border: 1px solid #e7dcc9;
-}
 @media (max-width: 767px) {
-  .section-space {
-    padding-block: 44px;
-  }
   .craft-watermark {
     right: -120px;
     opacity: 0.07;
