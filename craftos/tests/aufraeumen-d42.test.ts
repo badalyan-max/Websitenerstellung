@@ -22,14 +22,27 @@ export const DEMO_IMPORT = /(?:\bfrom\s*|\bimport\s*\(?\s*)["'][^"']*(?:componen
 
 const ALTKLASSEN = ["section-space", "split-section", "soft-panel", "section-intro", "btn-cta", "btn-secondary", "eyebrow", "spec-label"];
 
-function quelldateien(dir: string): string[] {
+function quelldateien(dir: string, endungen = /\.(tsx?|mjs|cjs|js)$/): string[] {
   const out: string[] = [];
   for (const e of fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true })) {
     const rel = path.posix.join(dir, e.name);
-    if (e.isDirectory()) out.push(...quelldateien(rel));
-    else if (/\.(tsx?|mjs|cjs|js)$/.test(e.name)) out.push(rel);
+    if (e.isDirectory()) out.push(...quelldateien(rel, endungen));
+    else if (endungen.test(e.name)) out.push(rel);
   }
   return out;
+}
+
+/**
+ * Altklassen als eigenständiges Token in einem String-Literal oder class-Attribut (LO-08): erfasst neben
+ * `className="…"` auch `cn("…", x)`, `clsx(…)`, Bedingungen (`a ? "btn-cta" : ""`) und HTML in Markdown.
+ */
+export function altklassenIn(src: string): string[] {
+  const treffer = new Set<string>();
+  // Kommentare zählen nicht (z. B. `eyebrow` als Budgetname in einem JSDoc-Block).
+  const code = src.replace(/\/\*[\s\S]*?\*\//g, " ").replace(/^\s*\/\/.*$/gm, " ");
+  for (const m of code.matchAll(/(["'`])((?:(?!\1)[^\n])*)\1/g))
+    for (const k of ALTKLASSEN) if (m[2].split(/\s+/).includes(k)) treffer.add(k);
+  return [...treffer];
 }
 
 describe("D-42: entfernter Code bleibt entfernt", () => {
@@ -51,15 +64,20 @@ describe("D-42: entfernter Code bleibt entfernt", () => {
     expect(css).toMatch(/\.v2-btn-cta\s*\{/);
   });
 
-  it("keine Datei unter app/, components/ oder lib/ nutzt eine Altklasse", () => {
+  it("das Altklassen-Muster erkennt Klassen in cn/clsx, Bedingungen und Markdown-HTML, aber keine v2-Klassen (LO-08)", () => {
+    expect(altklassenIn('<div className={cn("section-space", x)} />')).toEqual(["section-space"]);
+    expect(altklassenIn("<a className={clsx('btn-cta px-4', aktiv && 'eyebrow')} />").sort()).toEqual(["btn-cta", "eyebrow"]);
+    expect(altklassenIn('<p className={offen ? "soft-panel" : ""} />')).toEqual(["soft-panel"]);
+    expect(altklassenIn('<span class="spec-label">x</span>')).toEqual(["spec-label"]);
+    expect(altklassenIn('<a className="v2-btn-cta v2-eyebrow" />')).toEqual([]);
+    expect(altklassenIn('const eyebrow = "GoBD";')).toEqual([]);
+    expect(altklassenIn('/** `eyebrow` gilt für den Kopf */\n// "btn-cta" entfernt')).toEqual([]);
+  });
+
+  it("keine Datei unter app/, components/, lib/ oder content/ nutzt eine Altklasse", () => {
     const treffer: string[] = [];
-    for (const rel of ["app", "components", "lib"].flatMap(quelldateien)) {
-      const src = lies(rel);
-      for (const m of src.matchAll(/className=(?:"([^"]*)"|\{`([^`]*)`\})/g)) {
-        const klassen = (m[1] ?? m[2]).split(/\s+/);
-        for (const k of ALTKLASSEN) if (klassen.includes(k)) treffer.push(`${rel}: ${k}`);
-      }
-    }
+    const dateien = [...["app", "components", "lib"].flatMap((d) => quelldateien(d)), ...quelldateien("content", /\.(mdx?|html)$/)];
+    for (const rel of dateien) for (const k of altklassenIn(lies(rel))) treffer.push(`${rel}: ${k}`);
     expect(treffer).toEqual([]);
   });
 
@@ -83,7 +101,7 @@ describe("D-42: entfernter Code bleibt entfernt", () => {
 
   it("keine Quelldatei in app/, components/, lib/, scripts/ oder tests/ importiert die entfernte Demo", () => {
     const treffer: string[] = [];
-    for (const rel of ["app", "components", "lib", "scripts", "tests"].flatMap(quelldateien)) {
+    for (const rel of ["app", "components", "lib", "scripts", "tests"].flatMap((d) => quelldateien(d))) {
       if (rel === "tests/aufraeumen-d42.test.ts") continue;
       lies(rel)
         .split(/\r?\n/)
