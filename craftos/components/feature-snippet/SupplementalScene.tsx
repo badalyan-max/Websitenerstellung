@@ -1,4 +1,4 @@
-import { ArrowUp, Check, CheckCheck, ChevronRight, Clock3, FileText, FolderOpen, PenLine, Plus, Sparkles } from "lucide-react";
+import { ArrowUp, Check, CheckCheck, ChevronRight, FileText, FolderOpen, Mic, PenLine, Plus, Sparkles } from "lucide-react";
 import { defaultOfferPositions, offerPositionCents, type SnippetExample } from "@/lib/snippet-examples";
 import { DeviceBridge, PhoneFrame, WebFrame } from "./DeviceFrame";
 import s from "./SupplementalScene.module.css";
@@ -99,26 +99,28 @@ export function SupplementalScene({ variant, stage, phase, example }: Props) {
 
   return <DeviceBridge stage={stage} phase={phase} mobileFirst focusPlatform={phase >= 3 ? "web" : "mobile"}
     captions={[
-      "Auf der Baustelle wird die Arbeitszeit zum Projekt gespeichert.",
-      "3,5 Stunden sind in der Zeiterfassung hinterlegt.",
-      "Im Büro fragt Craft AI die erfassten Zeiten ab.",
-      "Die Antwort zeigt den gespeicherten Eintrag mit Projekt und Zeitraum.",
+      "Auf der Baustelle wird der Bericht zum Projekt diktiert.",
+      "Der Bericht mit 42 m² Wandanstrich ist gespeichert.",
+      "Im Büro bereitet der Angebotschat einen Angebotsentwurf vor.",
+      "Nach Ihrer Prüfung steht die Position im Angebot.",
     ]}
-    phone={<PhoneFrame title="Zeiterfassung" active="Zeiten">
+    // Hotfix 23.10.2026: belegte KI-Funktionen auf Anforderung – Diktieren im Bericht (Mobile, ReportDictationField)
+    // und Angebotschat im Angebotseditor (Web, OfferAiWorkspace: „KI-Angebot“, „Angebotsentwurf“, „Preis prüfen“).
+    phone={<PhoneFrame title="Bericht">
       <Project name={project} />
-      <div className={s.timeEntry}><span className={s.eyebrow}>Heute · 16. September</span><Clock3 size={23} /><strong>3,5 <small>Stunden</small></strong><span>09:00–12:30</span><p>Wandanstrich</p></div>
-      <span className={s.mobileAction} data-cursor-target="first" data-ready={stage >= 1}>{stage >= 1 ? <CheckCheck size={13} /> : <Check size={13} />}{stage >= 1 ? "Zeit gespeichert" : "Zeit speichern"}</span>
-      <p className={s.mobileNote}>Arbeitszeit dem Projekt zugeordnet.</p>
+      <div className={s.timeEntry}><span className={s.eyebrow}>Bericht · 16. September</span><Mic size={23} /><strong>42 <small>m²</small></strong><span>Wohnzimmer, zwei Anstriche</span><p>Wandanstrich</p></div>
+      <span className={s.mobileAction} data-cursor-target="first" data-ready={stage >= 1}>{stage >= 1 ? <CheckCheck size={13} /> : <Mic size={13} />}{stage >= 1 ? "Bericht gespeichert" : "Diktieren"}</span>
+      <p className={s.mobileNote}>Diktierter Text, vor dem Speichern geprüft.</p>
     </PhoneFrame>}
-    web={<WebFrame title="Craft AI"><div className={s.aiPanel}>
-      <div className={s.aiLabel}><Sparkles size={15} /><span>Betriebsdaten abfragen</span></div>
-      <div className={s.question}><p>Welche Zeiten wurden heute erfasst?</p><span className={s.send} data-cursor-target="second" data-ready={stage >= 2} aria-label="Anfrage senden"><ArrowUp size={16} /></span></div>
-      <div className={s.answer} data-ready={stage >= 2}><span className={s.aiMark}><Sparkles size={14} />Craft AI</span><p>{stage >= 2 ? `3,5 Stunden für ${project}.` : "Die Antwort erscheint nach der Anfrage."}</p></div>
+    web={<WebFrame title="Angebotschat"><div className={s.aiPanel}>
+      <div className={s.aiLabel}><Sparkles size={15} /><span>KI-Angebot</span></div>
+      <div className={s.question}><p>Wandanstrich laut Bericht, 42 m², zwei Anstriche.</p><span className={s.send} data-cursor-target="second" data-ready={stage >= 2} aria-label="Nachricht senden"><ArrowUp size={16} /></span></div>
+      <div className={s.answer} data-ready={stage >= 2}><span className={s.aiMark}><Sparkles size={14} />Angebotsentwurf</span><p>{stage >= 2 ? "1 Position: Wandanstrich, 42 m²." : "Der Entwurf erscheint hier."}</p></div>
       <div className={s.source} data-cursor-target="third" data-ready={stage >= 3}>
-        <div><Clock3 size={14} /><strong>Erfasste Zeiten</strong><ChevronRight size={13} /></div>
-        <div className={s.sourceDetails} data-visible={stage >= 3}><span>{project}</span><strong>09:00–12:30 · 3,5 h</strong><small>Wandanstrich</small></div>
+        <div><FileText size={14} /><strong>Ins Angebot übernehmen</strong><ChevronRight size={13} /></div>
+        <div className={s.sourceDetails} data-visible={stage >= 3}><span>{project}</span><strong>Wandanstrich · 42 m²</strong><small>Preis prüfen</small></div>
       </div>
-      <p className={s.webNote}>{stage >= 2 ? "Daten abgefragt. Keine Änderungen vorgenommen." : "Craft AI nutzt die gespeicherten Betriebsdaten."}</p>
+      <p className={s.webNote}>{stage >= 3 ? "Steht im Angebot. Sie haben den Entwurf geprüft." : "Sie prüfen den Entwurf vor der Übernahme."}</p>
     </div></WebFrame>}
   />;
 }

@@ -145,9 +145,10 @@ export const produktfakten: FactListItem[] = [
       "Mobile Unterschriften in Berichten, Abnahmen und unterstützten Kundendokumenten werden mit Ort und Zeitpunkt gespeichert. Dafür braucht die App eine Standortfreigabe.",
   },
   {
+    // Hotfix 23.10.2026: KI-Funktionen auf Anforderung, Belege in lib/seiten/craft-ai.ts (Kopfkommentar).
     term: "KI",
     definition:
-      "Craft AI macht Vorschläge und bereitet unterstützte Entwürfe vor; Sie prüfen und bestätigen jede Übernahme.",
+      "Craft AI umfasst KI-Funktionen auf Anforderung: Angebotsentwurf im Angebotschat, Belegscan, Diktat in Berichten und Foto-Erkennung im Lager. Sie prüfen und bestätigen jede Übernahme.",
   },
   {
     // Inhabervorgabe 22.10.2026: nur Unterstütztes nennen, keine Negativlisten; Beleg lib/funktionen.ts (gaeb).

@@ -3,8 +3,20 @@
  * lib/site.ts; keine Preis- oder Credit-Literale. Wortregeln (T-08-32): Craft AI bereitet Entwürfe vor, die Sie
  * prüfen und bestätigen. Inhaber 22.10.2026: nur Unterstütztes nennen – die Zuständigkeit steht positiv („Sie prüfen
  * und bestätigen“), ohne Verneinungen. Prüfung: tests/kernseiten.test.ts, tests/design-v2-budgets.test.ts.
+ *
+ * Hotfix 23.10.2026: Craft AI = KI-Funktionen auf Anforderung in einzelnen Bereichen, je am Release belegt:
+ * - Angebotschat (Web): src/components/ai-agent/OfferAiWorkspace.tsx („KI-Angebot“, „Angebotschat öffnen“),
+ *   OfferAiDraftPreview.tsx („Angebotsentwurf“), OfferAiConversation.tsx („Ins Angebot übernehmen“); Reiter „KI“ im
+ *   Angebotseditor (DocumentEditor/DocumentToolbox.tsx), freigegeben über useAiGate('offer').
+ * - Belegscan (Mobile): src/shared/i18n/locales/de/invoices.json „Beleg scannen“, „Beleg wird per KI ausgelesen…“.
+ * - Diktieren in Berichten (Mobile): features/construction-reports/components/ReportDictationField.tsx,
+ *   locales/de/construction.json voice.start „Diktieren“.
+ * - Foto-Erkennung im Lager (Mobile): features/inventory/screens/InventoryDraftScreen.tsx, locales/de/common.json
+ *   inventory.recognize „Foto mit KI erkennen“.
+ * - Freigabe zentral und je Person: Web src/lib/ai/aiFeatures.ts (KiSettings, MemberAiDialog).
+ * Prüfung zusätzlich: tests/nur-unterstuetzt.test.ts (Hotfix 23.10.2026).
  */
-import { KeyRound, ListChecks, Scale } from "lucide-react";
+import { ListChecks, Scale, ToggleRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { KeyFact } from "@/components/v2/KeyFacts";
 import type { Step } from "@/components/v2/StepFlow";
@@ -30,7 +42,7 @@ export const CRAFT_AI_SURFACES: Readonly<Record<CraftAiSectionId, "dark" | "whit
 export const craftAiKopf = {
   eyebrow: "Craft AI",
   kopfwort: "Handwerk:",
-  lead: "Fragen zu Projekten, Rechnungen und Zeiten stellen, Entwürfe vorbereiten lassen und selbst prüfen.",
+  lead: "KI-Funktionen auf Anforderung: Angebotsentwurf, Belegscan, Diktat in Berichten und Foto-Erkennung im Lager.",
   secondary: { label: "Anleitung in der Hilfe", href: "/hilfe/ki-entwurf-pruefen-uebernehmen" },
 } as const;
 
@@ -44,7 +56,7 @@ const euroGanz = (value: number) =>
 export const craftAiSections: Record<Exclude<CraftAiSectionId, "kopf" | "cta">, { title: string; lead: string }> = {
   "so-arbeitet-craft-ai": {
     title: "Wie arbeitet Craft AI?",
-    lead: "Sie stellen eine Frage per Text oder Sprache, Craft AI antwortet aus den Betriebsdaten, auf die Ihre Rolle Zugriff hat, und bereitet unterstützte Entwürfe vor, die Sie prüfen und bestätigen.",
+    lead: "Craft AI arbeitet dort, wo Sie es anfordern: im Angebotschat des Angebotseditors, beim Belegscan, beim Diktieren in Berichten und bei der Foto-Erkennung im Lager. Sie prüfen und bestätigen jede Übernahme.",
   },
   kosten: {
     title: "Was kostet Craft AI?",
@@ -56,13 +68,13 @@ export const craftAiSections: Record<Exclude<CraftAiSectionId, "kopf" | "cta">, 
   },
   faq: {
     title: "Häufige Fragen zu Craft AI",
-    lead: "Kurze Antworten zu Entwürfen, Daten und Sprache.",
+    lead: "Kurze Antworten zu Angebotschat, Belegscan, Diktat und Foto-Erkennung.",
   },
 };
 
 export const craftAiSteps: Step[] = [
-  { title: "Frage stellen", text: "Betriebsdaten per Text oder Sprache abfragen, im Rahmen Ihrer Rechte." },
-  { title: "Entwurf erhalten", text: "Angebots-, Zeit-, Einsatz- oder Berichtsentwürfe als Ausgangspunkt nutzen." },
+  { title: "KI anfordern", text: "Im Angebotschat, beim Belegscan, im Bericht oder im Lager die KI starten." },
+  { title: "Vorschlag erhalten", text: "Angebotsentwurf, Belegangaben, diktierter Text oder Artikelvorschlag erscheinen." },
   { title: "Prüfen und bestätigen", text: "Inhalt und Zuordnung kontrollieren; erst Ihre Bestätigung übernimmt." },
 ];
 
@@ -72,7 +84,7 @@ export const craftAiKeyFacts: { facts: KeyFact[]; note: string } = {
     { value: euro(creditWertEuro), label: "Wert eines Credits", source: "site:creditWertEuro" },
     { value: `ab ${euroGanz(kleinstesPaket)}`, label: "Credit-Paket, netto", source: "site:creditPakete" },
   ],
-  note: `KI-Belegscans werden ebenfalls über Credits abgerechnet; die strukturierte Verarbeitung von E-Rechnungen ist davon getrennt. Stand ${germanDate(site.checkedAt)}.`,
+  note: `KI-Belegscans werden über Credits abgerechnet; die strukturierte Verarbeitung von E-Rechnungen ist davon getrennt. Stand ${germanDate(site.checkedAt)}.`,
 };
 
 /**
@@ -94,9 +106,9 @@ export const craftAiGrenzen: { title: string; text: string; icon: LucideIcon; si
     size: "md",
   },
   {
-    title: "Zugriff nach Rolle",
-    text: "Antworten richten sich nach den Daten, auf die Ihre Rolle Zugriff hat.",
-    icon: KeyRound,
+    title: "Freigabe im Betrieb",
+    text: "Ihr Betrieb gibt KI-Funktionen zentral und je Person frei.",
+    icon: ToggleRight,
     size: "md",
   },
 ];
@@ -104,15 +116,15 @@ export const craftAiGrenzen: { title: string; text: string; icon: LucideIcon; si
 export const craftAiFaq: { q: string; a: string }[] = [
   {
     q: "Kann Craft AI Angebote erstellen?",
-    a: "Craft AI bereitet unterstützte Angebotsentwürfe vor; Sie prüfen Positionen, Mengen und Preise und übernehmen den Entwurf erst nach Ihrer Bestätigung.",
+    a: "Im Angebotseditor öffnen Sie im Reiter „KI“ den Angebotschat. Er bereitet einen Angebotsentwurf vor; Sie prüfen Positionen, Mengen und Preise und übernehmen ihn mit „Ins Angebot übernehmen“.",
   },
   {
-    q: "Welche Daten nutzt Craft AI?",
-    a: "Craft AI nutzt die Betriebsdaten in CraftOS, auf die Ihre Rolle Zugriff hat, etwa Projekte, Rechnungen und Zeiten.",
+    q: "Welche KI-Funktionen umfasst Craft AI?",
+    a: "Craft AI umfasst den Angebotschat im Angebotseditor, den Belegscan für Eingangsrechnungen, das Diktieren in Berichten und die Foto-Erkennung im Lager der Mobile-App.",
   },
   {
     q: "Kann ich Craft AI per Sprache nutzen?",
-    a: "Ja. Fragen stellen Sie per Text oder per Sprache.",
+    a: "Ja. In Berichten tippen Sie auf „Diktieren“; der Text erscheint im Feld, und Sie prüfen ihn vor dem Speichern.",
   },
 ];
 
