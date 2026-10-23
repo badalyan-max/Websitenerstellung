@@ -1,0 +1,81 @@
+{
+  "quelle": "Vercel Observability Metrics über die Vercel-CLI 65.2.0 (`vercel metrics vercel.analytics.event.count`), Web Analytics Custom Events",
+  "plan": "10-11",
+  "team": "craft-os (team_km6VwPpOZSRGFCMXdm74cpHm)",
+  "projekt": "craftos (prj_Vk35IwxD0U3Qtoez5a0OaKhRdlN4)",
+  "umgebung": "production",
+  "abfrage": "npx -y vercel@latest --scope team_km6VwPpOZSRGFCMXdm74cpHm metrics vercel.analytics.event.count --aggregation count --group-by eventName -p prj_Vk35IwxD0U3Qtoez5a0OaKhRdlN4 -e production --since <Push-Zeit UTC> --until <Push-Zeit + 24 h> --granularity 5m --limit 20 --json",
+  "abfragezeitpunkt": "2026-10-23T11:36:22Z",
+  "raster": "Die API liefert für 24-Stunden-Fenster Stundenwerte (granularity {\"hours\":1}) und erweitert Start und Ende auf volle Stunden bzw. Tage. Gezählt sind deshalb die Stundenwerte ab der vollen Stunde der Push-Zeit bis 24 Stunden danach; Ereignisse aus den Minuten vor dem Push innerhalb dieser Stunde sind enthalten.",
+  "besucher": "Die Aggregation `unique` (Besucher) lehnte die API für diese Abfragen mit „invalid_request“ ab; Besucherzahlen liegen nur für die Sammelabfrage in 2026-10-23-vercel-events-phase10.json vor.",
+  "etappen": [
+    {
+      "etappe": "05",
+      "pushZeit": "nicht dokumentiert in PHASE-05-ROLLOUT.md; Fensterbeginn = Erstellung des Production-Deployments 2026-10-21 01:43:47 MESZ (2026-10-20T23:43:47Z, § 4)",
+      "fensterUtc": ["2026-10-20T23:00:00Z", "2026-10-21T23:00:00Z"],
+      "vollstaendig": true,
+      "ereignisse": { "trial_click": 2, "login_click": 2, "store_click": 1, "ai_visit": 0 }
+    },
+    {
+      "etappe": "06",
+      "pushZeit": "2026-10-21 16:55:55 MESZ (2026-10-21T14:55:55Z, PHASE-06-ROLLOUT.md § 4)",
+      "fensterUtc": ["2026-10-21T14:00:00Z", "2026-10-22T14:00:00Z"],
+      "vollstaendig": true,
+      "ereignisse": { "trial_click": 1, "login_click": 1, "store_click": 1, "ai_visit": 0 }
+    },
+    {
+      "etappe": "07",
+      "pushZeit": "2026-10-22 14:05:33 MESZ (2026-10-22T12:05:33Z, PHASE-07-ROLLOUT.md § 4)",
+      "fensterUtc": ["2026-10-22T12:00:00Z", "2026-10-23T12:00:00Z"],
+      "vollstaendig": false,
+      "hinweis": "Fenster bei der Abfrage zu rund 98 % verstrichen (Abfrage 11:36 UTC, Fensterende 12:00 UTC)",
+      "ereignisse": { "trial_click": 4, "login_click": 2, "store_click": 1, "ai_visit": 0 }
+    },
+    {
+      "etappe": "08",
+      "pushZeit": "2026-10-23 01:10:42 MESZ (2026-10-22T23:10:42Z, PHASE-08-ROLLOUT.md § 4)",
+      "fensterUtc": ["2026-10-22T23:00:00Z", "2026-10-23T23:00:00Z"],
+      "vollstaendig": false,
+      "hinweis": "Fenster bei der Abfrage zu rund 53 % verstrichen; Endwert als Nachtrag nach 2026-10-23T23:00Z",
+      "ereignisse": { "trial_click": 1, "login_click": 2, "ai_visit": 0 }
+    },
+    {
+      "etappe": "09",
+      "pushZeit": "2026-10-23 09:25:21 MESZ (2026-10-23T07:25:21Z, PHASE-09-ROLLOUT.md § 4)",
+      "fensterUtc": ["2026-10-23T07:00:00Z", "2026-10-24T07:00:00Z"],
+      "vollstaendig": false,
+      "hinweis": "Fenster bei der Abfrage zu rund 19 % verstrichen; Endwert als Nachtrag nach 2026-10-24T07:00Z",
+      "ereignisse": { "trial_click": 1, "login_click": 2, "ai_visit": 0 }
+    }
+  ],
+  "hinweisUeberlappung": "Die Fenster der Etappen 07, 08 und 09 überlappen sich (drei Pushes innerhalb von 20 Stunden); dieselben Ereignisse zählen deshalb in mehreren Fenstern. Die Fensterzahlen sind nicht addierbar.",
+  "sammelabfrage": {
+    "zeitraumUtc": ["2026-10-15T00:00:00Z", "2026-10-24T00:00:00Z"],
+    "abfragezeitpunkt": "2026-10-23T11:36:22Z",
+    "ereignisse": { "registration_click": 11, "login_click": 7, "trial_click": 6, "store_click": 4, "calculator_use": 1, "ai_visit": 0 },
+    "vergleich": "Die frühere Sammelabfrage über das Vercel-MCP (2026-10-23-vercel-events-phase10.json) zählte trial_click 5 und login_click 6; die Differenz sind Ereignisse nach jener Abfrage."
+  },
+  "aiVisitGezielt": {
+    "abfrage": "--aggregation count --filter 'eventName:ai_visit' --since 2026-10-15T00:00:00Z --until 2026-10-24T00:00:00Z --granularity 1d",
+    "abfragezeitpunkt": "2026-10-23T11:37:40Z",
+    "filter": "(eventName:ai_visit) AND (environment:production)",
+    "ergebnis": "summary leer, 0 Ereignisse"
+  },
+  "seitenaufrufeNachHerkunft": {
+    "abfrage": "vercel.analytics.page_view.count --aggregation count --group-by referrerHostname bzw. utmSource --since 2026-10-15T00:00:00Z --until 2026-10-24T00:00:00Z --granularity 1d --limit 30",
+    "abfragezeitpunkt": "2026-10-23T11:38:52Z",
+    "seitenaufrufe": 294,
+    "referrerHostname": { "(leer)": 245, "google.com": 36, "l.instagram.com": 5, "l.facebook.com": 2, "vercel.com": 2, "bing.com": 1, "ecosia.org": 1, "facebook.com": 1, "google.de": 1 },
+    "utmSource": { "(leer)": 294 },
+    "befund": "Kein Seitenaufruf mit Referrer chatgpt.com, chat.openai.com, perplexity.ai, copilot.microsoft.com, gemini.google.com oder claude.ai und keiner mit utm_source; die Auslösebedingung von ai_visit (lib/tracking.ts detectAiSource) trat im Zeitraum nicht ein."
+  },
+  "verdrahtung": {
+    "geprueft": "2026-10-23T11:38:39Z",
+    "code": "components/Analytics.tsx ruft track(\"ai_visit\", { source }) einmal je Sitzung auf, wenn lib/tracking.ts detectAiSource(document.referrer, location.search) eine KI-Quelle erkennt; trial_click/login_click über classifyAppLink bei Klicks auf app.craftos.eu.",
+    "live": {
+      "startseite": "https://craftos.eu/ HTTP 200, 3 Links mit data-track=\"trial\", 1 Link mit data-track=\"login\"",
+      "insightsSkript": "https://craftos.eu/_vercel/insights/script.js HTTP 200 (application/javascript); die Komponente <Analytics /> aus @vercel/analytics/next bindet das Skript clientseitig ein, deshalb steht es nicht im ausgelieferten HTML",
+      "ereignisseKommenAn": "trial_click, login_click, store_click und calculator_use werden in Production gezählt (siehe Sammelabfrage)"
+    }
+  }
+}

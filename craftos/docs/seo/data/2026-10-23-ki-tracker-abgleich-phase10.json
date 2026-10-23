@@ -1,0 +1,793 @@
+{
+  "quelle": "SE Ranking MCP (Project API, AI Result Tracker), Projekt 13094375, Prompt-Gruppe 94132; Skript im Scratchpad (10-05 Aufgabe 2, D-39); nur Project-Abrufe und DATA_getSubscription, 0 Units",
+  "zeitraum": {
+    "vorher": "2026-10-23T11:03:25.142Z",
+    "nachher": "2026-10-23T11:05:11.641Z"
+  },
+  "regeln": [
+    "Nichts gelöscht: keine Keywords, Wettbewerber, Prompts oder Engines entfernt (Löschregel se-ranking-sync.mjs).",
+    "Neue Prompts nur aus der vorhandenen ChatGPT-Prompt-Liste des Projekts (16 Prompts, identisch mit docs/seo/ai-prompts-targets.json, engine chatgpt), Reihenfolge der Liste; bei Limitablehnung einmal die ersten 2, dann Stopp (nichts erzwingen)."
+  ],
+  "werkzeuge": {
+    "hinweis": "Tool-Liste des MCP-Servers (236 Tools) nach LLM/Prompt gefiltert; es gibt kein Tool, das eine Prüfung einer Engine anstößt (nur Engine anlegen/ändern/löschen, Prompts hinzufügen/löschen/verschieben, Status/Statistik lesen).",
+    "llm_prompt_tools": [
+      {
+        "name": "DATA_getAiSearchPromptsByBrand",
+        "readOnly": true
+      },
+      {
+        "name": "DATA_getAiSearchPromptsByTarget",
+        "readOnly": true
+      },
+      {
+        "name": "PROJECT_addPrompts",
+        "readOnly": false
+      },
+      {
+        "name": "PROJECT_changePromptGroupOrder",
+        "readOnly": false
+      },
+      {
+        "name": "PROJECT_createLlmEngine",
+        "readOnly": false
+      },
+      {
+        "name": "PROJECT_createPromptGroup",
+        "readOnly": false
+      },
+      {
+        "name": "PROJECT_deleteAllPromptsInGroup",
+        "readOnly": false
+      },
+      {
+        "name": "PROJECT_deleteLlmEngine",
+        "readOnly": false
+      },
+      {
+        "name": "PROJECT_deletePromptGroup",
+        "readOnly": false
+      },
+      {
+        "name": "PROJECT_deletePrompts",
+        "readOnly": false
+      },
+      {
+        "name": "PROJECT_getAirtCompetitorDates",
+        "readOnly": true
+      },
+      {
+        "name": "PROJECT_getAirtCompetitors",
+        "readOnly": true
+      },
+      {
+        "name": "PROJECT_getAirtCompetitorSourceMetrics",
+        "readOnly": true
+      },
+      {
+        "name": "PROJECT_getAirtSourcesRecommendations",
+        "readOnly": true
+      },
+      {
+        "name": "PROJECT_getAirtSourcesSummary",
+        "readOnly": true
+      },
+      {
+        "name": "PROJECT_getLlmEngine",
+        "readOnly": true
+      },
+      {
+        "name": "PROJECT_getLlmStatistics",
+        "readOnly": true
+      },
+      {
+        "name": "PROJECT_getLlmStatus",
+        "readOnly": true
+      },
+      {
+        "name": "PROJECT_getPromptAnswer",
+        "readOnly": true
+      },
+      {
+        "name": "PROJECT_getPromptsRankings",
+        "readOnly": true
+      },
+      {
+        "name": "PROJECT_listAirtSourceDomains",
+        "readOnly": true
+      },
+      {
+        "name": "PROJECT_listAirtSourcePages",
+        "readOnly": true
+      },
+      {
+        "name": "PROJECT_listLlmEngines",
+        "readOnly": true
+      },
+      {
+        "name": "PROJECT_listPromptGroups",
+        "readOnly": true
+      },
+      {
+        "name": "PROJECT_listPrompts",
+        "readOnly": true
+      },
+      {
+        "name": "PROJECT_movePromptsToGroup",
+        "readOnly": false
+      },
+      {
+        "name": "PROJECT_transferPrompts",
+        "readOnly": false
+      },
+      {
+        "name": "PROJECT_updateLlmEngine",
+        "readOnly": false
+      },
+      {
+        "name": "PROJECT_updatePromptGroup",
+        "readOnly": false
+      },
+      {
+        "name": "SEV_createPrompts",
+        "readOnly": false
+      },
+      {
+        "name": "SEV_deletePrompts",
+        "readOnly": false
+      },
+      {
+        "name": "SEV_getPrompt",
+        "readOnly": true
+      },
+      {
+        "name": "SEV_getPromptResult",
+        "readOnly": true
+      },
+      {
+        "name": "SEV_listPromptResults",
+        "readOnly": true
+      },
+      {
+        "name": "SEV_listPrompts",
+        "readOnly": true
+      },
+      {
+        "name": "SEV_movePrompts",
+        "readOnly": false
+      }
+    ],
+    "addPromptsSchema": {
+      "type": "object",
+      "properties": {
+        "site_id": {
+          "type": "integer",
+          "description": "Project ID (returned by createProject / listProjects)."
+        },
+        "llm_id": {
+          "type": "integer",
+          "description": "LLM Engine ID"
+        },
+        "prompts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "minItems": 1,
+          "description": "Array of keyword strings to add (each max 255 characters)"
+        },
+        "group_id": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Optional prompt group ID (must be >= 1). When provided, added prompts are placed in that group. Omit the field entirely to use the site default group — passing 0 is rejected with HTTP 400."
+        }
+      },
+      "required": [
+        "site_id",
+        "llm_id",
+        "prompts"
+      ],
+      "additionalProperties": false,
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
+  },
+  "engine_details": [
+    {
+      "id": 203632,
+      "site_id": 13094375,
+      "base_name": "chatgpt",
+      "country_code": "de",
+      "region_name": null,
+      "lang_code": "de",
+      "region_settings": []
+    },
+    {
+      "id": 204127,
+      "site_id": 13094375,
+      "base_name": "perplexity",
+      "country_code": "de",
+      "region_name": null,
+      "lang_code": "de",
+      "region_settings": []
+    },
+    {
+      "id": 204130,
+      "site_id": 13094375,
+      "base_name": "gemini",
+      "country_code": "de",
+      "region_name": null,
+      "lang_code": "de",
+      "region_settings": []
+    },
+    {
+      "id": 204133,
+      "site_id": 13094375,
+      "base_name": "google_ai_overview",
+      "country_code": "de",
+      "region_name": null,
+      "lang_code": "de",
+      "region_settings": []
+    },
+    {
+      "id": 204136,
+      "site_id": 13094375,
+      "base_name": "google_ai_mode",
+      "country_code": "de",
+      "region_name": null,
+      "lang_code": "de",
+      "region_settings": []
+    }
+  ],
+  "engines": [
+    {
+      "llm_id": 203632,
+      "engine": "chatgpt",
+      "vorher": {
+        "status": {
+          "llm_id": 203632,
+          "site_id": 13094375,
+          "progress": 100,
+          "prompts_count": 16,
+          "prompts_checked": 16,
+          "last_update_date": "2026-10-23"
+        },
+        "prompts_anzahl": 16,
+        "prompts": [
+          {
+            "prompt_llm_id": "1528441",
+            "prompt": "Welche Handwerkersoftware ist die beste für kleine Betriebe?",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1528444",
+            "prompt": "beste Handwerkersoftware 2026",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1528447",
+            "prompt": "Handwerkersoftware Vergleich",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1528450",
+            "prompt": "Alternative zu Plancraft",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1528453",
+            "prompt": "günstige Handwerkersoftware mit App für Mitarbeiter",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1528456",
+            "prompt": "Was ist CraftOS?",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1535959",
+            "prompt": "Welche App eignet sich für die Zeiterfassung im Handwerk?",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1535962",
+            "prompt": "Rechnungssoftware für Handwerker mit E-Rechnung (XRechnung, ZUGFeRD)",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1535965",
+            "prompt": "Alternative zu HERO Software",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1535968",
+            "prompt": "Alternative zu ToolTime",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1535971",
+            "prompt": "Welche Aufmaß-App ist gut für Handwerker?",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1535974",
+            "prompt": "Bautagebuch App für Handwerksbetriebe",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1535977",
+            "prompt": "Was kostet eine Handwerkersoftware pro Monat?",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1535980",
+            "prompt": "Handwerkersoftware mit Plantafel und Einsatzplanung",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1535983",
+            "prompt": "Software für Elektrobetriebe",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1535986",
+            "prompt": "Software für Malerbetriebe",
+            "group_id": "94132"
+          }
+        ]
+      },
+      "nachher": {
+        "status": {
+          "llm_id": 203632,
+          "site_id": 13094375,
+          "progress": 100,
+          "prompts_count": 16,
+          "prompts_checked": 16,
+          "last_update_date": "2026-10-23"
+        },
+        "prompts_anzahl": 16,
+        "prompts": [
+          {
+            "prompt_llm_id": "1528441",
+            "prompt": "Welche Handwerkersoftware ist die beste für kleine Betriebe?",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1528444",
+            "prompt": "beste Handwerkersoftware 2026",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1528447",
+            "prompt": "Handwerkersoftware Vergleich",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1528450",
+            "prompt": "Alternative zu Plancraft",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1528453",
+            "prompt": "günstige Handwerkersoftware mit App für Mitarbeiter",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1528456",
+            "prompt": "Was ist CraftOS?",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1535959",
+            "prompt": "Welche App eignet sich für die Zeiterfassung im Handwerk?",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1535962",
+            "prompt": "Rechnungssoftware für Handwerker mit E-Rechnung (XRechnung, ZUGFeRD)",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1535965",
+            "prompt": "Alternative zu HERO Software",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1535968",
+            "prompt": "Alternative zu ToolTime",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1535971",
+            "prompt": "Welche Aufmaß-App ist gut für Handwerker?",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1535974",
+            "prompt": "Bautagebuch App für Handwerksbetriebe",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1535977",
+            "prompt": "Was kostet eine Handwerkersoftware pro Monat?",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1535980",
+            "prompt": "Handwerkersoftware mit Plantafel und Einsatzplanung",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1535983",
+            "prompt": "Software für Elektrobetriebe",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1535986",
+            "prompt": "Software für Malerbetriebe",
+            "group_id": "94132"
+          }
+        ]
+      }
+    },
+    {
+      "llm_id": 204127,
+      "engine": "perplexity",
+      "vorher": {
+        "status": {
+          "llm_id": 204127,
+          "site_id": 13094375,
+          "progress": 0,
+          "prompts_count": 2,
+          "prompts_checked": 0,
+          "last_update_date": null
+        },
+        "prompts_anzahl": 2,
+        "prompts": [
+          {
+            "prompt_llm_id": "1528465",
+            "prompt": "Welche Handwerkersoftware ist die beste für kleine Betriebe?",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1528468",
+            "prompt": "Alternative zu HERO Software",
+            "group_id": "94132"
+          }
+        ]
+      },
+      "nachher": {
+        "status": {
+          "llm_id": 204127,
+          "site_id": 13094375,
+          "progress": 0,
+          "prompts_count": 2,
+          "prompts_checked": 0,
+          "last_update_date": null
+        },
+        "prompts_anzahl": 2,
+        "prompts": [
+          {
+            "prompt_llm_id": "1528465",
+            "prompt": "Welche Handwerkersoftware ist die beste für kleine Betriebe?",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1528468",
+            "prompt": "Alternative zu HERO Software",
+            "group_id": "94132"
+          }
+        ]
+      }
+    },
+    {
+      "llm_id": 204130,
+      "engine": "gemini",
+      "vorher": {
+        "status": {
+          "llm_id": 204130,
+          "site_id": 13094375,
+          "progress": 0,
+          "prompts_count": 0,
+          "prompts_checked": 0,
+          "last_update_date": null
+        },
+        "prompts_anzahl": 0,
+        "prompts": []
+      },
+      "nachher": {
+        "status": {
+          "llm_id": 204130,
+          "site_id": 13094375,
+          "progress": 0,
+          "prompts_count": 0,
+          "prompts_checked": 0,
+          "last_update_date": null
+        },
+        "prompts_anzahl": 0,
+        "prompts": []
+      }
+    },
+    {
+      "llm_id": 204133,
+      "engine": "google_ai_overview",
+      "vorher": {
+        "status": {
+          "llm_id": 204133,
+          "site_id": 13094375,
+          "progress": 100,
+          "prompts_count": 2,
+          "prompts_checked": 2,
+          "last_update_date": "2026-10-23"
+        },
+        "prompts_anzahl": 2,
+        "prompts": [
+          {
+            "prompt_llm_id": "1528459",
+            "prompt": "handwerkersoftware",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1528462",
+            "prompt": "handwerker app",
+            "group_id": "94132"
+          }
+        ]
+      },
+      "nachher": {
+        "status": {
+          "llm_id": 204133,
+          "site_id": 13094375,
+          "progress": 100,
+          "prompts_count": 2,
+          "prompts_checked": 2,
+          "last_update_date": "2026-10-23"
+        },
+        "prompts_anzahl": 2,
+        "prompts": [
+          {
+            "prompt_llm_id": "1528459",
+            "prompt": "handwerkersoftware",
+            "group_id": "94132"
+          },
+          {
+            "prompt_llm_id": "1528462",
+            "prompt": "handwerker app",
+            "group_id": "94132"
+          }
+        ]
+      }
+    },
+    {
+      "llm_id": 204136,
+      "engine": "google_ai_mode",
+      "vorher": {
+        "status": {
+          "llm_id": 204136,
+          "site_id": 13094375,
+          "progress": 0,
+          "prompts_count": 0,
+          "prompts_checked": 0,
+          "last_update_date": null
+        },
+        "prompts_anzahl": 0,
+        "prompts": []
+      },
+      "nachher": {
+        "status": {
+          "llm_id": 204136,
+          "site_id": 13094375,
+          "progress": 0,
+          "prompts_count": 0,
+          "prompts_checked": 0,
+          "last_update_date": null
+        },
+        "prompts_anzahl": 0,
+        "prompts": []
+      }
+    }
+  ],
+  "angleichung": [
+    {
+      "llm_id": 204130,
+      "engine": "gemini",
+      "versuch": "alle 16 (Reihenfolge der ChatGPT-Liste)",
+      "prompts": [
+        "Welche Handwerkersoftware ist die beste für kleine Betriebe?",
+        "beste Handwerkersoftware 2026",
+        "Handwerkersoftware Vergleich",
+        "Alternative zu Plancraft",
+        "günstige Handwerkersoftware mit App für Mitarbeiter",
+        "Was ist CraftOS?",
+        "Welche App eignet sich für die Zeiterfassung im Handwerk?",
+        "Rechnungssoftware für Handwerker mit E-Rechnung (XRechnung, ZUGFeRD)",
+        "Alternative zu HERO Software",
+        "Alternative zu ToolTime",
+        "Welche Aufmaß-App ist gut für Handwerker?",
+        "Bautagebuch App für Handwerksbetriebe",
+        "Was kostet eine Handwerkersoftware pro Monat?",
+        "Handwerkersoftware mit Plantafel und Einsatzplanung",
+        "Software für Elektrobetriebe",
+        "Software für Malerbetriebe"
+      ],
+      "antwort": {
+        "tool": "PROJECT_addPrompts",
+        "args": {
+          "site_id": 13094375,
+          "llm_id": 204130,
+          "prompts": [
+            "Welche Handwerkersoftware ist die beste für kleine Betriebe?",
+            "beste Handwerkersoftware 2026",
+            "Handwerkersoftware Vergleich",
+            "Alternative zu Plancraft",
+            "günstige Handwerkersoftware mit App für Mitarbeiter",
+            "Was ist CraftOS?",
+            "Welche App eignet sich für die Zeiterfassung im Handwerk?",
+            "Rechnungssoftware für Handwerker mit E-Rechnung (XRechnung, ZUGFeRD)",
+            "Alternative zu HERO Software",
+            "Alternative zu ToolTime",
+            "Welche Aufmaß-App ist gut für Handwerker?",
+            "Bautagebuch App für Handwerksbetriebe",
+            "Was kostet eine Handwerkersoftware pro Monat?",
+            "Handwerkersoftware mit Plantafel und Einsatzplanung",
+            "Software für Elektrobetriebe",
+            "Software für Malerbetriebe"
+          ],
+          "group_id": 94132
+        },
+        "at": "2026-10-23T11:03:41.151Z",
+        "fehler": "Tool PROJECT_addPrompts meldet Fehler: MCP error -32603: API error (403 Forbidden). URL: https://api.seranking.com/v1/project-management/airt/prompts?site_id=13094375&llm_id=204130\nBody: {\"message\":\"You\\u2019ve run out of prompt limits. Upgrade your subscription or buy additional limits to add more prompts.\"}",
+        "status": null,
+        "ambiguous": false
+      }
+    },
+    {
+      "llm_id": 204130,
+      "engine": "gemini",
+      "versuch": "erste 2 nach Ablehnung",
+      "prompts": [
+        "Welche Handwerkersoftware ist die beste für kleine Betriebe?",
+        "beste Handwerkersoftware 2026"
+      ],
+      "antwort": {
+        "tool": "PROJECT_addPrompts",
+        "args": {
+          "site_id": 13094375,
+          "llm_id": 204130,
+          "prompts": [
+            "Welche Handwerkersoftware ist die beste für kleine Betriebe?",
+            "beste Handwerkersoftware 2026"
+          ],
+          "group_id": 94132
+        },
+        "at": "2026-10-23T11:03:42.779Z",
+        "fehler": "Tool PROJECT_addPrompts meldet Fehler: MCP error -32603: API error (403 Forbidden). URL: https://api.seranking.com/v1/project-management/airt/prompts?site_id=13094375&llm_id=204130\nBody: {\"message\":\"You\\u2019ve run out of prompt limits. Upgrade your subscription or buy additional limits to add more prompts.\"}",
+        "status": null,
+        "ambiguous": false
+      }
+    },
+    {
+      "llm_id": 204136,
+      "engine": "google_ai_mode",
+      "versuch": "alle 16 (Reihenfolge der ChatGPT-Liste)",
+      "prompts": [
+        "Welche Handwerkersoftware ist die beste für kleine Betriebe?",
+        "beste Handwerkersoftware 2026",
+        "Handwerkersoftware Vergleich",
+        "Alternative zu Plancraft",
+        "günstige Handwerkersoftware mit App für Mitarbeiter",
+        "Was ist CraftOS?",
+        "Welche App eignet sich für die Zeiterfassung im Handwerk?",
+        "Rechnungssoftware für Handwerker mit E-Rechnung (XRechnung, ZUGFeRD)",
+        "Alternative zu HERO Software",
+        "Alternative zu ToolTime",
+        "Welche Aufmaß-App ist gut für Handwerker?",
+        "Bautagebuch App für Handwerksbetriebe",
+        "Was kostet eine Handwerkersoftware pro Monat?",
+        "Handwerkersoftware mit Plantafel und Einsatzplanung",
+        "Software für Elektrobetriebe",
+        "Software für Malerbetriebe"
+      ],
+      "antwort": {
+        "tool": "PROJECT_addPrompts",
+        "args": {
+          "site_id": 13094375,
+          "llm_id": 204136,
+          "prompts": [
+            "Welche Handwerkersoftware ist die beste für kleine Betriebe?",
+            "beste Handwerkersoftware 2026",
+            "Handwerkersoftware Vergleich",
+            "Alternative zu Plancraft",
+            "günstige Handwerkersoftware mit App für Mitarbeiter",
+            "Was ist CraftOS?",
+            "Welche App eignet sich für die Zeiterfassung im Handwerk?",
+            "Rechnungssoftware für Handwerker mit E-Rechnung (XRechnung, ZUGFeRD)",
+            "Alternative zu HERO Software",
+            "Alternative zu ToolTime",
+            "Welche Aufmaß-App ist gut für Handwerker?",
+            "Bautagebuch App für Handwerksbetriebe",
+            "Was kostet eine Handwerkersoftware pro Monat?",
+            "Handwerkersoftware mit Plantafel und Einsatzplanung",
+            "Software für Elektrobetriebe",
+            "Software für Malerbetriebe"
+          ],
+          "group_id": 94132
+        },
+        "at": "2026-10-23T11:03:44.955Z",
+        "fehler": "Tool PROJECT_addPrompts meldet Fehler: MCP error -32603: API error (403 Forbidden). URL: https://api.seranking.com/v1/project-management/airt/prompts?site_id=13094375&llm_id=204136\nBody: {\"message\":\"You\\u2019ve run out of prompt limits. Upgrade your subscription or buy additional limits to add more prompts.\"}",
+        "status": null,
+        "ambiguous": false
+      }
+    },
+    {
+      "llm_id": 204136,
+      "engine": "google_ai_mode",
+      "versuch": "erste 2 nach Ablehnung",
+      "prompts": [
+        "Welche Handwerkersoftware ist die beste für kleine Betriebe?",
+        "beste Handwerkersoftware 2026"
+      ],
+      "antwort": {
+        "tool": "PROJECT_addPrompts",
+        "args": {
+          "site_id": 13094375,
+          "llm_id": 204136,
+          "prompts": [
+            "Welche Handwerkersoftware ist die beste für kleine Betriebe?",
+            "beste Handwerkersoftware 2026"
+          ],
+          "group_id": 94132
+        },
+        "at": "2026-10-23T11:03:46.459Z",
+        "fehler": "Tool PROJECT_addPrompts meldet Fehler: MCP error -32603: API error (403 Forbidden). URL: https://api.seranking.com/v1/project-management/airt/prompts?site_id=13094375&llm_id=204136\nBody: {\"message\":\"You\\u2019ve run out of prompt limits. Upgrade your subscription or buy additional limits to add more prompts.\"}",
+        "status": null,
+        "ambiguous": false
+      }
+    }
+  ],
+  "perplexity_befund": {
+    "status_vorher": {
+      "llm_id": 204127,
+      "site_id": 13094375,
+      "progress": 0,
+      "prompts_count": 2,
+      "prompts_checked": 0,
+      "last_update_date": null
+    },
+    "status_nachher": {
+      "llm_id": 204127,
+      "site_id": 13094375,
+      "progress": 0,
+      "prompts_count": 2,
+      "prompts_checked": 0,
+      "last_update_date": null
+    },
+    "rankings_seit_2026_10_20": {
+      "archetype": "timeseries",
+      "title": "AI Result Tracker — prompt presence",
+      "subtitle": "0 group(s)",
+      "summary": "AI Result Tracker — prompt presence: no group data returned.",
+      "x": [],
+      "axes": {
+        "left": {
+          "label": "Presence",
+          "format": "percent",
+          "min": 0,
+          "max": 100
+        }
+      },
+      "series": [],
+      "notes": [
+        "Set mode=groups for the share-of-voice chart (per-prompt mode isn't charted)."
+      ]
+    },
+    "einstellung": "identisch mit ChatGPT (country_code de, lang_code de, region_name null, region_settings leer, Gruppe 94132)",
+    "befund": "Perplexity hat 2 Prompts, Prüfstatus progress 0, prompts_checked 0, last_update_date null; Rankings seit 20.10.2026 leer. Die Project API bietet kein Tool, eine Prüfung anzustoßen, und keine Einstellung, die sich von den geprüften Engines unterscheidet. Ursache liegt damit auf Seiten des SE-Ranking-Testzugangs (Prüfung der Engine findet nicht statt), nicht in der Projektkonfiguration; per API nicht behebbar."
+  },
+  "ergebnis": {
+    "gemini": "keine Prompts angelegt: HTTP 403 „You’ve run out of prompt limits. Upgrade your subscription or buy additional limits to add more prompts.“ (auch für 2 Prompts)",
+    "google_ai_mode": "keine Prompts angelegt: HTTP 403 „You’ve run out of prompt limits …“ (auch für 2 Prompts)",
+    "google_ai_overview": "seit dem Messstand neu geprüft: progress 100, 2 von 2 Prompts, letzte Prüfung 2026-10-23",
+    "promptlimit": "Das Projekt nutzt 20 Prompts (ChatGPT 16, Perplexity 2, AI Overview 2); weitere Prompts lehnt der Testzugang ab."
+  }
+}

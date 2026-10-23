@@ -1,0 +1,35 @@
+{
+  "quelle": "Vercel Speed Insights (Felddaten echter Besuche), Vercel Observability Metrics über die Vercel-CLI",
+  "plan": "10-11",
+  "abfrageDurch": "Orchestrator Phase 10, 23.10.2026; Rohdateien lokal (nicht im Repo): si-lcp_ms.json, si-inp_ms.json, si-cls.json, si-fcp_ms.json, si-ttfb_ms.json, d.json (LCP nach Gerät), r.json (LCP p75 nach Route), rc.json (LCP-Anzahl nach Route), c.json (LCP-Anzahl gesamt)",
+  "abfrage": "npx -y vercel@latest --scope team_km6VwPpOZSRGFCMXdm74cpHm metrics vercel.speed_insights.lcp_ms --aggregation p75 -p prj_Vk35IwxD0U3Qtoez5a0OaKhRdlN4 -e production --since 30d --json (entsprechend für inp_ms, cls, fcp_ms, ttfb_ms; Gruppierung deviceType bzw. route; Aggregation count für die Stichprobe)",
+  "team": "craft-os (team_km6VwPpOZSRGFCMXdm74cpHm)",
+  "projekt": "craftos (prj_Vk35IwxD0U3Qtoez5a0OaKhRdlN4)",
+  "umgebung": "production",
+  "abfragezeitraumUtc": ["2026-09-23T00:00:00Z", "2026-10-24T00:00:00Z"],
+  "tageMitMessungen": { "2026-10-20": 9, "2026-10-21": 11, "2026-10-22": 14, "2026-10-23": 7 },
+  "stichprobe": { "lcpMessungen": 41, "hinweis": "Kleine Stichprobe; einzelne Routen haben 1 bis 5 Messungen." },
+  "p75": { "lcp_ms": 620, "inp_ms": 40, "cls": 0, "fcp_ms": 604, "ttfb_ms": 104 },
+  "lcpWeitere": {
+    "p90_ms": 808,
+    "max_ms": 1871,
+    "hinweis": "p90 und Maximum laut Orchestrator-Abfrage vom 23.10.2026; die Rohdateien dazu liegen nicht vor."
+  },
+  "lcpP75NachGeraet": { "desktop": 620, "mobile": 446 },
+  "lcpP75NachRoute": [
+    { "route": "/", "p75_ms": 699, "messungen": 20 },
+    { "route": "/preise", "p75_ms": 268, "messungen": 5 },
+    { "route": "/vergleich", "p75_ms": 407, "messungen": 3 },
+    { "route": "/app", "p75_ms": 656, "messungen": 2 },
+    { "route": "/blog/[slug]", "p75_ms": 446, "messungen": 2 },
+    { "route": "/support", "p75_ms": 1048, "messungen": 2 },
+    { "route": "/craft-ai", "p75_ms": 465, "messungen": 1 },
+    { "route": "/fakten-ueber-craftos", "p75_ms": 183, "messungen": 1 },
+    { "route": "/funktionen", "p75_ms": 16, "messungen": 1 },
+    { "route": "/funktionen/[slug]", "p75_ms": 620, "messungen": 1 },
+    { "route": "/hilfe/[slug]", "p75_ms": 145, "messungen": 1 },
+    { "route": "/impressum", "p75_ms": 400, "messungen": 1 },
+    { "route": "/rechner/angebotskalkulation", "p75_ms": 632, "messungen": 1 }
+  ],
+  "bewertung": "Gate-Wert und Bewertung von QA-04 legt der Orchestrator in 10-07 fest (Endwert 10-07)."
+}

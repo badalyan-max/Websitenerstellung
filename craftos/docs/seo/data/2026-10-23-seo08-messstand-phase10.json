@@ -1,0 +1,70 @@
+{
+  "block": "seo08-messstand",
+  "plan": "10-11",
+  "erstellt": "2026-10-23T11:30:00Z",
+  "units": 0,
+  "hinweis": "Kein neuer SE-Ranking-Abruf. Zahlen aus dem vorhandenen Rohsatz data/2026-10-23-data-messstand-phase10.json; Abgleich mit docs/seo/backlink-register.json; öffentliche Profilseite per HTTP gelesen.",
+  "quelle": {
+    "seRanking": {
+      "datei": "docs/seo/data/2026-10-23-data-messstand-phase10.json",
+      "werkzeuge": ["DATA_getBacklinksSummary", "DATA_getBacklinksRefDomains"],
+      "projekt": 13094375,
+      "abgerufen": "2026-10-23T08:39:45.914Z",
+      "ziel": "craftos.eu"
+    },
+    "ausgangsstand": {
+      "datei": "docs/seo/SE-RANKING-BEFUND-2026-10-20.md",
+      "datum": "2026-10-20",
+      "verweisendeDomains": 12,
+      "davonSpam": 12,
+      "domainInlinkRank": 3
+    }
+  },
+  "seRanking": {
+    "datum": "2026-10-23",
+    "verweisendeDomains": 12,
+    "backlinks": 12,
+    "dofollowBacklinks": 12,
+    "domainInlinkRank": 3,
+    "domains": [
+      "webboard.pl",
+      "sport-life.club",
+      "dsnylu.com",
+      "bmwyng.com",
+      "kgzxkf.com",
+      "obmain.com",
+      "qhtycw.com",
+      "jobsapp.info",
+      "hzdlpq.com",
+      "nettools.guru",
+      "sergechel.info",
+      "australianwebdirectory.pro"
+    ],
+    "identischMitAusgangsstand": true,
+    "davonSpam": 12,
+    "davonImLinkregister": 0,
+    "neueSerioeseVerweisendeDomains": 0
+  },
+  "register": {
+    "datei": "docs/seo/backlink-register.json",
+    "stand": "2026-10-23",
+    "eintraege": 65,
+    "status": { "offen": 61, "angefragt": 0, "live": 1, "nicht möglich": 3 },
+    "live": [
+      {
+        "domain": "omr.com",
+        "profil": "https://omr.com/de/reviews/product/craftos",
+        "beleg": "HTTP-Abruf 2026-10-23T11:27:39Z, Status 200; Link data-testid=\"product-homepage-link\" mit href=\"https://craftos.eu\" und rel=\"noopener noreferrer nofollow\"; Profil laut Seitendaten veröffentlicht am 2026-10-22T15:34:53+02:00",
+        "inSeRankingErfasst": false
+      }
+    ]
+  },
+  "seo08": {
+    "ziel": "mindestens 15 neue seriöse verweisende Domains bis Meilensteinende, sichtbar in SE Ranking",
+    "messwert": 0,
+    "messwertDatum": "2026-10-23",
+    "messwertQuelle": "SE Ranking DATA_getBacklinksRefDomains, 2026-10-23T08:39:45Z",
+    "offenFuerZiel": 15,
+    "anmerkung": "omr.com ist öffentlich verlinkt (nofollow), am 23.10.2026 aber noch nicht im SE-Ranking-Backlinkindex; der Messwert zählt nur Domains, die SE Ranking ausweist. Endwert mit dem Rollout-Messbericht 10-07."
+  }
+}

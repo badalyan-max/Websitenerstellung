@@ -1,12 +1,30 @@
-// Messbericht gegen den Ausgangsstand vom 20.10.2026 (SEO-07, D-07a).
-//   node scripts/seo-report.mjs --etappe <name>     z. B. ausgangsstand, rollout-phase05
-// Ruft über den SE-Ranking-MCP-Client ab: Projektpositionen (Projekt 13094375), KI-Leaderboard (gleiche
-// Wettbewerber/Engines wie die Ausgangsdatei) und Backlinks (Zusammenfassung und verweisende Domains von craftos.eu).
+// Messbericht gegen den Ausgangsstand vom 20.10.2026 (SEO-07, D-07a; Kostenbremse D-37).
+//   node scripts/seo-report.mjs --etappe <name> [--leaderboard] [--warte=<sekunden>]
+//     --etappe <name>     z. B. ausgangsstand, rollout-phase10 (Kleinbuchstaben, Ziffern, Bindestrich)
+//     --leaderboard       ruft zusätzlich DATA_getAiSearchLeaderboard ab: pauschal ca. 7.500 Units je Aufruf
+//                         (SE-Ranking-Doku, docs/seo/reports/2026-10-23-messstand-phase10.md § 3.1). Standard: aus.
+//     --warte=<sekunden>  Wartezeit vor dem Kontostand „nachher“ (Standard 60), weil SE Ranking 10–60 s verzögert bucht.
+// Kosten ohne Schalter: Backlink-Zusammenfassung 100 + verweisende Domains 1 je Zeile (≈ 112 Units); Projektpositionen,
+// KI-Tracker (PROJECT_getLlmStatus/-Statistics je Engine) und Kontostand kosten 0 Units.
+// Ruft über den SE-Ranking-MCP-Client ab: Projektpositionen (Projekt 13094375), KI-Tracker des Projekts als kostenlose
+// SoV-Quelle, optional das KI-Leaderboard (gleiche Wettbewerber/Engines wie die Ausgangsdatei) und Backlinks.
+// Ohne --leaderboard nennt der Bericht „KI-Leaderboard nicht abgerufen“ mit dem letzten Wert und Datum aus der jüngsten
+// Rohdatei (docs/seo/reports bzw. docs/seo/data), ohne Schätzung.
 // Schreibt docs/seo/reports/<Datum>-messbericht-<etappe>.md und <Datum>-raw-<etappe>-*.json (nur API-Antworten).
-// Existiert eine Zieldatei bereits, bricht das Skript vor jedem Netzaufruf mit exitCode 1 ab (kein Überschreiben).
+// Existiert eine der geplanten Zieldateien bereits, bricht das Skript vor jedem Netzaufruf mit Exit 1 ab (kein
+// Überschreiben). Exit 2 = falsche Optionen.
 import fs from "node:fs";
 import path from "node:path";
 import { createClient, rowsOf } from "./lib/se-ranking-mcp.mjs";
+import {
+  berichtszeileOhneLeaderboard,
+  fuehreAbrufeAus,
+  kiTrackerZeilen,
+  leaderboardStand,
+  letzteLeaderboardDatei,
+  parseArgs,
+  rawNamen,
+} from "./lib/seo-report-core.mjs";
 
 const SITE_ID = 13094375;
 const BASE_DATE = "2026-10-20";
@@ -21,14 +39,14 @@ const REFDOMAIN_LIMIT = 1000;
 const MILESTONE_NEW_REFDOMAINS = 15;
 
 // ---------- Argumente und Überschreibschutz (vor jedem Netzaufruf) ----------
-const i = process.argv.indexOf("--etappe");
-const etappe = i > -1 ? process.argv[i + 1] : undefined;
-if (!etappe || !/^[a-z0-9-]+$/.test(etappe)) {
-  console.error("Aufruf: node scripts/seo-report.mjs --etappe <name>   (Name: Kleinbuchstaben, Ziffern, Bindestrich)");
-  process.exit(1);
+const args = parseArgs(process.argv.slice(2));
+if (args.fehler) {
+  console.error(args.fehler);
+  process.exit(2);
 }
+const { etappe, leaderboard, warteSek } = args;
 const today = new Date().toLocaleDateString("sv-SE"); // YYYY-MM-DD, lokale Zeit
-const RAW = ["keywords", "positionen", "ai-leaderboard", "backlinks-summary", "refdomains", "subscription"];
+const RAW = rawNamen({ leaderboard });
 const rawFile = (name) => path.join(REPORT_DIR, `${today}-raw-${etappe}-${name}.json`);
 const reportFile = path.join(REPORT_DIR, `${today}-messbericht-${etappe}.md`);
 const targets = [reportFile, ...RAW.map(rawFile)];
@@ -92,57 +110,46 @@ const statusLabel = (s) => (s.status === "geplant" ? `geplant (Phase ${s.phase ?
 const register = readJson(path.join(SEO, "backlink-register.json"));
 const baseLb = readJson(BASE_LEADERBOARD);
 const baseBl = rows(readJson(BASE_BACKLINKS).summary).find((r) => r.target === "craftos.eu");
+// KI-Leaderboard mit denselben Parametern wie die Ausgangsdatei (request_metadata).
+const meta = baseLb.request_metadata;
+const brandOf = new Map(baseLb.leaderboard.map((l) => [l.domain, l.brand]));
+const leaderboardParams = {
+  primary: { target: meta.primary, brand: brandOf.get(meta.primary) ?? "CraftOS" },
+  competitors: meta.competitors.map((d) => ({ target: d, brand: brandOf.get(d) ?? d })),
+  source: meta.source,
+  engines: meta.engines,
+  scope: meta.scope_requested ?? meta.scope_applied ?? "base_domain",
+};
+// Letzter gespeicherter Leaderboard-Wert (für den Bericht ohne --leaderboard), vor jedem Netzaufruf gelesen.
+const lbKandidaten = ["reports", "data"].flatMap((d) =>
+  fs.existsSync(path.join(SEO, d)) ? fs.readdirSync(path.join(SEO, d)).map((n) => `${d}/${n}`) : [],
+);
+const lbQuelle = letzteLeaderboardDatei(lbKandidaten);
+const letzterLb = lbQuelle ? leaderboardStand(readJson(path.join(SEO, lbQuelle.datei)), lbQuelle, meta.primary) : null;
 
 // ---------- Abruf ----------
 const client = createClient({ log: (m) => console.log(m) });
 let subBefore = null;
 let subAfter = null;
-const raw = {};
 try {
-  subBefore = await client.callTool("DATA_getSubscription", {});
-
-  const keywordsRaw = await client.callTool("PROJECT_listKeywords", { site_id: SITE_ID });
-  if (!rows(keywordsRaw, "PROJECT_listKeywords").length) throw new Error("PROJECT_listKeywords meldet 0 Keywords – Abbruch");
-  raw["keywords"] = keywordsRaw;
-  const engines = rows(await client.callTool("PROJECT_getSearchEngines", { site_id: SITE_ID }), "PROJECT_getSearchEngines");
-  const siteEngineId = Number(engines[0]?.site_engine_id);
-  if (!Number.isInteger(siteEngineId) || siteEngineId <= 0)
-    throw new Error("PROJECT_getSearchEngines liefert keine site_engine_id – Abbruch vor dem Positionsabruf");
-  const positionenRaw = await client.callTool("PROJECT_getKeywordStats", {
-    site_id: SITE_ID,
-    date_from: BASE_DATE,
-    date_to: today,
-    site_engine_id: siteEngineId,
-    with_landing_pages: "1",
+  const ergebnis = await fuehreAbrufeAus(client, {
+    siteId: SITE_ID,
+    baseDate: BASE_DATE,
+    today,
+    leaderboard,
+    warteMs: warteSek * 1000,
+    leaderboardParams,
+    refdomainLimit: REFDOMAIN_LIMIT,
+    log: (m) => console.log(m),
   });
-  rows(positionenRaw, "PROJECT_getKeywordStats");
-  raw["positionen"] = positionenRaw;
-
-  // KI-Leaderboard mit denselben Parametern wie die Ausgangsdatei (request_metadata).
-  const meta = baseLb.request_metadata;
-  const brandOf = new Map(baseLb.leaderboard.map((l) => [l.domain, l.brand]));
-  const leaderboardRaw = await client.callTool("DATA_getAiSearchLeaderboard", {
-    primary: { target: meta.primary, brand: brandOf.get(meta.primary) ?? "CraftOS" },
-    competitors: meta.competitors.map((d) => ({ target: d, brand: brandOf.get(d) ?? d })),
-    source: meta.source,
-    engines: meta.engines,
-    scope: meta.scope_requested ?? meta.scope_applied ?? "base_domain",
-  });
-  raw["ai-leaderboard"] = leaderboardRaw;
-
-  const backlinksRaw = await client.callTool("DATA_getBacklinksSummary", { target: ["craftos.eu"] });
-  rows(backlinksRaw?.summary ?? backlinksRaw, "DATA_getBacklinksSummary");
-  raw["backlinks-summary"] = backlinksRaw;
-  const refdomainsRaw = await client.callTool("DATA_getBacklinksRefDomains", {
-    target: "craftos.eu",
-    order_by: "domain_inlink_rank",
-    limit: REFDOMAIN_LIMIT,
-  });
-  rows(refdomainsRaw?.refdomains ?? refdomainsRaw, "DATA_getBacklinksRefDomains");
-  raw["refdomains"] = refdomainsRaw;
-
-  subAfter = await client.callTool("DATA_getSubscription", {});
-  raw["subscription"] = { vorher: subBefore, nachher: subAfter };
+  const raw = ergebnis.raw;
+  subBefore = ergebnis.subBefore;
+  subAfter = ergebnis.subAfter;
+  const keywordsRaw = raw["keywords"];
+  const positionenRaw = raw["positionen"];
+  const leaderboardRaw = raw["ai-leaderboard"] ?? null;
+  const backlinksRaw = raw["backlinks-summary"];
+  const refdomainsRaw = raw["refdomains"];
   // Rohdateien erst nach vollständigem Abruf schreiben, damit ein Fehlerlauf keine Teilstände hinterlässt.
   for (const name of RAW) writeRaw(name, raw[name]);
 
@@ -234,7 +241,9 @@ try {
     }
   }
   L.push(
-    `| Share of Voice CraftOS (KI-Suche) | ${fmtPct(lbBase.get(meta.primary)?.share_of_voice ?? BEFUND.sovPrimary)} | ${fmtPct(primaryNow?.share_of_voice)} | ${fmtDeltaPp(lbBase.get(meta.primary)?.share_of_voice ?? BEFUND.sovPrimary, primaryNow?.share_of_voice)} |`,
+    leaderboardRaw
+      ? `| Share of Voice CraftOS (KI-Suche) | ${fmtPct(lbBase.get(meta.primary)?.share_of_voice ?? BEFUND.sovPrimary)} | ${fmtPct(primaryNow?.share_of_voice)} | ${fmtDeltaPp(lbBase.get(meta.primary)?.share_of_voice ?? BEFUND.sovPrimary, primaryNow?.share_of_voice)} |`
+      : `| Share of Voice CraftOS (KI-Suche, Leaderboard) | ${fmtPct(lbBase.get(meta.primary)?.share_of_voice ?? BEFUND.sovPrimary)} | nicht abgerufen (letzter Wert ${letzterLb ? `${fmtPct(letzterLb.shareOfVoice)} vom ${letzterLb.datum}` : "–"}) | – |`,
   );
   L.push(
     `| Verweisende Domains craftos.eu | ${fmtInt(baseBl?.refdomains ?? BEFUND.refdomainsSpam)} (alle Spam) | ${fmtInt(blNow?.refdomains)} | ${fmtDelta(baseBl?.refdomains ?? BEFUND.refdomainsSpam, blNow?.refdomains)} |`,
@@ -250,32 +259,46 @@ try {
 
   L.push("## 2. Share of Voice in KI-Suchen");
   L.push("");
-  L.push(`Engines: ${meta.engines.join(", ")} · Datenbank: ${meta.source} · Scope: ${meta.scope_requested ?? meta.scope_applied}. Werte gelten für den laufenden Monat (SE Ranking AI Search).`);
-  L.push("");
-  L.push("| Marke | Domain | Share of Voice Ausgangsstand 20.10.2026 | Share of Voice aktuell | Veränderung | Markennennungen (aktuell) | Linkzitate (aktuell) |");
-  L.push("|---|---|---|---|---|---|---|");
-  const domains = [meta.primary, ...meta.competitors];
-  const sorted = domains
-    .map((d) => ({ d, now: lbNow.find((l) => l.domain === d), base: lbBase.get(d) }))
-    .sort((a, b) => (b.now?.share_of_voice ?? -1) - (a.now?.share_of_voice ?? -1));
-  for (const { d, now, base } of sorted) {
-    const name = now?.brand ?? base?.brand ?? d;
-    const strong = d === meta.primary ? "**" : "";
-    L.push(
-      `| ${strong}${cell(name)}${strong} | ${d} | ${fmtPct(base?.share_of_voice)} | ${fmtPct(now?.share_of_voice)} | ${fmtDeltaPp(base?.share_of_voice, now?.share_of_voice)} | ${fmtInt(now?.brand_presence)} | ${fmtInt(now?.link_presence)} |`,
-    );
+  if (!leaderboardRaw) {
+    L.push(berichtszeileOhneLeaderboard(letzterLb));
+    L.push("");
+  } else {
+    L.push(`Engines: ${meta.engines.join(", ")} · Datenbank: ${meta.source} · Scope: ${meta.scope_requested ?? meta.scope_applied}. Werte gelten für den laufenden Monat (SE Ranking AI Search).`);
+    L.push("");
+    L.push("| Marke | Domain | Share of Voice Ausgangsstand 20.10.2026 | Share of Voice aktuell | Veränderung | Markennennungen (aktuell) | Linkzitate (aktuell) |");
+    L.push("|---|---|---|---|---|---|---|");
+    const domains = [meta.primary, ...meta.competitors];
+    const sorted = domains
+      .map((d) => ({ d, now: lbNow.find((l) => l.domain === d), base: lbBase.get(d) }))
+      .sort((a, b) => (b.now?.share_of_voice ?? -1) - (a.now?.share_of_voice ?? -1));
+    for (const { d, now, base } of sorted) {
+      const name = now?.brand ?? base?.brand ?? d;
+      const strong = d === meta.primary ? "**" : "";
+      L.push(
+        `| ${strong}${cell(name)}${strong} | ${d} | ${fmtPct(base?.share_of_voice)} | ${fmtPct(now?.share_of_voice)} | ${fmtDeltaPp(base?.share_of_voice, now?.share_of_voice)} | ${fmtInt(now?.brand_presence)} | ${fmtInt(now?.link_presence)} |`,
+      );
+    }
+    L.push("");
+    const resNow = leaderboardRaw?.results?.[meta.primary] ?? {};
+    const resBase = baseLb.results?.[meta.primary] ?? {};
+    L.push("CraftOS je Engine (Markennennungen / Linkzitate; „–“ = keine Daten):");
+    L.push("");
+    L.push("| Engine | Ausgangsstand 20.10.2026 | Aktuell |");
+    L.push("|---|---|---|");
+    for (const eng of meta.engines)
+      L.push(
+        `| ${eng} | ${fmtInt(resBase[eng]?.brand_presence)} / ${fmtInt(resBase[eng]?.link_presence)} | ${fmtInt(resNow[eng]?.brand_presence)} / ${fmtInt(resNow[eng]?.link_presence)} |`,
+      );
+    L.push("");
   }
+  // KI-Tracker des Projekts (Project API, 0 Units) als laufende SoV-Quelle, auch ohne Leaderboard.
+  L.push(
+    `KI-Tracker des Projekts ${SITE_ID} (eigene Prompts, Zeitraum ${BASE_DATE} bis ${today}, \`PROJECT_getLlmStatistics\`; Nennung/Link = Anteil der Prompts mit CraftOS-Nennung bzw. craftos.eu-Link in der Antwort):`,
+  );
   L.push("");
-  const resNow = leaderboardRaw?.results?.[meta.primary] ?? {};
-  const resBase = baseLb.results?.[meta.primary] ?? {};
-  L.push("CraftOS je Engine (Markennennungen / Linkzitate; „–“ = keine Daten):");
-  L.push("");
-  L.push("| Engine | Ausgangsstand 20.10.2026 | Aktuell |");
-  L.push("|---|---|---|");
-  for (const eng of meta.engines)
-    L.push(
-      `| ${eng} | ${fmtInt(resBase[eng]?.brand_presence)} / ${fmtInt(resBase[eng]?.link_presence)} | ${fmtInt(resNow[eng]?.brand_presence)} / ${fmtInt(resNow[eng]?.link_presence)} |`,
-    );
+  L.push("| Engine | Prompts | geprüft | letzte Prüfung | Nennung | Link |");
+  L.push("|---|---|---|---|---|---|");
+  for (const z of kiTrackerZeilen(raw["ki-tracker"])) L.push(z);
   L.push("");
 
   L.push("## 3. Verweisende Domains");
@@ -339,7 +362,7 @@ try {
   L.push("## 5. Abruf");
   L.push("");
   L.push(
-    `MCP-Aufrufe: ${client.callCount}; verbrauchte Units: ${fmtInt(used)} (Rest ${fmtInt(subAfter?.subscription_info?.units_left)} von ${fmtInt(subAfter?.subscription_info?.units_limit)}, Testzugang bis ${String(subAfter?.subscription_info?.expiraton_date ?? "–").slice(0, 10)}). Wiederholung: \`node scripts/seo-report.mjs --etappe <name>\` mit neuer Etappe; vorhandene Berichte bleiben unverändert.`,
+    `MCP-Aufrufe: ${client.callCount}; verbrauchte Units: ${fmtInt(used)} (Rest ${fmtInt(subAfter?.subscription_info?.units_left)} von ${fmtInt(subAfter?.subscription_info?.units_limit)}, Testzugang bis ${String(subAfter?.subscription_info?.expiraton_date ?? "–").slice(0, 10)}). Kontostand „nachher“ nach ${warteSek} s Wartezeit gelesen; KI-Leaderboard ${leaderboard ? "abgerufen (Schalter --leaderboard, ca. 7.500 Units)" : "nicht abgerufen"}. Wiederholung: \`node scripts/seo-report.mjs --etappe <name> [--leaderboard] [--warte=<sekunden>]\` mit neuer Etappe; vorhandene Berichte bleiben unverändert.`,
   );
   L.push("");
   fs.writeFileSync(reportFile, L.join("\n"), { flag: "wx" });
