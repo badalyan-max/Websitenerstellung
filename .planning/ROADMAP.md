@@ -248,34 +248,34 @@ Plans:
 Plans:
 **Wave 1** *(Startgate nach 08-14; Commits bis „feat(09-01): F-A1 …“ und „feat(09-02): K-1 …“ werden vorgezogen nach main gemergt)*
 
-- [ ] 09-01-PLAN.md — Fundament: F-A1 (Budgets, LinkKarten, ContentKopf, Leitlinie L-1, Gewerke-H1), Inhaltsvertrag mit Listenobergrenzen, sceneById, Antwort-zuerst-Audit, Map-Einträge Phase 9 (wt-09basis, 3101)
-- [ ] 09-02-PLAN.md — (a) Gewerke Teil 1: K-1, neue Gewerke-Daten, Abschnitte Ablauf, Funktionen, FAQ, CTA, Übersicht minimal (wt-09a, 3102)
+- [x] 09-01-PLAN.md — Fundament: F-A1 (Budgets, LinkKarten, ContentKopf, Leitlinie L-1, Gewerke-H1), Inhaltsvertrag mit Listenobergrenzen, sceneById, Antwort-zuerst-Audit, Map-Einträge Phase 9 (wt-09basis, 3101)
+- [x] 09-02-PLAN.md — (a) Gewerke Teil 1: K-1, neue Gewerke-Daten, Abschnitte Ablauf, Funktionen, FAQ, CTA, Übersicht minimal (wt-09a, 3102)
 
 **Wave 2** *(blocked on Wave 1 completion; 09-11 darf nach dem Merge von F-A1 starten)*
 
-- [ ] 09-15-PLAN.md — Fundament Teil 3: Produktbasis mit Delta ab a9319e5/6cac366, Prüfwerkzeug content-pruefen.mjs (wt-09basis, 3101)
-- [ ] 09-11-PLAN.md — (a) Gewerke Teil 2: Kopf, /gewerke, Weiterlesen, gewerke.test.ts, Prompt-Anker Elektro/Maler (wt-09a, 3102)
+- [x] 09-15-PLAN.md — Fundament Teil 3: Produktbasis mit Delta ab a9319e5/6cac366, Prüfwerkzeug content-pruefen.mjs (wt-09basis, 3101)
+- [x] 09-11-PLAN.md — (a) Gewerke Teil 2: Kopf, /gewerke, Weiterlesen, gewerke.test.ts, Prompt-Anker Elektro/Maler (wt-09a, 3102)
 
 **Wave 3** *(blocked on Wave 2 completion, insbesondere 09-15)*
 
-- [ ] 09-03-PLAN.md — (b) Ratgeber 1: Rechnungen, Kalkulation, Softwareauswahl (12) (wt-09b, 3103)
-- [ ] 09-04-PLAN.md — (c) Ratgeber 2: Belege, Projekte, Team (12) (wt-09c, 3104)
-- [ ] 09-05-PLAN.md — (d) Hilfe Büro Teil a: Einrichtung, Belege (9) (wt-09d, 3105)
-- [ ] 09-17-PLAN.md — (d2) Hilfe Büro Teil b: Schlussrechnung zuerst, Rechnungen, Angebote (12) (wt-09d2, 3109)
-- [ ] 09-06-PLAN.md — (e) Hilfe Baustelle Teil a: Projekte, Zeiten inkl. Arbeitsabschnitte (9) (wt-09e, 3106)
-- [ ] 09-18-PLAN.md — (e2) Hilfe Baustelle Teil b: Baudokumentation mit Teilabnahme zuerst, Lager, Craft AI (10) (wt-09e2, 3110)
-- [ ] 09-07-PLAN.md — (f) Zehn neue Hilfeartikel (wt-09f, 3107)
-- [ ] 09-08-PLAN.md — (g) Neun SEO-09-Wissensseiten mit Quellen und FAQ (wt-09g, 3108)
-- [ ] 09-12-PLAN.md — Fundament Teil 2: Artikelvorlage v2 mit Schrittliste, Übersichten, Kategorien, Suche (wt-09basis, 3101)
+- [x] 09-03-PLAN.md — (b) Ratgeber 1: Rechnungen, Kalkulation, Softwareauswahl (12) (wt-09b, 3103)
+- [x] 09-04-PLAN.md — (c) Ratgeber 2: Belege, Projekte, Team (12) (wt-09c, 3104)
+- [x] 09-05-PLAN.md — (d) Hilfe Büro Teil a: Einrichtung, Belege (9) (wt-09d, 3105)
+- [x] 09-17-PLAN.md — (d2) Hilfe Büro Teil b: Schlussrechnung zuerst, Rechnungen, Angebote (12) (wt-09d2, 3109)
+- [x] 09-06-PLAN.md — (e) Hilfe Baustelle Teil a: Projekte, Zeiten inkl. Arbeitsabschnitte (9) (wt-09e, 3106)
+- [x] 09-18-PLAN.md — (e2) Hilfe Baustelle Teil b: Baudokumentation mit Teilabnahme zuerst, Lager, Craft AI (10) (wt-09e2, 3110)
+- [x] 09-07-PLAN.md — (f) Zehn neue Hilfeartikel (wt-09f, 3107)
+- [x] 09-08-PLAN.md — (g) Neun SEO-09-Wissensseiten mit Quellen und FAQ (wt-09g, 3108)
+- [x] 09-12-PLAN.md — Fundament Teil 2: Artikelvorlage v2 mit Schrittliste, Übersichten, Kategorien, Suche (wt-09basis, 3101)
 
 **Wave 4** *(blocked on Merge von 09-07 und 09-08)*
 
-- [ ] 09-14-PLAN.md — (f) Verlinkung von Detailseiten und /app, L-1-Korrekturen in funktionen.ts und Funktionsdetails (wt-09f, 3107)
-- [ ] 09-13-PLAN.md — (a) Gewerke Teil 3: Links auf neue Anleitungen und Wissensseiten (wt-09a, 3102)
+- [x] 09-14-PLAN.md — (f) Verlinkung von Detailseiten und /app, L-1-Korrekturen in funktionen.ts und Funktionsdetails (wt-09f, 3107)
+- [x] 09-13-PLAN.md — (a) Gewerke Teil 3: Links auf neue Anleitungen und Wissensseiten (wt-09a, 3102)
 
 **Wave 5** *(blocked on Wave 4 completion)*
 
-- [ ] 09-09-PLAN.md — Integration: Map „bestehend“, answer-Pflicht, Endmengen 30/53, Übergänge zurückgenommen, Querverweise, Release-Delta, Abdeckungstabelle (main, 3100)
+- [x] 09-09-PLAN.md — Integration: Map „bestehend“, answer-Pflicht, Endmengen 30/53, Übergänge zurückgenommen, Querverweise, Release-Delta, Abdeckungstabelle (main, 3100)
 
 **Wave 6** *(blocked on Wave 5 completion)*
 
@@ -311,5 +311,5 @@ Plans:
 | 6. Startseite, Navigation und Funktionsübersicht | 6/6 | Complete    | 2026-10-21 |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 9/9 | Complete    | 2026-10-22 |
 | 8. SEO und KI-Sichtbarkeit | 14/14 | Complete    | 2026-10-22 |
-| 9. Gewerke und Wissensinhalte | 0/18 | Not started | - |
+| 9. Gewerke und Wissensinhalte | 16/18 | In Progress|  |
 | 10. Abschlussaudit | 0/TBD | Not started | - |

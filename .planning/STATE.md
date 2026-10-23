@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
-status: verifying
-stopped_at: Completed 08-14-PLAN.md
-last_updated: "2026-10-22T23:27:34.502Z"
-last_activity: 2026-10-22
+status: executing
+stopped_at: Completed 09-09-PLAN.md
+last_updated: "2026-10-23T04:44:13.868Z"
+last_activity: "2026-10-23 – 09-09 Integration: Strenge, Kassenbuch, Kundenportal, L-1, Querverweise, Basis test.246"
 progress:
   total_phases: 6
   completed_phases: 4
   total_plans: 55
-  completed_plans: 37
+  completed_plans: 53
   percent: 67
 ---
 
@@ -30,14 +30,14 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 09
-Plan: Not started
-Status: Phase complete — ready for verification
-Last activity: 2026-10-22
+Plan: 09-09 abgeschlossen (Integration); offen 09-16 (Phasen-Gate), 09-10 (Rollout)
+Status: In Progress
+Last activity: 2026-10-23 – 09-09 Integration: Strenge, Kassenbuch, Kundenportal, L-1, Querverweise, Basis test.246
 
-Progress: [███████░░░] 67% (37/55 Pläne des Milestones inkl. geplanter Phase 9; Phase 8: 14/14)
+Progress: [█████████░] 96% (53/55 Pläne des Milestones laut SUMMARY-Zählung; Phase 9: 16/18)
 
-Last session: 2026-10-22T23:17:54.036Z
-Stopped at: Completed 08-14-PLAN.md
+Last session: 2026-10-23T04:43:58.524Z
+Stopped at: Completed 09-09-PLAN.md
 Resume file: None
 
 ## Accumulated Context
@@ -121,6 +121,10 @@ Resume file: None
 - [Phase 08]: 08-13: Reduced-Motion-Regel mit transition-duration/-delay 0s statt 0.01ms (WebKit erzeugte Hunderte tab-size-Übergänge, Ursache home-navigation:501)
 - [Phase 08]: 08-13: FeatureCard-Raster grid-cols-1 unter 768 px (WebKit-Überlauf nach Größenwechsel); Kartenrahmen unter 362 px nur erste Zeile
 - [Phase 08]: 08-14: Phase 8 live (dpl_2avyo678E2VrDE9GTFMc3WL9yTS6, f029bc6); live-check 62/62 inkl. sitewide Keyword-Map, Brotkrumen, OG, FAQPage, Prompt-Anker; IndexNow 136; SE Ranking 0 Units (33.921 übrig); SEO-02 bis SEO-06 erledigt, SEO-09 und DESIGN-02 Abschluss Phase 9
+- [Phase ?]: [Phase 09]: 09-09: Endmengen 30 Ratgeber, 54 Hilfeartikel (Kassenbuch veröffentlicht, digitales kassenbuch 320/8)
+- [Phase ?]: [Phase 09]: 09-09: Kundenportal nach Release a0e27c42 – Angebotsmail mit Unterschriftslink, Rechnung als PDF, ohne Termine/Nachrichten
+- [Phase ?]: [Phase 09]: 09-09: Produktdaten ohne Negativsätze, einzige Ausnahme FAQ GoBD-zertifiziert
+- [Phase ?]: [Phase 09]: 09-09: Produktbasis Web v4.0.0-test.246 (a0e27c42); liveExtras Kassenbuch und § 13b nicht beworben bis Phase 10
 
 ### Pending Todos
 
@@ -166,3 +170,4 @@ None yet.
 | Phase 08 P11 | 40min | 2 tasks | 21 files |
 | Phase 08 P13 | 59min | 2 tasks | 22 files |
 | Phase 08 P14 | 28min | 2 tasks | 16 files |
+| Phase 09 P09 | 85 min | 2 tasks | 60 files |
