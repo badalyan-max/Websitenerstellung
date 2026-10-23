@@ -224,7 +224,7 @@ export const rechnungInhalte: Record<string, FunktionsdetailInhalt> = {
     slug: "mahnwesen",
     kopfwort: "Mahnwesen:",
     lead: "Fristen, Gebühren und Vorlagen je Stufe festlegen und überfällige Rechnungen auf Wunsch automatisch mahnen.",
-    secondary: { label: "Alle Funktionen ansehen", href: "/funktionen" },
+    secondary: { label: "Anleitung in der Hilfe", href: "/hilfe/mahnwesen-einrichten" },
     ablauf: {
       title: "Mahnwesen in vier Schritten",
       lead: "Von der Frist bis zum Mahnverlauf legen Sie jede Stufe selbst fest.",

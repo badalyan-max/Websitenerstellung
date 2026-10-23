@@ -97,6 +97,7 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
           title: "Angebotsunterschrift online",
           text: "Ihr Kunde nimmt das Angebot online an und unterschreibt es oder sendet eine Ablehnung.",
           visual: { kind: "icon", icon: Signature },
+          href: "/hilfe/angebot-online-unterschreiben-lassen",
           zusatz: "angebotsunterschrift",
         },
         {
@@ -104,6 +105,7 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
           title: "DATANORM 4 und 5",
           text: "Kataloge Ihres Großhändlers in DATANORM 4 oder DATANORM 5 einlesen und Artikel direkt ins Angebot übernehmen.",
           visual: { kind: "icon", icon: BookOpen },
+          href: "/hilfe/datanorm-katalog-importieren",
         },
       ],
     },
@@ -200,6 +202,8 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
           title: "Besichtigung",
           text: "Fotos, Videos und Sprachnotizen der Besichtigung gesammelt im Projekt ablegen, bevor Sie das Angebot schreiben.",
           visual: { kind: "icon", icon: Camera },
+          // D-21-Abweichung (09-RESEARCH „Verlinkung – Korrektur“, Orchestrator): die Kachel sitzt auf aufmass.
+          href: "/hilfe/besichtigung-durchfuehren",
           zusatz: "besichtigung",
         },
         {
@@ -246,7 +250,7 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
     slug: "kundenportal",
     kopfwort: "Kundenportal:",
     lead: "Ihre Kunden sehen freigegebene Angebote, Rechnungen und Termine im Browser und schreiben Ihnen direkt.",
-    secondary: { label: "Alle Funktionen ansehen", href: "/funktionen" },
+    secondary: { label: "Anleitung in der Hilfe", href: "/hilfe/kundenportal-kunden-einladen" },
     ablauf: {
       title: "Das Kundenportal in vier Schritten",
       lead: "Von der Einladung bis zur Antwort auf ein Angebot sieht Ihr Kunde nur, was Sie freigeben.",
@@ -381,6 +385,8 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
           title: "DATANORM-Kataloge",
           text: "Kataloge in DATANORM 4 und 5 einlesen und fehlerhafte Zeilen prüfen.",
           visual: { kind: "icon", icon: BookOpen },
+          // D-21: DATANORM-Anleitung über das href der vorhandenen Kachel (Anordnung bleibt md·sm·sm·wide·wide).
+          href: "/hilfe/datanorm-katalog-importieren",
         },
         {
           size: "wide",

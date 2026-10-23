@@ -217,6 +217,7 @@ export const planungInhalte: Record<string, FunktionsdetailInhalt> = {
           title: "Projekt-Chat und Nachrichten",
           text: "Rückfragen im Projekt-Chat beim Auftrag klären und Direktnachrichten im Posteingang der App lesen.",
           visual: { kind: "icon", icon: MessagesSquare },
+          href: "/hilfe/projekt-chat-nachrichten",
           zusatz: "projekt-chat",
         },
         {
