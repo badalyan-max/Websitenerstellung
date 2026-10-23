@@ -33,6 +33,9 @@ describe("CraftOSLogo (10-UI-SPEC § 7)", () => {
     const inhalt = schriftzug.slice(0, schriftzug.indexOf("</svg>"));
     expect((inhalt.match(/<path /g) ?? []).length).toBe(2);
     expect(inhalt).toContain('fill="currentColor"');
+    // LO-05: sRGB-Wert statt lab(), damit Browser ohne lab()-Unterstützung die Unterzeile nicht mit fill="none" erben.
+    expect(inhalt).not.toMatch(/lab\(|oklch\(/);
+    expect(inhalt).toContain('fill="#9f9fa9"');
   });
 
   it("enthält keine Schriftklassen und keinen Text im Schriftzug", () => {

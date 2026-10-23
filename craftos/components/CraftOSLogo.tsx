@@ -20,8 +20,11 @@ export const SCHRIFTZUG_PATH_UNTERZEILE =
 /** Box des Schriftzugs in px (Größe md), gemessen vor der Umstellung (zwei Textzeilen, Chromium). */
 const SCHRIFTZUG_BREITE = 117.421875
 const SCHRIFTZUG_HOEHE = 34
-/** Berechneter Wert von text-zinc-400 im Build vor der Umstellung (getComputedStyle, Chromium). */
-const FARBE_UNTERZEILE = 'lab(65.6464 1.53494 -5.42429)'
+/**
+ * Berechneter Wert von text-zinc-400 im Build vor der Umstellung (getComputedStyle, Chromium: lab(65.6464 1.53494
+ * -5.42429)), als sRGB-Hex umgerechnet (LO-05): Browser ohne lab() verwerfen das Attribut sonst und erben fill="none".
+ */
+const FARBE_UNTERZEILE = '#9f9fa9'
 
 interface CraftOSLogoProps {
   variant?: 'full' | 'icon'
