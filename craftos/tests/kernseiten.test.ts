@@ -199,12 +199,14 @@ describe("Fakten über CraftOS (§ 5.2, D-25)", () => {
     );
   });
 
-  it("FAQ: vier Antworten ≤ 300, nur positiv formuliert (HI-03): Offline-Aufzählung, GoBD-Zuständigkeit, Standort je Vorgang", () => {
+  it("FAQ: sechs Antworten ≤ 300, nur positiv formuliert (HI-03): Offline-Aufzählung, GoBD-Zuständigkeit, Standort je Vorgang, Einrichtung und Datenstandort (10-f)", () => {
     expect(fakten.faktenFaq.map((f) => f.q)).toEqual([
       "Wer bietet CraftOS an?",
       "Was funktioniert in CraftOS offline?",
       "Unterstützt CraftOS die GoBD?",
       "Welche Standortdaten speichert die Mobile-App?",
+      "Was kostet die Einrichtung von CraftOS?",
+      "Wo speichert CraftOS die Daten?",
     ]);
     expect(faqProbleme(fakten.faktenFaq)).toEqual([]);
     expect(fakten.faktenFaq[1].a).toBe(

@@ -16,6 +16,7 @@ import type { LucideIcon } from "lucide-react";
 import type { Cell, ComparisonColumn, ComparisonRow, ComparisonSource } from "@/components/v2/ComparisonTable";
 import type { Step } from "@/components/v2/StepFlow";
 import { TEXT_BUDGET, charCount, sentenceCount } from "@/components/v2/budgets";
+import { einrichtung } from "@/lib/einrichtung";
 import { germanDate } from "@/lib/format";
 import { ERLAUBTE_ANORDNUNGEN } from "@/lib/funktionsdetails";
 import { NEGATIVSATZ, NUR_UNTERSTUETZT, VERNEINTE_ZELLE, pruefeNurUnterstuetzt } from "@/lib/nur-unterstuetzt";
@@ -492,6 +493,8 @@ export function baueVergleich(anbieter: readonly Wettbewerber[] = alleWettbewerb
         q: "Woher stammen die Angaben im Vergleich?",
         a: "Aus den Preisseiten, Produktseiten und AGB der Anbieter, jeweils mit Quelle und Abrufdatum; CraftOS-Angaben stammen aus der Preisliste und dem Produktregister.",
       },
+      // D-41 (Inhaber 23.10.2026): Wechsel mit kostenloser Einrichtung, Wortlaut aus lib/einrichtung.ts.
+      { ...einrichtung.faqWechsel },
     ],
     cta: VERGLEICHS_CTA,
   };

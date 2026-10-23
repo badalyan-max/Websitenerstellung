@@ -12,6 +12,7 @@ import { germanDate, euro } from "@/lib/format";
 import { zielwerte } from "@/lib/seo-meta";
 import { alternativeAusModul, baueAlternative } from "@/lib/seiten/alternativen";
 import type { AlternativeInhalt, Seitenmodul } from "@/lib/seiten/alternativen/types";
+import { einrichtung } from "@/lib/einrichtung";
 import { annualSavingPercent, site, tarife } from "@/lib/site";
 import {
   craftnote,
@@ -252,7 +253,7 @@ describe("Vorlage", () => {
     expect(steps.map((s) => s.title)).toEqual(["Laufzeit prüfen", "Parallel testen", "Daten übernehmen", "Team einladen"]);
     expect(steps[1].text).toBe(`CraftOS ${site.trialDays} Tage ohne Zahlungsdaten mit einem laufenden Auftrag ausprobieren.`);
     expect(answer).toBe(
-      `Prüfen Sie die Kündigungsfrist Ihres plancraft-Abos, testen Sie CraftOS ${site.trialDays} Tage mit einem laufenden Auftrag und übernehmen Sie Kunden, Projekte und Stammdaten per Datei.`,
+      `Prüfen Sie die Kündigungsfrist Ihres plancraft-Abos, testen Sie CraftOS ${site.trialDays} Tage mit einem laufenden Auftrag und übernehmen Sie Kunden, Projekte und Stammdaten per Datei. ${einrichtung.wechsel}`,
     );
   });
 
@@ -428,7 +429,7 @@ describe("plancraft", () => {
       },
       {
         q: "Kann ich von plancraft zu CraftOS wechseln?",
-        a: "Ja. Prüfen Sie die Frist Ihres plancraft-Abos, laut plancraft bis einen Tag vor Ende der Mindestlaufzeit, und übernehmen Sie Kunden, Projekte und Stammdaten per Datei in CraftOS.",
+        a: `Ja. Prüfen Sie die Frist Ihres plancraft-Abos, laut plancraft bis einen Tag vor Ende der Mindestlaufzeit, und übernehmen Sie Kunden, Projekte und Stammdaten per Datei in CraftOS. ${einrichtung.wechsel}`,
       },
       {
         q: "Unterstützen plancraft und CraftOS E-Rechnungen?",
@@ -1057,13 +1058,15 @@ describe("/vergleich Inhalte", () => {
       "Laufzeit prüfen",
       "Mit Auftrag testen",
     ]);
-    expect(vergleich.faq).toHaveLength(4);
+    expect(vergleich.faq).toHaveLength(5);
     for (const f of vergleich.faq) expect(charCount(f.a), f.q).toBeLessThanOrEqual(300);
     expect(vergleich.faq.map((f) => f.q)).toEqual([
       "Welche Handwerkersoftware passt zu einem kleinen Betrieb?",
       "Welche Handwerkersoftware ist monatlich kündbar?",
       "Welche Handwerkersoftware hat eine Plantafel?",
       "Woher stammen die Angaben im Vergleich?",
+      // 10-f (D-41): Wechsel mit kostenloser Einrichtung aus lib/einrichtung.ts.
+      "Wie gelingt der Wechsel zu CraftOS?",
     ]);
   });
 
@@ -1398,13 +1401,15 @@ describe("kleine Betriebe Inhalte", () => {
     });
   });
 
-  it("FAQ: vier Fragen ≤ 300, E-Rechnung mit Ausnahmen laut BMF, CraftOS-Wert aus monatAusJahr (58,13 €)", async () => {
+  it("FAQ: fünf Fragen ≤ 300, E-Rechnung mit Ausnahmen laut BMF, CraftOS-Wert aus monatAusJahr (58,13 €)", async () => {
     const { kleineBetriebe: kb } = await laden();
     expect(kb.faq.map((f) => f.q)).toEqual([
       "Ab wann muss ein kleiner Betrieb E-Rechnungen ausstellen?",
       "Was kostet Handwerkersoftware für fünf Personen?",
       "Kann ich Handwerkersoftware monatlich kündigen?",
       "Brauchen Mitarbeitende auf der Baustelle eine eigene Lizenz?",
+      // 10-f (D-41): Wechsel mit kostenloser Einrichtung aus lib/einrichtung.ts.
+      "Wie gelingt der Wechsel zu CraftOS?",
     ]);
     for (const f of kb.faq) expect(charCount(f.a), f.q).toBeLessThanOrEqual(300);
     const [eRechnung, kosten, kuendigen, lizenz] = kb.faq.map((f) => f.a);

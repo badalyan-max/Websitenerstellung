@@ -553,7 +553,7 @@ describe("Kleine Betriebe im Budget (08-11)", () => {
     ]).toEqual([]);
     expect(kb.kriterien.kacheln).toHaveLength(6);
     expect(kb.schritte).toHaveLength(4);
-    expect(kb.faq).toHaveLength(4);
+    expect(kb.faq).toHaveLength(5);
     expect(t.columns.some((c) => c.highlight)).toBe(false);
   });
 });
