@@ -418,11 +418,13 @@ const definitions: Definition[] = [
 ];
 /**
  * Abweichender Prüfstand einzelner Detailseiten (K-5): 10-04 (D-21) ergänzt auf /funktionen/rechnungen die Kachel
- * „Rechnung nach § 13b“ und auf /funktionen/buchhaltung das Extra der Kassenbuch-Kachel.
+ * „Rechnung nach § 13b“ und auf /funktionen/buchhaltung das Extra der Kassenbuch-Kachel; 10-F (D-41) ergänzt auf
+ * /funktionen/datenuebernahme die FAQ-Antwort zum kostenlosen Import (Datum nachgezogen in 10-06).
  */
 const GEPRUEFT_AM: Readonly<Record<string, string>> = {
   rechnungen: "2026-10-23",
   buchhaltung: "2026-10-23",
+  datenuebernahme: "2026-10-23",
 };
 
 export const funktionen: Funktion[] = definitions.map((d) => ({

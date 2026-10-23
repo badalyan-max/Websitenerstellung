@@ -1,0 +1,191 @@
+# Phase 10 – Integration und Prüfungen (Plan 10-06)
+
+Stand: 23.10.2026, Haupt-Arbeitsbaum `C:/Projekte/Websitenerstellung`, Branch `main`, Port 3100. Verbindlich: `.planning/phases/10-abschlussaudit/10-CONTEXT.md` (D-01 bis D-43), `10-06-PLAN.md`, `10-UI-SPEC.md`. Dieses Dokument hält den Merge-Stand, die Übergaben aus den Spuren, den Endstand der zurückgestellten Punkte (D-31), die Inhaberliste und den Platz für das Phasen-Gate (10-12) fest. 10-07 überträgt die D-31-Tabelle in `PHASE-10-ROLLOUT.md`.
+
+## 1. Merge-Stand
+
+Der Orchestrator hat jede Spur mit `git merge --no-ff phase10-spur-<x>` nach `main` geführt (Standardbetreff). Spur f (Einrichtungsservice und Datenstandort, D-41) kam als Zusatzspur nach d.
+
+| Reihenfolge | Spur | Merge-Commit | Zeit (Commit) | Inhalt |
+|---|---|---|---|---|
+| 1 | phase10-spur-e | `b34f9fe` | 23.10.2026 13:49 | 10-05 Vorab-Audit und SE Ranking, 10-11 Linkregister, Etappennachweis, Berichtsentwurf |
+| 2 | phase10-spur-c | `4a995ed` | 23.10.2026 14:37 | 10-03 Support, Rechtsseiten, 404, ContentKopf K1/K2; 10-10 Rechner, Bento J3, Caption J4 |
+| 3 | phase10-spur-a | `18a3a95` | 23.10.2026 14:37 | 10-01 a11y-audit-Werkzeug; 10-08 Dimmstufe, `a11y.pw.cjs`, Baseline |
+| 4 | phase10-spur-b | `a214897` | 23.10.2026 15:06 | 10-02 Lighthouse-Modus, Prüfsuite; 10-09 Gate-Seiten, Logo als SVG |
+| 5 | phase10-spur-d | `f20417b` | 23.10.2026 15:06 | 10-04 Kassenbuch und § 13b, Schutztests; 10-13 Lagerfoto-Credits |
+| 6 | phase10-spur-f | `919b037` | 23.10.2026 15:06 | Einrichtungsservice (D-41) und Datenstandort |
+
+Zusätzlich auf `main` vor 10-06: `f8b3158` (seo-meta-Test auf die Map-Korrektur aus 10-05), `476c1a0` (Datenschutzerklärung überarbeitet, Referenz aktualisiert), `51ba246` und `cbc9f81` (CONTEXT-Nachträge D-42, D-43).
+
+**Startgate (B1)** – Ausgabe der Prüfung `git log --first-parent --merges --reverse --format=%s main | grep -oE 'phase10-spur-[a-e]' | awk '!s[$0]++'`:
+
+```
+phase10-spur-e phase10-spur-c phase10-spur-a phase10-spur-b phase10-spur-d
+```
+
+Ergebnis: Reihenfolge e → c → a → b → d belegt; f folgt nach d (mit `[a-f]`: `… phase10-spur-d phase10-spur-f`). Alle zehn SUMMARYs (10-01 bis 10-05, 10-08 bis 10-11, 10-13) und `10-F-NOTIZ.md` liegen vor; `git status --porcelain craftos` war leer; Port 3100 war frei.
+
+## 2. Übergaben
+
+Quellen: Abschnitte „Übergaben“/„Übergabeliste“ der SUMMARYs 10-01 bis 10-05, 10-08 bis 10-11, 10-13, „Behebungsliste“ aus 10-05, `10-F-NOTIZ.md` sowie der Auftrag des Orchestrators (D-42, Sitemap-Daten, Zeitlimit, `robots.ts`, 404). Gleichartige Punkte sind zusammengefasst; Menü-Präsenz, live-check-Block, Sitemap-Daten und D-42 zählen je als ein Punkt. **Obergrenze W10: 12 Punkte – eingehalten (12 umgesetzt).** Weitere Punkte stehen unter § 2.2 als Restliste mit Besitz.
+
+### 2.1 Umgesetzte Punkte
+
+| Nr. | Punkt | von Plan | Datei | Umsetzung | Commit/Status |
+|---|---|---|---|---|---|
+| 1 | `a11y.pw.cjs` in `testMatch` (K-9); 404-Fall mit drei Karten `/`, `/hilfe`, `/funktionen`, genau einem robots-Meta und ohne Canonical; Rechtsseite `/impressum` ohne Ausnahme | 10-08 Nr. 1–2, 10-03, 10-10 | `tests/e2e/playwright.config.cjs`, `tests/e2e/a11y.pw.cjs` | Spec läuft in der regulären Suite | `8849960` |
+| 2 | Caption-Fall bei 360 px auf fünf Seiten (J4) | 10-10 | `tests/e2e/design-v2.pw.cjs` | rechte Kante ≤ `clientWidth − 18`, nicht angeschnitten, kein Seitenquerscroll, `<caption>` mit Text | `8849960` |
+| 3 | `HINWEIS_MAX` nach `components/v2/budgets.ts` (K2) | 10-03, 10-10 | `components/v2/budgets.ts`, `components/content/ContentKopf.tsx`, `tests/design-v2-budgets.test.ts`, `tests/kernseiten.test.ts` | `TEXT_BUDGET.contentKopf.hinweis = 80`; Fehlertext unverändert | `8849960` |
+| 4 | Darstellungstest um `components/CraftOSLogo.tsx` (K-3) | 10-10 | `tests/phase10-darstellung.test.ts` | Logo im Geltungsbereich, 0 Treffer | `8849960` |
+| 5 | `docs/DESIGN-V2.md` § 19.6 (Dimmstufe, Fokusalgorithmus), § 19.7 (Logo-SVG, Schnitte, `inlineCss`), § 19.8 (Menü), § 19.9 (D-42) (K-12) | 10-08 Nr. 3, 10-09, 10-10 | `docs/DESIGN-V2.md` | eingetragen | `8849960`, `0033220`, `2a8936d` |
+| 6 | B10-Neumessung `/funktionen/rechnungen` (K-8) | 10-04, 10-10 | – (Messung) | Ergebnis unten in § 2.3, Kachelhöhen als Sollwert | gemessen 23.10.2026, kein Code nötig |
+| 7 | Zusatzfunktionen im Mega-Menü (D-21, D-40) | 10-04 | `components/layout/MegaMenu.tsx`, `MegaMenu.module.css`, `tests/navigation.test.ts`, `tests/e2e/home-navigation.pw.cjs` | „Weitere Funktionen“ je Gruppe mit Extras, zehn Links | `2a8936d` |
+| 8 | Sitemap-Änderungsdaten 2026-10-23 (K-15, K-5) | 10-03, 10-04, 10-10, 10-13, 10-F, Orchestrator | `app/sitemap.ts`, `lib/funktionen.ts`, `tests/sitemap-phase10.test.ts` | `/`, `/funktionen`, Rechner, `/support`, Rechtsseiten (jetzt mit Datum), `/funktionen/datenuebernahme` (`checkedAt`); übrige Phase-10-Seiten waren bereits datiert | Commit „feat(10-06): live-check Phase 10, Sitemap-Daten, D-31-Endstand“ |
+| 9 | live-check Phase-10-Block | 10-04, 10-13, 10-F, Plan | `scripts/live-check.mjs` | sieben Prüfungen (Köpfe, 404, Zusatzfunktionen, Lagerfoto-Credits, Schriften, Analytics-Verdrahtung, Einrichtungsservice) | Commit „feat(10-06): live-check Phase 10, Sitemap-Daten, D-31-Endstand“ |
+| 10 | Vorab-Audit: 404 ohne geerbten Canonical und mit nur einem robots-Meta; KI-Crawler ausdrücklich erlaubt | 10-05 Behebungsliste Nr. 6–7 | `app/not-found.tsx`, `app/robots.ts`, `tests/robots.test.ts`, `tests/kernseiten.test.ts` | `metadata` mit `canonical: null`, `robots: null`; GPTBot, ClaudeBot, PerplexityBot, Google-Extended mit `Allow: /` | `fdf70d0` |
+| 11 | Zeitlimit-Flake `content-produktwahrheit.test.ts` Z. 213 | 10-04, 10-10, 10-13 | `tests/content-produktwahrheit.test.ts` | Zeitlimit 60 s wie 08-09 | `8849960` |
+| 12 | D-42: ungenutzten Code entfernen, Impressum ohne OS-Plattform, längerer Title | Inhaber (D-42) | siehe § 2.4 | entfernt nach Such- und Build-Nachweis | `0033220` |
+
+### 2.2 Restliste (nicht in den 12 Punkten, mit Besitz)
+
+| Punkt | Herkunft | Datei | Besitz |
+|---|---|---|---|
+| Volle A11y-Matrix als `--shard=k/5` über beide Engines im Schlussnachweis | 10-08 Nr. 4, 10-01 | `scripts/a11y-audit.mjs` | 10-12 |
+| Sichtprüfung der `incomplete`-Kontrastknoten (Badges, `MediaFigure`, Tabellenzeilen) | 10-08 Nr. 5 | – | 10-12 |
+| Lighthouse Accessibility `/impressum` (Gate 100) und Rechnerseiten (Soll 100) | 10-03, 10-10 | `scripts/performance-audit.mjs` | 10-12 |
+| Optionales npm-Skript `a11y:audit` | 10-08 Nr. 6 | `package.json` | offen, kein Gate |
+| Interne Links `/impressum` (≥ 3 im `<main>` über Bausteine, Rechtstext unverändert) | 10-05 Behebungsliste Nr. 5 | `components/legal/Legal.tsx` | offen: lokal 1 interner Link im `<main>` (Brotkrumen „/“); eine Ergänzung über Bausteine (z. B. LinkKarten unter dem Rechtstext) ist eine Darstellungsänderung der Rechtsseite → Orchestrator/10-12 entscheidet |
+| Byte-Referenzen der Phase-9-Köpfe nach neuen Artikeln | 10-03 | `tests/contentkopf-unveraendert.test.ts` | kein Handlungsbedarf: volle Suite grün |
+| Weitere ungenutzte Altklassen außerhalb der D-42-Liste: `.craft-page-hero`, `.craft-watermark`, `.section-title`, `.rule-list`, `.notice` | 10-06 (Suche) | `app/globals.css` | Inhaber/Orchestrator, Freigabe nötig |
+| Koordinationsrezept für Website-Läufe | 10-01, 10-08 Nr. 7 | CraftOS-Workspace | Orchestrator |
+| Stichtag 01.01.2027 Lagerfoto-Credits, Mobile-Anzeige „2 Betriebscredits“ | 10-13 | Mobile-Repo | Inhaber |
+| `ETAPPEN-NACHWEIS-V2.md` Zeile 10, Abschlussbericht-Endwerte, seo-report ohne `--leaderboard`, IndexNow der D-41-Pfade | 10-05, 10-11, 10-F | Berichte | 10-07 |
+
+### 2.3 B10-Neumessung `/funktionen/rechnungen` (K-8)
+
+Skript `scratchpad/10-06/b10-rechnungen.cjs` (Verfahren `scratchpad/10-10/b10.cjs` plus Größenfolge und Prüfung leerer Rasterzellen je Zeile), lokaler Produktionsserver 3100, reduzierte Bewegung, zweimal gemessen (Lauf 1 und 2 identisch).
+
+| Engine | Breite | Spalten | Folge | Kachelhöhen (px, Sollwert) | Leerraum unter Text | leere Rasterzellen |
+|---|---|---|---|---|---|---|
+| Chromium | 768 | 2 | md·sm·sm·wide·wide·wide | 211 / 211 / 211 / 211 / 211 / 211 | 0 | 0 |
+| Chromium | 1024 | 4 | md·sm·sm·wide·wide·wide | 260 / 260 / 260 / 227 / 227 / 227 | 0 | 0 |
+| Chromium | 1440 | 4 | md·sm·sm·wide·wide·wide | 235 / 235 / 235 / 227 / 227 / 227 | 0 | 0 |
+| WebKit | 768 | 2 | md·sm·sm·wide·wide·wide | 211 / 211 / 211 / 211 / 211 / 211 | 0 | 0 |
+| WebKit | 1024 | 4 | md·sm·sm·wide·wide·wide | 260 / 260 / 260 / 227 / 227 / 227 | 0 | 0 |
+| WebKit | 1440 | 4 | md·sm·sm·wide·wide·wide | 235 / 235 / 235 / 227 / 227 / 227 | 0 | 0 |
+
+Die Kachelhöhen gelten als neuer Sollwert für `/funktionen/rechnungen` (K-8). Chromium und WebKit stimmen pixelgenau überein; die Bodenausrichtung J3 lässt keinen Leerraum unter dem Text.
+
+### 2.4 D-42: entfernte Elemente mit Nachweis
+
+Nachweis je Element vor dem Entfernen: Suche über `app/`, `components/`, `lib/`, `scripts/`, `tests/`, `content/` (Node-Skript, Importe, `className`, Dateinamen), danach `next build` grün (Lauf 1, 23.10.2026) und volle Vitest-Suite grün. Commit `0033220`.
+
+| Element | Nachweis vorher | Folgeanpassung |
+|---|---|---|
+| `components/ui/PageHero.tsx` | einziger Importeur `_seo-referenz/app-blog/page.tsx` (von `tsconfig` ausgeschlossen, nicht gebaut); Tests erwähnen PageHero nur als Verbot | – |
+| `components/ui/TrialCta.tsx` | nirgends importiert; einziger Nutzer von `.section-space`, `.btn-cta`, `.eyebrow` | mitentfernt, damit die Altklassen entfallen können (Abweichung, nicht auf der Liste) |
+| `CalculatorCta`, `.ctaSection`, `.primaryLink` | nur Definition in `CalculatorPage.tsx`, kein Aufruf | `tests/kernseiten.test.ts` erwartet jetzt 0 Vorkommen |
+| Altklassen in `app/globals.css` (acht Klassen, 27 Regelblöcke inkl. Media-Regeln und `.dark-section .eyebrow`/`.btn-secondary`) | außer in PageHero/TrialCta kein `className` mit diesen Klassen; `v2-eyebrow`/`v2-btn-cta` bleiben | `tests/aufraeumen-d42.test.ts` |
+| `public/fonts/clash-display-500.woff2`, `clash-display-700.woff2`, `general-sans-500.woff2` | `app/layout.tsx` lädt sie seit 10-09 nicht; Verweise nur im Herkunftskommentar von `CraftOSLogo.tsx` und im Netzfall der Logo-Spec | Kommentar angepasst; `logo-schriftzug.pw.cjs` prüft jetzt die drei erlaubten Schnitte per Hash (grün) |
+| `components/product-demo/**` (5 Dateien), `lib/demo/**` (2 Dateien) | Importe nur innerhalb der Demo und in `tests/demo.test.ts`; keine Datei unter `app/` | `tests/demo.test.ts`, `demo-planning.pw.cjs`, `mobile-step-flow.pw.cjs` (übersprungen, nicht in `testMatch`) und `browser-product-demo.archive.cjs` entfernt; D-23-Schutztest ersetzt durch `tests/aufraeumen-d42.test.ts` |
+| Impressum: Satz und Link zur OS-Plattform | – | VSBG-Satz wörtlich; `tests/fixtures/rechtstexte/impressum.txt` bewusst aktualisiert; Title „Impressum – CraftOS Handwerkersoftware“ über `docs/seo/keyword-map.json` (`KEYWORD-MAP.md` mit Änderungsnotiz, `tests/keyword-map.test.ts`) |
+
+Die Datenschutzerklärung ist unverändert.
+
+### 2.5 Audit-Behebungen
+
+Mechanisch, ohne Fließtext: Zahl geänderter Fließtextsätze **0**. Geänderte Dateien: `app/not-found.tsx` (nur Metadaten), `app/robots.ts`. Die Impressum-Änderung ist keine Audit-Behebung, sondern die Inhaberfreigabe D-42 (Rechtstext-Referenz `tests/fixtures/rechtstexte/impressum.txt` bewusst aktualisiert, VSBG-Satz wörtlich).
+
+### 2.6 Produktbasis
+
+`npm run sync:product:check`: „Snapshot ist aktuell: v4.0.0-test.249 (bfe165e9)“. Lokale Remote-Refs: Web `origin/release` = `bfe165e90` (Tag `v4.0.0-test.249`), Mobile `origin/release` = `837aab4f` (Tag `mobile-v1.0.0-test.96`). **Kein Delta**, keine Übernahme nötig (ohne `git fetch` in den Produkt-Repos, die andere Agenten nutzen).
+
+### 2.7 Prüfergebnisse 10-06 (lokal, unter `.heavy-lock`, Port 3100)
+
+| Prüfung | Ergebnis |
+|---|---|
+| Vitest voll | 58 Dateien, 1523/1523 grün (vorher 1546 in 56 Dateien; weniger durch das entfernte `tests/demo.test.ts`, neu `robots.test.ts`, `aufraeumen-d42.test.ts`, `sitemap-phase10.test.ts` und Einzelfälle) |
+| `tsc --noEmit`, `eslint .` | 0 Fehler, 0 Warnungen (die bisherige Warnung „`rel` ungenutzt“ in `phase10-darstellung.test.ts` ist mit entfernt) |
+| `next build` | grün |
+| E2E Lauf 1 (`a11y`, `design-v2`, `navigation`, `home-navigation`, `logo-schriftzug`) | 274 bestanden, 4 fehlgeschlagen, 102 übersprungen; die 4 Fehlschläge („Zwei Klicks“ Desktop/Mobil, beide Engines) waren strikte Selektoren, die nach der Menüänderung auch den gleichnamigen Zusatzlink trafen – Selektor auf `:not([data-menu-zusatz])` geschärft |
+| E2E Lauf 2 (`home-navigation`) | 40 bestanden, 0 fehlgeschlagen, 24 übersprungen |
+| `a11y.pw.cjs` (jetzt in `testMatch`) | 67 bestanden, 0 fehlgeschlagen; „Vorlage: Rechtsseite /impressum“ ohne Ausnahme grün, „Vorlage: 404“ mit Karten, einem robots-Meta und ohne Canonical grün, „Tastatur: Menü und Drawer“ grün |
+| `design-v2.pw.cjs` | 142 bestanden, 0 fehlgeschlagen, Caption-Fall grün |
+| live-check lokal | 76 OK, 0 FEHLER (Lauf 2; Lauf 1 deckte zwei Fehler im Skript auf: Bestandsprüfung zählte noch 30 statt 32 Funktionen, Schriftprüfung löste `../media/…` gegen den Ursprung statt gegen die CSS-Datei auf) |
+| `sync:product:check` | aktuell, kein Delta |
+| Menü-Messung (`scratchpad/10-06/screens.cjs`) | 1440 px: zehn Zusatzlinks, fünf Beschriftungen, Zielhöhe ≥ 44 px, Fokusring 3 px sichtbar, kein Querüberlauf; Panelinhalt 986 px bei 795 px sichtbarer Höhe (Viewport 900) – das Panel scrollt intern (`max-height: calc(100dvh − 104px)`, Bestand), die Fußleiste „Alle Funktionen …“ liegt erst nach dem Scrollen im Blick. 390 px: Drawer ohne Querüberlauf, Zielhöhe 48 px, `main` inert |
+
+## 3. Zurückgestellte Punkte (D-31, Endstand)
+
+| # | Punkt | Zuordnung | Endstand | Beleg |
+|---|---|---|---|---|
+| 1 | KI-Bild `werkstatt-2026` ohne Kennzeichnung | erledigt (09-11) | erledigt | 09-11; Alt und Kennzeichnung geprüft in `a11y.pw.cjs` „Vorlage: Styleguide-Bild“ |
+| 2 | WebKit-Flake „außerhalb des Viewports“ | 10-02 | erledigt | `9388865`, Bedingung statt Pause |
+| 3 | Kein Koordinationsrezept für die Website | nicht in diesem Meilenstein | nicht in diesem Meilenstein | Änderung am CraftOS-Workspace; Läufe lokal unter `.heavy-lock` |
+| 4 | Icon-Kachel-Weißraum bei 1024 px | 10-03 (c) | erledigt | `093f49b` (J3), B10 vorher/nachher in DESIGN-V2 § 19.5 |
+| 5 | FeatureSnippet-Dimmstufe | 10-01 (a) | erledigt | `f04fcf8` (10-08), DESIGN-V2 § 19.6 |
+| 6 | Review-Low 07 IN-01 (Gutter) | nicht in diesem Meilenstein | nicht in diesem Meilenstein | Entscheidung D-14 aus Phase 7 bleibt |
+| 7 | 07 IN-05 Teil 2 (CLS ohne reduzierte Bewegung) | 10-02 (b) | erledigt | 10-02: CLS 0 auf allen acht Snippet-Seiten |
+| 8 | 07 IN-06 (doppelte Slugs in `INHALTE`) | 10-04 (d) | erledigt | `a25fd76`/`77bb4ed`, `af3c59f` (wirft bei doppeltem Slug) |
+| 9 | 07 IN-07 (`zielwerte` verschieben) | erledigt (08-01) | erledigt | `lib/seo-meta.ts` |
+| 10 | 07 IN-08 (doppelte Validierung) | nicht in diesem Meilenstein | nicht in diesem Meilenstein | Codepflege ohne Nutzerwirkung |
+| 11 | Ältere Release-Tests ohne Helfer | 10-02 (b) | erledigt | `9388865`, `tests/release-repos.ts` |
+| 12 | Impressum-Linkkontrast 2,84 : 1 | 10-03 (c) | erledigt | `5e9c8e9`; seit D-42 entfällt der Link ganz |
+| 13 | E2E-Zeitflakes WebKit | 10-02 (b) | erledigt | `9388865` |
+| 14 | `content.test.ts` Zeitlimit | erledigt (08-09) | erledigt | `1e1cbb6`; analog 10-06 für `content-produktwahrheit.test.ts` |
+| 15 | Produkt-Snapshot veraltet | erledigt (09-10) | erledigt | `sync:product:check` am 23.10.2026 grün (§ 2.6) |
+| 16 | Tabellen-Caption bei 360 px | 10-03 (c) | erledigt | `093f49b` (J4); Fall in `design-v2.pw.cjs` (10-06) |
+| 17 | Verneinte KI-Formulierungen | erledigt (Phase 9) | erledigt | `content-pruefen --l1` 0 Befunde |
+| 18 | Überclaim-/Datenschutzaussagen `/gobd`, `/fakten` | Inhaber (optional) | Inhaber | GoBD-Aussage folgt mit D-43 (Spur g) |
+| 19 | Lint-Konfiguration (Playwright-Berichte) | erledigt (08-13) | erledigt | 10-06: `npm run lint` nach einem E2E-Lauf mit 4 Fehlschlägen (Artefakte in `tests/e2e/artifacts`) 0 Probleme |
+| 20 | Silbentrennung H2 `/preise` | 10-03 (c) | erledigt | 10-10 Messung, Regel `hyphens: manual` aus 09-09 |
+| 21 | Silbentrennung WebKit ohne Wörterbuch | Inhaber | Inhaber | Prüfung nur in echtem Safari; kein Querscroll gesichert in `a11y.pw.cjs` |
+| 22 | `announcements.test.ts` rot | erledigt (09-11) | erledigt | volle Vitest-Suite 10-06 grün (1523/1523, 58 Dateien) |
+| 23 | Antwortregel-Verstöße 15 Ratgeber | erledigt (09-16) | erledigt | seo-audit sitewide 0 |
+| 24 | Zusatzkarten Kassenbuch und § 13b auf `/funktionen` und im Menü | 10-04 (d) + 10-06 (D-40) | erledigt | `af3c59f` (Seite und Kacheln), `2a8936d` (Mega-Menü, D-40) |
+| 25 | `components/product-demo` und `lib/demo` | Inhaber + Schutztest | erledigt (D-42) | entfernt in `0033220`; Schutz `tests/aufraeumen-d42.test.ts` |
+| 26 | Lager-Foto-KI ohne Credit-Wert | 10-04 (d) | erledigt | `7a60fd8` (10-13): Code-Beleg `aiPricing.ts`, Werte in `lib/site.ts` |
+| 27 | Testkontext-Muster `pricing-parity` | 10-02 (b) | erledigt | `1e83aa1`, `9388865` |
+| 28 | Mini-UI-Status „Fertiggestellt“ | nicht in diesem Meilenstein | nicht in diesem Meilenstein | keine Szene braucht ihn |
+| 29 | Snapshot-Feld `tag` (Mobile) | nicht in diesem Meilenstein | nicht in diesem Meilenstein | nur interne JSON |
+| 30 | Grenzen 09-REVIEW-FIX (HI-01, LO-03) | nicht in diesem Meilenstein | nicht in diesem Meilenstein | bewusst begründet |
+| 31 | Kundenportal-Befunde (leeres Portal, Einladungsmail) | Inhaber | Inhaber | Produkt-Repo |
+| 32 | Analytics-Kontrolle `trial_click`/`ai_visit` 05–09 | Orchestrator → 10-05/10-07 | teilweise erledigt | 10-11 (`ae2b1c3`): Fenster 05–07 vollständig, 08/09 als Teilwerte; Phase 10 im Rollout |
+| 33 | Sichtung Screenshots/Gesamteindruck | Inhaber | Inhaber | ästhetisches Urteil |
+| 34 | Wettbewerberaussagen (UWG) | Inhaber | Inhaber | fachlich-rechtliches Urteil |
+| 35 | Rechts-/Steuerfakten, `[ASSUMED]`-Quellen | Inhaber | Inhaber | juristisches Urteil |
+| 36 | Wettbewerberangaben nach 60 Tagen prüfen (bis 21.12.2026) | nicht in diesem Meilenstein | nicht in diesem Meilenstein | Termin im Abschlussbericht |
+| 37 | Datenschutzabschnitt Webanalyse, Impressum „§ 5 DDG“ | Inhaber | teilweise erledigt | Datenschutzerklärung überarbeitet (`476c1a0`, Orchestrator/Inhaber); „§ 5 DDG“ bleibt Inhaberpunkt |
+| 38 | Portale, Bewertungen, Portal-Mails (SEO-08) | Inhaber; Messung 10-05/10-11 | Inhaber | `caa4931`, LINKPLAN § „Übergabe 2“; omr.com live |
+| 39 | SE-Ranking-Kontoverbrauch | Orchestrator/Inhaber | erledigt (Ursache), Tarif offen | D-37: Leaderboard nur mit `--leaderboard` (`fa0ab7b`) |
+| 40 | Sichtprüfung Esc/Fokusverlust im Header | 10-01 (a) | erledigt | `89f6313` „Tastatur: Menü und Drawer“; nach der Menüänderung grün (`a11y.pw.cjs` 67 bestanden, 0 fehlgeschlagen) |
+
+## 4. Inhaberliste
+
+### 4.1 „Freigabe zum Entfernen nötig“ – Endstand
+
+| Kandidat | Grund | Status |
+|---|---|---|
+| `components/ui/PageHero.tsx` | nach 10-03 nirgends gerendert | entfernt (D-42, `0033220`) |
+| `CalculatorCta` in `components/calculators/CalculatorPage.tsx` samt `.ctaSection`, `.primaryLink` | seit 10-10 nicht gerendert | entfernt (D-42, `0033220`) |
+| Altklassen `section-space`, `split-section`, `soft-panel`, `section-intro`, `btn-cta`, `btn-secondary`, `eyebrow`, `spec-label` in `app/globals.css` | außer im ungenutzten `TrialCta` nirgends genutzt | entfernt samt `components/ui/TrialCta.tsx` (D-42, `0033220`) |
+| Schriftdateien Clash 500/700, General 500 | seit 10-09 nicht geladen | entfernt (D-42, `0033220`) |
+| `components/product-demo/**` samt `lib/demo/**` (ProductDemo) | ungerendert; Szene `ki` zeigt den nicht freigeschalteten KI-Agenten | entfernt (D-42, `0033220`); Folgen: übersprungene Specs `demo-planning.pw.cjs`, `mobile-step-flow.pw.cjs`, `browser-product-demo.archive.cjs` und `tests/demo.test.ts` entfernt; `components/ui/MobileAppGallery.tsx` bleibt (eigenständig, von `media-budget.test.ts` geprüft) |
+| `.craft-page-hero`, `.craft-watermark`, `.section-title`, `.rule-list`, `.notice` in `app/globals.css` | nach D-42 ungenutzt, aber nicht auf der Freigabeliste | **Freigabe nötig** (neu) |
+
+### 4.2 Inhaberpunkte
+
+- **ProductDemo „archivieren oder löschen?“:** entschieden mit D-42 („mach was du richtig findest“), umgesetzt als Löschen; die Demo bleibt im Git-Verlauf abrufbar (letzter Stand vor ``0033220``).
+- **ODR-Satz und kurzer Title im Impressum:** entschieden mit D-42; Satz und Link zur OS-Plattform entfernt, VSBG-Erklärung wörtlich, Title „Impressum – CraftOS Handwerkersoftware“.
+- **Datenschutzabschnitt Webanalyse und „§ 5 DDG“:** Datenschutzerklärung mit `476c1a0` überarbeitet; „Angaben gemäß § 5 DDG“ im Impressum bleibt zur Bestätigung beim Inhaber. Offen aus 10-F: Satz „Server in der EU“ in `/datenschutz` gegen die R2-Jurisdiktion „default“ prüfen (ausdrücklich nicht Teil von D-42).
+- **Hinweisabsätze „Vorlage …“ in `/datenschutz` und `/agb`:** Wortlaut unverändert, Entscheidung beim Inhaber.
+- **Kundenportal-Befunde** (leeres Portal, Einladungsmail): Produkt-Repo, kein Website-Auftrag.
+- **Portal-Anmeldungen und Bewertungen:** nach `docs/seo/LINKPLAN.md` § 7 „Übergabe 2 an den Inhaber“ (ProvenExpert, G2, kennstdueinen.de, SoftwareWorld, Portal-Mails).
+- **Sichtung der Screenshots** der Phasen 5–10 (Gesamteindruck), Menü-Screenshots 10-06 im Scratchpad. Neu zu bewerten: Das Mega-Menü ist mit den Zusatzfunktionen höher als ein 900-px-Viewport und scrollt intern; Option bei Bedarf: kompaktere Zusatzliste (14 px, Zielhöhe 32 px) statt des Bestandsstils.
+- **UWG- und Rechtsfakten** der Vergleichs- und Wissensseiten.
+- **Silbentrennung in echtem Safari** (`/hilfe/material-entnehmen-zurueckbuchen`).
+- **Lagerfoto-Credits:** Mobile-Anzeige vor dem 01.01.2027 nachziehen (10-13).
+
+## 5. Phasen-Gate
+
+Füllt 10-12 (volle A11y-Matrix, Lighthouse-Endmessung, Gates D-14).

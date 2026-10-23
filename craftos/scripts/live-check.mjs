@@ -4,10 +4,12 @@
 // /app und alle Detailseiten (Keyword-Map, JSON-LD inkl. MobileApplication, Kennzeichnung,
 // interne Belegpfade, llms.txt; Phase 7) sowie sitewide Keyword-Map, Brotkrumen, OG-Bilder, FAQPage,
 // /preise, Prompt-Anker und llms.txt der Vergleichsseiten (Phase 8) sowie Gewerke-Antwort und -Ablauf,
-// neue Anleitungen, Wissensseiten und deren Verlinkung (Phase 9).
+// neue Anleitungen, Wissensseiten und deren Verlinkung (Phase 9) sowie helle v2-Köpfe, 404, Zusatzfunktionen im
+// Mega-Menü, Lagerfoto-Credits, geladene Schriftschnitte, Analytics-Verdrahtung und Einrichtungsservice (Phase 10).
 //   node scripts/live-check.mjs                                  # gegen https://craftos.eu
 //   LIVE_ORIGIN=http://localhost:3100 node scripts/live-check.mjs  # gegen lokalen Produktionsserver
 // Ausgabe je Prüfung „OK“ oder „FEHLER“; exitCode 1, sobald eine Prüfung fehlschlägt.
+import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -192,11 +194,12 @@ for (const route of ["/", "/funktionen", "/app", ...detailPfade]) {
 
 const gruppenReihenfolge = ["angebot", "planung", "baustelle", "rechnung", "buchhaltung", "team"];
 
-await check("/funktionen zeigt 30 Funktionen in 6 Gruppen mit BreadcrumbList und ItemList", async () => {
+// Phase 10 (D-21, 10-04): 22 Detailfunktionen + 10 Zusatzfunktionen (mit Kassenbuch und Rechnung nach § 13b) = 32.
+await check("/funktionen zeigt 32 Funktionen in 6 Gruppen mit BreadcrumbList und ItemList", async () => {
   const r = await get("/funktionen");
   if (r.status !== 200) return `HTTP ${r.status}`;
   const anzahl = (r.text.match(/data-funktion="/g) || []).length;
-  if (anzahl !== 30) return `${anzahl} statt 30 data-funktion`;
+  if (anzahl !== 32) return `${anzahl} statt 32 data-funktion`;
   const gruppen = [...r.text.matchAll(/data-gruppe="([^"]+)"/g)].map((m) => m[1]);
   if (gruppen.join(",") !== gruppenReihenfolge.join(",")) return `Gruppen ${gruppen.join(",")}`;
   const ld = jsonLd(r.text);
@@ -679,6 +682,218 @@ await check("Prompt-Anker live: jedes Phase-9-Ziel mit Anker und Antwort ≤ 300
   }
   const verstoesse = promptVerstoesse(eintraege, (pfad) => html.get(pfad));
   return verstoesse.length === 0 || verstoesse.map((v) => v.problem).join("; ");
+});
+
+// ---------------------------------------------------------------------------------------------
+// Phase 10: helle v2-Köpfe (Rechner, /support, Rechtsseiten), 404-Vorlage, Zusatzfunktionen auf /funktionen,
+// im Mega-Menü und an der Zielkachel, Lagerfoto-Credits, geladene Schriftschnitte, Analytics-Verdrahtung und der
+// Einrichtungsservice mit Datenstandort (D-41). Pfade und Werte aus docs/seo/keyword-map.json,
+// lib/funktionsgruppen.ts, lib/site.ts, lib/einrichtung.ts, lib/datenstandort.ts und
+// scripts/lib/lighthouse-core.mjs (GATE_ROUTEN); die TS-Quellen werden als Text gelesen (kein Build nötig).
+// ---------------------------------------------------------------------------------------------
+const quelle = (rel) => fs.readFileSync(path.join(root, rel), "utf8");
+const textVon = (html) => plain(html).replace(/\s+/g, " ");
+const HELLER_KOPF = /<section\b[^>]*data-abschnitt="kopf"[^>]*data-tone="light"/;
+const RECHNER = ["/rechner", "/rechner/stundensatz", "/rechner/angebotskalkulation"];
+const RECHTSSEITEN = ["/impressum", "/datenschutz", "/agb"];
+
+await check(`Phase-10-Köpfe (${RECHNER.length + 1 + RECHTSSEITEN.length} Seiten): heller Kopf, eine BreadcrumbList, H1 = Map; Rechner mit Hinweis`, () =>
+  jedeSeite([...RECHNER, "/support", ...RECHTSSEITEN], (route, r) => {
+    const abw = [];
+    if (!HELLER_KOPF.test(r.text)) abw.push('kein section[data-abschnitt="kopf"][data-tone="light"]');
+    const listen = findType(jsonLd(r.text), "BreadcrumbList").length;
+    if (listen !== 1) abw.push(`${listen} BreadcrumbList`);
+    const { h1s } = headTags(r.text);
+    if (h1s.length !== 1 || h1s[0] !== target(route).h1) abw.push(`H1 „${h1s.join(" | ")}“`);
+    if (RECHNER.includes(route) && !/<p\b[^>]*data-hinweis=/.test(r.text)) abw.push("p[data-hinweis] fehlt");
+    return abw.join(", ");
+  }),
+);
+
+await check("404: Status 404, genau ein robots-Meta mit noindex, kein Canonical, keine Brotkrumen, drei Einstiegskarten", async () => {
+  const r = await get("/gibt-es-nicht-live-check-phase10");
+  if (r.status !== 404) return `HTTP ${r.status}`;
+  const abw = [];
+  const robots = [...r.text.matchAll(/<meta\b[^>]*name="robots"[^>]*>/gi)].map((m) => m[0]);
+  if (robots.length !== 1 || !/noindex/.test(robots[0])) abw.push(`robots: ${robots.join(" ") || "keins"}`);
+  if (/<link\b[^>]*rel="canonical"/i.test(r.text)) abw.push("Canonical vorhanden");
+  if (breadcrumbNav(r.text).count !== 0) abw.push("Brotkrumen vorhanden");
+  const liste = r.text.match(/<ul\b[^>]*aria-label="Einstiege"[^>]*>[\s\S]*?<\/ul>/)?.[0] ?? "";
+  const ziele = [...liste.matchAll(/<h3\b[^>]*><a\b[^>]*href="([^"]+)"/g)].map((m) => m[1]);
+  if (ziele.join(" ") !== "/ /hilfe /funktionen") abw.push(`Karten: ${ziele.join(", ") || "keine"}`);
+  return abw.length === 0 || abw.join(", ");
+});
+
+/** Zusatzfunktion aus lib/funktionsgruppen.ts (ZUSATZ[id]): Name und Ziel. */
+function zusatz(id) {
+  const src = quelle("lib/funktionsgruppen.ts");
+  const i = src.search(new RegExp(`^\\s*"?${id}"?: \\{`, "m"));
+  if (i === -1) throw new Error(`lib/funktionsgruppen.ts ohne Zusatz ${id}`);
+  const block = src.slice(i, src.indexOf("\n  },", i));
+  const name = block.match(/\bname: "([^"]+)"/)?.[1];
+  const href = block.match(/target: \{ href: "([^"]+)"/)?.[1];
+  if (!name || !href) throw new Error(`Zusatz ${id} ohne name oder target.href`);
+  return { id, name, href };
+}
+
+await check("Zusatzfunktionen (D-21, D-40): /funktionen, Mega-Menü der Startseite und Zielkachel nennen Kassenbuch und § 13b", async () => {
+  const extras = [zusatz("kassenbuch"), zusatz("rechnung-13b")];
+  const abw = [];
+  const funktionen = await get("/funktionen");
+  const start = await get("/");
+  if (funktionen.status !== 200 || start.status !== 200) return `HTTP /funktionen ${funktionen.status}, / ${start.status}`;
+  const text = textVon(funktionen.text);
+  for (const x of extras) {
+    if (!text.includes(x.name)) abw.push(`/funktionen ohne „${x.name}“`);
+    const menu = new RegExp(`<a\\b(?=[^>]*href="${x.href}")(?=[^>]*data-menu-zusatz="${x.id}")[^>]*>([\\s\\S]*?)</a>`).exec(start.text);
+    if (!menu || plain(menu[1]).trim() !== x.name) abw.push(`Menü der Startseite ohne „${x.name}“ → ${x.href}`);
+    const ziel = await get(x.href);
+    if (ziel.status !== 200) abw.push(`${x.href} HTTP ${ziel.status}`);
+    else if (!ziel.text.includes(`data-zusatz="${x.id}"`)) abw.push(`${x.href} ohne [data-zusatz="${x.id}"]`);
+  }
+  return abw.length === 0 || abw.join("; ");
+});
+
+/** Credit-Stufen der Lagerfoto-KI aus lib/site.ts (`lagerfotoCredits`). */
+function lagerfotoStufen() {
+  const src = quelle("lib/site.ts");
+  const block = src.slice(src.indexOf("export const lagerfotoCredits"), src.indexOf("] as const;", src.indexOf("export const lagerfotoCredits")));
+  const stufen = [...block.matchAll(/\{ ab: (null|"(\d{4}-\d{2}-\d{2})"), max: (\d+) \}/g)].map((m) => ({ ab: m[2] ?? null, max: Number(m[3]) }));
+  if (stufen.length === 0) throw new Error("lib/site.ts ohne lagerfotoCredits");
+  return stufen;
+}
+const datumLang = (iso) =>
+  new Intl.DateTimeFormat("de-DE", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${iso}T00:00:00Z`));
+
+await check("Lagerfoto-Credits (D-22, 10-13): /craft-ai und /hilfe/lager-scan-app nennen die Stufen aus lib/site.ts", () => {
+  const erwartet = lagerfotoStufen().flatMap((s) => [`bis zu ${s.max} Credits`, ...(s.ab ? [datumLang(s.ab)] : [])]);
+  return jedeSeite(["/craft-ai", "/hilfe/lager-scan-app"], (route, r) => {
+    const fehlt = missing(textVon(r.text), erwartet);
+    return fehlt.length ? `fehlt: ${fehlt.join(", ")}` : "";
+  });
+});
+
+const { GATE_ROUTEN } = await import("./lib/lighthouse-core.mjs");
+const GELADENE_SCHNITTE = ["clash-display-600.woff2", "general-sans-400.woff2", "general-sans-600.woff2"];
+const ENTFALLENE_SCHNITTE = ["clash-display-500", "clash-display-700", "general-sans-500"];
+const sha256 = (buf) => createHash("sha256").update(buf).digest("hex");
+const erlaubteSchnitte = new Set(GELADENE_SCHNITTE.map((d) => sha256(fs.readFileSync(path.join(root, "public/fonts", d)))));
+const binaer = new Map();
+async function hashVon(url) {
+  if (!binaer.has(url)) {
+    binaer.set(
+      url,
+      fetch(new URL(url, origin), { signal: AbortSignal.timeout(20000) }).then(async (res) =>
+        res.ok ? sha256(Buffer.from(await res.arrayBuffer())) : `HTTP ${res.status}`,
+      ),
+    );
+  }
+  return binaer.get(url);
+}
+
+await check(`Schriften (10-09, D-42): /impressum und ${GATE_ROUTEN.length} Gate-Seiten mit genau drei Font-Preloads, nur die drei geladenen Schnitte`, () =>
+  jedeSeite(["/impressum", ...GATE_ROUTEN], async (route, r) => {
+    const abw = [];
+    const preloads = [...r.text.matchAll(/<link\b[^>]*>/gi)].filter((m) => /rel="preload"/.test(m[0]) && /as="font"/.test(m[0]));
+    if (preloads.length !== 3) abw.push(`${preloads.length} Font-Preloads`);
+    const css = [...r.text.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*href="([^"]+)"/gi)].map((m) => m[1]);
+    let texte = r.text;
+    // woff2-Verweise relativ zur jeweiligen Datei auflösen (CSS nennt z. B. „../media/…“).
+    const fontUrls = new Set();
+    const sammle = (text, basis) => {
+      for (const m of text.matchAll(/url\(\s*["']?([^"')\s]+\.woff2)/g)) fontUrls.add(new URL(m[1], basis).href);
+    };
+    sammle(r.text, new URL(route, origin));
+    for (const href of css) {
+      const c = await get(href);
+      if (c.status !== 200) abw.push(`${href} HTTP ${c.status}`);
+      else {
+        texte += c.text;
+        sammle(c.text, new URL(href, origin));
+      }
+    }
+    // next/font übernimmt den Dateinamen mit Unterstrichen („clash_display_600-s.p.….woff2“); beide Schreibweisen prüfen.
+    for (const name of ENTFALLENE_SCHNITTE) {
+      if (texte.includes(name) || texte.includes(name.replaceAll("-", "_"))) abw.push(`Verweis auf ${name}`);
+    }
+    const fonts = [...fontUrls];
+    for (const url of fonts) {
+      const h = await hashVon(url);
+      if (!erlaubteSchnitte.has(h)) abw.push(`fremder Schnitt ${url} (${h.slice(0, 12)})`);
+    }
+    if (fonts.length === 0) abw.push("keine woff2-Verweise im CSS");
+    return abw.join(", ");
+  }),
+);
+
+// Analytics: CTA mit data-track="trial" in jedem Fall; die Vercel-Einbindung (Insights) nur, wenn sie für das
+// Ziel gebaut ist – live immer, lokal nur mit NEXT_PUBLIC_ANALYTICS_ENABLED=true beim Build (components/Analytics.tsx).
+const ctaUrl = quelle("lib/site.ts").match(/ctaUrl: "([^"]+)"/)?.[1] ?? "https://app.craftos.eu";
+const lokalOhneAnalytics = /\/\/(localhost|127\.0\.0\.1)(:|$)/.test(origin) && process.env.NEXT_PUBLIC_ANALYTICS_ENABLED !== "true";
+await check(`Analytics-Verdrahtung: Startseite mit CTA data-track="trial"${lokalOhneAnalytics ? " (lokal ohne NEXT_PUBLIC_ANALYTICS_ENABLED: Insights-Einbindung nicht geprüft)" : " und Vercel-Insights-Einbindung"}`, async () => {
+  const r = await get("/");
+  if (r.status !== 200) return `HTTP ${r.status}`;
+  const abw = [];
+  const ctas = [...r.text.matchAll(/<a\b[^>]*data-track="trial"[^>]*>/g)].map((m) => m[0]);
+  if (ctas.length === 0) abw.push('kein Link mit data-track="trial"');
+  else if (!ctas.every((a) => a.includes(`href="${ctaUrl}`))) abw.push(`Trial-CTA nicht auf ${ctaUrl}`);
+  if (!lokalOhneAnalytics) {
+    const chunks = [...new Set([...r.text.matchAll(/<script\b[^>]*src="([^"]+\.js)"/g)].map((m) => m[1]))];
+    let gefunden = false;
+    for (const src of chunks) {
+      const c = await get(src);
+      if (c.status === 200 && c.text.includes("/_vercel/insights/script.js")) {
+        gefunden = true;
+        break;
+      }
+    }
+    if (!gefunden) abw.push(`/_vercel/insights/script.js in keinem der ${chunks.length} Skripte`);
+  }
+  return abw.length === 0 || abw.join(", ");
+});
+
+/** Wert eines Feldes aus lib/einrichtung.ts bzw. lib/datenstandort.ts (Stringliteral, ggf. über die Konstante kern). */
+function textFeld(rel, feld) {
+  const src = quelle(rel);
+  const kern = src.match(/const kern =\s*"([^"]+)"/)?.[1];
+  if (feld === "kern") {
+    if (!kern) throw new Error(`${rel} ohne kern`);
+    return kern;
+  }
+  const m = src.match(new RegExp(`\\b${feld}:\\s*"([^"]+)"`)) ?? src.match(new RegExp(`\\b${feld}:\\s*\\{ q: "([^"]+)"`));
+  if (!m) throw new Error(`${rel} ohne ${feld}`);
+  return m[1];
+}
+const E = (feld) => textFeld("lib/einrichtung.ts", feld);
+const D = (feld) => textFeld("lib/datenstandort.ts", feld);
+
+await check("Einrichtungsservice und Datenstandort (D-41): Texte aus lib/einrichtung.ts und lib/datenstandort.ts an allen Zielorten", async () => {
+  const soll = {
+    "/preise": [E("faqPreise"), D("faqPreise"), E("tarifHinweis")],
+    "/fakten-ueber-craftos": [E("faqFakten"), D("faqFakten")],
+    "/vergleich": [E("faqWechsel")],
+    "/vergleich/handwerkersoftware-kleine-betriebe": [E("faqWechsel")],
+    "/funktionen/datenuebernahme": [E("importSatz")],
+    "/hilfe/daten-importieren": [E("importSatz")],
+    ...Object.fromEntries(PHASE8_ALTERNATIVEN.map((pfad) => [pfad, [E("wechsel")]])),
+  };
+  const faqPflicht = { "/preise": [E("faqPreise"), D("faqPreise")], "/fakten-ueber-craftos": [E("faqFakten"), D("faqFakten")] };
+  const abw = [];
+  const seiten = await jedeSeite(Object.keys(soll), (route, r) => {
+    const fehlt = missing(textVon(r.text), soll[route]);
+    const fragen = findType(jsonLd(r.text), "FAQPage").flatMap((f) => (f.mainEntity ?? []).map((q) => q.name));
+    const ohneSchema = (faqPflicht[route] ?? []).filter((q) => !fragen.includes(q));
+    return [fehlt.length ? `fehlt: ${fehlt.join(" | ")}` : "", ohneSchema.length ? `nicht im FAQPage-JSON-LD: ${ohneSchema.join(" | ")}` : ""]
+      .filter(Boolean)
+      .join(", ");
+  });
+  if (seiten !== true) abw.push(seiten);
+  const llms = await get("/llms.txt");
+  if (llms.status !== 200) abw.push(`/llms.txt HTTP ${llms.status}`);
+  else {
+    for (const zeile of [`- Einrichtung: ${E("kern")}`, `- Datenstandort: ${D("kern")}`]) if (!llms.text.includes(zeile)) abw.push(`/llms.txt ohne „${zeile.slice(0, 40)}…“`);
+  }
+  return abw.length === 0 || abw.join("; ");
 });
 
 console.log(fehler === 0 ? "Ergebnis: alle Prüfungen OK" : `Ergebnis: ${fehler} Prüfung(en) FEHLER`);
