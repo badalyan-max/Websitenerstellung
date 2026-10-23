@@ -4,8 +4,8 @@ fixed_at: 2026-10-23T17:10:00Z
 review_path: .planning/phases/10-abschlussaudit/10-REVIEW.md
 iteration: 1
 findings_in_scope: 17
-fixed: 14
-skipped: 3
+fixed: 15
+skipped: 2
 status: partial
 ---
 
@@ -18,8 +18,8 @@ status: partial
 
 **Zusammenfassung:**
 - Befunde im Umfang: 17 (HI-01, ME-01 bis ME-05, LO-01 bis LO-08, IN-01 bis IN-03)
-- Behoben: 14
-- Nicht anwendbar: 3 (LO-06, IN-02, IN-03)
+- Behoben: 15 (LO-06 nachträglich in 10-12 mit Inhaberfreigabe)
+- Nicht anwendbar: 2 (IN-02, IN-03)
 
 ## Status je ID
 
@@ -34,7 +34,7 @@ status: partial
 - LO-03: behoben – 29a88c3
 - LO-04: behoben – bb19770
 - LO-05: behoben – d61de11
-- LO-06: nicht anwendbar – Rechtstext (AGB-Vorlagenhinweis). Rechtstexte werden laut Vorgabe nicht geändert; die Entscheidung liegt beim Inhaber (prüfen lassen oder Stand mit Datum).
+- LO-06: behoben 19dd8ed – Inhaberfreigabe 23.10.2026 („natürlich, das darf so nicht stehen“), Vorlagenhinweis in /agb durch „Stand: 23. Oktober 2026“ ersetzt (in 10-12)
 - LO-07: behoben – 81a8c4f
 - LO-08: behoben – b9b8fb6
 - IN-01: behoben – 20c5f79, Nachbesserung 73da90d
@@ -183,7 +183,8 @@ Die Spec lief lokal auf `chromium-1440` mit 3 von 3 grün.
 ### LO-06: Die AGB zeigen live weiter „Vorlage … sollten vor Veröffentlichung rechtlich geprüft werden“
 
 **Datei:** `craftos/app/agb/page.tsx:90-94`
-**Grund:** Es handelt sich um einen Rechtstext. Laut Vorgabe werden Rechtstexte nicht geändert; nötig ist eine Inhaberentscheidung (AGB prüfen lassen oder den Stand mit Datum angeben).
+**Grund (ursprünglich):** Es handelt sich um einen Rechtstext. Laut Vorgabe werden Rechtstexte nicht geändert; nötig ist eine Inhaberentscheidung (AGB prüfen lassen oder den Stand mit Datum angeben).
+**Nachtrag 10-12:** behoben 19dd8ed nach Inhaberfreigabe vom 23.10.2026. Der Hinweis ist durch den Absatz „Stand: 23. Oktober 2026“ ersetzt (wie ), der übrige AGB-Text ist unverändert; die Referenz  wurde bewusst neu erzeugt.  enthält keinen gleichartigen Hinweis.
 **Ursprünglicher Befund:** Der Vorlagenhinweis steht weiter sichtbar unter den AGB.
 
 ### IN-02: Die Zusatzlinks im Mega-Menü führen auf den Seitenanfang der Detailseite
