@@ -734,6 +734,13 @@ h4 {
   overflow-wrap: anywhere;
   hyphens: auto;
 }
+/* /preise (09-09): Die Prompt-Frage „Was kostet eine Handwerkersoftware pro Monat?“ wurde bei 1440 px als
+   „Handwer-kersoftware“ getrennt. Nur diese H2 trennt nicht automatisch; passt das Wort nicht, bricht es ohne Strich. */
+h2#was-kostet-handwerkersoftware {
+  hyphens: manual;
+  -webkit-hyphens: manual;
+  overflow-wrap: break-word;
+}
 /* CraftOS: warmer Werkstattcharakter, kräftige Kontraste, kürzere Wege. */
 @theme {
   --color-ink-100: #f7f3eb;

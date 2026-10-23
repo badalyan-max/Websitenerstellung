@@ -8,7 +8,7 @@ updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["mahnwesen", "rechnungen", "bankabgleich"]
-relatedArticles: ["/hilfe/zahlungen-erfassen", "/blog/offene-posten-liquiditaet"]
+relatedArticles: ["/hilfe/mahnwesen-einrichten", "/hilfe/zahlungen-erfassen", "/blog/offene-posten-liquiditaet"]
 sources: [{"url": "https://www.gesetze-im-internet.de/bgb/__286.html", "label": "§ 286 BGB: Verzug des Schuldners", "checkedAt": "2026-10-23"}, {"url": "https://www.gesetze-im-internet.de/bgb/__288.html", "label": "§ 288 BGB: Verzugszinsen und sonstiger Verzugsschaden", "checkedAt": "2026-10-23"}]
 platforms: ["web"]
 ---
@@ -46,7 +46,7 @@ Passen Sie Rechnungsnummer, Betrag und Frist an den tatsächlichen Vorgang an. S
 
 Nein. Ob der Kunde in Verzug ist, hängt von den gesetzlichen und vertraglichen Voraussetzungen ab; eine Mahnung ist dabei oft, aber nicht immer nötig. Die maßgebliche Regelung ist [§ 286 BGB](https://www.gesetze-im-internet.de/bgb/__286.html).
 
-Ohne Mahnung tritt Verzug zum Beispiel ein, wenn der Zahlungstermin nach dem Kalender bestimmt ist. Spätestens 30 Tage nach Fälligkeit und Zugang der Rechnung ist ein Kunde in Verzug; gegenüber Verbrauchern gilt das nur, wenn die Rechnung auf diese Folge hinweist.
+Ohne Mahnung tritt Verzug zum Beispiel ein, wenn der Zahlungstermin nach dem Kalender bestimmt ist. Zahlt ein Kunde nicht innerhalb von 30 Tagen nach Fälligkeit und Zugang der Rechnung, ist er in Verzug; gegenüber Verbrauchern gilt das nur, wenn die Rechnung auf diese Folge hinweist.
 
 Für Geschäftskunden sieht [§ 288 BGB](https://www.gesetze-im-internet.de/bgb/__288.html) Verzugszinsen von neun Prozentpunkten über dem Basiszinssatz und eine Pauschale von 40 € vor. Trennen Sie die freundliche Klärung des Zahlungsstands von der Entscheidung über Zinsen, Kosten oder weitere Schritte und lassen Sie Einzelfälle rechtlich prüfen.
 
