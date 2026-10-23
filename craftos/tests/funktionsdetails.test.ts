@@ -18,6 +18,7 @@ import {
   buildFunktionsdetail,
   getFunktionsdetail,
   getFunktionsdetailAus,
+  vereinigeInhalte,
   zielwerte,
 } from "@/lib/funktionsdetails";
 import type { FunktionsdetailInhalt, Kernpunkt, RolleName } from "@/lib/funktionsdetails/types";
@@ -892,6 +893,24 @@ describe("getFunktionsdetail und Inhaltstabelle", () => {
     const detail = getFunktionsdetailAus({ angebote: angeboteInhalt() }, "angebote");
     expect(detail.kopf.h1).toBe(zielwerte("/funktionen/angebote").h1);
     expect(detail.kopf.visual).toBe(kopfVisuals.angebote);
+  });
+
+  // D-24 (10-04): Ein Slug in zwei Inhaltsmodulen würde beim Objekt-Spread still überschrieben (letzter gewinnt).
+  it("vereinigeInhalte wirft bei einem Slug in mehreren Inhaltsmodulen", () => {
+    const a = angeboteInhalt();
+    expect(() => vereinigeInhalte([{ angebote: a }, { angebote: { ...a } }])).toThrow(
+      "Funktionsdetail: Slug angebote steht in mehreren Inhaltsmodulen – ",
+    );
+  });
+
+  it("vereinigeInhalte liefert ohne Doppelung die Vereinigung, INHALTE nutzt die Funktion", () => {
+    const a = angeboteInhalt();
+    const b = { ...a };
+    expect(vereinigeInhalte([{ angebote: a }, { aufmass: b }])).toEqual({ angebote: a, aufmass: b });
+    expect(vereinigeInhalte([])).toEqual({});
+    expect(Object.keys(INHALTE)).toHaveLength(22);
+    const quelltext = fs.readFileSync(path.join(ROOT, "lib/funktionsdetails/index.ts"), "utf8");
+    expect(quelltext).toMatch(/export const INHALTE[^=]*= vereinigeInhalte\(\[/);
   });
 
   it("SNIPPET_VARIANTE nennt genau die 8 Seiten aus D-19", () => {
