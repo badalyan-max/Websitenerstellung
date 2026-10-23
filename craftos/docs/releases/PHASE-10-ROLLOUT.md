@@ -214,10 +214,10 @@ Regressionsinformation: Live liegen die sechs Gate-Seiten 409–1.035 ms unter d
 | DESIGN-05 | **erledigt** | A11y-Matrix in 10-12 ohne Gate-Verstoß (158 Seiten, 890 Aufrufe, 5 Breiten, Großtext 0, Tastatur 0); Lighthouse Accessibility 100 auf 16 Seiten lokal und 15 Live-URLs |
 | QA-04 | **erledigt** | D-44: Vercel Speed Insights Produktion, `--since 30d` (23.09.2026 16:00 bis 23.10.2026 20:00 UTC, Messungen ab 20.10.), abgefragt 23.10.2026 16:50 UTC: **p75 LCP 564 ms (n = 58) < 2.500, INP 40 ms (n = 47) < 200, CLS 0 (n = 31) < 0,1**. Grenze nach D-44: Stichprobe unter 100 Messungen und überwiegend vor dem Rollout erhoben; blockiert nicht. Unit-, Browser-, Routen- und visuelle Prüfungen grün (10-12). Lab-Werte aus 10-12 nur als Regressionsinformation (§ 10); kein Lückenschluss QA-04 nötig, weil keine Felddaten-Schwelle verfehlt ist |
 | QA-05 | **erledigt** | `ETAPPEN-NACHWEIS-V2.md` Zeilen 05 bis 10 vollständig (Test `etappen-nachweis.test.ts` grün); Phase-10-Abfrage `trial_click`/`ai_visit` mit Zeitpunkt dokumentiert (§ 8); 24-Stunden-Fenster als Nachtrag des Orchestrators gekennzeichnet |
-| QA-06 | **In Progress** | Bestätigungsaudit (`craftos/audit-report.md`, `audit-report-bestaetigung.html`) und Recheck 485185: **Rohwert 2, Inhaberpunkt offen 0, Wert der behebbaren Fehler 2** (O2, O3). Siehe Lückenschluss unten |
+| QA-06 | **erledigt** (Nachtrag 23.10.2026, siehe „Nachtrag QA-06“ unten; vorher In Progress) | Bestätigungsaudit (`craftos/audit-report.md`, `audit-report-bestaetigung.html`) und Recheck 485185: **Rohwert 2, Inhaberpunkt offen 0, Wert der behebbaren Fehler 2** (O2, O3). Siehe Lückenschluss unten |
 | SEO-08 | **In Progress** | Messstand 23.10.2026 16:48 UTC (MB-10): 12 verweisende Domains, alle Spam, **0 neue seriöse** (Ziel ≥ 15); omr.com live (nofollow), in SE Ranking noch nicht erfasst. Weg: `LINKPLAN.md` § 7 (Übergabe 2) |
 
-In `.planning/REQUIREMENTS.md` werden ausschließlich DESIGN-02, DESIGN-05, QA-04 und QA-05 als erledigt markiert. QA-06 und SEO-08 bleiben „In Progress“ mit dem Grund in der Traceability.
+In `.planning/REQUIREMENTS.md` werden ausschließlich DESIGN-02, DESIGN-05, QA-04 und QA-05 als erledigt markiert. QA-06 und SEO-08 bleiben „In Progress“ mit dem Grund in der Traceability. Nachtrag: QA-06 ist nach dem Hotfix unten ebenfalls als erledigt markiert; SEO-08 bleibt „In Progress“.
 
 ### Lückenschluss QA-06
 
@@ -229,6 +229,18 @@ In `.planning/REQUIREMENTS.md` werden ausschließlich DESIGN-02, DESIGN-05, QA-0
 - **Herkunft:** Vorab-Audit 10-05 (Behebungsliste Nr. 5, Besitz Paket c bzw. 10-06). 10-06 hat den Punkt als Darstellungsänderung der Rechtsseite an Orchestrator/10-12 verwiesen (`PHASE-10-PRUEFUNGEN.md` § 2.2); eine Entscheidung ist nicht dokumentiert. Es ist kein Inhaberpunkt im Sinne von W4.
 - **Möglicher Schluss (nicht umgesetzt, D-35):** ein Baustein unter dem Rechtstext, z. B. `LinkKarten` auf `/funktionen`, `/preise` und `/support`, in `components/legal/Legal.tsx` bzw. `app/impressum/page.tsx`. Der Rechtstext bleibt wörtlich; der Wortlaut-Test bleibt grün. Danach Bestätigung mit live-check bzw. erneutem `/audit` und erst dann QA-06 markieren.
 - **Alle übrigen Vorab-Fehler sind geschlossen:** T4 (Accessibility `/impressum` 100 live), T5 (drei Font-Preloads), T6 (404 ohne Canonical, nur `noindex`), O1 (Core Web Vitals an Feldwerten grün, D-44); Inhaberpunkte I1 (ODR) und I2 (Title) mit D-42 erledigt.
+
+### Nachtrag QA-06 (Hotfix, 23.10.2026)
+
+Darstellungsentscheidung vom Orchestrator nach Freigabe des Inhabers („mach was du richtig findest“), umgesetzt nach dem Vorschlag oben.
+
+- **Umsetzung:** `LegalShell` (`components/legal/Legal.tsx`) rendert unter dem Rechtstext und außerhalb von `data-rechtstext` den Abschnitt „Mehr über CraftOS“ (Fläche Warm, `SectionHeader`, `LinkKarten` Weiß, drei Spalten) mit Karten auf `/funktionen`, `/preise` und `/support`. Weil `/datenschutz` und `/agb` dieselbe Vorlage nutzen und im Hauptteil ebenfalls nur den Brotkrumen-Link hatten (dieselbe Regel verletzt, im Audit nur wegen der Stichprobe „eine Seite je Vorlage“ nicht gemeldet), gilt der Abschnitt für alle drei Rechtsseiten. Kartentexte nennen nur Unterstütztes (Quellen `lib/site.ts`, `lib/seiten/preise.ts`, `/support`).
+- **Tests:** neu `tests/rechtsseiten-links.test.ts` (je Rechtsseite ≥ 3 interne Linkziele außerhalb von Brotkrumen und Rechtstext, darunter `/funktionen` und `/preise`), vor der Änderung rot (3 von 3 Fällen), danach grün. `tests/rechtstexte-wortlaut.test.ts` unverändert grün, Referenzen nicht neu erzeugt.
+- **Lokal unter der Sperre:** Vitest 60 Dateien, 1.704 Tests grün; `tsc --noEmit` 0; ESLint 0; `next build` grün; `seo-audit.mjs --paths=/impressum,/datenschutz,/agb` 0 Verstöße; `a11y-audit.mjs` gezielt für die drei Seiten (Chromium und WebKit, 5 Breiten, 30 Aufrufe) 0 Gate-Verstöße, Großtext 0, Tastatur 0. Lokaler Review (superpowers-Reviewer): keine kritischen oder wichtigen Befunde; drei kleine Hinweise zum Kartentext übernommen.
+- **Ship:** Commit `f9cd7f2` (`fix(qa-06): …`), `gh workflow list --all` nur „Dependabot Updates“, Push `b770f73..f9cd7f2  main -> main`. Vercel Production-Deployment **`dpl_4mocbo1txgWCzCJJSAxXapNmEMnq`** (https://craftos-b3gsyx77c-craft-os.vercel.app, `githubCommitSha` `f9cd7f2…`), erstellt 17:24:02 UTC, **READY 17:24:39 UTC**, Aliase craftos.eu und www.craftos.eu.
+- **Live:** `LIVE_ORIGIN=https://craftos.eu node scripts/live-check.mjs` → „alle Prüfungen OK“. Live-HTML `<main>` von `/impressum`, `/datenschutz` und `/agb`: je **4 interne Links** (`/`, `/funktionen`, `/preise`, `/support`) statt 1 → O2 und O3 geschlossen.
+- **SE Ranking, Recheck 485185 (standard):** gestartet 17:26:17 UTC, fertig 17:26:53 UTC, 157 Seiten, **97/100, 0 Fehler**, 13 Warnungen (`image_no_alt`, Waiver D-38), 164 Hinweise, 120 bestandene Prüfpunkte – unverändert gegenüber Block B in § 7. Kontostand vorher 17.645 (17:26 UTC), 60 s nach dem Abschluss (17:28:20 UTC) 17.331: **Verbrauch 314 Units**. Phasensumme Phase 10 damit 952 + 314 = **1.266 von höchstens 5.000** (Rest 3.734). Kein Leaderboard-Abruf.
+- **Ergebnis:** Rohwert der behebbaren Fehler **0** (O2 und O3 live geschlossen, SE Ranking 0 Fehler, Inhaberpunkte 0). **QA-06 erledigt**, in `.planning/REQUIREMENTS.md` markiert (Traceability mit diesem Beleg).
 
 ## 12. Umgestellte Seiten, neue Bausteinvarianten und Menü-Präsenz
 

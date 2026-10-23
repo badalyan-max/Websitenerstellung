@@ -51,7 +51,7 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 
 - [x] **QA-04**: Echte Besucherdaten in Produktion (Vercel Speed Insights, p75 über alle Seiten, Stichprobengröße angegeben) erreichen LCP < 2,5 s, INP < 200 ms und CLS < 0,1 (Inhaberentscheidung 23.10.2026, D-44; Lighthouse-Labordaten nur noch als nicht blockierende Regressionswarnung); Unit-, Browser-, Routen- und visuelle Prüfungen sind an den neuen Stand angepasst und grün.
 - [x] **QA-05**: Jede Etappe geht einzeln nach Ship-Gate live; danach werden IndexNow gemeldet, die Live-Seite geprüft und `trial_click`/`ai_visit` in Vercel Analytics kontrolliert.
-- [ ] **QA-06**: Nach der letzten Etappe zeigt ein erneuter `/audit craftos.eu` keine offenen technischen oder On-Page-Fehler.
+- [x] **QA-06**: Nach der letzten Etappe zeigt ein erneuter `/audit craftos.eu` keine offenen technischen oder On-Page-Fehler.
 
 ## Future Requirements
 
@@ -99,11 +99,11 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 | CONTENT-04 | Phase 9 | Complete |
 | QA-04 | Phase 10 | Complete |
 | QA-05 | Phase 10 | Complete |
-| QA-06 | Phase 10; Bestätigungsaudit 23.10.2026: Rohwert 2, Inhaberpunkt offen 0, behebbar 2 (`/impressum` ohne 3 interne Links bzw. Link auf Funktionen/Preise im Hauptteil, O2/O3) – Lückenschluss in PHASE-10-ROLLOUT.md § 11 | In Progress |
+| QA-06 | Phase 10; Bestätigungsaudit 23.10.2026: Rohwert 2, Inhaberpunkt offen 0, behebbar 2 (O2/O3 auf `/impressum`). Lückenschluss Hotfix `f9cd7f2` (LinkKarten auf `/funktionen`, `/preise`, `/support` unter dem Rechtstext von `/impressum`, `/datenschutz`, `/agb`), Deployment `dpl_4mocbo1txgWCzCJJSAxXapNmEMnq` READY, live je 4 interne Links im `<main>`, live-check alle OK, Recheck 485185 (17:26:53 UTC): 97/100, 0 Fehler → **behebbare Fehler 0**; Nachtrag in PHASE-10-ROLLOUT.md § 11 | Complete |
 
 **Coverage:** 28/28 aktive v2.0-Anforderungen zugeordnet (MEDIA-02 Out of Scope), keine doppelt.
 
-Hinweis: SEO-02, DESIGN-02 und SEO-08 haben in Phase 5 ihre Grundlage (Keyword-Map aus SE Ranking, Designbausteine, Linkplan) und werden in den Phasen 6–8 auf den Seiten umgesetzt bzw. bis Phase 10 gemessen; sie bleiben bis dahin offen. Stand nach Phase 8 (23.10.2026): SEO-02 erledigt. Stand nach Phase 9 (23.10.2026): SEO-09 erledigt; DESIGN-02 für Gewerke-, Ratgeber- und Hilfe-Vorlagen umgesetzt, Rest (Rechner, Support, Rechtsseiten, 404) in Phase 10; SEO-08 in Phase 10. Stand nach Phase 10 (23.10.2026, Rollout 10-07): DESIGN-02, DESIGN-05, QA-04 (Felddaten D-44: p75 LCP 564 ms, INP 40 ms, CLS 0, n = 58/47/31) und QA-05 erledigt; QA-06 (2 behebbare On-Page-Fehler auf `/impressum`) und SEO-08 (0 von 15 seriösen verweisenden Domains) bleiben „In Progress“.
+Hinweis: SEO-02, DESIGN-02 und SEO-08 haben in Phase 5 ihre Grundlage (Keyword-Map aus SE Ranking, Designbausteine, Linkplan) und werden in den Phasen 6–8 auf den Seiten umgesetzt bzw. bis Phase 10 gemessen; sie bleiben bis dahin offen. Stand nach Phase 8 (23.10.2026): SEO-02 erledigt. Stand nach Phase 9 (23.10.2026): SEO-09 erledigt; DESIGN-02 für Gewerke-, Ratgeber- und Hilfe-Vorlagen umgesetzt, Rest (Rechner, Support, Rechtsseiten, 404) in Phase 10; SEO-08 in Phase 10. Stand nach Phase 10 (23.10.2026, Rollout 10-07): DESIGN-02, DESIGN-05, QA-04 (Felddaten D-44: p75 LCP 564 ms, INP 40 ms, CLS 0, n = 58/47/31) und QA-05 erledigt; SEO-08 (0 von 15 seriösen verweisenden Domains) bleibt „In Progress“. Nachtrag 23.10.2026: QA-06 nach Hotfix `f9cd7f2` erledigt (O2/O3 live geschlossen, Recheck 485185 mit 0 Fehlern; PHASE-10-ROLLOUT.md § 11).
 
 ## Validated (v1.0, Relaunch 09.09.2026)
 
