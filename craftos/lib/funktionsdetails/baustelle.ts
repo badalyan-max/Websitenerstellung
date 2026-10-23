@@ -192,6 +192,8 @@ export const baustelleInhalte: Record<string, FunktionsdetailInhalt> = {
           title: "Abnahme und Teilabnahme",
           text: "Abnahmen vor Ort protokollieren, Auftraggeber und Auftragnehmer unterschreiben in der App.",
           visual: { kind: "phone", scene: abnahmeScene, width: 194 },
+          // CONTENT-04 (Lückenschluss 09-VERIFICATION): Teilfunktion ohne eigene Detailseite verlinkt ihre Anleitung.
+          href: "/hilfe/abnahme-dokumentieren",
           zusatz: "abnahme",
         },
         {
