@@ -111,8 +111,9 @@ async function fixture(o: FixtureOptions = {}): Promise<ContentArticle> {
 }
 const seite = async (o: FixtureOptions = {}) => renderToString(await ArticlePage({ article: await fixture(o) }));
 /** Bereich innerhalb von <article>…</article>. */
-const artikel = (html: string) => html.slice(html.indexOf("<article"), html.lastIndexOf("</article>") + 10);
-const ausserhalb = (html: string) => html.slice(html.lastIndexOf("</article>"));
+// Der Artikel enthält keine verschachtelten <article> (Karten stehen danach), daher endet er am ersten </article>.
+const artikel = (html: string) => html.slice(html.indexOf("<article"), html.indexOf("</article>") + 10);
+const ausserhalb = (html: string) => html.slice(html.indexOf("</article>"));
 
 describe("Artikelvorlage v2: Kopf (09-UI-SPEC § 2.1)", () => {
   it("mit answer: genau eine H1 aus der Map, #antwort mit data-answer, kein Lead", async () => {
@@ -121,7 +122,7 @@ describe("Artikelvorlage v2: Kopf (09-UI-SPEC § 2.1)", () => {
     expect(count(html, 'id="antwort"')).toBe(1);
     expect(html).toMatch(/<p id="antwort" data-answer=""[^>]*>/);
     expect(text(block(html, '<p id="antwort"', "p"))).toBe(ANTWORT);
-    expect(html).not.toContain("So erfassen Sie Projektverbrauch und ungenutzte Rückgaben");
+    expect(artikel(html)).not.toContain("So erfassen Sie Projektverbrauch und ungenutzte Rückgaben");
     expect(html).not.toContain("PageHero");
   });
 
@@ -217,7 +218,7 @@ describe("Artikelvorlage v2: Inhalt (09-UI-SPEC § 2.2)", () => {
     const html = await seite();
     expect(html).toMatch(/<h2[^>]*id="quellen"[^>]*>Quellen<\/h2>/);
     const ol = block(html, '<ol aria-label="Quellen"', "ol");
-    expect(text(ol)).toBe("Gesetz über die Mehrwertsteuer, geprüft am 05.10.2026");
+    expect(decode(ol.replace(/<[^>]+>/g, "")).trim()).toBe("Gesetz über die Mehrwertsteuer, geprüft am 05.10.2026");
     expect(ol).toContain('href="https://www.gesetze-im-internet.de/ustg_1980/"');
     expect(ol).not.toContain('target="_blank"');
   });

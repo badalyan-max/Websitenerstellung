@@ -290,71 +290,387 @@ img {
   background: #fff8e9;
   color: #393941;
 }
+/* ---------------------------------------------------------------------------
+   Artikelvorlage v2 (09-UI-SPEC § 2.2–§ 2.4, G10; Abweichungen H1, H6, H10).
+   Prosa in der v2-Skala (14/16/20/Display), Schrittliste als reines CSS auf der obersten nummerierten Liste
+   (Maßketten-Optik wie StepFlow < 1024 px), Tabellen im fokussierbaren Scrollbereich aus dem Rehype-Schritt.
+   --------------------------------------------------------------------------- */
 .article-prose {
-  font-size: 17px;
-  line-height: 1.8;
   min-width: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #17171c;
+  overflow-wrap: break-word;
 }
+.article-prose > :first-child {
+  margin-top: 0;
+}
+.article-prose p {
+  max-width: 68ch;
+  margin: 16px 0;
+  line-height: 1.5;
+}
+/* H2: Display-Mindeststufe 32 px, Silbentrennung wie die H1 im ContentKopf (H5), Anker unter dem Header (84 + 16). */
 .article-prose h2 {
-  font-size: 29px;
-  margin: 50px 0 20px;
+  margin: 48px 0 16px;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: #17171c;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphenate-limit-chars: 10 4 4;
+  overflow-wrap: break-word;
   scroll-margin-top: 100px;
 }
 .article-prose h3 {
-  font-size: 23px;
-  margin: 30px 0 12px;
+  margin: 32px 0 8px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #17171c;
+  scroll-margin-top: 100px;
 }
-.article-prose p {
-  margin: 18px 0;
+.article-prose h3 + p,
+.article-prose h2 + p {
+  margin-top: 0;
 }
-.article-prose ul,
-.article-prose ol {
+.article-prose ul {
+  margin: 24px 0;
   padding-left: 24px;
-  margin: 18px 0;
-  list-style: revert;
+  list-style: disc;
+}
+.article-prose ul li::marker {
+  color: #777782;
+}
+/* Verschachtelte und eingebettete nummerierte Listen bleiben dezimal; nur die oberste Ebene ist Schrittliste. */
+.article-prose ol {
+  margin: 16px 0;
+  padding-left: 24px;
+  list-style: decimal;
 }
 .article-prose li {
-  margin: 10px 0;
+  max-width: 68ch;
+}
+.article-prose li + li {
+  margin-top: 8px;
+}
+.article-prose li > p {
+  margin: 0;
+}
+.article-prose li > p + p {
+  margin-top: 8px;
+}
+.article-prose li > ul,
+.article-prose li > ol {
+  margin: 8px 0 0;
 }
 .article-prose a {
-  color: #805008;
+  color: #784b10;
   text-decoration: underline;
-  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
   overflow-wrap: anywhere;
 }
-.article-prose table {
-  display: block;
-  max-width: 100%;
-  overflow-x: auto;
-  border-collapse: collapse;
-  margin: 24px 0;
-  font-size: 15px;
+.article-prose a:hover {
+  color: #17171c;
 }
-.article-prose th,
-.article-prose td {
-  padding: 12px;
-  border: 1px solid #dedee3;
-  text-align: left;
-  min-width: 140px;
+.article-prose a:focus-visible,
+.table-scroll:focus-visible {
+  outline: 3px solid #bb7609;
+  outline-offset: 4px;
+  border-radius: 2px;
 }
-.article-prose th {
-  background: #f4f4f5;
+.article-prose strong {
+  font-weight: 600;
 }
-.article-prose blockquote {
-  border-left: 3px solid #f2af38;
-  margin: 24px 0;
-  padding: 4px 22px;
-  background: #fff8e9;
+.article-prose code {
+  padding: 0 4px;
+  border-radius: 6px;
+  background: #f7f3eb;
+  font-family: inherit;
+  font-size: 16px;
 }
 .article-prose pre {
   overflow-x: auto;
-  background: #f4f4f5;
-  padding: 20px;
+  padding: 16px;
+  border-radius: 6px;
+  background: #f7f3eb;
+}
+.article-prose pre code {
+  padding: 0;
+}
+/* Hinweis-Zitat: warme Fläche, Kante #E7DCC9 – kein Amber (H6). */
+.article-prose blockquote {
+  margin: 24px 0;
+  padding: 16px 24px;
+  border-left: 3px solid #e7dcc9;
+  background: #f7f3eb;
+  color: #17171c;
+}
+.article-prose blockquote > p {
+  margin: 0;
+}
+.article-prose blockquote > p + p {
+  margin-top: 8px;
 }
 .article-prose hr {
+  margin: 48px 0;
   border: 0;
   border-top: 1px solid #dedee3;
-  margin: 36px 0;
+}
+
+/* Schrittliste (§ 2.4, H1): Sechseck-Knoten 40 × 40 und senkrechte Maßlinie in allen Breiten. Rehype setzt
+   role="list", weil WebKit die Listensemantik bei list-style: none sonst verwirft. */
+.article-prose > ol {
+  margin: 24px 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: schritt;
+}
+.article-prose > ol > li {
+  position: relative;
+  min-height: 40px;
+  max-width: calc(68ch + 56px);
+  margin: 0;
+  padding: 8px 0 24px 56px;
+  counter-increment: schritt;
+}
+.article-prose > ol > li:last-child {
+  padding-bottom: 0;
+}
+/* Erste content-Zeile ist die Ausweichzeile für Browser ohne Alt-Text-Syntax; mit Unterstützung bleibt die
+   Ziffer für Screenreader stumm (die Liste nennt die Position). */
+.article-prose > ol > li::before {
+  content: counter(schritt);
+  content: counter(schritt) / "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  clip-path: polygon(50% 0, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+  background: #f2af38;
+  color: #17171c;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.article-prose > ol > li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 48px;
+  bottom: 8px;
+  left: 15px;
+  width: 10px;
+  border-block: 2px solid #f2af38;
+  background: linear-gradient(#f2af38, #f2af38) center / 2px 100% no-repeat;
+}
+.article-prose > ol > li + li {
+  margin-top: 0;
+}
+
+/* Tabellen (§ 2.3): Scrollbereich aus dem Rehype-Schritt, volle Spaltenbreite, Zeilenlinien. */
+.table-scroll {
+  max-width: 100%;
+  margin: 24px 0;
+  overflow-x: auto;
+  border: 1px solid #dedee3;
+  border-radius: 16px;
+}
+.article-prose .table-scroll table {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+.article-prose th,
+.article-prose td {
+  min-width: 140px;
+  padding: 16px;
+  text-align: left;
+  vertical-align: top;
+}
+.article-prose th {
+  background: #f7f3eb;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.article-prose tr + tr td,
+.article-prose thead + tbody tr td {
+  border-top: 1px solid #dedee3;
+}
+
+/* Raster des Textabschnitts (§ 2.2, § 6): eine Spalte (max. 720) unter 1024 px, darüber Text + Seitenspalte 280. */
+.artikel-raster {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+.artikel-haupt {
+  min-width: 0;
+  max-width: 720px;
+}
+.artikel-szene {
+  max-width: 560px;
+  margin-bottom: 48px;
+}
+.artikel-h2 {
+  margin: 0 0 16px;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: #17171c;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphenate-limit-chars: 10 4 4;
+  overflow-wrap: break-word;
+  scroll-margin-top: 100px;
+}
+.artikel-faq {
+  margin-top: 48px;
+}
+.artikel-quellen {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid #dedee3;
+}
+.artikel-quellen h2 {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #17171c;
+  scroll-margin-top: 100px;
+}
+.artikel-quellen ol {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 24px;
+  list-style: decimal;
+  font-size: 14px;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+  color: #62626e;
+}
+.artikel-quellen a {
+  color: #17171c;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
+.artikel-quellen a:focus-visible,
+.artikel-toc a:focus-visible,
+.artikel-toc-mobil a:focus-visible,
+.artikel-toc-mobil summary:focus-visible {
+  outline: 3px solid #bb7609;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Inhaltsverzeichnis (§ 2.2, H10): ab 1024 px sticky in der Seitenspalte, darunter eingeklapptes details. */
+.artikel-toc {
+  display: none;
+}
+.artikel-toc-label {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #17171c;
+}
+.artikel-toc-liste {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.artikel-toc-liste a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #62626e;
+  text-decoration: none;
+}
+.artikel-toc-liste li[data-ebene="3"] a {
+  padding-left: 16px;
+}
+@media (hover: hover) {
+  .artikel-toc-liste a:hover {
+    color: #17171c;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+.artikel-toc-mobil {
+  margin-bottom: 48px;
+  border-block: 1px solid #dedee3;
+}
+.artikel-toc-mobil summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 48px;
+  padding-block: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #17171c;
+  list-style: none;
+}
+.artikel-toc-mobil summary::-webkit-details-marker {
+  display: none;
+}
+.artikel-toc-symbol {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: #fff4d9;
+  color: #784b10;
+}
+.artikel-toc-symbol svg {
+  transition: transform 0.15s ease;
+}
+.artikel-toc-mobil[open] .artikel-toc-symbol svg {
+  transform: rotate(45deg);
+}
+.artikel-toc-mobil .artikel-toc-liste {
+  padding-bottom: 16px;
+}
+@media (min-width: 1024px) {
+  .artikel-raster {
+    grid-template-columns: minmax(0, 720px) 280px;
+    column-gap: 48px;
+    justify-content: space-between;
+  }
+  .artikel-haupt {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .artikel-toc {
+    display: block;
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+    position: sticky;
+    top: 100px;
+  }
+  .artikel-toc-mobil {
+    display: none;
+  }
 }
 .skip-link {
   position: fixed;
@@ -417,24 +733,6 @@ h3,
 h4 {
   overflow-wrap: anywhere;
   hyphens: auto;
-}
-.article-prose {
-  overflow-wrap: break-word;
-}
-.table-scroll {
-  max-width: 100%;
-  overflow-x: auto;
-  margin: 24px 0;
-  border: 1px solid #dedee3;
-  border-radius: 8px;
-}
-.article-prose .table-scroll table {
-  display: table;
-  max-width: none;
-  overflow: visible;
-  margin: 0;
-  border: 0;
-  width: 100%;
 }
 /* CraftOS: warmer Werkstattcharakter, kräftige Kontraste, kürzere Wege. */
 @theme {
