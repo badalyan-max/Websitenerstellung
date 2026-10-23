@@ -51,7 +51,7 @@ Einträge, die nur mit einer Dauer erfasst wurden, korrigieren Sie über das Fel
 
 ### Eine Zeit nachtragen
 
-1. Tippen Sie unten auf „Zeiten“.
+1. Tippen Sie auf „Zeiten“; mit Voll-Lizenz finden Sie den Bereich unter „Mehr“.
 2. Tippen Sie auf „Nachtragen“.
 3. Wählen Sie „Arbeit“ oder „Fahrt“ und das Datum.
 4. Tragen Sie „Von“ und „Bis“ ein und stellen Sie die „Pause“ ein.
