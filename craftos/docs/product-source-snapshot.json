@@ -4,8 +4,8 @@
     "web": {
       "repo": "craft-connect-buddy",
       "ref": "origin/release",
-      "tag": "v4.0.0-test.245",
-      "commit": "6686d05e0aed9d9ed1a9959ddc2142928e874e84"
+      "tag": "v4.0.0-test.246",
+      "commit": "a0e27c4209f91e939d4cdd6830562ac929c0761a"
     },
     "mobile": {
       "repo": "craftos-mobile",
@@ -39,7 +39,7 @@
     {
       "repository": "web",
       "path": "src/pages/DocumentEditorPage.tsx",
-      "sha256": "e7e1cdcc4eb9e41477ff6d02f4db5c8c90bf66373134a5edc8d3238995cbacc3"
+      "sha256": "287de34022a61ea48ab10ec4a5bbfb872567de586865868cf2f9c427fdb9f4e0"
     },
     {
       "repository": "web",
@@ -200,6 +200,36 @@
       "repository": "mobile",
       "path": "src/features/vacation/components/VacationTab.tsx",
       "sha256": "f875824e48b7d8f7a0127a7690894001f2f8c21445d0c2072c6afb5c1cddd08a"
+    },
+    {
+      "repository": "web",
+      "path": "src/pages/Kassenbuch.tsx",
+      "sha256": "70262a1b2998e10f4cef6734d275447683cdcf031bb059d78824e1c493a9900e"
+    },
+    {
+      "repository": "web",
+      "path": "supabase/migrations/20261022150000_kassenbuch_kb.sql",
+      "sha256": "c5ec6dd7cb0eccd67e52e8e48b9b3805013ac9b6266dbd240df481924d28e762"
+    },
+    {
+      "repository": "web",
+      "path": "src/components/customers/CustomerDialog.tsx",
+      "sha256": "a3d54fb6e4dd55cffc4d1dc7a2cb276d5e994b301ec4db1c7f4f13ddd05d8ec4"
+    },
+    {
+      "repository": "web",
+      "path": "src/lib/invoiceNoticeTexts.ts",
+      "sha256": "3554410cce96d41c679be005f6d40a8288107959c29e452bbab0240cce8058f0"
+    },
+    {
+      "repository": "web",
+      "path": "src/pages/QuoteSigning.tsx",
+      "sha256": "e6c6aeccf9edb97970940fcd6c72e1404cf710883fb8a1b9419d62a381f751ef"
+    },
+    {
+      "repository": "web",
+      "path": "src/pages/portal/CustomerPortalHome.tsx",
+      "sha256": "8d8341394d86b2623dcfa52d5b4f0872097fa136049ea0f17d31506fe8966d2f"
     }
   ]
 }

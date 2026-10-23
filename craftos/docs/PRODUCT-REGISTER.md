@@ -1,6 +1,6 @@
 # Produktregister und Veröffentlichungsabgleich
 
-Stand: 23. Oktober 2026 (Release-Abgleich Phase 5; Basis über die Abgleiche nach 08-13 und 08-14 auf Web v4.0.0-test.245 und Mobile test.96 nachgezogen und in 09-15 für Phase 9 eingefroren, siehe `content-pruefung/09-basis.md`).
+Stand: 23. Oktober 2026 (Release-Abgleich Phase 5; Basis über die Abgleiche nach 08-13 und 08-14 auf Web v4.0.0-test.245 und Mobile test.96 nachgezogen, in 09-15 für Phase 9 eingefroren und in 09-09 nach Delta-Prüfung auf Web v4.0.0-test.246 gehoben, siehe `content-pruefung/09-basis.md` und `content-pruefung/09-integration.md`).
 
 Die maschinenlesbare Grundlage liegt in `lib/product-register.ts`. Sie verbindet die zentralen Funktionsbeschreibungen mit Plattformen, Zugriff, Lizenzzuordnung, Implementierungsstatus und internen Prüfbelegen. Preise und 10 Testtage werden aus `lib/site.ts` bezogen. Ratgeber und Hilfeartikel referenzieren dieselben Funktions-Slugs. Interne Belegpfade werden nicht an Suchkomponenten im Browser übertragen.
 
@@ -10,10 +10,10 @@ Maßgeblich ist ausschließlich der Produktions-Release `origin/release` beider 
 
 | Produkt | Ref | Release-Tag | Commit |
 |---|---|---|---|
-| Web-App (`craft-connect-buddy`) | `origin/release` | `v4.0.0-test.245` | `6686d05e0aed9d9ed1a9959ddc2142928e874e84` |
+| Web-App (`craft-connect-buddy`) | `origin/release` | `v4.0.0-test.246` | `a0e27c4209f91e939d4cdd6830562ac929c0761a` |
 | Mobile-App (`craftos-mobile`) | `origin/release` | `mobile-v1.0.0-test.96` | `837aab4f5c1d3cd5411f41e1d720b2aa274e2cac` |
 
-Dieselben Commits stehen in `lib/product-register.ts` (`productBasis`), in `product-pricing-snapshot.json` (`source`, `mobileSource`) und in `product-source-snapshot.json` (`basis`, SHA-256 der Belegdateien am jeweiligen Commit). Für Phase 9 gilt diese Basis eingefroren; das Delta ab der Recherchebasis (Web `a9319e5`, Mobile `6cac366`) steht in `content-pruefung/09-basis.md`. Neu live seit test.241 und noch ohne eigenen Registereintrag: GoBD-Kassenbuch (Stufe 1, mit DATEV-Export), Rechnung nach § 13b, Sperre abgerechneter Zeiten; die Zeitkorrektur im Web (Beginn, Ende, Pause) kam mit test.241. Die Einordnung in Hilfeartikel übernehmen die Phase-9-Pakete.
+Dieselben Commits stehen in `lib/product-register.ts` (`productBasis`), in `product-pricing-snapshot.json` (`source`, `mobileSource`) und in `product-source-snapshot.json` (`basis`, SHA-256 der Belegdateien am jeweiligen Commit). Für Phase 9 gilt diese Basis eingefroren; das Delta ab der Recherchebasis (Web `a9319e5`, Mobile `6cac366`) steht in `content-pruefung/09-basis.md`. Neu live seit test.241: GoBD-Kassenbuch (Stufe 1, mit DATEV-Export) und Rechnung nach § 13b – seit 09-09 als `liveExtras` „Kassenbuch“ und „Rechnung nach § 13b“ mit Belegen (nicht als eigene Zusatzkarte beworben, Entscheidung Phase 10) –, dazu die Sperre abgerechneter Zeiten; die Zeitkorrektur im Web (Beginn, Ende, Pause) kam mit test.241. Delta test.245 → test.246 (`a0e27c42`, 09-09): Angebote-Status „Fertiggestellt“ für fertiggestellte, nicht versendete Angebote (Filter in „Dokumente“, Dashboard-Kachel), Kassenbuch-Formatierung, Nebenbefunde Abnahme; Preise, Credits, Testphase und Feature-Flags unverändert.
 
 Jeder Belegpfad im Register (`features[].evidence`, `liveExtras[].evidence`) und jeder Sprachordner aus `mobileLocales` wird von `tests/product-register.test.ts` per `git cat-file -e <commit>:<pfad>` gegen diese Commits geprüft, sobald beide Repositories lokal vorliegen (Pfade über `CRAFTOS_WEB_REPO` und `CRAFTOS_MOBILE_REPO` überschreibbar). Lokale Arbeitsstände oder Feature-Branches sind keine Grundlage mehr.
 
@@ -44,6 +44,8 @@ Alle 16 Funktionen aus `lib/funktionen.ts` gelten als live (`availability: "impl
 | Projekt-Chat und Nachrichten | Mobile | ja |
 | 21 Sprachen in der Mobile-App (`mobileLocales`: bg, bs, cs, de, el, en, es, fr, hr, hu, it, pl, pt, ro, ru, sk, sq, sr-cyrl, sr-latn, tr, uk) | Mobile | ja |
 | Kunden in der App | Mobile | ja |
+| Kassenbuch (Stufe 1, DATEV-/CSV-Export) | Web | **nein** – live, beschrieben im Hilfeartikel und auf `/funktionen/buchhaltung`; Zusatzkarte nach Entscheidung (Phase 10) |
+| Rechnung nach § 13b | Web | **nein** – live, beschrieben in Hilfe- und Ratgeberartikeln; Zusatzkarte nach Entscheidung (Phase 10) |
 | Vorhersagen | Web | **nein** – Umfang noch ungeprüft |
 
 „Bauphasen“ ist der Hauptbegriff; „Arbeitsabschnitte“ (Mobile seit 19.10.2026) wird als Synonym genannt (D-13). Eigene Seiten für diese Funktionen folgen in Phase 7.

@@ -12,8 +12,8 @@ export const productBasis = {
   checkedAt: "2026-10-23",
   web: {
     ref: "origin/release",
-    tag: "v4.0.0-test.245",
-    commit: "6686d05e0aed9d9ed1a9959ddc2142928e874e84",
+    tag: "v4.0.0-test.246",
+    commit: "a0e27c4209f91e939d4cdd6830562ac929c0761a",
   },
   mobile: {
     ref: "origin/release",
@@ -329,6 +329,26 @@ const liveExtras: {
       "src/features/customers/screens/CustomerEditScreen.tsx",
     ),
     advertised: true,
+  },
+  {
+    // D-32 (09-09): live seit test.242–244. Beschrieben im Hilfeartikel /hilfe/kassenbuch-fuehren und als Kachel auf
+    // /funktionen/buchhaltung; als eigene Zusatzkarte auf /funktionen und im Mega-Menü erst nach Entscheidung (Phase 10).
+    name: "Kassenbuch",
+    platforms: ["web"],
+    evidence: web("src/pages/Kassenbuch.tsx", "supabase/migrations/20261022150000_kassenbuch_kb.sql"),
+    advertised: false,
+  },
+  {
+    // D-32 (09-09): live seit test.242. Beschrieben in hilfe/rechnung-fertigstellen, hilfe/e-rechnung-herunterladen
+    // und blog/reverse-charge-bauleistungen; Zusatzkarte wie Kassenbuch erst nach Entscheidung (Phase 10).
+    name: "Rechnung nach § 13b",
+    platforms: ["web"],
+    evidence: web(
+      "src/components/customers/CustomerDialog.tsx",
+      "src/lib/invoiceNoticeTexts.ts",
+      "supabase/functions/generate-einvoice/index.ts",
+    ),
+    advertised: false,
   },
   {
     // Umfang ungeprüft (RESEARCH Open Question 7): nicht bewerben.
