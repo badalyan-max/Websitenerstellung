@@ -44,12 +44,18 @@ function ohnePflichthinweise(text: string): string {
 }
 
 /**
- * Ausnahme 1: neutraler Fachteil von /blog/gaeb-formate – H2-Abschnitte, deren Überschrift und Text „CraftOS“
- * nicht nennen, entfallen; Frontmatter, Einleitung und Abschnitte mit CraftOS-Bezug bleiben in der Prüfung.
+ * Ausnahme 1: neutraler Fachteil von /blog/gaeb-formate – H2-Abschnitte unter einer Frage-Überschrift ohne
+ * Produktbezug (CraftOS, Web-App, Mobile-App, „in der App“; 09-REVIEW LO-10) entfallen; Frontmatter, Einleitung,
+ * Abschnitte ohne Frage-Überschrift und Abschnitte mit Produktbezug bleiben in der Prüfung.
  */
+const PRODUKTBEZUG = new RegExp(GAEB.produktbezug!, "i");
+const neutralerFachteil = (teil: string) =>
+  teil.startsWith("## ") && teil.split("\n")[0].trim().endsWith("?") && !PRODUKTBEZUG.test(teil);
 function ohneGaebFachteil(markdown: string): string {
-  const teile = markdown.split(/^(?=## )/m);
-  return teile.filter((teil, i) => i === 0 || !teil.startsWith("## ") || /CraftOS/.test(teil)).join("");
+  return markdown
+    .split(/^(?=## )/m)
+    .filter((teil) => !neutralerFachteil(teil))
+    .join("");
 }
 
 /**
@@ -176,6 +182,24 @@ describe("Prüfmechanik (Fixtures)", () => {
     expect(trefferInDatei("content/blog/gaeb-formate.md", md).map((x) => x.wort)).toEqual(["DATANORM v5"]);
     expect(trefferInDatei("content/blog/anderer.md", md).map((x) => x.wort)).toEqual(["nicht unterstützt", "DATANORM v5"]);
     expect(trefferInDatei("content/blog/gaeb-formate.md", `Nicht unterstützt in der Einleitung.\n${md}`).length).toBe(2);
+  });
+
+  it("gaeb-formate: nur Frage-Abschnitte ohne Produktbezug sind ausgenommen (LO-10)", () => {
+    const md = [
+      "## Welche Formate liest die Web-App?",
+      "Die Web-App liest X83, DATANORM v5 nicht.",
+      "## Welche Formate liest craftos?",
+      "Bald verfügbar.",
+      "## Formate im Überblick",
+      "GAEB 90 wird hier nicht unterstützt erklärt.",
+      "## Was ist GAEB D83?",
+      "D83 ist nicht zugesagt für jede Software.",
+    ].join("\n");
+    expect(trefferInDatei("content/blog/gaeb-formate.md", md).map((x) => x.wort)).toEqual([
+      "nicht unterstützt",
+      "Bald verfügbar",
+      "DATANORM v5",
+    ]);
   });
 
   it("Pflichthinweis „Preise netto zzgl. USt.“ ist ausgenommen, Wörter daneben nicht", () => {

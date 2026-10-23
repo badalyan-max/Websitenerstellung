@@ -37,7 +37,8 @@
     {
       "id": "gaeb-formate-fachteil",
       "datei": "content/blog/gaeb-formate.md",
-      "geltung": "Nur H2-Abschnitte, deren Überschrift und Text „CraftOS“ nicht nennen (neutraler Fachteil). Der Abschnitt „So unterstützt CraftOS“ und alle Abschnitte mit CraftOS-Bezug werden voll geprüft.",
+      "geltung": "Nur H2-Abschnitte unter einer Frage-Überschrift (endet mit „?“), deren Überschrift und Text keinen Produktbezug haben (Muster `produktbezug`, ohne Groß-/Kleinschreibung): neutraler Fachteil. Der Abschnitt „So unterstützt CraftOS“ und alle Abschnitte mit Produktbezug werden voll geprüft.",
+      "produktbezug": "craftos|web-app|mobile-app|in der app",
       "begruendung": "Die Wissensseite erklärt GAEB-Formate (u. a. GAEB 90, GAEB 2000, D83) als Fachwissen; der Produktabschnitt nennt nur Unterstütztes (Import X83, Export X83 und X84). Orchestrator-Entscheidung 1 (09-UI-SPEC § 5)."
     },
     {

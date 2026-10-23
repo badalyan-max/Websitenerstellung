@@ -274,14 +274,19 @@ function ohnePflichthinweise(text, pflicht) {
   return out;
 }
 
-/** Zeilen des neutralen GAEB-Fachteils (H2-Abschnitte ohne „CraftOS“) als Menge von Zeilenindizes. */
-function gaebFachteilZeilen(zeilen) {
+/**
+ * Zeilen des neutralen GAEB-Fachteils als Menge von Zeilenindizes: H2-Abschnitte unter einer Frage-Überschrift ohne
+ * Produktbezug (Muster `produktbezug` aus lib/leitlinie-l1.json; 09-REVIEW LO-10).
+ */
+function gaebFachteilZeilen(zeilen, gaeb) {
   const aus = new Set();
+  const bezug = new RegExp(gaeb.produktbezug, "i");
   let start = -1;
   const abschliessen = (ende) => {
     if (start === -1) return;
     const abschnitt = zeilen.slice(start, ende);
-    if (!abschnitt.some((z) => /CraftOS/.test(z))) for (let i = start; i < ende; i++) aus.add(i);
+    const frage = abschnitt[0].trim().endsWith("?");
+    if (frage && !abschnitt.some((z) => bezug.test(z))) for (let i = start; i < ende; i++) aus.add(i);
   };
   zeilen.forEach((z, i) => {
     if (/^## /.test(z)) {
@@ -310,7 +315,7 @@ function pruefeL1(dateien) {
       continue;
     }
     const zeilen = inhalt.split(/\r?\n/);
-    const aus = l1.gaeb && datei.endsWith(l1.gaeb.datei) ? gaebFachteilZeilen(zeilen) : new Set();
+    const aus = l1.gaeb && datei.endsWith(l1.gaeb.datei) ? gaebFachteilZeilen(zeilen, l1.gaeb) : new Set();
     const inZeile = new Set();
     zeilen.forEach((z, i) => {
       if (aus.has(i)) return;
