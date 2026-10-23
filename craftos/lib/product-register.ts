@@ -12,8 +12,8 @@ export const productBasis = {
   checkedAt: "2026-10-23",
   web: {
     ref: "origin/release",
-    tag: "v4.0.0-test.248",
-    commit: "1f704236ed5493e3fbd3f181ce17f704ee29e627",
+    tag: "v4.0.0-test.249",
+    commit: "bfe165e90335e4224c8a3539c7a61b59edb34428",
   },
   mobile: {
     ref: "origin/release",
