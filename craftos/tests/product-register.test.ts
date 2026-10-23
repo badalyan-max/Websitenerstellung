@@ -136,6 +136,17 @@ describe("publication basis", () => {
     expect(register.limitations).toContain(mobileOffline.limitation);
     expect(mobileOffline.limitation).toBe("Keine vollständige Offline-Zusage");
   });
+  it("zählt die offline erfassbaren Vorgänge mit je einem Mobile-Beleg auf (09-10)", () => {
+    expect(mobileOffline.erfassung).toBe("Zeiten, Bautagesberichte, Mängel, Aufmaße und Urlaubsanträge");
+    expect(mobileOffline.erfassungEvidence.map((e) => e.path)).toEqual([
+      "src/features/time-tracking/hooks/useTimeEntries.ts",
+      "src/features/construction-reports/hooks/useConstructionReports.ts",
+      "src/features/defects/hooks/useDefects.ts",
+      "src/features/room-measurements/hooks/useRoomMeasurements.ts",
+      "src/features/vacation/hooks/useVacationRequests.ts",
+    ]);
+    expect(mobileOffline.erfassungEvidence.every((e) => e.repository === "mobile")).toBe(true);
+  });
   it("uses the individual article image for both sharing formats", () => {
     const result = pageMetadata(
       "Rechnung schreiben",
@@ -184,6 +195,12 @@ describe.skipIf(!fs.existsSync(WEB) || !fs.existsSync(MOBILE))(
       expect(missing).toEqual([]);
       expect(all.length).toBeGreaterThan(80);
       // Ein git-Aufruf je Beleg (über 130); unter Volllast der Suite reichen 5 s nicht (07-03).
+    }, 30_000);
+    it("jeder offline aufgezählte Vorgang nutzt useOfflineMutation am Mobile-Release (09-10)", () => {
+      for (const item of mobileOffline.erfassungEvidence) {
+        const src = execFileSync("git", ["-C", MOBILE, "show", `${productBasis.mobile.commit}:${item.path}`], { encoding: "utf8" });
+        expect(src, item.path).toContain("useOfflineMutation");
+      }
     }, 30_000);
   },
 );

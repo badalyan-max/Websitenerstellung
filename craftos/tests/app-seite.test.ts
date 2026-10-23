@@ -222,7 +222,7 @@ describe("Inhalte", () => {
     });
     expect(facts[1]).toEqual({
       value: "Offline",
-      label: "teilweise nutzbar, später synchronisiert",
+      label: "erfassen und später übertragen",
       source: "register:mobileOffline",
     });
     expect(facts[2]).toEqual({ value: euro(tarif("app").monat), label: "App-Lizenz pro Monat", source: "site:tarif-app-monat" });
@@ -233,9 +233,9 @@ describe("Inhalte", () => {
       expect(charCount(fact.value), fact.value).toBeLessThanOrEqual(TEXT_BUDGET.keyFact.value);
     }
     expect(note).toContain("netto");
-    expect(note).toContain("Offline teilweise nutzbar");
+    expect(note).not.toMatch(/teilweise/i);
     expect(note).toBe(
-      `Preis netto zzgl. USt. Offline teilweise nutzbar, siehe unten. Stand: ${germanDate(productBasis.checkedAt)}.`,
+      `Preis netto zzgl. USt. Was die App offline erfasst, steht unten. Stand: ${germanDate(productBasis.checkedAt)}.`,
     );
   });
 
@@ -253,7 +253,7 @@ describe("Inhalte", () => {
     }
   });
 
-  it("FAQ: fünf Fragen, Offline-Antwort „Teilweise:“, Sprachen aus mobileLocales, Preise aus tarife", () => {
+  it("FAQ: fünf Fragen, Offline-Antwort zählt positiv auf (09-10), Sprachen aus mobileLocales, Preise aus tarife", () => {
     const faq = app.appFaq;
     expect(faq).toHaveLength(5);
     expect(faq.map((f) => f.q)).toEqual([
@@ -271,7 +271,11 @@ describe("Inhalte", () => {
     }
     expect(faq[0].a).toContain(euro(tarif("voll").monat));
     expect(faq[1].a).toContain(euro(tarif("app").monat));
-    expect(faq[2].a.startsWith("Teilweise:")).toBe(true);
+    // Inhaberregel „nur nennen, was unterstützt wird“: Aufzählung des offline Erfassbaren statt „Teilweise:“.
+    expect(faq[2].a).not.toMatch(/^(Nein|Teilweise)/);
+    expect(faq[2].a).not.toMatch(/teilweise/i);
+    expect(faq[2].a).toContain(mobileOffline.erfassung);
+    expect(faq[2].a).toContain("bis zu 24 Stunden");
     expect(faq[3].a).toContain(String(mobileLocales.length));
     for (const geraet of ["iPhone", "iPad", "Android"]) expect(faq[4].a, geraet).toContain(geraet);
   });
@@ -375,7 +379,8 @@ describe("gerendert", () => {
     expect(html).toContain('href="/hilfe/app-sprache-einstellen"');
     expect(html).toContain("Sprache der Mobile-App einstellen");
     expect(html).toContain('href="/hilfe/projekt-chat-nachrichten"');
-    expect(html).toContain("teilweise nutzbar, später synchronisiert");
+    expect(html).toContain("erfassen und später übertragen");
+    expect(html).not.toMatch(/teilweise nutzbar/i);
     expect(html).toContain(app.appSections.cta.title);
     expect(html).toContain('href="/preise"');
   });

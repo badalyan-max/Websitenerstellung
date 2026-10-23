@@ -8,6 +8,7 @@ import { GET } from "@/app/llms.txt/route";
 import { funktionen } from "@/lib/funktionen";
 import { gewerke } from "@/lib/gewerke";
 import { site } from "@/lib/site";
+import { mobileOffline } from "@/lib/product-register";
 
 describe("llms.txt", () => {
   const text = buildLlmsTxt();
@@ -57,7 +58,9 @@ describe("llms.txt", () => {
     const abschnitt = text.slice(text.indexOf("## Mobile-App"), text.indexOf("## Gewerke"));
     expect(text.indexOf("## Mobile-App")).toBeGreaterThan(-1);
     expect(abschnitt).toContain(`(${site.url}/app)`);
-    expect(abschnitt).toContain("nur teilweise");
+    // 09-10: positiv aufgezählt statt „nur teilweise“.
+    expect(abschnitt).toContain(`ohne Empfang ${mobileOffline.erfassung} erfassen und später übertragen`);
+    expect(abschnitt).not.toMatch(/teilweise/i);
     expect(abschnitt).not.toMatch(/vollständig offline/i);
   });
   // 09-09 (SEO-09, CONTENT-04): neun Wissensseiten und elf Anleitungen mit Map-Titel, nur veröffentlichte Pfade.

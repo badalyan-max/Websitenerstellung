@@ -13,7 +13,7 @@ import { TEXT_BUDGET, charCount, sentenceCount } from "@/components/v2/budgets";
 import { euro, germanDate } from "@/lib/format";
 import { getFunktionsgruppen } from "@/lib/funktionsgruppen";
 import { keywordMap } from "@/lib/keyword-map";
-import { mobileLocales, productBasis } from "@/lib/product-register";
+import { mobileLocales, mobileOffline, productBasis } from "@/lib/product-register";
 import { site, tarife } from "@/lib/site";
 import * as home from "@/lib/home-content";
 
@@ -131,6 +131,12 @@ describe("Startseiteninhalte", () => {
     expect(faq[0].a).toContain(euro(tarif("app").monat));
     expect(faq[1].a).toContain(`${site.trialDays} Tage`);
     expect(faq[3].q).toContain("GoBD");
+    // 09-10 (Inhaberregel „nur nennen, was unterstützt wird“): Offline-Antwort zählt auf, was ohne Empfang erfasst wird.
+    expect(faq[4].q).toBe("Kann ich auf der Baustelle ohne Internet arbeiten?");
+    expect(faq[4].a).not.toMatch(/^(Nein|Teilweise)/);
+    expect(faq[4].a).toContain(mobileOffline.erfassung);
+    expect(faq[4].a).toContain("bis zu 24 Stunden");
+    for (const item of faq) expect(item.a, item.q).not.toMatch(/teilweise/i);
   });
 
   it("Quelltext ohne Preisliterale und ohne festgeschriebene Testtage", () => {
