@@ -1,69 +1,72 @@
 ---
 title: "Offline auf der Baustelle arbeiten: vorbereiten, lokal erfassen und Synchronisierung prüfen"
-description: "Welche Grenzen eine Baustellen-App ohne Verbindung hat und wie Sie ausstehende Änderungen nach dem Einsatz zuverlässig kontrollieren."
+description: "Wie Sie eine Baustellen-App ohne Verbindung nutzen und ausstehende Änderungen nach dem Einsatz zuverlässig kontrollieren."
 category: "team"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
+answer: "Offline arbeiten Sie mit der CraftOS-Mobile-App in Ansichten, die Sie vorher einmal mit Verbindung geöffnet haben. Zeiten, Berichte, Mängel, Nachrichten und Lagerbuchungen werden ohne Netz auf dem Gerät vorgemerkt und später übertragen; Fotos laden Sie mit Internetverbindung hoch."
 relatedFeatures: ["zeiterfassung", "baudokumentation", "aufmass"]
 relatedArticles: ["/hilfe/mobile-offline-synchronisierung", "/hilfe/mobilen-timer-bedienen"]
 sources: []
 platforms: ["web", "mobile"]
 ---
 
-Offline-Nutzung bedeutet nicht, dass jede Funktion ohne Internet gleich arbeitet. Bereits geladene Ansichten können verfügbar bleiben, während bestimmte Änderungen zunächst lokal warten. Für Anmeldung, nicht geladene Daten, Uploads oder einzelne Aktionen kann weiterhin eine Verbindung erforderlich sein.
-
 ## Was sollten Sie vor dem Einsatz vorbereiten?
 
-Melden Sie sich mit Verbindung an und öffnen Sie die benötigten Projekte und Ansichten. Prüfen Sie, ob Auftrag, Projektdaten und relevante Hinweise sichtbar sind. Dadurch reduzieren Sie das Risiko, auf der Baustelle nur eine noch nicht geladene Ansicht vorzufinden.
+Melden Sie sich mit Verbindung an und öffnen Sie die Projekte und Ansichten, die Sie auf der Baustelle brauchen. Jede einmal geöffnete Ansicht steht danach auch offline zur Verfügung.
 
-Verlassen Sie sich nicht darauf, dass jede Datei automatisch vollständig auf dem Gerät liegt. Prüfen Sie wichtige Unterlagen gezielt. Auch eine bereits sichtbare Vorschau beweist nicht für jede Funktion, dass sämtliche Inhalte offline verfügbar sind.
+Prüfen Sie, ob Auftrag, Projektdaten und Hinweise sichtbar sind, und öffnen Sie wichtige Unterlagen gezielt. Eine noch nicht geladene Ansicht zeigt offline „Offline, noch nicht geladen“ mit dem Hinweis, sie einmal mit Verbindung zu öffnen.
 
 ## Welche Zustände müssen Sie unterscheiden?
 
-| Zustand | Bedeutung für Ihre Arbeit |
-|---|---|
-| Online | Eine Verbindung ist grundsätzlich verfügbar. |
-| Offline | Neue Serverdaten können nicht zuverlässig geladen werden. |
-| Ausstehend | Eine lokale Änderung wartet auf Übertragung. |
-| Synchronisierung läuft | Änderungen werden mit dem Server abgeglichen. |
-| Synchronisierung fehlgeschlagen | Mindestens eine Änderung benötigt Aufmerksamkeit. |
+Die Mobile-App zeigt an, ob Sie offline sind, wie viele Änderungen auf Übertragung warten und ob die Synchronisierung läuft oder Aufmerksamkeit braucht. Diese Anzeigen sagen Ihnen, was das Büro bereits sieht.
 
-Eine lokale Erfolgsmeldung kann sich auf die Speicherung auf dem Gerät beziehen. Das Büro sieht den Eintrag erst nach erfolgreicher Übertragung.
+| Anzeige in der App | Bedeutung für Ihre Arbeit |
+|---|---|
+| „Offline“ | Neue Serverdaten werden gerade nicht geladen. |
+| „Offline · gespeicherter Stand“ | Sie sehen den zuletzt geladenen Stand. |
+| „Änderungen ausstehend“ | Lokale Änderungen warten auf Übertragung. |
+| „Synchronisiere...“ | Änderungen werden mit dem Server abgeglichen. |
+| „Auf Gerät vorgemerkt“ | Eine Buchung ist lokal gespeichert und wird nach der Verbindung geprüft. |
+
+Eine lokale Erfolgsmeldung bezieht sich auf die Speicherung auf dem Gerät. Das Büro sieht den Eintrag nach der erfolgreichen Übertragung.
+
+## Welche Arbeiten erfassen Sie ohne Netz?
+
+Ohne Netz erfassen Sie Zeiten, Berichte, Mängel, Nachrichten und Lagerbuchungen; die App merkt sie auf dem Gerät vor und überträgt sie, sobald die Verbindung zurück ist. Fotos laden Sie mit Internetverbindung hoch.
+
+Eine Nachricht im Projekt-Chat zeigt dabei „Offline: Nachricht wird gesendet, sobald wieder Verbindung besteht.“ Lagerbuchungen stehen als „Auf Gerät vorgemerkt“; der Server prüft den verfügbaren Bestand nach der Verbindung.
+
+Aufnahmen aus einer Besichtigung sichern Sie mit „Auf Gerät sichern“ auf dem Handy, bis der Upload mit Verbindung läuft. Wie eine Besichtigung abläuft, zeigt die Anleitung [Besichtigung durchführen](/hilfe/besichtigung-durchfuehren).
 
 ## Wie sieht ein typischer Einsatz aus?
 
-Ein Mitarbeiter öffnet morgens das Projekt „Wohnung Lindenstraße“ mit Verbindung. Im Gebäude fällt das Netz aus. Er nutzt die verfügbaren Ansichten und erfasst eine unterstützte Änderung. Der Status zeigt einen ausstehenden Vorgang.
+Ein typischer Einsatz beginnt morgens mit Verbindung: Ein Mitarbeiter öffnet das Projekt Lindenstraße, im Gebäude fällt das Netz aus, und er erfasst Zeit und Tagesbericht offline. Die App zeigt die ausstehenden Änderungen.
 
-Nach Verlassen des Gebäudes ist die Verbindung wieder da. Der Mitarbeiter lässt die App den Vorgang synchronisieren und kontrolliert anschließend den Status. Erst danach ist der Ablauf abgeschlossen. Wenn ein Fehler bleibt, prüft er die angezeigte Meldung, statt denselben Vorgang vorsorglich erneut anzulegen.
-
-## Welche Funktionen benötigen besondere Aufmerksamkeit?
-
-Zeiteinträge, Aufmaß oder andere strukturierte Daten können andere Offline-Wege haben als Fotos und Dokumentdateien. Die Unterstützung ist funktionsbezogen. Wenn eine Ansicht das Hinzufügen eines Fotos ohne Verbindung ablehnt, ergänzen Sie es später mit Internet.
-
-Die Website verspricht deshalb keine pauschale Offline-Fotoablage und keinen vollständigen Offline-Betrieb aller Funktionen. Entscheidend sind die sichtbaren Hinweise der jeweils verwendeten Ansicht. Das schützt vor der falschen Annahme, eine lokal aufgenommene Datei sei bereits im Projekt gesichert.
+Nach Verlassen des Gebäudes ist die Verbindung wieder da. Die App überträgt die vorgemerkten Einträge, und der Mitarbeiter kontrolliert anschließend den Status. Bleibt eine Meldung stehen, prüft er sie, statt denselben Vorgang erneut anzulegen.
 
 ## Was tun Sie bei fehlgeschlagener Synchronisierung?
 
-Prüfen Sie zunächst die Verbindung und den angemeldeten Zugriff. Ein Projekt kann inzwischen geändert worden sein oder eine Berechtigung fehlen. Die App kann dann eine bewusste Entscheidung verlangen, statt die Änderung automatisch zu übernehmen.
+Prüfen Sie bei einer fehlgeschlagenen Synchronisierung zuerst Verbindung und Anmeldung und lesen Sie die angezeigte Meldung. Ein Projekt kann sich inzwischen geändert haben oder eine Berechtigung ist abgelaufen.
 
-Verwenden Sie die angebotene Wiederholung, wenn die Ursache behoben ist. „Verwerfen“ entfernt eine ausstehende Änderung und sollte nur gewählt werden, wenn sie tatsächlich nicht mehr benötigt wird. Legen Sie vorher fest, wie der Inhalt gegebenenfalls anderweitig gesichert oder nachgetragen wird.
+Ist die Ursache behoben, tippen Sie auf „Erneut versuchen“. „Verwerfen“ entfernt eine ausstehende Änderung endgültig vom Gerät; wählen Sie es nur, wenn der Eintrag nicht mehr gebraucht wird oder anderweitig nachgetragen ist.
 
-## Warum sollten Sie sich offline nicht vorschnell abmelden?
+## Warum melden Sie sich offline besser nicht ab?
 
-Eine neue Anmeldung benötigt Verbindung. Wenn Sie sich ohne Netz abmelden, können Sie den Zugriff nicht unmittelbar wiederherstellen. Auch das Löschen von App-Daten oder eine Neuinstallation ist kein geeigneter erster Schritt bei ausstehenden Änderungen.
+Bleiben Sie offline angemeldet, denn zum Anmelden braucht die App eine Internetverbindung. Melden Sie sich erst ab, wenn alle Einträge übertragen sind; die App weist vor dem Abmelden auf nicht übertragene Einträge hin.
 
-Bleiben Sie bei einem Synchronisierungsproblem möglichst in der bestehenden Sitzung und klären Sie die konkrete Meldung. Notieren Sie den betroffenen Vorgang, ohne sensible Kundendaten unnötig weiterzugeben.
-
-## Wie nutzen Sie CraftOS verlässlich?
-
-Öffnen Sie benötigte Ansichten vorab, beobachten Sie während der Arbeit die Statusanzeige und kontrollieren Sie ausstehende Änderungen nach dem Einsatz. Die [Hilfe zur Offline-Synchronisierung](/hilfe/mobile-offline-synchronisierung) erklärt die aktuellen Meldungen und Bedienelemente.
-
-Für zeitkritische Rückmeldungen stimmen Sie einen zusätzlichen Kommunikationsweg mit dem Büro ab. Die [Zeiterfassung](/funktionen/zeiterfassung), [Aufmaßfunktion](/funktionen/aufmass) und [Baudokumentation](/funktionen/baudokumentation) werden so mit realistischen Erwartungen eingesetzt: lokal verfügbar, soweit unterstützt, und erst nach bestätigter Synchronisierung gemeinsam nutzbar.
+Bleiben Sie bei einem Synchronisierungsproblem in der bestehenden Sitzung und klären Sie die konkrete Meldung. Notieren Sie den betroffenen Vorgang, ohne Kundendaten unnötig weiterzugeben.
 
 ## Wie testen Sie den Ablauf vor der ersten schwierigen Baustelle?
 
-Verwenden Sie einen unkritischen Testvorgang und öffnen Sie dessen relevante Ansichten zunächst mit Verbindung. Unterbrechen Sie anschließend die Verbindung und prüfen Sie genau die Funktionen, die Sie vor Ort benötigen. Beobachten Sie, ob Änderungen lokal vorgemerkt oder ausdrücklich abgewiesen werden.
+Testen Sie den Ablauf mit einem unkritischen Testvorgang: Ansichten mit Verbindung öffnen, Verbindung trennen und genau die Funktionen prüfen, die Sie vor Ort brauchen. Beobachten Sie, wie die App die Einträge vormerkt.
 
-Stellen Sie die Verbindung wieder her und kontrollieren Sie den gesamten Weg bis zur sichtbaren Übertragung. Wiederholen Sie den Test nach wesentlichen Änderungen der benötigten Funktion. Ein erfolgreich getesteter Zeiteintrag beweist nicht automatisch, dass ein Foto oder eine neue Anmeldung denselben Offline-Ablauf unterstützt. Entscheidend ist der tatsächlich benötigte Vorgang.
+Stellen Sie die Verbindung wieder her und kontrollieren Sie den Weg bis zur sichtbaren Übertragung im Büro. Wiederholen Sie den Test nach größeren Änderungen an Ihrem Arbeitsablauf, etwa wenn Sie zusätzlich Lagerbuchungen oder Aufmaße vor Ort erfassen.
+
+## So unterstützt CraftOS
+
+Die Mobile-App merkt Einträge aus [Zeiterfassung](/funktionen/zeiterfassung), [Baudokumentation](/funktionen/baudokumentation) und [Aufmaß](/funktionen/aufmass) ohne Netz vor und überträgt sie nach der Verbindung; gemeinsam nutzbar sind sie nach der bestätigten Synchronisierung.
+
+Die [Hilfe zur Offline-Synchronisierung](/hilfe/mobile-offline-synchronisierung) erklärt die Meldungen und Bedienelemente im Detail, die [Timer-Anleitung](/hilfe/mobilen-timer-bedienen) die Zeiterfassung unterwegs. Für zeitkritische Rückmeldungen vereinbaren Sie zusätzlich einen festen Kommunikationsweg mit dem Büro.
