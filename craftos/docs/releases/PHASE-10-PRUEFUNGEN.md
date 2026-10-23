@@ -188,4 +188,36 @@ Mechanisch, ohne Fließtext: Zahl geänderter Fließtextsätze **0**. Geänderte
 
 ## 5. Phasen-Gate
 
-Füllt 10-12 (volle A11y-Matrix, Lighthouse-Endmessung, Gates D-14).
+Plan 10-12, 23.10.2026, Haupt-Arbeitsbaum `main`, lokal unter `.heavy-lock`, Port 3100. Für die Website gibt es kein Koordinationsrezept (§ 3 Nr. 3); alle Läufe lokal und einzeln, keine CI.
+
+### 5.1 Startgate und Prüfsuiten (D-14, W1, W8)
+
+**Startgate:** `10-06-SUMMARY.md` und `10-REVIEW.md` vorhanden, `craftos/` sauber, Port 3100 frei. Review-Prüfung: 6 IDs der Stufen CR/HI/ME/WR in `10-REVIEW.md` (HI-01, ME-01 bis ME-05), alle in `10-REVIEW-FIX.md` als „behoben“ mit Commit geführt → bestanden.
+
+**Zusatzauftrag Rechtsseiten (Inhaberfreigabe 23.10.2026, über den Orchestrator):** Der sichtbare Vorlagenhinweis unter den AGB („Diese AGB sind eine Vorlage und sollten vor Veröffentlichung rechtlich geprüft …“) ist durch den Absatz „Stand: 23. Oktober 2026“ ersetzt, wie in `/datenschutz` (`19dd8ed`). Der übrige AGB-Text ist wörtlich unverändert; `tests/fixtures/rechtstexte/agb.txt` wurde bewusst mit den exportierten Hilfsfunktionen aus `tests/rechtstexte-wortlaut.test.ts` neu erzeugt (Diff: genau eine Zeile). `/impressum` enthält keinen gleichartigen Hinweis („Einzelunternehmer · CraftOS“ ist eine Angabe, kein Vorlagenhinweis); `LegalHinweis` bleibt dort in Gebrauch. Review-Befund LO-06 damit behoben. Block 3 lief auf diesem Stand (Neubau), dazu gezielt Wortlaut-Test, A11y und live-check für `/agb` und `/impressum`.
+
+| Block | Prüfung | Ergebnis |
+|---|---|---|
+| 1 (15:00–15:01 UTC) | `npm test` (Vitest voll) | 59 Dateien, 1699/1699 grün |
+| 1 | `npm run lint` | 0 Probleme |
+| 1 | `npm run typecheck` (`tsc --noEmit`) | 0 Fehler |
+| 1 | `npm run sync:product:check` | aktuell, v4.0.0-test.249 (`bfe165e9`) |
+| 1 | `check-no-secrets.mjs` (app, components, lib, tests, scripts, docs, .planning) | „Schlüssel in keiner Datei“ |
+| 2 (15:01–15:18 UTC) | `next build` | grün |
+| 2 | `seo-audit.mjs` sitewide | 156/156 Sitemap-URLs, 12 Regeln, 0 Verstöße |
+| 2 | `npm run test:e2e` (ein voller Lauf, 15,7 min) | 467 bestanden, 0 fehlgeschlagen, 0 flaky, 161 übersprungen; keine Einzelwiederholung nötig |
+| 2 | davon `chromium-1440` | 152 bestanden, 0 fehlgeschlagen, 5 übersprungen |
+| 2 | davon `chromium-390-touch` | 84 bestanden, 0 fehlgeschlagen, 73 übersprungen |
+| 2 | davon `webkit-1440` | 148 bestanden, 0 fehlgeschlagen, 9 übersprungen |
+| 2 | davon `webkit-390-touch` | 83 bestanden, 0 fehlgeschlagen, 74 übersprungen |
+| 3 (15:18–15:30 UTC) | Neubau nach `19dd8ed`, Vitest voll | Build grün; 59 Dateien, 1699/1699 grün |
+| 3 | `route-audit.mjs` | 156 Routen, 0 Fehler, 0 defekte Links (159 interne Links, 14 Assets, 6 OG-Bilder); 10 gewollte 404-Proben |
+| 3 | `visual-audit.mjs` | 290 Aufnahmen (29 Routen × 5 Breiten × 2 Engines), 0 Statusfehler, 0 Überlauf, 0 JS-Fehler, 0 A11y-Befunde |
+| 3 | `live-check.mjs` lokal | 77 OK, 0 FEHLER („alle Prüfungen OK“), inkl. Kernaussagen D-41/D-42/D-43 |
+| 3 | gezielt `a11y.pw.cjs` „Rechtsseite“ | 2 bestanden, 0 fehlgeschlagen (2 übersprungen, mobil) |
+| 3 | gezielt `a11y-audit.mjs --paths=/agb,/impressum` | 20 Aufrufe, Gate 0, Großtext 0, Tastatur 0, Status 0 |
+| nach Block 3 | `npm run lint` erneut (D-31 Nr. 19) | 0 Probleme |
+
+Port 3100 war nach jedem Block frei; die Sperre wurde zwischen den Blöcken freigegeben.
+
+**Sichtprüfung (visual-audit, selbst angesehen):** Rechner-Übersicht, Support, Impressum, AGB (Ende mit „Stand: 23. Oktober 2026“), 404, Gewerke-Detail `/gewerke/elektriker` (WebKit 360), Hilfekategorie `/hilfe/kategorie/einrichtung`, `/preise` bei 360 px (Tabellen scrollen seitlich wie vorgesehen) – ohne Befund. Ablage: `C:/Users/badal/AppData/Local/Temp/claude/c--Projekte-Websitenerstellung/8faeabcc-263d-4f29-8287-1406748c2152/scratchpad/10-12/visual/` (Ausschnitte eine Ebene höher). Mega-Menü siehe § 5.2.
