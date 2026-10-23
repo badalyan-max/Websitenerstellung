@@ -62,10 +62,13 @@ describe("published content", () => {
             funktionen.some((x) => x.slug === f),
             a.slug + ":" + f,
           ).toBe(true);
+        // 09-REVIEW LO-06: jedes Ziel ist ein veröffentlichter Ratgeber- oder Hilfeartikel und nicht der Artikel
+        // selbst; die Vorlage filtert nicht auflösbare Ziele still weg, daher muss der Test sie finden.
         for (const url of a.relatedArticles) {
+          expect(url, `${kind}/${a.slug}`).toMatch(/^\/(blog|hilfe)\/[a-z0-9]+(?:-[a-z0-9]+)*$/);
+          expect(url, `${kind}/${a.slug}: verweist auf sich selbst`).not.toBe(`/${kind}/${a.slug}`);
           const [, k, s] = url.split("/");
-          if (k === "blog" || k === "hilfe")
-            expect(await getContentArticle(k, s), url).not.toBeNull();
+          expect(await getContentArticle(k as "blog" | "hilfe", s), url).not.toBeNull();
         }
       }
     }
