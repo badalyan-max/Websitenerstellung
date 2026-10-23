@@ -421,7 +421,7 @@ describe("Phase 8 – Zielwerte sitewide", () => {
         title: "Fakten über CraftOS: Funktionen und Lizenzen | CraftOS",
         h1: "Fakten über CraftOS",
         description:
-          "Überprüfbare Fakten über CraftOS: was die Handwerkersoftware ist, Plattformen, Lizenzen und Preise, Testphase, GoBD-Unterstützung und benannte Grenzen.",
+          "Überprüfbare Fakten über CraftOS: was die Handwerkersoftware ist, Plattformen, Lizenzen und Preise, Testphase, GoBD-Konformität und benannte Grenzen.",
       },
       "/vergleich/handwerkersoftware-kleine-betriebe": {
         title: "Handwerkersoftware für kleine Betriebe: Kriterien | CraftOS",
@@ -430,7 +430,12 @@ describe("Phase 8 – Zielwerte sitewide", () => {
       "/preise": { h1: "Preise der Handwerkersoftware CraftOS" },
       // Hotfix 23.10.2026: KI-Funktionen auf Anforderung statt Fragen zu Betriebsdaten.
       "/craft-ai": { h1: "KI im Handwerk: Craft AI für Angebot, Beleg und Bericht" },
-      "/gobd": { h1: "GoBD-konforme Software: wie CraftOS Ihre Abläufe unterstützt" },
+      // D-43 (Inhaber 23.10.2026): „CraftOS ist GoBD-konform“ statt „wie CraftOS Ihre Abläufe unterstützt“.
+      "/gobd": {
+        h1: "GoBD-konforme Software: so schützt CraftOS Ihre Belege",
+        description:
+          "CraftOS ist GoBD-konform: Festschreibung mit Löschsperre, gesperrte Eingangsrechnungen, unveränderliches Protokoll, Versionen und DATEV-Export.",
+      },
     };
     for (const [p, werte] of Object.entries(soll)) {
       const t = keywordMap.find((k) => k.path === p)?.target;

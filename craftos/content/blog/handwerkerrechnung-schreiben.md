@@ -72,4 +72,4 @@ Ein kurzer Abschlusscheck genügt: richtiger Empfänger, belegte Leistung, stimm
 
 In CraftOS gehören endgültige Nummer, festgehaltener Dokumentstand und Bearbeitungssperre zusammen. So lässt sich später unterscheiden, was als Entwurf vorbereitet und was tatsächlich fertiggestellt wurde; ein Storno behält den Bezug zum Original.
 
-Ergänzen Sie diese technische Unterstützung um einen festen Ablauf im Betrieb: Wer prüft die Leistung, wer die Rechnung, und wo werden Rückfragen dokumentiert? Diese Zuständigkeiten gehören in Ihre Verfahrensdokumentation. Welche Schutzmechanismen CraftOS dafür bereitstellt, erläutert die Seite [GoBD in CraftOS](/gobd).
+Ergänzen Sie diese technische Unterstützung um einen festen Ablauf im Betrieb: Wer prüft die Leistung, wer die Rechnung, und wo werden Rückfragen dokumentiert? Diese Zuständigkeiten gehören in Ihre Verfahrensdokumentation. CraftOS ist GoBD-konform; wie Festschreibung, Löschsperre und Protokoll zusammenwirken, erläutert die Seite [GoBD in CraftOS](/gobd).

@@ -10,6 +10,7 @@ import { categories } from "@/lib/content-types";
  * Datenschutz-Überarbeitung, Impressum D-42) sowie die Seiten des Einrichtungsservice (D-41) tragen 2026-10-23.
  */
 const pageUpdated: Record<string, string> = {
+  // D-43 (10-g): Startseiten-FAQ „Ist CraftOS GoBD-konform?“.
   "": "2026-10-23",
   "/funktionen": "2026-10-23",
   "/craft-ai": "2026-10-23",

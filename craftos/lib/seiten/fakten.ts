@@ -6,8 +6,9 @@
  * Inhabervorgabe 22.10.2026: die Seite nennt nur, was unterstützt wird, und formuliert positiv (08-REVIEW HI-03):
  * Offline zählt auf, was die Mobile-App ohne Empfang erfasst und danach überträgt (Beleg: Produktregister
  * `mobileOffline`, Mobile-Release `useOfflineMutation` in Zeiterfassung, Bautagesbericht, Mängeln, Raumaufmaß und
- * Urlaubsanträgen); Standort „GPS erfasst nur einzelne Vorgänge“ (Register-Grenze); GoBD- und KI-Zuständigkeit
- * positiv. Überclaim-Schutz ohne Verneinung: es werden nur belegte Abläufe genannt.
+ * Urlaubsanträgen); Standort „GPS erfasst nur einzelne Vorgänge“ (Register-Grenze); KI-Zuständigkeit positiv;
+ * GoBD seit D-43 (Inhaber 23.10.2026) als „CraftOS ist GoBD-konform“ mit Belegen aus lib/gobd-konform.ts.
+ * Überclaim-Schutz ohne Verneinung: es werden nur belegte Abläufe genannt.
  * Prüfung: tests/kernseiten.test.ts, tests/design-v2-budgets.test.ts.
  */
 import type { LucideIcon } from "lucide-react";
@@ -18,6 +19,7 @@ import { einrichtung } from "@/lib/einrichtung";
 import { euro, germanDate } from "@/lib/format";
 import { funktionen } from "@/lib/funktionen";
 import { getFunktionsgruppen } from "@/lib/funktionsgruppen";
+import { gobdKonform } from "@/lib/gobd-konform";
 import { pruefeNurUnterstuetzt } from "@/lib/nur-unterstuetzt";
 import { mobileLocales, mobileOffline } from "@/lib/product-register";
 import { site, tarife } from "@/lib/site";
@@ -125,9 +127,9 @@ export const produktfakten: FactListItem[] = [
     definition: `Die freigegebenen Kernmodule einschließlich Plantafel gehören zur ${voll.name}. KI-Verbrauch und zusätzlicher Speicher können gesondert kosten.`,
   },
   {
-    term: "GoBD-Unterstützung",
-    definition:
-      "Festschreibung, geschützte Inhalte, Dokumentversionen, Storno-Bezüge und Belegprüfung mit Protokollen unterstützen nachvollziehbare Abläufe. Das betriebliche Gesamtverfahren organisiert Ihr Betrieb.",
+    // D-43 (Inhaber 23.10.2026): Kernaussage und Belege aus lib/gobd-konform.ts.
+    term: "GoBD-Konformität",
+    definition: `${gobdKonform.aussage}: Ausgangsrechnungen werden festgeschrieben und gegen Löschen gesperrt, geprüfte Eingangsrechnungen gesperrt. Jede Änderung daran hält ein unveränderliches Protokoll fest.`,
   },
   {
     term: "Offline-Nutzung",
@@ -187,10 +189,8 @@ export const faktenFaq: { q: string; a: string }[] = [
     q: "Was funktioniert in CraftOS offline?",
     a: `In der Mobile-App erfassen Sie ${OFFLINE_ERFASSUNG} auch ohne Empfang; die App überträgt sie, sobald wieder eine Verbindung besteht, und geladene Projekte hält sie bis zu 24 Stunden offline bereit.`,
   },
-  {
-    q: "Unterstützt CraftOS die GoBD?",
-    a: "CraftOS unterstützt GoBD-konforme Abläufe mit Festschreibung, Dokumentversionen und Protokollen; die GoBD-Konformität des gesamten Verfahrens organisiert Ihr Betrieb.",
-  },
+  // D-43 (Inhaber 23.10.2026): Wortlaut aus lib/gobd-konform.ts.
+  { ...gobdKonform.faq },
   {
     q: "Welche Standortdaten speichert die Mobile-App?",
     a: `${GPS_VORGAENGE}: Die Mobile-App speichert beim Start und Stopp der Zeiterfassung je einen Standortpunkt, bei mobilen Unterschriften Ort und Zeitpunkt.`,
