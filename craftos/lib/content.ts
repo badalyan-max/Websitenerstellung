@@ -19,6 +19,9 @@ import {
   type ContentSummary,
   type ContentArticle,
 } from "./content-types";
+type TocEintrag = ContentArticle["toc"][number];
+/** Teil der VFile-Schnittstelle, den der Artikel-Schritt braucht (Übergabe des Inhaltsverzeichnisses). */
+type VFile = { data: Record<string, unknown> };
 const root = path.join(process.cwd(), "content");
 const datePattern = /^\d{4}-\d{2}-\d{2}$/;
 function string(data: Record<string, unknown>, key: string) {
@@ -192,12 +195,16 @@ const isElement = (node: Root | RootContent | ElementContent): node is Element =
  * list-style: none); jede Tabelle steckt in einem fokussierbaren Scrollbereich mit dem Text der vorherigen H2.
  */
 function rehypeArtikel() {
-  return (tree: Root) => {
+  return (tree: Root, file: VFile) => {
     let h2 = "";
+    // 09-REVIEW LO-02: Inhaltsverzeichnis direkt aus dem Baum (Text statt HTML, keine Entities, Reihenfolge des Texts).
+    const toc: TocEintrag[] = [];
     const besuche = (parent: Root | Element) => {
       parent.children = parent.children.map((kind) => {
         if (!isElement(kind)) return kind;
         if (kind.tagName === "h2") h2 = kurz(textOf(kind));
+        if ((kind.tagName === "h2" || kind.tagName === "h3") && typeof kind.properties?.id === "string")
+          toc.push({ level: kind.tagName === "h2" ? 2 : 3, id: kind.properties.id, title: kurz(textOf(kind)) });
         if (kind.tagName === "ol" && parent.type === "root") kind.properties = { ...kind.properties, role: "list" };
         if (kind.tagName === "table") {
           const huelle: Element = {
@@ -218,6 +225,7 @@ function rehypeArtikel() {
       });
     };
     besuche(tree);
+    file.data.toc = toc;
   };
 }
 
@@ -237,18 +245,7 @@ export async function renderMarkdown(body: string) {
     .use(rehypeStringify)
     .process(body);
   const html = String(result);
-  // Die Regex erwartet <h2 id="…"> ohne weitere Attribute – der Artikel-Schritt ändert keine Überschriften.
-  const toc = [
-    ...html.matchAll(/<h([23]) id="([^"]+)">([\s\S]*?)<\/h[23]>/g),
-  ].map((m) => ({
-    level: Number(m[1]),
-    id: m[2],
-    title: m[3]
-      .replace(/<[^>]+>/g, "")
-      .replace(/&amp;/g, "&")
-      .replace(/&#x26;/g, "&")
-      .replace(/&quot;/g, '"'),
-  }));
+  const toc = (result.data.toc as TocEintrag[] | undefined) ?? [];
   return { html, toc };
 }
 

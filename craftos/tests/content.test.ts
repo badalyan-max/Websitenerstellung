@@ -97,6 +97,16 @@ describe("published content", () => {
     expect(rendered.html).not.toContain('href="javascript:');
     expect(rendered.toc.map((h) => h.id)).toEqual(["beispiel", "beispiel-1"]);
   });
+  it("Inhaltsverzeichnis aus dem hast-Baum: Titel ohne HTML-Entities, mit Inline-Code und Links (LO-02)", async () => {
+    const { toc } = await renderMarkdown(
+      '## Gilt die Grenze < 250 €?\n\nText.\n\n### A & B "zitiert"\n\nText.\n\n## Feld `Betrag` und [Link](/hilfe)\n\nText.\n\n#### Tiefer\n\nText.',
+    );
+    expect(toc).toEqual([
+      { level: 2, id: "gilt-die-grenze--250-", title: "Gilt die Grenze < 250 €?" },
+      { level: 3, id: "a--b-zitiert", title: 'A & B "zitiert"' },
+      { level: 2, id: "feld-betrag-und-link", title: "Feld Betrag und Link" },
+    ]);
+  });
   it("requires explicit draft status and consistent metadata", () => {
     expect(() =>
       parseContent("---\ntitle: Test\n---\nText", "blog", "test"),
