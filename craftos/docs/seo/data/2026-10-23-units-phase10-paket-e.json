@@ -1,0 +1,47 @@
+{
+  "quelle": "SE Ranking DATA_getSubscription (MCP) vor und nach jedem Block von 10-05 (Paket e); Buchung erscheint 10–60 s verzögert, daher „nachher“ frühestens 60 s nach dem letzten Abruf",
+  "phase": "10",
+  "plan": "10-05",
+  "budget_phase_units": 5000,
+  "verbraucht_vor_plan": 526,
+  "bloecke": [
+    {
+      "block": "A1",
+      "inhalt": "Aufgabe 1: seo-report.mjs umgebaut, Test mit gemocktem Client – kein SE-Ranking-Abruf",
+      "vorher": null,
+      "nachher": null,
+      "verbrauch": 0
+    },
+    {
+      "block": "A2-lesen",
+      "inhalt": "Erkundung nur lesend: tools/list, PROJECT_listLlmEngines, PROJECT_getLlmStatus ×5, PROJECT_listPromptGroups, PROJECT_getLlmEngine ×5, PROJECT_listPrompts ×5",
+      "vorher": {
+        "zeit": "2026-10-23T11:01:36.201Z",
+        "units_left": 18071
+      },
+      "nachher": {
+        "zeit": "2026-10-23T11:03:25.142Z",
+        "units_left": 18071
+      },
+      "verbrauch": 0
+    },
+    {
+      "block": "A2-abgleich",
+      "inhalt": "PROJECT_getLlmStatus/listPrompts ×5 vorher und nachher, PROJECT_addPrompts ×4 (alle mit 403 Promptlimit abgelehnt), PROJECT_getPromptsRankings Perplexity",
+      "vorher": {
+        "zeit": "2026-10-23T11:03:25.142Z",
+        "units_left": 18071
+      },
+      "nachher": {
+        "zeit": "2026-10-23T11:05:11.641Z",
+        "units_left": 18071,
+        "abstand_letzter_abruf_s": 82
+      },
+      "verbrauch": 0
+    }
+  ],
+  "summe_plan": 0,
+  "phasensumme_bisher": 526,
+  "restbudget_phase": 4474,
+  "kontostand_aktuell": 18071
+}
