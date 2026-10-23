@@ -890,6 +890,206 @@ describe("/support auf v2 (D-16, K-2; 10-UI-SPEC § 2)", () => {
   });
 });
 
+const RECHNER_HINWEIS = "Kostenlos. Ohne Anmeldung. Ihre Zahlen bleiben im Browser.";
+const RECHNER_NOTIZ = "Lernen Sie die Angebotsfunktionen von CraftOS kennen und bringen Sie Ihre Aufträge ins System.";
+const ALTKLASSEN_RECHNER = ["section-space", "eyebrow", "section-intro", "btn-cta", "btn-secondary", "soft-panel", "split-section"] as const;
+const RECHNERSEITEN_10 = [
+  {
+    pfad: "/rechner",
+    laden: () => import("@/app/rechner/page"),
+    lead: "Was muss Ihre Arbeitsstunde kosten? Was bleibt von einem Auftrag übrig? Rechnen Sie beides mit Ihren eigenen Werten durch.",
+    abschnitte: [
+      ["kopf", null],
+      ["einstieg", "white"],
+      ["cta", null],
+    ],
+    h2: [["einstieg", "Welcher Rechner ist der richtige Einstieg?"]],
+    schema: "CollectionPage",
+    ebenen: [1, 2, 3, 3, 2],
+  },
+  {
+    pfad: "/rechner/stundensatz",
+    laden: () => import("@/app/rechner/stundensatz/page"),
+    lead: "Berechnen Sie Ihren Stundensatz aus den Kosten Ihres Betriebs, Ihren verrechenbaren Stunden und der Gewinnmarge, die Sie erreichen möchten.",
+    abschnitte: [
+      ["kopf", null],
+      ["rechner", "white"],
+      ["berechnung", "warm"],
+      ["kosten-und-stunden", "white"],
+      ["cta", null],
+    ],
+    h2: [
+      ["berechnung", "Wie wird der Stundensatz berechnet?"],
+      ["kosten-und-stunden", "Welche Kosten und Stunden gehören hinein?"],
+    ],
+    schema: "WebApplication",
+    ebenen: [1, 2, 2, 2, 2, 2],
+  },
+  {
+    pfad: "/rechner/angebotskalkulation",
+    laden: () => import("@/app/rechner/angebotskalkulation/page"),
+    lead: "Kalkulieren Sie einen Auftrag aus Material, Arbeitszeit und zusätzlichen Kosten. Oder prüfen Sie, welche Gewinnmarge Ihr vorhandener Preis ergibt.",
+    abschnitte: [
+      ["kopf", null],
+      ["rechner", "white"],
+      ["angebotspreis", "warm"],
+      ["marge-und-aufschlag", "white"],
+      ["eingaben", "warm"],
+      ["cta", null],
+    ],
+    h2: [
+      ["angebotspreis", "Wie kalkuliere ich einen Angebotspreis?"],
+      ["marge-und-aufschlag", "Was unterscheidet Marge und Kostenaufschlag?"],
+      ["eingaben", "Was muss ich bei meinen Eingaben beachten?"],
+    ],
+    schema: "WebApplication",
+    ebenen: [1, 2, 2, 2, 2, 3, 3, 2, 2],
+  },
+] as const;
+
+const FLAECHE_KLASSE = { white: "bg-white", warm: "bg-\\[#f7f3eb\\]" } as const;
+
+describe("Rechnerseiten auf v2 (D-15; 10-UI-SPEC § 1, J6–J8, J12)", () => {
+  for (const seite of RECHNERSEITEN_10) {
+    describe(seite.pfad, () => {
+      it("heller ContentKopf: Brotkrumen, Eyebrow „Rechner“, H1 aus der Keyword-Map, Bestands-Intro als Lead, Hinweis", async () => {
+        const html = await rendern(seite.laden);
+        expect(html).toMatch(HELLER_KOPF);
+        expect(count(html, /"@type":"BreadcrumbList"/g)).toBe(1);
+        expect(count(html, /aria-label="Brotkrumen"/g)).toBe(1);
+        const h1 = [...html.matchAll(/<h1\b([^>]*)>([\s\S]*?)<\/h1>/g)];
+        expect(h1.map((m) => decode(m[2]))).toEqual([zielwerte(seite.pfad).h1]);
+        expect(h1[0][1]).toContain('id="rechner-titel"');
+        expect(html).toMatch(/<p class="v2-eyebrow[^"]*">Rechner<\/p>/);
+        const kopf = html.slice(html.indexOf('data-abschnitt="kopf"'), html.indexOf("</section>"));
+        expect(decode(kopf)).toContain(seite.lead);
+        expect(kopf).not.toContain("data-answer");
+        const hinweis = kopf.match(/<p\b[^>]*data-hinweis=""[^>]*>([\s\S]*?)<\/p>/);
+        expect(hinweis).not.toBeNull();
+        expect(decode(hinweis![1])).toBe(RECHNER_HINWEIS);
+        expect(kopf.indexOf(seite.lead.slice(0, 20))).toBeLessThan(kopf.indexOf("data-hinweis"));
+      });
+
+      it("Abschnittsfolge und Flächen laut § 1.2, H2-ids = Abschnitts-ids", async () => {
+        const html = await rendern(seite.laden);
+        expect([...html.matchAll(/data-abschnitt="([^"]+)"/g)].map((m) => m[1])).toEqual(seite.abschnitte.map((a) => a[0]));
+        for (const [id, flaeche] of seite.abschnitte) {
+          if (flaeche === null) continue;
+          expect(html, id).toMatch(new RegExp(`<section data-abschnitt="${id}"[^>]*class="${FLAECHE_KLASSE[flaeche]} `));
+        }
+        for (const [id, titel] of seite.h2) {
+          expect(html, id).toMatch(new RegExp(`<section data-abschnitt="${id}" aria-labelledby="${id}"`));
+          const h2 = html.match(new RegExp(`<h2 id="${id}"[^>]*>([\\s\\S]*?)</h2>`));
+          expect(h2, id).not.toBeNull();
+          expect(decode(h2![1])).toBe(titel);
+        }
+        // Der Rechner-Abschnitt ist keine benannte Region; die Panels tragen ihre H2.
+        expect(html).not.toMatch(/<section data-abschnitt="rechner" aria-labelledby/);
+      });
+
+      it("Notiz wörtlich direkt vor dem CtaBand „Von der Kalkulation zum Angebot.“ mit „Angebotsfunktionen ansehen“", async () => {
+        const html = await rendern(seite.laden);
+        const iCta = html.indexOf('data-abschnitt="cta"');
+        const notiz = [...html.matchAll(/<p\b[^>]*data-notiz=""[^>]*>([\s\S]*?)<\/p>/g)];
+        expect(notiz.map((m) => decode(m[1]))).toEqual([RECHNER_NOTIZ]);
+        expect(notiz[0].index!).toBeLessThan(iCta);
+        // Nichts Sichtbares zwischen Notiz und CTA-Band außer schließenden Tags.
+        expect(html.slice(notiz[0].index! + notiz[0][0].length, iCta)).toMatch(/^(<\/(div|section)>)*<div $/);
+        expect(notiz[0][0]).not.toContain("<a ");
+        const cta = html.slice(iCta);
+        expect(decode(cta)).toContain("Von der Kalkulation zum Angebot.");
+        expect(decode(cta)).toContain("Ohne Zahlungsdaten – Sie entscheiden nach dem Test.");
+        expect(cta).toMatch(/<a href="\/funktionen\/angebote"[^>]*>Angebotsfunktionen ansehen<\/a>/);
+        expect(cta).toContain(`href="${site.ctaUrl}"`);
+        expect(html).not.toContain("calculator-cta-title");
+      });
+
+      it("JSON-LD unverändert, keine FAQPage, keine Altklassen, Überschriftenfolge ohne Sprung", async () => {
+        const html = await rendern(seite.laden);
+        const typen = ldBlocks(html).flatMap((b) => {
+          const graph = (b as { "@graph"?: Ld[] })["@graph"];
+          return (graph ?? [b]).map((x) => (x as { "@type"?: string })["@type"]);
+        });
+        expect(typen).toContain(seite.schema);
+        expect(typen).not.toContain("FAQPage");
+        const k = klassen(html.slice(0, html.indexOf('data-abschnitt="cta"')));
+        for (const alt of ALTKLASSEN_RECHNER) expect(k, alt).not.toContain(alt);
+        expect(spruenge(html)).toEqual([]);
+        expect(ueberschriften(html)).toEqual(seite.ebenen);
+      });
+    });
+  }
+
+  it("Rechner: Navigation „Rechner auswählen“ mit aria-current und noscript-Hinweis wörtlich", async () => {
+    for (const seite of RECHNERSEITEN_10.slice(1)) {
+      const html = await rendern(seite.laden);
+      const abschnitt = html.slice(html.indexOf('data-abschnitt="rechner"'), html.indexOf('data-abschnitt="', html.indexOf('data-abschnitt="rechner"') + 30));
+      expect(abschnitt).toMatch(/<nav\b[^>]*aria-label="Rechner auswählen"/);
+      expect(count(abschnitt, /aria-current="page"/g)).toBe(1);
+      expect(decode(abschnitt)).toContain(
+        "Aktivieren Sie JavaScript, um mit Ihren eigenen Werten zu rechnen; die Formel und das Beispiel finden Sie weiter unten.",
+      );
+      expect(abschnitt).toMatch(/data-calculator="(stundensatz|angebot)"/);
+    }
+  });
+
+  it("/rechner: Einstiegsfrage mit Antwort aus dem ersten Bestandsabsatz, zwei Werkzeugkarten als H3, Netto-Absatz als Notiz", async () => {
+    const html = await rendern(RECHNERSEITEN_10[0].laden);
+    const einstieg = html.slice(html.indexOf('data-abschnitt="einstieg"'), html.indexOf('data-abschnitt="cta"'));
+    const antwort = einstieg.match(/<p\b[^>]*data-answer=""[^>]*>([\s\S]*?)<\/p>/);
+    expect(decode(antwort![1])).toBe(
+      "Beginnen Sie beim Stundensatz, wenn Sie Ihre internen Kosten je Stunde noch nicht kennen. Verwenden Sie diese Kosten anschließend im Angebotsrechner für einen konkreten Auftrag.",
+    );
+    const karten = [...einstieg.matchAll(/<article\b[\s\S]*?<\/article>/g)].map((m) => m[0]);
+    expect(karten).toHaveLength(2);
+    expect(karten.map((k) => decode(k.match(/<h3\b[^>]*>([\s\S]*?)<\/h3>/)![1]))).toEqual([
+      "Stundensatzkalkulator",
+      "Angebots- und Margenrechner",
+    ]);
+    expect(karten.map((k) => [...k.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)].map((m) => [m[1], decode(m[2])]))).toEqual([
+      [["/rechner/stundensatz", "Stundensatz berechnen"]],
+      [["/rechner/angebotskalkulation", "Angebot kalkulieren"]],
+    ]);
+    expect(decode(einstieg)).toContain(
+      "Beide Rechner arbeiten netto. Sie können die Umsatzsteuer zusätzlich anzeigen lassen und den verwendeten Satz selbst eintragen. Beispielwerte helfen beim Einstieg und lassen sich vollständig ersetzen.",
+    );
+    expect(einstieg.indexOf("Beide Rechner arbeiten netto.")).toBeLessThan(einstieg.indexOf("data-notiz"));
+  });
+
+  it("Hilfe-FAQ als FaqList mit den Bestandsfragen wörtlich (A7)", async () => {
+    const stunden = await rendern(RECHNERSEITEN_10[1].laden);
+    const angebot = await rendern(RECHNERSEITEN_10[2].laden);
+    const faq = angebot.slice(angebot.indexOf('data-abschnitt="eingaben"'));
+    expect(summaryFragen(faq)).toEqual([
+      "Welchen Stundensatz trage ich ein?",
+      "Was passiert bei einem zu niedrigen Angebotspreis?",
+      "Wie werden Nachlässe und Umsatzsteuer berücksichtigt?",
+      "Werden meine Zahlen gespeichert?",
+    ]);
+    expect(decode(faq)).toContain(
+      "Die Berechnung läuft in Ihrem Browser. Ihre Eingaben werden nicht gespeichert oder an einen Berechnungsdienst gesendet. Ein bewusst aus dem Stundensatzrechner übernommener Kostensatz wird nur für die geöffnete Berechnung verwendet.",
+    );
+    const kosten = stunden.slice(stunden.indexOf('data-abschnitt="kosten-und-stunden"'));
+    expect(summaryFragen(kosten)).toEqual([
+      "Warum darf ich meinen Lohn nicht doppelt eintragen?",
+      "Was sind verrechenbare Stunden?",
+      "Gehört das Material in meinen Stundensatz?",
+      "Ist die Gewinnmarge dasselbe wie ein Aufschlag?",
+    ]);
+  });
+
+  it("Quelle: CalculatorPage nutzt ContentKopf mit Hinweis und Notiz, CalculatorCta bleibt erhalten (Inhaberliste)", () => {
+    const src = read("components/calculators/CalculatorPage.tsx");
+    expect(src).toContain("ContentKopf");
+    expect(src).toContain(RECHNER_HINWEIS);
+    expect(src).toContain("data-notiz");
+    expect(count(src, /function CalculatorCta\b/g)).toBe(1);
+    for (const datei of ["app/rechner/page.tsx", "app/rechner/stundensatz/page.tsx", "app/rechner/angebotskalkulation/page.tsx"]) {
+      expect(read(datei), datei).not.toMatch(/<CalculatorCta\b|PageHero|section-space|btn-cta/);
+    }
+  });
+});
+
 describe("Gewichte und Farben der Paket-(c)-Dateien aus 10-03 (10-UI-SPEC § 11, Typography, Color)", () => {
   // Rechner (app/rechner/**, components/calculators/**) ergänzt 10-10; components/CraftOSLogo.tsx prüft Paket (b) (K2).
   const DATEIEN = [
