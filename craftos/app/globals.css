@@ -735,11 +735,13 @@ h4 {
   hyphens: auto;
 }
 /* /preise (09-09): Die Prompt-Frage „Was kostet eine Handwerkersoftware pro Monat?“ wurde bei 1440 px als
-   „Handwer-kersoftware“ getrennt. Nur diese H2 trennt nicht automatisch; passt das Wort nicht, bricht es ohne Strich. */
-h2#was-kostet-handwerkersoftware {
-  hyphens: manual;
-  -webkit-hyphens: manual;
-  overflow-wrap: break-word;
+   „Handwer-kersoftware“ getrennt. Ab 768 px passt das Wort in eine Zeile, dort trennt nur diese H2 nicht automatisch;
+   schmaler bleibt die Silbentrennung, weil das Wort sonst ohne Trennstrich umbricht. */
+@media (min-width: 768px) {
+  h2#was-kostet-handwerkersoftware {
+    hyphens: manual;
+    -webkit-hyphens: manual;
+  }
 }
 /* CraftOS: warmer Werkstattcharakter, kräftige Kontraste, kürzere Wege. */
 @theme {
