@@ -1,46 +1,53 @@
 ---
 title: "Lagerorte und Lagerplätze einrichten"
-description: "So legen Sie Lager oder Fahrzeuge mit eindeutigen Bezeichnungen und optionalen Lagerplätzen an."
+description: "So legen Sie Lager oder Fahrzeuge mit eindeutigen Bezeichnungen und optionalen Lagerplätzen an und halten sie aktiv oder inaktiv."
 category: "lager"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["lager"]
 relatedArticles: ["/hilfe/wareneingang-buchen", "/hilfe/inventur-durchfuehren"]
 sources: []
 platforms: ["web"]
+answer: "Lagerorte legen Sie in der Web-App unter „Lager“ im Reiter „Lagerorte“ mit „Neues Lager“ an, als stationäres Lager oder als Fahrzeug. Lagerplätze wie Regale oder Fächer ergänzen Sie optional im selben Dialog."
 ---
 
-Lagerorte trennen physische Bestände; optionale Lagerplätze gliedern einen Ort genauer.
+Lagerorte trennen physische Bestände; optionale Lagerplätze gliedern einen Ort genauer. Kleine Betriebe kommen mit einem Lager ohne Lagerplätze aus.
 
-Sie benötigen eine Admin- oder Büro-Lizenz mit Zugriff auf die Lagerverwaltung in der Web-App.
+## Voraussetzungen
 
-## Schritt für Schritt
+- Sie arbeiten in der Web-App mit Voll-Lizenz (Admin oder Büro).
+- Sie kennen die Orte, an denen Material dauerhaft liegt, etwa Hauptlager und Transporter.
 
-1. Öffnen Sie „Lager“.
-2. Wechseln Sie zum Reiter „Lagerorte“.
-3. Prüfen Sie, ob der benötigte Ort bereits vorhanden ist.
-4. Wählen Sie „Neues Lager“.
-5. Erfassen Sie eine eindeutige „Bezeichnung“.
-6. Wählen Sie die passende „Art“, etwa Lager oder Fahrzeug.
-7. Ergänzen Sie bei Bedarf „Lagerplätze“ für die tatsächlich getrennte Ablage.
-8. Speichern Sie und prüfen Sie den neuen Eintrag.
+## Schritt für Schritt in der Web-App
 
-Beginnen Sie mit einer Struktur, die das Team im Alltag pflegen kann. Ein Lagerplatz ist nur nützlich, wenn Buchungen und Zählungen ihn tatsächlich verwenden.
+1. Öffnen Sie „Lager“ und den Reiter „Lagerorte“.
+2. Prüfen Sie, ob der benötigte Ort schon in der Liste steht.
+3. Klicken Sie auf „Neues Lager“.
+4. Tragen Sie eine eindeutige „Bezeichnung“ ein, zum Beispiel *Hauptlager* oder *Sprinter B-XY 123*.
+5. Wählen Sie unter „Art“ „Stationäres Lager“ oder das Fahrzeug.
+6. Ergänzen Sie bei Bedarf unter „Lagerplätze (optional)“ Plätze wie *Reihe A1*.
+7. Klicken Sie auf „Speichern“.
 
-## Beispiel und Ergebnis
+Legen Sie Lagerplätze nur an, wenn Buchungen und Zählungen sie im Alltag nutzen. Im Warenausgang und in der Umlagerung wählen Sie dann neben dem Lager auch den Lagerplatz.
 
-„Hauptlager“ kann die Plätze „Regal A“ und „Regal B“ enthalten. „Transporter 1“ ist ein eigener Ort, wenn Material dort dauerhaft getrennt vorgehalten wird.
+## Ergebnis prüfen
 
-Nach der Anlage sind die Orte in passenden Buchungs- und Inventuransichten auswählbar. Die Anlage eines Ortes verschiebt noch kein Material; dafür verwenden Sie den vorgesehenen Buchungsweg.
+- Der neue Ort steht im Reiter „Lagerorte“ mit Bezeichnung, Art („Stationär“ oder „Fahrzeug“) und Status „Aktiv“.
+- Der Ort ist in Wareneingang, Umlagerung und unter „Lager zählen“ in der Inventur auswählbar.
+- Beispiel: *Hauptlager* mit den Plätzen *Regal A* und *Regal B*, dazu *Transporter 1* als eigener Ort.
 
 ## Häufige Probleme
 
-Wenn ein Ort nicht auswählbar ist, prüfen Sie seinen aktiven Status und die aktuelle Auswahl. Legen Sie bei einer bloßen Filterfrage keinen zweiten gleichnamigen Ort an.
+### Wie nehme ich einen Lagerort aus der Auswahl?
 
-Benennen Sie Fahrzeuge eindeutig. Ein allgemeines „Auto“ ist bei mehreren Fahrzeugen schwer zuzuordnen.
+Setzen Sie ihn über „Weitere Aktionen“ auf „Deaktivieren“; er erhält den Status „Inaktiv“. Bestände und Buchungen bleiben erhalten, und mit „Aktivieren“ nutzen Sie ihn wieder.
 
-Bevor Sie einen Ort deaktivieren oder entfernen, prüfen Sie vorhandene Bestände und Bewegungen. Die physische Umlagerung und ihre Erfassung müssen zusammenpassen.
+### Wann lässt sich ein Lager löschen?
 
-Die [Lagerfunktion](/funktionen/lager) zeigt den Zusammenhang zu Beständen; [Wareneingang buchen](/hilfe/wareneingang-buchen) und [Inventur durchführen](/hilfe/inventur-durchfuehren) beschreiben die nächsten Abläufe.
+Ein Lager ohne Bestände und Buchungen löschen Sie mit „Lager löschen“. Lager mit Beständen oder Buchungen deaktivieren Sie stattdessen.
+
+### Wie benenne ich Fahrzeuge sinnvoll?
+
+Verwenden Sie Kennzeichen oder Fahrzeugnummer in der Bezeichnung, zum Beispiel *Sprinter B-XY 123*. So ordnet das Team Material auch bei mehreren Fahrzeugen eindeutig zu.

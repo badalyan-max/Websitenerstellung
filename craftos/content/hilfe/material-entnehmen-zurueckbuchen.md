@@ -1,53 +1,72 @@
 ---
 title: "Material für einen Auftrag entnehmen und zurückbuchen"
-description: "So erfassen Sie Projektverbrauch und ungenutzte Rückgaben mit den vorgesehenen Lagerbewegungen."
+description: "So buchen Sie Material per Warenausgang auf Kunde und Auftrag und führen nicht verbrauchtes Material mit Bezug zur ursprünglichen Entnahme zurück."
 category: "lager"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["lager", "nachkalkulation"]
-relatedArticles: ["/blog/materialverbrauch-baustelle-zuordnen", "/hilfe/inventur-durchfuehren"]
+relatedArticles: ["/blog/materialverbrauch-baustelle-zuordnen", "/hilfe/inventur-durchfuehren", "/hilfe/wareneingang-buchen"]
 sources: []
-platforms: ["web"]
+platforms: ["web", "mobile"]
+answer: "Material entnehmen Sie in der Web-App unter „Lager“ mit „Buchen“ → „Warenausgang“ und wählen „Kunde“ und „Auftrag / Projekt“; das belastet die Nachkalkulation. Nicht verbrauchtes Material buchen Sie mit „Rückbuchung vom Auftrag“ zur ursprünglichen Entnahme zurück."
 ---
 
-Eine Entnahme ordnet Material einem Auftrag zu; eine Rückbuchung führt nicht verbrauchtes Material wieder ins Lager.
+Ein Warenausgang ordnet Material einem Auftrag zu; die Rückbuchung führt nicht verbrauchtes Material ins Lager zurück und entlastet die Nachkalkulation. Auf der Baustelle buchen Sie beides auch in der Mobile-App.
 
-Sie benötigen Zugriff auf Lager und Projekt in der Web-App. Prüfen Sie die tatsächlich entnommene beziehungsweise zurückgebrachte Menge.
+## Voraussetzungen
 
-## Material entnehmen
+- Das Menü „Buchen“ in der Web-App nutzen Admin und Büro-Leitung (Voll-Lizenz mit globalen Finanzbereichen).
+- Kunde und Auftrag sind angelegt, der Artikel hat Bestand im gewählten Lager.
+- In der Mobile-App sehen Sie die Lager, die für Sie freigegeben sind.
 
-1. Öffnen Sie „Lager → Buchen → Warenausgang“.
-2. Wählen Sie Artikel und Menge.
-3. Prüfen Sie Lager und gegebenenfalls Lagerplatz.
-4. Wählen Sie unter „Auftrag / Projekt“ den tatsächlichen Verwendungszweck.
-5. Ergänzen Sie eine Notiz, wenn sie den Vorgang erklärt.
-6. Wählen Sie „Ausbuchen“.
-7. Kontrollieren Sie Bestand und Bewegung.
+## Schritt für Schritt in der Web-App
 
-Der Warenausgang belastet den zugeordneten Auftrag in der vorgesehenen Nachkalkulation. Prüfen Sie den Projektbezug deshalb besonders sorgfältig.
+### Material entnehmen
 
-## Nicht verbrauchtes Material zurückbuchen
+1. Öffnen Sie „Lager“ und klicken Sie auf „Buchen“ → „Warenausgang“.
+2. Wählen Sie unter „Artikel / Material“ den Artikel und tragen Sie die Menge ein.
+3. Wählen Sie das Lager und bei Bedarf den Lagerplatz.
+4. Wählen Sie den „Kunde“ und danach unter „Auftrag / Projekt“ den Auftrag.
+5. Ergänzen Sie bei Bedarf eine „Notiz (optional)“ und klicken Sie auf „Ausbuchen“.
 
-1. Öffnen Sie „Lager → Buchen → Rückbuchung vom Auftrag“.
-2. Wählen Sie den betreffenden Artikel und die zurückgebrachte Menge.
-3. Prüfen Sie das ursprüngliche Projekt.
-4. Wählen Sie das Ziel-Lager und gegebenenfalls den Lagerplatz.
-5. Wählen Sie „Zurückbuchen“ und kontrollieren Sie die Bewegung.
+### Nicht verbrauchtes Material zurückbuchen
 
-## Beispiel und Ergebnis
+1. Öffnen Sie „Lager“ und klicken Sie auf „Buchen“ → „Rückbuchung vom Auftrag“.
+2. Wählen Sie Artikel, Kunde und Auftrag.
+3. Wählen Sie unter „Ursprüngliche Materialentnahme“ die passende Entnahme.
+4. Tragen Sie die zurückgebrachte Menge ein und wählen Sie das Ziel-Lager.
+5. Klicken Sie auf „Zurückbuchen“.
 
-Acht Gebinde wurden entnommen, zwei ungenutzte Gebinde kommen zurück. Der projektbezogene Nettoverbrauch beträgt dann sechs Gebinde. Eine bloße Umlagerung zwischen zwei Orten ist dagegen noch kein endgültiger Projektverbrauch.
+Die Rückbuchung verwendet den damaligen Materialwert der Entnahme; die Menge reicht höchstens bis zur entnommenen Menge.
+
+## Schritt für Schritt in der Mobile-App
+
+1. Öffnen Sie „Mehr“ → „Lager“ und den Artikel oder scannen Sie seinen Barcode.
+2. Tippen Sie auf „Ausgabe, Rücknahme oder Bewegung“.
+3. Wählen Sie unter „Aktion“ „Entnehmen“ oder „Rückbuchen“ und danach das „Projekt“.
+4. Wählen Sie beim Rückbuchen die „Ursprüngliche Entnahme“.
+5. Erfassen Sie die Menge und tippen Sie auf „Buchung bestätigen“.
+
+Ohne Netz merkt die App die Buchung auf dem Gerät vor; der Server prüft den Bestand nach der Verbindung. Den Scan beschreibt [Lager-Scan-App nutzen](/hilfe/lager-scan-app).
+
+## Ergebnis prüfen
+
+- Im Reiter „Bewegungen“ steht die Buchung als „Warenausgang“ oder „Rückbuchung“ mit Menge, Lager und Seriennummer.
+- Der Bestand im Reiter „Bestand“ ist entsprechend gesunken oder gestiegen.
+- Beispiel: Acht Gebinde entnommen, zwei zurückgebucht; die Nachkalkulation des Auftrags zeigt sechs Gebinde Verbrauch.
 
 ## Häufige Probleme
 
-Verwenden Sie für Rückgaben nicht einfach eine negative Menge in einem beliebigen Eingangsformular. Der vorgesehene Rückbuchungsweg hält den Bezug zum Auftrag fest.
+### Warum lässt sich kein Auftrag auswählen?
 
-Prüfen Sie bei unerwarteten Projektkosten, ob ein Lieferantenbeleg und eine bewertete Entnahme denselben Materialanteil doppelt berücksichtigen.
+Das Feld „Auftrag / Projekt“ zeigt „Erst Kunde wählen“. Wählen Sie zuerst den „Kunde“; danach erscheinen dessen Aufträge.
 
-Wenn die Buchung verzögert reagiert, kontrollieren Sie vorhandene Bewegungen vor einer Wiederholung.
+### Wie buche ich Material zwischen zwei Lagern um?
 
-Der [Materialratgeber](/blog/materialverbrauch-baustelle-zuordnen) erklärt die Abgrenzung; die [Lagerfunktion](/funktionen/lager) verbindet Mengen und Projektbezug.
+Nutzen Sie „Buchen“ → „Umlagerung“ und wählen Sie „Von Lager“ und „Nach Lager“. Eine Umlagerung verschiebt Bestand, ohne einen Auftrag zu belasten.
 
-Prüfen Sie bei Serienartikeln zusätzlich die tatsächlich ausgegebene Seriennummer, damit Rückgabe und ursprünglicher Vorgang zusammenpassen.
+### Was tun, wenn die App „Buchung nicht übernommen“ meldet?
+
+Laden Sie mit „Aktuellen Stand laden“ den Bestand neu und prüfen Sie Menge, Lager und Projekt. Buchen Sie danach erneut.

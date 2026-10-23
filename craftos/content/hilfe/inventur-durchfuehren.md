@@ -1,46 +1,55 @@
 ---
 title: "Eine Inventur durchführen und Bestandsdifferenzen buchen"
-description: "So vergleichen Sie Systembestand und gezählte Mengen und bestätigen nur nachvollziehbare Korrekturen."
+description: "So vergleichen Sie Systembestand und gezählte Mengen je Lager und buchen Abweichungen als nachvollziehbare Bestandskorrektur."
 category: "lager"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["lager"]
 relatedArticles: ["/hilfe/lagerorte-lagerplaetze-einrichten", "/hilfe/material-entnehmen-zurueckbuchen"]
 sources: []
 platforms: ["web"]
+answer: "Eine Inventur führen Sie in der Web-App unter „Lager“ im Reiter „Inventur“ durch: Lager wählen, gezählte Mengen eintragen und mit „Inventur buchen“ bestätigen. Abweichungen zwischen gezähltem Bestand und Systembestand bucht CraftOS als Bestandskorrektur."
 ---
 
-Die Inventur vergleicht physisch gezählte Mengen mit dem Systembestand; Differenzen werden über nachvollziehbare Bestandskorrekturen erfasst.
+Die Inventur vergleicht gezählte Mengen mit dem Systembestand eines Lagers. Jede Abweichung wird als Bestandskorrektur gebucht und bleibt in den Bewegungen nachvollziehbar.
 
-Sie benötigen Zugriff auf die Lagerverwaltung in der Web-App und einen abgegrenzten Zählbereich.
+## Voraussetzungen
 
-## Schritt für Schritt
+- Sie arbeiten in der Web-App; die Inventur buchen Personen mit Voll-Lizenz (Admin oder Büro).
+- Die Lager sind unter „Lagerorte“ angelegt, siehe [Lagerorte einrichten](/hilfe/lagerorte-lagerplaetze-einrichten).
+- Während der Zählung sind Entnahmen und Umlagerungen in diesem Lager abgestimmt.
 
-1. Öffnen Sie „Lager → Inventur“.
-2. Wählen Sie unter „Lager zählen“ den tatsächlich gezählten Ort.
-3. Prüfen Sie die angezeigten Artikel, Lagerplätze und gegebenenfalls Seriennummern.
-4. Tragen Sie die vor Ort ermittelte Menge unter „Gezählt“ ein.
-5. Verwenden Sie „Artikel hinzufügen“, wenn tatsächlich vorhandene Ware in der Liste fehlt.
+## Schritt für Schritt in der Web-App
+
+1. Öffnen Sie „Lager“ und den Reiter „Inventur“.
+2. Wählen Sie unter „Lager zählen“ das gezählte Lager.
+3. Prüfen Sie je Zeile „Material“, „Lagerplatz“ und „Seriennummer“.
+4. Tragen Sie die vor Ort gezählte Menge in die Spalte „Gezählt“ ein.
+5. Fügen Sie vorhandene Ware, die in der Liste fehlt, mit „Artikel hinzufügen“ hinzu.
 6. Kontrollieren Sie die Spalte „Differenz“.
-7. Wählen Sie „Inventur buchen“.
-8. Prüfen Sie im Bestätigungsdialog nochmals „System“, „Gezählt“ und „Differenz“ und bestätigen Sie die Buchung.
+7. Klicken Sie auf „Inventur buchen“.
+8. Prüfen Sie im Dialog „System“, „Gezählt“ und „Differenz“ und bestätigen Sie mit „Inventur buchen“.
 
-Stimmen die Mengen überein, entsteht keine Abweichung und es ist keine Korrekturbuchung nötig.
+Stimmen alle Mengen überein, meldet der Dialog „Keine Abweichungen — es wird nichts gebucht.“
 
-## Beispiel und Ergebnis
+## Ergebnis prüfen
 
-Das System zeigt 24 Gebinde, tatsächlich werden 22 gezählt. Die Differenz beträgt −2. Prüfen Sie vor dem Buchen, ob eine Entnahme oder Umlagerung noch nicht erfasst wurde.
-
-Nach Bestätigung werden die Abweichungen als Bestandskorrekturen gebucht. Der Bestand soll danach zum geprüften Zählstand passen.
+- Der Systembestand des Lagers entspricht dem gezählten Stand.
+- Im Reiter „Bewegungen“ stehen die Abweichungen mit dem Typ „Korrektur“.
+- Beispiel: System 24 Gebinde, gezählt 22 Gebinde, Differenz −2; CraftOS bucht eine Korrektur um zwei Gebinde.
 
 ## Häufige Probleme
 
-Eine Inventur erklärt nicht automatisch die Ursache einer Differenz. Dokumentieren und klären Sie häufige Abweichungen, statt sie regelmäßig kommentarlos auszugleichen.
+### Was tun bei einer großen Differenz?
 
-Vermeiden Sie gleichzeitige unkoordinierte Bewegungen während der Zählung. Wenn Material zwischenzeitlich entnommen wird, muss klar sein, ob es im Zählstand bereits berücksichtigt ist.
+Prüfen Sie vor dem Buchen im Reiter „Bewegungen“, ob eine Entnahme oder Umlagerung noch fehlt. Erfassen Sie diese zuerst und zählen Sie den Artikel danach erneut.
 
-Bei falschem Lagerort brechen Sie vor der Bestätigung ab und wählen den richtigen Bereich. Nach einer Fehlermeldung prüfen Sie die Bewegungen, bevor Sie erneut buchen.
+### Was bedeutet der Hinweis, dass ein Teil noch nicht bestätigt ist?
 
-Die [Lagerortanleitung](/hilfe/lagerorte-lagerplaetze-einrichten) unterstützt eine klare Struktur; die [Lagerfunktion](/funktionen/lager) zeigt den Zusammenhang zu alltäglichen Bewegungen.
+Die Buchung wurde noch nicht vollständig bestätigt. Klicken Sie erneut auf „Inventur buchen“; CraftOS wiederholt denselben Zählauftrag, ohne doppelt zu buchen.
+
+### Ich habe das falsche Lager gewählt. Was nun?
+
+Klicken Sie im Bestätigungsdialog auf „Abbrechen“, wählen Sie unter „Lager zählen“ das richtige Lager und tragen Sie die Mengen dort ein.
