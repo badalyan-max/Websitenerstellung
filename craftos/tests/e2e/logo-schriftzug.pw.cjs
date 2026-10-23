@@ -63,14 +63,22 @@ test('Netz: keine entfallenen Schnitte, genau drei Schrift-Preloads', async ({ p
   for (const datei of ENTFALLENE_SCHNITTE) expect(fs.existsSync(path.join(FONT_DIR, datei)), `${datei} entfernt (D-42)`).toBe(false)
   const erlaubt = new Set(GELADENE_SCHNITTE.map((datei) => sha256(fs.readFileSync(path.join(FONT_DIR, datei)))))
   const { GATE_ROUTEN } = await import(pathToFileURL(path.join(__dirname, '..', '..', 'scripts', 'lib', 'lighthouse-core.mjs')).href)
+  // LO-04: ohne Browser-Cache, damit jede Route ihre Schriften wirklich anfordert und jede Antwort einen Body hat.
+  const cdp = await page.context().newCDPSession(page)
+  await cdp.send('Network.setCacheDisabled', { cacheDisabled: true })
   for (const route of ['/impressum', ...GATE_ROUTEN]) {
     const geladen = []
     const warten = []
+    let erlaubtGesehen = 0
     const beiAntwort = (antwort) => {
       if (!/\.woff2(\?|$)/.test(antwort.url())) return
       warten.push(antwort.body().then((body) => {
-        if (!erlaubt.has(sha256(body))) geladen.push(antwort.url())
-      }).catch(() => {}))
+        if (erlaubt.has(sha256(body))) erlaubtGesehen++
+        else geladen.push(antwort.url())
+      }).catch(() => {
+        // LO-04: nicht lesbarer Body (Weiterleitung, 304) gilt nicht als erlaubt.
+        geladen.push(`${antwort.url()} (nicht prüfbar, Status ${antwort.status()})`)
+      }))
     }
     page.on('response', beiAntwort)
     await page.goto(route, { waitUntil: 'load' })
@@ -78,6 +86,7 @@ test('Netz: keine entfallenen Schnitte, genau drei Schrift-Preloads', async ({ p
     await Promise.all(warten)
     page.off('response', beiAntwort)
     expect(geladen, `${route}: andere als die drei geladenen Schnitte angefordert`).toEqual([])
+    expect(erlaubtGesehen, `${route}: mindestens ein erlaubter Schnitt tatsächlich geladen`).toBeGreaterThan(0)
     await expect(page.locator('link[rel="preload"][as="font"]'), `${route}: Schrift-Preloads`).toHaveCount(3)
   }
 })
