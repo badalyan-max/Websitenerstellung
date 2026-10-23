@@ -217,7 +217,9 @@ describe("Kundenportal nur mit erreichbaren Leistungen (ME-03)", () => {
     expect(bau.answer).not.toMatch(/Kundenportal/);
     expect(bau.funktionen).not.toContain("kundenportal");
     expect(bau.funktionen).toContain("angebote");
-  });
+    // 10-06 (Übergabe 10-04/10-10/10-13): Der erste dynamische Import lief unter der vollen Vitest-Suite ins
+    // 5-s-Limit; einzeln grün. Zeitlimit wie 08-09 bei content.test.ts.
+  }, 60_000);
 });
 
 /**

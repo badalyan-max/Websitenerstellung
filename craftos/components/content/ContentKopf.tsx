@@ -6,12 +6,6 @@ import type { Crumb } from "@/lib/breadcrumbs";
 import type { ProductPlatform } from "@/lib/funktionen";
 import s from "./ContentKopf.module.css";
 
-/**
- * 10-UI-SPEC K2: Höchstlänge des Kopf-Hinweises. Lokal, weil components/v2/budgets.ts in Welle 1 Paket (a) gehört;
- * die Übernahme nach budgets.ts ist ein Übergabepunkt an 10-06.
- */
-const HINWEIS_MAX = 80;
-
 export interface ContentKopfProps {
   /**
    * crumbsFor(pfad, title) – erzeugt die einzige BreadcrumbList der Seite. `null` nur auf der 404-Seite
@@ -79,8 +73,10 @@ export function ContentKopf({
   }
   if (hinweis !== undefined) {
     const n = charCount(hinweis.text);
-    if (n > HINWEIS_MAX) {
-      throw new Error(`ContentKopf: hinweis hat ${n} von ${HINWEIS_MAX} Zeichen – Satz kürzen.`);
+    // 10-UI-SPEC K2: Höchstlänge aus components/v2/budgets.ts (TEXT_BUDGET.contentKopf.hinweis = 80).
+    const max = TEXT_BUDGET.contentKopf.hinweis;
+    if (n > max) {
+      throw new Error(`ContentKopf: hinweis hat ${n} von ${max} Zeichen – Satz kürzen.`);
     }
   }
   const HinweisIcon = hinweis?.icon;

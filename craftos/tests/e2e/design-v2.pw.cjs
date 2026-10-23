@@ -418,3 +418,41 @@ test.describe('Phase 9: Vorlagen Gewerke, Übersichten und Artikel', () => {
     testInfo.annotations.push({ type: 'Fold 360 × 640', description: report.join(' | ') })
   })
 })
+
+/**
+ * Phase 10 (10-UI-SPEC § 6.2, J4; D-19 (2), D-31 Nr. 16): Die sichtbare Tabellenüberschrift steht bei 360 px
+ * vollständig über dem Scrollbereich – rechter Rand mit Seitenabstand, nicht abgeschnitten, kein Seitenquerscroll;
+ * die semantische `<caption>` mit Text bleibt in der Tabelle.
+ */
+const CAPTION_ROUTES = ['/preise', '/vergleich/plancraft-alternative', '/vergleich/handwerkersoftware-kleine-betriebe', '/', '/styleguide']
+
+test('Phase 10: Tabellen-Caption bei 360 px vollständig sichtbar', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.use.hasTouch, 'Die Breite wird im Desktop-Projekt per setViewportSize geprüft.')
+  test.setTimeout(90_000)
+  await page.setViewportSize({ width: 360, height: 900 })
+  const findings = []
+  for (const pfad of CAPTION_ROUTES) {
+    await page.goto(pfad)
+    await page.evaluate(() => document.fonts.ready)
+    const m = await page.evaluate(() => {
+      const root = document.documentElement
+      const sichtbar = [...document.querySelectorAll('p[data-caption]')].map((el) => ({
+        text: el.textContent.trim(),
+        right: el.getBoundingClientRect().right,
+        scroll: el.scrollWidth,
+        client: el.clientWidth,
+      }))
+      const captions = [...document.querySelectorAll('table caption')].map((el) => el.textContent.trim())
+      return { sichtbar, captions, seiteScroll: root.scrollWidth, seiteClient: root.clientWidth }
+    })
+    if (m.sichtbar.length === 0) findings.push(`${pfad}: keine sichtbare Caption`)
+    if (m.captions.length === 0 || m.captions.some((t) => t.length === 0)) findings.push(`${pfad}: <caption> ohne Text`)
+    if (m.seiteScroll > m.seiteClient) findings.push(`${pfad}: Seitenquerscroll ${m.seiteScroll} > ${m.seiteClient}`)
+    for (const c of m.sichtbar) {
+      if (c.text.length === 0) findings.push(`${pfad}: sichtbare Caption leer`)
+      if (c.right > m.seiteClient - 18) findings.push(`${pfad}: „${c.text}“ rechts ${Math.round(c.right)} > ${m.seiteClient - 18}`)
+      if (c.scroll > c.client) findings.push(`${pfad}: „${c.text}“ angeschnitten ${c.scroll} > ${c.client}`)
+    }
+  }
+  expect(findings).toEqual([])
+})

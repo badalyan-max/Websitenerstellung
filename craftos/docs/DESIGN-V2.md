@@ -829,7 +829,7 @@ Verbindlicher Vertrag ist `.planning/phases/10-abschlussaudit/10-UI-SPEC.md` (st
 ### 19.3 `ContentKopf` K1/K2 (10-03)
 
 - **K1:** `crumbs: Crumb[] | null`; nur bei `null` setzt der Kopf `data-crumbs="ohne"` und lässt den Brotkrumen-Container weg. Die Regel für den oberen Abstand 48 / 64 / 64 px hängt nur an `.kopf[data-crumbs="ohne"]`.
-- **K2:** `hinweis?: { text; icon }` (≤ 80 Zeichen, lokale Konstante `HINWEIS_MAX`), Reihenfolge Eyebrow → H1 → Antwort bzw. Lead → Hinweis → `meta` → `stand` → `platforms`; `p[data-hinweis]` 14/400 `#62626E`, Icon 16 px `aria-hidden`.
+- **K2:** `hinweis?: { text; icon }` (≤ 80 Zeichen, seit 10-06 `TEXT_BUDGET.contentKopf.hinweis` in `components/v2/budgets.ts`; vorher lokale Konstante), Reihenfolge Eyebrow → H1 → Antwort bzw. Lead → Hinweis → `meta` → `stand` → `platforms`; `p[data-hinweis]` 14/400 `#62626E`, Icon 16 px `aria-hidden`.
 - **K3:** Ohne `crumbs={null}` und ohne `hinweis` bleibt das Markup der Phase-9-Köpfe Byte für Byte gleich (`tests/contentkopf-unveraendert.test.ts`).
 
 ### 19.4 Seiten und Flächenrhythmus
@@ -854,8 +854,17 @@ Rechner-Darstellung (`components/calculators/Calculators.module.css`, 10-UI-SPEC
 
 ### 19.6 Übergabe Paket (a): FeatureSnippet-Dimmstufe und Fokusalgorithmus
 
-Inhalt ergänzt 10-06 nach dem Merge (Nachweise aus 10-01: Dimmstufe je Szenenhintergrund nach 10-UI-SPEC § 8, Fokusalgorithmus mit Vorfahren nach § 9.1).
+Eingetragen von 10-06 nach dem Merge (Nachweise 10-01 und 10-08, Commit `f04fcf8`).
+
+- **Dimmstufe (D-10, 10-UI-SPEC § 8):** Inaktive Schritte der FeatureSnippets behalten volle Deckkraft und werden über den Farbton gedimmt statt über `opacity`. Im Bestand nutzen beide betroffenen Szenen `#62626E` auf hellen Flächen: `IllustrationScene.module.css` `.stockMovement` (vorher `opacity: .5`, auch die Unterzeile `small`) und `ConnectedScene.module.css` `.opening` (vorher `opacity: .35`). Aktiv: `#17171C` (Lager auf `primary-50`, Unterzeile zurück auf `ink-600`). Für Szenen auf anderen Flächen legt der 10-UI-SPEC `#51515C` bzw. auf dunklem Grund `#BCBCC6` mit aktivem `#F4F4F5` fest. Der Übergang läuft über `color`/`background-color` (300 ms), bei reduzierter Bewegung ohne Übergang. Der gestrichelte Rahmen `#D28A13` bleibt als Nicht-Text-Element. Nachweis: axe im Animationszustand auf allen 22 Snippet-Seiten bei fünf Breiten 0 `color-contrast`.
+- **Fokusalgorithmus (10-UI-SPEC § 9.1, K-12):** `scripts/a11y-audit.mjs` und `tests/e2e/a11y.pw.cjs` erkennen den Fokusindikator, indem sie die Fokus-Signatur (Umriss, Schatten, Rahmen, Hintergrund) des fokussierten Elements und seiner vier nächsten Vorfahren einschließlich `::before`/`::after` mit dem Ruhezustand vergleichen. So gilt auch ein Ring an der Karte (`:focus-within`, z. B. LinkKarten, Rechner-`.inputWrap`) als sichtbarer Fokus. WebKit unter Windows fokussiert Links per Tab nicht; Link-Tabstopps prüft deshalb Chromium. Außerhalb liegende Elemente misst WebKit bis zu zehn Frames nach (bedingungsbasiert, keine feste Pause).
 
 ### 19.7 Übergabe Paket (b): Logo-SVG und geladene Schnitte
 
-Inhalt ergänzt 10-06 nach dem Merge (Nachweise aus 10-02: Lizenzprüfung, SVG-Schriftzug bzw. Subset, nicht mehr geladene Schnitte Clash 500/700 und General 500, Screenshot-Vergleich nach 10-UI-SPEC § 7.4).
+Eingetragen von 10-06 nach dem Merge (Nachweise 10-09, Commits `106a83b`, `79e51ab`).
+
+- **Lizenz:** Clash Display und General Sans stehen unter ITF FFL 2.0 (Fontshare-Paket, abgerufen 23.10.2026). Logos und Vektordateien aus der Schrift sind ausdrücklich erlaubt, Subsetting ist verboten. Die Subset-Alternative aus 10-UI-SPEC § 7.1 entfällt deshalb.
+- **SVG-Schriftzug:** `components/CraftOSLogo.tsx` rendert den Schriftzug als `<svg aria-hidden="true" focusable="false" data-logo-schriftzug>` mit zwei Pfaden aus Clash 700 („CraftOS“) und General 500 (Unterzeile), `viewBox="0 0 117.421875 34"`, Box wie vorher. Die Maße stehen zusätzlich als Inline-Stil, weil `Header.module.css` `.logo svg` auf 36 × 36 px setzt. Der Linkname „CraftOS Startseite“ bleibt.
+- **Geladene Schnitte:** `app/layout.tsx` lädt nur noch Clash 600 sowie General 400 und 600 (drei Preloads, `display: swap`). Clash 500/700 und General 500 entfallen; ihre Dateien hat 10-06 nach der Inhaberfreigabe D-42 entfernt (§ 19.9).
+- **`inlineCss`:** verworfen, weil der LCP auf allen sechs Gate-Seiten schlechter wurde (+32 bis +755 ms, HTML von `/` rund 750 KB).
+- **Screenshot-Vergleich (§ 7.4):** `tests/e2e/logo-schriftzug.pw.cjs` vergleicht Text gegen SVG mit Graustufen-Glättung (`--disable-lcd-text`, `scale: 'device'`), weil Pfade nie LCD-geglättet werden; die Referenzen sind an `chromium-1243` und Windows gebunden (Suffix `-win32`).

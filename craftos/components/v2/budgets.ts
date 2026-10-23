@@ -38,6 +38,8 @@ export const TEXT_BUDGET = {
   linkKarte: { label: 24, title: 100, text: 160, meta: 32 },
   gewerk: { teaser: 100, exampleTitle: 40, example: 200 },
   artikel: { h1: 100, heading: 80, step: 160 },
+  /** Phase 10 (10-UI-SPEC K2): Höchstlänge des Kopf-Hinweises im ContentKopf (z. B. Rechnerköpfe). */
+  contentKopf: { hinweis: 80 },
   /** Mengen je Baustein */
   count: {
     bento: { min: 3, max: 7 },

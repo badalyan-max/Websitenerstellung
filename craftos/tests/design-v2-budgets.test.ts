@@ -597,6 +597,15 @@ describe("Phase 9 (09-UI-SPEC G8–G10)", () => {
   });
 });
 
+describe("Phase 10 (10-UI-SPEC K2)", () => {
+  it("Kopfhinweis des ContentKopf liegt mit 80 Zeichen in TEXT_BUDGET, Bestand unverändert", () => {
+    expect(TEXT_BUDGET.contentKopf).toEqual({ hinweis: 80 });
+    expect(TEXT_BUDGET.answer).toBe(300);
+    expect(TEXT_BUDGET.artikel).toEqual({ h1: 100, heading: 80, step: 160 });
+    expect(TEXT_BUDGET.linkKarte).toEqual({ label: 24, title: 100, text: 160, meta: 32 });
+  });
+});
+
 describe("Leitlinie L-1 (09-UI-SPEC § 5, lib/leitlinie-l1.json)", () => {
   it("Wortliste, Altbegriffe und abschließende Ausnahmen mit Begründung", () => {
     expect(leitlinieL1.woerter).toEqual(

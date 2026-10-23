@@ -8,12 +8,11 @@ import { describe, expect, it } from "vitest";
  * die Gewichte 400 und 600 und keine Textfarben text-primary-600 (#D28A13, 2,84 : 1) und text-ink-400 (#777782,
  * 4,43 : 1); `crumbs={null}` gibt es nur auf der 404-Seite.
  *
- * K-3: components/CraftOSLogo.tsx liegt ausdrücklich NICHT im Geltungsbereich. Das Logo gehört Paket (b), das es im
- * eigenen Logo-Test prüft (SVG-Schriftzug bzw. Subset); 10-06 vereinigt den Geltungsbereich nach dem Merge.
+ * K-3: Nach dem Merge von Paket (b) vereinigt 10-06 den Geltungsbereich – components/CraftOSLogo.tsx (Schriftzug als
+ * SVG, 10-09) liegt jetzt ebenfalls darin und hat 0 Treffer.
  */
 
 const ROOT = path.resolve(import.meta.dirname, "..");
-const AUSGENOMMEN = new Set(["components/CraftOSLogo.tsx"]);
 const ENDUNGEN = [".ts", ".tsx", ".css", ".mjs", ".js"];
 
 /** Geltungsbereich laut 10-UI-SPEC § 11 (Verzeichnisse rekursiv, Einzeldateien bzw. Dateipräfixe). */
@@ -26,10 +25,8 @@ const VERZEICHNISSE = [
   "components/legal",
   "components/calculators",
 ] as const;
-const EINZELDATEIEN = ["app/not-found.tsx"] as const;
+const EINZELDATEIEN = ["app/not-found.tsx", "components/CraftOSLogo.tsx"] as const;
 const PRAEFIXE = ["components/content/ContentKopf."] as const;
-
-const rel = (abs: string) => path.relative(ROOT, abs).split(path.sep).join("/");
 
 function walk(dir: string): string[] {
   const out: string[] = [];
@@ -52,7 +49,7 @@ function geltungsbereich(): string[] {
       if (r.startsWith(p)) dateien.add(r);
     }
   }
-  return [...dateien].filter((f) => !AUSGENOMMEN.has(f)).sort();
+  return [...dateien].sort();
 }
 
 const TAILWIND_GEWICHT: Record<string, string> = { medium: "500", bold: "700", extrabold: "800" };
@@ -113,7 +110,7 @@ describe("Darstellung Paket (c): Gewichte und Farben (10-UI-SPEC § 11, K-3)", (
     expect(darstellungsProbleme("f.css", ".a { font-weight: 400 } .b { font-weight: 600 } .c { color: #62626e }")).toEqual([]);
   });
 
-  it("Geltungsbereich: Rechner, Support, Rechtsseiten, 404, Legal und ContentKopf – ohne CraftOSLogo.tsx (K-3)", () => {
+  it("Geltungsbereich: Rechner, Support, Rechtsseiten, 404, Legal und ContentKopf und CraftOSLogo.tsx (K-3)", () => {
     const dateien = geltungsbereich();
     for (const pflicht of [
       "app/rechner/page.tsx",
@@ -133,12 +130,10 @@ describe("Darstellung Paket (c): Gewichte und Farben (10-UI-SPEC § 11, K-3)", (
       "components/calculators/CalculatorFields.tsx",
       "components/content/ContentKopf.tsx",
       "components/content/ContentKopf.module.css",
+      "components/CraftOSLogo.tsx",
     ]) {
       expect(dateien, pflicht).toContain(pflicht);
     }
-    // K-3: Das Logo prüft Paket (b); die Datei existiert, liegt aber nicht im Geltungsbereich dieses Tests.
-    expect(fs.existsSync(path.join(ROOT, "components/CraftOSLogo.tsx"))).toBe(true);
-    expect(dateien).not.toContain("components/CraftOSLogo.tsx");
     expect(dateien.filter((d) => d.startsWith("components/content/") && !d.startsWith("components/content/ContentKopf."))).toEqual([]);
   });
 

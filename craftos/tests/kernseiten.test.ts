@@ -674,12 +674,16 @@ describe("ContentKopf K1/K2 (10-UI-SPEC Design System, K3)", () => {
     expect(() => kopf({ hinweis: { text: "x".repeat(80), icon: LockKeyhole } })).not.toThrow();
   });
 
-  it("CSS: K1/K2-Regeln hängen nur an [data-crumbs=\"ohne\"] bzw. .hinweis; HINWEIS_MAX lokal", () => {
+  it("CSS: K1/K2-Regeln hängen nur an [data-crumbs=\"ohne\"] bzw. .hinweis; Höchstlänge aus budgets.ts", () => {
     const css = read("components/content/ContentKopf.module.css");
     expect(css).toMatch(/\.kopf\[data-crumbs="ohne"\]\s*\{[^}]*padding-top:\s*48px/);
     expect(css).toMatch(/@media \(min-width: 768px\)\s*\{\s*\.kopf\[data-crumbs="ohne"\]\s*\{[^}]*padding-top:\s*64px/);
     expect(css).toMatch(/\.hinweis\s*\{[^}]*color:\s*#62626e/i);
-    expect(read("components/content/ContentKopf.tsx")).toContain("const HINWEIS_MAX = 80");
+    // 10-06 (10-UI-SPEC K2): der Wert 80 steht in components/v2/budgets.ts, ContentKopf liest ihn dort.
+    const kopfTsx = read("components/content/ContentKopf.tsx");
+    expect(kopfTsx).not.toContain("HINWEIS_MAX = 80");
+    expect(kopfTsx).toContain("TEXT_BUDGET.contentKopf.hinweis");
+    expect(read("components/v2/budgets.ts")).toMatch(/contentKopf:\s*\{\s*hinweis:\s*80\s*\}/);
   });
 
   it("eine null-Kette gibt es nur in app/not-found.tsx (K1, K3)", () => {
@@ -805,6 +809,7 @@ describe("404-Seite auf v2 (D-18; 10-UI-SPEC § 4)", () => {
     expect(spruenge(html)).toEqual([]);
     expect(ueberschriften(html)).toEqual([1, 2, 3, 3, 3]);
   });
+
 });
 
 describe("/support auf v2 (D-16, K-2; 10-UI-SPEC § 2)", () => {

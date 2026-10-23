@@ -304,7 +304,15 @@ test('Vorlage: 404', async ({ page }) => {
   expect(res.status()).toBe(404)
   const robots = await page.locator('meta[name="robots"]').evaluateAll((m) => m.map((x) => x.getAttribute('content') ?? ''))
   expect(robots.some((c) => /noindex/.test(c)), `robots: ${robots.join(' | ')}`).toBe(true)
+  // 10-05 Behebungsliste (Ebene 9): genau ein robots-Meta, kein geerbter Canonical auf die Startseite.
+  expect(robots, `robots: ${robots.join(' | ')}`).toHaveLength(1)
+  await expect(page.locator('link[rel="canonical"]')).toHaveCount(0)
   await expect(page.locator('nav[aria-label="Brotkrumen"]')).toHaveCount(0)
+  // 10-UI-SPEC § 11: drei Einstiegskarten mit Ziel Startseite, Hilfe und Funktionen.
+  const karten = page.locator('main ul[aria-label="Einstiege"] > li article')
+  await expect(karten).toHaveCount(3)
+  const ziele = await karten.evaluateAll((els) => els.map((el) => el.querySelector('a[href]')?.getAttribute('href')))
+  expect(ziele).toEqual(['/', '/hilfe', '/funktionen'])
 })
 
 test('Vorlage: Styleguide-Bild', async ({ page }) => {
