@@ -1,28 +1,40 @@
 ---
 title: "Abschlags- und Schlussrechnung: Leistungen und Zahlungen sauber auseinanderhalten"
 description: "Ein verständliches Beispiel zeigt, wie Abschläge, Gesamtleistung und vereinnahmte Zahlungen bei einer Schlussrechnung zusammenhängen."
+answer: "Eine Abschlagsrechnung rechnet während des Auftrags einen Zwischenstand oder einen vereinbarten Betrag ab; die Schlussrechnung stellt nach der Abnahme die gesamte Leistung dar und zieht alle gestellten Abschläge ab. In CraftOS steht die Schlussrechnung bereit, sobald die Abnahme vermerkt ist."
 category: "rechnungen"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
-relatedFeatures: ["rechnungen", "projektverwaltung"]
-relatedArticles: ["/hilfe/abschlagsrechnung-erstellen", "/hilfe/schlussrechnung-erstellen"]
-sources: [{"url": "https://www.gesetze-im-internet.de/ustg_1980/__14.html", "label": "§ 14 UStG: Ausstellung von Rechnungen", "checkedAt": "2026-09-09"}]
-platforms: ["web"]
+relatedFeatures: ["rechnungen", "projektverwaltung", "baudokumentation"]
+relatedArticles: ["/hilfe/abschlagsrechnung-erstellen", "/hilfe/schlussrechnung-erstellen", "/hilfe/abnahme-dokumentieren"]
+faq:
+  - q: "Wann darf ich die Schlussrechnung stellen?"
+    a: "Nach der Abnahme. Nach § 650g Abs. 4 BGB ist die Vergütung zu entrichten, wenn der Kunde das Werk abgenommen hat und eine prüffähige Schlussrechnung vorliegt. In CraftOS wird die Schlussrechnung deshalb erst nach der vermerkten Abnahme freigegeben."
+  - q: "Was muss eine Schlussrechnung enthalten?"
+    a: "Die gesamte erbrachte Leistung, die bereits gestellten Abschläge mit ihren Steuerbeträgen und den verbleibenden Betrag. Nach § 14 Abs. 5 UStG setzen Sie vereinnahmte Teilentgelte und die darauf entfallende Umsatzsteuer ab, wenn über sie Rechnungen ausgestellt wurden."
+  - q: "Wann gilt eine Schlussrechnung als prüffähig?"
+    a: "Wenn sie die erbrachten Leistungen übersichtlich aufstellt und für den Kunden nachvollziehbar ist. Erhebt der Kunde nicht innerhalb von 30 Tagen nach Zugang begründete Einwendungen, gilt sie nach § 650g Abs. 4 BGB als prüffähig."
+  - q: "Wie hoch darf ein Abschlag sein?"
+    a: "So hoch wie der Wert der erbrachten und vertraglich geschuldeten Leistungen, wenn der Vertrag nichts anderes regelt. Das sieht § 632a BGB vor; die Leistungen weisen Sie mit einer nachvollziehbaren Aufstellung nach."
+  - q: "Kann ich nach einer Teilabnahme einen Abschlag stellen?"
+    a: "Ja. Die Web-App schlägt nach einer Teilabnahme einen Nettobetrag aus den Positionen der abgenommenen Arbeitsabschnitte vor, abzüglich bereits gestellter Abschläge. Betrag und Leistungsstand prüfen und ändern Sie vor dem Erstellen."
+sources: [{"url": "https://www.gesetze-im-internet.de/ustg_1980/__14.html", "label": "§ 14 UStG: Ausstellung von Rechnungen", "checkedAt": "2026-10-23"}, {"url": "https://www.gesetze-im-internet.de/bgb/__650g.html", "label": "§ 650g BGB: Zustandsfeststellung bei Verweigerung der Abnahme; Schlussrechnung", "checkedAt": "2026-10-23"}, {"url": "https://www.gesetze-im-internet.de/bgb/__632a.html", "label": "§ 632a BGB: Abschlagszahlungen", "checkedAt": "2026-10-23"}]
+platforms: ["web", "mobile"]
 ---
-
-Bei längeren Aufträgen sollen Materialeinkauf und geleistete Arbeit nicht bis zum Projektende vollständig vorfinanziert werden. Abschläge strukturieren die Abrechnung während der Ausführung. Die Schlussrechnung führt den Auftrag anschließend zusammen. Dafür müssen Sie Leistungsstand, gestellte Rechnungen und tatsächlich eingegangene Zahlungen getrennt betrachten.
 
 ## Was unterscheidet Abschlag und Schlussrechnung?
 
-Eine Abschlagsrechnung betrifft einen Zwischenstand oder einen vereinbarten Betrag. Eine Schlussrechnung stellt die endgültige Gesamtleistung des Auftrags dar und berücksichtigt die zugehörige Abrechnungshistorie. Die Bezeichnung allein entscheidet dabei nicht über die vertraglichen Voraussetzungen.
+Eine Abschlagsrechnung betrifft einen Zwischenstand oder einen vereinbarten Betrag während der Ausführung. Die Schlussrechnung stellt die endgültige Gesamtleistung dar und verrechnet alle Abschläge. Die Bezeichnung allein entscheidet nicht über die vertraglichen Voraussetzungen.
 
-Vereinbaren Sie den Zahlungsplan schon bei der Beauftragung. Halten Sie fest, auf welchen Meilenstein sich ein Abschlag bezieht und welche Nachweise benötigt werden. Die betriebliche Planung wird unzuverlässig, wenn das Büro einen Abschlag erwartet, der mit dem Kunden noch nicht vereinbart wurde.
+Abschläge entlasten Ihren Betrieb bei längeren Aufträgen: Material und geleistete Arbeit müssen nicht bis zum Projektende vorfinanziert werden. Vereinbaren Sie den Zahlungsplan schon bei der Beauftragung und halten Sie fest, auf welchen Meilenstein sich ein Abschlag bezieht.
+
+Erwartet das Büro einen Abschlag, der mit dem Kunden nicht vereinbart ist, wird die Liquiditätsplanung unzuverlässig. Notieren Sie deshalb auch, welche Nachweise der Kunde zu jedem Abschlag erhält.
 
 ## Wie lässt sich ein einfaches Beispiel prüfen?
 
-Beim fiktiven Auftrag „Wohnung Lindenstraße“ beträgt die endgültige Leistung 10.000 € netto. Zwei Abschläge über je 3.000 € netto wurden gestellt. Beide wurden vollständig bezahlt. Zur Veranschaulichung gelten durchgängig 19 % Umsatzsteuer.
+Im fiktiven Auftrag Wohnung Lindenstraße beträgt die endgültige Leistung 10.000 € netto. Zwei Abschläge über je 3.000 € netto wurden gestellt und vollständig bezahlt. Zur Veranschaulichung gelten durchgängig 19 % Umsatzsteuer.
 
 | Bestandteil | Netto | Umsatzsteuer | Brutto |
 |---|---:|---:|---:|
@@ -31,34 +43,36 @@ Beim fiktiven Auftrag „Wohnung Lindenstraße“ beträgt die endgültige Leist
 | Erhaltener zweiter Abschlag | −3.000 € | −570 € | −3.570 € |
 | Verbleibender Betrag | 4.000 € | 760 € | 4.760 € |
 
-Die Tabelle setzt einen einheitlichen Steuerfall und vollständige Zahlungen voraus. Schon ein teilweise bezahlter Abschlag verändert die Betrachtung. Die Rechnung über 3.570 € und eine tatsächliche Zahlung von 1.785 € sind unterschiedliche Informationen; markieren Sie nicht den gesamten Abschlag als bezahlt.
+Die Tabelle setzt einen einheitlichen Steuerfall und vollständige Zahlungen voraus. Schon ein teilweise bezahlter Abschlag verändert die Betrachtung: Eine Rechnung über 3.570 € und eine Zahlung von 1.785 € sind zwei verschiedene Informationen.
 
-Die umsatzsteuerliche Behandlung vereinnahmter Teilentgelte in Endrechnungen ist in [§ 14 Absatz 5 UStG](https://www.gesetze-im-internet.de/ustg_1980/__14.html) geregelt. Mischsteuersätze oder ungewöhnliche Zahlungsfälle sollten vor der Ausgabe konkret geprüft werden.
+Wie vereinnahmte Teilentgelte in der Endrechnung abzusetzen sind, regelt [§ 14 Absatz 5 UStG](https://www.gesetze-im-internet.de/ustg_1980/__14.html). Lassen Sie Mischsteuersätze oder ungewöhnliche Zahlungsfälle vor der Ausgabe von Ihrer Steuerberatung prüfen.
 
 ## Was bedeutet kumulativ?
 
-Bei einer kumulativen Abrechnung wird ein fortgeschriebener Leistungsstand gezeigt. Daraus muss erkennbar werden, welche Vorrechnungen bereits berücksichtigt wurden. Ein neuer kumulierter Gesamtwert darf nicht unbesehen als zusätzliche Leistung auf den vorherigen Gesamtwert aufgeschlagen werden.
+Eine kumulative Abrechnung zeigt den fortgeschriebenen Leistungsstand und zieht die bereits gestellten Vorrechnungen ab. Ein neuer kumulierter Gesamtwert ist also keine zusätzliche Leistung, die auf den vorherigen Wert aufgeschlagen wird.
 
-Angenommen, der erste Leistungsstand beträgt 3.000 € und der zweite 6.000 €. Die zweite Angabe beschreibt dann insgesamt 6.000 € erreichte Leistung. Sie bedeutet nicht automatisch weitere 6.000 € zusätzlich zu den ersten 3.000 €.
+Angenommen, der erste Leistungsstand beträgt 3.000 € und der zweite 6.000 €. Die zweite Angabe beschreibt insgesamt 6.000 € erreichte Leistung. Abgerechnet werden im zweiten Abschlag also weitere 3.000 €.
 
-Wählen Sie die Abrechnungsart zu Beginn bewusst. Ein spontaner Wechsel mitten im Auftrag erschwert die Abstimmung mit dem Kunden und mit der Buchhaltung.
-
-## Wie arbeiten Sie in CraftOS mit dieser Folge?
-
-Öffnen Sie in der Web-App das auftragsbezogene Dokument und wählen Sie „Rechnung erstellen“. Der Dialog bietet die zum Projekt und Bearbeitungsstand verfügbaren Rechnungstypen. Abschläge und Schlussrechnung benötigen einen eindeutigen Projektzusammenhang; die freie Dokumentanlage ohne Projekt ist dafür nicht der richtige Einstieg.
-
-Prüfen Sie vor jedem weiteren Abschlag die bisherigen Rechnungen. Im aktuellen Ablauf wird der Projektmodus nach dem ersten Abschlag festgelegt. Die Schlussrechnung berücksichtigt die Abrechnungshistorie und setzt einen passenden Abnahmestand voraus. Die konkrete Bedienung finden Sie unter [Abschlagsrechnung erstellen](/hilfe/abschlagsrechnung-erstellen) und [Schlussrechnung erstellen](/hilfe/schlussrechnung-erstellen).
+Wählen Sie die Abrechnungsart zu Beginn bewusst. Ein Wechsel mitten im Auftrag erschwert die Abstimmung mit dem Kunden und mit der Buchhaltung.
 
 ## Welche Kontrollen gehören vor den Abschluss?
 
-Stellen Sie drei Listen nebeneinander: die endgültigen Leistungen einschließlich Nachträgen, alle gestellten Abschlagsrechnungen und deren Zahlungsbewegungen. Ergänzen Sie Stornierungen ausdrücklich. Eine stornierte Vorrechnung darf nicht stillschweigend wie eine gültige Rechnung weitergeführt werden.
+Legen Sie drei Listen nebeneinander: die endgültigen Leistungen mit Nachträgen, alle gestellten Abschlagsrechnungen und die dazugehörigen Zahlungen. Ergänzen Sie Stornierungen ausdrücklich, damit eine stornierte Vorrechnung nicht wie eine gültige weiterläuft.
 
-Prüfen Sie danach, ob Restforderungen doppelt erscheinen. Ein offener Abschlag ist weder automatisch erlassen noch automatisch zusätzlich zur vollständigen Restforderung einzuziehen. Die Darstellung muss zum gewählten Abrechnungsmodell passen.
+1. Prüfen Sie die Gesamtleistung einschließlich freigegebener Nachträge.
+2. Gleichen Sie jede Abschlagsrechnung mit ihrer Dokumentnummer und ihrem Bruttobetrag ab.
+3. Ordnen Sie jede Zahlung mit Datum einer Rechnung zu, auch Teilzahlungen.
+4. Kennzeichnen Sie stornierte Vorrechnungen.
+5. Lassen Sie die Übersicht von einer zweiten zuständigen Person gegenlesen.
 
-Bewahren Sie zuletzt eine nachvollziehbare Folge aus Auftrag, Nachträgen, Leistungsnachweisen, Abschlägen, Zahlungen und Schlussrechnung. Der [Projektordner](/funktionen/projektverwaltung) hält den Zusammenhang zusammen; die [Rechnungsfunktion](/funktionen/rechnungen) unterstützt die einzelnen Dokumente.
+Prüfen Sie danach, ob Restforderungen doppelt erscheinen. Ein offener Abschlag ist weder erlassen noch zusätzlich zur vollständigen Restforderung einzuziehen. Bewahren Sie die Folge aus Auftrag, Nachträgen, Leistungsnachweisen, Abschlägen, Zahlungen und Schlussrechnung nachvollziehbar auf.
 
-## Welche Unterlagen sollten bei der Schlussprüfung nebeneinanderliegen?
+## So unterstützt CraftOS
 
-Verwenden Sie für einen konkreten Auftrag eine gemeinsame Abstimmungsübersicht mit vier Spalten: Dokumentnummer, gestellter Bruttobetrag, tatsächlich erhaltene Zahlungen und verbleibende Rückfrage. Ergänzen Sie den Zahlungstag, wenn ein Eingang mehrere Abschläge betrifft.
+In der Web-App öffnen Sie das Angebot oder den Auftrag eines Projekts und wählen „Rechnung erstellen“. Der Dialog bietet die Rechnungstypen an, die zum Projektstand passen, darunter „Pauschaler Abschlag“, „Kumulativer Abschlag“ und „Schlussrechnung“. Mit dem ersten Abschlag legt CraftOS den Abrechnungsmodus für das Projekt fest.
 
-So wird eine Teilzahlung nicht versehentlich mehrfach zugeordnet. Lassen Sie die Übersicht vor der Schlussrechnung durch die zuständige Person prüfen und gleichen Sie sie mit den gespeicherten Vorgängen ab. Die Übersicht unterstützt Ihre Kontrolle; sie ersetzt nicht die ursprünglichen Rechnungen und Zahlungsnachweise. Bewahren Sie außerdem den Stand der endgültigen Gesamtleistung einschließlich freigegebener Nachträge nachvollziehbar auf.
+Teilabnahmen erfassen Sie in der Mobile-App mit den abgenommenen Arbeitsabschnitten. In der Web-App steht danach in der Projektübersicht „Abschlagsrechnung vorschlagen“ bereit: Im Dialog „Umfang der Teilabnahme“ sehen Sie den „Betrag (Vorschlag, netto)“ aus den abgenommenen Positionen abzüglich bereits gestellter Abschläge.
+
+Liegt ein unterschriebenes Abnahmeprotokoll vor, übernehmen Büro-Leitung oder Inhaber es mit „Abnahme übernehmen“ und „Abnahme bestätigen“. Das geht, solange das Projekt „Beauftragt“ oder „In Ausführung“ ist. Danach gibt CraftOS die Schlussrechnung frei; vorher trägt sie den Hinweis „Erst nach Abnahme möglich“.
+
+Die Schritte im Einzelnen zeigen die Anleitungen [Abschlagsrechnung erstellen](/hilfe/abschlagsrechnung-erstellen), [Abnahme dokumentieren](/hilfe/abnahme-dokumentieren) und [Schlussrechnung erstellen](/hilfe/schlussrechnung-erstellen). Einen Überblick über die Rechnungstypen gibt die Funktion [Rechnungen](/funktionen/rechnungen); der [Projektordner](/funktionen/projektverwaltung) hält Auftrag, Abnahme und Rechnungen zusammen.
