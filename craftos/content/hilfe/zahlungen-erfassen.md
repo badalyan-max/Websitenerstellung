@@ -3,42 +3,52 @@ title: "Eine Zahlung zu einer Rechnung erfassen"
 description: "So buchen Sie tatsächlich eingegangene Teil- oder Vollzahlungen mit Datum und Referenz am Rechnungsdokument."
 category: "belege"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
+answer: "Eine eingegangene Zahlung erfassen Sie an der Rechnung im Abschnitt „Zahlungen“ mit „Zahlung erfassen“. Zahlungen aus importierten Bankumsätzen ordnen Sie unter „Buchhaltung → Bankumsätze“ zu; alle erfassten Zahlungen listet „Buchhaltung → Belege → Zahlungseingänge“."
 relatedFeatures: ["bankabgleich", "rechnungen", "buchhaltung"]
-relatedArticles: ["/blog/offene-posten-liquiditaet", "/hilfe/schlussrechnung-erstellen"]
+relatedArticles: ["/blog/offene-posten-liquiditaet", "/hilfe/schlussrechnung-erstellen", "/hilfe/rechnung-fertigstellen"]
 sources: []
 platforms: ["web"]
 ---
 
-Erfassen Sie nur tatsächlich erhaltene Zahlungen; eine angekündigte Überweisung verändert den Zahlungssaldo noch nicht.
+## Voraussetzungen
 
-Sie benötigen Zugriff auf die Rechnung und den Zahlungsbereich in der Web-App. Halten Sie Betrag, Buchungsdatum und Verwendungszweck bereit.
+- Web-App mit Voll-Lizenz; der Bereich „Buchhaltung“ erscheint mit Finanzrechten („Globale Finanzbereiche“).
+- Eine fertiggestellte Rechnung mit Rechnungsnummer.
+- Betrag, Zahlungsdatum und Verwendungszweck aus Ihrem Kontoauszug.
 
 ## Schritt für Schritt
 
-1. Öffnen Sie die betreffende Rechnung.
-2. Wechseln Sie zum Abschnitt „Zahlungen“.
-3. Wählen Sie „Zahlung erfassen“.
-4. Tragen Sie unter „Betrag (€)“ den tatsächlich eingegangenen positiven Betrag ein.
-5. Wählen Sie das „Zahlungsdatum“.
-6. Ergänzen Sie bei Bedarf „Zahlungsart / Bank“, „Referenz / Verwendungszweck“ und eine Notiz.
-7. Verwenden Sie Optionen wie „Skonto gezogen“ oder „Einbehalt gezogen“ nur, wenn sie dem tatsächlichen Vorgang entsprechen.
-8. Wählen Sie „Zahlung speichern“ und prüfen Sie den aktualisierten Saldo.
+1. Öffnen Sie unter „Rechnungen“ die betreffende Rechnung.
+2. Klicken Sie im Abschnitt „Zahlungen“ auf „Zahlung erfassen“.
+3. Tragen Sie unter „Betrag (€)“ den eingegangenen Betrag ein.
+4. Wählen Sie das „Zahlungsdatum“.
+5. Ergänzen Sie „Zahlungsart / Bank“ und „Referenz / Verwendungszweck“.
+6. Setzen Sie „Einbehalt gezogen“, wenn der Kunde einen vereinbarten Einbehalt abgezogen hat.
+7. Klicken Sie auf „Zahlung speichern“.
 
-Zahlungen werden am Dokument erfasst. Die Funktion löst keine Überweisung aus und ersetzt keinen Abgleich mit dem tatsächlichen Zahlungseingang.
+Haben Sie Ihre Bankumsätze importiert, erfassen Sie die Zahlung über die Bank: Öffnen Sie „Buchhaltung → Bankumsätze“, wählen Sie beim Umsatz „Zuordnen“ und bestätigen Sie die passende Rechnung mit „Zuordnung bestätigen“. CraftOS erfasst die Zahlung dabei aus dem Bankumsatz („Zahlung aus Bankumsatz erfassen“). Den Ablauf beschreibt [Bankumsätze abgleichen](/hilfe/bankumsaetze-abgleichen).
 
-## Beispiel und Ergebnis
+## Ergebnis prüfen
 
-Bei einer Rechnung über 4.760 € und einer Teilzahlung von 2.000 € bleiben 2.760 € offen. Speichern Sie den Teilbetrag und nicht den ursprünglichen Gesamtbetrag.
-
-Kontrollieren Sie nach dem Speichern die Zahlungsliste und den offenen Rechnungsbetrag. Bei Abschlagsrechnungen ist dieser Zahlungsstand auch für die spätere Schlussrechnung relevant.
+Der Abschnitt „Zahlungen“ zeigt „Erfasste Zahlungen“ und die „Offene Forderung“. Beispiel: Bei einer Rechnung über 4.760 € und einer Teilzahlung von 2.000 € beträgt die offene Forderung 2.760 €. Unter „Buchhaltung → Belege → Zahlungseingänge“ erscheint die Zahlung mit ihrem Zahlungsdatum.
 
 ## Häufige Probleme
 
-Ein Betrag von null oder ein negativer Wert wird nicht als normaler Zahlungseingang akzeptiert. Eine Rückzahlung oder Rechnungskorrektur ist gesondert zu behandeln.
+### Wie erfasse ich eine Teilzahlung?
 
-Prüfen Sie bei einem unerwarteten Saldo, ob dieselbe Zahlung bereits erfasst wurde. Entfernen Sie einen falschen Eintrag nur über den vorgesehenen Ablauf und kontrollieren Sie anschließend die gesamte Zahlungsliste.
+Tragen Sie den tatsächlich eingegangenen Teilbetrag ein. Teilzahlungen reduzieren den offenen Rest; die nächste Zahlung erfassen Sie bei ihrem Eingang auf dieselbe Weise.
 
-Die [Rechnungsfunktion](/funktionen/rechnungen) hält den Zusammenhang sichtbar; [Offene Posten und Liquidität](/blog/offene-posten-liquiditaet) erklärt die betriebliche Nutzung.
+### Wie korrigiere ich eine falsch erfasste Zahlung?
+
+Löschen Sie die Zahlung im Abschnitt „Zahlungen“ über „Zahlung löschen“ und erfassen Sie sie mit den richtigen Werten neu. Prüfen Sie danach die „Offene Forderung“.
+
+### Wo sehe ich alle Zahlungen eines Zeitraums?
+
+Unter „Buchhaltung → Belege → Zahlungseingänge“ zählen erfasste Zahlungen nach ihrem Zahlungsdatum. Mit „Zahlung ab“ und „Zahlung bis“ grenzen Sie den Zeitraum ein; offene Rechnungen finden Sie unter „Ausgangsbelege“.
+
+### Wie hängen Zahlungen und Schlussrechnung zusammen?
+
+Die Schlussrechnung weist die Zeile „Abzüglich erhaltener Abschlagszahlungen“ aus. Erfassen Sie deshalb jede Abschlagszahlung an ihrer Abschlagsrechnung. Die [Schlussrechnung](/hilfe/schlussrechnung-erstellen) und [Offene Posten und Liquidität](/blog/offene-posten-liquiditaet) führen das Thema weiter.
