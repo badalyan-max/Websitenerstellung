@@ -49,7 +49,7 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 
 ### Qualität und Rollout (QA)
 
-- [ ] **QA-04**: Lighthouse mobil (Labordaten) erreicht auf Startseite, Funktions-, Gewerke-, Vergleichs- und Ratgeber-Vorlage Performance ≥ 95 und LCP < 2,5 s; Unit-, Browser-, Routen- und visuelle Prüfungen sind an den neuen Stand angepasst und grün.
+- [ ] **QA-04**: Echte Besucherdaten in Produktion (Vercel Speed Insights, p75 über alle Seiten, Stichprobengröße angegeben) erreichen LCP < 2,5 s, INP < 200 ms und CLS < 0,1 (Inhaberentscheidung 23.10.2026, D-44; Lighthouse-Labordaten nur noch als nicht blockierende Regressionswarnung); Unit-, Browser-, Routen- und visuelle Prüfungen sind an den neuen Stand angepasst und grün.
 - [ ] **QA-05**: Jede Etappe geht einzeln nach Ship-Gate live; danach werden IndexNow gemeldet, die Live-Seite geprüft und `trial_click`/`ai_visit` in Vercel Analytics kontrolliert.
 - [ ] **QA-06**: Nach der letzten Etappe zeigt ein erneuter `/audit craftos.eu` keine offenen technischen oder On-Page-Fehler.
 

@@ -310,3 +310,8 @@ Nicht in dieser Phase: Änderungen an Rechtstexten (Wortlaut), Datenschutzabschn
     - die GoBD-Erwähnungen in `lib/funktionsdetails`, `funktionsgruppen`, `kleine-betriebe` und `wettbewerber/craftnote`
     - die Hilfe- und Blogartikel mit GoBD-Bezug, nur im GoBD-Satz
   - **Zeitpunkt:** nach den Merges b, d und f auf `main`, vor 10-12.
+- **D-44 Ladezeit-Maßstab Produktion** (Inhaber 23.10.2026: „Mich interessiert nur, dass es online, also bei Vercel, quasi alles richtig läuft.“): QA-04 wird ausschließlich an echten Besucherdaten aus Vercel Speed Insights in Produktion gemessen: p75 über alle Seiten LCP < 2.500 ms, INP < 200 ms, CLS < 0,1, mit Zeitraum und Stichprobengröße.
+  - Abfrage: `npx -y vercel@latest --scope team_km6VwPpOZSRGFCMXdm74cpHm metrics vercel.speed_insights.<lcp_ms|inp_ms|cls> --aggregation p75 -p prj_Vk35IwxD0U3Qtoez5a0OaKhRdlN4 -e production --since 30d --json`.
+  - Stand 23.10.2026: n = 41, LCP p75 620 ms, INP p75 40 ms, CLS p75 0.
+  - Lighthouse-Labordaten (lokal) sind nur noch eine nicht blockierende Regressionswarnung. Performance-Score und Lab-LCP blockieren weder 10-12 noch 10-07. Accessibility 100 bleibt Pflicht (DESIGN-05).
+  - 10-07 fragt die Felddaten nach dem Rollout erneut ab und markiert QA-04, wenn die drei Schwellen eingehalten sind. Liegt die Stichprobe unter 100 Messungen, wird das im Rollout-Bericht als Grenze genannt, ohne die Markierung zu blockieren.
