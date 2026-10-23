@@ -11,6 +11,7 @@ import {
   Lock,
   NotebookPen,
   Percent,
+  ReceiptText,
   Wallet,
 } from "lucide-react";
 import type { FunktionsdetailInhalt } from "./types";
@@ -83,6 +84,16 @@ export const rechnungInhalte: Record<string, FunktionsdetailInhalt> = {
           title: "Zahlungen zuordnen",
           text: "Zahlungseingänge und Teilzahlungen an der Rechnung erfassen.",
           visual: { kind: "icon", icon: Wallet },
+        },
+        {
+          // 10-04 (D-21, 10-UI-SPEC § 5): Extra „Rechnung nach § 13b“ (Register liveExtras, web:CustomerDialog.tsx,
+          // web:invoiceNoticeTexts.ts); Folge md·sm·sm·wide·wide·wide.
+          size: "wide",
+          title: "Rechnung nach § 13b",
+          text: "Kunden als Bauleister markieren und Rechnungen ohne Umsatzsteuer mit Hinweis nach § 13b UStG fertigstellen.",
+          visual: { kind: "icon", icon: ReceiptText },
+          href: "/hilfe/rechnung-fertigstellen",
+          zusatz: "rechnung-13b",
         },
         {
           size: "wide",

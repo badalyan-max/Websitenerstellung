@@ -79,6 +79,8 @@ export const ERLAUBTE_ANORDNUNGEN: readonly string[] = [
   "md·sm·sm",
   "md·sm·sm·wide",
   "md·sm·sm·wide·wide",
+  // 10-UI-SPEC § 5 (D-21): /funktionen/rechnungen mit Kachel „Rechnung nach § 13b“, lückenlos ab 768 und 1024 px.
+  "md·sm·sm·wide·wide·wide",
   "sm·sm·sm·sm·wide",
   "md·sm·sm·md·md",
   "md·sm·sm·md·sm·sm",
