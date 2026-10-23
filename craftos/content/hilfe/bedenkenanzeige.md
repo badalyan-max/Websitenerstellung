@@ -34,7 +34,7 @@ Typische Beispiele sind ein zu feuchter Estrich vor dem Verlegen von Fliesen, ei
 
 Geht ein Mangel auf die Leistungsbeschreibung, Anordnungen des Auftraggebers, von ihm gelieferte Stoffe oder die Vorleistung eines anderen Unternehmers zurück, haftet der Auftragnehmer nach § 13 Absatz 3 VOB/B, es sei denn, er hat die Mitteilung nach § 4 Absatz 3 gemacht.
 
-Der Auftraggeber bleibt nach [§ 4 Absatz 3 VOB/B](https://www.fib-bund.de/Inhalt/Vergabe/VOB/VOB-B_2016_nichtamtliche_Fassung.pdf) für seine Angaben, Anordnungen und Lieferungen verantwortlich. Ohne vereinbarte VOB/B lassen Sie im Einzelfall prüfen, welche Hinweispflichten Ihr Vertrag auslöst.
+Der Auftraggeber bleibt nach § 4 Absatz 3 VOB/B für seine Angaben, Anordnungen und Lieferungen verantwortlich. Ohne vereinbarte VOB/B lassen Sie im Einzelfall prüfen, welche Hinweispflichten Ihr Vertrag auslöst.
 
 ## Was gehört in eine Bedenkenanzeige?
 

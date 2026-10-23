@@ -45,7 +45,7 @@ Die folgende Tabelle können Sie als Vorlage für eigene Regieberichte nutzen.
 
 Schreiben Sie ihn am selben Tag, an dem die Zusatzarbeit ausgeführt wird. Ist die VOB/B vereinbart, zeigen Sie Stundenlohnarbeiten vor Beginn an und reichen die Stundenlohnzettel je nach Verkehrssitte werktäglich oder wöchentlich ein.
 
-Diese Pflichten stehen in [§ 15 Absatz 3 VOB/B](https://www.fib-bund.de/Inhalt/Vergabe/VOB/VOB-B_2016_nichtamtliche_Fassung.pdf). Ohne vereinbarte VOB/B lassen Sie im Einzelfall prüfen, welche Nachweise Ihr Vertrag verlangt.
+Diese Pflichten stehen in § 15 Absatz 3 VOB/B. Ohne vereinbarte VOB/B lassen Sie im Einzelfall prüfen, welche Nachweise Ihr Vertrag verlangt.
 
 ## Was gilt, wenn der Auftraggeber den Bericht nicht zurückgibt?
 
