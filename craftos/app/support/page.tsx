@@ -1,59 +1,92 @@
-import Link from "next/link";
-import { Mail, BookOpen, ArrowUpRight } from "lucide-react";
-import { PageHero } from "@/components/ui/PageHero";
+import { BookOpen, Mail, Newspaper } from "lucide-react";
+import { ContentKopf } from "@/components/content/ContentKopf";
+import { Abschnitt } from "@/components/v2/Abschnitt";
+import { CtaBand } from "@/components/v2/CtaBand";
+import { LinkKarten } from "@/components/v2/LinkKarten";
+import { SectionHeader } from "@/components/v2/SectionHeader";
 import { crumbsFor } from "@/lib/breadcrumbs";
+import { getContentList } from "@/lib/content";
 import { site } from "@/lib/site";
 import { metaFor, zielwerte } from "@/lib/seo-meta";
-// Title, Description und H1 aus der Keyword-Map (08-04, D-06).
+
+/**
+ * /support auf v2 (Phase 10, D-16; 10-UI-SPEC § 2, K5): heller ContentKopf statt des früheren dunklen Seitenkopfs aus
+ * components/ui (die Datei bleibt, D-04), danach Kontaktweg (Weiß, Karte Warm), Hilfe und Ratgeber (Warm, Karten Weiß) und das CTA-Band. Alle
+ * Bestandssätze bleiben wörtlich und verteilen sich nur auf Bausteine; die E-Mail kommt aus site.email.
+ * Async, weil die Mengen der Hilfe- und Ratgeberkarten aus lib/content kommen (K-2: tests/breadcrumbs.test.ts
+ * rendert die Seite per await). Title, Description und H1 aus der Keyword-Map (08-04, D-06).
+ */
 export const metadata = metaFor("/support");
-export default function Page() {
+
+const anleitungen = (n: number) => (n === 1 ? "1 Anleitung" : `${n} Anleitungen`);
+
+export default async function Page() {
+  const [hilfe, blog] = await Promise.all([getContentList("hilfe"), getContentList("blog")]);
   return (
     <>
-      <PageHero
+      <ContentKopf
         crumbs={crumbsFor("/support")}
+        id="support-titel"
         eyebrow="Kontakt & Support"
-        title={zielwerte("/support").h1}
-        intro="Ob Einrichtung, Rechnung oder eine Frage zur Mobile-App: Beschreiben Sie uns kurz, wobei Sie Unterstützung benötigen."
+        h1={zielwerte("/support").h1}
+        lead="Ob Einrichtung, Rechnung oder eine Frage zur Mobile-App: Beschreiben Sie uns kurz, wobei Sie Unterstützung benötigen."
       />
-      <section className="section-space">
-        <div className="site-container split-section items-start">
-          <div>
-            <Mail size={32} />
-            <h2 className="text-3xl font-semibold mt-5">
-              Direkt zum CraftOS Support.
-            </h2>
-            <a href={"mailto:" + site.email} className="text-link text-lg mt-5">
-              {site.email}
-              <ArrowUpRight size={18} />
-            </a>
-            <p className="text-ink-600 mt-6">
-              Nennen Sie die betroffene Ansicht, Ihr Gerät und die Schritte, bei
-              denen die Frage auftritt. Eine genaue Fehlermeldung hilft uns bei
-              der Einordnung.
-            </p>
-            <p className="text-sm text-ink-500 mt-4">
-              Bitte senden Sie keine Passwörter oder vollständigen
-              Zahlungsdaten.
-            </p>
-          </div>
-          <div className="soft-panel">
-            <BookOpen size={32} />
-            <h2 className="text-3xl font-semibold mt-5">
-              Die Antwort ist vielleicht schon da.
-            </h2>
-            <p className="text-ink-600 mt-5">
-              Im Hilfezentrum finden Sie Anleitungen zu Einrichtung, Angeboten,
-              Rechnungen, Zeiten, Lager und Craft AI.
-            </p>
-            <Link href="/hilfe" className="btn-cta mt-6">
-              Hilfezentrum öffnen <ArrowUpRight size={17} />
-            </Link>
-            <Link href="/blog" className="text-link block mt-6">
-              Ratgeber für Ihren Betriebsalltag
-            </Link>
-          </div>
-        </div>
-      </section>
+
+      <Abschnitt id="kontakt" surface="white">
+        <SectionHeader
+          id="kontakt"
+          title="Direkt zum CraftOS Support."
+          lead="Nennen Sie die betroffene Ansicht, Ihr Gerät und die Schritte, bei denen die Frage auftritt."
+        />
+        <LinkKarten
+          label="Kontaktweg"
+          surface="warm"
+          columns={2}
+          items={[
+            {
+              href: "mailto:" + site.email,
+              title: site.email,
+              label: "E-Mail",
+              text: "Eine genaue Fehlermeldung hilft uns bei der Einordnung. Bitte senden Sie keine Passwörter oder vollständigen Zahlungsdaten.",
+              icon: <Mail size={24} strokeWidth={1.75} />,
+              iconFeld: true,
+            },
+          ]}
+        />
+      </Abschnitt>
+
+      <Abschnitt id="hilfe" surface="warm">
+        <SectionHeader
+          id="hilfe"
+          title="Die Antwort ist vielleicht schon da."
+          lead="Im Hilfezentrum finden Sie Anleitungen zu Einrichtung, Angeboten, Rechnungen, Zeiten, Lager und Craft AI."
+        />
+        <LinkKarten
+          label="Hilfe und Ratgeber"
+          surface="white"
+          columns={2}
+          items={[
+            {
+              href: "/hilfe",
+              title: "Hilfezentrum öffnen",
+              meta: anleitungen(hilfe.length),
+              icon: <BookOpen size={24} strokeWidth={1.75} />,
+              iconFeld: true,
+            },
+            {
+              href: "/blog",
+              title: "Ratgeber für Ihren Betriebsalltag",
+              meta: `${blog.length} Artikel`,
+              icon: <Newspaper size={24} strokeWidth={1.75} />,
+              iconFeld: true,
+            },
+          ]}
+        />
+      </Abschnitt>
+
+      <div data-abschnitt="cta">
+        <CtaBand title="Machen Sie Platz für Ihr Handwerk." text="Ohne Zahlungsdaten – Sie entscheiden nach dem Test." />
+      </div>
     </>
   );
 }

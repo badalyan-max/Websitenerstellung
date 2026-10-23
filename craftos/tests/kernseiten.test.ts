@@ -6,9 +6,13 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import { LockKeyhole } from "lucide-react";
 import { createElement, type ReactElement } from "react";
 import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
+import { ContentKopf, type ContentKopfProps } from "@/components/content/ContentKopf";
+import { crumbsFor } from "@/lib/breadcrumbs";
+import { getContentList } from "@/lib/content";
 import { TEXT_BUDGET, charCount, sentenceCount } from "@/components/v2/budgets";
 import { KEY_FACT_SOURCE } from "@/components/v2/KeyFacts";
 import { euro, germanDate } from "@/lib/format";
@@ -587,5 +591,533 @@ describe("gerendert", () => {
     expect(standard.about).toEqual({ "@id": "https://craftos.eu/#software" });
     const org = webPageSchema({ path: "/x", name: "X", description: "Y", about: { "@id": "https://craftos.eu/#organization" } });
     expect(org.about).toEqual({ "@id": "https://craftos.eu/#organization" });
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Phase 10, Plan 10-03 (Paket c): ContentKopf K1/K2, Rechtsseiten, 404 (10-UI-SPEC K1–K3, § 3, § 4, § 11)
+// ---------------------------------------------------------------------------
+
+/** Überschriftenebenen in Dokumentreihenfolge. */
+const ueberschriften = (html: string) => [...html.matchAll(/<h([1-6])\b/g)].map((m) => Number(m[1]));
+
+/** Sprünge in der Überschriftenfolge (z. B. h1 → h3); leer, wenn keine. */
+function spruenge(html: string): string[] {
+  const ebenen = ueberschriften(html);
+  const out: string[] = [];
+  for (let i = 1; i < ebenen.length; i++) {
+    if (ebenen[i] > ebenen[i - 1] + 1) out.push(`h${ebenen[i - 1]} → h${ebenen[i]} (Position ${i})`);
+  }
+  return out;
+}
+
+/** Klassen-Token aller class-Attribute. */
+const klassen = (html: string) => [...html.matchAll(/\sclass="([^"]*)"/g)].flatMap((m) => m[1].split(/\s+/).filter(Boolean));
+
+const count = (html: string, re: RegExp) => (html.match(re) ?? []).length;
+
+const ALTKLASSEN_404 = ["section-space", "eyebrow", "section-intro", "btn-cta", "btn-secondary"] as const;
+const HELLER_KOPF = /<section\b[^>]*data-abschnitt="kopf"[^>]*data-tone="light"/;
+
+describe("ContentKopf K1/K2 (10-UI-SPEC Design System, K3)", () => {
+  const basis: ContentKopfProps = {
+    crumbs: crumbsFor("/blog"),
+    eyebrow: "Ratgeber",
+    h1: "Ratgeber für Handwerksbetriebe",
+    lead: "Kurzer Lead für den Test.",
+    meta: ["Stand 23.10.2026"],
+    stand: "12 Artikel",
+  };
+  const kopf = (props: Partial<ContentKopfProps> = {}) => renderToString(createElement(ContentKopf, { ...basis, ...props }));
+
+  it("crumbs={null}: keine Brotkrumen, keine BreadcrumbList, data-crumbs=\"ohne\" an der section", () => {
+    const html = kopf({ crumbs: null });
+    expect(html).not.toContain('aria-label="Brotkrumen"');
+    expect(html).not.toContain("BreadcrumbList");
+    expect(html).toMatch(/^<section\b[^>]*data-crumbs="ohne"/);
+  });
+
+  it("mit Brotkrumen kein data-crumbs und kein data-hinweis", () => {
+    const html = kopf();
+    expect(html).not.toContain("data-crumbs");
+    expect(html).not.toContain("data-hinweis");
+    expect(html).toContain('aria-label="Brotkrumen"');
+  });
+
+  it("hinweis steht nach Lead bzw. Antwort und vor meta, stand und platforms; Icon aria-hidden", () => {
+    const hinweis = { text: "Kostenlos. Ohne Anmeldung. Ihre Zahlen bleiben im Browser.", icon: LockKeyhole };
+    const html = kopf({ hinweis, platforms: ["web"] });
+    const p = html.match(/<p\b[^>]*data-hinweis=""[^>]*>([\s\S]*?)<\/p>/);
+    expect(p).not.toBeNull();
+    expect(p![1]).toMatch(/<svg\b[^>]*aria-hidden="true"/);
+    expect(decode(p![1])).toBe(hinweis.text);
+    const pos = (s: string) => html.indexOf(s);
+    expect(pos("Kurzer Lead für den Test.")).toBeLessThan(pos("data-hinweis"));
+    expect(pos("data-hinweis")).toBeLessThan(pos('aria-label="Angaben zum Artikel"'));
+    expect(pos('aria-label="Angaben zum Artikel"')).toBeLessThan(pos("data-stand"));
+    expect(pos("data-stand")).toBeLessThan(pos('aria-label="Plattformen"'));
+
+    const mitAntwort = kopf({
+      lead: undefined,
+      answer: "Eine Antwort in einem Satz.",
+      hinweis,
+    });
+    expect(mitAntwort.indexOf('id="antwort"')).toBeLessThan(mitAntwort.indexOf("data-hinweis"));
+  });
+
+  it("hinweis mit 81 Zeichen wirft den Fehlertext wörtlich, 80 Zeichen gehen", () => {
+    expect(() => kopf({ hinweis: { text: "x".repeat(81), icon: LockKeyhole } })).toThrow(
+      "ContentKopf: hinweis hat 81 von 80 Zeichen – Satz kürzen.",
+    );
+    expect(() => kopf({ hinweis: { text: "x".repeat(80), icon: LockKeyhole } })).not.toThrow();
+  });
+
+  it("CSS: K1/K2-Regeln hängen nur an [data-crumbs=\"ohne\"] bzw. .hinweis; HINWEIS_MAX lokal", () => {
+    const css = read("components/content/ContentKopf.module.css");
+    expect(css).toMatch(/\.kopf\[data-crumbs="ohne"\]\s*\{[^}]*padding-top:\s*48px/);
+    expect(css).toMatch(/@media \(min-width: 768px\)\s*\{\s*\.kopf\[data-crumbs="ohne"\]\s*\{[^}]*padding-top:\s*64px/);
+    expect(css).toMatch(/\.hinweis\s*\{[^}]*color:\s*#62626e/i);
+    expect(read("components/content/ContentKopf.tsx")).toContain("const HINWEIS_MAX = 80");
+  });
+
+  it("eine null-Kette gibt es nur in app/not-found.tsx (K1, K3)", () => {
+    const treffer: string[] = [];
+    const scan = (dir: string) => {
+      for (const e of fs.readdirSync(path.join(root, dir), { withFileTypes: true })) {
+        const rel = path.posix.join(dir, e.name);
+        if (e.isDirectory()) scan(rel);
+        else if (/\.(tsx?|mjs|js)$/.test(e.name)) {
+          const src = read(rel);
+          if (/crumbs=\{null\}|crumbs:\s*null\b/.test(src)) treffer.push(rel);
+          // Variablen, die null erhalten und als crumbs übergeben werden
+          for (const m of src.matchAll(/\b(?:const|let|var)\s+(\w+)\s*(?::[^=]+)?=\s*null\b/g)) {
+            if (new RegExp(`crumbs=\\{${m[1]}\\}|crumbs:\\s*${m[1]}\\b`).test(src)) treffer.push(`${rel} (${m[1]})`);
+          }
+        }
+      }
+    };
+    for (const dir of ["app", "components", "lib"]) scan(dir);
+    const fremd = treffer.filter((t) => t !== "app/not-found.tsx");
+    if (fremd.length > 0) {
+      throw new Error(
+        `ContentKopf: crumbs={null} ist nur auf der 404-Seite erlaubt – crumbsFor(pfad) verwenden. (${fremd.join(", ")})`,
+      );
+    }
+    expect(treffer).toEqual(["app/not-found.tsx"]);
+  });
+});
+
+const RECHTSSEITEN_10 = [
+  { pfad: "/impressum", datei: "app/impressum/page.tsx", laden: () => import("@/app/impressum/page") },
+  { pfad: "/datenschutz", datei: "app/datenschutz/page.tsx", laden: () => import("@/app/datenschutz/page") },
+  { pfad: "/agb", datei: "app/agb/page.tsx", laden: () => import("@/app/agb/page") },
+] as const;
+
+describe("Rechtsseiten auf v2 (D-09, D-17; 10-UI-SPEC § 3)", () => {
+  for (const seite of RECHTSSEITEN_10) {
+    describe(seite.pfad, () => {
+      it("heller ContentKopf mit Eyebrow „Rechtliches“, H1 aus der Keyword-Map, id rechtstext-titel", async () => {
+        const html = await rendern(seite.laden);
+        expect(html).toMatch(HELLER_KOPF);
+        const h1 = [...html.matchAll(/<h1\b([^>]*)>([\s\S]*?)<\/h1>/g)];
+        expect(h1.map((m) => decode(m[2]))).toEqual([zielwerte(seite.pfad).h1]);
+        expect(h1[0][1]).toContain('id="rechtstext-titel"');
+        expect(html).toMatch(/<p class="v2-eyebrow[^"]*">Rechtliches<\/p>/);
+      });
+
+      it("genau eine BreadcrumbList und eine Brotkrumen-Navigation", async () => {
+        const html = await rendern(seite.laden);
+        expect(count(html, /"@type":"BreadcrumbList"/g)).toBe(1);
+        expect(count(html, /aria-label="Brotkrumen"/g)).toBe(1);
+      });
+
+      it("Kontrast: kein text-primary-600, kein text-ink-400, keine Gewichte 500/700/800 im Markup und in der Quelle", async () => {
+        const html = await rendern(seite.laden);
+        const quellen = [read(seite.datei), read("components/legal/Legal.tsx"), read("components/legal/Legal.module.css")];
+        for (const text of [html, ...quellen]) {
+          expect(text).not.toMatch(/text-primary-600|text-ink-400/);
+          expect(text).not.toMatch(/font-(medium|bold|extrabold)\b|font-weight:\s*(500|700|800)\b/);
+        }
+      });
+
+      it("Überschriftenfolge ohne Sprung", async () => {
+        expect(spruenge(await rendern(seite.laden))).toEqual([]);
+      });
+    });
+  }
+
+  it("Legal.module.css: Links #784B10 mit Unterstrich, Hinweisabsätze #62626E, Prosa max. 720 px", () => {
+    const css = read("components/legal/Legal.module.css").toLowerCase();
+    expect(css).toContain("#784b10");
+    expect(css).toContain("#62626e");
+    expect(css).toMatch(/text-underline-offset:\s*4px/);
+    expect(css).toMatch(/max-width:\s*720px/);
+    expect(css).toMatch(/scroll-margin-top:\s*100px/);
+  });
+});
+
+describe("404-Seite auf v2 (D-18; 10-UI-SPEC § 4)", () => {
+  const notFound = async () => renderToString(createElement((await import("@/app/not-found")).default));
+
+  it("ContentKopf ohne Brotkrumen, Eyebrow, H1 und Lead wörtlich", async () => {
+    const html = await notFound();
+    expect(html).toMatch(HELLER_KOPF);
+    expect(html).toMatch(/<section\b[^>]*data-crumbs="ohne"/);
+    expect(html).not.toContain('aria-label="Brotkrumen"');
+    expect(html).not.toContain("BreadcrumbList");
+    expect(html).not.toContain("<br");
+    const h1 = [...html.matchAll(/<h1\b([^>]*)>([\s\S]*?)<\/h1>/g)];
+    expect(h1.map((m) => decode(m[2]))).toEqual(["Hier geht es nicht weiter. An anderer Stelle schon."]);
+    expect(h1[0][1]).toContain('id="fehler-titel"');
+    expect(html).toMatch(/<p class="v2-eyebrow[^"]*">Seite nicht gefunden<\/p>/);
+    expect(decode(html)).toContain(
+      "Diese Adresse ist nicht verfügbar. Über die Startseite oder das Hilfezentrum finden Sie den passenden Einstieg.",
+    );
+  });
+
+  it("Abschnitt einstiege: H2 „So geht es weiter“ und drei Karten zu /, /hilfe, /funktionen", async () => {
+    const html = await notFound();
+    expect(html).toMatch(/<section\b[^>]*data-abschnitt="einstiege"[^>]*aria-labelledby="einstiege"/);
+    expect(html).toMatch(/<h2 id="einstiege"[^>]*>So geht es weiter<\/h2>/);
+    const liste = html.match(/<ul\b[^>]*aria-label="Einstiege"[^>]*>[\s\S]*?<\/ul>/)?.[0] ?? "";
+    expect(liste).toMatch(/data-surface="warm"/);
+    expect(liste).toMatch(/data-columns="3"/);
+    expect([...liste.matchAll(/<h3\b[^>]*><a\b[^>]*href="([^"]+)"/g)].map((m) => m[1])).toEqual(["/", "/hilfe", "/funktionen"]);
+    expect([...liste.matchAll(/<h3\b[^>]*>([\s\S]*?)<\/h3>/g)].map((m) => decode(m[1]))).toEqual([
+      "Startseite",
+      "Hilfezentrum",
+      "Funktionen",
+    ]);
+    expect(decode(liste)).toContain("CraftOS im Überblick: Angebot, Planung, Baustelle und Rechnung in einer Software.");
+    expect(decode(liste)).toContain("Anleitungen Schritt für Schritt, von der Einrichtung bis zur Rechnung.");
+    expect(decode(liste)).toContain(
+      "Alle Funktionen von Angebot bis Buchhaltung mit Plattformen und Lizenzen im Überblick.",
+    );
+  });
+
+  it("keine Altklassen, kein CtaBand, Überschriftenfolge ohne Sprung", async () => {
+    const html = await notFound();
+    const k = klassen(html);
+    for (const alt of ALTKLASSEN_404) expect(k, alt).not.toContain(alt);
+    expect(html).not.toContain('data-abschnitt="cta"');
+    expect(spruenge(html)).toEqual([]);
+    expect(ueberschriften(html)).toEqual([1, 2, 3, 3, 3]);
+  });
+});
+
+describe("/support auf v2 (D-16, K-2; 10-UI-SPEC § 2)", () => {
+  const support = async () => renderToString(await (await import("@/app/support/page")).default());
+  const ALTKLASSEN_SUPPORT = ["section-space", "split-section", "soft-panel", "btn-cta", "text-link"] as const;
+
+  it("heller ContentKopf mit Brotkrumen, Eyebrow „Kontakt & Support“, H1 aus der Keyword-Map, Bestands-Intro als Lead", async () => {
+    const html = await support();
+    expect(html).toMatch(HELLER_KOPF);
+    expect(count(html, /"@type":"BreadcrumbList"/g)).toBe(1);
+    expect(count(html, /aria-label="Brotkrumen"/g)).toBe(1);
+    const h1 = [...html.matchAll(/<h1\b([^>]*)>([\s\S]*?)<\/h1>/g)];
+    expect(h1.map((m) => decode(m[2]))).toEqual([zielwerte("/support").h1]);
+    expect(h1[0][1]).toContain('id="support-titel"');
+    expect(html).toMatch(/<p class="v2-eyebrow[^"]*">Kontakt &amp; Support<\/p>/);
+    expect(decode(html)).toContain(
+      "Ob Einrichtung, Rechnung oder eine Frage zur Mobile-App: Beschreiben Sie uns kurz, wobei Sie Unterstützung benötigen.",
+    );
+  });
+
+  it("Abschnittsfolge kopf → kontakt (Weiß) → hilfe (Warm) → cta, H2-ids = Abschnitts-ids", async () => {
+    const html = await support();
+    expect([...html.matchAll(/data-abschnitt="([^"]+)"/g)].map((m) => m[1])).toEqual(["kopf", "kontakt", "hilfe", "cta"]);
+    expect(html).toMatch(/<section data-abschnitt="kontakt" aria-labelledby="kontakt" class="bg-white /);
+    expect(html).toMatch(/<section data-abschnitt="hilfe" aria-labelledby="hilfe" class="bg-\[#f7f3eb\] /);
+    expect(html).toMatch(/<h2 id="kontakt"[^>]*>Direkt zum CraftOS Support\.<\/h2>/);
+    expect(html).toMatch(/<h2 id="hilfe"[^>]*>Die Antwort ist vielleicht schon da\.<\/h2>/);
+  });
+
+  it("Kontaktweg: eine Karte mailto:site.email mit Label „E-Mail“ und dem Bestandstext", async () => {
+    const html = await support();
+    const liste = html.match(/<ul\b[^>]*aria-label="Kontaktweg"[^>]*>[\s\S]*?<\/ul>/)?.[0] ?? "";
+    expect(liste).toMatch(/data-surface="warm"/);
+    expect(liste).toMatch(/data-columns="2"/);
+    expect([...liste.matchAll(/<h3\b[^>]*><a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)].map((m) => [m[1], decode(m[2])])).toEqual([
+      [`mailto:${site.email}`, site.email],
+    ]);
+    expect(decode(liste)).toContain("E-Mail");
+    expect(decode(liste)).toContain(
+      "Eine genaue Fehlermeldung hilft uns bei der Einordnung. Bitte senden Sie keine Passwörter oder vollständigen Zahlungsdaten.",
+    );
+    expect(decode(html)).toContain(
+      "Nennen Sie die betroffene Ansicht, Ihr Gerät und die Schritte, bei denen die Frage auftritt.",
+    );
+  });
+
+  it("Hilfe und Ratgeber: Karten /hilfe und /blog mit Mengen aus lib/content", async () => {
+    const html = await support();
+    const liste = html.match(/<ul\b[^>]*aria-label="Hilfe und Ratgeber"[^>]*>[\s\S]*?<\/ul>/)?.[0] ?? "";
+    expect(liste).toMatch(/data-surface="white"/);
+    expect(liste).toMatch(/data-columns="2"/);
+    expect([...liste.matchAll(/<h3\b[^>]*><a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)].map((m) => [m[1], decode(m[2])])).toEqual([
+      ["/hilfe", "Hilfezentrum öffnen"],
+      ["/blog", "Ratgeber für Ihren Betriebsalltag"],
+    ]);
+    const nHilfe = (await getContentList("hilfe")).length;
+    const nBlog = (await getContentList("blog")).length;
+    expect(nHilfe).toBeGreaterThan(1);
+    expect(nBlog).toBeGreaterThan(0);
+    expect(decode(liste)).toContain(`${nHilfe} Anleitungen`);
+    expect(decode(liste)).toContain(`${nBlog} Artikel`);
+    expect(decode(html)).toContain(
+      "Im Hilfezentrum finden Sie Anleitungen zu Einrichtung, Angeboten, Rechnungen, Zeiten, Lager und Craft AI.",
+    );
+  });
+
+  it("CtaBand „Machen Sie Platz für Ihr Handwerk.“ mit Sekundärlink „Preise ansehen“ → /preise", async () => {
+    const html = await support();
+    const cta = html.slice(html.indexOf('data-abschnitt="cta"'));
+    expect(decode(cta)).toContain("Machen Sie Platz für Ihr Handwerk.");
+    expect(decode(cta)).toContain("Ohne Zahlungsdaten – Sie entscheiden nach dem Test.");
+    expect(cta).toMatch(/<a href="\/preise"[^>]*>Preise ansehen<\/a>/);
+    expect(cta).toContain(`href="${site.ctaUrl}"`);
+  });
+
+  it("keine Altklassen außerhalb des CtaBand, kein PageHero, Überschriftenfolge ohne Sprung", async () => {
+    const html = await support();
+    const ohneCta = html.slice(0, html.indexOf('data-abschnitt="cta"'));
+    const k = klassen(ohneCta);
+    for (const alt of ALTKLASSEN_SUPPORT) expect(k, alt).not.toContain(alt);
+    const quelle = read("app/support/page.tsx");
+    expect(quelle).not.toMatch(/PageHero|section-space|split-section|soft-panel|btn-cta|text-link/);
+    expect(spruenge(html)).toEqual([]);
+    expect(ueberschriften(html)).toEqual([1, 2, 3, 2, 3, 3, 2]);
+  });
+});
+
+const RECHNER_HINWEIS = "Kostenlos. Ohne Anmeldung. Ihre Zahlen bleiben im Browser.";
+const RECHNER_NOTIZ = "Lernen Sie die Angebotsfunktionen von CraftOS kennen und bringen Sie Ihre Aufträge ins System.";
+const ALTKLASSEN_RECHNER = ["section-space", "eyebrow", "section-intro", "btn-cta", "btn-secondary", "soft-panel", "split-section"] as const;
+const RECHNERSEITEN_10 = [
+  {
+    pfad: "/rechner",
+    laden: () => import("@/app/rechner/page"),
+    lead: "Was muss Ihre Arbeitsstunde kosten? Was bleibt von einem Auftrag übrig? Rechnen Sie beides mit Ihren eigenen Werten durch.",
+    abschnitte: [
+      ["kopf", null],
+      ["einstieg", "white"],
+      ["cta", null],
+    ],
+    h2: [["einstieg", "Welcher Rechner ist der richtige Einstieg?"]],
+    schema: "CollectionPage",
+    ebenen: [1, 2, 3, 3, 2],
+  },
+  {
+    pfad: "/rechner/stundensatz",
+    laden: () => import("@/app/rechner/stundensatz/page"),
+    lead: "Berechnen Sie Ihren Stundensatz aus den Kosten Ihres Betriebs, Ihren verrechenbaren Stunden und der Gewinnmarge, die Sie erreichen möchten.",
+    abschnitte: [
+      ["kopf", null],
+      ["rechner", "white"],
+      ["berechnung", "warm"],
+      ["kosten-und-stunden", "white"],
+      ["cta", null],
+    ],
+    h2: [
+      ["berechnung", "Wie wird der Stundensatz berechnet?"],
+      ["kosten-und-stunden", "Welche Kosten und Stunden gehören hinein?"],
+    ],
+    schema: "WebApplication",
+    ebenen: [1, 2, 2, 2, 2, 2],
+  },
+  {
+    pfad: "/rechner/angebotskalkulation",
+    laden: () => import("@/app/rechner/angebotskalkulation/page"),
+    lead: "Kalkulieren Sie einen Auftrag aus Material, Arbeitszeit und zusätzlichen Kosten. Oder prüfen Sie, welche Gewinnmarge Ihr vorhandener Preis ergibt.",
+    abschnitte: [
+      ["kopf", null],
+      ["rechner", "white"],
+      ["angebotspreis", "warm"],
+      ["marge-und-aufschlag", "white"],
+      ["eingaben", "warm"],
+      ["cta", null],
+    ],
+    h2: [
+      ["angebotspreis", "Wie kalkuliere ich einen Angebotspreis?"],
+      ["marge-und-aufschlag", "Was unterscheidet Marge und Kostenaufschlag?"],
+      ["eingaben", "Was muss ich bei meinen Eingaben beachten?"],
+    ],
+    schema: "WebApplication",
+    ebenen: [1, 2, 2, 2, 2, 3, 3, 2, 2],
+  },
+] as const;
+
+const FLAECHE_KLASSE = { white: "bg-white", warm: "bg-\\[#f7f3eb\\]" } as const;
+
+describe("Rechnerseiten auf v2 (D-15; 10-UI-SPEC § 1, J6–J8, J12)", () => {
+  for (const seite of RECHNERSEITEN_10) {
+    describe(seite.pfad, () => {
+      it("heller ContentKopf: Brotkrumen, Eyebrow „Rechner“, H1 aus der Keyword-Map, Bestands-Intro als Lead, Hinweis", async () => {
+        const html = await rendern(seite.laden);
+        expect(html).toMatch(HELLER_KOPF);
+        expect(count(html, /"@type":"BreadcrumbList"/g)).toBe(1);
+        expect(count(html, /aria-label="Brotkrumen"/g)).toBe(1);
+        const h1 = [...html.matchAll(/<h1\b([^>]*)>([\s\S]*?)<\/h1>/g)];
+        expect(h1.map((m) => decode(m[2]))).toEqual([zielwerte(seite.pfad).h1]);
+        expect(h1[0][1]).toContain('id="rechner-titel"');
+        expect(html).toMatch(/<p class="v2-eyebrow[^"]*">Rechner<\/p>/);
+        const kopf = html.slice(html.indexOf('data-abschnitt="kopf"'), html.indexOf("</section>"));
+        expect(decode(kopf)).toContain(seite.lead);
+        expect(kopf).not.toContain("data-answer");
+        const hinweis = kopf.match(/<p\b[^>]*data-hinweis=""[^>]*>([\s\S]*?)<\/p>/);
+        expect(hinweis).not.toBeNull();
+        expect(decode(hinweis![1])).toBe(RECHNER_HINWEIS);
+        expect(kopf.indexOf(seite.lead.slice(0, 20))).toBeLessThan(kopf.indexOf("data-hinweis"));
+      });
+
+      it("Abschnittsfolge und Flächen laut § 1.2, H2-ids = Abschnitts-ids", async () => {
+        const html = await rendern(seite.laden);
+        expect([...html.matchAll(/data-abschnitt="([^"]+)"/g)].map((m) => m[1])).toEqual(seite.abschnitte.map((a) => a[0]));
+        for (const [id, flaeche] of seite.abschnitte) {
+          if (flaeche === null) continue;
+          expect(html, id).toMatch(new RegExp(`<section data-abschnitt="${id}"[^>]*class="${FLAECHE_KLASSE[flaeche]} `));
+        }
+        for (const [id, titel] of seite.h2) {
+          expect(html, id).toMatch(new RegExp(`<section data-abschnitt="${id}" aria-labelledby="${id}"`));
+          const h2 = html.match(new RegExp(`<h2 id="${id}"[^>]*>([\\s\\S]*?)</h2>`));
+          expect(h2, id).not.toBeNull();
+          expect(decode(h2![1])).toBe(titel);
+        }
+        // Der Rechner-Abschnitt ist keine benannte Region; die Panels tragen ihre H2.
+        expect(html).not.toMatch(/<section data-abschnitt="rechner" aria-labelledby/);
+      });
+
+      it("Notiz wörtlich direkt vor dem CtaBand „Von der Kalkulation zum Angebot.“ mit „Angebotsfunktionen ansehen“", async () => {
+        const html = await rendern(seite.laden);
+        const iCta = html.indexOf('data-abschnitt="cta"');
+        const notiz = [...html.matchAll(/<p\b[^>]*data-notiz=""[^>]*>([\s\S]*?)<\/p>/g)];
+        expect(notiz.map((m) => decode(m[1]))).toEqual([RECHNER_NOTIZ]);
+        expect(notiz[0].index!).toBeLessThan(iCta);
+        // Nichts Sichtbares zwischen Notiz und CTA-Band außer schließenden Tags.
+        expect(html.slice(notiz[0].index! + notiz[0][0].length, iCta)).toMatch(/^(<\/(div|section)>)*<div $/);
+        expect(notiz[0][0]).not.toContain("<a ");
+        const cta = html.slice(iCta);
+        expect(decode(cta)).toContain("Von der Kalkulation zum Angebot.");
+        expect(decode(cta)).toContain("Ohne Zahlungsdaten – Sie entscheiden nach dem Test.");
+        expect(cta).toMatch(/<a href="\/funktionen\/angebote"[^>]*>Angebotsfunktionen ansehen<\/a>/);
+        expect(cta).toContain(`href="${site.ctaUrl}"`);
+        expect(html).not.toContain("calculator-cta-title");
+      });
+
+      it("JSON-LD unverändert, keine FAQPage, keine Altklassen, Überschriftenfolge ohne Sprung", async () => {
+        const html = await rendern(seite.laden);
+        const typen = ldBlocks(html).flatMap((b) => {
+          const graph = (b as { "@graph"?: Ld[] })["@graph"];
+          return (graph ?? [b]).map((x) => (x as { "@type"?: string })["@type"]);
+        });
+        expect(typen).toContain(seite.schema);
+        expect(typen).not.toContain("FAQPage");
+        const k = klassen(html.slice(0, html.indexOf('data-abschnitt="cta"')));
+        for (const alt of ALTKLASSEN_RECHNER) expect(k, alt).not.toContain(alt);
+        expect(spruenge(html)).toEqual([]);
+        expect(ueberschriften(html)).toEqual(seite.ebenen);
+      });
+    });
+  }
+
+  it("Rechner: Navigation „Rechner auswählen“ mit aria-current und noscript-Hinweis wörtlich", async () => {
+    for (const seite of RECHNERSEITEN_10.slice(1)) {
+      const html = await rendern(seite.laden);
+      const abschnitt = html.slice(html.indexOf('data-abschnitt="rechner"'), html.indexOf('data-abschnitt="', html.indexOf('data-abschnitt="rechner"') + 30));
+      expect(abschnitt).toMatch(/<nav\b[^>]*aria-label="Rechner auswählen"/);
+      expect(count(abschnitt, /aria-current="page"/g)).toBe(1);
+      expect(decode(abschnitt)).toContain(
+        "Aktivieren Sie JavaScript, um mit Ihren eigenen Werten zu rechnen; die Formel und das Beispiel finden Sie weiter unten.",
+      );
+      expect(abschnitt).toMatch(/data-calculator="(stundensatz|angebot)"/);
+    }
+  });
+
+  it("/rechner: Einstiegsfrage mit Antwort aus dem ersten Bestandsabsatz, zwei Werkzeugkarten als H3, Netto-Absatz als Notiz", async () => {
+    const html = await rendern(RECHNERSEITEN_10[0].laden);
+    const einstieg = html.slice(html.indexOf('data-abschnitt="einstieg"'), html.indexOf('data-abschnitt="cta"'));
+    const antwort = einstieg.match(/<p\b[^>]*data-answer=""[^>]*>([\s\S]*?)<\/p>/);
+    expect(decode(antwort![1])).toBe(
+      "Beginnen Sie beim Stundensatz, wenn Sie Ihre internen Kosten je Stunde noch nicht kennen. Verwenden Sie diese Kosten anschließend im Angebotsrechner für einen konkreten Auftrag.",
+    );
+    const karten = [...einstieg.matchAll(/<article\b[\s\S]*?<\/article>/g)].map((m) => m[0]);
+    expect(karten).toHaveLength(2);
+    expect(karten.map((k) => decode(k.match(/<h3\b[^>]*>([\s\S]*?)<\/h3>/)![1]))).toEqual([
+      "Stundensatzkalkulator",
+      "Angebots- und Margenrechner",
+    ]);
+    expect(karten.map((k) => [...k.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)].map((m) => [m[1], decode(m[2])]))).toEqual([
+      [["/rechner/stundensatz", "Stundensatz berechnen"]],
+      [["/rechner/angebotskalkulation", "Angebot kalkulieren"]],
+    ]);
+    expect(decode(einstieg)).toContain(
+      "Beide Rechner arbeiten netto. Sie können die Umsatzsteuer zusätzlich anzeigen lassen und den verwendeten Satz selbst eintragen. Beispielwerte helfen beim Einstieg und lassen sich vollständig ersetzen.",
+    );
+    expect(einstieg.indexOf("Beide Rechner arbeiten netto.")).toBeLessThan(einstieg.indexOf("data-notiz"));
+  });
+
+  it("Hilfe-FAQ als FaqList mit den Bestandsfragen wörtlich (A7)", async () => {
+    const stunden = await rendern(RECHNERSEITEN_10[1].laden);
+    const angebot = await rendern(RECHNERSEITEN_10[2].laden);
+    const faq = angebot.slice(angebot.indexOf('data-abschnitt="eingaben"'));
+    expect(summaryFragen(faq)).toEqual([
+      "Welchen Stundensatz trage ich ein?",
+      "Was passiert bei einem zu niedrigen Angebotspreis?",
+      "Wie werden Nachlässe und Umsatzsteuer berücksichtigt?",
+      "Werden meine Zahlen gespeichert?",
+    ]);
+    expect(decode(faq)).toContain(
+      "Die Berechnung läuft in Ihrem Browser. Ihre Eingaben werden nicht gespeichert oder an einen Berechnungsdienst gesendet. Ein bewusst aus dem Stundensatzrechner übernommener Kostensatz wird nur für die geöffnete Berechnung verwendet.",
+    );
+    const kosten = stunden.slice(stunden.indexOf('data-abschnitt="kosten-und-stunden"'));
+    expect(summaryFragen(kosten)).toEqual([
+      "Warum darf ich meinen Lohn nicht doppelt eintragen?",
+      "Was sind verrechenbare Stunden?",
+      "Gehört das Material in meinen Stundensatz?",
+      "Ist die Gewinnmarge dasselbe wie ein Aufschlag?",
+    ]);
+  });
+
+  it("Quelle: CalculatorPage nutzt ContentKopf mit Hinweis und Notiz, CalculatorCta bleibt erhalten (Inhaberliste)", () => {
+    const src = read("components/calculators/CalculatorPage.tsx");
+    expect(src).toContain("ContentKopf");
+    expect(src).toContain(RECHNER_HINWEIS);
+    expect(src).toContain("data-notiz");
+    expect(count(src, /function CalculatorCta\b/g)).toBe(1);
+    for (const datei of ["app/rechner/page.tsx", "app/rechner/stundensatz/page.tsx", "app/rechner/angebotskalkulation/page.tsx"]) {
+      expect(read(datei), datei).not.toMatch(/<CalculatorCta\b|PageHero|section-space|btn-cta/);
+    }
+  });
+});
+
+describe("Gewichte und Farben der Paket-(c)-Dateien aus 10-03 (10-UI-SPEC § 11, Typography, Color)", () => {
+  // Rechner (app/rechner/**, components/calculators/**) ergänzt 10-10; components/CraftOSLogo.tsx prüft Paket (b) (K2).
+  const DATEIEN = [
+    "app/support/page.tsx",
+    "app/impressum/page.tsx",
+    "app/datenschutz/page.tsx",
+    "app/agb/page.tsx",
+    "app/not-found.tsx",
+    "components/legal/Legal.tsx",
+    "components/legal/Legal.module.css",
+    "components/content/ContentKopf.tsx",
+    "components/content/ContentKopf.module.css",
+  ] as const;
+
+  it("nur Gewichte 400/600, kein text-primary-600 und kein text-ink-400", () => {
+    const probleme: string[] = [];
+    for (const datei of DATEIEN) {
+      const src = read(datei);
+      for (const m of src.matchAll(/font-weight:\s*(\d{3})\b/g)) {
+        if (m[1] !== "400" && m[1] !== "600") probleme.push(`${datei}: font-weight ${m[1]} gefunden – nur 400 und 600 verwenden.`);
+      }
+      for (const m of src.matchAll(/\bfont-(medium|bold|extrabold)\b/g)) {
+        probleme.push(`${datei}: font-weight ${m[1]} gefunden – nur 400 und 600 verwenden.`);
+      }
+      if (/text-primary-600|text-ink-400/.test(src)) {
+        probleme.push(`${datei}: text-primary-600/text-ink-400 als Textfarbe – #784B10 bzw. #62626E verwenden.`);
+      }
+    }
+    expect(probleme).toEqual([]);
   });
 });

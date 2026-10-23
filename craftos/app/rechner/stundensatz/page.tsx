@@ -1,10 +1,10 @@
 import {
-  CalculatorCta,
   CalculatorHelp,
   CalculatorPage,
 } from "@/components/calculators/CalculatorPage";
 import { HourlyRateCalculator } from "@/components/calculators/HourlyRateCalculator";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { FaqList } from "@/components/v2/FaqList";
 import { site } from "@/lib/site";
 import { metaFor, zielwerte } from "@/lib/seo-meta";
 import styles from "@/components/calculators/Calculators.module.css";
@@ -21,6 +21,17 @@ export default function HourlyRatePage() {
     <CalculatorPage
       current="stundensatz"
       title={z.h1}
+      werkzeug={
+        <>
+          <noscript>
+            <p className={styles.noScript}>
+              Aktivieren Sie JavaScript, um mit Ihren eigenen Werten zu rechnen; die
+              Formel und das Beispiel finden Sie weiter unten.
+            </p>
+          </noscript>
+          <HourlyRateCalculator />
+        </>
+      }
       intro="Berechnen Sie Ihren Stundensatz aus den Kosten Ihres Betriebs, Ihren verrechenbaren Stunden und der Gewinnmarge, die Sie erreichen möchten."
     >
       <JsonLd
@@ -41,14 +52,11 @@ export default function HourlyRatePage() {
           ],
         }}
       />
-      <noscript>
-        <p className={styles.noScript}>
-          Aktivieren Sie JavaScript, um mit Ihren eigenen Werten zu rechnen; die
-          Formel und das Beispiel finden Sie weiter unten.
-        </p>
-      </noscript>
-      <HourlyRateCalculator />
-      <CalculatorHelp title="Wie wird der Stundensatz berechnet?">
+      <CalculatorHelp
+        id="berechnung"
+        surface="warm"
+        title="Wie wird der Stundensatz berechnet?"
+      >
         <p>
           Ihr kostendeckender Stundensatz ergibt sich aus den jährlichen
           Personal-, Unternehmer- und Betriebskosten geteilt durch die
@@ -80,49 +88,33 @@ export default function HourlyRatePage() {
           aus dem älteren Rechenbeispiel der Kammer.
         </p>
       </CalculatorHelp>
-      <CalculatorHelp title="Welche Kosten und Stunden gehören hinein?">
-        <div className={styles.faqList}>
-          <details>
-            <summary>
-              Warum darf ich meinen Lohn nicht doppelt eintragen?
-            </summary>
-            <p>
-              Die Personalkosten umfassen bereits sämtliche dort eingerechneten
-              Gehälter und Arbeitgeberkosten. Ist Ihre eigene Vergütung darin
-              enthalten, beträgt der zusätzliche Unternehmerlohn 0 €. Im
-              Stundenpreis wird kein weiterer Stundenlohn auf diese Jahreskosten
-              addiert.
-            </p>
-          </details>
-          <details>
-            <summary>Was sind verrechenbare Stunden?</summary>
-            <p>
-              Das sind die Stunden, die Ihr Betrieb Kunden tatsächlich berechnen
-              kann. Nicht berechenbare Bürozeit, Urlaub und Krankheit gehören
-              nicht dazu. Erfassen Sie die gesamte Kapazität Ihres Betriebs,
-              einschließlich Ihrer eigenen verrechenbaren Arbeitszeit.
-            </p>
-          </details>
-          <details>
-            <summary>Gehört das Material in meinen Stundensatz?</summary>
-            <p>
-              Auftragsmaterial, das Sie separat kalkulieren, bleibt hier außen
-              vor. Sonst würden Sie es im Stundensatz und im Angebot doppelt
-              berücksichtigen. Dasselbe gilt für Kosten, die Sie bereits in
-              einem gesonderten Maschinen- oder Leistungspreis decken.
-            </p>
-          </details>
-          <details>
-            <summary>Ist die Gewinnmarge dasselbe wie ein Aufschlag?</summary>
-            <p>
-              Die Marge bezieht sich auf den Nettoverkaufspreis, der Aufschlag
-              auf die Kosten. Bei 60 € Kosten und 75 € Verkaufspreis sind 15 €
-              Gewinn eine Marge von 20 %, aber ein Kostenaufschlag von 25 %.
-            </p>
-          </details>
-        </div>
+      <CalculatorHelp
+        id="kosten-und-stunden"
+        surface="white"
+        title="Welche Kosten und Stunden gehören hinein?"
+        notiz
+      >
+        <FaqList
+          items={[
+            {
+              q: "Warum darf ich meinen Lohn nicht doppelt eintragen?",
+              a: "Die Personalkosten umfassen bereits sämtliche dort eingerechneten Gehälter und Arbeitgeberkosten. Ist Ihre eigene Vergütung darin enthalten, beträgt der zusätzliche Unternehmerlohn 0 €. Im Stundenpreis wird kein weiterer Stundenlohn auf diese Jahreskosten addiert.",
+            },
+            {
+              q: "Was sind verrechenbare Stunden?",
+              a: "Das sind die Stunden, die Ihr Betrieb Kunden tatsächlich berechnen kann. Nicht berechenbare Bürozeit, Urlaub und Krankheit gehören nicht dazu. Erfassen Sie die gesamte Kapazität Ihres Betriebs, einschließlich Ihrer eigenen verrechenbaren Arbeitszeit.",
+            },
+            {
+              q: "Gehört das Material in meinen Stundensatz?",
+              a: "Auftragsmaterial, das Sie separat kalkulieren, bleibt hier außen vor. Sonst würden Sie es im Stundensatz und im Angebot doppelt berücksichtigen. Dasselbe gilt für Kosten, die Sie bereits in einem gesonderten Maschinen- oder Leistungspreis decken.",
+            },
+            {
+              q: "Ist die Gewinnmarge dasselbe wie ein Aufschlag?",
+              a: "Die Marge bezieht sich auf den Nettoverkaufspreis, der Aufschlag auf die Kosten. Bei 60 € Kosten und 75 € Verkaufspreis sind 15 € Gewinn eine Marge von 20 %, aber ein Kostenaufschlag von 25 %.",
+            },
+          ]}
+        />
       </CalculatorHelp>
-      <CalculatorCta />
     </CalculatorPage>
   );
 }

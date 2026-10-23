@@ -797,3 +797,65 @@ Verbindlicher Vertrag ist `.planning/phases/09-gewerke-und-wissensinhalte/09-UI-
 3. **Kartenbühne** (`components/v2/FeatureCard.module.css`): Die figure in der Szenenbühne ist höchstens `max(280px, 100%)` breit. Vorher nahm die Plantafel-Wochenansicht ihre max-content-Breite (375 px) an und ragte bei 360 und 1024 px über die Karte; jetzt ragt ein 280-px-Rahmen höchstens gleichmäßig in den Innenabstand, wie in 07-04 vorgesehen.
 4. **21st.dev, Context7:** nicht benötigt (keine neue Komponente, keine API-Frage).
 5. **Prüfung:** neue Phase-9-Fälle in `tests/e2e/design-v2.pw.cjs` (sieben Routen in sechs Breiten, inklusive Kartenrahmen-Fall), `tests/funktionsdetails.test.ts` (Kundenportal-Szene), visual-audit über acht Routen in sechs Breiten (Chromium, WebKit); Ergebnisse in `docs/content-pruefung/09-integration.md` § 9.
+
+## 19. Phase 10 (Pläne 10-03 und 10-10, Paket c, 23.10.2026)
+
+Verbindlicher Vertrag ist `.planning/phases/10-abschlussaudit/10-UI-SPEC.md` (status approved, Checker-Korrekturen K1–K13). Die Design-Kaskade wurde dort laut D-20 **einmal für die ganze Phase** ausgeführt (frontend-design read-only, ui-ux-pro-max `--domain ux`, 21st.dev nicht verfügbar, Context7, SEO-Check); dieser Abschnitt kopiert sie nicht, sondern hält fest, wo die Festlegungen im Code liegen, welche Abweichungen zu §§ 1–18 gelten (J1–J12) und welche Messwerte sie belegen.
+
+### 19.1 Kaskade in den Plänen 10-03 und 10-10
+
+1. **frontend-design** (Leitlinie read-only gelesen, nichts kopiert): Zurückhaltung statt neuer Gestaltung – die Phase-10-Seiten nutzen ausschließlich bestehende v2-Bausteine; die Rechner bleiben Werkzeuge mit ruhigen Flächen, ohne Amber-Buttons in Karten und ohne Amber-Kanten an Kästen.
+2. **ui-ux-pro-max:** nicht erneut ausgeführt (D-20, Ergebnis im 10-UI-SPEC „Design-Kaskade“ § 2).
+3. **21st.dev, Context7:** nicht benötigt (keine neue Komponente, keine offene API-Frage; nur `next/link`, natives `details`/`summary`, CSS-Module).
+4. **SEO-Check:** `scripts/seo-audit.mjs` mit 0 Verstößen für Rechner, `/support`, Rechtsseiten, `/preise`, `/vergleich/**` und `/` (Schema `CollectionPage`/`WebApplication` unverändert, genau eine BreadcrumbList, keine neue FAQPage).
+
+### 19.2 Abweichungen J1–J12 (Kurzfassung, Begründung im 10-UI-SPEC)
+
+| # | Festlegung | Begründung |
+|---|---|---|
+| J1 | `ContentKopf` mit `crumbs={null}` nur in `app/not-found.tsx` | Die 404-Seite ist nicht indexiert und hat keinen Ort in der Hierarchie (D-18); Test `tests/phase10-darstellung.test.ts` |
+| J2 | Kopf-`hinweis` nur auf den drei Rechnerseiten | Das Versprechen „Kostenlos. Ohne Anmeldung. Ihre Zahlen bleiben im Browser.“ gehört über den Rechner |
+| J3 | Text von `sm`/`md`-Kacheln ohne Phone ab 768 px am Kachelboden | Bis zu 98 px Leerraum unter dem Text bei 1024 px (gemessen, § 19.5); Muster der lg-Browserkacheln |
+| J4 | Sichtbare Tabellen-Caption als `p[data-caption][aria-hidden]` über dem Scrollbereich | Bei 360 px war die Caption im 520 px breiten Scrollbereich angeschnitten; `<caption class="sr-only">` und `aria-label` tragen die Semantik |
+| J5 | Rechtsprosa v2: H1 im `ContentKopf`, H2 32/600, Text 16/400, Spalte 720 px | Gewichte nur 400/600 (D-17) |
+| J6 | `CalculatorHelp` ohne Lead-Satz | Bestandsabschnitte haben keinen Einleitungssatz; ein Lead wäre neuer Text (D-04) |
+| J7 | `/rechner`: Einstiegsfrage vor den Werkzeugkarten, Karten als H3 | Antwort zuerst ohne neuen Text; H2 → H3 ist eine mechanische Tag-Korrektur |
+| J8 | Rechner-CTA als `CtaBand`, Bestandssatz als Notiz `p[data-notiz]` direkt darüber | `CtaBand`-Text ≤ 80 Zeichen; der 94-Zeichen-Satz bleibt wörtlich (K6) |
+| J9 | `/support`: Kontaktabschnitt mit genau einer Karte | Beide Bestands-H2 bleiben (D-04) |
+| J10 | 404 ohne `CtaBand` | Orientierung vor Verkauf |
+| J11 | Logo-Schriftzug als SVG bzw. Subset (Paket b) | Performance-Hebel; Nachweis § 19.7 |
+| J12 | `#B32F28` für Feldfehler und Verlust-Hinweis im Rechner | Token statt Einzelwert, 6,26 : 1 auf Weiß, Fehler stehen zusätzlich als Text |
+
+### 19.3 `ContentKopf` K1/K2 (10-03)
+
+- **K1:** `crumbs: Crumb[] | null`; nur bei `null` setzt der Kopf `data-crumbs="ohne"` und lässt den Brotkrumen-Container weg. Die Regel für den oberen Abstand 48 / 64 / 64 px hängt nur an `.kopf[data-crumbs="ohne"]`.
+- **K2:** `hinweis?: { text; icon }` (≤ 80 Zeichen, lokale Konstante `HINWEIS_MAX`), Reihenfolge Eyebrow → H1 → Antwort bzw. Lead → Hinweis → `meta` → `stand` → `platforms`; `p[data-hinweis]` 14/400 `#62626E`, Icon 16 px `aria-hidden`.
+- **K3:** Ohne `crumbs={null}` und ohne `hinweis` bleibt das Markup der Phase-9-Köpfe Byte für Byte gleich (`tests/contentkopf-unveraendert.test.ts`).
+
+### 19.4 Seiten und Flächenrhythmus
+
+| Seite | Folge |
+|---|---|
+| `/rechner` | Kopf Warm (Hinweis) → `#einstieg` Weiß (SectionHeader mit Antwort, Werkzeugkarten Warm mit gestrecktem Link und `:focus-within`, Netto-Absatz, Notiz) → CTA dunkel |
+| `/rechner/stundensatz` | Kopf Warm → `rechner` Weiß (Navigation `aria-current`, `noscript`, Rechner) → `#berechnung` Warm → `#kosten-und-stunden` Weiß (FaqList, Notiz) → CTA dunkel |
+| `/rechner/angebotskalkulation` | Kopf Warm → `rechner` Weiß → `#angebotspreis` Warm → `#marge-und-aufschlag` Weiß → `#eingaben` Warm (FaqList, Notiz) → CTA dunkel |
+| `/support` | Kopf Warm → `#kontakt` Weiß (Karte Warm) → `#hilfe` Warm (Karten Weiß) → CTA dunkel |
+| `/impressum`, `/datenschutz`, `/agb` | Kopf Warm → Rechtstext Weiß → Fußleiste |
+| 404 | Kopf Warm ohne Brotkrumen → `#einstiege` Weiß (Karten Warm) → Fußleiste |
+
+Rechner-Darstellung (`components/calculators/Calculators.module.css`, 10-UI-SPEC § 1.3): Umbrüche 1024/768 px (Formular und Ergebnis nebeneinander ab 1024 px, Feldpaare und Vergleich zweispaltig ab 768 px), Formular-Panel Weiß mit `#DEDEE3`, Ergebnis-Panel `#F7F3EB` mit `#E7DCC9`, Radius 16, Innenabstand 16/24/32; Felder 48 px, Rahmen `#777782`, Radius 6, Fokusring an `.inputWrap:focus-within`; ungültiges Feld mit 1-px-Rahmen plus `box-shadow: inset 0 0 0 1px #B32F28` ohne Höhenänderung; Reset, Übernahme-Link und Kartenlinks als Sekundärbutton; Legenden fließen (`float`), damit die 1-px-Linie zwischen den Fieldsets sichtbar ist; eigene Fokusregeln entfallen (globale Regel). Rechenlogik, Feldnamen, Beschriftungen, Fehlertexte, `noscript` und JSON-LD sind unverändert. `CalculatorCta` bleibt ungerendert in der Datei (Inhaberliste).
+
+### 19.5 Messwerte (10-10)
+
+- **B10 vorher/nachher** (`test-results/bento-b10/vorher.json`, `nachher.json`, `vergleich.json`; 22 Detailseiten, `/app`, `/`, `/styleguide`; Chromium und WebKit; 768/1024/1440; 798 Kacheln, davon 540 `sm`/`md` ohne Phone): Kachelhöhen unverändert (0 Abweichungen > 1 px, `/funktionen/rechnungen` eingeschlossen), Leerraum unter dem Text vorher bis 98 px (768: 25, 1024: 98, 1440: 49), nachher 0 px; Visual → Titel mindestens 24 px. Größte verlagerte Lücke: 98 px, `/funktionen/angebote`, Kachel „Kosten nachvollziehen“ (md), 1024 px, Chromium (Visual → Titel 24 → 122 px). Der B10-Wert `leer` (Summe des freien Raums) bleibt je Kachel gleich, nur sein Ort wandert. `/funktionen/rechnungen` misst 10-06 nach dem Merge neu (K-8).
+- **Caption bei 360 px** (Chromium und WebKit, `/preise` mit zwei Tabellen, `/vergleich/plancraft-alternative`, `/vergleich/handwerkersoftware-kleine-betriebe`, `/`, `/styleguide` mit zwei Tabellen): rechte Kante 342 px = `clientWidth − 18`, `scrollWidth` 324 = `clientWidth` 324, kein Querscroll, `aria-hidden="true"`, `aria-label` des Scrollbereichs gleich der Caption, `<caption class="sr-only">` mit gleichem Text.
+- **Silbentrennung `/preise`** (D-19 (3), keine Codeänderung; Regel `h2#was-kostet-handwerkersoftware { hyphens: manual }` aus 09-09): bei 1440 px liefert `Range.getClientRects()` für „Handwerkersoftware“ genau 1 Zeile (Chromium und WebKit), `hyphens: manual`.
+- **Rechnerseiten:** fünf Breiten × drei Seiten × zwei Engines ohne Querscroll und ohne H1-Überlauf; bei 360 × 640 liegt die Unterkante des Hinweises bei 454–485 px (≤ 640).
+
+### 19.6 Übergabe Paket (a): FeatureSnippet-Dimmstufe und Fokusalgorithmus
+
+Inhalt ergänzt 10-06 nach dem Merge (Nachweise aus 10-01: Dimmstufe je Szenenhintergrund nach 10-UI-SPEC § 8, Fokusalgorithmus mit Vorfahren nach § 9.1).
+
+### 19.7 Übergabe Paket (b): Logo-SVG und geladene Schnitte
+
+Inhalt ergänzt 10-06 nach dem Merge (Nachweise aus 10-02: Lizenzprüfung, SVG-Schriftzug bzw. Subset, nicht mehr geladene Schnitte Clash 500/700 und General 500, Screenshot-Vergleich nach 10-UI-SPEC § 7.4).

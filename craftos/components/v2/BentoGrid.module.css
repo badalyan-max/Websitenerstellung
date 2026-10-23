@@ -159,6 +159,13 @@
   .tile {
     padding: 24px;
   }
+  /* 10-UI-SPEC § 6.1 (J3, D-19 (1)): Text von sm- und md-Kacheln ohne Phone sitzt am Kachelboden (wie die
+     lg-Browserkacheln); das Visual bleibt oben, die Mindestlücke Visual → Text bleibt der gap (24 px). Kachel- und
+     Zeilenhöhen ändern sich nicht (B10 vorher/nachher: test-results/bento-b10/). */
+  .tile[data-size="sm"] > .body,
+  .tile[data-size="md"]:not(:has([data-figure="phone"])) > .body {
+    margin-top: auto;
+  }
 }
 @media (min-width: 1024px) {
   .grid {

@@ -1,4 +1,4 @@
-import { LegalShell, LegalSection } from "@/components/legal/Legal";
+import { LegalShell, LegalSection, LegalHinweis } from "@/components/legal/Legal";
 import { crumbsFor } from "@/lib/breadcrumbs";
 import { site } from "@/lib/site";
 import { metaFor, zielwerte } from "@/lib/seo-meta";
@@ -87,11 +87,11 @@ export default function AgbPage() {
         </p>
       </LegalSection>
 
-      <p className="text-sm text-ink-400">
+      <LegalHinweis>
         Hinweis: Diese AGB sind eine Vorlage und sollten vor Veröffentlichung
         rechtlich geprüft und an die konkreten Leistungen angepasst werden. Bei
         Fragen: {site.email}
-      </p>
+      </LegalHinweis>
     </LegalShell>
   );
 }

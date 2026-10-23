@@ -199,7 +199,8 @@ describe("Breadcrumbs – Baustein (UI-SPEC § 1)", () => {
         async () =>
           renderToString(await (await import("@/app/gewerke/[slug]/page")).default({ params: Promise.resolve({ slug: "elektriker" }) })),
       ],
-      ["/support", async () => renderToString(createElement((await import("@/app/support/page")).default))],
+      // 10-03 (K-2): /support ist async (Mengenangaben aus lib/content) und wird wie oben per await gerendert.
+      ["/support", async () => renderToString(await (await import("@/app/support/page")).default())],
       ["/preise", async () => renderToString(createElement((await import("@/app/preise/page")).default))],
       ["/vergleich", async () => renderToString(createElement((await import("@/app/vergleich/page")).default))],
       ["/fakten-ueber-craftos", async () => renderToString(createElement((await import("@/app/fakten-ueber-craftos/page")).default))],

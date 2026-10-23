@@ -1,0 +1,16 @@
+@global | .kopf { position: relative; padding-block: 8px 48px; background: #f7f3eb; color: #17171c }
+@global | .crumbs { position: relative; margin-bottom: 16px }
+@global | .inner { position: relative }
+@global | .inner > * { max-width: 800px }
+@global | .inner .eyebrow { margin: 0 0 24px; color: #99600b }
+@global | .title { margin: 0; font-family: var(--font-display, var(--font-clash, sans-serif)); font-size: 28px; font-weight: 600; line-height: 1.1; letter-spacing: -0.025em; text-wrap: balance; hyphens: auto; -webkit-hyphens: auto; hyphenate-limit-chars: 10 4 4; overflow-wrap: break-word; color: #17171c }
+@global | .answer, .lead { margin: 16px 0 0; max-width: 60ch; font-size: 16px; font-weight: 400; line-height: 1.5; text-wrap: pretty; color: #17171c }
+@global | .meta { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 16px 0 0; padding: 0; list-style: none; font-size: 14px; font-weight: 400; line-height: 1.4; font-variant-numeric: tabular-nums; color: #62626e }
+@global | .stand { margin: 16px 0 0; font-size: 14px; font-weight: 400; line-height: 1.4; font-variant-numeric: tabular-nums; color: #62626e }
+@global | .platforms { margin-top: 16px }
+@media (min-width: 400px) | .title { font-size: clamp(32px, 4vw, 48px) }
+@media (min-width: 768px) | .kopf { padding-block: 16px 64px }
+@media (min-width: 768px) | .crumbs { margin-bottom: 24px }
+@media (min-width: 768px) | .answer, .lead { font-size: 20px; line-height: 1.4 }
+@media (min-width: 1024px) | .kopf { padding-block: 24px 64px }
+@media (min-width: 1024px) | .crumbs { margin-bottom: 32px }

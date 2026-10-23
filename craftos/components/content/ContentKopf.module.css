@@ -103,3 +103,33 @@
     margin-bottom: 32px;
   }
 }
+
+/* 10-UI-SPEC K1: Kopf ohne Brotkrumen (nur 404, data-crumbs="ohne"). Oben gleich dem unteren Abstand
+   48 / 64 / 64 px (< 768 / 768–1023 / ≥ 1024); die Grundregel .kopf bleibt unverändert (K3). */
+.kopf[data-crumbs="ohne"] {
+  padding-top: 48px;
+}
+@media (min-width: 768px) {
+  .kopf[data-crumbs="ohne"] {
+    padding-top: 64px;
+  }
+}
+
+/* 10-UI-SPEC K2: Hinweis 16 px unter Antwort bzw. Lead, Icon 16 px und Text 14/400/1.4 #62626E (5,43 : 1 auf #F7F3EB). */
+.hinweis {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin: 16px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #62626e;
+}
+.hinweisIcon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  color: #62626e;
+}

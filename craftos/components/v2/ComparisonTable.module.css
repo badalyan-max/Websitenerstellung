@@ -38,8 +38,12 @@
   font-variant-numeric: tabular-nums;
   color: #17171c;
 }
+/* 10-UI-SPEC § 6.2 (J4): sichtbare Caption über dem Scrollbereich (p[data-caption], aria-hidden), 20/600 Clash,
+   max. 60ch. Abstand < 768 px: Caption → Wischhinweis 8 px (gap); ab 768 px (ohne Hinweis): Caption → Tabelle
+   16 px (8 px eigener Abstand + 8 px gap). Die Zeile im Tabellenrahmen entfällt. */
 .caption {
-  padding: 16px;
+  margin: 0;
+  max-width: 60ch;
   text-align: left;
   font-family: var(--font-display, var(--font-clash, sans-serif));
   font-size: 20px;
@@ -47,7 +51,7 @@
   line-height: 1.25;
   letter-spacing: -0.025em;
   color: #17171c;
-  border-bottom: 1px solid #dedee3;
+  overflow-wrap: break-word;
 }
 .table th,
 .table td {
@@ -153,6 +157,9 @@ td[data-highlight="true"] .mark[data-value="ja"] {
   }
 }
 @media (min-width: 768px) {
+  .caption {
+    margin-bottom: 8px;
+  }
   .hint {
     display: none;
   }
