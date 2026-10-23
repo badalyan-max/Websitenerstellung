@@ -667,6 +667,13 @@ img {
     align-self: start;
     position: sticky;
     top: 100px;
+    /* 09-REVIEW ME-01: höchstens Viewport minus Kopfabstand, darüber scrollt das Verzeichnis selbst. Innenabstand
+       und Gegenrand halten Platz für den Fokusring (3 px + 4 px Abstand) innerhalb des Scrollbereichs. */
+    max-height: calc(100vh - 116px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 8px;
+    margin: -8px;
   }
   .artikel-toc-mobil {
     display: none;

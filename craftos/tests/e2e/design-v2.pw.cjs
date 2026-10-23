@@ -369,6 +369,36 @@ test.describe('Phase 9: Vorlagen Gewerke, Übersichten und Artikel', () => {
     })
   }
 
+  // 09-REVIEW ME-01: Das sticky Inhaltsverzeichnis ist höchstens so hoch wie der Viewport unter dem Kopf und scrollt
+  // selbst; auf Laptop-Höhen (1366 × 768) bleibt der letzte Eintrag eines langen Artikels erreichbar.
+  test('Phase 9: Inhaltsverzeichnis bei 1366 × 768 bis zum letzten Eintrag erreichbar (ME-01)', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.use.hasTouch, 'Die Seitenspalte gibt es erst ab 1024 px; geprüft im Desktop-Projekt.')
+    test.setTimeout(60_000)
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+    await page.setViewportSize({ width: 1366, height: 768 })
+    const response = await page.goto('/hilfe/zeiteintrag-erfassen-korrigieren')
+    expect(response.status()).toBe(200)
+    await page.evaluate(() => document.fonts.ready)
+    await expect(page.locator('nav[data-toc="seite"]')).toBeVisible()
+    // In den Artikel scrollen, damit das Verzeichnis an seiner sticky-Position steht.
+    await page.evaluate(() => {
+      const raster = document.querySelector('.artikel-raster')
+      window.scrollTo(0, raster.getBoundingClientRect().top + window.scrollY + 400)
+    })
+    const m = await page.evaluate(() => {
+      const nav = document.querySelector('nav[data-toc="seite"]')
+      nav.scrollTop = nav.scrollHeight
+      const links = nav.querySelectorAll('a')
+      const last = links[links.length - 1].getBoundingClientRect()
+      const n = nav.getBoundingClientRect()
+      return { anzahl: links.length, navTop: n.top, navBottom: n.bottom, lastTop: last.top, lastBottom: last.bottom, hoehe: window.innerHeight }
+    })
+    expect(m.anzahl, 'langer Artikel mit vielen Einträgen').toBeGreaterThanOrEqual(12)
+    expect(m.navBottom, 'Inhaltsverzeichnis endet im Viewport').toBeLessThanOrEqual(m.hoehe + 0.5)
+    expect(m.lastTop, 'letzter Eintrag im Verzeichnis sichtbar (oben)').toBeGreaterThanOrEqual(m.navTop - 0.5)
+    expect(m.lastBottom, 'letzter Eintrag im Viewport sichtbar (unten)').toBeLessThanOrEqual(Math.min(m.navBottom, m.hoehe) + 0.5)
+  })
+
   test('Phase 9: Fold 360 × 640 – Gewerke-CTA und Artikel-Antwort vollständig sichtbar', async ({ page }, testInfo) => {
     test.skip(testInfo.project.use.hasTouch, 'Die Breite wird im Desktop-Projekt per setViewportSize geprüft.')
     test.setTimeout(90_000)
