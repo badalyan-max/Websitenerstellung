@@ -23,6 +23,7 @@ import {
 import type { FunktionsdetailInhalt, Kernpunkt, RolleName } from "@/lib/funktionsdetails/types";
 import { getFunktionsgruppen } from "@/lib/funktionsgruppen";
 import { keywordMap } from "@/lib/keyword-map";
+import { l1Treffer } from "@/lib/leitlinie";
 import { mobileLocales } from "@/lib/product-register";
 import {
   abnahmeScene,
@@ -283,6 +284,11 @@ const ERWARTET: Record<string, Erwartung> = {
     sekundaer: { label: HILFE, href: "/hilfe/angebot-entwurf-anlegen" },
     snippet: "angebot",
     zusatz: ["angebotsunterschrift"],
+    // D-21 (09-14): Teilfunktionen ohne eigene Detailseite verlinken ihre Anleitung.
+    hrefs: {
+      "Angebotsunterschrift online": "/hilfe/angebot-online-unterschreiben-lassen",
+      "DATANORM 4 und 5": "/hilfe/datanorm-katalog-importieren",
+    },
   },
   aufmass: {
     pflichtfrage: "Werden Maße automatisch gemessen?",
@@ -293,14 +299,17 @@ const ERWARTET: Record<string, Erwartung> = {
     sekundaer: { label: HILFE, href: "/hilfe/raumaufmass-angebot-uebernehmen" },
     snippet: "aufmass",
     zusatz: ["besichtigung"],
+    // D-21-Abweichung (09-RESEARCH, Orchestrator): die Besichtigungs-Kachel sitzt auf aufmass, nicht auf baudokumentation.
+    hrefs: { Besichtigung: "/hilfe/besichtigung-durchfuehren" },
   },
   kundenportal: {
-    pflichtfrage: "Können Kunden Rechnungen im Portal online bezahlen?",
+    // Orchestrator-Entscheidung 2 (09-RESEARCH): positiv, was das Portal am Release kann (09-14).
+    pflichtfrage: "Was können Kunden im Kundenportal erledigen?",
     verwandt: ["angebote", "projektverwaltung"],
     anordnung: "md·sm·sm·wide",
     webRollen: BUERO,
     mobileRollen: null,
-    sekundaer: ALLE,
+    sekundaer: { label: HILFE, href: "/hilfe/kundenportal-kunden-einladen" },
     snippet: null,
     zusatz: [],
   },
@@ -313,6 +322,7 @@ const ERWARTET: Record<string, Erwartung> = {
     sekundaer: { label: HILFE, href: "/hilfe/gaeb-importieren" },
     snippet: null,
     zusatz: [],
+    hrefs: { "DATANORM-Kataloge": "/hilfe/datanorm-katalog-importieren" },
   },
   // Gruppe Planung (07-05 Task 2)
   plantafel: {
@@ -334,6 +344,7 @@ const ERWARTET: Record<string, Erwartung> = {
     sekundaer: { label: HILFE, href: "/hilfe/projektdateien-ordner" },
     snippet: null,
     zusatz: ["kunden-app", "projekt-chat"],
+    hrefs: { "Projekt-Chat und Nachrichten": "/hilfe/projekt-chat-nachrichten" },
   },
   arbeitsanweisungen: {
     pflichtfrage: "Sieht das Team in der Arbeitsanweisung die Verkaufspreise?",
@@ -390,6 +401,7 @@ const ERWARTET: Record<string, Erwartung> = {
     snippet: "lager",
     zusatz: ["lager-scan"],
     phone: { title: "Lager-Scan und Wareneingang", scene: lagerAppScene, width: 194 },
+    hrefs: { "Lager-Scan und Wareneingang": "/hilfe/lager-scan-app" },
   },
   maengelmanagement: {
     pflichtfrage: "Wie erinnert CraftOS an fällige Mängel?",
@@ -431,7 +443,7 @@ const ERWARTET: Record<string, Erwartung> = {
     anordnung: "md·sm·sm·md·sm·sm",
     webRollen: ["Admin", "Büro-Leitung"],
     mobileRollen: null,
-    sekundaer: ALLE,
+    sekundaer: { label: HILFE, href: "/hilfe/mahnwesen-einrichten" },
     snippet: null,
     zusatz: [],
     panelSatz: { web: "Fristen, Gebühren und Stufen ändert nur der Inhaber des Betriebs" },
@@ -440,13 +452,17 @@ const ERWARTET: Record<string, Erwartung> = {
   team: {
     pflichtfrage: "Was ist der Unterschied zwischen Lizenz und Rolle?",
     verwandt: ["datenuebernahme", "dashboard"],
-    anordnung: "md·sm·sm·wide·wide",
+    anordnung: "md·sm·sm·md·sm·sm",
     webRollen: ["Admin"],
     mobileRollen: MOBIL,
     sekundaer: { label: HILFE, href: "/hilfe/rollen-zugriffsrechte-einstellen" },
     snippet: null,
     zusatz: ["sprachen"],
-    hrefs: { [`${mobileLocales.length} Sprachen in der Mobile-App`]: "/app" },
+    // D-21/W13 (09-14): Sprachen und Projekt-Chat verlinken ihre Anleitung.
+    hrefs: {
+      [`${mobileLocales.length} Sprachen in der Mobile-App`]: "/hilfe/app-sprache-einstellen",
+      "Projekt-Chat und Nachrichten": "/hilfe/projekt-chat-nachrichten",
+    },
   },
   datenuebernahme: {
     pflichtfrage: "Aus welcher Software kann ich Daten übernehmen?",
@@ -454,7 +470,7 @@ const ERWARTET: Record<string, Erwartung> = {
     anordnung: "md·sm·sm·wide",
     webRollen: ["Admin", "Büro-Leitung"],
     mobileRollen: null,
-    sekundaer: ALLE,
+    sekundaer: { label: HILFE, href: "/hilfe/daten-importieren" },
     snippet: null,
     zusatz: [],
   },
@@ -509,7 +525,7 @@ const ERWARTET: Record<string, Erwartung> = {
     anordnung: "md·sm·sm·wide·wide",
     webRollen: ["Admin", "Büro-Leitung"],
     mobileRollen: null,
-    sekundaer: ALLE,
+    sekundaer: { label: HILFE, href: "/hilfe/bankumsaetze-abgleichen" },
     snippet: null,
     zusatz: [],
   },
@@ -943,14 +959,60 @@ describe("getFunktionsdetail und Inhaltstabelle", () => {
     expect(JSON.stringify(inhalt)).toMatch(/erste.*Mahnung/);
     expect(JSON.stringify(inhalt)).toMatch(/zweite Mahnung/);
     const grenze = inhalt.kernpunkte.tiles.find((t) => t.grenze);
-    expect(grenze?.title).toBe("Nur Rechnungen");
+    // Leitlinie L-1 (09-14): Umfang der Automatik positiv, ohne Aufzählung der nicht gemahnten Rechnungsarten.
+    expect(grenze?.title).toBe("Für normale Rechnungen");
+    expect(grenze?.text).toBe("Auf Wunsch mahnt die Automatik normale Rechnungen nach Ihren Fristen.");
+    expect(JSON.stringify(inhalt)).not.toMatch(/mahnt die Automatik nicht/);
   });
 
-  it("team: Sprachen-Kachel aus mobileLocales mit Ziel /app, Web-Panel nur Admin", () => {
+  it("Leitlinie L-1 (09-14): kein Wort und kein Altbegriff in Detailinhalten und Stammtexten aus lib/funktionen.ts", () => {
+    const treffer: string[] = [];
+    for (const [slug, inhalt] of Object.entries(INHALTE)) {
+      for (const wort of l1Treffer(JSON.stringify(inhalt))) treffer.push(`${slug}: ${wort}`);
+    }
+    for (const f of funktionen) {
+      for (const wort of l1Treffer([f.name, f.kurz, f.benefit, f.heroIntro, f.access, ...f.notes].join("\n"))) {
+        treffer.push(`funktionen.ts ${f.slug}: ${wort}`);
+      }
+    }
+    expect(treffer).toEqual([]);
+  });
+
+  it("gaeb (K-9, 09-14): Note = Grenze-Kachel, positiv mit X83 in GAEB DA XML 3.2 und 3.3; FAQ ohne Negativliste", () => {
+    const grenze = INHALTE.gaeb.kernpunkte.tiles.find((t) => t.grenze)!;
+    expect(grenze.text).toBe("Leistungsverzeichnisse als X83 in GAEB DA XML 3.2 oder 3.3 einlesen, bis 5 MiB in UTF-8.");
+    expect(getFunktion("gaeb")!.notes).toEqual([grenze.text]);
+    const antwort = INHALTE.gaeb.faq.items.find((f) => f.q === "Welche GAEB-Formate unterstützt CraftOS?")!.a;
+    expect(antwort).toContain("GAEB DA XML 3.2");
+    expect(antwort).toContain("X84");
+    expect(antwort).not.toMatch(/GAEB 90|GAEB 2000|nicht unterstützt/);
+  });
+
+  it("kundenportal (09-14): nur am Release erreichbare Portalinhalte, Pflichtantwort positiv", () => {
+    const inhalt = INHALTE.kundenportal;
+    // Release 6686d05: src/App.tsx routet nur /portal/quotes/:id und /portal/invoices/:id (09-f.md Befund 1).
+    expect(JSON.stringify(inhalt)).not.toMatch(/Termin|Nachricht|Chat|online bezahlen|Onlinezahlung/i);
+    const antwort = inhalt.faq.items.find((f) => f.q === "Was können Kunden im Kundenportal erledigen?")!.a;
+    expect(antwort).toMatch(/Angebote und Rechnungen/);
+    expect(antwort).toMatch(/unterschreib/);
+    expect(antwort).toContain("Überweisung");
+    expect(antwort.startsWith("Nein")).toBe(false);
+    const f = getFunktion("kundenportal")!;
+    expect([f.benefit, f.heroIntro].join(" ")).not.toMatch(/Termin|Nachricht/);
+  });
+
+  it("planung und team (09-14): Release-Begriffe statt Altbegriffen", () => {
+    const plantafel = JSON.stringify(INHALTE.plantafel);
+    expect(plantafel).toContain("Hinweis zur Planung");
+    expect(plantafel).toContain("Trotzdem einplanen");
+    expect(JSON.stringify(INHALTE.team)).toContain("Voll-Lizenz (Admin oder Büro)");
+  });
+
+  it("team: Sprachen-Kachel aus mobileLocales mit Ziel Hilfeartikel, Web-Panel nur Admin", () => {
     expect(Object.hasOwn(INHALTE, "team")).toBe(true);
     const inhalt = INHALTE.team;
     const kachel = inhalt.kernpunkte.tiles.find((t) => t.zusatz === "sprachen");
-    expect(kachel?.href).toBe("/app");
+    expect(kachel?.href).toBe("/hilfe/app-sprache-einstellen");
     expect(kachel?.size).not.toBe("sm");
     expect(kachel?.title).toContain(String(mobileLocales.length));
     expect(kachel?.text).toContain(String(mobileLocales.length));

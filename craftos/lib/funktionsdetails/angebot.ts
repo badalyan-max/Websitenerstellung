@@ -11,7 +11,7 @@ import {
   Import,
   Info,
   LayoutGrid,
-  MessageSquare,
+  Mail,
   Minus,
   Ruler,
   Signature,
@@ -97,6 +97,7 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
           title: "Angebotsunterschrift online",
           text: "Ihr Kunde nimmt das Angebot online an und unterschreibt es oder sendet eine Ablehnung.",
           visual: { kind: "icon", icon: Signature },
+          href: "/hilfe/angebot-online-unterschreiben-lassen",
           zusatz: "angebotsunterschrift",
         },
         {
@@ -104,6 +105,7 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
           title: "DATANORM 4 und 5",
           text: "Kataloge Ihres Großhändlers in DATANORM 4 oder DATANORM 5 einlesen und Artikel direkt ins Angebot übernehmen.",
           visual: { kind: "icon", icon: BookOpen },
+          href: "/hilfe/datanorm-katalog-importieren",
         },
       ],
     },
@@ -200,6 +202,8 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
           title: "Besichtigung",
           text: "Fotos, Videos und Sprachnotizen der Besichtigung gesammelt im Projekt ablegen, bevor Sie das Angebot schreiben.",
           visual: { kind: "icon", icon: Camera },
+          // D-21-Abweichung (09-RESEARCH „Verlinkung – Korrektur“, Orchestrator): die Kachel sitzt auf aufmass.
+          href: "/hilfe/besichtigung-durchfuehren",
           zusatz: "besichtigung",
         },
         {
@@ -245,16 +249,21 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
   kundenportal: {
     slug: "kundenportal",
     kopfwort: "Kundenportal:",
-    lead: "Ihre Kunden sehen freigegebene Angebote, Rechnungen und Termine im Browser und schreiben Ihnen direkt.",
-    secondary: { label: "Alle Funktionen ansehen", href: "/funktionen" },
+    // 09-14 (Orchestrator-Entscheidung 2, L-1): nur am Release geroutete Inhalte. Web 6686d05 src/App.tsx Z. 235–238
+    // routet /portal/quotes/:id und /portal/invoices/:id, alles andere zeigt „Ihre Unterlagen“ (09-f.md Befund 1).
+    lead: "Ihre Kunden öffnen Angebote und Rechnungen im Browser und unterschreiben Angebote online.",
+    secondary: { label: "Anleitung in der Hilfe", href: "/hilfe/kundenportal-kunden-einladen" },
     ablauf: {
       title: "Das Kundenportal in vier Schritten",
-      lead: "Von der Einladung bis zur Antwort auf ein Angebot sieht Ihr Kunde nur, was Sie freigeben.",
+      lead: "Von der Einladung bis zur Antwort auf ein Angebot arbeitet Ihr Kunde im Browser.",
       steps: [
         { title: "Kunden einladen", text: "E-Mail-Adresse im Kundenstamm hinterlegen und den Kunden einladen." },
-        { title: "Unterlagen freigeben", text: "Angebote, Rechnungen und Termine für den Kunden bereitstellen." },
-        { title: "Kunde meldet sich an", text: "Der Kunde sieht nur seine freigegebenen Projekte und Dokumente." },
-        { title: "Angebot beantworten", text: "Der Kunde nimmt Angebote an oder lehnt sie mit Rückmeldung ab." },
+        // Beleg: src/pages/portal/CustomerInviteAccept.tsx („Anmeldecode senden“, „Code aus der E-Mail“).
+        { title: "Kunde meldet sich an", text: "Der Kunde öffnet die Einladung und meldet sich mit einem Code aus der E-Mail an." },
+        // Beleg: src/components/portal/PortalDocumentPdf.tsx (PDF mit Briefpapier, „PDF herunterladen“).
+        { title: "Unterlagen öffnen", text: "Angebote und Rechnungen öffnet der Kunde als PDF mit Ihrem Briefpapier." },
+        // Beleg: src/components/portal/PortalQuotePresentation.tsx („Annehmen und unterschreiben“, „Ablehnen“).
+        { title: "Angebot beantworten", text: "Der Kunde nimmt Angebote online an und unterschreibt sie oder lehnt sie ab." },
       ],
     },
     rollen: {
@@ -268,7 +277,8 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
             { name: "Büro-Leitung" },
             { name: "Büro-Projektleitung" },
           ],
-          satz: "Im Büro laden Sie Kunden ein und geben Angebote, Rechnungen und Termine frei.",
+          // Beleg: src/components/customers/CustomerPortalAccessCard.tsx (Karte „Kundenportal“ mit Status).
+          satz: "Im Büro laden Sie Kunden ein und sehen auf der Kundenkarte den Stand der Einladung.",
           lizenzen: ["voll"],
           // WR-03/B13: Kunden sind keine Betriebsrolle; funktionen.ts access „Separater Kundenbereich mit eigenem
           // Login“, Web-Release LicenseType admin | buero | app (keine Kundenlizenz), src/pages/portal/CustomerLogin.tsx.
@@ -278,27 +288,29 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
     },
     kernpunkte: {
       title: "Was das Kundenportal bietet",
-      lead: "Dokumente, Termine und Nachrichten liegen für Ihre Kunden an einem Ort.",
+      lead: "Einladung, Unterlagen und Online-Unterschrift liegen für Ihre Kunden im Browser.",
       tiles: [
         {
+          // Beleg: supabase/functions/_shared/customerInvite.ts (INVITE_VALID_DAYS = 14), CustomerInviteAccept.tsx.
           size: "md",
-          title: "Projekte, Termine und Nachrichten",
-          text: "Kunden sehen ihre Projekte und Termine und schreiben Ihnen direkt zum Projekt.",
-          visual: { kind: "icon", icon: MessageSquare },
+          title: "Einladung mit Anmeldecode",
+          text: "Die Einladung gilt 14 Tage, Ihr Kunde meldet sich mit einem Code aus der E-Mail an.",
+          visual: { kind: "icon", icon: Mail },
         },
         {
           size: "sm",
           title: "Dokumente im Browser",
-          text: "Freigegebene Angebote und Rechnungen erscheinen im Kundenbereich.",
+          text: "Angebote und Rechnungen als PDF mit Ihrem Briefpapier ansehen und herunterladen.",
           visual: { kind: "icon", icon: Globe },
         },
         {
           size: "sm",
-          title: "Angebote beantworten",
-          text: "Kunden nehmen Angebote an oder lehnen sie mit Rückmeldung ab.",
+          title: "Angebote unterschreiben",
+          text: "Kunden nehmen Angebote online an und unterschreiben sie oder lehnen sie ab.",
           visual: { kind: "icon", icon: CheckCheck },
         },
         {
+          // Beleg: src/components/portal/PortalPaymentNotice.tsx (Überweisung auf das Konto aus dem Rechnungs-PDF).
           size: "wide",
           title: "Zahlung per Überweisung",
           text: "Rechnungen aus dem Portal begleicht der Kunde per Überweisung auf das Konto im Rechnungs-PDF.",
@@ -309,24 +321,30 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
     },
     faq: {
       title: "Häufige Fragen zum Kundenportal",
-      lead: "Kurze Antworten zu Zahlung, Zugang und Inhalten des Portals.",
+      lead: "Kurze Antworten zu Funktionen, Zugang, Zahlung und Vorschau des Portals.",
       items: [
-        // Pflichtfrage 07-UI-SPEC Abschnitt 5; Beleg: funktionen.ts kundenportal note, Register limitations
-        // „Portal-Onlinezahlungen deaktiviert“, notLive „Portal-Onlinezahlung“ (PortalPaymentNotice).
+        // Pflichtfrage nach Orchestrator-Entscheidung 2 (09-RESEARCH) positiv: was das Portal am Release kann.
+        // Belege: CustomerQuote.tsx, CustomerInvoice.tsx, PortalDocumentPdf.tsx, PortalQuotePresentation.tsx,
+        // QuoteApproval.tsx („Grund für die Ablehnung (optional)“), PortalPaymentNotice.tsx.
         {
-          q: "Können Kunden Rechnungen im Portal online bezahlen?",
-          a: "Nein. Rechnungen aus dem Portal begleicht der Kunde per Überweisung auf das Konto, das auf dem Rechnungs-PDF steht.",
+          q: "Was können Kunden im Kundenportal erledigen?",
+          a: "Ihre Kunden öffnen Angebote und Rechnungen im Browser und laden sie als PDF herunter. Angebote nehmen sie online an und unterschreiben sie oder lehnen sie ab. Rechnungen begleichen sie per Überweisung auf das Konto, das auf dem Rechnungs-PDF steht.",
         },
-        // Quelle: funktionen.ts kundenportal steps und access (Einladung im Kundenstamm, eigener Login).
+        // Quelle: CustomerPortalAccessCard.tsx, CustomerPortalInviteDialog.tsx (14 Tage), CustomerInviteAccept.tsx,
+        // CustomerPortalHome.tsx („Ihre Unterlagen öffnen Sie über den Link in der E-Mail Ihres Handwerksbetriebs.“).
         {
           q: "Wie bekommt mein Kunde Zugang zum Kundenportal?",
-          a: "Sie hinterlegen die E-Mail-Adresse im Kundenstamm und laden den Kunden ins Portal ein. Der Kunde meldet sich mit eigenem Login an und sieht nur die für ihn freigegebenen Projekte und Dokumente.",
+          a: "Sie hinterlegen die E-Mail-Adresse im Kundenstamm und senden über die Karte „Kundenportal“ eine Einladung, die 14 Tage gilt. Ihr Kunde meldet sich mit einem Code aus der E-Mail an und öffnet seine Unterlagen über den Link in Ihrer E-Mail.",
         },
-        // Quelle: funktionen.ts kundenportal intro und points; Register evidence kundenportal
-        // (CustomerQuote.tsx, CustomerInvoice.tsx, CustomerSchedule.tsx, CustomerMessages.tsx).
+        // Quelle: PortalPaymentNotice.tsx; Hilfeartikel bankumsaetze-abgleichen (Zahlungseingang erfassen).
         {
-          q: "Was sieht mein Kunde im Kundenportal?",
-          a: "Ihr Kunde sieht freigegebene Angebote, Rechnungen und Termine seiner Projekte im Browser. Über Nachrichten schreibt er Ihnen direkt zum Projekt, und Angebote nimmt er an oder lehnt sie mit Rückmeldung ab.",
+          q: "Wie bezahlen Kunden Rechnungen aus dem Portal?",
+          a: "Per Überweisung auf das Konto, das auf dem Rechnungs-PDF steht. Den Zahlungseingang erfassen Sie wie gewohnt in der Web-App, zum Beispiel über den Abgleich der Bankumsätze.",
+        },
+        // Quelle: src/components/customers/PortalPreviewEntry.tsx („Portal-Vorschau öffnen“), CustomerPortalPreview.tsx.
+        {
+          q: "Kann ich prüfen, was mein Kunde im Portal sieht?",
+          a: "Ja. Mit „Portal-Vorschau öffnen“ auf der Kundenseite sehen Sie das Portal so, wie Ihr Kunde es sieht.",
         },
       ],
     },
@@ -381,6 +399,8 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
           title: "DATANORM-Kataloge",
           text: "Kataloge in DATANORM 4 und 5 einlesen und fehlerhafte Zeilen prüfen.",
           visual: { kind: "icon", icon: BookOpen },
+          // D-21: DATANORM-Anleitung über das href der vorhandenen Kachel (Anordnung bleibt md·sm·sm·wide·wide).
+          href: "/hilfe/datanorm-katalog-importieren",
         },
         {
           size: "wide",
@@ -390,8 +410,10 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
         },
         {
           size: "wide",
-          title: "Nur GAEB DA XML",
-          text: "GAEB 90 und GAEB 2000 werden nicht unterstützt, Dateien sind bis 5 MiB in UTF-8 möglich.",
+          // K-9/L-1 (09-14): positiv und identisch mit funktionen.ts gaeb note; Beleg GAEBImportDialog.tsx Z. 287/328
+          // („X83: GAEB DA XML 3.2 (2013-10) oder 3.3 (2021-05) · bis 5 MiB · UTF-8“).
+          title: "GAEB DA XML 3.2 und 3.3",
+          text: "Leistungsverzeichnisse als X83 in GAEB DA XML 3.2 oder 3.3 einlesen, bis 5 MiB in UTF-8.",
           visual: { kind: "icon", icon: Info },
           grenze: true,
         },
@@ -405,7 +427,7 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
         // X83/X84), GAEBExportDialog.tsx; funktionen.ts gaeb note.
         {
           q: "Welche GAEB-Formate unterstützt CraftOS?",
-          a: "CraftOS importiert Leistungsverzeichnisse als GAEB X83 und exportiert X83 sowie die Angebotsabgabe als X84, jeweils im Format GAEB DA XML. GAEB 90 und GAEB 2000 werden nicht unterstützt, Dateien sind bis 5 MiB in UTF-8 möglich.",
+          a: "CraftOS importiert Leistungsverzeichnisse als X83 im Format GAEB DA XML 3.2 oder 3.3 und exportiert X83 sowie die Angebotsabgabe als X84. Importdateien dürfen bis 5 MiB groß sein und sind UTF-8-codiert.",
         },
         // Quelle: content/hilfe/gaeb-importieren.md („Positionsvorschau“, „Alle auswählen“, „Preise übernehmen“).
         {

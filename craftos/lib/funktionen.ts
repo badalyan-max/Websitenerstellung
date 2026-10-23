@@ -313,15 +313,15 @@ const definitions: Definition[] = [
     slug: "kundenportal",
     name: "Kundenportal",
     benefit:
-      "Kunden sehen freigegebene Angebote, Rechnungen und Termine in einem eigenen Bereich im Browser.",
+      "Kunden öffnen Angebote und Rechnungen im Browser und unterschreiben Angebote online.",
     icon: Globe,
     intro:
-      "Angebote, Rechnungen, Termine und Nachrichten im Browser. Sie laden Ihre Kunden per E-Mail ein, der Kunde sieht nur die für ihn freigegebenen Projekte und Dokumente.",
+      "Sie laden Ihre Kunden per E-Mail ins Portal ein. Dort öffnen sie Angebote und Rechnungen als PDF im Browser und nehmen Angebote online an und unterschreiben sie.",
     platforms: ["web"],
     access:
       "Separater Kundenbereich mit eigenem Login; Einladung und Zugang verwalten berechtigte Büro- und Admin-Zugänge im Kundenstamm.",
     note: "Rechnungen aus dem Portal begleicht der Kunde per Überweisung auf das Konto, das auf dem Rechnungs-PDF steht.",
-    help: "kunden-ansprechpartner-anlegen",
+    help: "kundenportal-kunden-einladen",
     related: ["angebote", "rechnungen", "projektverwaltung"],
   },
   // Phase 7 (D-07): sechs live und beworbene Funktionen, bisher Zusatzfunktionen im Produktregister.
@@ -337,7 +337,7 @@ const definitions: Definition[] = [
     platforms: ["web"],
     access:
       "Admin- und Büro-Zugänge mit Zugriff auf Dokumente nutzen GAEB und DATANORM in der Web-App.",
-    note: "GAEB 90 und GAEB 2000 werden nicht unterstützt, Dateien sind bis 5 MiB in UTF-8 möglich.",
+    note: "Leistungsverzeichnisse als X83 in GAEB DA XML 3.2 oder 3.3 einlesen, bis 5 MiB in UTF-8.",
     help: "gaeb-importieren",
     related: ["angebote", "aufmass"],
   },
@@ -352,8 +352,8 @@ const definitions: Definition[] = [
     platforms: ["web"],
     access:
       "Admin- und Büro-Zugänge mit Zugriff auf die Einstellungen; Fristen, Gebühren und Stufen ändert nur der Inhaber des Betriebs.",
-    note: "Abschlags- und Schlussrechnungen mahnt die Automatik nicht.",
-    help: "zahlungen-erfassen",
+    note: "Auf Wunsch mahnt die Automatik normale Rechnungen nach Ihren Fristen.",
+    help: "mahnwesen-einrichten",
     related: ["rechnungen", "bankabgleich"],
   },
   {
@@ -383,7 +383,7 @@ const definitions: Definition[] = [
     access:
       "Finanzbereich: Admin; Büro-Zugänge nur mit Finanzfreigabe (Rolle Büro-Leitung).",
     note: "KI-Vorschläge kommen nur auf Ihre Anforderung und kosten Credits, die Zuordnung entscheiden Sie selbst.",
-    help: "zahlungen-erfassen",
+    help: "bankumsaetze-abgleichen",
     related: ["buchhaltung", "rechnungen", "mahnwesen"],
   },
   {
@@ -397,7 +397,7 @@ const definitions: Definition[] = [
     platforms: ["web"],
     access: "Datenimport: Admin oder Büro-Leitung.",
     note: "Je Datei gelten höchstens 10 MiB und 25.000 Zeilen, den Import starten Admin oder Büro-Leitung.",
-    help: "artikel-stammdaten-anlegen",
+    help: "daten-importieren",
     related: ["team", "buchhaltung"],
   },
   {

@@ -404,7 +404,7 @@ export const buchhaltungInhalte: Record<string, FunktionsdetailInhalt> = {
     slug: "bankabgleich",
     kopfwort: "Zahlungsabgleich:",
     lead: "Bankdatei als CSV, camt.053 oder PDF importieren und Umsätze mit Belegen und erfassten Zahlungen verbinden.",
-    secondary: { label: "Alle Funktionen ansehen", href: "/funktionen" },
+    secondary: { label: "Anleitung in der Hilfe", href: "/hilfe/bankumsaetze-abgleichen" },
     ablauf: {
       title: "Zahlungsabgleich in vier Schritten",
       lead: "Vom Kontoauszug bis zur Zuordnung entscheiden Sie bei jedem Umsatz selbst.",

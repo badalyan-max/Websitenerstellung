@@ -102,6 +102,11 @@ export default function AppPage() {
       <Abschnitt id="kennzahlen">
         <SectionHeader id="kennzahlen-titel" title={s.kennzahlen.title} lead={s.kennzahlen.lead} align="center" />
         <KeyFacts facts={appKeyFacts.facts} note={appKeyFacts.note} />
+        <p className="mt-8 text-center">
+          <Link href={s.kennzahlen.link.href} className="text-link min-h-11 text-base text-ink-900">
+            {s.kennzahlen.link.label}
+          </Link>
+        </p>
       </Abschnitt>
 
       <Abschnitt id="dokumentieren">

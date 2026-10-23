@@ -305,6 +305,7 @@ export const baustelleInhalte: Record<string, FunktionsdetailInhalt> = {
           title: "Lager-Scan und Wareneingang",
           text: "In der App Artikel per Barcode scannen, den Bestand freigegebener Lager sehen und Ware zubuchen.",
           visual: { kind: "phone", scene: lagerAppScene, width: 194 },
+          href: "/hilfe/lager-scan-app",
           zusatz: "lager-scan",
         },
         {

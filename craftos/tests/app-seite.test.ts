@@ -89,6 +89,28 @@ describe("Inhalte", () => {
       label: "Offline-Nutzung vorbereiten",
       href: "/hilfe/mobile-offline-synchronisierung",
     });
+    // D-21 (09-14): die Sprachen-Aussage der Kennzahlen verlinkt die Anleitung.
+    expect(app.appSections.kennzahlen.link).toEqual({
+      label: "Sprache der Mobile-App einstellen",
+      href: "/hilfe/app-sprache-einstellen",
+    });
+  });
+
+  it("D-21/W13: Projekt-Chat-Kachel und Sprachen verlinken ihre Hilfeartikel, jede Datei existiert", () => {
+    const chat = alleKacheln().find((t) => t.title === "Projekt-Chat und Nachrichten");
+    expect(chat?.href).toBe("/hilfe/projekt-chat-nachrichten");
+    const hilfeLinks = [
+      ...alleKacheln().map((t) => t.href),
+      app.appSections.offline.link.href,
+      app.appSections.kennzahlen.link.href,
+    ].filter((h) => h.startsWith("/hilfe/"));
+    expect(hilfeLinks).toEqual(
+      expect.arrayContaining(["/hilfe/projekt-chat-nachrichten", "/hilfe/app-sprache-einstellen"]),
+    );
+    for (const href of hilfeLinks) {
+      const datei = path.resolve(import.meta.dirname, "../content/hilfe", `${href.slice("/hilfe/".length)}.md`);
+      expect(fs.existsSync(datei), href).toBe(true);
+    }
   });
 
   it("Kacheln: Anordnungen lg·sm·sm·md, lg·sm·sm·md·md·md, lg·sm·sm·md; höchstens eine dunkle je Raster; Budgets", () => {
@@ -144,9 +166,13 @@ describe("Inhalte", () => {
   it("Kacheln folgen Plattform und Lizenzen ihrer Detailseite; fehlt die App-Lizenz, nennt der Text den Vorbehalt (WR-01, B11)", () => {
     const lizenzName = { voll: tarif("voll").name, app: tarif("app").name } as const;
     let mitVorbehalt = 0;
+    // D-21 (09-14): Kacheln mit Hilfe-Ziel folgen der Detailseite, auf der dieselbe Zusatzfunktion steht.
+    const HILFE_DETAIL: Record<string, string> = { "/hilfe/projekt-chat-nachrichten": "projektverwaltung" };
     for (const tile of alleKacheln()) {
-      expect(tile.href, tile.title).toMatch(/^\/funktionen\/[a-z0-9-]+$/);
-      const detail = getFunktionsdetail(tile.href.slice("/funktionen/".length));
+      expect(tile.href, tile.title).toMatch(/^\/(funktionen|hilfe)\/[a-z0-9-]+$/);
+      const detailSlug = tile.href.startsWith("/hilfe/") ? HILFE_DETAIL[tile.href] : tile.href.slice("/funktionen/".length);
+      expect(detailSlug, `${tile.title}: ${tile.href} ohne zugeordnete Detailseite`).toBeDefined();
+      const detail = getFunktionsdetail(detailSlug);
       const mobil = detail.rollen.panels.find((p) => p.platform === "mobile");
       expect(mobil, `${tile.title}: ${tile.href} hat kein Mobile-Panel`).toBeDefined();
       if (mobil!.lizenzen.includes("app")) continue;
@@ -183,6 +209,7 @@ describe("Inhalte", () => {
     const pfade = new Set((await sitemap()).map((e) => toPath(e.url)));
     for (const tile of alleKacheln()) expect(pfade.has(tile.href), `${tile.title}: ${tile.href}`).toBe(true);
     expect(pfade.has(app.appSections.offline.link.href)).toBe(true);
+    expect(pfade.has(app.appSections.kennzahlen.link.href)).toBe(true);
   });
 
   it("Kennzahlen aus Register und tarife, Kurzform-Quellen, Note mit netto und Einschränkungen", () => {
@@ -345,6 +372,9 @@ describe("gerendert", () => {
     for (const step of app.offlineSteps) expect(html, step.title).toContain(step.title);
     expect(html).toContain('href="/hilfe/mobile-offline-synchronisierung"');
     expect(html).toContain("Offline-Nutzung vorbereiten");
+    expect(html).toContain('href="/hilfe/app-sprache-einstellen"');
+    expect(html).toContain("Sprache der Mobile-App einstellen");
+    expect(html).toContain('href="/hilfe/projekt-chat-nachrichten"');
     expect(html).toContain("teilweise nutzbar, später synchronisiert");
     expect(html).toContain(app.appSections.cta.title);
     expect(html).toContain('href="/preise"');

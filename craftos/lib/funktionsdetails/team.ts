@@ -5,6 +5,7 @@ import {
   Info,
   KeyRound,
   Languages,
+  MessagesSquare,
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
@@ -26,8 +27,9 @@ import type { FunktionsdetailInhalt } from "./types";
  *   src/lib/import/readImportSources.ts (CSV, TSV, TXT, XLSX; 10 MiB je Datei).
  * - Mobile-Release laut Register: src/features/vacation/components/VacationTab.tsx (Urlaubsanträge in der App).
  *
- * D-21: Die Zusatzfunktion „{n} Sprachen in der Mobile-App“ steht als Kachel mit Ziel /app; die Zahl kommt immer aus
- * mobileLocales.length, nie als Literal.
+ * D-21: Die Zusatzfunktion „{n} Sprachen in der Mobile-App“ steht als Kachel mit Ziel /hilfe/app-sprache-einstellen
+ * (09-14, vorher /app); die Zahl kommt immer aus mobileLocales.length, nie als Literal. W13: Projekt-Chat steht
+ * zusätzlich als Kernpunkt-Kachel mit Ziel /hilfe/projekt-chat-nachrichten (Anordnung md·sm·sm·md·sm·sm).
  */
 const sprachen = mobileLocales.length;
 
@@ -67,20 +69,21 @@ export const teamInhalte: Record<string, FunktionsdetailInhalt> = {
     },
     kernpunkte: {
       title: "Was Team und Rechte leisten",
-      lead: "Lizenzen, Rollen und Abwesenheiten bilden den Rahmen für Ihr Team.",
+      lead: "Lizenzen, Rollen, Abwesenheiten und Nachrichten bilden den Rahmen für Ihr Team.",
       tiles: [
         {
           size: "md",
           title: `${sprachen} Sprachen in der Mobile-App`,
           text: `Mitarbeitende nutzen die Mobile-App in einer von ${sprachen} Sprachen.`,
           visual: { kind: "icon", icon: Languages },
-          href: "/app",
+          href: "/hilfe/app-sprache-einstellen",
           zusatz: "sprachen",
         },
         {
           size: "sm",
           title: "Passende Zugänge",
-          text: "Admin- und Büro-Lizenz arbeiten im Web, die App-Lizenz auf der Baustelle.",
+          // L-1-Altbegriff (09-14): Lizenzname aus lib/site.ts („Voll-Lizenz“), Typen laut roles.ts LICENSE_TYPES.
+          text: "Die Voll-Lizenz (Admin oder Büro) öffnet Web und App, die App-Lizenz nur die App.",
           visual: { kind: "icon", icon: KeyRound },
         },
         {
@@ -90,15 +93,25 @@ export const teamInhalte: Record<string, FunktionsdetailInhalt> = {
           visual: { kind: "icon", icon: ShieldCheck },
         },
         {
-          size: "wide",
+          // W13 (09-14): Projekt-Chat auch auf team; Beleg Register liveExtras „Projekt-Chat und Nachrichten“
+          // (mobile ChatScreen.tsx, InboxScreen.tsx, DirectChatScreen.tsx „Kollege auswählen“).
+          size: "md",
+          title: "Projekt-Chat und Nachrichten",
+          text: "Rückfragen im Projekt-Chat klären und Kollegen in der App Direktnachrichten schreiben.",
+          visual: { kind: "icon", icon: MessagesSquare },
+          href: "/hilfe/projekt-chat-nachrichten",
+        },
+        {
+          size: "sm",
           title: "Abwesenheiten berücksichtigen",
           text: "Urlaubsanträge und ihre Bearbeitung ergänzen die Team- und Einsatzplanung.",
           visual: { kind: "icon", icon: CalendarOff },
         },
         {
-          size: "wide",
+          // Wer Rollen und Sitze vergibt, nennen Admin-Zusatz im Web-Panel und die FAQ („nur der Inhaber“).
+          size: "sm",
           title: "Lizenz und Rolle sind getrennt",
-          text: "Die Lizenz bestimmt Zugang und Preis, die Rolle die Rechte, und Rollen und Sitze vergibt nur der Inhaber.",
+          text: "Die Lizenz bestimmt Zugang und Preis, die Rolle die Rechte des Mitglieds.",
           visual: { kind: "icon", icon: Info },
           grenze: true,
         },
@@ -140,7 +153,7 @@ export const teamInhalte: Record<string, FunktionsdetailInhalt> = {
     slug: "datenuebernahme",
     kopfwort: "Datenimport",
     lead: "Kunden, Projekte und Stammdaten aus Dateien prüfen, zuordnen und kontrolliert in CraftOS übernehmen.",
-    secondary: { label: "Alle Funktionen ansehen", href: "/funktionen" },
+    secondary: { label: "Anleitung in der Hilfe", href: "/hilfe/daten-importieren" },
     ablauf: {
       title: "Datenimport in vier Schritten",
       lead: "Von der Exportdatei bis zur Übernahme prüfen Sie jeden Schritt selbst.",

@@ -85,6 +85,8 @@ export const appSections = {
   kennzahlen: {
     title: "Das Wichtigste zur Mobile-App",
     lead: "Die App gibt es für iPhone, iPad und Android, in der Voll-Lizenz ist sie für dieselbe Person enthalten.",
+    // D-21 (09-14): die Sprachen-Kennzahl verlinkt die Anleitung zur App-Sprache.
+    link: { label: "Sprache der Mobile-App einstellen", href: "/hilfe/app-sprache-einstellen" } satisfies TextLink,
   },
   dokumentieren: {
     title: "Die Baustelle in der App dokumentieren",
@@ -235,7 +237,8 @@ export const appTiles: Readonly<Record<"zeit" | "dokumentieren" | "material", Ap
       title: "Projekt-Chat und Nachrichten",
       text: "Rückfragen im Projekt-Chat klären und Direktnachrichten im Posteingang lesen.",
       visual: { kind: "icon", icon: MessagesSquare },
-      href: "/funktionen/projektverwaltung",
+      // D-21 (09-14): Anleitung statt Detailseite; Plattform und Lizenzen wie projektverwaltung (tests/app-seite.test.ts).
+      href: "/hilfe/projekt-chat-nachrichten",
     },
     {
       size: "md",
