@@ -1,65 +1,89 @@
 ---
 title: "Einen Einsatz auf der Plantafel planen oder verschieben"
-description: "So planen Sie Ihr Team, prüfen Einsatzorte auf der Karte und öffnen den Auftrag unterwegs in der Mobile-App."
+description: "So planen Sie Ihr Team mit „Einplanen“, prüfen Einsatzorte auf der Karte und öffnen den Einsatz unterwegs in der Mobile-App."
 category: "projekte"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
+answer: "Klicken Sie auf der Plantafel auf „Einplanen“, wählen Sie Projekt, Zeitraum und Mitarbeiter und bestätigen Sie mit „Einplanen“. Verschieben Sie einen Einsatz per Ziehen; das Teammitglied erhält die Benachrichtigung „Einsatz verschoben“."
 relatedFeatures: ["plantafel", "arbeitsanweisungen"]
-relatedArticles: ["/hilfe/planung-mitarbeiter-ressourcen", "/blog/baustellen-einsatzplanung"]
+relatedArticles: ["/hilfe/planung-mitarbeiter-ressourcen", "/hilfe/projekt-phasen-anlegen", "/blog/baustellen-einsatzplanung"]
 sources: []
 platforms: ["web", "mobile"]
 ---
 
-Ein Einsatz ordnet eine konkrete Aufgabe einem Zeitraum und einer Person zu; prüfen Sie nach Änderungen auch die übrige Planung.
+Ein Einsatz legt fest, wer wann an welchem Projekt arbeitet. Die Plantafel prüft dabei Doppelbelegungen, Abwesenheiten und Projektzeiträume und zeigt Ihnen die Hinweise vor dem Speichern.
 
-Sie benötigen eine Admin- oder Büro-Lizenz mit Zugriff auf die Plantafel und das betreffende Projekt.
+## Voraussetzungen
 
-## Schritt für Schritt
+- Web-App: Voll-Lizenz (Admin oder Büro) mit Zugriff auf „Plantafel“ und auf das Projekt.
+- Mobile-App: Das Teammitglied ist mit einem App-Benutzer verknüpft und sieht seine Einsätze unter „Einsätze“.
 
-1. Öffnen Sie „Plantafel“ und wählen Sie den benötigten Zeitraum.
-2. Wählen Sie „Neuer Einsatz → Mitarbeiter-Einsatz“ oder öffnen Sie die Anlage an einer passenden freien Stelle.
-3. Wählen Sie Projekt und Mitarbeiter.
-4. Prüfen Sie Start- und Enddatum sowie die vorgesehenen Uhrzeiten.
-5. Ordnen Sie bei Bedarf die passende Projektphase zu und ergänzen Sie verständliche Notizen.
-6. Wählen Sie „Einsatz planen“.
-7. Kontrollieren Sie die Einordnung in der Plantafel und angezeigte Konflikte.
+## Schritt für Schritt in der Web-App
 
-Sie können einen Einsatz auch aus „Projekte → Terminplanung“ an einer Phase planen. Projekt, Phase und Zeitraum werden dabei vorbefüllt und müssen trotzdem geprüft werden.
+### Einen Einsatz anlegen
 
-## Einen Einsatz verschieben
+1. Öffnen Sie „Plantafel“ und wählen Sie den Zeitraum.
+2. Klicken Sie oben rechts auf „Einplanen“.
+3. Wählen Sie die Art des Einsatzes, zum Beispiel „Mitarbeiter“ oder „Team“.
+4. Wählen Sie das Projekt und bei Bedarf den Arbeitsabschnitt.
+5. Setzen Sie den Beginn und für mehrere Tage „Bis einschließlich (optional)“.
+6. Ergänzen Sie bei Bedarf „Uhrzeit von“ und „Uhrzeit bis“.
+7. Wählen Sie die Mitarbeiter aus.
+8. Ergänzen Sie unter „Mehr Einstellungen“ bei Bedarf Farbe und „Einsatzadresse“.
+9. Klicken Sie auf „Einplanen“.
 
-Öffnen Sie den bestehenden Einsatz zur Bearbeitung und ändern Sie den Zeitraum. Alternativ verwenden Sie eine unterstützte Ziehbewegung auf der Plantafel.
+Ohne eigene Einsatzadresse gilt die Projektadresse („Leer übernimmt die Projektadresse.“). Eine Notiz für das Team tragen Sie unter „Notiz (optional)“ ein.
 
-Kontrollieren Sie nach beiden Wegen die neue Besetzung, Abwesenheiten und zeitlichen Überschneidungen. Eine sichtbare Verschiebung bedeutet nicht, dass jede fachliche Voraussetzung der neuen Planung erfüllt ist.
+Findet die Planungsprüfung eine Doppelbelegung oder einen Termin außerhalb des Projekt- oder Abschnittszeitraums, erscheint „Hinweis zur Planung“. Prüfen Sie die Hinweise und wählen Sie „Trotzdem einplanen“ oder „Abbrechen“.
 
-## Ergebnis und Fehlerhilfe
+### Einen Einsatz am Arbeitsabschnitt planen
 
-Der Einsatz erscheint beim passenden Mitarbeiter und Projekt. Prüfen Sie anschließend, ob die betroffene Person ihre aktualisierte Aufgabe in der Mobile-App sehen kann.
+1. Öffnen Sie das Projekt und wechseln Sie zu „Terminplanung“.
+2. Wählen Sie am Arbeitsabschnitt „Jetzt einplanen“.
+3. Prüfen Sie die vorbelegten Angaben zu Projekt, Abschnitt und Zeitraum.
+4. Wählen Sie die Mitarbeiter und klicken Sie auf „Einplanen“.
 
-## Einsatzorte auf der Karte prüfen
+### Einen Einsatz verschieben
 
-Öffnen Sie im Web „Einsätze“ und wählen Sie den benötigten Tag beziehungsweise Mitarbeiter. Die Karte zeigt die geplanten Einsatzorte mit der zugehörigen Teamplanung. So erkennen Sie, welche Aufträge räumlich zusammenliegen und wo Ihr Team eingeplant ist.
+1. Ziehen Sie den Einsatz auf der Plantafel an den neuen Tag oder zur neuen Person.
+2. Prüfen Sie einen angezeigten „Hinweis zur Planung“.
+3. Wählen Sie in der Meldung „Einsatz verschoben“ bei Bedarf „Mitarbeiter benachrichtigen“.
 
-Ein Einsatz benötigt einen hinterlegten Zielstandort oder Projektkoordinaten, damit er als Kartenpunkt erscheint. Ohne Koordinaten bleibt er in der Liste mit dem Hinweis „Keine Koordinaten“ sichtbar. Prüfen Sie dann die Zielangaben beziehungsweise den [Projektstandort](/hilfe/projekt-phasen-anlegen).
+Alternativ öffnen Sie den Einsatz per Klick und ändern dort den Zeitraum.
 
-Die Karte zeigt geplante Einsatzorte. Sie zeigt weder fortlaufende Mitarbeiterpositionen noch den tatsächlichen Aufenthaltsort Ihres Teams. Die sichtbaren Einsätze richten sich nach Rolle und Projektzugriff; die Planung im Web benötigt eine entsprechende Büro- oder Admin-Freigabe.
+## Schritt für Schritt in der Mobile-App
 
-## Benachrichtigungen bei Änderungen
+1. Tippen Sie auf „Einsätze“.
+2. Öffnen Sie den Einsatz des Tages.
+3. Prüfen Sie Projekt, Zeitraum, Status und den Arbeitsabschnitt.
+4. Tippen Sie mit Internetverbindung auf „Navigation starten“.
 
-Wenn Sie einen Einsatz anlegen oder ändern, erhält das zugeordnete Teammitglied eine Benachrichtigung. Eine Datumsänderung bei derselben Person meldet CraftOS als „Einsatz verschoben“ mit Projekt und neuem Datum; Änderungen an Uhrzeit oder Projekt als „Einsatz geändert“.
+Mit App-Lizenz steht „Einsätze“ in der unteren Leiste, mit Voll-Lizenz unter „Mehr“. Für die Route fragt die App einmalig Ihren aktuellen Standort ab; das hinterlegte Ziel bleibt in jedem Fall sichtbar.
 
-Das Teammitglied muss mit einem App-Benutzer verknüpft sein. Wer die Änderung selbst auslöst, erhält dafür keine zusätzliche Benachrichtigung. Für Push-Mitteilungen muss die Person in der Mobile-App angemeldet sein und Push sowohl in den App-Einstellungen als auch im Betriebssystem erlauben. Die Benachrichtigung wird außerdem in der Web-Glocke hinterlegt; die tatsächliche Push-Zustellung hängt von Gerät und Verbindung ab.
+## Ergebnis prüfen
 
-## Den Einsatz unterwegs öffnen
+Der Einsatz steht in der Plantafel bei der richtigen Person und im richtigen Zeitraum. Bei einem neuen oder geänderten Einsatz erhält das zugeordnete Teammitglied eine Benachrichtigung; eine Datumsänderung erscheint als „Einsatz verschoben“ mit Projekt und neuem Datum.
 
-Öffnen Sie in der Mobile-App „Einsätze“; je nach Rolle finden Sie den Bereich unter „Mehr“. Im Einsatz sehen Sie Projekt, Zeitraum und Status sowie den hinterlegten Zielort. Mit Internetverbindung können Sie die Karte und die verfügbare Route öffnen.
+Unter „Einsätze“ in der Web-App sehen Sie die geplanten Einsatzorte auf der Karte. Die Karte zeigt die Position laut Einsatzplan, so erkennen Sie, welche Aufträge räumlich zusammenliegen. Für Push-Mitteilungen erlaubt das Teammitglied Benachrichtigungen in der Mobile-App und im Betriebssystem.
 
-Für die Route fragt die App einmalig Ihren aktuellen Standort ab. Ohne Standortfreigabe oder verwertbares GPS bleibt das hinterlegte Ziel verfügbar, eine Route ab Ihrem Standort kann dann nicht berechnet werden. Karten und Routen benötigen eine Internetverbindung; die [Offline-Hilfe](/hilfe/mobile-offline-synchronisierung) erklärt die übrigen gespeicherten Einsatzdaten.
+## Häufige Probleme
 
-Fehlt ein Mitarbeiter, prüfen Sie Teamstatus und aktive Filter. Ist ein Projekt nicht auswählbar, kontrollieren Sie Zugriff und Projektstatus.
+### Warum erscheint ein Einsatz nicht auf der Karte?
 
-Bei „Konflikt erkannt“ prüfen Sie die konkrete Überschneidung, statt den Hinweis pauschal zu ignorieren. Berücksichtigen Sie auch Fahrzeuge und Geräte.
+Der Einsatz hat noch keine Kartenposition. Er steht dann in der Liste mit „Ohne Kartenposition“, und beim Öffnen zeigt CraftOS „Dieser Einsatz hat keine Kartenposition.“ Ergänzen Sie die Einsatzadresse oder den [Projektstandort](/hilfe/projekt-phasen-anlegen).
 
-Die [Ressourcenanleitung](/hilfe/planung-mitarbeiter-ressourcen) ergänzt die Planung; [Arbeitsanweisungen](/funktionen/arbeitsanweisungen) machen den Einsatz vor Ort verständlich.
+### Was bedeutet „Einsatz hier nicht möglich“?
+
+Die gewählte Person ist im Zeitraum abwesend, zum Beispiel wegen genehmigten Urlaubs. Wählen Sie eine andere Person oder einen anderen Zeitraum; die [Urlaubsanleitung](/hilfe/urlaub-beantragen-bearbeiten) zeigt die Abwesenheiten.
+
+### Warum ist ein Projekt im Dialog nicht auswählbar?
+
+Sie planen nur Projekte, auf die Ihre Rolle Zugriff hat. Prüfen Sie Projektzugriff und Projektstatus; bei abgeschlossenen Projekten nennt die Planungsprüfung einen Hinweis.
+
+### Wie plane ich Fahrzeuge und Geräte dazu?
+
+Wählen Sie im Dialog „Einplanen“ die Art „Gerät/Fahrzeug“. Wie Sie Geräte und Fahrzeuge anlegen, zeigt die Anleitung [Mitarbeiter, Fahrzeuge und Geräte zuordnen](/hilfe/planung-mitarbeiter-ressourcen).
+
+Die [Plantafel](/funktionen/plantafel) beschreibt den Gesamtablauf; [Arbeitsanweisungen](/funktionen/arbeitsanweisungen) machen den Einsatz vor Ort verständlich.
