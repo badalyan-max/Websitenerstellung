@@ -292,3 +292,21 @@ Nicht in dieser Phase: Änderungen an Rechtstexten (Wortlaut), Datenschutzabschn
   - **Ausdrücklich nicht Teil von D-42:**
     - der Satz „Server in der EU“ in `/datenschutz` (Prüfung offen, Rechtstext)
     - die EU-Jurisdiktion der R2-Buckets (Produkt-Repo)
+- **D-43 GoBD-Aussage** (Inhaber 23.10.2026: „generell auch, dass wir GoBD-konform sind, voll“):
+  - **Neue Aussage:** Die Website sagt durchgehend und positiv „CraftOS ist GoBD-konform“. Das ersetzt „unterstützt GoBD-konforme Abläufe“ und die Sätze „die GoBD-Konformität des gesamten Verfahrens organisiert Ihr Betrieb“.
+  - **Belege aus dem Release-Code:**
+    - Festschreibung von Ausgangsrechnungen mit Löschsperre (`LockDocumentDialog`, `is_locked`-Trigger)
+    - Sperre geprüfter Eingangsrechnungen (`useConfirmReview`)
+    - unveränderliches Änderungsprotokoll festgeschriebener Belege (`DATABASE.md`)
+    - Dokumentversionen
+    - unverändert archiviertes E-Rechnungs-XML
+    - DATEV-Export (EXTF und Beleg-ZIP)
+  - **Zertifizierungs-FAQ:** Die FAQ „Ist CraftOS GoBD-zertifiziert?“ wird positiv beantwortet: Eine amtliche GoBD-Zertifizierung gibt es nicht; CraftOS ist GoBD-konform aufgebaut, mit den Belegen. Kein „Nein“ am Satzanfang und kein Begriff „zertifiziert“ als Behauptung. `lib/nur-unterstuetzt.ts` (erlaubt-Liste) anpassen.
+  - **Zielorte:**
+    - `/gobd` (Kopf, Abschnitte, FAQ)
+    - `/fakten-ueber-craftos`
+    - die Startseiten-FAQ
+    - `llms.txt`
+    - die GoBD-Erwähnungen in `lib/funktionsdetails`, `funktionsgruppen`, `kleine-betriebe` und `wettbewerber/craftnote`
+    - die Hilfe- und Blogartikel mit GoBD-Bezug, nur im GoBD-Satz
+  - **Zeitpunkt:** nach den Merges b, d und f auf `main`, vor 10-12.
