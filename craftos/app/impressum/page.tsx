@@ -4,7 +4,7 @@ import { crumbsFor } from '@/lib/breadcrumbs'
 import { site } from '@/lib/site'
 import { metaFor, zielwerte } from '@/lib/seo-meta'
 
-// Nur Metadaten und H1 aus der Keyword-Map (08-04, D-20); der Rechtstext bleibt unverändert.
+// Nur Metadaten und H1 aus der Keyword-Map (08-04, D-20); am Rechtstext entfiel nur der Hinweis auf die OS-Plattform (D-42).
 export const metadata: Metadata = {
   ...metaFor('/impressum'),
   robots: { index: true, follow: true },

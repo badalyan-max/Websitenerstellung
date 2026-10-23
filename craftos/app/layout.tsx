@@ -10,7 +10,7 @@ import { site } from "@/lib/site";
 
 // Brand-Fonts 1:1 aus der App (self-hosted). Geladen werden nur die tragenden Schnitte Clash 600, General 400
 // und General 600 (10-UI-SPEC § 7.2): Clash 500 war ungenutzt, Clash 700 und General 500 trug nur der Logo-Schriftzug,
-// der jetzt als SVG gezeichnet ist (components/CraftOSLogo.tsx). Die Dateien bleiben in public/fonts (D-04).
+// der jetzt als SVG gezeichnet ist (components/CraftOSLogo.tsx). Die übrigen Dateien sind entfernt (D-42).
 const clash = localFont({
   src: [
     {
