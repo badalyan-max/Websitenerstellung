@@ -330,7 +330,9 @@ export function pruefeGesamtlauf(teile) {
   if (!teile.length) return ["keine Teilberichte"];
   const ohne = teile.filter((t) => typeof t.lauf !== "string" || !t.soll || typeof t.erstellt !== "string");
   if (ohne.length) return [`${ohne.length} Teilbericht(e) ohne Laufangaben (älteres Format) – Teilläufe neu ausführen.`];
-  if (teile.some((t) => t.gezielt === true || (t.optionen?.pfade ?? 0) > 0))
+  // Maßgeblich ist das Kennzeichen aus den Aufrufoptionen. optionen.pfade trägt auch im regulären Lauf die Zahl
+  // aller Sitemap-Pfade (> 0) und taugt deshalb nicht als Merkmal (10-12).
+  if (teile.some((t) => t.gezielt !== false))
     fehler.push("Teilbericht aus einem gezielten Lauf (--paths, --widths oder --engines) – kein Gesamtgate.");
   const schluessel = (t) =>
     JSON.stringify({ lauf: t.lauf, origin: t.origin, b: t.optionen?.breiten, e: t.optionen?.engines, a: t.optionen?.animation, s: t.soll });

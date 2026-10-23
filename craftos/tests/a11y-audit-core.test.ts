@@ -350,6 +350,20 @@ describe("pruefeGesamtlauf (HI-01)", () => {
     expect(pruefeGesamtlauf([laufbericht(1, 2), laufbericht(2, 2, { erstellt: "2026-10-23T11:00:00.000Z" })])).toEqual([]);
   });
 
+  it("lässt einen regulären Lauf durch, dessen Optionen die Zahl der Sitemap-Pfade tragen (10-12)", () => {
+    // Der reguläre Lauf schreibt in optionen.pfade die Zahl aller geprüften Pfade (158), nicht 0.
+    const optionen = { breiten: [360], engines: ["chromium"], concurrency: 2, animation: "an", pfade: 158 };
+    expect(
+      pruefeGesamtlauf([laufbericht(1, 2, { optionen }), laufbericht(2, 2, { optionen, erstellt: "2026-10-23T11:00:00.000Z" })]),
+    ).toEqual([]);
+  });
+
+  it("lehnt Teilberichte ohne ausdrückliches gezielt: false ab", () => {
+    const { gezielt: _weg, ...ohne } = laufbericht(1, 1);
+    void _weg;
+    expect(pruefeGesamtlauf([ohne]).join(" ")).toContain("gezielt");
+  });
+
   it("lehnt einen gezielten Lauf (--paths/--widths/--engines) als Gesamtgate ab", () => {
     const f = pruefeGesamtlauf([laufbericht(1, 1, { gezielt: true, optionen: { breiten: [1440], engines: ["chromium"], animation: "an", pfade: 1 } })]);
     expect(f.join(" ")).toContain("gezielt");
