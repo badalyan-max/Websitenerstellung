@@ -32,7 +32,7 @@ export function LegalShell({
         </div>
       </div>
       <div className="mx-auto max-w-3xl px-5 py-14 sm:px-8">
-        <div className="legal space-y-8 text-[15px] leading-relaxed text-ink-700">{children}</div>
+        <div data-rechtstext="" className="legal space-y-8 text-[15px] leading-relaxed text-ink-700">{children}</div>
       </div>
     </section>
   )
