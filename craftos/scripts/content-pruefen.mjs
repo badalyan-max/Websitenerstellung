@@ -34,7 +34,7 @@ import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { antwortBefunde } from "./lib/antwort-pruefung.mjs";
-import { stringLiterale } from "./lib/ts-literale.mjs";
+import { stringLiterale, zusammengesetzteTexte } from "./lib/ts-literale.mjs";
 import { FREISCHALTUNG, istUiQuelle, normalisiert, OHNE_NICHT_UI, uiTexte, zitatBelegt, zitateAus } from "./lib/zitat-belege.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
@@ -305,7 +305,7 @@ function pruefeL1(dateien) {
     if (datei.endsWith(".ts")) {
       // Jedes Literal ist möglicher Seitentext, auch ein einzelnes Leitlinienwort (09-REVIEW ME-04): Die einzige
       // Wortliste ist lib/leitlinie-l1.json, wie in tests/content-produktwahrheit.test.ts.
-      for (const lit of stringLiterale(inhalt)) {
+      for (const lit of [...stringLiterale(inhalt), ...zusammengesetzteTexte(inhalt)]) {
         for (const wort of l1.treffer(ohnePflichthinweise(lit, l1.pflicht))) {
           const pos = inhalt.indexOf(lit);
           const zeile = pos === -1 ? null : inhalt.slice(0, pos).split("\n").length;

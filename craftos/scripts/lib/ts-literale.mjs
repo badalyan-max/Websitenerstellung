@@ -29,3 +29,44 @@ export function stringLiterale(tsQuelltext) {
   besuche(datei);
   return out;
 }
+
+/**
+ * Zusammengesetzte Texte (09-REVIEW IN-08): `"Online" + "zahlung"` oder `` `nicht ${x}unterstützt` `` umgehen eine
+ * Prüfung je Literal. Geliefert wird je äußerster `+`-Kette mit mindestens einem String-Literal und je
+ * Template-Literal mit Platzhaltern der Text, in dem Nicht-Literale und Platzhalter leer bleiben. Ergänzt
+ * `stringLiterale`, ersetzt es nicht.
+ * @param {string} tsQuelltext
+ * @returns {string[]}
+ */
+export function zusammengesetzteTexte(tsQuelltext) {
+  const datei = ts.createSourceFile("quelle.ts", tsQuelltext, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  const out = [];
+  const istPlus = (n) => ts.isBinaryExpression(n) && n.operatorToken.kind === ts.SyntaxKind.PlusToken;
+  const text = (n) => {
+    if (ts.isParenthesizedExpression(n)) return text(n.expression);
+    if (ts.isStringLiteral(n) || ts.isNoSubstitutionTemplateLiteral(n)) return n.text;
+    if (ts.isTemplateExpression(n)) return n.head.text + n.templateSpans.map((s) => s.literal.text).join("");
+    if (istPlus(n)) return text(n.left) + text(n.right);
+    return "";
+  };
+  const hatLiteral = (n) =>
+    ts.isStringLiteral(n) ||
+    ts.isNoSubstitutionTemplateLiteral(n) ||
+    ts.isTemplateExpression(n) ||
+    (ts.isParenthesizedExpression(n) && hatLiteral(n.expression)) ||
+    (istPlus(n) && (hatLiteral(n.left) || hatLiteral(n.right)));
+  /** Nächster Vorfahr außerhalb von Klammern. */
+  const ausserhalb = (node) => {
+    let p = node.parent;
+    while (p && ts.isParenthesizedExpression(p)) p = p.parent;
+    return p;
+  };
+  const besuche = (node) => {
+    const teilVonPlus = istPlus(ausserhalb(node) ?? node.getSourceFile());
+    if (istPlus(node) && !teilVonPlus && hatLiteral(node)) out.push(text(node));
+    else if (ts.isTemplateExpression(node) && !teilVonPlus) out.push(text(node));
+    ts.forEachChild(node, besuche);
+  };
+  besuche(datei);
+  return out;
+}

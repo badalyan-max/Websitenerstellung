@@ -13,7 +13,7 @@ import matter from "gray-matter";
 import { l1Treffer } from "@/lib/leitlinie";
 import leitlinie from "@/lib/leitlinie-l1.json";
 import { artikelAussagen, nurUnterstuetztVerstoesse } from "@/lib/nur-unterstuetzt";
-import { stringLiterale } from "../scripts/lib/ts-literale.mjs";
+import { stringLiterale, zusammengesetzteTexte } from "../scripts/lib/ts-literale.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
 const MD_ORDNER = ["content/blog", "content/hilfe"];
@@ -64,7 +64,8 @@ function ohneGaebFachteil(markdown: string): string {
  * `label: "Onlinezahlung"`), ist sichtbarer Text und wird gemeldet.
  */
 function trefferInDatei(rel: string, inhalt: string): { datei: string; wort: string }[] {
-  let text = rel.endsWith(".ts") ? stringLiterale(inhalt).join("\n") : inhalt;
+  // IN-08: zusätzlich zusammengesetzte Texte („Online“ + „zahlung“, Template-Literale mit Platzhaltern).
+  let text = rel.endsWith(".ts") ? [...stringLiterale(inhalt), ...zusammengesetzteTexte(inhalt)].join("\n") : inhalt;
   if (rel === GAEB.datei) text = ohneGaebFachteil(text);
   return l1Treffer(ohnePflichthinweise(text)).map((wort) => ({ datei: rel, wort }));
 }
@@ -256,6 +257,19 @@ describe("Prüfmechanik (Fixtures)", () => {
     expect(trefferInDatei("lib/funktionsdetails/rechnung.ts", quelle).map((x) => x.wort)).toEqual([
       "Onlinezahlung",
       "DATANORM v5",
+    ]);
+  });
+
+  it("TypeScript: zusammengesetzte Texte aus + und Template-Literalen werden als Ganzes geprüft (IN-08)", () => {
+    const quelle = [
+      'export const a = "Online" + "zahlung";',
+      "export const b = (x: string) => `nicht ${x}unterstützt`;",
+      'export const c = "Bald " + name + "verfügbar";',
+    ].join("\n");
+    expect(trefferInDatei("lib/funktionsdetails/x.ts", quelle).map((x) => x.wort)).toEqual([
+      "nicht unterstützt",
+      "Onlinezahlung",
+      "Bald verfügbar",
     ]);
   });
 
