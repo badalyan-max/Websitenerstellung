@@ -16,4 +16,4 @@
 [p] Der Anbieter haftet unbeschränkt bei Vorsatz und grober Fahrlässigkeit sowie bei der Verletzung von Leben, Körper oder Gesundheit. Im Übrigen ist die Haftung auf den vertragstypischen, vorhersehbaren Schaden begrenzt.
 [h2] § 9 Schlussbestimmungen
 [p] Es gilt das Recht der Bundesrepublik Deutschland. Sollten einzelne Bestimmungen dieser AGB unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.
-[p] Hinweis: Diese AGB sind eine Vorlage und sollten vor Veröffentlichung rechtlich geprüft und an die konkreten Leistungen angepasst werden. Bei Fragen: support@craftos.eu
+[p] Stand: 23. Oktober 2026

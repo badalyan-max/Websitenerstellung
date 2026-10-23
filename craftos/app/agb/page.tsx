@@ -1,6 +1,5 @@
-import { LegalShell, LegalSection, LegalHinweis } from "@/components/legal/Legal";
+import { LegalShell, LegalSection } from "@/components/legal/Legal";
 import { crumbsFor } from "@/lib/breadcrumbs";
-import { site } from "@/lib/site";
 import { metaFor, zielwerte } from "@/lib/seo-meta";
 
 // Nur Metadaten und H1 aus der Keyword-Map (08-04, D-20); der Rechtstext bleibt unverändert.
@@ -87,11 +86,7 @@ export default function AgbPage() {
         </p>
       </LegalSection>
 
-      <LegalHinweis>
-        Hinweis: Diese AGB sind eine Vorlage und sollten vor Veröffentlichung
-        rechtlich geprüft und an die konkreten Leistungen angepasst werden. Bei
-        Fragen: {site.email}
-      </LegalHinweis>
+      <p>Stand: 23. Oktober 2026</p>
     </LegalShell>
   );
 }
