@@ -1,0 +1,7363 @@
+{
+  "data": [
+    {
+      "site_engine_id": 490327,
+      "keywords": [
+        {
+          "id": "22268992",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 58,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 57,
+              "depth": 100,
+              "change": 1,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 58,
+              "depth": 100,
+              "change": -1,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 57,
+              "depth": 100,
+              "change": 1,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "craftview software gmbh",
+          "group_id": 481813,
+          "volume": 110,
+          "competition": 0.12,
+          "suggested_bid": 1.43,
+          "cpc": 1.43,
+          "results": 170,
+          "landing_pages": [
+            {
+              "url": "https://craftos.eu/",
+              "ascii_url": "https://craftos.eu/",
+              "date": "2026-10-20"
+            }
+          ],
+          "total_sum": 0
+        },
+        {
+          "id": "22299127",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "handwerkersoftware",
+          "group_id": 481813,
+          "volume": 1300,
+          "competition": 0.96,
+          "suggested_bid": 9.18,
+          "cpc": 9.18,
+          "results": 184,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299130",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "handwerker software",
+          "group_id": 481813,
+          "volume": 410,
+          "competition": 0.91,
+          "suggested_bid": 10.25,
+          "cpc": 10.25,
+          "results": 132,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299133",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 4,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 4,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 4,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 5,
+              "depth": 100,
+              "change": -1,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "craftos",
+          "group_id": 481813,
+          "volume": 110,
+          "competition": 0,
+          "suggested_bid": 0,
+          "cpc": 0,
+          "results": 27500,
+          "landing_pages": [
+            {
+              "url": "https://craftos.eu/",
+              "ascii_url": "https://craftos.eu/",
+              "date": "2026-10-20"
+            }
+          ],
+          "total_sum": 0
+        },
+        {
+          "id": "22299136",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 1,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 1,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 1,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 1,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "craftos handwerkersoftware",
+          "group_id": 481813,
+          "volume": 0,
+          "competition": 0,
+          "suggested_bid": 0,
+          "cpc": 0,
+          "results": 93,
+          "landing_pages": [
+            {
+              "url": "https://craftos.eu/",
+              "ascii_url": "https://craftos.eu/",
+              "date": "2026-10-20"
+            }
+          ],
+          "total_sum": 0
+        },
+        {
+          "id": "22299139",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "software handwerksbetrieb",
+          "group_id": 481813,
+          "volume": 110,
+          "competition": 0.9,
+          "suggested_bid": 6.66,
+          "cpc": 6.66,
+          "results": 124,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299142",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "handwerkersoftware kostenlos",
+          "group_id": 481813,
+          "volume": 50,
+          "competition": 0.58,
+          "suggested_bid": 3.62,
+          "cpc": 3.62,
+          "results": 115,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299145",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "handwerkersoftware kleinbetriebe",
+          "group_id": 481813,
+          "volume": 20,
+          "competition": 0.99,
+          "suggested_bid": 5.33,
+          "cpc": 5.33,
+          "results": 131,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299148",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "handwerkersoftware vergleich",
+          "group_id": 481813,
+          "volume": 90,
+          "competition": 0.88,
+          "suggested_bid": 7.13,
+          "cpc": 7.13,
+          "results": 117,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299151",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "beste handwerkersoftware",
+          "group_id": 481813,
+          "volume": 90,
+          "competition": 0.81,
+          "suggested_bid": 9.42,
+          "cpc": 9.42,
+          "results": 175,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299154",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "plancraft alternative",
+          "group_id": 481813,
+          "volume": 30,
+          "competition": 0.55,
+          "suggested_bid": 3.97,
+          "cpc": 3.97,
+          "results": 111,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299157",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "craftnote alternative",
+          "group_id": 481813,
+          "volume": 30,
+          "competition": 0.82,
+          "suggested_bid": 5.4,
+          "cpc": 5.4,
+          "results": 114,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299160",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "hero software alternative",
+          "group_id": 481813,
+          "volume": 10,
+          "competition": 0.45,
+          "suggested_bid": 11.59,
+          "cpc": 11.59,
+          "results": 114,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299163",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "tooltime alternative",
+          "group_id": 481813,
+          "volume": 30,
+          "competition": 0.34,
+          "suggested_bid": 4.56,
+          "cpc": 4.56,
+          "results": 178,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299166",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "handwerker app",
+          "group_id": 481813,
+          "volume": 20,
+          "competition": 0.68,
+          "suggested_bid": 4.04,
+          "cpc": 4.04,
+          "results": 158,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299169",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "handwerker app kostenlos",
+          "group_id": 481813,
+          "volume": 110,
+          "competition": 0.81,
+          "suggested_bid": 2.04,
+          "cpc": 2.04,
+          "results": 147,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299172",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "baustellen app",
+          "group_id": 481813,
+          "volume": 260,
+          "competition": 0.71,
+          "suggested_bid": 3.68,
+          "cpc": 3.68,
+          "results": 161,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299175",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "aufmaß app",
+          "group_id": 481813,
+          "volume": 590,
+          "competition": 0.67,
+          "suggested_bid": 2.16,
+          "cpc": 2.16,
+          "results": 158,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299178",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "bautagebuch app",
+          "group_id": 481813,
+          "volume": 590,
+          "competition": 0.69,
+          "suggested_bid": 2.87,
+          "cpc": 2.87,
+          "results": 142,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299181",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "baudokumentation app",
+          "group_id": 481813,
+          "volume": 90,
+          "competition": 0.74,
+          "suggested_bid": 4.02,
+          "cpc": 4.02,
+          "results": 158,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299184",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "digitale bauakte",
+          "group_id": 481813,
+          "volume": 170,
+          "competition": 0.63,
+          "suggested_bid": 3.7,
+          "cpc": 3.7,
+          "results": 180,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299187",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "zeiterfassung handwerk",
+          "group_id": 481813,
+          "volume": 390,
+          "competition": 0.99,
+          "suggested_bid": 7.61,
+          "cpc": 7.61,
+          "results": 133,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299190",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "mobile zeiterfassung handwerker",
+          "group_id": 481813,
+          "volume": 140,
+          "competition": 0.64,
+          "suggested_bid": 5.8,
+          "cpc": 5.8,
+          "results": 202,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299193",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "plantafel software",
+          "group_id": 481813,
+          "volume": 90,
+          "competition": 0.59,
+          "suggested_bid": 6.37,
+          "cpc": 6.37,
+          "results": 117,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299196",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "einsatzplanung handwerk",
+          "group_id": 481813,
+          "volume": 30,
+          "competition": 0.55,
+          "suggested_bid": 3,
+          "cpc": 3,
+          "results": 128,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299199",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "angebotssoftware handwerk",
+          "group_id": 481813,
+          "volume": 70,
+          "competition": 0.97,
+          "suggested_bid": 10.2,
+          "cpc": 10.2,
+          "results": 129,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299202",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "kalkulationssoftware bau",
+          "group_id": 481813,
+          "volume": 480,
+          "competition": 0.21,
+          "suggested_bid": 2.07,
+          "cpc": 2.07,
+          "results": 137,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299205",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "rechnungssoftware handwerker",
+          "group_id": 481813,
+          "volume": 210,
+          "competition": 0.92,
+          "suggested_bid": 8.55,
+          "cpc": 8.55,
+          "results": 126,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299208",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "rechnungsprogramm handwerker",
+          "group_id": 481813,
+          "volume": 10,
+          "competition": 1,
+          "suggested_bid": 7.19,
+          "cpc": 7.19,
+          "results": 193,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299211",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "e-rechnung handwerker",
+          "group_id": 481813,
+          "volume": 70,
+          "competition": 0.7,
+          "suggested_bid": 1.86,
+          "cpc": 1.86,
+          "results": 59,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299214",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "xrechnung zugferd unterschied",
+          "group_id": 481813,
+          "volume": 70,
+          "competition": 0.7,
+          "suggested_bid": 0.34,
+          "cpc": 0.34,
+          "results": 138,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299217",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "auftragsverwaltung software",
+          "group_id": 481813,
+          "volume": 170,
+          "competition": 0.49,
+          "suggested_bid": 4.2,
+          "cpc": 4.2,
+          "results": 142,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299220",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 78,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": -22,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 74,
+              "depth": 100,
+              "change": 26,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 75,
+              "depth": 100,
+              "change": -1,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "lagerverwaltung handwerk",
+          "group_id": 481813,
+          "volume": 20,
+          "competition": 0.93,
+          "suggested_bid": 3.22,
+          "cpc": 3.22,
+          "results": 143,
+          "landing_pages": [
+            {
+              "url": "https://craftos.eu/funktionen/lager",
+              "ascii_url": "https://craftos.eu/funktionen/lager",
+              "date": "2026-10-20"
+            }
+          ],
+          "total_sum": 0
+        },
+        {
+          "id": "22299223",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "nachkalkulation handwerk",
+          "group_id": 481813,
+          "volume": 40,
+          "competition": 0.62,
+          "suggested_bid": 2.08,
+          "cpc": 2.08,
+          "results": 120,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299226",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "gaeb software",
+          "group_id": 481813,
+          "volume": 140,
+          "competition": 0.64,
+          "suggested_bid": 2.53,
+          "cpc": 2.53,
+          "results": 103,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299229",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "mahnwesen software",
+          "group_id": 481813,
+          "volume": 40,
+          "competition": 0.2,
+          "suggested_bid": 0,
+          "cpc": 0,
+          "results": 176,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299232",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "handwerker stundensatz",
+          "group_id": 481813,
+          "volume": 320,
+          "competition": 0.02,
+          "suggested_bid": 0.41,
+          "cpc": 0.41,
+          "results": 128,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299235",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "stundenverrechnungssatz berechnen",
+          "group_id": 481813,
+          "volume": 480,
+          "competition": 0.23,
+          "suggested_bid": 0.29,
+          "cpc": 0.29,
+          "results": 126,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299238",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "abschlagsrechnung schlussrechnung",
+          "group_id": 481813,
+          "volume": 70,
+          "competition": 0.14,
+          "suggested_bid": 2.18,
+          "cpc": 2.18,
+          "results": 132,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299241",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "schlussrechnung",
+          "group_id": 481813,
+          "volume": 1800,
+          "competition": 0.08,
+          "suggested_bid": 1.35,
+          "cpc": 1.35,
+          "results": 129,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299244",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "handwerkerrechnung schreiben",
+          "group_id": 481813,
+          "volume": 10,
+          "competition": 0.69,
+          "suggested_bid": 2.46,
+          "cpc": 2.46,
+          "results": 133,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299247",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "gobd handwerk",
+          "group_id": 481813,
+          "volume": 10,
+          "competition": 0,
+          "suggested_bid": 0,
+          "cpc": 0,
+          "results": 183,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299250",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "elektriker software",
+          "group_id": 481813,
+          "volume": 70,
+          "competition": 0.7,
+          "suggested_bid": 4.95,
+          "cpc": 4.95,
+          "results": 134,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299253",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 29,
+              "depth": 100,
+              "change": 71,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "shk software",
+          "group_id": 481813,
+          "volume": 210,
+          "competition": 0.61,
+          "suggested_bid": 6.71,
+          "cpc": 6.71,
+          "results": 134,
+          "landing_pages": [
+            {
+              "url": "https://craftos.eu/gewerke/shk",
+              "ascii_url": "https://craftos.eu/gewerke/shk",
+              "date": "2026-10-23"
+            }
+          ],
+          "total_sum": 0
+        },
+        {
+          "id": "22299256",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "maler software",
+          "group_id": 481813,
+          "volume": 140,
+          "competition": 0.63,
+          "suggested_bid": 7.03,
+          "cpc": 7.03,
+          "results": 132,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299259",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "schreiner software",
+          "group_id": 481813,
+          "volume": 210,
+          "competition": 0.6,
+          "suggested_bid": 3.51,
+          "cpc": 3.51,
+          "results": 122,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299262",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "tischler software",
+          "group_id": 481813,
+          "volume": 90,
+          "competition": 0.8,
+          "suggested_bid": 4.45,
+          "cpc": 4.45,
+          "results": 118,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299265",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "dachdecker software",
+          "group_id": 481813,
+          "volume": 320,
+          "competition": 0.62,
+          "suggested_bid": 6.23,
+          "cpc": 6.23,
+          "results": 123,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299268",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "trockenbau software",
+          "group_id": 481813,
+          "volume": 140,
+          "competition": 0.44,
+          "suggested_bid": 2.92,
+          "cpc": 2.92,
+          "results": 114,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299271",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "zimmerei software",
+          "group_id": 481813,
+          "volume": 140,
+          "competition": 0.57,
+          "suggested_bid": 3.9,
+          "cpc": 3.9,
+          "results": 132,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299274",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "galabau software",
+          "group_id": 481813,
+          "volume": 210,
+          "competition": 0.57,
+          "suggested_bid": 4.61,
+          "cpc": 4.61,
+          "results": 153,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299277",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "fliesenleger software",
+          "group_id": 481813,
+          "volume": 170,
+          "competition": 0.44,
+          "suggested_bid": 5.87,
+          "cpc": 5.87,
+          "results": 114,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22299280",
+          "positions": [
+            {
+              "date": "2026-10-20",
+              "pos": 58,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-21",
+              "pos": 61,
+              "depth": 100,
+              "change": -3,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 58,
+              "depth": 100,
+              "change": 3,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 59,
+              "depth": 100,
+              "change": -1,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "metallbau software",
+          "group_id": 481813,
+          "volume": 140,
+          "competition": 0.34,
+          "suggested_bid": 4.58,
+          "cpc": 4.58,
+          "results": 141,
+          "landing_pages": [
+            {
+              "url": "https://craftos.eu/gewerke/metallbau",
+              "ascii_url": "https://craftos.eu/gewerke/metallbau",
+              "date": "2026-10-20"
+            }
+          ],
+          "total_sum": 0
+        },
+        {
+          "id": "22311121",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "software für handwerksbetriebe",
+          "group_id": 481813,
+          "volume": 110,
+          "competition": 0.93,
+          "suggested_bid": 6.5,
+          "cpc": 6.5,
+          "results": 129,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311124",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "branchensoftware handwerk",
+          "group_id": 481813,
+          "volume": 20,
+          "competition": 0.79,
+          "suggested_bid": 8.18,
+          "cpc": 8.18,
+          "results": 135,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311127",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "ki im handwerk",
+          "group_id": 481813,
+          "volume": 390,
+          "competition": 0.7,
+          "suggested_bid": 2.33,
+          "cpc": 2.33,
+          "results": 137,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311130",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "handwerkersoftware preise",
+          "group_id": 481813,
+          "volume": 50,
+          "competition": 0.94,
+          "suggested_bid": 4.71,
+          "cpc": 4.71,
+          "results": 171,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311133",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "gobd konforme software",
+          "group_id": 481813,
+          "volume": 40,
+          "competition": 0.99,
+          "suggested_bid": 3.4,
+          "cpc": 3.4,
+          "results": 127,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311136",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "handwerk blog",
+          "group_id": 481813,
+          "volume": 40,
+          "competition": 0.14,
+          "suggested_bid": 0,
+          "cpc": 0,
+          "results": 141,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311139",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "kalkulationsrechner",
+          "group_id": 481813,
+          "volume": 40,
+          "competition": 0.56,
+          "suggested_bid": 1.39,
+          "cpc": 1.39,
+          "results": 108,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311142",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "angebotskalkulation",
+          "group_id": 481813,
+          "volume": 590,
+          "competition": 0.21,
+          "suggested_bid": 2.34,
+          "cpc": 2.34,
+          "results": 123,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311145",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "kennzahlen handwerksbetrieb",
+          "group_id": 481813,
+          "volume": 10,
+          "competition": 0,
+          "suggested_bid": 0,
+          "cpc": 0,
+          "results": 139,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311148",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "angebotssoftware",
+          "group_id": 481813,
+          "volume": 210,
+          "competition": 0.84,
+          "suggested_bid": 9.99,
+          "cpc": 9.99,
+          "results": 121,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311151",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "e-rechnung handwerk",
+          "group_id": 481813,
+          "volume": 50,
+          "competition": 0.59,
+          "suggested_bid": 2.73,
+          "cpc": 2.73,
+          "results": 126,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311154",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "buchhaltung handwerk",
+          "group_id": 481813,
+          "volume": 210,
+          "competition": 0.88,
+          "suggested_bid": 4.41,
+          "cpc": 4.41,
+          "results": 133,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311157",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "eingangsrechnungen digitalisieren",
+          "group_id": 481813,
+          "volume": 90,
+          "competition": 0.42,
+          "suggested_bid": 3.55,
+          "cpc": 3.55,
+          "results": 193,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311160",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "lagerverwaltung app",
+          "group_id": 481813,
+          "volume": 210,
+          "competition": 0.45,
+          "suggested_bid": 2.26,
+          "cpc": 2.26,
+          "results": 154,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311163",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "arbeitsanweisung erstellen",
+          "group_id": 481813,
+          "volume": 90,
+          "competition": 0.45,
+          "suggested_bid": 1.81,
+          "cpc": 1.81,
+          "results": 99,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311166",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "mitarbeiter app handwerk",
+          "group_id": 481813,
+          "volume": 10,
+          "competition": 0.54,
+          "suggested_bid": 0,
+          "cpc": 0,
+          "results": 156,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311169",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "kundenportal software",
+          "group_id": 481813,
+          "volume": 110,
+          "competition": 0.47,
+          "suggested_bid": 5.81,
+          "cpc": 5.81,
+          "results": 113,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311172",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "software für maler",
+          "group_id": 481813,
+          "volume": 170,
+          "competition": 0.54,
+          "suggested_bid": 6.97,
+          "cpc": 6.97,
+          "results": 143,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311175",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "software für schreiner",
+          "group_id": 481813,
+          "volume": 210,
+          "competition": 0.6,
+          "suggested_bid": 3.51,
+          "cpc": 3.51,
+          "results": 137,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311178",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "zimmerer software",
+          "group_id": 481813,
+          "volume": 140,
+          "competition": 0.57,
+          "suggested_bid": 3.9,
+          "cpc": 3.9,
+          "results": 126,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311181",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "bauunternehmen software",
+          "group_id": 481813,
+          "volume": 210,
+          "competition": 0.76,
+          "suggested_bid": 6.14,
+          "cpc": 6.14,
+          "results": 132,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311184",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "hausmeister software",
+          "group_id": 481813,
+          "volume": 260,
+          "competition": 0.64,
+          "suggested_bid": 5.93,
+          "cpc": 5.93,
+          "results": 109,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311187",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "kalkulation handwerk",
+          "group_id": 481813,
+          "volume": 90,
+          "competition": 0.62,
+          "suggested_bid": 2.31,
+          "cpc": 2.31,
+          "results": 136,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311190",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "belege digitalisieren",
+          "group_id": 481813,
+          "volume": 90,
+          "competition": 0.85,
+          "suggested_bid": 2.51,
+          "cpc": 2.51,
+          "results": 224,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311193",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "projektmanagement bau",
+          "group_id": 481813,
+          "volume": 480,
+          "competition": 0.59,
+          "suggested_bid": 1.8,
+          "cpc": 1.8,
+          "results": 119,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311196",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "baustellenkommunikation",
+          "group_id": 481813,
+          "volume": 50,
+          "competition": 0.3,
+          "suggested_bid": 3.17,
+          "cpc": 3.17,
+          "results": 139,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311199",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "angebot erstellen software",
+          "group_id": 481813,
+          "volume": 50,
+          "competition": 0.69,
+          "suggested_bid": 8.72,
+          "cpc": 8.72,
+          "results": 192,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311202",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "rechnung erstellen software",
+          "group_id": 481813,
+          "volume": 90,
+          "competition": 0.99,
+          "suggested_bid": 7.6,
+          "cpc": 7.6,
+          "results": 228,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311205",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "belege erfassen",
+          "group_id": 481813,
+          "volume": 30,
+          "competition": 0.73,
+          "suggested_bid": 7.68,
+          "cpc": 7.68,
+          "results": 131,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311208",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "bauprojekt planen",
+          "group_id": 481813,
+          "volume": 50,
+          "competition": 0.49,
+          "suggested_bid": 2.7,
+          "cpc": 2.7,
+          "results": 130,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311211",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "zeiterfassung app",
+          "group_id": 481813,
+          "volume": 3100,
+          "competition": 0.79,
+          "suggested_bid": 2.36,
+          "cpc": 2.36,
+          "results": 168,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311214",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "lagerbestand verwalten",
+          "group_id": 481813,
+          "volume": 10,
+          "competition": 0.57,
+          "suggested_bid": 6.33,
+          "cpc": 6.33,
+          "results": 135,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311217",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "baustellendokumentation",
+          "group_id": 481813,
+          "volume": 210,
+          "competition": 0.54,
+          "suggested_bid": 4.58,
+          "cpc": 4.58,
+          "results": 148,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311220",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "aufmaß erstellen",
+          "group_id": 481813,
+          "volume": 210,
+          "competition": 0.54,
+          "suggested_bid": 2.39,
+          "cpc": 2.39,
+          "results": 111,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311223",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "baustellenplanung",
+          "group_id": 481813,
+          "volume": 70,
+          "competition": 0.54,
+          "suggested_bid": 4.23,
+          "cpc": 4.23,
+          "results": 135,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311226",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "belege für steuerberater vorbereiten",
+          "group_id": 481813,
+          "volume": 10,
+          "competition": 0.62,
+          "suggested_bid": 1.23,
+          "cpc": 1.23,
+          "results": 129,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311229",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "bautagesbericht",
+          "group_id": 481813,
+          "volume": 320,
+          "competition": 1,
+          "suggested_bid": 1.92,
+          "cpc": 1.92,
+          "results": 122,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311232",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "digitale projektakte",
+          "group_id": 481813,
+          "volume": 30,
+          "competition": 0.65,
+          "suggested_bid": 2.95,
+          "cpc": 2.95,
+          "results": 193,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311235",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "eingangsrechnungen verwalten",
+          "group_id": 481813,
+          "volume": 70,
+          "competition": 0.55,
+          "suggested_bid": 7.21,
+          "cpc": 7.21,
+          "results": 137,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311238",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "angebot handwerker",
+          "group_id": 481813,
+          "volume": 170,
+          "competition": 0.37,
+          "suggested_bid": 1.88,
+          "cpc": 1.88,
+          "results": 193,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311241",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "handwerkerrechnung",
+          "group_id": 481813,
+          "volume": 590,
+          "competition": 0.18,
+          "suggested_bid": 1.62,
+          "cpc": 1.62,
+          "results": 128,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311244",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "software für kleine handwerksbetriebe",
+          "group_id": 481813,
+          "volume": 50,
+          "competition": 0.71,
+          "suggested_bid": 6.44,
+          "cpc": 6.44,
+          "results": 182,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311247",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "nachkalkulation",
+          "group_id": 481813,
+          "volume": 590,
+          "competition": 0.08,
+          "suggested_bid": 2.05,
+          "cpc": 2.05,
+          "results": 129,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311250",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "offene posten",
+          "group_id": 481813,
+          "volume": 390,
+          "competition": 0.05,
+          "suggested_bid": 1.7,
+          "cpc": 1.7,
+          "results": 123,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311253",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "offline zeiterfassung",
+          "group_id": 481813,
+          "volume": 10,
+          "competition": 1,
+          "suggested_bid": 3.66,
+          "cpc": 3.66,
+          "results": 136,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311256",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "projektzeiterfassung",
+          "group_id": 481813,
+          "volume": 320,
+          "competition": 0.61,
+          "suggested_bid": 4.86,
+          "cpc": 4.86,
+          "results": 137,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311259",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "zuschlagskalkulation handwerk",
+          "group_id": 481813,
+          "volume": 10,
+          "competition": 0.18,
+          "suggested_bid": 0,
+          "cpc": 0,
+          "results": 132,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311262",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "urlaubsplanung mitarbeiter",
+          "group_id": 481813,
+          "volume": 480,
+          "competition": 1,
+          "suggested_bid": 1.63,
+          "cpc": 1.63,
+          "results": 132,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311265",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "zahlungserinnerung muster",
+          "group_id": 481813,
+          "volume": 260,
+          "competition": 0.06,
+          "suggested_bid": 0.47,
+          "cpc": 0.47,
+          "results": 103,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311268",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "bauabnahme protokoll",
+          "group_id": 481813,
+          "volume": 140,
+          "competition": 0.21,
+          "suggested_bid": 1.13,
+          "cpc": 1.13,
+          "results": 111,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311271",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "abschlagsrechnung muster",
+          "group_id": 481813,
+          "volume": 480,
+          "competition": 0.36,
+          "suggested_bid": 0.52,
+          "cpc": 0.52,
+          "results": 112,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311274",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "angebot erstellen",
+          "group_id": 481813,
+          "volume": 480,
+          "competition": 0.57,
+          "suggested_bid": 4.86,
+          "cpc": 4.86,
+          "results": 136,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311277",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "handwerker angebot in rechnung stellen",
+          "group_id": 481813,
+          "volume": 20,
+          "competition": 0.25,
+          "suggested_bid": 0,
+          "cpc": 0,
+          "results": 146,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311280",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "leistungsverzeichnis vorlage",
+          "group_id": 481813,
+          "volume": 210,
+          "competition": 0.29,
+          "suggested_bid": 1.25,
+          "cpc": 1.25,
+          "results": 98,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311283",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "artikelstammdaten",
+          "group_id": 481813,
+          "volume": 110,
+          "competition": 0.15,
+          "suggested_bid": 2.79,
+          "cpc": 2.79,
+          "results": 111,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311286",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "bautagesbericht vorlage",
+          "group_id": 481813,
+          "volume": 320,
+          "competition": 0.98,
+          "suggested_bid": 1.45,
+          "cpc": 1.45,
+          "results": 108,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311289",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "beleg kontieren",
+          "group_id": 481813,
+          "volume": 170,
+          "competition": 0.22,
+          "suggested_bid": 1.52,
+          "cpc": 1.52,
+          "results": 136,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311292",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "beleg hochladen",
+          "group_id": 481813,
+          "volume": 10,
+          "competition": 0.29,
+          "suggested_bid": 0,
+          "cpc": 0,
+          "results": 130,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311295",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "ki fragen stellen",
+          "group_id": 481813,
+          "volume": 4400,
+          "competition": 0.34,
+          "suggested_bid": 0.04,
+          "cpc": 0.04,
+          "results": 128,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311298",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "datev export",
+          "group_id": 481813,
+          "volume": 210,
+          "competition": 0.34,
+          "suggested_bid": 1.6,
+          "cpc": 1.6,
+          "results": 144,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311301",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "zugferd rechnung erstellen",
+          "group_id": 481813,
+          "volume": 10,
+          "competition": 0.99,
+          "suggested_bid": 1.89,
+          "cpc": 1.89,
+          "results": 136,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311304",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "briefpapier rechnung",
+          "group_id": 481813,
+          "volume": 20,
+          "competition": 0.97,
+          "suggested_bid": 2.1,
+          "cpc": 2.1,
+          "results": 169,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311307",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "gaeb datei öffnen",
+          "group_id": 481813,
+          "volume": 390,
+          "competition": 0.74,
+          "suggested_bid": 1.59,
+          "cpc": 1.59,
+          "results": 101,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311310",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "inventur lager",
+          "group_id": 481813,
+          "volume": 70,
+          "competition": 0.21,
+          "suggested_bid": 3.1,
+          "cpc": 3.1,
+          "results": 190,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311313",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "kundenverwaltung",
+          "group_id": 481813,
+          "volume": 140,
+          "competition": 0.6,
+          "suggested_bid": 6.56,
+          "cpc": 6.56,
+          "results": 136,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311316",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "lagerplatzverwaltung",
+          "group_id": 481813,
+          "volume": 20,
+          "competition": 0.26,
+          "suggested_bid": 3.91,
+          "cpc": 3.91,
+          "results": 57,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311319",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "mängelliste",
+          "group_id": 481813,
+          "volume": 480,
+          "competition": 0.01,
+          "suggested_bid": 0,
+          "cpc": 0,
+          "results": 155,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311322",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "materialentnahmeschein",
+          "group_id": 481813,
+          "volume": 170,
+          "competition": 0.15,
+          "suggested_bid": 2.59,
+          "cpc": 2.59,
+          "results": 96,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311325",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "offline synchronisierung",
+          "group_id": 481813,
+          "volume": 10,
+          "competition": 0,
+          "suggested_bid": 0,
+          "cpc": 0,
+          "results": 120,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311328",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "stempeluhr app",
+          "group_id": 481813,
+          "volume": 10,
+          "competition": 0.75,
+          "suggested_bid": 1.44,
+          "cpc": 1.44,
+          "results": 153,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311331",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "einsatzplanung",
+          "group_id": 481813,
+          "volume": 390,
+          "competition": 0.5,
+          "suggested_bid": 5.45,
+          "cpc": 5.45,
+          "results": 132,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311334",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "ressourcenplanung",
+          "group_id": 481813,
+          "volume": 440,
+          "competition": 0.34,
+          "suggested_bid": 4.09,
+          "cpc": 4.09,
+          "results": 134,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311337",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "preise kalkulieren",
+          "group_id": 481813,
+          "volume": 140,
+          "competition": 0.48,
+          "suggested_bid": 1.4,
+          "cpc": 1.4,
+          "results": 127,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311340",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "bauphasen",
+          "group_id": 481813,
+          "volume": 590,
+          "competition": 0.01,
+          "suggested_bid": 0,
+          "cpc": 0,
+          "results": 111,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311343",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "ordnerstruktur projekte",
+          "group_id": 481813,
+          "volume": 30,
+          "competition": 0.37,
+          "suggested_bid": 1.69,
+          "cpc": 1.69,
+          "results": 125,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311346",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "aufmaß raum",
+          "group_id": 481813,
+          "volume": 10,
+          "competition": 0.21,
+          "suggested_bid": 0,
+          "cpc": 0,
+          "results": 127,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311349",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "rechnung korrigieren",
+          "group_id": 481813,
+          "volume": 170,
+          "competition": 0.09,
+          "suggested_bid": 0.28,
+          "cpc": 0.28,
+          "results": 137,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311352",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "storno rechnung",
+          "group_id": 481813,
+          "volume": 590,
+          "competition": 0.12,
+          "suggested_bid": 0.33,
+          "cpc": 0.33,
+          "results": 127,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311355",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "zugriffsrechte",
+          "group_id": 481813,
+          "volume": 260,
+          "competition": 0.08,
+          "suggested_bid": 5.23,
+          "cpc": 5.23,
+          "results": 134,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311358",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "schlussrechnung muster",
+          "group_id": 481813,
+          "volume": 480,
+          "competition": 0.23,
+          "suggested_bid": 0.94,
+          "cpc": 0.94,
+          "results": 123,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311361",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "urlaub beantragen",
+          "group_id": 481813,
+          "volume": 390,
+          "competition": 0.01,
+          "suggested_bid": 0,
+          "cpc": 0,
+          "results": 143,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311364",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "wareneingang buchen",
+          "group_id": 481813,
+          "volume": 110,
+          "competition": 0.3,
+          "suggested_bid": 1.74,
+          "cpc": 1.74,
+          "results": 128,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311367",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "zahlungseingang",
+          "group_id": 481813,
+          "volume": 660,
+          "competition": 0.04,
+          "suggested_bid": 3.75,
+          "cpc": 3.75,
+          "results": 112,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311370",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "stundenzettel excel",
+          "group_id": 481813,
+          "volume": 320,
+          "competition": 0.17,
+          "suggested_bid": 0.71,
+          "cpc": 0.71,
+          "results": 110,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311373",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "bauzeitenplan software",
+          "group_id": 481813,
+          "volume": 140,
+          "competition": 1,
+          "suggested_bid": 3.74,
+          "cpc": 3.74,
+          "results": 145,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311376",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "zahlungsabgleich",
+          "group_id": 481813,
+          "volume": 20,
+          "competition": 0.39,
+          "suggested_bid": 8.12,
+          "cpc": 8.12,
+          "results": 107,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311379",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "datenimport",
+          "group_id": 481813,
+          "volume": 110,
+          "competition": 0.02,
+          "suggested_bid": 0,
+          "cpc": 0,
+          "results": 124,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311382",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "mängelmanagement",
+          "group_id": 481813,
+          "volume": 140,
+          "competition": 0.62,
+          "suggested_bid": 2.79,
+          "cpc": 2.79,
+          "results": 107,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311385",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "tooltime",
+          "group_id": 481813,
+          "volume": 4400,
+          "competition": 0.47,
+          "suggested_bid": 5.24,
+          "cpc": 5.24,
+          "results": 113,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311388",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "leistungszeitraum rechnung",
+          "group_id": 481813,
+          "volume": 390,
+          "competition": 0.23,
+          "suggested_bid": 0.69,
+          "cpc": 0.69,
+          "results": 113,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311391",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "regiebericht",
+          "group_id": 481813,
+          "volume": 390,
+          "competition": 1,
+          "suggested_bid": 2.04,
+          "cpc": 2.04,
+          "results": 138,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311394",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "bedenkenanzeige",
+          "group_id": 481813,
+          "volume": 390,
+          "competition": 0.01,
+          "suggested_bid": 1.39,
+          "cpc": 1.39,
+          "results": 104,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311397",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "mängelanzeige",
+          "group_id": 481813,
+          "volume": 810,
+          "competition": 0.01,
+          "suggested_bid": 0.99,
+          "cpc": 0.99,
+          "results": 99,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311400",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "reverse charge rechnungsstellung",
+          "group_id": 481813,
+          "volume": 590,
+          "competition": 0.2,
+          "suggested_bid": 0.56,
+          "cpc": 0.56,
+          "results": 134,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311403",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "materialliste vorlage",
+          "group_id": 481813,
+          "volume": 210,
+          "competition": 0.02,
+          "suggested_bid": 0,
+          "cpc": 0,
+          "results": 108,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311406",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "gaeb formate",
+          "group_id": 481813,
+          "volume": 590,
+          "competition": 0.42,
+          "suggested_bid": 0.37,
+          "cpc": 0.37,
+          "results": 100,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311409",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "bauablaufplan",
+          "group_id": 481813,
+          "volume": 390,
+          "competition": 0.34,
+          "suggested_bid": 1.86,
+          "cpc": 1.86,
+          "results": 118,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22311412",
+          "positions": [
+            {
+              "date": "2026-10-21",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-22",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            },
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "arbeitszeitnachweis vorlagen",
+          "group_id": 481813,
+          "volume": 480,
+          "competition": 0.52,
+          "suggested_bid": 0.62,
+          "cpc": 0.62,
+          "results": 122,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22672750",
+          "positions": [
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "mahnstufen",
+          "group_id": 481813,
+          "volume": 170,
+          "competition": 0.17,
+          "suggested_bid": 0.51,
+          "cpc": 0.51,
+          "results": 118,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22672753",
+          "positions": [
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "camt 053",
+          "group_id": 481813,
+          "volume": 390,
+          "competition": 0,
+          "suggested_bid": 0,
+          "cpc": 0,
+          "results": 137,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22672756",
+          "positions": [
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "datenübernahme",
+          "group_id": 481813,
+          "volume": 110,
+          "competition": 0.02,
+          "suggested_bid": 0,
+          "cpc": 0,
+          "results": 75,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22672759",
+          "positions": [
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "datanorm",
+          "group_id": 481813,
+          "volume": 390,
+          "competition": 0.4,
+          "suggested_bid": 1.41,
+          "cpc": 1.41,
+          "results": 109,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22672762",
+          "positions": [
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "lager app",
+          "group_id": 481813,
+          "volume": 90,
+          "competition": 0.62,
+          "suggested_bid": 3.21,
+          "cpc": 3.21,
+          "results": 131,
+          "landing_pages": [],
+          "total_sum": 0
+        },
+        {
+          "id": "22672765",
+          "positions": [
+            {
+              "date": "2026-10-23",
+              "pos": 0,
+              "depth": 100,
+              "change": 0,
+              "price": 0,
+              "is_map": 0,
+              "map_position": 0,
+              "paid_position": 0
+            }
+          ],
+          "name": "digitales kassenbuch",
+          "group_id": 481813,
+          "volume": 320,
+          "competition": 0.92,
+          "suggested_bid": 2.35,
+          "cpc": 2.35,
+          "results": 194,
+          "landing_pages": [],
+          "total_sum": 0
+        }
+      ]
+    }
+  ]
+}

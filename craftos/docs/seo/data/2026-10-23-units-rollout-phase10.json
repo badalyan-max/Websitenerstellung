@@ -1,0 +1,122 @@
+{
+  "quelle": "SE Ranking DATA_getSubscription über scripts/lib/se-ranking-mcp.mjs (Scratchpad-Skript, kein Schlüssel ausgegeben)",
+  "plan": "10-07",
+  "regel": "Kontostand vor und frühestens 60 s nach dem letzten Abruf je Block (D-27, D-37); Phasengrenze 5.000",
+  "kontostaende": [
+    {
+      "label": "start",
+      "at": "2026-10-23T16:35:47.389Z",
+      "units_left": 18071,
+      "units_limit": 100000,
+      "expiration": null
+    },
+    {
+      "label": "A-vorher",
+      "at": "2026-10-23T16:36:05.808Z",
+      "units_left": 18071,
+      "units_limit": 100000,
+      "expiration": null
+    },
+    {
+      "label": "A-nachher",
+      "at": "2026-10-23T16:37:22.870Z",
+      "units_left": 18071,
+      "units_limit": 100000,
+      "expiration": null
+    },
+    {
+      "label": "B-vorher",
+      "at": "2026-10-23T16:37:34.859Z",
+      "units_left": 18071,
+      "units_limit": 100000,
+      "expiration": null
+    },
+    {
+      "label": "B-nachher",
+      "at": "2026-10-23T16:46:33.097Z",
+      "units_left": 17757,
+      "units_limit": 100000,
+      "expiration": null
+    },
+    {
+      "label": "C-vorher",
+      "at": "2026-10-23T16:46:45.020Z",
+      "units_left": 17757,
+      "units_limit": 100000,
+      "expiration": null
+    },
+    {
+      "label": "C-nachher",
+      "at": "2026-10-23T16:49:18.223Z",
+      "units_left": 17645,
+      "units_limit": 100000,
+      "expiration": null
+    }
+  ],
+  "bloecke": [
+    {
+      "block": "A",
+      "inhalt": "node scripts/se-ranking-sync.mjs --check (Project API)",
+      "vorher": {
+        "label": "A-vorher",
+        "at": "2026-10-23T16:36:05.808Z",
+        "units_left": 18071,
+        "units_limit": 100000,
+        "expiration": null
+      },
+      "nachher": {
+        "label": "A-nachher",
+        "at": "2026-10-23T16:37:22.870Z",
+        "units_left": 18071,
+        "units_limit": 100000,
+        "expiration": null
+      },
+      "verbrauch": 0
+    },
+    {
+      "block": "B",
+      "inhalt": "DATA_recheckAudit 485185 (standard), Status, Bericht, betroffene URLs",
+      "vorher": {
+        "label": "B-vorher",
+        "at": "2026-10-23T16:37:34.859Z",
+        "units_left": 18071,
+        "units_limit": 100000,
+        "expiration": null
+      },
+      "nachher": {
+        "label": "B-nachher",
+        "at": "2026-10-23T16:46:33.097Z",
+        "units_left": 17757,
+        "units_limit": 100000,
+        "expiration": null
+      },
+      "verbrauch": 314
+    },
+    {
+      "block": "C",
+      "inhalt": "node scripts/seo-report.mjs --etappe rollout-phase10 (ohne --leaderboard)",
+      "vorher": {
+        "label": "C-vorher",
+        "at": "2026-10-23T16:46:45.020Z",
+        "units_left": 17757,
+        "units_limit": 100000,
+        "expiration": null
+      },
+      "nachher": {
+        "label": "C-nachher",
+        "at": "2026-10-23T16:49:18.223Z",
+        "units_left": 17645,
+        "units_limit": 100000,
+        "expiration": null
+      },
+      "verbrauch": 112
+    }
+  ],
+  "verbrauch10_07": 426,
+  "phasensummeVorher": 526,
+  "phasensummeNachher": 952,
+  "phasengrenze": 5000,
+  "restkontingent": 17645,
+  "units_limit": 100000,
+  "testzugangBis": "2026-11-03 17:22:59"
+}

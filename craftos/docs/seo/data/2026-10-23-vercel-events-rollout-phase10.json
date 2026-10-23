@@ -1,0 +1,60 @@
+{
+  "quelle": "Vercel Web Analytics über die Vercel-CLI 65.2.0 (vercel metrics vercel.analytics.event.count bzw. page_view.count)",
+  "plan": "10-07",
+  "abfrageDurch": "Executor 10-07 (Vercel-MCP in dieser Ausführung nicht aufrufbar, CLI-Ersatz)",
+  "abfrageZeitpunktUtc": "2026-10-23T16:51:12Z",
+  "projekt": "craftos (prj_Vk35IwxD0U3Qtoez5a0OaKhRdlN4)",
+  "umgebung": "production",
+  "fensterAbPush": {
+    "zeitraumUtc": [
+      "2026-10-23T16:29:00.000Z",
+      "2026-10-23T16:52:00.000Z"
+    ],
+    "pushUtc": "2026-10-23T16:29:44Z",
+    "trial_click": 1,
+    "ai_visit": 0,
+    "login_click": 1,
+    "alleEreignisse": [
+      {
+        "eventName": "login_click",
+        "vercel_analytics_event_count_count": 1
+      },
+      {
+        "eventName": "trial_click",
+        "vercel_analytics_event_count_count": 1
+      }
+    ],
+    "seitenaufrufe": 15
+  },
+  "letzte30Tage": {
+    "zeitraumUtc": [
+      "2026-09-23T16:00:00.000Z",
+      "2026-10-23T20:00:00.000Z"
+    ],
+    "trial_click": 9,
+    "ai_visit": 0,
+    "alleEreignisse": [
+      {
+        "eventName": "registration_click",
+        "vercel_analytics_event_count_count": 77
+      },
+      {
+        "eventName": "store_click",
+        "vercel_analytics_event_count_count": 14
+      },
+      {
+        "eventName": "trial_click",
+        "vercel_analytics_event_count_count": 9
+      },
+      {
+        "eventName": "calculator_use",
+        "vercel_analytics_event_count_count": 8
+      },
+      {
+        "eventName": "login_click",
+        "vercel_analytics_event_count_count": 8
+      }
+    ]
+  },
+  "hinweis": "Das volle 24-Stunden-Fenster nach dem Rollout folgt als Nachtrag des Orchestrators in ETAPPEN-NACHWEIS-V2.md. ai_visit ist eingebaut (components/Analytics.tsx, aiVisitOnce), trat aber in 30 Tagen nicht auf (keine Besuche mit KI-Referrer oder utm_source)."
+}

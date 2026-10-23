@@ -1,0 +1,298 @@
+{
+  "quelle": "scripts/performance-audit.mjs --lighthouse gegen https://craftos.eu (AUDIT_ORIGIN), Plan 10-07, Kontrollmessung ohne Gate (D-11, D-44)",
+  "aufrufe": [
+    "MSYS_NO_PATHCONV=1 AUDIT_ORIGIN=https://craftos.eu node scripts/performance-audit.mjs --lighthouse --block=live --paths=<GATE_ROUTEN> --runs=3 --kategorien=best-practices,seo",
+    "MSYS_NO_PATHCONV=1 AUDIT_ORIGIN=https://craftos.eu node scripts/performance-audit.mjs --lighthouse --block=live-a11y --paths=/impressum,/datenschutz,/agb,/support,/rechner,/rechner/stundensatz --runs=1 --kategorien=best-practices,seo",
+    "MSYS_NO_PATHCONV=1 AUDIT_ORIGIN=https://craftos.eu node scripts/performance-audit.mjs --lighthouse --block=live-vorlagen --paths=/funktionen/zeiterfassung,/gewerke/elektriker,/vergleich/plancraft-alternative --runs=3 --kategorien=best-practices,seo (Vorlagen des Vorab-Audits, Vergleich im Bestätigungsaudit)"
+  ],
+  "live": {
+    "erstellt": "2026-10-23T16:44:28.078Z",
+    "lighthouseVersion": "13.5.0",
+    "benchmarkIndex": 2822,
+    "herkunft": "https://craftos.eu",
+    "kennzeichnung": "Labordaten, mobil, live, Median aus 3 Läufen, URL",
+    "gateVerletzt": false,
+    "warnungen": [
+      "/funktionen: LCP 2569 ms ≥ 2500 ms"
+    ],
+    "urls": [
+      {
+        "url": "/",
+        "score": 98,
+        "lcp_ms": 2425,
+        "fcp_ms": 1076,
+        "si_ms": 1076,
+        "tbt_ms": 31,
+        "cls": 0,
+        "lcpElement": "section.HomeHero-module__aOczmW__hero > div.site-container > div.HomeHero-module__aOczmW__copy > h1#startseite-titel",
+        "laeufe": 3,
+        "ungueltig": 0,
+        "kategorien": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      },
+      {
+        "url": "/funktionen",
+        "score": 97,
+        "lcp_ms": 2569,
+        "fcp_ms": 1519,
+        "si_ms": 1519,
+        "tbt_ms": 56,
+        "cls": 0,
+        "lcpElement": "main#inhalt > section.FunktionenHead-module__Wv65xW__head > div.site-container > h1#funktionen-titel",
+        "laeufe": 3,
+        "ungueltig": 0,
+        "kategorien": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      },
+      {
+        "url": "/funktionen/angebote",
+        "score": 97,
+        "lcp_ms": 2432,
+        "fcp_ms": 1076,
+        "si_ms": 1203,
+        "tbt_ms": 66,
+        "cls": 0,
+        "lcpElement": "section.FunktionsKopf-module__HTHzLG__kopf > div.site-container > div.FunktionsKopf-module__HTHzLG__copy > h1#funktion-titel",
+        "laeufe": 3,
+        "ungueltig": 0,
+        "kategorien": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      },
+      {
+        "url": "/gewerke/shk",
+        "score": 98,
+        "lcp_ms": 2430,
+        "fcp_ms": 1074,
+        "si_ms": 1183,
+        "tbt_ms": 22,
+        "cls": 0,
+        "lcpElement": "section.FunktionsKopf-module__HTHzLG__kopf > div.site-container > div.FunktionsKopf-module__HTHzLG__copy > p#antwort",
+        "laeufe": 3,
+        "ungueltig": 0,
+        "kategorien": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      },
+      {
+        "url": "/vergleich/handwerkersoftware-kleine-betriebe",
+        "score": 98,
+        "lcp_ms": 2421,
+        "fcp_ms": 1071,
+        "si_ms": 1071,
+        "tbt_ms": 64,
+        "cls": 0,
+        "lcpElement": "section.FunktionsKopf-module__HTHzLG__kopf > div.site-container > div.FunktionsKopf-module__HTHzLG__copy > p#antwort",
+        "laeufe": 3,
+        "ungueltig": 0,
+        "kategorien": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      },
+      {
+        "url": "/blog/handwerkerrechnung-schreiben",
+        "score": 97,
+        "lcp_ms": 2436,
+        "fcp_ms": 1076,
+        "si_ms": 1076,
+        "tbt_ms": 64,
+        "cls": 0,
+        "lcpElement": "article > section.ContentKopf-module__835J2a__kopf > div.site-container > h1#artikel-titel",
+        "laeufe": 3,
+        "ungueltig": 0,
+        "kategorien": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      }
+    ]
+  },
+  "liveA11y": {
+    "erstellt": "2026-10-23T16:46:04.858Z",
+    "lighthouseVersion": "13.5.0",
+    "benchmarkIndex": 1980.5,
+    "herkunft": "https://craftos.eu",
+    "kennzeichnung": "Labordaten, mobil, live, Median aus 1 Lauf, URL",
+    "gateVerletzt": false,
+    "warnungen": [],
+    "urls": [
+      {
+        "url": "/impressum",
+        "score": 97,
+        "lcp_ms": 2439,
+        "fcp_ms": 1229,
+        "si_ms": 1229,
+        "tbt_ms": 89,
+        "cls": 0,
+        "lcpElement": "main#inhalt > section.ContentKopf-module__835J2a__kopf > div.site-container > h1#rechtstext-titel",
+        "laeufe": 1,
+        "ungueltig": 0,
+        "kategorien": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      },
+      {
+        "url": "/datenschutz",
+        "score": 97,
+        "lcp_ms": 2587,
+        "fcp_ms": 1524,
+        "si_ms": 1524,
+        "tbt_ms": 16,
+        "cls": 0,
+        "lcpElement": "section.Legal-module__wjeSiq__flaeche > div.site-container > div.Legal-module__wjeSiq__prosa > p",
+        "laeufe": 1,
+        "ungueltig": 0,
+        "kategorien": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      },
+      {
+        "url": "/agb",
+        "score": 98,
+        "lcp_ms": 2431,
+        "fcp_ms": 1072,
+        "si_ms": 1072,
+        "tbt_ms": 32,
+        "cls": 0,
+        "lcpElement": "div.Legal-module__wjeSiq__prosa > section.Legal-module__wjeSiq__abschnitt > div.Legal-module__wjeSiq__inhalt > p",
+        "laeufe": 1,
+        "ungueltig": 0,
+        "kategorien": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      },
+      {
+        "url": "/support",
+        "score": 98,
+        "lcp_ms": 2422,
+        "fcp_ms": 1064,
+        "si_ms": 1163,
+        "tbt_ms": 39,
+        "cls": 0,
+        "lcpElement": "section.bg-white > div.site-container > header.SectionHeader-module__NwfXtG__header > p.SectionHeader-module__NwfXtG__lead",
+        "laeufe": 1,
+        "ungueltig": 0,
+        "kategorien": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      },
+      {
+        "url": "/rechner",
+        "score": 97,
+        "lcp_ms": 2433,
+        "fcp_ms": 1073,
+        "si_ms": 1073,
+        "tbt_ms": 80,
+        "cls": 0,
+        "lcpElement": "section.bg-white > div.site-container > header.SectionHeader-module__NwfXtG__header > p.SectionHeader-module__NwfXtG__lead",
+        "laeufe": 1,
+        "ungueltig": 0,
+        "kategorien": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      },
+      {
+        "url": "/rechner/stundensatz",
+        "score": 97,
+        "lcp_ms": 2446,
+        "fcp_ms": 1071,
+        "si_ms": 1071,
+        "tbt_ms": 67,
+        "cls": 0,
+        "lcpElement": "div.Calculators-module__9VcM_a__page > section.ContentKopf-module__835J2a__kopf > div.site-container > h1#rechner-titel",
+        "laeufe": 1,
+        "ungueltig": 0,
+        "kategorien": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      }
+    ]
+  },
+  "liveVorlagen": {
+    "erstellt": "2026-10-23T16:57:01.047Z",
+    "lighthouseVersion": "13.5.0",
+    "benchmarkIndex": 3465,
+    "herkunft": "https://craftos.eu",
+    "kennzeichnung": "Labordaten, mobil, live, Median aus 3 Läufen, URL",
+    "gateVerletzt": false,
+    "warnungen": [],
+    "urls": [
+      {
+        "url": "/funktionen/zeiterfassung",
+        "score": 94,
+        "lcp_ms": 2807,
+        "fcp_ms": 1713,
+        "si_ms": 1713,
+        "tbt_ms": 124,
+        "cls": 0,
+        "lcpElement": "section.FunktionsKopf-module__HTHzLG__kopf > div.site-container > div.FunktionsKopf-module__HTHzLG__copy > h1#funktion-titel",
+        "laeufe": 3,
+        "ungueltig": 0,
+        "kategorien": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      },
+      {
+        "url": "/gewerke/elektriker",
+        "score": 96,
+        "lcp_ms": 2701,
+        "fcp_ms": 1365,
+        "si_ms": 2695,
+        "tbt_ms": 64,
+        "cls": 0,
+        "lcpElement": "section.FunktionsKopf-module__HTHzLG__kopf > div.site-container > div.FunktionsKopf-module__HTHzLG__copy > p#antwort",
+        "laeufe": 3,
+        "ungueltig": 0,
+        "kategorien": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      },
+      {
+        "url": "/vergleich/plancraft-alternative",
+        "score": 98,
+        "lcp_ms": 2431,
+        "fcp_ms": 1072,
+        "si_ms": 1072,
+        "tbt_ms": 61,
+        "cls": 0,
+        "lcpElement": "section.FunktionsKopf-module__HTHzLG__kopf > div.site-container > div.FunktionsKopf-module__HTHzLG__copy > p#antwort",
+        "laeufe": 3,
+        "ungueltig": 0,
+        "kategorien": {
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      }
+    ]
+  }
+}

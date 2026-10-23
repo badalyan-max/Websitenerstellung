@@ -1,0 +1,278 @@
+{
+  "zeitraum": {
+    "from": "2026-10-20",
+    "to": "2026-10-23"
+  },
+  "engines": [
+    {
+      "id": 203632,
+      "name": "chatgpt",
+      "status": {
+        "llm_id": 203632,
+        "site_id": 13094375,
+        "progress": 100,
+        "prompts_count": 16,
+        "prompts_checked": 16,
+        "last_update_date": "2026-10-23"
+      },
+      "statistik": {
+        "archetype": "scorecard",
+        "title": "AI Result Tracker — LLM presence",
+        "subtitle": "updated 2026-10-23",
+        "summary": "AI Result Tracker — LLM presence: link presence 6.25%, mention presence 6.25%. Answers with sources 100%.",
+        "tiles": [
+          {
+            "key": "link",
+            "label": "Link presence (in top)",
+            "value": 6.25,
+            "format": "percent",
+            "delta": {
+              "value": -10.42,
+              "betterWhenUp": true
+            }
+          },
+          {
+            "key": "mention",
+            "label": "Mention presence (in top)",
+            "value": 6.25,
+            "format": "percent",
+            "delta": {
+              "value": -10.42,
+              "betterWhenUp": true
+            }
+          },
+          {
+            "key": "sources",
+            "label": "Answers with sources",
+            "value": 100,
+            "format": "percent",
+            "delta": {
+              "value": 0,
+              "betterWhenUp": true
+            }
+          }
+        ],
+        "notes": [
+          "Deltas are vs the prior period."
+        ]
+      }
+    },
+    {
+      "id": 204127,
+      "name": "perplexity",
+      "status": {
+        "llm_id": 204127,
+        "site_id": 13094375,
+        "progress": 0,
+        "prompts_count": 2,
+        "prompts_checked": 0,
+        "last_update_date": null
+      },
+      "statistik": {
+        "archetype": "scorecard",
+        "title": "AI Result Tracker — LLM presence",
+        "summary": "AI Result Tracker — LLM presence: link presence 0%, mention presence 0%. Answers with sources 0%.",
+        "tiles": [
+          {
+            "key": "link",
+            "label": "Link presence (in top)",
+            "value": 0,
+            "format": "percent",
+            "delta": {
+              "value": 0,
+              "betterWhenUp": true
+            }
+          },
+          {
+            "key": "mention",
+            "label": "Mention presence (in top)",
+            "value": 0,
+            "format": "percent",
+            "delta": {
+              "value": 0,
+              "betterWhenUp": true
+            }
+          },
+          {
+            "key": "sources",
+            "label": "Answers with sources",
+            "value": 0,
+            "format": "percent",
+            "delta": {
+              "value": 0,
+              "betterWhenUp": true
+            }
+          }
+        ],
+        "notes": [
+          "Deltas are vs the prior period."
+        ]
+      }
+    },
+    {
+      "id": 204130,
+      "name": "gemini",
+      "status": {
+        "llm_id": 204130,
+        "site_id": 13094375,
+        "progress": 0,
+        "prompts_count": 0,
+        "prompts_checked": 0,
+        "last_update_date": null
+      },
+      "statistik": {
+        "archetype": "scorecard",
+        "title": "AI Result Tracker — LLM presence",
+        "summary": "AI Result Tracker — LLM presence: link presence 0%, mention presence 0%. Answers with sources 0%.",
+        "tiles": [
+          {
+            "key": "link",
+            "label": "Link presence (in top)",
+            "value": 0,
+            "format": "percent",
+            "delta": {
+              "value": 0,
+              "betterWhenUp": true
+            }
+          },
+          {
+            "key": "mention",
+            "label": "Mention presence (in top)",
+            "value": 0,
+            "format": "percent",
+            "delta": {
+              "value": 0,
+              "betterWhenUp": true
+            }
+          },
+          {
+            "key": "sources",
+            "label": "Answers with sources",
+            "value": 0,
+            "format": "percent",
+            "delta": {
+              "value": 0,
+              "betterWhenUp": true
+            }
+          }
+        ],
+        "notes": [
+          "Deltas are vs the prior period."
+        ]
+      }
+    },
+    {
+      "id": 204133,
+      "name": "google_ai_overview",
+      "status": {
+        "llm_id": 204133,
+        "site_id": 13094375,
+        "progress": 100,
+        "prompts_count": 2,
+        "prompts_checked": 2,
+        "last_update_date": "2026-10-23"
+      },
+      "statistik": {
+        "archetype": "scorecard",
+        "title": "AI Result Tracker — LLM presence",
+        "subtitle": "updated 2026-10-23",
+        "summary": "AI Result Tracker — LLM presence: link presence 0%, mention presence 0%. Keywords with AI Overview n/a. Organic overlap 35%.",
+        "tiles": [
+          {
+            "key": "link",
+            "label": "Link presence (in top)",
+            "value": 0,
+            "format": "percent",
+            "delta": {
+              "value": 0,
+              "betterWhenUp": true
+            }
+          },
+          {
+            "key": "mention",
+            "label": "Mention presence (in top)",
+            "value": 0,
+            "format": "percent",
+            "delta": {
+              "value": 0,
+              "betterWhenUp": true
+            }
+          },
+          {
+            "key": "aio",
+            "label": "Keywords with AI Overview",
+            "value": null,
+            "format": "percent",
+            "delta": null
+          },
+          {
+            "key": "overlap",
+            "label": "Organic overlap",
+            "value": 35,
+            "format": "percent",
+            "delta": {
+              "value": 1,
+              "betterWhenUp": true
+            },
+            "hint": "7 keyword(s)"
+          }
+        ],
+        "notes": [
+          "Deltas are vs the prior period."
+        ]
+      }
+    },
+    {
+      "id": 204136,
+      "name": "google_ai_mode",
+      "status": {
+        "llm_id": 204136,
+        "site_id": 13094375,
+        "progress": 0,
+        "prompts_count": 0,
+        "prompts_checked": 0,
+        "last_update_date": null
+      },
+      "statistik": {
+        "archetype": "scorecard",
+        "title": "AI Result Tracker — LLM presence",
+        "summary": "AI Result Tracker — LLM presence: link presence 0%, mention presence 0%. Answers with sources 0%.",
+        "tiles": [
+          {
+            "key": "link",
+            "label": "Link presence (in top)",
+            "value": 0,
+            "format": "percent",
+            "delta": {
+              "value": 0,
+              "betterWhenUp": true
+            }
+          },
+          {
+            "key": "mention",
+            "label": "Mention presence (in top)",
+            "value": 0,
+            "format": "percent",
+            "delta": {
+              "value": 0,
+              "betterWhenUp": true
+            }
+          },
+          {
+            "key": "sources",
+            "label": "Answers with sources",
+            "value": 0,
+            "format": "percent",
+            "delta": {
+              "value": 0,
+              "betterWhenUp": true
+            }
+          }
+        ],
+        "notes": [
+          "Deltas are vs the prior period."
+        ]
+      }
+    }
+  ]
+}

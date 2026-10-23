@@ -198,3 +198,126 @@ Meistgenannte Wettbewerber in den Antworten (20.–23.10.): plancraft, ToolTime,
 - **Skipped – Proof-Zählung:** keine `proof-inventory.md`. Schließt: Proof-Inventar des Inhabers.
 - **Inferred – `site:`-Zählung:** keine Google-Suche von hier. Schließt: `site:craftos.eu` im Browser bzw. Search-Console-Export Seiten.
 - **Sampled – Lighthouse:** Accessibility/Best Practices/SEO je 1 Lauf, `/funktionen` ohne diese Kategorien, `/rechner/stundensatz` und `/impressum` ohne Performance. Schließt: Werkzeug aus Paket b (Lighthouse 13.5.0) im Bestätigungsaudit.
+
+## Bestätigungsaudit 2026-10-23
+
+> **inferred – ohne Search Console ausgeführt.** Wie im Vorab-Audit gibt es keinen Zugang zu den Search-Console-Exporten (Antwort 4). Indexierte Seiten (62 laut SE Ranking), Positionen und Kannibalisierung bleiben Ableitung. **Neu gemessen** sind die Feldwerte der Core Web Vitals: Vercel Speed Insights (echte Besuche, Produktion), nicht CrUX oder Search Console.
+
+Ausführung nach `.claude/skills/audit/SKILL.md`, Projektwurzel `craftos/`, Plan 10-07 (Rollout), Haupt-Arbeitsbaum `main`. Gegenstand: https://craftos.eu nach dem Rollout von Phase 10 (Commit `e392762`, Deployment `dpl_TBDg23xnPvC9HmED3ArQA16Vida7`, READY 23.10.2026 16:30:41 UTC). Live-Lesungen 16:38–16:57 UTC. **Ohne Behebungen:** In diesem Lauf wurde nichts geändert; offene Punkte stehen unten mit Besitz. Der Abschnitt „Vorab-Audit 2026-10-23“ oben bleibt unverändert; `audit-report.html` (Vorab) bleibt, die Bestätigung steht in `audit-report-bestaetigung.html` (vorher = Vorab, nachher = dieser Lauf).
+
+### Festgeschriebene Antworten (unverändert 1 bis 11)
+
+Es gelten dieselben Antworten 1 bis 11 wie im Vorab-Audit (Tabelle oben), mit diesen Lesarten für den Bestätigungslauf:
+
+- **2 Seitenliste:** https://craftos.eu/sitemap.xml mit 156 URLs = lokaler Build mit 156 URLs; 0 Abweichungen.
+- **3 Scope:** dieselbe Stichprobe von 14 Seiten (eine je Vorlage) für die 80-Punkte-Liste und den GEO-Papierteil – **sampled: 14 von 156**; `seo-audit.mjs` und `route-audit.mjs` auf allen 156 Seiten.
+- **6 Freigabe der Behebung:** In diesem Lauf keine Behebung (Plan 10-07: Bestätigung ohne Behebungen).
+- **8 Fehlerdefinition QA-06:** unverändert, einschließlich der Zeile „Inhaberpunkt offen“ (zählt nur im Rohwert).
+- **11 Lighthouse-Ziel:** Performance ist nach D-44 (Inhaber 23.10.2026) nur Regressionsinformation; „Loads fast (Core Web Vitals in the green)“ wird an den Feldwerten bewertet. Accessibility, Best Practices und SEO sollen 100 bleiben.
+
+### Scoreboard (Stand 23.10.2026 nach dem Rollout, Quelle je Zahl)
+
+| Ebene | Vorab | Bestätigung | Bewertet / im Scope | Quelle |
+|---|---|---|---|---|
+| 1 Search Console | nicht gemessen – kein Zugang | **nicht gemessen – kein Zugang** | 0 / 156 | – |
+| 2 Site Audit (SE Ranking statt Semrush) | 97/100, 0 Fehler, 13 Warnungen, 11 Hinweise | **97/100, 0 Fehler, 13 Warnungen, 164 Hinweise**, 120 bestandene Prüfpunkte | 157 gecrawlt / 156 Sitemap | Recheck 485185 (16:37:39–16:38:14 UTC), `docs/seo/data/2026-10-23-audit-recheck-phase10.json`, `…-audit-recheck-issues-phase10.json` |
+| 3 Wettbewerbsvergleich | KI-Share-of-Voice Rang 8 von 8 (0,02 %) | unverändert; Leaderboard **nicht abgerufen** (D-37), letzter Wert 0,02 % vom 23.10.2026 | 8 Marken | `docs/seo/reports/2026-10-23-messbericht-rollout-phase10.md` § 2 |
+| 4 Backlinks | 12 verweisende Domains, alle Spam, InLink-Rank 3 | **12, alle Spam, InLink-Rank 3**; 0 neue seriöse Domains; omr.com (Register „live“, nofollow) noch nicht erfasst | Website | Messbericht `rollout-phase10` § 3 |
+| 5 On-Page (Stichprobe) | fixable Ø 89 %, raw Ø 88 % | **fixable Ø 91 %, raw Ø 90 %** | 14 von 156 (sampled) | Live-Abruf 16:53 UTC, Bewertung nach `references/on-page-seo.md` |
+| 5 On-Page sitewide (Projektregeln) | 0 Verstöße | **`seo-audit.mjs`: 156/156 URLs, 12 Regeln, 0 Verstöße** | 156 von 156 | Build von `e392762`-Stand (identischer Seitencode) |
+| 6 Technik (Lighthouse, Labordaten, mobil) | Performance 96–97, LCP 2.574–2.743 ms; `/impressum` A11y 96 | **Performance 94–98, LCP 2.421–2.807 ms; Accessibility, Best Practices und SEO 100 auf allen 15 gemessenen URLs, `/impressum` 100** | 15 URLs | Lighthouse 13.5.0 live, `docs/seo/data/2026-10-23-lighthouse-live-phase10.json` |
+| 6 Core Web Vitals Feldwerte | nicht gemessen | **p75 LCP 564 ms (n = 58), INP 40 ms (n = 47), CLS 0 (n = 31) – grün** | Produktion, 30 Tage | Vercel Speed Insights, `docs/seo/data/2026-10-23-vercel-speed-insights-rollout-phase10.json` |
+| 7 GEO Papierteil | fixable Ø 71 % (31 Prüfpunkte); robots.txt nennt nur OAI-SearchBot | **fixable Ø 74 %**; robots.txt nennt GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended je `Allow: /` | 14 von 156 (sampled) | Live-Abruf |
+| 8 Index-Hygiene | Sitemap 156 = 156; `/styleguide` noindex | **unverändert 156 = 156**; `/styleguide` noindex und nicht in der Sitemap (live-check); 404 ohne Canonical, nur `noindex` | Website | Live-Abruf, live-check |
+| 9 Framework-Fallen | 2 Befunde (Schrift-Preloads, 404-Canonical) | **0 Befunde**: 3 Font-Preloads (nur geladene Schnitte), 404 ohne geerbten Canonical | Website | Live-HTML `/impressum`, `/gibt-es-nicht-10-07` |
+| 10 Versteckte Inhalte | 0 | **0** (FAQ als `details`, alle Antworten im HTML) | 14 von 156 | Live-HTML |
+| 11 Local/Business Profile | übersprungen | **übersprungen – SaaS ohne lokales Einzugsgebiet** | – | – |
+| 12 Keyword-Realität | 6 in den Top 100, 2 in den Top 10 (Marke) | **6 in den Top 100, 2 in den Top 10** (Marke), „shk software“ Platz 29 | 157 Projekt-Keywords | Messbericht `rollout-phase10` § 1, § 4 |
+| 13 Doorway | 0 Sets | **0 Sets** (keine neue Seite, Geschwisterseiten unverändert) | 80 Geschwisterseiten | wie Vorab, D-01 |
+| Struktur | ≤ 3 Ordnerebenen | **unverändert** | 156 | Sitemap |
+
+**Recheck 485185 gegen Vorab:** Fehler 0 → 0, Warnungen 13 → 13 (`image_no_alt`, dieselben 13 Gewerke-URLs, gewaivt), Hinweise 11 → 164. Behoben: `title_short` (1 → 0, Impressum-Title D-42), `same_title_h1` (1 → 0, Map-Korrektur 10-05), `extlinks3xx` (1 → 0, OS-Plattform-Link entfernt, D-42). Unverändert: `extlinks_nofollow` 8 (Owner decision). **Neu:** `links_no_anchor` auf 156 Seiten – der Logo-Link im Kopf und im Fuß (`href="/"`) enthält seit 10-09 nur noch das SVG-Logo und trägt den zugänglichen Namen über `aria-label="CraftOS Startseite"` (SVG `role="img"`, `aria-label="CraftOS"`). SE Ranking wertet nur Textinhalt als Anker. Einordnung unten unter „Waived“.
+
+### QA-06: Anwendung im Bestätigungsaudit
+
+| Nr. | Art | Befund Vorab | Bestätigung (live, nach dem Rollout) | Zahl | Quelle |
+|---|---|---|---|---|---|
+| T1 | technisch | SE-Ranking-Audit-Fehler 0 | 0 | 0 | Recheck 485185 |
+| T2 | technisch | `seo-audit.mjs` 0 von 156 | 0 von 156 | 0 | Build 23.10.2026 |
+| T3 | technisch | `route-audit.mjs` 0 Fehler | **live** gegen https://craftos.eu: 156 Routen, 0 Fehler, 0 defekte Links (159 Links, 14 Assets), 10 von 10 unbekannten Pfaden 404, 6 von 6 OG-Bildern 200 | 0 | `AUDIT_ORIGIN=https://craftos.eu`, 16:40 UTC |
+| T4 | technisch | Lighthouse Accessibility `/impressum` 96 | 100 (live), alle 15 gemessenen URLs 100/100/100 | 0 | Lighthouse 13.5.0 live |
+| T5 | technisch | sechs Schnitte vorgeladen | drei Font-Preloads, nur die geladenen Schnitte (live-check „Schriften“) | 0 | Live-HTML, live-check |
+| T6 | technisch | 404 erbt Canonical, zwei robots-Metas | kein Canonical, ein robots-Meta `noindex` (HTTP 404) | 0 | Live-Abruf `/gibt-es-nicht-10-07` |
+| O1 | On-Page Gr. 14 | Labor-LCP > 2.500 ms | „Loads fast (Core Web Vitals in the green)“ an Feldwerten bestanden: p75 LCP 564 ms, INP 40 ms, CLS 0 (D-44). Labordaten live 2.421–2.807 ms nur als Regressionsinformation | 0 | Vercel Speed Insights |
+| O2 | On-Page Gr. 7 | `/impressum`: 1 interner Link im Hauptteil | **unverändert: 1** (Brotkrumen „Start“) | **1** | Live-HTML `<main>` |
+| O3 | On-Page Gr. 7 | `/impressum`: kein Link auf Funktionen/Preise | **unverändert: keiner** | **1** | Live-HTML `<main>` |
+| I1 | Inhaberpunkt | ODR-Link | erledigt mit D-42 (Satz und Link entfernt, VSBG-Satz wörtlich; live-check „Impressum ohne OS-Plattform“; `extlinks3xx` 0) | 0 | Recheck, live-check |
+| I2 | Inhaberpunkt | kurzer Title | erledigt mit D-42: „Impressum – CraftOS Handwerkersoftware“ (38 Zeichen; `title_short` 0) | 0 | Recheck, Live-HTML |
+
+Gruppen 1, 3, 6, 9 und 10 der Stichprobe: 0 offene Fehler (gewaivt wie Vorab: Title unter 50 Zeichen auf 7 Stichprobenseiten, dekorative Symbole mit `alt=""` auf 2 Stichprobenseiten, 2 Hub-Slugs).
+
+**Rohwert: 2 · Inhaberpunkt offen: 0 · Wert der behebbaren Fehler: 2** (O2, O3). Zählweise wie im Vorab-Audit (Rohwert = behebbare Fehler plus offene Inhaberpunkte); die gewaivten Hinweise (13 × Alt-Text, neu 156 × Logo-Link ohne Ankertext, 8 × nofollow) sind keine Fehler im Sinne von QA-06 und stehen unter „Waived“.
+
+**QA-06 ist damit nicht erfüllt** (Wert der behebbaren Fehler 2 > 0). Nach Plan 10-07 wird in diesem Lauf nichts behoben; Lückenschluss mit Besitz in `docs/releases/PHASE-10-ROLLOUT.md` § 11.
+
+### Checkliste nach dem Rollout (Stand der Vorab-Punkte)
+
+### [x] 1. Title ungleich H1 auf `/hilfe/mitarbeiter-einladen-lizenz-zuweisen`
+Live seit dem Rollout 10-07; `same_title_h1` im Recheck 0.
+
+### [x] 2. LCP unter 2,5 s (O1)
+Nach D-44 an Feldwerten bewertet: p75 LCP 564 ms (n = 58). Labordaten live 2.421–2.807 ms (Regressionsinformation, Warnung nur für `/funktionen` 2.569 ms unter den Gate-Seiten).
+
+### [x] 3. Nur genutzte Schriftschnitte vorladen (T5)
+Drei Preloads (Clash 600, General 400, General 600); Dateien Clash 500/700 und General 500 entfernt (D-42).
+
+### [x] 4. Kontrast der Rechtsseiten (T4)
+Lighthouse Accessibility 100 live auf `/impressum`, `/datenschutz`, `/agb`; A11y-Matrix 0 (10-12).
+
+### [ ] 5. Interne Links im Hauptteil von `/impressum` · 1 statt 3–5, kein Link auf Funktionen oder Preise (O2, O3)
+Unverändert offen. In 10-06 als Darstellungsänderung der Rechtsseite an den Orchestrator verwiesen (`PHASE-10-PRUEFUNGEN.md` § 2.2), dort nicht entschieden.
+**Who:** Orchestrator (Entscheidung), danach Folgeplan mit `components/legal/Legal.tsx` bzw. `app/impressum/page.tsx`
+**Time:** etwa 30 Min. nach Entscheidung
+**Changes:** Layout-Baustein unter dem Rechtstext (z. B. LinkKarten auf `/funktionen`, `/preise`, `/support`). Kein Fließtext berührt.
+
+### [x] 6. 404-Seite ohne geerbten Canonical (T6)
+Live: kein Canonical, genau ein robots-Meta `noindex`.
+
+### [x] 7. KI-Crawler in `robots.txt` ausdrücklich erlauben
+Live: GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot und Google-Extended je `Allow: /`, `Disallow: /api/`.
+
+### [x] 8. ODR-Link und kurzer Title auf `/impressum` (I1, I2)
+Erledigt mit Inhaberfreigabe D-42.
+
+### Waived (Bestätigung 23.10.2026)
+
+| Typ | Punkt | Begründung | Beleg |
+|---|---|---|---|
+| Crawler artifact | 13 × „Alt-Text fehlt“ (`/gewerke` und 12 Gewerkseiten) | unverändert gegenüber Vorab: dekoratives Gewerk-Symbol mit `alt=""` (WCAG korrekt, D-38) | Recheck 485185 `image_no_alt` (dieselben 13 URLs) |
+| Crawler artifact | 156 × „Fehlender Anker bei internen Links“ (`links_no_anchor`, Hinweis) | Logo-Link im Kopf und Fuß (`href="/"`) mit `aria-label="CraftOS Startseite"` und SVG `role="img"` `aria-label="CraftOS"`; zugänglicher Name vorhanden (Lighthouse `link-name` bestanden, Accessibility 100), kein Link im Hauptteil (Gruppe 7 betrifft Links im Body). Folge der Logo-SVG-Umstellung 10-09. Optional ohne sichtbare Änderung: SVG-`<title>` oder ein visuell versteckter Text „CraftOS“ im Link | Recheck `links_no_anchor` (156 URLs); Live-HTML `/preise`: 96 interne Links, 2 ohne Text (beide Logo) |
+| Owner decision | 8 Seiten mit externen nofollow-Links | unverändert (08-UI-SPEC G3/G4) | Recheck `extlinks_nofollow` (8 URLs) |
+| Owner decision | Skill-Schwellen Title 50–60 / Description 140–160 | unverändert (Projektregel Title ≤ 60, Description 120–155) | `tests/keyword-map.test.ts` |
+| Owner decision | `/funktionen` und `/gewerke` ohne Keyword im Slug | unverändert (D-01) | 10-CONTEXT D-01 |
+
+Der Waiver „JavaScript nicht komprimiert“ entfällt: im Recheck 0 Treffer.
+
+### Kopierbericht
+
+geänderte Fließtextsätze: 0 – dieser Lauf ändert nichts. Gelöschte Elemente: 0.
+
+### KI-Oberflächen nach dem Rollout (23.10.2026)
+
+KI-Tracker des Projekts 13094375 laut Messbericht `rollout-phase10` § 2: ChatGPT 16 Prompts, 16 geprüft, Nennung 6,25 %, Link 6,25 %; Google AI Overview 2 von 2 geprüft, 0 %; Perplexity 2 Prompts, nie geprüft; Gemini und AI Mode ohne Prompts (Promptlimit). Unverändert gegenüber der Basislinie; die Phase-10-Seiten sind erst seit 16:30 UTC live.
+
+### What this audit did NOT measure (Bestätigung 23.10.2026)
+
+- **inferred – Search Console:** nicht gemessen – kein Zugang. Schließt: die vier Search-Console-Exporte.
+- **Core Web Vitals Feldwerte:** gemessen mit Vercel Speed Insights (Produktion, 30 Tage), nicht mit CrUX/Search Console; kleine Stichprobe (58 LCP, 47 INP, 31 CLS), überwiegend vor dem Rollout erhoben.
+- **Skipped – Semrush:** nicht verbunden; SE Ranking ersetzt es.
+- **Skipped – Local und Business Profile:** SaaS ohne lokales Einzugsgebiet.
+- **Sampled – On-Page und GEO-Papierteil:** 14 von 156 Seiten, eine je Vorlage.
+- **Skipped – Top-3-Vergleiche** und **Wettbewerberzahlen:** kein SERP- bzw. Data-API-Abruf (Units).
+- **Skipped – KI-Leaderboard:** nicht abgerufen (D-37, ca. 7.500 Units).
+- **Skipped – Bewertungen, Proof-Zählung:** keine Plattform, kein Proof-Inventar.
+- **Inferred – `site:`-Zählung:** 62 laut SE Ranking.
+- **Sampled – Lighthouse:** 15 URLs live (6 Gate-Seiten und 3 Vorab-Vorlagen mit 3 Läufen, 6 Rechts-, Support- und Rechnerseiten mit 1 Lauf).

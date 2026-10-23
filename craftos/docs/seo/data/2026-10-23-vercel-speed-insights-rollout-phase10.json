@@ -1,0 +1,50 @@
+{
+  "quelle": "Vercel Speed Insights (Felddaten echter Besuche), Vercel Observability Metrics über die Vercel-CLI 65.2.0",
+  "plan": "10-07 (D-44)",
+  "abfrageZeitpunktUtc": "2026-10-23T16:50:03Z",
+  "abfrage": "npx -y vercel@latest --scope team_km6VwPpOZSRGFCMXdm74cpHm metrics vercel.speed_insights.<lcp_ms|inp_ms|cls> --aggregation <p75|count> -p prj_Vk35IwxD0U3Qtoez5a0OaKhRdlN4 -e production --since 30d --json",
+  "team": "craft-os (team_km6VwPpOZSRGFCMXdm74cpHm)",
+  "projekt": "craftos (prj_Vk35IwxD0U3Qtoez5a0OaKhRdlN4)",
+  "umgebung": "production",
+  "zeitraumUtc": [
+    "2026-09-23T16:00:00.000Z",
+    "2026-10-23T20:00:00.000Z"
+  ],
+  "p75": {
+    "lcp_ms": 564,
+    "inp_ms": 40,
+    "cls": 0
+  },
+  "stichprobe": {
+    "lcp": 58,
+    "inp": 47,
+    "cls": 31
+  },
+  "messungenJeTag": {
+    "lcp": {
+      "2026-10-20": 9,
+      "2026-10-21": 11,
+      "2026-10-22": 14,
+      "2026-10-23": 24
+    },
+    "inp": {
+      "2026-10-20": 3,
+      "2026-10-21": 9,
+      "2026-10-22": 13,
+      "2026-10-23": 22
+    },
+    "cls": {
+      "2026-10-20": 6,
+      "2026-10-21": 1,
+      "2026-10-22": 13,
+      "2026-10-23": 11
+    }
+  },
+  "schwellen": {
+    "lcp_ms": 2500,
+    "inp_ms": 200,
+    "cls": 0.1
+  },
+  "bewertung": "Alle drei p75-Werte unter den Schwellen (D-44). Stichprobe unter 100 Messungen je Kennzahl: als Grenze genannt, blockiert nach D-44 nicht. Die Messungen stammen überwiegend aus der Zeit vor dem Rollout (Push 16:29:44 UTC); nach dem Rollout kamen bis zur Abfrage höchstens 3 LCP-Messungen hinzu (Zeitfenster 16:00 bis 20:00 UTC).",
+  "vorabStand": "2026-10-23-vercel-speed-insights-phase10.json (n = 41, LCP p75 620 ms, INP p75 40 ms, CLS p75 0)"
+}
