@@ -311,5 +311,5 @@ Plans:
 | 6. Startseite, Navigation und Funktionsübersicht | 6/6 | Complete    | 2026-10-21 |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 9/9 | Complete    | 2026-10-22 |
 | 8. SEO und KI-Sichtbarkeit | 14/14 | Complete    | 2026-10-22 |
-| 9. Gewerke und Wissensinhalte | 18/18 | Complete   | 2026-10-23 |
+| 9. Gewerke und Wissensinhalte | 18/18 | Complete    | 2026-10-23 |
 | 10. Abschlussaudit | 0/TBD | Not started | - |
