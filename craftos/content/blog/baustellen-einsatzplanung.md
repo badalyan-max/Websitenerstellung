@@ -1,28 +1,27 @@
 ---
-title: "Baustellen und Ressourcen planen: Kapazität, Abwesenheiten und Übergaben verbinden"
+title: "Baustellen und Einsätze planen: Kapazität, Abwesenheiten und Übergaben verbinden"
 description: "So erstellen Sie eine belastbare Einsatzplanung mit realistischen Zeitfenstern, passenden Mitarbeitern und klaren Arbeitsanweisungen."
 category: "projekte"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
-relatedFeatures: ["plantafel", "arbeitsanweisungen", "team"]
-relatedArticles: ["/hilfe/plantafel-einsatz-planen", "/hilfe/planung-mitarbeiter-ressourcen"]
+answer: "Planen Sie Baustellen, indem Sie Umfang, Kapazität, Abwesenheiten, Material sowie Geräte und Fahrzeuge vor der Zuordnung prüfen. In CraftOS gliedern Sie das Projekt im Reiter „Terminplanung“ in Arbeitsabschnitte und planen die Einsätze auf der „Plantafel“."
+relatedFeatures: ["plantafel", "terminplanung", "arbeitsanweisungen"]
+relatedArticles: ["/hilfe/plantafel-einsatz-planen", "/hilfe/projekt-phasen-anlegen", "/blog/urlaub-abwesenheiten-einsatzplanung"]
 sources: []
 platforms: ["web", "mobile"]
 ---
 
-Eine Einsatzplanung beantwortet nicht nur, wer an welchem Tag auf welcher Baustelle ist. Sie muss auch zeigen, ob Personal, Material, Fahrzeuge und Voraussetzungen zusammenpassen. Erst dann wird ein Termin zu einem ausführbaren Auftrag.
-
 ## Welche Informationen brauchen Sie vor der Zuordnung?
 
-Prüfen Sie Projektort, geplanten Umfang, benötigte Fähigkeiten und das verfügbare Zeitfenster. Klären Sie, ob die Baustelle zugänglich ist und erforderliche Vorleistungen abgeschlossen sind. Ein freier Platz im Kalender hilft nicht, wenn das Material fehlt.
+Vor der Zuordnung brauchen Sie Projektort, geplanten Umfang, benötigte Fähigkeiten und das verfügbare Zeitfenster. Klären Sie außerdem, ob die Baustelle zugänglich ist, Vorleistungen abgeschlossen sind und das Material bereitsteht.
 
-Erfassen Sie außerdem bekannte Abwesenheiten. Urlaub, Krankheit und Schulungen verändern die verfügbare Kapazität. Eine Planung, die diese Zeiten ignoriert, erzeugt Konflikte erst kurz vor der Ausführung.
+Erfassen Sie bekannte Abwesenheiten wie Urlaub, Krankheit und Schulungen, denn sie verändern die verfügbare Kapazität. Eine Planung, die diese Zeiten berücksichtigt, zeigt Engpässe frühzeitig statt kurz vor der Ausführung.
 
 ## Wie rechnen Sie Kapazität verständlich?
 
-Im Musterbetrieb sind zwei Mitarbeiter für einen Tag mit jeweils acht Stunden vorgesehen. Daraus ergeben sich zunächst 16 Personenstunden. Davon können Fahrt, Einrichtung und nicht verrechenbare Tätigkeiten abgehen.
+Rechnen Sie Kapazität in Personenstunden und ziehen Sie Fahrt und Einrichtung ab. Im Musterbetrieb sind zwei Mitarbeiter für einen Tag mit jeweils acht Stunden vorgesehen, das ergibt zunächst 16 Personenstunden.
 
 | Ansatz | Personenstunden |
 |---|---:|
@@ -30,46 +29,56 @@ Im Musterbetrieb sind zwei Mitarbeiter für einen Tag mit jeweils acht Stunden v
 | Gemeinsame Fahrt und Einrichtung | −3 |
 | Verfügbare Ausführungszeit im Beispiel | 13 |
 
-Prüfen Sie, ob die kalkulierten zwölf Arbeitsstunden damit erreichbar sind. Die Tabelle ist ein Organisationsbeispiel; Arbeitszeit- und Pausenregeln müssen in Ihrer betrieblichen Planung passend berücksichtigt werden.
+Prüfen Sie, ob die kalkulierten zwölf Arbeitsstunden damit erreichbar sind. Die Tabelle ist ein Organisationsbeispiel; Arbeitszeit- und Pausenregeln berücksichtigen Sie in Ihrer betrieblichen Planung.
+
+## Wie gliedern Sie ein größeres Projekt in Abschnitte?
+
+Gliedern Sie größere Aufträge in Bauphasen, in CraftOS Arbeitsabschnitte genannt: Was wird wann gemacht, etwa Abbruch, Elektro oder Fliesen. Danach planen Sie je Abschnitt Mitarbeiter sowie Geräte & Fahrzeuge ein.
+
+1. Öffnen Sie in der Web-App das Projekt und den Reiter „Terminplanung“.
+2. Legen Sie mit „Abschnitt anlegen“ einen Arbeitsabschnitt mit Zeitraum an.
+3. Lassen Sie sich bei Bedarf mit „Aus Angebot vorschlagen“ Abschnitte aus dem Angebot vorschlagen.
+4. Klicken Sie bei einem Abschnitt auf „Einplanen“.
+5. Wählen Sie Mitarbeiter oder Geräte & Fahrzeuge und den Zeitraum.
+
+Eingeplante Einsätze erscheinen auf der Plantafel, und gebuchte Zeiten landen beim Abschnitt. Für kleine Aufträge planen Sie direkt auf der Plantafel, Arbeitsabschnitte sind freiwillig.
 
 ## Was passiert bei einer Verschiebung?
 
-Wenn ein Einsatz von Dienstag auf Mittwoch wandert, ändern sich möglicherweise mehrere Abhängigkeiten. Prüfen Sie die nächste Baustelle, die Verfügbarkeit eines Fahrzeugs und die betroffenen Mitarbeiter. Eine sichtbare Verschiebung allein bestätigt noch nicht, dass der neue Termin konfliktfrei ist.
+Eine Verschiebung betrifft meist mehrere Abhängigkeiten: die nächste Baustelle, das Fahrzeug und die betroffenen Mitarbeiter. Prüfen Sie diese Punkte, bevor Sie den neuen Termin bestätigen.
 
-Im Beispiel ist am Mittwoch ein Mitarbeiter abwesend. Die gleiche Einsatzkarte benötigt dann eine andere Besetzung oder ein größeres Zeitfenster. Das ist eine inhaltliche Planungsentscheidung, die nicht allein durch Ziehen einer Karte erledigt wird.
+Im Beispiel ist am Mittwoch ein Mitarbeiter abwesend. Die gleiche Einsatzkarte braucht dann eine andere Besetzung oder ein größeres Zeitfenster. Diese Planungsentscheidung treffen Sie bewusst; der Bearbeitungsdialog hilft dabei mehr als eine reine Ziehbewegung.
 
 ## Welche Informationen gehören in die Arbeitsanweisung?
 
-Beschreiben Sie Aufgabe, Ort, Material und die wichtigsten Prüfpunkte. Formulieren Sie so, dass das Team den Auftrag ohne zusätzliches Telefonat beginnen kann. Verlinken Sie aktuelle Unterlagen statt mehrere widersprüchliche Kopien anzuhängen.
+In die Arbeitsanweisung gehören Aufgabe, Ort, Material und die wichtigsten Prüfpunkte. Formulieren Sie so, dass das Team ohne zusätzliches Telefonat beginnen kann, und verlinken Sie aktuelle Unterlagen statt mehrerer Kopien.
 
-Für die Lindenstraße kann die Anweisung Räume, Farbton, Untergrundprüfung und den Umgang mit erkannten Abweichungen nennen. Eine allgemeine Bemerkung wie „alles fertig machen“ lässt dagegen offen, was tatsächlich vereinbart ist.
-
-## Wie unterstützt CraftOS die Planung?
-
-In der Web-App verbindet die „Plantafel“ Einsätze mit Mitarbeitern und Zeiträumen. Projekte enthalten zusätzlich einen eigenen Planungsbereich. Prüfen Sie Zuordnung und Konflikthinweise bei Änderungen; nutzen Sie bei Bedarf den Bearbeitungsdialog statt ausschließlich einer Ziehbewegung.
-
-Die [Anleitung zur Einsatzplanung](/hilfe/plantafel-einsatz-planen) erklärt den Einstieg. [Mitarbeiter und Ressourcen zuordnen](/hilfe/planung-mitarbeiter-ressourcen) beschreibt die ergänzenden Prüfungen. Mitarbeiter sehen ihre Aufgaben in der Mobile-App entsprechend ihrer Rolle und Zuordnung.
+Für die Lindenstraße nennt die Anweisung Räume, Farbton, Untergrundprüfung und den Umgang mit erkannten Abweichungen. Eine allgemeine Bemerkung wie ‚alles fertig machen‘ lässt dagegen offen, was vereinbart ist.
 
 ## Was zeigt die Einsatzkarte?
 
-Unter „Einsätze“ sehen Sie im Web die geplanten Einsatzorte und können nach Tag und Mitarbeiter filtern. Das hilft, räumlich nahe Aufträge zu erkennen und die Teamplanung einzuordnen. Die Kartenpunkte stehen für hinterlegte Zielorte der Einsätze; sie zeigen keine aktuellen Mitarbeiterpositionen.
+Die Seite „Einsätze“ in der Web-App zeigt die geplanten Einsätze am Einsatzort laut Plan, gefiltert nach Tag, Woche und Mitarbeiter. So erkennen Sie räumlich nahe Aufträge und ordnen die Teamplanung ein.
 
-Auf dem Handy öffnet Ihr Team den jeweiligen Einsatz mit Projekt, Zeitraum und Status. Der hinterlegte Zielort und die verfügbare Route unterstützen die Anfahrt. Karten und Routen benötigen eine Internetverbindung; für eine Route ab dem eigenen Standort ist zusätzlich die Standortfreigabe nötig. Ein Einsatz ohne gespeicherte Koordinaten bleibt in der Web-Liste sichtbar, erscheint aber nicht als Kartenpunkt.
+Einsätze ohne Kartenposition stehen in der Liste mit dem Hinweis „Ohne Kartenposition“; die Navigation führt dort über die Adresse. Geräteeinsätze finden Sie ebenfalls in der Liste.
+
+Auf dem Handy öffnet Ihr Team den Einsatz mit Projekt, Zeitraum und Status. Zielort und Route unterstützen die Anfahrt; Karten und Routen laden mit Internetverbindung, und für eine Route ab dem eigenen Standort geben Sie den Standort frei.
 
 ## Wie verbinden Sie Planung und tatsächliche Ausführung?
 
-Geplante Stunden sind eine Annahme. Tatsächlich erfasste Zeiten zeigen, was passiert ist. Vergleichen Sie beides nach einem abgeschlossenen Einsatz und prüfen Sie die Gründe größerer Abweichungen.
+Vergleichen Sie nach einem abgeschlossenen Einsatz geplante und tatsächlich erfasste Stunden. Geplante Stunden sind eine Annahme, erfasste Zeiten zeigen den Verlauf, und größere Abweichungen haben einen Grund.
 
-Ein längerer Einsatz kann auf geänderten Umfang, Wartezeit oder einen zu knappen Ansatz zurückgehen. Halten Sie diese Ursache fest, damit der nächste Plan realistischer wird. Die Nachkalkulation sollte nicht nur eine Differenz anzeigen, sondern eine nutzbare Rückmeldung liefern.
+Ein längerer Einsatz kann auf geänderten Umfang, Wartezeit oder einen zu knappen Ansatz zurückgehen. Halten Sie die Ursache fest, damit der nächste Plan realistischer wird und die Nachkalkulation eine nutzbare Rückmeldung liefert.
 
 ## Welche Planungsroutine ist sinnvoll?
 
-Prüfen Sie kommende Einsätze regelmäßig gemeinsam mit den zuständigen Personen. Kontrollieren Sie kurzfristig geänderte Abwesenheiten, Material und offene Voraussetzungen. Informieren Sie betroffene Mitarbeiter gezielt über relevante Änderungen.
+Prüfen Sie kommende Einsätze wöchentlich gemeinsam mit den zuständigen Personen. Kontrollieren Sie kurzfristig geänderte Abwesenheiten, Material und offene Voraussetzungen und informieren Sie betroffene Mitarbeiter gezielt.
 
-Die [Plantafel](/funktionen/plantafel), [Arbeitsanweisungen](/funktionen/arbeitsanweisungen) und [Teamverwaltung](/funktionen/team) bilden dafür einen gemeinsamen Ablauf. Ziel ist eine Planung, die auf der Baustelle verstanden und mit den verfügbaren Mitteln ausgeführt werden kann.
+Nehmen Sie für die Planungsbesprechung zuerst die Einsätze mit offenen Voraussetzungen oder Änderungen auf die Liste: fehlende Freigaben, Materiallieferungen, Abwesenheiten oder Überschneidungen. Notieren Sie für jeden Punkt die benötigte Entscheidung und die zuständige Person.
 
-## Wie bereiten Sie die nächste Planungsbesprechung vor?
+Prüfen Sie nach der Besprechung, ob die Änderungen in Plantafel und Arbeitsanweisungen angekommen sind und der neue Zeitraum bei Fahrzeugen und Geräten berücksichtigt ist.
 
-Nehmen Sie nur die Einsätze mit offenen Voraussetzungen oder Änderungen zuerst auf die Liste. Dazu können fehlende Freigaben, Materiallieferungen, Abwesenheiten oder Überschneidungen gehören. Notieren Sie für jeden Punkt die benötigte Entscheidung und die zuständige Person.
+## So unterstützt CraftOS
 
-Prüfen Sie nach der Besprechung, ob die Änderungen in der Plantafel und in den Arbeitsanweisungen angekommen sind. Eine mündlich beschlossene Verschiebung, die digital unverändert bleibt, führt zu widersprüchlichen Aufträgen. Kontrollieren Sie auch, ob Mitarbeiter über die wesentliche Änderung informiert wurden und ob der neue Zeitraum bei Fahrzeugen und Geräten berücksichtigt ist.
+Die [Plantafel](/funktionen/plantafel) verbindet Einsätze mit Mitarbeitern, Teams und Zeiträumen. Über „Verwalten“ erreichen Sie „Abwesenheit erfassen“, „Urlaubsanträge“ und „Geräte & Fahrzeuge verwalten“, mit „Einplanen“ legen Sie einen Einsatz an.
+
+Die [Terminplanung](/funktionen/terminplanung) gliedert Projekte in Arbeitsabschnitte, und die [Arbeitsanweisungen](/funktionen/arbeitsanweisungen) erklären dem Team die Aufgabe vor Ort. Die [Anleitung zur Einsatzplanung](/hilfe/plantafel-einsatz-planen) zeigt den Einstieg, [Bauphasen im Projekt anlegen](/hilfe/projekt-phasen-anlegen) die Arbeitsabschnitte. Mitarbeiter sehen ihre Einsätze in der Mobile-App entsprechend Rolle und Zuordnung; die [Teamverwaltung](/funktionen/team) legt beides fest.

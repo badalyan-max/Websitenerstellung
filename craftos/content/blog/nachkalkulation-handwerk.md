@@ -3,26 +3,25 @@ title: "Nachkalkulation im Handwerk: Abweichungen erkennen und nächste Angebote
 description: "Vergleichen Sie geplante und tatsächliche Stunden sowie Materialkosten und ziehen Sie konkrete Schlüsse für künftige Aufträge."
 category: "projekte"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
+answer: "Die Nachkalkulation vergleicht geplante und tatsächliche Stunden, Materialkosten und Umsatz eines Auftrags und zeigt, woher eine Abweichung kommt. In CraftOS finden Personen mit Finanzfreigabe den Plan-Ist-Vergleich im Projekt im Reiter „Kalkulation“."
 relatedFeatures: ["nachkalkulation", "zeiterfassung", "lager"]
 relatedArticles: ["/blog/tiefenkalkulation-handwerk", "/blog/materialverbrauch-baustelle-zuordnen"]
 sources: []
 platforms: ["web", "mobile"]
 ---
 
-Die Nachkalkulation zeigt, wo ein Auftrag wirtschaftlich anders verlief als geplant. Ihr Wert liegt nicht allein in einer abschließenden Gewinnzahl. Sie hilft zu unterscheiden, ob die Menge, der Zeitansatz, ein Materialpreis oder eine nicht berechnete Zusatzleistung die Abweichung verursacht hat.
-
 ## Welche Ausgangsdaten benötigen Sie?
 
-Bewahren Sie die Angebotskalkulation mit ihren Annahmen. Dazu gehören Mengen, geplanter Zeitbedarf, verwendeter interner Kostensatz und Materialansätze. Stellen Sie daneben die tatsächlich erfassten Zeiten, zugeordneten Kosten und den letztlich vereinbarten Umsatz.
+Sie benötigen die Angebotskalkulation mit ihren Annahmen und die tatsächlich erfassten Werte: Zeiten, zugeordnete Kosten und den vereinbarten Umsatz. Zur Kalkulation gehören Mengen, geplanter Zeitbedarf, interner Kostensatz und Materialansätze.
 
-Vergleichen Sie gleiche Grundlagen. Ein Nettoumsatz darf nicht mit Bruttomaterialkosten vermischt werden. Ebenso kann ein später geänderter Kostensatz die Beurteilung eines alten Auftrags verzerren, wenn die Änderung nicht kenntlich bleibt.
+Vergleichen Sie gleiche Grundlagen. Ein Nettoumsatz gehört neben Nettomaterialkosten, nicht neben Bruttobeträge. Ein später geänderter Kostensatz bleibt kenntlich, damit alte Aufträge fair bewertet werden.
 
 ## Wie sieht eine einfache Soll-Ist-Rechnung aus?
 
-Für die „Wohnung Lindenstraße“ wurden zwölf Stunden geplant. Tatsächlich wurden 15 Stunden benötigt. Der interne Kostensatz beträgt 60 €; der Nettoverkaufspreis bleibt bei 1.500 €.
+Eine Soll-Ist-Rechnung stellt geplante und tatsächliche Kosten je Bestandteil nebeneinander. Im Musterprojekt Lindenstraße wurden zwölf Stunden geplant und 15 benötigt; der interne Kostensatz beträgt 60 €, der Nettoverkaufspreis 1.500 €.
 
 | Bestandteil | Geplant | Tatsächlich |
 |---|---:|---:|
@@ -36,36 +35,45 @@ Die Abweichung von 210 € besteht aus 180 € zusätzlichen Arbeitskosten und 3
 
 ## Wie finden Sie den Grund statt nur die Differenz?
 
-Prüfen Sie die zusätzlichen Stunden anhand der Tätigkeitsbeschreibungen und Berichte. Wurde mehr Fläche bearbeitet, war der Untergrund schwieriger oder mussten Mitarbeiter auf Material warten? Diese Ursachen führen zu unterschiedlichen Verbesserungen.
+Den Grund finden Sie über die Tätigkeitsbeschreibungen der Zeiteinträge und die Berichte. Wurde mehr Fläche bearbeitet, war der Untergrund schwieriger oder mussten Mitarbeiter auf Material warten?
 
-Mehr Fläche kann einen nicht erfassten Nachtrag anzeigen. Schwieriger Untergrund kann eine fehlende Annahme im Angebot zeigen. Wartezeit kann auf ein Planungsproblem hinweisen. Den Zeitansatz pauschal zu erhöhen, würde diese Unterschiede verdecken.
+Mehr Fläche kann einen nicht erfassten Nachtrag anzeigen, schwieriger Untergrund eine fehlende Annahme im Angebot und Wartezeit ein Planungsproblem. Jede Ursache führt zu einer anderen Verbesserung; ein pauschal erhöhter Zeitansatz würde diese Unterschiede verdecken.
 
 ## Wie vermeiden Sie doppelte Materialkosten?
 
-Ein Lieferantenbeleg und eine Lagerentnahme können denselben Materialfluss aus unterschiedlichen Perspektiven beschreiben. Wenn beide unbesehen als vollständige zusätzliche Projektkosten addiert werden, entsteht ein falsches Ergebnis.
+Legen Sie fest, welche Quelle für den Materialverbrauch maßgeblich ist: der zugeordnete Lieferantenbeleg oder die Lagerentnahme. Beide können denselben Materialfluss beschreiben und dürfen nicht doppelt in die Kosten eingehen.
 
-Legen Sie fest, welche Quelle für den tatsächlichen Materialverbrauch maßgeblich ist. Allgemeiner Lagereinkauf, projektspezifischer Direkteinkauf und Rückgabe benötigen eine nachvollziehbare Behandlung. Der Ratgeber [Materialverbrauch zuordnen](/blog/materialverbrauch-baustelle-zuordnen) erklärt die organisatorische Abgrenzung.
+Allgemeiner Lagereinkauf, projektspezifischer Direkteinkauf und Rückgabe brauchen jeweils eine nachvollziehbare Behandlung. Der Ratgeber [Materialverbrauch zuordnen](/blog/materialverbrauch-baustelle-zuordnen) erklärt die Abgrenzung.
 
 ## Wann sollten Sie nachkalkulieren?
 
-Warten Sie bei längeren Projekten nicht zwingend bis zum Ende. Ein Zwischenvergleich nach einem abgeschlossenen Abschnitt kann zeigen, dass die verbleibende Planung angepasst werden muss. Voraussetzung ist, dass die Daten für diesen Abschnitt vollständig genug sind.
+Nachkalkulieren sollten Sie nach jedem Auftrag und bei längeren Projekten zusätzlich nach abgeschlossenen Arbeitsabschnitten. Ein Zwischenvergleich zeigt früh, ob die verbleibende Planung angepasst werden muss.
 
-Kennzeichnen Sie vorläufige Ergebnisse. Ein Auftrag kann gut aussehen, weil Materialrechnungen noch fehlen, oder schlecht, weil der passende Nachtrag noch nicht berücksichtigt ist. Eine präzise Zahl ohne Angaben zum Datenstand vermittelt sonst falsche Sicherheit.
+Kennzeichnen Sie vorläufige Ergebnisse. Ein Auftrag kann gut aussehen, weil Materialrechnungen noch fehlen, oder schlecht, weil der passende Nachtrag noch nicht berücksichtigt ist. Nennen Sie deshalb immer den Datenstand zur Zahl.
 
 ## Wie nutzen Sie CraftOS dafür?
 
-Erfassen Sie Zeiten mit Projektbezug und ordnen Sie Material sowie Belege nachvollziehbar zu. Finanzberechtigte Personen prüfen im Projekt die Kosten- und Auswertungsbereiche. Vergleichen Sie die sichtbaren Summen mit den zugrunde liegenden Vorgängen.
+In CraftOS öffnen Personen mit Finanzfreigabe im Projekt den Reiter „Kalkulation“ und vergleichen dort Plan und Ist. Die Ansicht fasst Zeitkosten, Material und Eingangsrechnungen, Verbräuche und Einnahmen zusammen.
 
-Die [Nachkalkulation](/funktionen/nachkalkulation) wird dadurch mit [Zeiterfassung](/funktionen/zeiterfassung) und [Lager](/funktionen/lager) verbunden. Fehlende Berechtigungen oder unvollständige Zuordnungen müssen geklärt werden, bevor Sie die Zahlen als vollständigen Projektabschluss verwenden.
+1. Öffnen Sie in der Web-App das Projekt und den Reiter „Kalkulation“.
+2. Wählen Sie unter „Soll-Basis wählen“ das Angebot, die Auftragsbestätigung oder die Rechnung als Soll.
+3. Prüfen Sie im Bereich „Plan und Ist vergleichen“ die Abweichungen je Bestandteil.
+4. Öffnen Sie bei Auffälligkeiten „Material & Eingangsrechnungen“ und „Verbrauch je Artikel“.
+
+Damit die Zahlen stimmen, erfassen Sie Zeiten mit Projektbezug, in der Mobile-App direkt auf der Baustelle, und ordnen Material sowie Belege dem Projekt zu. Vergleichen Sie die Summen mit den zugrunde liegenden Vorgängen, bevor Sie sie als Projektabschluss verwenden.
 
 ## Welche Entscheidung folgt aus dem Ergebnis?
 
-Halten Sie pro Auftrag eine konkrete Verbesserung fest: Vorbesichtigung erweitern, Mengen genauer prüfen, Material früher bereitstellen oder eine Leistungsvorlage aktualisieren. Prüfen Sie beim nächsten ähnlichen Auftrag, ob die Änderung geholfen hat.
+Aus dem Ergebnis folgt pro Auftrag eine konkrete Verbesserung: Vorbesichtigung erweitern, Mengen genauer prüfen, Material früher bereitstellen oder eine Leistungsvorlage aktualisieren. Prüfen Sie beim nächsten ähnlichen Auftrag, ob die Änderung geholfen hat.
 
-So entsteht eine Lernschleife zwischen Kalkulation und Ausführung. Der Zweck ist nicht, jede Abweichung einer Person anzulasten, sondern den nächsten Auftrag mit besseren Annahmen und klareren Abläufen zu planen.
+So entsteht eine Lernschleife zwischen Kalkulation und Ausführung. Ziel ist der nächste Auftrag mit besseren Annahmen und klareren Abläufen, nicht die Suche nach Schuldigen.
 
 ## Welche Abweichung gehört in eine Vorlage und welche in den Einzelfall?
 
-Ein einmaliger Kundenwunsch sollte nicht automatisch den Standardzeitansatz aller künftigen Angebote verändern. Ein regelmäßig unterschätzter Vorbereitungsschritt kann dagegen eine echte Anpassung der Vorlage rechtfertigen.
+In die Vorlage gehören Abweichungen, die sich bei ähnlichen Aufträgen wiederholen, etwa ein regelmäßig unterschätzter Vorbereitungsschritt. Ein einmaliger Kundenwunsch bleibt dagegen ein Einzelfall.
 
-Vergleichen Sie deshalb mehrere ähnliche Aufträge und halten Sie die wesentlichen Bedingungen fest. Raumgröße, Untergrund und Zugänglichkeit helfen, die Fälle sinnvoll zu gruppieren. Prüfen Sie anschließend, ob eine geänderte Vorlage den nächsten Auftrag realistischer abbildet. So entsteht eine konkrete Verbesserung mit überprüfbarer Wirkung. Eine reine Erhöhung sämtlicher Preise ohne Verständnis der Ursache kann dagegen die eigentliche organisatorische Schwachstelle verdecken.
+Vergleichen Sie deshalb mehrere ähnliche Aufträge und halten Sie die wesentlichen Bedingungen fest. Raumgröße, Untergrund und Zugänglichkeit helfen, die Fälle sinnvoll zu gruppieren. Prüfen Sie anschließend, ob eine geänderte Vorlage den nächsten Auftrag realistischer abbildet.
+
+## So unterstützt CraftOS
+
+Die [Nachkalkulation](/funktionen/nachkalkulation) verbindet im Reiter „Kalkulation“ die Daten aus [Zeiterfassung](/funktionen/zeiterfassung), Eingangsrechnungen und [Lager](/funktionen/lager) mit den Einnahmen des Projekts. Den Zeitansatz für das nächste Angebot verfeinern Sie mit der [Tiefenkalkulation](/blog/tiefenkalkulation-handwerk).

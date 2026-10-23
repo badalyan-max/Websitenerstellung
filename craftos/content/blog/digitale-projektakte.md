@@ -3,67 +3,76 @@ title: "Digitale Projektakte: Angebote, Dateien, Zeiten und Entscheidungen zusam
 description: "So strukturieren Sie einen Projektordner, in dem Büro und Baustelle den aktuellen Stand zuverlässig finden."
 category: "projekte"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
+answer: "Eine digitale Projektakte bündelt Auftrag, Termine, Dokumente, Ausführung, Zeiten und Dateien an einem Ort, sodass jede berechtigte Person den Stand ohne Nachfragen versteht. In CraftOS gliedert sich jedes Projekt in feste Reiter von „Übersicht“ bis „Dateien“."
 relatedFeatures: ["projektverwaltung", "arbeitsanweisungen", "baudokumentation"]
 relatedArticles: ["/hilfe/projektdateien-ordner", "/hilfe/projekt-phasen-anlegen"]
 sources: []
 platforms: ["web", "mobile"]
 ---
 
-Eine digitale Projektakte ist mehr als ein Ordner mit Dateien. Sie verbindet Auftrag, Beteiligte, Termine, Ausführung und Abrechnung. Ihr Nutzen zeigt sich, wenn eine andere Person den Projektstand versteht, ohne zuerst sämtliche Nachrichten durchsuchen zu müssen.
-
 ## Welche Informationen brauchen einen festen Platz?
 
-Trennen Sie Stamminformationen, kaufmännische Dokumente, Ausführungsunterlagen und Rückmeldungen. Ein Angebot gehört zu den Dokumenten, ein aktueller Grundriss zu den Dateien und eine beobachtete Ausführungsabweichung in den passenden Bericht oder Mangelvorgang.
+Einen festen Platz brauchen Stamminformationen, kaufmännische Dokumente, Ausführungsunterlagen und Rückmeldungen von der Baustelle. Ein Angebot gehört zu den Dokumenten, ein aktueller Grundriss zu den Dateien und eine Ausführungsabweichung in den passenden Bericht oder Mangel.
 
-Verwenden Sie wenige verständliche Bezeichnungen. Ein Dateiname wie „Grundriss EG, Freigabe 2026-09-04“ hilft mehr als „neu_final_2“. Halten Sie frühere Versionen nachvollziehbar, wenn ihre Historie für den Auftrag relevant ist.
+Verwenden Sie wenige verständliche Bezeichnungen. Ein Dateiname mit Inhalt, Geschoss und Freigabedatum hilft mehr als ‚neu_final_2‘. Halten Sie frühere Versionen nachvollziehbar, wenn ihre Historie für den Auftrag wichtig ist.
 
 ## Wie sieht eine brauchbare Ordnung aus?
 
-| Bereich | Beispielinhalt | Zweck |
+Eine brauchbare Ordnung folgt den Aufgaben im Projekt: Einstieg, Termine, Kaufmännisches, Ausführung, Mengen, Zeiten, Kosten und Originale. In der Web-App von CraftOS entspricht jeder Bereich einem Reiter des Projekts.
+
+| Reiter | Beispielinhalt | Zweck |
 |---|---|---|
 | Übersicht | Kunde, Ort und verantwortliche Person. | Schneller Einstieg. |
+| Terminplanung | Arbeitsabschnitte und eingeplante Einsätze. | Verbindlicher Arbeitsablauf. |
 | Dokumente | Angebot, Auftrag und Rechnungen. | Kaufmännischer Zusammenhang. |
-| Planung | Phasen, Einsätze und Ressourcen. | Verbindlicher Arbeitsablauf. |
-| Aufmaß | Räume und gemessene Mengen. | Mengen nachvollziehen. |
 | Arbeitsanweisungen | Ausführung, Material und Hinweise. | Aufgabe vor Ort erklären. |
-| Bauakte | Berichte, Mängel und Abnahmen. | Ausführung dokumentieren. |
-| Dateien und Zeiten | Originale, Fotos und Arbeitsnachweise. | Prüfung und Weiterverarbeitung. |
+| Baudokumentation | Berichte, Mängel und Abnahmen. | Ausführung dokumentieren. |
+| Aufmaß & Massen | Räume und gemessene Mengen. | Mengen nachvollziehen. |
+| Zeiten | Erfasste Arbeitszeiten. | Aufwand nachvollziehen. |
+| Kalkulation | Kosten und Ergebnis, nur mit Finanzfreigabe. | Wirtschaftlichkeit prüfen. |
+| Dateien | Pläne, Fotos und Ordner wie „Besichtigung“. | Originale ablegen. |
 
-Die konkrete Software kann diese Bereiche unterschiedlich darstellen. Entscheidend ist, dass dieselbe Information nicht an mehreren Stellen widersprüchlich gepflegt wird.
+Pflegen Sie jede Information an genau einer Stelle. Dann bleibt der Stand eindeutig, auch wenn mehrere Personen am Projekt arbeiten.
 
 ## Wie halten Sie Entscheidungen verständlich fest?
 
-Im Musterprojekt „Wohnung Lindenstraße“ wird nach der Besichtigung ein anderer Farbton vereinbart. Die Information muss bei der Ausführung und in den relevanten Unterlagen ankommen. Eine beiläufige Chatnachricht allein ist dafür leicht zu übersehen.
+Halten Sie fest, was entschieden wurde, wer zugestimmt hat und ab wann die Änderung gilt. Im Musterprojekt „Wohnung Lindenstraße“ wird nach der Besichtigung ein anderer Farbton vereinbart; die Information muss bei der Ausführung und in den Unterlagen ankommen.
 
-Halten Sie fest, was entschieden wurde, wer zugestimmt hat und ab wann die Änderung gilt. Verknüpfen Sie die Entscheidung mit der betroffenen Leistung oder Unterlage. Wenn daraus Mehrkosten entstehen, gehört die kaufmännische Abstimmung zusätzlich in den entsprechenden Dokumentablauf.
+Verknüpfen Sie die Entscheidung mit der betroffenen Leistung oder Unterlage, etwa in der Arbeitsanweisung. Entstehen daraus Mehrkosten, gehört die kaufmännische Abstimmung zusätzlich in den Dokumentablauf.
+
+Kurze Abstimmungen mit dem Team laufen in der Mobile-App im „Projekt-Chat“. Übertragen Sie das Ergebnis danach in die Arbeitsanweisung, damit es auch ohne Chatverlauf auffindbar ist.
 
 ## Wie verteilt sich der Zugriff?
 
-Nicht jede Person braucht sämtliche Informationen. Mitarbeiter auf der Baustelle benötigen die zugewiesenen Projekte und aktuelle Ausführungsunterlagen. Finanzdaten und umfassende Kostenübersichten können anderen Rollen vorbehalten bleiben.
+Jede Person sieht die Projekte und Bereiche, die zu ihrer Rolle und Zuordnung passen. Mitarbeiter auf der Baustelle arbeiten mit den zugewiesenen Projekten und aktuellen Ausführungsunterlagen; den Reiter „Kalkulation“ sehen Personen mit Finanzfreigabe.
 
-Prüfen Sie bei einer fehlenden Ansicht deshalb zuerst Rolle und Projektzuordnung. Das mehrfache Kopieren vertraulicher Unterlagen in allgemein sichtbare Ordner ist keine gute Lösung für ein Berechtigungsproblem. Die [Teamfunktion](/funktionen/team) unterstützt eine bewusst eingerichtete Verteilung.
+Fehlt eine Ansicht, prüfen Sie zuerst Rolle und Projektzuordnung. Dateien geben Sie gezielt frei: Die Sichtbarkeit „Nur intern“ hält sie im Betrieb, „Für Kunde“ zeigt sie dem Kunden. Die [Teamfunktion](/funktionen/team) unterstützt eine bewusst eingerichtete Verteilung.
 
 ## Wie ist der Projektordner in CraftOS aufgebaut?
 
-Die aktuelle Web-App gliedert ein Projekt in eigene Bereiche, darunter Übersicht, Planung, Dokumente, Aufmaß, Arbeitsanweisungen, Bauakte, Zeiten, Dateien und die finanzberechtigte Kostenansicht. So bleiben unterschiedliche Arbeitsaufgaben im gemeinsamen Projektzusammenhang.
+Ein Projekt in der Web-App von CraftOS hat die Reiter „Übersicht“, „Terminplanung“, „Dokumente“, „Arbeitsanweisungen“, „Baudokumentation“, „Aufmaß & Massen“, „Zeiten“, „Kalkulation“ und „Dateien“. Den Reiter „Kalkulation“ sehen nur Personen mit Finanzfreigabe.
 
-Die Mobile-App zeigt passende Projektzugänge für die Arbeit vor Ort. Ihre Ansichten und Rechte sind auf die jeweilige Rolle abgestimmt. Eine Person mit reiner App-Lizenz sieht deshalb nicht automatisch die vollständige Web-Verwaltung.
+Im Reiter „Dateien“ liegen Pläne, Fotos und Ordner; Aufnahmen aus einer Besichtigung mit der Mobile-App landen im Ordner „Besichtigung“. Die Mobile-App zeigt dem Team die Projektbereiche für die Arbeit vor Ort, abgestimmt auf die jeweilige Rolle.
 
-Die [Anleitung für Projektdateien und Ordner](/hilfe/projektdateien-ordner) erläutert die Ablage; [Projekt und Phasen anlegen](/hilfe/projekt-phasen-anlegen) beschreibt den Einstieg.
+Die [Anleitung für Projektdateien und Ordner](/hilfe/projektdateien-ordner) erläutert die Ablage; [Bauphasen im Projekt anlegen](/hilfe/projekt-phasen-anlegen) beschreibt die Arbeitsabschnitte im Reiter „Terminplanung“. Wie eine Besichtigung abläuft, zeigt die Anleitung [Besichtigung durchführen](/hilfe/besichtigung-durchfuehren), den Chat erklärt [Projekt-Chat und Nachrichten](/hilfe/projekt-chat-nachrichten).
 
 ## Wie bleibt die Akte nach einigen Wochen benutzbar?
 
-Benennen Sie eine verantwortliche Person, die neue Unterlagen kurz prüft und den aktuellen Stand erkenntlich hält. Verschieben Sie nicht jede spontane Notiz sofort in einen komplizierten Unterordner. Entscheidend sind Vollständigkeit, eindeutiger Projektbezug und verständliche Bezeichnungen.
+Die Akte bleibt benutzbar, wenn eine verantwortliche Person neue Unterlagen kurz prüft und den aktuellen Stand kenntlich hält. Entscheidend sind Vollständigkeit, eindeutiger Projektbezug und verständliche Bezeichnungen.
 
-Prüfen Sie bei Projektabschluss, ob offene Mängel, fehlende Berichte oder unklare Dokumentstände verbleiben. Ein abgeschlossener Status sollte zum tatsächlichen Arbeitsstand passen.
-
-Mit [Projektverwaltung](/funktionen/projektverwaltung), [Arbeitsanweisungen](/funktionen/arbeitsanweisungen) und [Baudokumentation](/funktionen/baudokumentation) entsteht eine Akte, die den Auftrag erklärt und die nächste Handlung erleichtert.
+Prüfen Sie bei Projektabschluss, ob offene Mängel, fehlende Berichte oder unklare Dokumentstände verbleiben. Ein abgeschlossener Status passt dann zum tatsächlichen Arbeitsstand.
 
 ## Wie prüfen Sie, ob die Struktur auch für Vertretungen funktioniert?
 
-Lassen Sie eine nicht unmittelbar beteiligte berechtigte Person drei Fragen beantworten: Was ist beauftragt, was ist zuletzt passiert und was muss als Nächstes geschehen? Wenn dafür lange Chatverläufe durchsucht werden müssen, fehlen wahrscheinlich strukturierte Angaben oder klare Bezeichnungen.
+Lassen Sie eine nicht beteiligte berechtigte Person drei Fragen beantworten: Was ist beauftragt, was ist zuletzt passiert und was muss als Nächstes geschehen? Gelingt das ohne lange Chatverläufe, trägt die Struktur.
 
-Verbessern Sie dann den konkreten Ablagepunkt. Eine aktuelle Arbeitsanweisung sollte leicht zu finden sein; ein alter Entwurf darf nicht versehentlich wie eine Freigabe wirken. Prüfen Sie auch den Zugriff auf wichtige Dateien. Ein sichtbarer Dateiname genügt nicht, wenn die Datei nicht geöffnet werden kann oder im falschen Projekt liegt.
+Verbessern Sie sonst den konkreten Ablagepunkt. Eine aktuelle Arbeitsanweisung ist leicht zu finden, ein alter Entwurf ist als Entwurf erkennbar. Prüfen Sie auch, ob sich wichtige Dateien öffnen lassen und im richtigen Projekt liegen.
+
+## So unterstützt CraftOS
+
+Die [Projektverwaltung](/funktionen/projektverwaltung) hält Auftrag, Termine, Dokumente, Zeiten und Dateien im Projekt zusammen. Die [Arbeitsanweisungen](/funktionen/arbeitsanweisungen) erklären dem Team die Aufgabe, und die [Baudokumentation](/funktionen/baudokumentation) sammelt Berichte, Mängel und Abnahmen.
+
+So entsteht eine Akte, die den Auftrag erklärt und die nächste Handlung erleichtert, im Büro wie auf der Baustelle.
