@@ -23,6 +23,7 @@ import {
 import type { FunktionsdetailInhalt, Kernpunkt, RolleName } from "@/lib/funktionsdetails/types";
 import { getFunktionsgruppen } from "@/lib/funktionsgruppen";
 import { keywordMap } from "@/lib/keyword-map";
+import { l1Treffer } from "@/lib/leitlinie";
 import { mobileLocales } from "@/lib/product-register";
 import {
   abnahmeScene,
@@ -302,7 +303,8 @@ const ERWARTET: Record<string, Erwartung> = {
     hrefs: { Besichtigung: "/hilfe/besichtigung-durchfuehren" },
   },
   kundenportal: {
-    pflichtfrage: "Können Kunden Rechnungen im Portal online bezahlen?",
+    // Orchestrator-Entscheidung 2 (09-RESEARCH): positiv, was das Portal am Release kann (09-14).
+    pflichtfrage: "Was können Kunden im Kundenportal erledigen?",
     verwandt: ["angebote", "projektverwaltung"],
     anordnung: "md·sm·sm·wide",
     webRollen: BUERO,
@@ -957,7 +959,53 @@ describe("getFunktionsdetail und Inhaltstabelle", () => {
     expect(JSON.stringify(inhalt)).toMatch(/erste.*Mahnung/);
     expect(JSON.stringify(inhalt)).toMatch(/zweite Mahnung/);
     const grenze = inhalt.kernpunkte.tiles.find((t) => t.grenze);
-    expect(grenze?.title).toBe("Nur Rechnungen");
+    // Leitlinie L-1 (09-14): Umfang der Automatik positiv, ohne Aufzählung der nicht gemahnten Rechnungsarten.
+    expect(grenze?.title).toBe("Für normale Rechnungen");
+    expect(grenze?.text).toBe("Auf Wunsch mahnt die Automatik normale Rechnungen nach Ihren Fristen.");
+    expect(JSON.stringify(inhalt)).not.toMatch(/mahnt die Automatik nicht/);
+  });
+
+  it("Leitlinie L-1 (09-14): kein Wort und kein Altbegriff in Detailinhalten und Stammtexten aus lib/funktionen.ts", () => {
+    const treffer: string[] = [];
+    for (const [slug, inhalt] of Object.entries(INHALTE)) {
+      for (const wort of l1Treffer(JSON.stringify(inhalt))) treffer.push(`${slug}: ${wort}`);
+    }
+    for (const f of funktionen) {
+      for (const wort of l1Treffer([f.name, f.kurz, f.benefit, f.heroIntro, f.access, ...f.notes].join("\n"))) {
+        treffer.push(`funktionen.ts ${f.slug}: ${wort}`);
+      }
+    }
+    expect(treffer).toEqual([]);
+  });
+
+  it("gaeb (K-9, 09-14): Note = Grenze-Kachel, positiv mit X83 in GAEB DA XML 3.2 und 3.3; FAQ ohne Negativliste", () => {
+    const grenze = INHALTE.gaeb.kernpunkte.tiles.find((t) => t.grenze)!;
+    expect(grenze.text).toBe("Leistungsverzeichnisse als X83 in GAEB DA XML 3.2 oder 3.3 einlesen, bis 5 MiB in UTF-8.");
+    expect(getFunktion("gaeb")!.notes).toEqual([grenze.text]);
+    const antwort = INHALTE.gaeb.faq.items.find((f) => f.q === "Welche GAEB-Formate unterstützt CraftOS?")!.a;
+    expect(antwort).toContain("GAEB DA XML 3.2");
+    expect(antwort).toContain("X84");
+    expect(antwort).not.toMatch(/GAEB 90|GAEB 2000|nicht unterstützt/);
+  });
+
+  it("kundenportal (09-14): nur am Release erreichbare Portalinhalte, Pflichtantwort positiv", () => {
+    const inhalt = INHALTE.kundenportal;
+    // Release 6686d05: src/App.tsx routet nur /portal/quotes/:id und /portal/invoices/:id (09-f.md Befund 1).
+    expect(JSON.stringify(inhalt)).not.toMatch(/Termin|Nachricht|Chat|online bezahlen|Onlinezahlung/i);
+    const antwort = inhalt.faq.items.find((f) => f.q === "Was können Kunden im Kundenportal erledigen?")!.a;
+    expect(antwort).toMatch(/Angebote und Rechnungen/);
+    expect(antwort).toMatch(/unterschreib/);
+    expect(antwort).toContain("Überweisung");
+    expect(antwort.startsWith("Nein")).toBe(false);
+    const f = getFunktion("kundenportal")!;
+    expect([f.benefit, f.heroIntro].join(" ")).not.toMatch(/Termin|Nachricht/);
+  });
+
+  it("planung und team (09-14): Release-Begriffe statt Altbegriffen", () => {
+    const plantafel = JSON.stringify(INHALTE.plantafel);
+    expect(plantafel).toContain("Hinweis zur Planung");
+    expect(plantafel).toContain("Trotzdem einplanen");
+    expect(JSON.stringify(INHALTE.team)).toContain("Voll-Lizenz (Admin oder Büro)");
   });
 
   it("team: Sprachen-Kachel aus mobileLocales mit Ziel Hilfeartikel, Web-Panel nur Admin", () => {
