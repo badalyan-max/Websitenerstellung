@@ -1,40 +1,55 @@
 {
-  "checkedAt": "2026-09-09T01:17:21.654488+00:00",
+  "checkedAt": "2026-10-23",
+  "basis": {
+    "web": {
+      "repo": "craft-connect-buddy",
+      "ref": "origin/release",
+      "tag": "v4.0.0-test.245",
+      "commit": "6686d05e0aed9d9ed1a9959ddc2142928e874e84"
+    },
+    "mobile": {
+      "repo": "craftos-mobile",
+      "ref": "origin/release",
+      "tag": "mobile-v1.0.0-test.96",
+      "commit": "837aab4f5c1d3cd5411f41e1d720b2aa274e2cac"
+    }
+  },
+  "hash": "SHA-256 über den Git-Blob der Datei am Basis-Commit (git show <commit>:<pfad>), Zeilenenden wie im Repository",
   "files": [
     {
       "repository": "web",
       "path": "src/pages/Dashboard.tsx",
-      "sha256": "dc5e1d88ea3435c582c1ad1ea6a6a3234efc3d10864272e46a9b3b239b503e6f"
+      "sha256": "a1bde6aceee5c794e5a381dbf04d3814fe8ca626f8006c1625eb776a70660cde"
     },
     {
       "repository": "web",
       "path": "src/hooks/useDashboardSettings.ts",
-      "sha256": "ca7b45d6237e5d95207ecde535d6fa95bfb23d405e27fed443ef6c89d0b285bd"
+      "sha256": "f1da9d04ca58a8ebdd29b21e1b9a3d4eb23abd3f8002efd230a9777eae629925"
     },
     {
       "repository": "web",
       "path": "src/pages/ProjectDetail.tsx",
-      "sha256": "44689a9b90569295c7609ea98167e5a11c2242b42d37e8ee7d4ee0cfcb49c451"
+      "sha256": "34596d9d603c82839d85556186683564005b9a1cec695c8f5d4ad9de6e95a035"
     },
     {
       "repository": "web",
       "path": "src/pages/Projekte.tsx",
-      "sha256": "342fb381075cffcc95ba918e637e45ff8de800a6ffeeb7c738474d0cc1f39d6a"
+      "sha256": "6f6ae60d6bf70e45a9343bbf75f9341753f13f05bcdd05d0386a8cf7156cebe9"
     },
     {
       "repository": "web",
       "path": "src/pages/DocumentEditorPage.tsx",
-      "sha256": "ec2caad12fd41b5a1d0f1b784a29f4e25240a981bf1c427ceb510fded022d476"
+      "sha256": "e7e1cdcc4eb9e41477ff6d02f4db5c8c90bf66373134a5edc8d3238995cbacc3"
     },
     {
       "repository": "web",
       "path": "src/lib/calculationUtils.ts",
-      "sha256": "918872524152a7b5491c42fff0cf88b1510728836cd57ab82af0ce89be019e32"
+      "sha256": "3d59ba4dde4eac2677ee8f6c843ae368fe25de729e7873c6a9da94b4c5ff2b2a"
     },
     {
       "repository": "web",
       "path": "src/pages/Rechnungen.tsx",
-      "sha256": "c87f4233b8ba9883448387e7ade1d28b848a05aa49103600447a895919ee420b"
+      "sha256": "78173fcf379bccb63a5ed090193f12664a831c572526c9b957a04c09657cdb6a"
     },
     {
       "repository": "web",
@@ -44,82 +59,82 @@
     {
       "repository": "web",
       "path": "supabase/migrations/20260908040000_lock_guard_hardening.sql",
-      "sha256": "abf0a4054c90972d5ce77529e02a561ff475088d6b36d818178d06552744baaa"
+      "sha256": "9ca87575aded30bb7c1addb010862fe7fd70f13cacab6efd2b15232bb90e3489"
     },
     {
       "repository": "web",
       "path": "src/pages/Buchungsjournal.tsx",
-      "sha256": "3133328cc2e8f2290c08593e2036c3c8c78d1f0b54a3201397bdfdc1757218c7"
+      "sha256": "d70aa195eaf3d10cf415574eda5b5cbd37ca2129691617da08fc143eb7c69a78"
     },
     {
       "repository": "web",
       "path": "src/pages/SteuerberaterExport.tsx",
-      "sha256": "4e38bb0e89c81c6fb7c74b5aea73af752245e19e11722abb8a6984acc115fcd3"
+      "sha256": "31a35304ec4f9510c03bc448900347d8aa3ac8924359a06ce057dea4ecd5ef80"
     },
     {
       "repository": "web",
       "path": "src/pages/Plantafel.tsx",
-      "sha256": "eadb017671a0f2a04d85ae2524b8f8929e63318ef263855592306064f6ce78c2"
+      "sha256": "ff9a3e71acd2441ab7cd1a99a299d5410e2a572c4613f525d7bb39d5988ca0f4"
     },
     {
       "repository": "web",
       "path": "src/pages/Zeiten.tsx",
-      "sha256": "73534ff6788dca9196a63eb9092fd5fe5745bfd80573d2f11c4a1a11b6b450c9"
+      "sha256": "e0af6ea3d27c3fbf867b5dd4474007713c8aa18d1c2778e9be335e10797c7165"
     },
     {
       "repository": "web",
       "path": "src/pages/Lager.tsx",
-      "sha256": "25aceabf02536f683a9d1aad8b8da816997483df6ccdfe544094a54e5b04861c"
+      "sha256": "2f4f8366c9234a41de233d09e5c24095a17b9c5d49633aff96a761f3f1f55b9b"
     },
     {
       "repository": "web",
       "path": "src/api/constructionReports.ts",
-      "sha256": "95ea24c1d39b2d0b9bc465a2bb7049135f8a7c6aa5b2dcff88523e1459d3f955"
+      "sha256": "c43b9558321d42ff02b1948355e81ca449cef08133cd241790cc36e5c529fc05"
     },
     {
       "repository": "web",
       "path": "src/api/documentReports.ts",
-      "sha256": "6ed8303e54394f15cd9ceade4de2f57c86efdff04cb26366b84ed5ecc779f23b"
+      "sha256": "7ad523bdb34204b1243b0fdcc8a6142859d7540d93c948cc22025cea1051160f"
     },
     {
       "repository": "web",
       "path": "src/pages/Mitarbeiter.tsx",
-      "sha256": "cde3966595d0767f6045d446638f02a791e934416a54e59eb79360ff5501465e"
+      "sha256": "dffa41f105cac8df9fe03181476c0d427041cc2d6327914664fd1e66c3530da1"
     },
     {
       "repository": "web",
       "path": "src/api/customerPortal.ts",
-      "sha256": "87f1fafeac57225f8a9120fcc18d87ee32df6a5e113dd990c4df9fcee42e8e23"
+      "sha256": "5e620597d3079111bba272262e80b6ecce7463a60654d8c60e12a4c352a8bd25"
     },
     {
       "repository": "web",
       "path": "src/components/portal/InvoicePayment.tsx",
-      "sha256": "fc82c1abdbed6c23a1dadfb8314c4586c6e888e41f1b7dc5b256369a0925f70f"
+      "sha256": "e0f6aa5d8fc786eef794b6a97b29ffc8b954d96ecdbaab82c71801b3bb4fac5d"
     },
     {
       "repository": "web",
       "path": "supabase/functions/create-invoice-payment/index.ts",
-      "sha256": "39f353d1d2f8fddc9cc1b6b1581df5a1e9adb90cc39dcac813461df27db2acd1"
+      "sha256": "25743a9cae1e04aedf5cd91e8031b28fc00b4c02a1fb0d96c4a6194d8b38ff1d"
     },
     {
       "repository": "web",
       "path": "src/api/roomMeasurements.ts",
-      "sha256": "7dff590c3d7109bc603ab2a0f3398d221ca52af8b6fffaa354f16b7e01661c8a"
+      "sha256": "6e3a4080e2830c0063ba5e94b74de5ca354a6865d2fec4b5799341ca120f1678"
     },
     {
       "repository": "web",
       "path": "src/pages/Eingangsrechnungen.tsx",
-      "sha256": "c1b78b1e489c229acbe0ae514c247b9cebc92a905eef5822aa3d9d586f427eaa"
+      "sha256": "4121a9c057e1715ae0560e38ffdaf97372a375bf23b9bd4d9e96c4607e296ed3"
     },
     {
       "repository": "web",
       "path": "supabase/migrations/20260614140000_eingangsrechnungen_gobd_lock_review_audit.sql",
-      "sha256": "e57dbcb77dca6c02f080e6028dd455898a2ec926f3159a6af78ed4ab11379346"
+      "sha256": "0af32c388c84289edaf3b3af9def4defbbe93992a75ccbeefbc3409c9fffa0cf"
     },
     {
       "repository": "web",
       "path": "supabase/functions/generate-einvoice/index.ts",
-      "sha256": "6f99f3ed79d7182fb77a28b1bdc9e0dc1c59a8d9b848742ebed9fc5379a7e41a"
+      "sha256": "7bb2117651d675fd8536341cc72a6832dc0dc27defff600ac87720688914ff8f"
     },
     {
       "repository": "web",
@@ -129,62 +144,62 @@
     {
       "repository": "web",
       "path": "src/api/workInstructions.ts",
-      "sha256": "2608b7964f0ca31310ba515252c0b625dee279b7bb8f39432320de705da1b968"
+      "sha256": "04573d00bcfd0c0879e8e016612a372a95abf26dfd36cbc8aae9c790a0e4a51a"
     },
     {
       "repository": "mobile",
       "path": "src/features/projects/screens/ProjectDetailScreen.tsx",
-      "sha256": "2af7a8db6b8448009981734879c1fe49225d490ffe654d241234f343faa589b8"
+      "sha256": "ee701b50a22dff4c57f58d96818d5a3e18b3ab14ce131322cc16003e8a7db70c"
     },
     {
       "repository": "mobile",
       "path": "src/features/projects/screens/ProjectFilesScreen.tsx",
-      "sha256": "085da553862471a52fcd5ec5bd7c63a83a6f15fc4505804bdb37fa5ccfbbcbb3"
+      "sha256": "c79ba769f4e473b0cfdada56e1bb26b6be30f66953d2c8302d305c6c474f4a3c"
     },
     {
       "repository": "mobile",
       "path": "src/features/documents/screens/DocumentSignScreen.tsx",
-      "sha256": "a50d7bb5dcf72b743384649252f704f880d937926a764a42d57bbe85e4decca9"
+      "sha256": "5bfc8a551348386cc30e7c833516635a320262fa83b8306495596656c55ff793"
     },
     {
       "repository": "mobile",
       "path": "src/features/supplier-invoices/screens/ScanReceiptScreen.tsx",
-      "sha256": "acf4cb65640d0f84c4983385fcd61176d1302522978331357919bc9c0eb7cddb"
+      "sha256": "5e8da34bba1b324cb521c9ccab212c43ec158cc3c243463e314c1b6263e01a14"
     },
     {
       "repository": "mobile",
       "path": "src/features/assignments/screens/AssignmentsListScreen.tsx",
-      "sha256": "5d1fed7d8e65a4557014023cd0eb68276be8c4116f58f1670b4f27efe885fb78"
+      "sha256": "831e36288165b6e56f69565ded81120eb4e8fb061b01509d3165274107fa9443"
     },
     {
       "repository": "mobile",
       "path": "src/features/time-tracking/screens/TimeTrackingScreen.tsx",
-      "sha256": "5bcd20e137449a452df9980bc977e1859c36c9b8c90e2c5c2c21c1149efe900f"
+      "sha256": "39fdd679a5b23766f573cb7eb3bbab3cf2ec6b4a9523f9c5d201845950b7eea4"
     },
     {
       "repository": "mobile",
       "path": "src/features/construction-reports/screens/DailyReportScreen.tsx",
-      "sha256": "023316fb5acdd135387fc3eb3d26efbf3afc6ad5250d510c1335c6c01181df13"
+      "sha256": "a7a75e4eaa5389485111f0fe4c73af3177d9ff188613003ef546c33fc1100e9e"
     },
     {
       "repository": "mobile",
       "path": "src/features/defects/screens/DefectDetailScreen.tsx",
-      "sha256": "383896366933d3416d820a0cdd9a2ccc489a99d961957d02399934588a639848"
+      "sha256": "49b0bf4fcdb605dd3db4aa9ccbca9a09fe7b3a8d1fdf721f1d192661c9ee51e9"
     },
     {
       "repository": "mobile",
       "path": "src/features/acceptance/screens/AcceptanceScreen.tsx",
-      "sha256": "3a3f3dd69efcea9a21e7b509a26e28c5a6c8e1a0bbd9741710073b4b8911518f"
+      "sha256": "8e6c865a18b782cd0802deb687f7dd7eb2cbd4127ec443e6c90894906c47b560"
     },
     {
       "repository": "mobile",
       "path": "src/features/room-measurements/screens/RoomMeasurementsScreen.tsx",
-      "sha256": "cac5f4e759b130391a25b6f99dc6de9d3933c40af5fdd08d5e40c9eadfcb42c3"
+      "sha256": "9cecee00f75c4fcbd756ccfb38d406b54ae8b147cb319c111ddf65da1716afea"
     },
     {
       "repository": "mobile",
       "path": "src/features/vacation/components/VacationTab.tsx",
-      "sha256": "91ff361cf06a1b5451fdd244e06d833cfdb6aa5e7c1eda0064478d4229775497"
+      "sha256": "f875824e48b7d8f7a0127a7690894001f2f8c21445d0c2072c6afb5c1cddd08a"
     }
   ]
 }

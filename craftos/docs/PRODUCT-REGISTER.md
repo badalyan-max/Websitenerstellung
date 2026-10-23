@@ -1,6 +1,6 @@
 # Produktregister und Veröffentlichungsabgleich
 
-Stand: 21. Oktober 2026 (Release-Abgleich Phase 5; Web-Basis am 21.10. vor dem Rollout auf v4.0.0-test.239 nachgezogen).
+Stand: 23. Oktober 2026 (Release-Abgleich Phase 5; Basis über die Abgleiche nach 08-13 und 08-14 auf Web v4.0.0-test.245 und Mobile test.96 nachgezogen und in 09-15 für Phase 9 eingefroren, siehe `content-pruefung/09-basis.md`).
 
 Die maschinenlesbare Grundlage liegt in `lib/product-register.ts`. Sie verbindet die zentralen Funktionsbeschreibungen mit Plattformen, Zugriff, Lizenzzuordnung, Implementierungsstatus und internen Prüfbelegen. Preise und 10 Testtage werden aus `lib/site.ts` bezogen. Ratgeber und Hilfeartikel referenzieren dieselben Funktions-Slugs. Interne Belegpfade werden nicht an Suchkomponenten im Browser übertragen.
 
@@ -10,8 +10,10 @@ Maßgeblich ist ausschließlich der Produktions-Release `origin/release` beider 
 
 | Produkt | Ref | Release-Tag | Commit |
 |---|---|---|---|
-| Web-App (`craft-connect-buddy`) | `origin/release` | `v4.0.0-test.239` | `535206b42aace73bb53b2796c5072cea78ac10fd` |
-| Mobile-App (`craftos-mobile`) | `origin/release` | `mobile-v1.0.0-test.93` | `5610a06415361f5c5a01c90258352ed7f49b7bab` |
+| Web-App (`craft-connect-buddy`) | `origin/release` | `v4.0.0-test.245` | `6686d05e0aed9d9ed1a9959ddc2142928e874e84` |
+| Mobile-App (`craftos-mobile`) | `origin/release` | `mobile-v1.0.0-test.96` | `837aab4f5c1d3cd5411f41e1d720b2aa274e2cac` |
+
+Dieselben Commits stehen in `lib/product-register.ts` (`productBasis`), in `product-pricing-snapshot.json` (`source`, `mobileSource`) und in `product-source-snapshot.json` (`basis`, SHA-256 der Belegdateien am jeweiligen Commit). Für Phase 9 gilt diese Basis eingefroren; das Delta ab der Recherchebasis (Web `a9319e5`, Mobile `6cac366`) steht in `content-pruefung/09-basis.md`. Neu live seit test.241 und noch ohne eigenen Registereintrag: GoBD-Kassenbuch (Stufe 1, mit DATEV-Export), Rechnung nach § 13b, Sperre abgerechneter Zeiten; die Zeitkorrektur im Web (Beginn, Ende, Pause) kam mit test.241. Die Einordnung in Hilfeartikel übernehmen die Phase-9-Pakete.
 
 Jeder Belegpfad im Register (`features[].evidence`, `liveExtras[].evidence`) und jeder Sprachordner aus `mobileLocales` wird von `tests/product-register.test.ts` per `git cat-file -e <commit>:<pfad>` gegen diese Commits geprüft, sobald beide Repositories lokal vorliegen (Pfade über `CRAFTOS_WEB_REPO` und `CRAFTOS_MOBILE_REPO` überschreibbar). Lokale Arbeitsstände oder Feature-Branches sind keine Grundlage mehr.
 
@@ -59,7 +61,7 @@ Telefon-Agent, MCP-Server, KI-Agent (weitere Agent-Aktionen), Videoanalyse (Web)
 5. Telefon-Agent, offener MCP-Server und weitere Agent-Aktionen: am Release nicht vorhanden; die früheren datierten Ankündigungen sind seit 20. Oktober 2026 vollständig entfernt (D-12).
 6. Kundenportal: live seit dem Release-Abgleich vom 20. Oktober 2026 (D-11). Onlinezahlungen sind explizit abgeschaltet und werden nicht beworben.
 7. Offline: nur geladene Inhalte und unterstützte Vorgänge. Fotos, KI und neue Downloads benötigen Verbindung; keine lückenlose Offline-Garantie.
-8. DATANORM v5, automatische ELSTER-Abgabe und autonomes Verbuchen werden nicht als verfügbare Fähigkeiten behauptet.
+8. Automatische ELSTER-Abgabe und autonomes Verbuchen werden nicht als verfügbare Fähigkeiten behauptet. DATANORM 4 und DATANORM 5 sind am Release belegt (`src/lib/datanorm/datanormParser.ts`, Importdialog); die frühere Einschränkung zu DATANORM v5 ist seit dem 22. Oktober 2026 gestrichen (Leitlinie L-1).
 
 ## GoBD-Prüfbelege
 
