@@ -197,7 +197,7 @@ Quelle der Zeilen: `docs/content-pruefung/09-integration.md` § 7. Audit-Kürzel
 | Funktion | Anleitung (Anker) | Verlinkende Detailseite bzw. /app | Audit | Live-Ergebnis (craftos.eu, 23.10.2026) |
 |---|---|---|---|---|
 | Terminplanung / Arbeitsabschnitte | `/hilfe/projekt-phasen-anlegen#antwort` | `/funktionen/terminplanung` | SA; FD; RA | live OK: HTTP 200, Anker, Antwort 244 |
-| Abnahme und Teilabnahme | `/hilfe/abnahme-dokumentieren#antwort` | `/funktionen/baudokumentation` (Kachel „Abnahme und Teilabnahme“, seit Korrektur `6921340`) | SA; FD CONTENT-04; LC; RA | Anleitung live OK: HTTP 200, Anker, Antwort 251. Korrigiert 23.10.2026: Der Link von der Detailseite fehlte bis `6921340` (09-VERIFICATION); Live-Nachweis nach dem Push siehe unten |
+| Abnahme und Teilabnahme | `/hilfe/abnahme-dokumentieren#antwort` | `/funktionen/baudokumentation` (Kachel „Abnahme und Teilabnahme“, seit Korrektur `6921340`) | SA; FD CONTENT-04; LC; RA | Anleitung live OK: HTTP 200, Anker, Antwort 251. Korrigiert 23.10.2026: Der Link von der Detailseite fehlte bis `6921340` (09-VERIFICATION). Live ab 10:17 MESZ: Kachel-Link auf `/funktionen/baudokumentation` vorhanden, live-check 69/69 OK, IndexNow HTTP 200 |
 | Bautagesbericht | `/hilfe/bautagesbericht-erstellen#antwort` | `/funktionen/baudokumentation` | SA; FD; RA | live OK: HTTP 200, Anker, Antwort 269 |
 | Mängel | `/hilfe/mangel-erfassen-bearbeiten#antwort` | `/funktionen/maengelmanagement` | SA; FD; RA | live OK: HTTP 200, Anker, Antwort 241 |
 | Mahnwesen | `/hilfe/mahnwesen-einrichten#antwort` | `/funktionen/mahnwesen` (Sekundärlink) | SA; FD Sekundärlink; RA | live OK: HTTP 200, Anker, Antwort 286 |

@@ -1,12 +1,14 @@
 ---
 phase: 09-gewerke-und-wissensinhalte
 verified: 2026-10-23T12:30:00Z
-status: gaps_found
-score: 6/7 must-haves verified
+status: human_needed
+score: 7/7 must-haves verified
+re_verified: 2026-10-23T08:20:00Z
 overrides_applied: 0
 gaps:
   - truth: "Für jede seit 09.09.2026 neue Live-Funktion gibt es mindestens einen Hilfeartikel mit Schritt-für-Schritt-Anleitung, verlinkt von der Detailseite (ROADMAP SC 3, CONTENT-04)"
-    status: partial
+    status: closed
+    closed_by: "6921340 (Fix), f6144bb (Test), 937fa13 (live-check), 18887fe (Doku); live seit 23.10.2026 10:17 MESZ"
     reason: "13 von 14 Funktionen erfüllen das Kriterium. Für „Abnahme und Teilabnahme“ gibt es den Artikel /hilfe/abnahme-dokumentieren (live, mit Teilabnahme-Schritten), aber keine Funktionsdetailseite verlinkt ihn. Auf /funktionen/baudokumentation hat die Kachel „Abnahme und Teilabnahme“ kein href, und der Sekundärlink zeigt auf /hilfe/bautagesbericht-erstellen. Live-Scan aller 25 Seiten unter /funktionen*, /app und /craft-ai: kein Link auf /hilfe/abnahme-dokumentieren. Die Abdeckungstabelle (09-integration.md § 7, PHASE-09-ROLLOUT.md § 10) behauptet „/funktionen/baudokumentation“ als verlinkende Detailseite mit Audit „FD“. tests/funktionsdetails.test.ts prüft für baudokumentation aber nur den Sekundärlink auf bautagesbericht-erstellen."
     artifacts:
       - path: "craftos/lib/funktionsdetails/baustelle.ts"
@@ -43,7 +45,7 @@ human_verification:
 
 **Phasenziel:** Gewerke-Seiten, Ratgeber und Hilfe sind klar gegliedert, entsprechen dem aktuellen Produktstand und erklären auch die neuen Funktionen Schritt für Schritt.
 **Verifiziert:** 23.10.2026, gegen den Code in `craftos/` (HEAD `e8e01a5`), gegen die Live-Seite https://craftos.eu und gegen `origin/release` der Web-App (`bfe165e`, v4.0.0-test.249) und der Mobile-App (`837aab4`, mobile-v1.0.0-test.96)
-**Status:** gaps_found
+**Status:** human_needed (Lücke geschlossen, siehe Nachtrag; die drei Inhaberprüfungen bleiben offen)
 **Re-Verifikation:** Nein, Erstprüfung
 
 Hinweis zur Methode: SUMMARY-, Integrations- und Rollout-Dokumente dienten nur als Hinweisquelle. Alle Aussagen unten beruhen auf eigenen Abfragen: Dateien in `craftos/`, Release-Code über `git show`/`git archive origin/release`, Live-HTML über `fetch`/`curl`. Es liefen keine Builds, keine E2E und kein Server.
@@ -177,3 +179,35 @@ Die einzige Lücke betrifft ROADMAP SC 3: Die Anleitung zu „Abnahme und Teilab
 
 _Verifiziert: 23.10.2026_
 _Prüfer: Claude (gsd-verifier)_
+
+---
+
+## Nachtrag 23.10.2026: Lücke geschlossen
+
+**Befund:** ROADMAP SC 3 / CONTENT-04 ist jetzt vollständig erfüllt. `/funktionen/baudokumentation` verlinkt `/hilfe/abnahme-dokumentieren` über die Kachel „Abnahme und Teilabnahme“. Wahrheit 3 ist ✓ VERIFIED, die Punktzahl steigt auf 7/7. Der Status lautet `human_needed`, weil die drei menschlichen Prüfungen oben (Safari-Silbentrennung, Analytics-Ereignisse, Rechts- und Steuerfakten) unverändert offen sind.
+
+| Commit | Inhalt |
+|---|---|
+| `f6144bb` | test: Block „CONTENT-04: jede Anleitung zu einer neuen Live-Funktion ist von einer Detailseite verlinkt“ in `tests/funktionsdetails.test.ts`. Er deckt alle 15 Anleitungen der Abdeckungstabelle ab (Sekundärlink oder Kachel, gerenderter `href`). Vor dem Fix war er rot, mit genau 2 Fehlschlägen, beide zu Abnahme. |
+| `6921340` | fix: `href: "/hilfe/abnahme-dokumentieren"` an der Kachel in `lib/funktionsdetails/baustelle.ts`, zulässig nach `pruefeKachelLink` (`/hilfe/{slug}`) |
+| `937fa13` | `scripts/live-check.mjs`: „Detailseiten verlinken Anleitungen“ prüft jetzt 14 Detailseiten, 17 Links und 15 Anleitungen (vorher 4 Seiten). Jede Anleitung muss in der Sitemap stehen. |
+| `18887fe` | Abdeckungszeile in `09-integration.md` § 7 und `PHASE-09-ROLLOUT.md` § 10 richtiggestellt, mit Korrekturvermerk |
+| `467da9d`, `5ae63b3` | Nebenbefund: `origin/release` der Web-App ist auf test.249 (`bfe165e9`) vorgerückt. Deshalb war `pricing-parity` „Snapshot ist aktuell“ rot. Preis- und Beleg-Snapshot sowie `productBasis` wurden angehoben. Das Delta besteht aus 2 Commits (Dokumente-Filter) und ändert keine der 43 Belegdateien und keine Preise. |
+
+**Lokale Prüfungen unter `.heavy-lock`:**
+- Vitest: 1363 von 1363 (45 Dateien)
+- `tsc --noEmit`: 0 Fehler
+- `npm run lint`: 0 Befunde
+- `npm run build`: 319 statische Seiten
+- `seo-audit`: 0 Verstöße über 156 von 156 URLs und 12 Regeln
+- `live-check` gegen `localhost:3100`: 69 von 69 OK
+- E2E `design-v2.pw.cjs`: 140 bestanden, 8 übersprungen, 0 fehlgeschlagen
+- Der Server wurde per eigener PID beendet, Port 3100 ist frei.
+
+**Live (https://craftos.eu, Push `e8e01a5..5ae63b3`):**
+- `/funktionen/baudokumentation` enthält genau einen Link `<a class="BentoGrid-module__…__link" href="/hilfe/abnahme-dokumentieren">`, live ab etwa 50 s nach dem Push.
+- `/hilfe/abnahme-dokumentieren` antwortet mit HTTP 200.
+- `LIVE_ORIGIN=https://craftos.eu node scripts/live-check.mjs`: 69 von 69 OK, darunter „Detailseiten verlinken Anleitungen (14 Seiten, 17 Links, 15 Anleitungen)“.
+- IndexNow: `https://craftos.eu/funktionen/baudokumentation` per POST gemeldet, Schlüsseldatei mit HTTP 200 und passendem Inhalt, Antwort HTTP 200 (08:18 UTC).
+
+_Nachtrag: Claude (Lückenschluss), 23.10.2026_
