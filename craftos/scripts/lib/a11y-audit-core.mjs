@@ -371,6 +371,11 @@ export function mergeReports(teile) {
         statusFehler.push({ ...ort, regel: "status", erwartet, ist: a.status ?? null, fehler: a.fehler ?? null, zustand: "stabil" });
         plus("statusFehler", 1);
       }
+      // Animationszustand nicht prüfbar (z. B. data-running nie true): Befund, damit das Gate nicht still besteht.
+      if (a.animation?.fehler) {
+        statusFehler.push({ ...ort, regel: "animation", erwartet: "data-running=true", ist: null, fehler: a.animation.fehler, zustand: "animation" });
+        plus("statusFehler", 1);
+      }
 
       unvollstaendigKontrast += a.unvollstaendigKontrast ?? 0;
       for (const selektor of a.unvollstaendigStellen ?? []) unvollstaendigStellen.push({ ...ort, regel: "color-contrast", selektor, zustand: "stabil" });

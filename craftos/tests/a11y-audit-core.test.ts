@@ -293,4 +293,10 @@ describe("mergeReports", () => {
     expect(r.gateVerstoesse[0]).toMatchObject({ regel: "color-contrast", zustand: "animation", phase: 2 });
     expect(r.gate).toBe(true);
   });
+
+  it("wertet einen nicht gestarteten Animationszustand als Befund statt still zu bestehen", () => {
+    const r = mergeReports([teilbericht(1, 1, { snippet: true, animation: { phasen: [], gate: [], fehler: "data-running blieb aus" } })]);
+    expect(r.statusFehler[0]).toMatchObject({ regel: "animation", zustand: "animation", fehler: "data-running blieb aus" });
+    expect(r.gate).toBe(true);
+  });
 });

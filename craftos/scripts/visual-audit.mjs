@@ -1,17 +1,20 @@
 import { chromium, webkit } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import fs from "node:fs/promises";
+import { AXE_TAGS, bewerteAxe, erwarteterStatus } from "./lib/a11y-audit-core.mjs";
 const origin = process.env.AUDIT_ORIGIN || "http://localhost:3101";
 const output = "test-results/visual";
 await fs.mkdir(output, { recursive: true });
 const routes = process.env.AUDIT_ROUTES?.split(",") || [
   "/",
+  "/funktionen",
   "/funktionen/angebote",
   "/funktionen/mahnwesen",
   "/funktionen/terminplanung",
   "/preise",
   "/app",
   "/gewerke",
+  "/gewerke/elektriker",
   "/vergleich",
   "/vergleich/plancraft-alternative",
   "/vergleich/craftnote-alternative",
@@ -23,8 +26,15 @@ const routes = process.env.AUDIT_ROUTES?.split(",") || [
   "/gobd",
   "/blog/handwerkerrechnung-schreiben",
   "/hilfe/rechnung-fertigstellen",
+  "/hilfe/kategorie/einrichtung",
   "/rechner/stundensatz",
   "/rechner/angebotskalkulation",
+  "/rechner",
+  "/support",
+  "/impressum",
+  "/datenschutz",
+  "/agb",
+  "/gibt-es-nicht",
 ];
 const results = [];
 for (const [engine, type] of [
@@ -81,22 +91,15 @@ for (const [engine, type] of [
           .filter((i) => i.offsetWidth > 0 && (!i.complete || !i.naturalWidth))
           .map((i) => i.src),
       }));
-      const accessibility =
-        width === 390 || width === 1440
-          ? (
-              await new AxeBuilder({ page })
-                .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
-                .analyze()
-            ).violations.map((v) => ({
-              id: v.id,
-              impact: v.impact,
-              description: v.description,
-              nodes: v.nodes.map((n) => ({
-                target: n.target,
-                summary: n.failureSummary,
-              })),
-            }))
-          : [];
+      // axe bei allen fünf Breiten (10 D-08); .options() vor .withTags(), sonst geht runOnly verloren (10-RESEARCH Pitfall 3).
+      // Gewertet wird wie in scripts/a11y-audit.mjs (D-06): Gate und Großtext 4.5:1; moderate/minor nur im Bericht.
+      const axe = bewerteAxe(
+        await new AxeBuilder({ page })
+          .options({ rules: { "color-contrast-enhanced": { enabled: true } } })
+          .withTags([...AXE_TAGS])
+          .analyze(),
+      );
+      const accessibility = [...axe.gate, ...axe.grossText];
       const filename =
         engine +
         "-" +
@@ -113,6 +116,7 @@ for (const [engine, type] of [
         layout,
         errors,
         accessibility,
+        accessibilityUebrige: axe.uebrige,
         screenshot: filename,
       });
       page.off("pageerror", onError);
@@ -128,7 +132,8 @@ console.log(
   JSON.stringify(
     {
       pages: results.length,
-      statusErrors: results.filter((x) => x.status !== 200),
+      // K-10: Für die 404-Probe ist Status 404 erwartet.
+      statusErrors: results.filter((x) => x.status !== erwarteterStatus(x.route)),
       overflow: results
         .filter((x) => x.layout.width > x.width + 2)
         .map((x) => ({
@@ -152,4 +157,4 @@ console.log(
   ),
 );
 
-if(results.some(x=>x.status!==200||x.layout.width>x.width+2||x.layout.images.length||x.errors.length||x.accessibility.length))process.exitCode=1;
+if(results.some(x=>x.status!==erwarteterStatus(x.route)||x.layout.width>x.width+2||x.layout.images.length||x.errors.length||x.accessibility.length))process.exitCode=1;
