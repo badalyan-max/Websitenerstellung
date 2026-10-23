@@ -1,0 +1,119 @@
+{
+  "block": "audit-issues",
+  "quelle": "SE Ranking MCP (Data API und Project API), Projekt 13094375",
+  "subscription": {
+    "vorher": {
+      "at": "2026-10-23T08:39:22.272Z",
+      "units_left": 18283,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    },
+    "nachher": {
+      "at": "2026-10-23T08:39:31.844Z",
+      "units_left": 18283,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    }
+  },
+  "calls": {
+    "image_no_alt": {
+      "tool": "DATA_getAuditPagesByIssue",
+      "args": {
+        "audit_id": 485185,
+        "code": "image_no_alt",
+        "limit": 100
+      },
+      "at": "2026-10-23T08:39:22.273Z",
+      "result": {
+        "total_urls": 13,
+        "urls": [
+          "https://craftos.eu/gewerke",
+          "https://craftos.eu/gewerke/elektriker",
+          "https://craftos.eu/gewerke/shk",
+          "https://craftos.eu/gewerke/maler",
+          "https://craftos.eu/gewerke/tischler-schreiner",
+          "https://craftos.eu/gewerke/dachdecker",
+          "https://craftos.eu/gewerke/fliesenleger",
+          "https://craftos.eu/gewerke/zimmerer",
+          "https://craftos.eu/gewerke/galabau",
+          "https://craftos.eu/gewerke/trockenbau",
+          "https://craftos.eu/gewerke/metallbau",
+          "https://craftos.eu/gewerke/bauunternehmen",
+          "https://craftos.eu/gewerke/allrounder"
+        ],
+        "urls_type": "simple_urls_array"
+      }
+    },
+    "title_short": {
+      "tool": "DATA_getAuditPagesByIssue",
+      "args": {
+        "audit_id": 485185,
+        "code": "title_short",
+        "limit": 100
+      },
+      "at": "2026-10-23T08:39:23.759Z",
+      "result": {
+        "total_urls": 1,
+        "urls": [
+          "https://craftos.eu/impressum"
+        ],
+        "urls_type": "simple_urls_array"
+      }
+    },
+    "same_title_h1": {
+      "tool": "DATA_getAuditPagesByIssue",
+      "args": {
+        "audit_id": 485185,
+        "code": "same_title_h1",
+        "limit": 100
+      },
+      "at": "2026-10-23T08:39:25.350Z",
+      "result": {
+        "total_urls": 1,
+        "urls": [
+          "https://craftos.eu/hilfe/mitarbeiter-einladen-lizenz-zuweisen"
+        ],
+        "urls_type": "simple_urls_array"
+      }
+    },
+    "extlinks3xx": {
+      "tool": "DATA_getAuditPagesByIssue",
+      "args": {
+        "audit_id": 485185,
+        "code": "extlinks3xx",
+        "limit": 100
+      },
+      "at": "2026-10-23T08:39:26.961Z",
+      "result": {
+        "total_urls": 1,
+        "urls": [
+          "https://craftos.eu/impressum"
+        ],
+        "urls_type": "simple_urls_array"
+      }
+    },
+    "extlinks_nofollow": {
+      "tool": "DATA_getAuditPagesByIssue",
+      "args": {
+        "audit_id": 485185,
+        "code": "extlinks_nofollow",
+        "limit": 100
+      },
+      "at": "2026-10-23T08:39:28.568Z",
+      "result": {
+        "total_urls": 8,
+        "urls": [
+          "https://craftos.eu/gobd",
+          "https://craftos.eu/vergleich",
+          "https://craftos.eu/preise",
+          "https://craftos.eu/vergleich/plancraft-alternative",
+          "https://craftos.eu/vergleich/craftnote-alternative",
+          "https://craftos.eu/vergleich/hero-alternative",
+          "https://craftos.eu/vergleich/tooltime-alternative",
+          "https://craftos.eu/vergleich/handwerkersoftware-kleine-betriebe"
+        ],
+        "urls_type": "simple_urls_array"
+      }
+    }
+  }
+}

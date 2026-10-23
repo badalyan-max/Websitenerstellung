@@ -1,0 +1,255 @@
+{
+  "block": "data",
+  "quelle": "SE Ranking MCP (Data API und Project API), Projekt 13094375",
+  "subscription": {
+    "vorher": {
+      "at": "2026-10-23T08:39:43.507Z",
+      "units_left": 18283,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    },
+    "nachher": {
+      "at": "2026-10-23T08:39:49.954Z",
+      "units_left": 18283,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    }
+  },
+  "calls": {
+    "backlinksSummary": {
+      "tool": "DATA_getBacklinksSummary",
+      "args": {
+        "target": [
+          "craftos.eu"
+        ]
+      },
+      "at": "2026-10-23T08:39:43.508Z",
+      "result": {
+        "summary": [
+          {
+            "target": "craftos.eu",
+            "backlinks": 12,
+            "refdomains": 12,
+            "subnets": 5,
+            "ips": 7,
+            "nofollow_backlinks": 0,
+            "dofollow_backlinks": 12,
+            "edu_backlinks": 0,
+            "gov_backlinks": 0,
+            "inlink_rank": 1,
+            "domain_inlink_rank": 3,
+            "from_home_page_backlinks": 0,
+            "dofollow_from_home_page_backlinks": 0,
+            "text_backlinks": 12,
+            "dofollow_refdomains": 12,
+            "from_home_page_refdomains": 0,
+            "edu_refdomains": 0,
+            "gov_refdomains": 0,
+            "anchors": 1,
+            "dofollow_anchors": 1,
+            "pages_with_backlinks": 2,
+            "top_anchors_by_backlinks": [
+              {
+                "anchor": "craftos.eu",
+                "backlinks": 12
+              }
+            ],
+            "top_anchors_by_refdomains": [
+              {
+                "anchor": "craftos.eu",
+                "refdomains": 17
+              }
+            ],
+            "top_pages_by_backlinks": [
+              {
+                "url": "https://craftos.eu/",
+                "backlinks": 11
+              },
+              {
+                "url": "http://craftos.eu/",
+                "backlinks": 1
+              }
+            ],
+            "top_pages_by_refdomains": [
+              {
+                "url": "https://craftos.eu/",
+                "refdomains": 15
+              },
+              {
+                "url": "http://craftos.eu/",
+                "refdomains": 2
+              }
+            ],
+            "top_tlds": [
+              {
+                "tld": "com",
+                "count": 6
+              },
+              {
+                "tld": "info",
+                "count": 2
+              },
+              {
+                "tld": "club",
+                "count": 1
+              },
+              {
+                "tld": "guru",
+                "count": 1
+              },
+              {
+                "tld": "pl",
+                "count": 1
+              },
+              {
+                "tld": "pro",
+                "count": 1
+              }
+            ],
+            "top_countries": [
+              {
+                "country": "us",
+                "count": 10
+              },
+              {
+                "country": "pl",
+                "count": 1
+              },
+              {
+                "country": "sg",
+                "count": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "refdomains": {
+      "tool": "DATA_getBacklinksRefDomains",
+      "args": {
+        "target": "craftos.eu",
+        "order_by": "domain_inlink_rank",
+        "limit": 1000
+      },
+      "at": "2026-10-23T08:39:45.914Z",
+      "result": {
+        "refdomains": [
+          {
+            "refdomain": "webboard.pl",
+            "backlinks": 1,
+            "dofollow_backlinks": 1,
+            "domain_inlink_rank": 69,
+            "first_seen": "2021-01-06"
+          },
+          {
+            "refdomain": "sport-life.club",
+            "backlinks": 1,
+            "dofollow_backlinks": 1,
+            "domain_inlink_rank": 56,
+            "first_seen": "2026-01-22"
+          },
+          {
+            "refdomain": "dsnylu.com",
+            "backlinks": 1,
+            "dofollow_backlinks": 1,
+            "domain_inlink_rank": 53,
+            "first_seen": "2026-01-21"
+          },
+          {
+            "refdomain": "bmwyng.com",
+            "backlinks": 1,
+            "dofollow_backlinks": 1,
+            "domain_inlink_rank": 52,
+            "first_seen": "2026-01-27"
+          },
+          {
+            "refdomain": "kgzxkf.com",
+            "backlinks": 1,
+            "dofollow_backlinks": 1,
+            "domain_inlink_rank": 51,
+            "first_seen": "2026-01-20"
+          },
+          {
+            "refdomain": "obmain.com",
+            "backlinks": 1,
+            "dofollow_backlinks": 1,
+            "domain_inlink_rank": 50,
+            "first_seen": "2026-01-22"
+          },
+          {
+            "refdomain": "qhtycw.com",
+            "backlinks": 1,
+            "dofollow_backlinks": 1,
+            "domain_inlink_rank": 49,
+            "first_seen": "2026-01-30"
+          },
+          {
+            "refdomain": "jobsapp.info",
+            "backlinks": 1,
+            "dofollow_backlinks": 1,
+            "domain_inlink_rank": 49,
+            "first_seen": "2025-08-24"
+          },
+          {
+            "refdomain": "hzdlpq.com",
+            "backlinks": 1,
+            "dofollow_backlinks": 1,
+            "domain_inlink_rank": 49,
+            "first_seen": "2026-01-28"
+          },
+          {
+            "refdomain": "nettools.guru",
+            "backlinks": 1,
+            "dofollow_backlinks": 1,
+            "domain_inlink_rank": 48,
+            "first_seen": "2026-01-26"
+          },
+          {
+            "refdomain": "sergechel.info",
+            "backlinks": 1,
+            "dofollow_backlinks": 1,
+            "domain_inlink_rank": 48,
+            "first_seen": "2025-05-28"
+          },
+          {
+            "refdomain": "australianwebdirectory.pro",
+            "backlinks": 1,
+            "dofollow_backlinks": 1,
+            "domain_inlink_rank": 18,
+            "first_seen": "2025-08-08"
+          }
+        ]
+      }
+    },
+    "domainOverviewDE": {
+      "tool": "DATA_getDomainOverviewByCountry",
+      "args": {
+        "source": "de",
+        "domain": "craftos.eu",
+        "with_subdomains": 1
+      },
+      "at": "2026-10-23T08:39:46.665Z",
+      "result": {
+        "organic": {
+          "base_domain": "craftos.eu",
+          "price_sum": 0,
+          "traffic_sum": 0,
+          "keywords_new_count": 1,
+          "keywords_down_count": 0,
+          "keywords_up_count": 0,
+          "keywords_equal_count": 0,
+          "keywords_lost_count": 2,
+          "keywords_count": 1,
+          "top1_5": 0,
+          "top6_10": 0,
+          "top11_20": 0,
+          "top21_50": 0,
+          "top51_100": 1,
+          "year": 2026,
+          "month": 10
+        },
+        "adv": []
+      }
+    }
+  }
+}

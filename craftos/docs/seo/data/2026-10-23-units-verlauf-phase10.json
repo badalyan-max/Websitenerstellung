@@ -1,0 +1,263 @@
+{
+  "quelle": "SE Ranking DATA_getSubscription (MCP), Kostentabelle https://seranking.com/api/data/getting-started/ (Abruf 2026-10-23), Kontostände der Messberichte unter docs/seo/reports/*-raw-*-subscription.json und Commit-Zeiten (git log)",
+  "kontingent": {
+    "units_limit": 100000,
+    "ablauf": "2026-11-03 17:22:59"
+  },
+  "kontostand_verlauf_sitzung": [
+    {
+      "at": "2026-10-23T08:34:54.014Z",
+      "label": "start",
+      "units_left": 18597,
+      "units_limit": 100000,
+      "status": "active"
+    },
+    {
+      "label": "verbrauch-vorher",
+      "at": "2026-10-23T08:36:52.418Z",
+      "units_left": 18597,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    },
+    {
+      "label": "verbrauch-nachher",
+      "at": "2026-10-23T08:37:14.800Z",
+      "units_left": 18597,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    },
+    {
+      "label": "audit-start-vorher",
+      "at": "2026-10-23T08:37:38.544Z",
+      "units_left": 18597,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    },
+    {
+      "label": "audit-start-nachher",
+      "at": "2026-10-23T08:37:41.730Z",
+      "units_left": 18597,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    },
+    {
+      "label": "projekt-vorher",
+      "at": "2026-10-23T08:38:03.997Z",
+      "units_left": 18597,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    },
+    {
+      "label": "projekt-nachher",
+      "at": "2026-10-23T08:38:28.105Z",
+      "units_left": 18283,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    },
+    {
+      "label": "status1-vorher",
+      "at": "2026-10-23T08:38:39.061Z",
+      "units_left": 18283,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    },
+    {
+      "label": "status1-nachher",
+      "at": "2026-10-23T08:38:42.293Z",
+      "units_left": 18283,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    },
+    {
+      "label": "audit-report-vorher",
+      "at": "2026-10-23T08:38:54.914Z",
+      "units_left": 18283,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    },
+    {
+      "label": "audit-report-nachher",
+      "at": "2026-10-23T08:38:59.740Z",
+      "units_left": 18283,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    },
+    {
+      "label": "audit-issues-vorher",
+      "at": "2026-10-23T08:39:22.272Z",
+      "units_left": 18283,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    },
+    {
+      "label": "audit-issues-nachher",
+      "at": "2026-10-23T08:39:31.844Z",
+      "units_left": 18283,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    },
+    {
+      "label": "data-vorher",
+      "at": "2026-10-23T08:39:43.507Z",
+      "units_left": 18283,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    },
+    {
+      "label": "data-nachher",
+      "at": "2026-10-23T08:39:49.954Z",
+      "units_left": 18283,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    },
+    {
+      "label": "prompts-vorher",
+      "at": "2026-10-23T08:40:37.506Z",
+      "units_left": 18071,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    },
+    {
+      "label": "prompts-nachher",
+      "at": "2026-10-23T08:40:43.995Z",
+      "units_left": 18071,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    },
+    {
+      "label": "ki-prompts-vorher",
+      "at": "2026-10-23T08:41:00.183Z",
+      "units_left": 18071,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    },
+    {
+      "label": "ki-prompts-nachher",
+      "at": "2026-10-23T08:41:10.930Z",
+      "units_left": 18071,
+      "units_limit": 100000,
+      "expiration": "2026-11-03 17:22:59"
+    },
+    {
+      "at": "2026-10-23T08:41:57.395Z",
+      "label": "zwischenstand",
+      "units_left": 18071,
+      "units_limit": 100000,
+      "status": "active"
+    }
+  ],
+  "kontostand_historie_messberichte": [
+    {
+      "etappe": "ausgangsstand",
+      "commit": "2026-10-21 00:54",
+      "units_left": 65259
+    },
+    {
+      "etappe": "rollout-phase05",
+      "commit": "2026-10-21 01:47",
+      "units_left": 57647,
+      "differenz": -7612
+    },
+    {
+      "etappe": "rollout-phase06",
+      "commit": "2026-10-21 17:12",
+      "units_left": 50035,
+      "differenz": -7612
+    },
+    {
+      "etappe": "rollout-phase07",
+      "commit": "2026-10-22 14:09",
+      "units_left": 42423,
+      "differenz": -7612
+    },
+    {
+      "etappe": "rollout-phase08",
+      "commit": "2026-10-23 01:18",
+      "units_left": 33921,
+      "differenz": -8502
+    },
+    {
+      "etappe": "rollout-phase09",
+      "commit": "2026-10-23 09:45",
+      "units_left": 26209,
+      "differenz": -7712
+    },
+    {
+      "etappe": "phase10-start (diese Messung)",
+      "zeit": "2026-10-23T08:34:54Z",
+      "units_left": 18597,
+      "differenz": -7612
+    }
+  ],
+  "kosten_laut_doku": {
+    "ai-search POST overview/leaderboard (DATA_getAiSearchLeaderboard)": {
+      "je_anfrage": 7500
+    },
+    "ai-search GET overview/by-engine/time-series": {
+      "je_anfrage": 800
+    },
+    "ai-search GET prompts-by-target / prompts-by-brand": {
+      "je_datensatz": 200
+    },
+    "backlinks GET summary (DATA_getBacklinksSummary)": {
+      "je_ziel": 100
+    },
+    "backlinks GET refdomains (DATA_getBacklinksRefDomains)": {
+      "je_datensatz": 1
+    },
+    "domain GET overview/db (DATA_getDomainOverviewByCountry)": {
+      "je_anfrage": 100
+    },
+    "audit POST audits/standard bzw. recheck/standard": {
+      "je_seite": 2
+    },
+    "audit GET status/report/issue-pages, audits (Liste)": {
+      "je_anfrage": 0
+    },
+    "account GET subscription": {
+      "je_anfrage": 0
+    },
+    "Project API (PROJECT_*)": "laut Doku: Project API requests use your subscription limits, while Data API requests draw on your credit balance; AIRT-Competitors/Sources ausdrücklich Free (0 credits)"
+  },
+  "seo_report_lauf_kosten": {
+    "leaderboard": 7500,
+    "backlinks_summary": 100,
+    "refdomains_12_zeilen": 12,
+    "summe": 7612,
+    "hinweis": "PROJECT_listKeywords, PROJECT_getSearchEngines, PROJECT_getKeywordStats: 0 Data-Units"
+  },
+  "buchungsverzoegerung": "Kosten erscheinen erst 10-60 s nach dem Aufruf im Kontostand (Audit: bei Abschluss). Die nachher-Werte der Messberichte wurden sofort gelesen und zeigen deshalb 0.",
+  "audit": {
+    "audit_id": 485185,
+    "erstellt": "2026-10-23T08:37:38Z",
+    "seiten": 157,
+    "kosten": 314
+  },
+  "bloecke": [
+    {
+      "block": "1 Verbrauchsanalyse (nur lesend)",
+      "vorher": 18597,
+      "nachher": 18597,
+      "verbrauch": 0
+    },
+    {
+      "block": "2 Website-Audit 485185 (157 Seiten)",
+      "vorher": 18597,
+      "nachher": 18283,
+      "verbrauch": 314
+    },
+    {
+      "block": "3a Projekt-Messstand (Positionen, KI-Tracker)",
+      "vorher": 18283,
+      "nachher": 18283,
+      "verbrauch": 0
+    },
+    {
+      "block": "3b Data-Messstand (Backlinks, Refdomains, Domain-Overview DE)",
+      "vorher": 18283,
+      "nachher": 18071,
+      "verbrauch": 212
+    }
+  ],
+  "summe_verbrauch": 526
+}
