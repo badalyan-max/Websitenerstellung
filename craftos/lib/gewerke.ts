@@ -10,13 +10,15 @@
  * - „Arbeitsabschnitte“ als Produktbegriff, „Geräte & Fahrzeuge“ statt „Ressourcen“, „automatisch“ nur mit
  *   „auf Wunsch“; Beispieldaten fiktiv, Beispiel und `tradeSnippetExamples[slug]` erzählen denselben Auftrag.
  *
- * Prüfungen beim Laden (Muster lib/funktionsdetails): Mengen, Textbudgets, Ablauf-Funktionen ⊂ Funktionen,
- * mindestens eine Phase-7-Detailseite, höchstens eine gemeinsame FAQ-Frage, Wortliste L-1. Mengen- und
- * Gewerk-Budgets stehen bis 09-11 als lokale Konstanten hier (danach TEXT_BUDGET.gewerk / count.gewerk*); die
- * Existenz der Artikelziele prüft tests/gewerke.test.ts (Dateizugriff, dieses Modul wird auch clientseitig geladen).
+ * Prüfungen beim Laden (Muster lib/funktionsdetails): Mengen und Textbudgets aus TEXT_BUDGET.gewerk /
+ * TEXT_BUDGET.count.gewerk* (F-A1), Ablauf-Funktionen ⊂ Funktionen, mindestens eine Phase-7-Detailseite, höchstens
+ * eine gemeinsame FAQ-Frage, zentrale Wortliste der Leitlinie L-1 (lib/leitlinie.ts) plus die Produktbegriffe der
+ * Gewerke-Texte. Die Existenz der Artikelziele prüft tests/gewerke.test.ts (Dateizugriff, dieses Modul wird auch
+ * clientseitig geladen); den Vertrag als Ganzes hält tests/gewerke.test.ts fest (09-11).
  */
 import { TEXT_BUDGET, charCount, sentenceCount } from "@/components/v2/budgets";
 import { funktionen } from "@/lib/funktionen";
+import { l1Treffer } from "@/lib/leitlinie";
 import { pruefeNurUnterstuetzt } from "@/lib/nur-unterstuetzt";
 
 export interface GewerkSchritt {
@@ -52,6 +54,20 @@ export interface Gewerk {
 
 /** Kopfwort-Span der Übersicht /gewerke. */
 export const GEWERKE_KOPFWORT = "Branchensoftware";
+
+/**
+ * Texte der Übersicht /gewerke (09-UI-SPEC § 1b, wörtlich). „zwölf“ in Antwort und H2 muss gewerke.length
+ * entsprechen (tests/gewerke.test.ts). Beleg „fragt Ihr Gewerk bei der Einrichtung ab“: Web SetupWizard.tsx Z. 449.
+ */
+export const GEWERKE_UEBERSICHT = {
+  answer:
+    "Eine Branchensoftware fürs Handwerk verbindet Angebot, Planung, Baustelle und Rechnung in einem Ablauf. CraftOS fragt Ihr Gewerk bei der Einrichtung ab; für zwölf Gewerke sehen Sie hier einen typischen Auftrag in Web-App und Mobile-App.",
+  secondary: { label: "Zu den Gewerken", href: "#gewerke" },
+  gewerke: {
+    title: "Zwölf Gewerke im Überblick",
+    lead: "Jede Seite zeigt einen typischen Auftrag mit den Funktionen, die Sie dafür nutzen.",
+  },
+} as const;
 
 /** Datum der letzten inhaltlichen Änderung der Gewerke-Seiten (Sitemap `lastModified`). */
 export const GEWERKE_STAND = "2026-10-23";
@@ -526,13 +542,13 @@ const definitions: Gewerk[] = [
 
 /* ---------- Prüfungen beim Laden (09-UI-SPEC § 4, § 5 „Error state“) ---------- */
 
-/** Gewerk-Budgets bis 09-11 lokal; danach TEXT_BUDGET.gewerk.* und TEXT_BUDGET.count.gewerk*. */
-const GEWERK_BUDGET = { teaser: 100, exampleTitle: 40, example: 200 } as const;
+/** Gewerk-Budgets und -Mengen aus dem Designsystem (09-UI-SPEC § 4, F-A1). */
+const GEWERK_BUDGET = TEXT_BUDGET.gewerk;
 const GEWERK_MENGEN = {
-  schritte: { min: 4, max: 5 },
-  funktionen: { min: 4, max: 6 },
-  faq: { min: 3, max: 4 },
-  artikel: { min: 2, max: 3 },
+  schritte: TEXT_BUDGET.count.gewerkSteps,
+  funktionen: TEXT_BUDGET.count.gewerkFunktionen,
+  faq: TEXT_BUDGET.count.gewerkFaq,
+  artikel: TEXT_BUDGET.count.gewerkArtikel,
 } as const;
 
 /** Phase-7-Detailseiten (07 D-07); jedes Gewerk verlinkt mindestens eine davon. */
@@ -547,33 +563,12 @@ export const PHASE7_SLUGS = [
 ] as const;
 
 /**
- * Wortliste der Leitlinie L-1 (09-UI-SPEC § 5) plus Produktbegriffe; lokal bis 09-11 (dann zentrale Liste).
- * Vergleich ohne Groß-/Kleinschreibung.
+ * Produktbegriffe der Gewerke-Texte (über L-1 hinaus): „Arbeitsabschnitte“ statt des alten Phasenbegriffs, „Geräte &
+ * Fahrzeuge“ statt „Ressourcen“, keine Vorlagen-Zusage (Orchestrator-Entscheidung 5). Wortfamilien als Muster (auch
+ * mit Leerzeichen oder Bindestrich), damit die Wörter nicht wörtlich in dieser Datei stehen. Die Wortliste der
+ * Leitlinie L-1 selbst kommt zentral aus lib/leitlinie.ts (l1Treffer).
  */
-const L1_WOERTER = [
-  "nicht unterstützt",
-  "verspricht keine",
-  "verspricht nicht",
-  "nicht zugesagt",
-  "nicht pauschal",
-  "kein pauschales",
-  "keine Onlinezahlung",
-  "Onlinezahlung",
-  "online bezahlen",
-  "keine vollständige",
-  "kein autonomes Verbuchen",
-  "nicht autonom",
-  "ersetzt keinen",
-  "Videoanalyse",
-  "Videoauswertung",
-  "Bald verfügbar",
-  "DATANORM v5",
-  "Bauphase",
-  "Ressourcen",
-] as const;
-
-/** Wortfamilien als Muster (auch mit Leerzeichen oder Bindestrich): Vorlagen-Zusage (Entscheidung 5), alter Phasenbegriff. */
-const L1_MUSTER = [/leistungs[s-]*vorlagen/i, /projekt[s-]*phasen/i] as const;
+const PRODUKTBEGRIFFE = [/bauphase/i, /ressourcen/i, /leistungs[\s-]*vorlagen/i, /projekt[\s-]*phasen/i] as const;
 
 const fehler = (slug: string, text: string) => new Error(`Gewerk ${slug}: ${text}`);
 
@@ -592,12 +587,11 @@ function pruefeText(slug: string, feld: string, wert: string, max: number, saetz
 function pruefeWoerter(slug: string, texte: readonly string[]): void {
   for (const text of texte) {
     const klein = text.toLowerCase();
-    for (const wort of L1_WOERTER) {
-      if (klein.includes(wort.toLowerCase())) {
-        throw new Error(`Text lib/gewerke.ts (${slug}) enthält ‚${wort}‘ – nur Unterstütztes nennen (Leitlinie L-1).`);
-      }
+    const [wort] = l1Treffer(text);
+    if (wort) {
+      throw new Error(`Text lib/gewerke.ts (${slug}) enthält ‚${wort}‘ – nur Unterstütztes nennen (Leitlinie L-1).`);
     }
-    const muster = L1_MUSTER.find((m) => m.test(text));
+    const muster = PRODUKTBEGRIFFE.find((m) => m.test(text));
     if (muster) {
       throw new Error(`Text lib/gewerke.ts (${slug}) enthält ‚${muster.exec(text)?.[0]}‘ – nur Unterstütztes nennen (Leitlinie L-1).`);
     }

@@ -13,7 +13,7 @@ const pageUpdated: Record<string, string> = {
   "/fakten-ueber-craftos": "2026-10-23",
   "/preise": "2026-10-23",
   "/app": "2026-10-22",
-  "/gewerke": "2026-10-20",
+  "/gewerke": "2026-10-23",
   "/gobd": "2026-10-23",
   "/vergleich/plancraft-alternative": "2026-10-23",
   "/vergleich/craftnote-alternative": "2026-10-23",

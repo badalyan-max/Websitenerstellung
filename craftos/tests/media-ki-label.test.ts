@@ -39,7 +39,10 @@ describe("KI-generierte Motive nur mit Kennzeichnung (MD-06)", () => {
         if (!kennzeichnung.test(text)) ohne.push(`${rel}: ${motiv}`);
       }
     }
-    expect(fundorte).toContain("app/gewerke/page.tsx: werkstatt-2026");
+    // 09-11 (K-7, 09-UI-SPEC A1): /gewerke zeigt kein KI-Bild mehr, die Datei bleibt in public/images.
+    // Positivfall: der Styleguide bindet werkstatt-2026 weiterhin mit Kennzeichnung ein (lib/styleguide-content.ts).
+    expect(fundorte.filter((f) => f.startsWith("app/gewerke/page.tsx"))).toEqual([]);
+    expect(fundorte).toContain("lib/styleguide-content.ts: werkstatt-2026");
     expect(ohne).toEqual([]);
   });
 });
