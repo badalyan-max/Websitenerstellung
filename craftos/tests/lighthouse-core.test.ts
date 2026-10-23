@@ -74,6 +74,10 @@ describe("median", () => {
     expect(median([3, 1, 2])).toBe(2);
     expect(median([2700, 2580, 2590])).toBe(2590);
   });
+  it("nimmt mit Richtung oben bei gerader Anzahl das obere Mittel (LO-01)", () => {
+    expect(median([2300, 2700], "oben")).toBe(2700);
+    expect(median([1, 2, 3], "oben")).toBe(2);
+  });
   it("nimmt bei gerader Anzahl das untere Mittel und ignoriert fehlende Werte", () => {
     expect(median([2600, 2400])).toBe(2400);
     expect(median([null, 5, Number.NaN, 7, 6])).toBe(6);
@@ -209,6 +213,14 @@ describe("zusammenfassung", () => {
     expect(a11y.gateVerletzt).toBe(true);
     expect(a11y.urls["/impressum"].gate).toEqual({ bestanden: false, gruende: ["Accessibility 96 < 100"] });
     expect(a11y.urls["/impressum"].kategorien).toEqual({ accessibility: 96, seo: 92 });
+  });
+
+  it("wertet bei zwei gültigen Läufen je Kennzahl den ungünstigeren Wert (LO-01)", () => {
+    const zwei = [lhr({ score: 0.97, lcp: 2300 }), lhr({ score: 0.93, lcp: 2700 })];
+    const s = zusammenfassung([{ pfad: "/", laeufe: zwei.map(kennzahlen), ungueltig: 1, kategorien: { accessibility: 100 } }], optionenBasis);
+    expect(s.urls["/"].lcp).toBe(2700);
+    expect(s.urls["/"].score).toBe(93);
+    expect(s.warnungen).toContain("/: LCP 2700 ms ≥ 2500 ms");
   });
 
   it("kennzeichnet Live-Messungen und abweichende Laufzahlen", () => {

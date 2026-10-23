@@ -52,13 +52,16 @@ export const GRENZEN = { score: 95, lcp: 2500, accessibility: 100 };
 const KENNZEICHNUNG_LOKAL = "Labordaten, mobil, lokal, Median aus 3 Läufen, URL";
 
 /**
- * Median über die gültigen Zahlen. Bei gerader Anzahl (z. B. zwei gültige Läufe nach Ausfällen) gilt
- * das untere Mittel, also der kleinere der beiden mittleren Werte; ohne Werte `null`.
+ * Median über die gültigen Zahlen; ohne Werte `null`. Bei gerader Anzahl (z. B. zwei gültige Läufe nach Ausfällen)
+ * entscheidet `richtung`: „unten“ nimmt den kleineren, „oben“ den größeren der beiden mittleren Werte. So gilt je
+ * Kennzahl der ungünstigere Wert (LO-01): Score unten, Zeiten und CLS oben.
+ * @param {unknown[]} xs
+ * @param {"unten"|"oben"} [richtung]
  */
-export function median(xs) {
+export function median(xs, richtung = "unten") {
   const s = xs.filter((x) => typeof x === "number" && Number.isFinite(x)).sort((a, b) => a - b);
   if (s.length === 0) return null;
-  return s[Math.ceil(s.length / 2) - 1];
+  return richtung === "oben" ? s[Math.floor(s.length / 2)] : s[Math.ceil(s.length / 2) - 1];
 }
 
 /** Dateiname je Pfad: `/` → `start`, sonst Pfad ohne führenden Schrägstrich mit `-` statt `/`. */
@@ -168,7 +171,7 @@ export function zusammenfassung(ergebnisse, { gate = GATE_ROUTEN, info = INFO_RO
   for (const e of ergebnisse) {
     const gueltig = e.laeufe.filter((k) => !k.runtimeError);
     const m = {};
-    for (const key of ["score", "lcp", "fcp", "si", "tbt", "cls"]) m[key] = median(gueltig.map((k) => k[key]));
+    for (const key of ["score", "lcp", "fcp", "si", "tbt", "cls"]) m[key] = median(gueltig.map((k) => k[key]), key === "score" ? "unten" : "oben");
     const naechster = [...gueltig].sort((a, b) => Math.abs((a.lcp ?? 0) - (m.lcp ?? 0)) - Math.abs((b.lcp ?? 0) - (m.lcp ?? 0)))[0];
     const kategorien = { ...(e.kategorien ?? {}) };
 
