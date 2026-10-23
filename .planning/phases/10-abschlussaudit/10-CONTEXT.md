@@ -249,3 +249,11 @@ Nicht in dieser Phase: Änderungen an Rechtstexten (Wortlaut), Datenschutzabschn
 
 *Phase: 10-abschlussaudit*
 *Context gathered: 2026-10-23*
+
+## Nachtrag Orchestrator (23.10.2026, nach SE-Ranking-Sofortmessung `1161e27`)
+
+- **D-37 (ersetzt die Verbrauchsannahme in D-27):** Die tägliche Projektmessung kostet keine Units. Der Verbrauch kommt allein aus `DATA_getAiSearchLeaderboard` in `scripts/seo-report.mjs`, pauschal 7.500 Units je Abruf, zusammen mit Backlinks 7.612 je Berichtslauf. Paket (e) baut `seo-report.mjs` deshalb so um, dass das Leaderboard nur mit dem ausdrücklichen Schalter `--leaderboard` abgerufen wird (Standard: aus). Dazu gehören ein Test und eine Kostenwarnung in der Ausgabe. Kosten werden 10–60 s nach dem Abruf gebucht, darum liest das Skript den Kontostand erst nach einer Wartezeit erneut. Der Rollout 10-07 läuft ohne Leaderboard (≈ 640 Units).
+- **D-38:** Messstand und Website-Audit vom 23.10. (`docs/seo/reports/2026-10-23-messstand-phase10.md`, Audit 485185, 97/100, 0 Fehler) sind die Vorab-Basis für Paket (e).
+  - Die 13 Warnungen „Alt-Text fehlt“ betreffen nur das dekorative Gewerk-Symbol mit `alt=""`, das ist barrierefrei korrekt. Sie werden als begründete Ausnahme dokumentiert (Waiver-Typ „Crawler artifact“ nach dem /audit-Skill), es kommt kein Alt-Text dazu.
+  - Impressum: Den ODR-Link (Plattform 2025 eingestellt) und den kurzen Title gibt nur der Inhaber frei. Bis dahin steht das als Inhaberpunkt, der Rechtstext bleibt unverändert.
+- **D-39:** Perplexity-Prompts werden nie geprüft, Gemini und AI Mode haben keine Prompts. Paket (e) prüft das per Project API, ohne Unit-Kosten, und gleicht es an. Neue Prompts kommen nur aus der vorhandenen Prompt-Liste.
