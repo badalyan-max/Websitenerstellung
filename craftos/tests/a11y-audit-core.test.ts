@@ -11,6 +11,7 @@ import {
   matrix,
   mergeReports,
   parseOptionen,
+  pruefeGesamtlauf,
   tastaturFehler,
   teil,
 } from "../scripts/lib/a11y-audit-core.mjs";
@@ -298,5 +299,50 @@ describe("mergeReports", () => {
     const r = mergeReports([teilbericht(1, 1, { snippet: true, animation: { phasen: [], gate: [], fehler: "data-running blieb aus" } })]);
     expect(r.statusFehler[0]).toMatchObject({ regel: "animation", zustand: "animation", fehler: "data-running blieb aus" });
     expect(r.gate).toBe(true);
+  });
+});
+
+/** Vollständiger Teilbericht eines Gesamtlaufs (HI-01): Laufkennung, Sollmenge, Optionen ohne gezielte Auswahl. */
+function laufbericht(k: number, n: number, extra: Record<string, unknown> = {}) {
+  return {
+    ...teilbericht(k, n),
+    erstellt: "2026-10-23T10:00:00.000Z",
+    origin: "http://localhost:3101",
+    lauf: "build-abc",
+    gezielt: false,
+    soll: { aufrufe: n, seiten: n },
+    optionen: { breiten: [360], engines: ["chromium"], concurrency: 2, animation: "an", pfade: 0 },
+    ...extra,
+  };
+}
+
+describe("pruefeGesamtlauf (HI-01)", () => {
+  it("lässt einen vollständigen Lauf aus allen Teilen durch", () => {
+    expect(pruefeGesamtlauf([laufbericht(1, 2), laufbericht(2, 2, { erstellt: "2026-10-23T11:00:00.000Z" })])).toEqual([]);
+  });
+
+  it("lehnt einen gezielten Lauf (--paths/--widths/--engines) als Gesamtgate ab", () => {
+    const f = pruefeGesamtlauf([laufbericht(1, 1, { gezielt: true, optionen: { breiten: [1440], engines: ["chromium"], animation: "an", pfade: 1 } })]);
+    expect(f.join(" ")).toContain("gezielt");
+  });
+
+  it("lehnt Teilberichte im alten Format ohne Laufangaben ab", () => {
+    expect(pruefeGesamtlauf([teilbericht(1, 1)]).join(" ")).toContain("ohne Laufangaben");
+  });
+
+  it("lehnt Teile aus verschiedenen Läufen ab (Laufkennung, Herkunft, Optionen, Zeitabstand)", () => {
+    expect(pruefeGesamtlauf([laufbericht(1, 2), laufbericht(2, 2, { lauf: "build-alt" })]).join(" ")).toContain("verschiedenen Läufen");
+    expect(pruefeGesamtlauf([laufbericht(1, 2), laufbericht(2, 2, { origin: "http://localhost:3100" })]).join(" ")).toContain("verschiedenen Läufen");
+    expect(
+      pruefeGesamtlauf([laufbericht(1, 2), laufbericht(2, 2, { optionen: { breiten: [360], engines: ["chromium"], concurrency: 2, animation: "aus", pfade: 0 } })]).join(" "),
+    ).toContain("verschiedenen Läufen");
+    expect(pruefeGesamtlauf([laufbericht(1, 2), laufbericht(2, 2, { erstellt: "2026-10-24T10:00:01.000Z" })]).join(" ")).toContain("12 Stunden");
+  });
+
+  it("verlangt, dass Aufrufe und Seiten der Sollmenge entsprechen", () => {
+    const zuWenig = pruefeGesamtlauf([laufbericht(1, 2, { soll: { aufrufe: 5, seiten: 2 } }), laufbericht(2, 2, { soll: { aufrufe: 5, seiten: 2 } })]);
+    expect(zuWenig.join(" ")).toContain("2 von 5 Aufrufen");
+    const seiten = pruefeGesamtlauf([laufbericht(1, 2, { soll: { aufrufe: 2, seiten: 3 } }), laufbericht(2, 2, { soll: { aufrufe: 2, seiten: 3 } })]);
+    expect(seiten.join(" ")).toContain("2 von 3 Seiten");
   });
 });

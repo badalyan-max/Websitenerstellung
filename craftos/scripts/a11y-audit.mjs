@@ -11,6 +11,10 @@
 // Ergebnisse: Teillauf schreibt test-results/a11y/report-<k>-of-<n>.json (ohne --shard report-1-of-1.json) und endet
 // mit Exit 0, auch wenn er Gate-Verstöße fand (Zahl steht in der Ausgabe). --merge liest alle Teilberichte, schreibt
 // test-results/a11y/report.json und bewertet das Gesamtgate.
+// Gezielte Läufe (--paths, --widths oder --engines) schreiben nach test-results/a11y/gezielt/ und zählen nie zum
+// Gesamtgate (HI-01). --merge bricht mit Exit 3 ab, wenn die Teile nicht aus demselben Lauf stammen (Laufkennung
+// AUDIT_LAUF oder .next/BUILD_ID, Herkunft, Optionen, höchstens 12 Stunden Abstand) oder Aufrufe bzw. Seiten von der
+// Sollmenge abweichen.
 // Exitcodes: 0 bestanden bzw. Teilbericht geschrieben, 1 Gate verletzt (nur --merge), 2 Optionsfehler,
 // 3 technischer Abbruch (Server nicht erreichbar, Browserabsturz, Teilberichte unvollständig).
 // Gate (D-06): .options() mit color-contrast-enhanced vor .withTags(AXE_TAGS); 0 serious/critical, 0 color-contrast,
@@ -24,7 +28,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { AXE_TAGS, FOKUS_STIL, bewerteAxe, erwarteterStatus, fokusSichtbar, matrix, mergeReports, parseOptionen, tastaturFehler, teil } from "./lib/a11y-audit-core.mjs";
+import { AXE_TAGS, FOKUS_STIL, bewerteAxe, erwarteterStatus, fokusSichtbar, matrix, mergeReports, parseOptionen, pruefeGesamtlauf, tastaturFehler, teil } from "./lib/a11y-audit-core.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const ausgabe = path.join(root, "test-results/a11y");
@@ -48,6 +52,9 @@ if ("fehler" in vorab) {
   process.exit(2);
 }
 
+/** Gezielter Lauf: ausdrückliche Auswahl von Pfaden, Breiten oder Engines (HI-01) – nie Teil des Gesamtgates. */
+const gezielt = argv.some((a) => /^--(paths|widths|engines)(=|$)/.test(a));
+
 if (vorab.merge) zusammenfuehren();
 else await teillauf().catch((e) => abbruch(`technischer Abbruch: ${e instanceof Error ? e.message.split("\n")[0] : e}`));
 
@@ -55,6 +62,9 @@ function zusammenfuehren() {
   const dateien = fs.existsSync(ausgabe) ? fs.readdirSync(ausgabe).filter((d) => /^report-\d+-of-\d+\.json$/.test(d)) : [];
   if (!dateien.length) abbruch(`keine Teilberichte in ${path.relative(root, ausgabe)} – zuerst Teilläufe ausführen.`);
   const teile = dateien.sort().map((d) => JSON.parse(fs.readFileSync(path.join(ausgabe, d), "utf8")));
+  // HI-01: nur Teile genau eines vollständigen Gesamtlaufs bewerten (gleiche Laufkennung, kein gezielter Lauf, Sollmenge).
+  const laufFehler = pruefeGesamtlauf(teile);
+  if (laufFehler.length) abbruch(`Teilberichte bilden keinen vollständigen Gesamtlauf – ${laufFehler.join(" ")}`);
   let bericht;
   try {
     bericht = mergeReports(teile);
@@ -361,6 +371,19 @@ async function pruefeAnimation(context, browserWeg, pfad) {
   }
 }
 
+/**
+ * Laufkennung für --merge (HI-01): AUDIT_LAUF, sonst die Build-ID des geprüften Produktionsbuilds (.next/BUILD_ID).
+ * Alle Teilläufe eines Gesamtlaufs müssen dieselbe Kennung tragen.
+ */
+function laufKennung() {
+  if (process.env.AUDIT_LAUF) return process.env.AUDIT_LAUF;
+  try {
+    return `build-${fs.readFileSync(path.join(root, ".next/BUILD_ID"), "utf8").trim()}`;
+  } catch {
+    return "build-unbekannt";
+  }
+}
+
 async function teillauf() {
   const t0 = Date.now();
   const opts = parseOptionen(argv, { sitemapPfade: await sitemapPfade() });
@@ -369,7 +392,8 @@ async function teillauf() {
     process.exit(2);
   }
   const shard = opts.shard ?? { k: 1, n: 1 };
-  const liste = teil(matrix({ pfade: opts.pfade ?? [], breiten: opts.breiten, engines: opts.engines, webkitPfade: opts.webkitPfade }), shard.k, shard.n);
+  const gesamt = matrix({ pfade: opts.pfade ?? [], breiten: opts.breiten, engines: opts.engines, webkitPfade: opts.webkitPfade });
+  const liste = teil(gesamt, shard.k, shard.n);
   let concurrency = opts.concurrency;
   if (concurrency > 2 && os.freemem() <= 3 * GIB) {
     console.log(`a11y-audit: --concurrency=3 nur bei mehr als 3 GiB freiem RAM (${ram()}) – laufe mit 2.`);
@@ -426,17 +450,23 @@ async function teillauf() {
     erstellt: new Date().toISOString(),
     origin,
     shard: opts.shard ?? { k: 1, n: 1 },
+    lauf: laufKennung(),
+    gezielt,
+    soll: { aufrufe: gesamt.length, seiten: new Set(gesamt.map((x) => x.pfad)).size },
     optionen: { breiten: opts.breiten, engines: opts.engines, concurrency, animation: opts.animation, pfade: opts.pfade?.length ?? 0 },
     ram: { startGiB: Math.round(ramStart * 100) / 100, endeGiB: Math.round((os.freemem() / GIB) * 100) / 100 },
     laufzeitSek,
     aufrufe,
   };
-  fs.mkdirSync(ausgabe, { recursive: true });
-  const datei = `report-${shard.k}-of-${shard.n}.json`;
-  fs.writeFileSync(path.join(ausgabe, datei), JSON.stringify(teilbericht, null, 2));
+  // HI-01: gezielte Läufe schreiben in einen eigenen Unterordner, den --merge nicht liest.
+  const zielOrdner = gezielt ? path.join(ausgabe, "gezielt") : ausgabe;
+  fs.mkdirSync(zielOrdner, { recursive: true });
+  const datei = gezielt ? `report-${teilbericht.erstellt.replace(/[:.]/g, "-")}-${shard.k}-of-${shard.n}.json` : `report-${shard.k}-of-${shard.n}.json`;
+  fs.writeFileSync(path.join(zielOrdner, datei), JSON.stringify(teilbericht, null, 2));
+  const anzeige = path.relative(root, path.join(zielOrdner, datei)).split(path.sep).join("/");
   const zahl = mergeReports([{ ...teilbericht, shard: { k: 1, n: 1 } }]);
   console.log(
-    `Teil ${shard.k}/${shard.n} fertig in ${laufzeitSek} s: ${zahl.aufrufe} Aufrufe, Gate-Verstöße ${zahl.gateVerstoesse.length}, Großtext ${zahl.grossText.length}, Tastatur ${zahl.tastatur.length}, Status ${zahl.statusFehler.length}, Snippet-Seiten ${zahl.snippetSeiten} – test-results/a11y/${datei} (Gesamtgate: --merge)`,
+    `Teil ${shard.k}/${shard.n} fertig in ${laufzeitSek} s: ${zahl.aufrufe} Aufrufe, Gate-Verstöße ${zahl.gateVerstoesse.length}, Großtext ${zahl.grossText.length}, Tastatur ${zahl.tastatur.length}, Status ${zahl.statusFehler.length}, Snippet-Seiten ${zahl.snippetSeiten} – ${anzeige} ${gezielt ? "(gezielter Lauf, kein Gesamtgate)" : "(Gesamtgate: --merge)"}`,
   );
 }
 

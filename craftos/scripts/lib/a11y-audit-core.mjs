@@ -286,6 +286,40 @@ export function tastaturFehler({ pfad, breite, kandidaten, fokussiert, schritte,
 /** @returns {Zaehler} */
 const leer = () => ({ aufrufe: 0, gateVerstoesse: 0, grossText: 0, tastatur: 0, statusFehler: 0 });
 
+/** Höchster Zeitabstand zwischen den Teilberichten eines Gesamtlaufs (HI-01). */
+export const MAX_LAUF_ABSTAND_MS = 12 * 60 * 60 * 1000;
+
+/**
+ * Prüft vor `--merge`, dass alle Teilberichte zu genau einem vollständigen Gesamtlauf gehören (HI-01): Laufangaben
+ * vorhanden, kein gezielter Lauf (`--paths`, `--widths`, `--engines`), gleiche Laufkennung, Herkunft und Prüfoptionen,
+ * Zeitabstand höchstens 12 Stunden, Summe der Aufrufe und Zahl der Seiten gleich der Sollmenge vor dem Sharding.
+ * Die Lückenlosigkeit der Teile 1..n prüft `mergeReports`.
+ * @param {any[]} teile
+ * @returns {string[]} Fehlertexte; leer heißt: Gesamtgate darf bewertet werden.
+ */
+export function pruefeGesamtlauf(teile) {
+  /** @type {string[]} */
+  const fehler = [];
+  if (!teile.length) return ["keine Teilberichte"];
+  const ohne = teile.filter((t) => typeof t.lauf !== "string" || !t.soll || typeof t.erstellt !== "string");
+  if (ohne.length) return [`${ohne.length} Teilbericht(e) ohne Laufangaben (älteres Format) – Teilläufe neu ausführen.`];
+  if (teile.some((t) => t.gezielt === true || (t.optionen?.pfade ?? 0) > 0))
+    fehler.push("Teilbericht aus einem gezielten Lauf (--paths, --widths oder --engines) – kein Gesamtgate.");
+  const schluessel = (t) =>
+    JSON.stringify({ lauf: t.lauf, origin: t.origin, b: t.optionen?.breiten, e: t.optionen?.engines, a: t.optionen?.animation, s: t.soll });
+  if (new Set(teile.map(schluessel)).size > 1)
+    fehler.push(`Teilberichte aus verschiedenen Läufen (Laufkennungen ${[...new Set(teile.map((t) => t.lauf))].join(", ")}; Herkunft, Optionen oder Sollmenge abweichend).`);
+  const zeiten = teile.map((t) => Date.parse(t.erstellt));
+  if (zeiten.some((z) => Number.isNaN(z))) fehler.push("Teilbericht mit ungültigem Zeitstempel.");
+  else if (Math.max(...zeiten) - Math.min(...zeiten) > MAX_LAUF_ABSTAND_MS) fehler.push("Teilberichte liegen mehr als 12 Stunden auseinander.");
+  const soll = teile[0].soll;
+  const aufrufe = teile.reduce((s, t) => s + (t.aufrufe?.length ?? 0), 0);
+  const seiten = new Set(teile.flatMap((t) => (t.aufrufe ?? []).map((a) => a.pfad))).size;
+  if (aufrufe !== soll.aufrufe) fehler.push(`Unvollständig: ${aufrufe} von ${soll.aufrufe} Aufrufen.`);
+  if (seiten !== soll.seiten) fehler.push(`Unvollständig: ${seiten} von ${soll.seiten} Seiten.`);
+  return fehler;
+}
+
 /**
  * Führt Teilberichte zusammen und bewertet das Gesamtgate. Die Teile müssen genau 1..n abdecken.
  * Einzelbefunde tragen `engine`, `breite`, `pfad`, `regel` und `zustand` (`stabil` oder `animation`).
