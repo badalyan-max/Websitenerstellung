@@ -3,7 +3,8 @@
 // sowie Startseite, Mega-Menü und /funktionen nach docs/seo/keyword-map.json (Phase 6) und
 // /app und alle Detailseiten (Keyword-Map, JSON-LD inkl. MobileApplication, Kennzeichnung,
 // interne Belegpfade, llms.txt; Phase 7) sowie sitewide Keyword-Map, Brotkrumen, OG-Bilder, FAQPage,
-// /preise, Prompt-Anker und llms.txt der Vergleichsseiten (Phase 8).
+// /preise, Prompt-Anker und llms.txt der Vergleichsseiten (Phase 8) sowie Gewerke-Antwort und -Ablauf,
+// neue Anleitungen, Wissensseiten und deren Verlinkung (Phase 9).
 //   node scripts/live-check.mjs                                  # gegen https://craftos.eu
 //   LIVE_ORIGIN=http://localhost:3100 node scripts/live-check.mjs  # gegen lokalen Produktionsserver
 // Ausgabe je Prüfung „OK“ oder „FEHLER“; exitCode 1, sobald eine Prüfung fehlschlägt.
@@ -12,6 +13,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   OG_MAX_BYTES,
+  anchorAnswer,
   breadcrumbNav,
   faqFragenSichtbar,
   findType,
@@ -513,6 +515,154 @@ await check("llms.txt nennt die neuen Seiten (vier Alternativen und kleine Betri
   if (r.status !== 200) return `HTTP ${r.status}`;
   const fehlt = [...PHASE8_ALTERNATIVEN, KLEINE_BETRIEBE].filter((pfad) => !r.text.includes(`${pfad})`));
   return fehlt.length === 0 || `fehlt: ${fehlt.join(", ")}`;
+});
+
+// ---------------------------------------------------------------------------------------------
+// Phase 9: Gewerke (Antwort, Ablauf, FAQPage), neue Anleitungen und Wissensseiten, Verlinkung der
+// Detailseiten. Gewerke-Pfade aus /sitemap.xml; Phase-9-Pfade aus docs/seo/keyword-map.json
+// (`phase: 9`), getrennt nach den Abschnitten „### Wissensseiten“ und „### Anleitungen zu neuen
+// Funktionen“ der ausgelieferten /llms.txt (gleiche Quelle wie die Website). Keine Seitenzahl fest kodiert.
+// ---------------------------------------------------------------------------------------------
+const PHASE9_MAP = kmEntries.filter((e) => e.phase === 9).map((e) => e.path);
+const GEWERKE_PFADE = sitemapPfade.filter((p) => p === "/gewerke" || p.startsWith("/gewerke/"));
+
+/** Pfade eines llms.txt-Abschnitts („### Titel“ bis zur nächsten Überschrift). */
+function llmsAbschnitt(text, titel) {
+  const start = text.indexOf(`### ${titel}`);
+  if (start === -1) return [];
+  const rest = text.slice(start + titel.length + 4);
+  const ende = rest.search(/\n#{2,3} /);
+  const teil = ende === -1 ? rest : rest.slice(0, ende);
+  return [...teil.matchAll(/\]\((https?:\/\/[^)\s]+)\)/g)].map((m) => pfadVonUrl(m[1]));
+}
+const llms9 = await get("/llms.txt").then((r) => (r.status === 200 ? r.text : ""));
+const WISSENSSEITEN = llmsAbschnitt(llms9, "Wissensseiten");
+const ANLEITUNGEN = llmsAbschnitt(llms9, "Anleitungen zu neuen Funktionen");
+
+/** Abschnitt `data-abschnitt="<id>"` bis zum nächsten Abschnitt. */
+function abschnitt(html, id) {
+  const i = html.indexOf(`data-abschnitt="${id}"`);
+  if (i === -1) return null;
+  const rest = html.slice(i + id.length + 17);
+  const ende = rest.search(/data-abschnitt="/);
+  return ende === -1 ? rest : rest.slice(0, ende);
+}
+const ohneHowTo = (html) => (findType(jsonLd(html), "HowTo").length === 0 ? "" : "HowTo im JSON-LD");
+function faqGleichSichtbar(html) {
+  const faq = findType(jsonLd(html), "FAQPage");
+  if (faq.length !== 1) return `${faq.length} FAQPage-Blöcke`;
+  const { fragen, fehlend } = faqFragenSichtbar(html);
+  if (fragen.length === 0) return "FAQPage ohne Fragen";
+  return fehlend.length ? `nicht sichtbar: ${fehlend.join(" | ")}` : "";
+}
+function antwortAnker(html) {
+  const a = anchorAnswer(html, "antwort");
+  return a.ok ? "" : a.problem;
+}
+
+await check(`Phase-9-Pfade der Keyword-Map (${PHASE9_MAP.length}) = Wissensseiten + Anleitungen in llms.txt, alle in der Sitemap`, () => {
+  if (PHASE9_MAP.length === 0) return "keyword-map.json ohne phase 9";
+  const llms = new Set([...WISSENSSEITEN, ...ANLEITUNGEN]);
+  const abw = [];
+  for (const pfad of PHASE9_MAP) {
+    if (!llms.has(pfad)) abw.push(`${pfad} fehlt in llms.txt`);
+    if (!sitemapPfade.includes(pfad)) abw.push(`${pfad} fehlt in der Sitemap`);
+  }
+  for (const pfad of llms) if (!PHASE9_MAP.includes(pfad)) abw.push(`${pfad} in llms.txt ohne phase 9`);
+  return abw.length === 0 || abw.join("; ");
+});
+
+await check(`Phase-9-Seiten ohne Ankündigung (${GEWERKE_PFADE.length} Gewerke-URLs und ${PHASE9_MAP.length} Artikel)`, () =>
+  jedeSeite([...GEWERKE_PFADE, ...PHASE9_MAP], (route, r) => {
+    const m = r.text.match(announcement);
+    return m ? `Treffer „${m[0]}“` : "";
+  }),
+);
+
+await check(`Gewerke: Antwort und Ablauf (${GEWERKE_PFADE.length} URLs: #antwort ≤ 300; je Gewerk Ablauf mit Funktionslinks und FAQPage = sichtbare Fragen)`, () =>
+  jedeSeite(GEWERKE_PFADE, (route, r) => {
+    const abw = [antwortAnker(r.text)];
+    if (route !== "/gewerke") {
+      const ablauf = abschnitt(r.text, "ablauf");
+      if (ablauf === null) abw.push('data-abschnitt="ablauf" fehlt');
+      else {
+        const links = [...ablauf.matchAll(/href="(\/funktionen\/[^"#?]+)"/g)].map((m) => m[1]);
+        if (links.length === 0) abw.push("Ablauf ohne Links auf /funktionen/");
+        const tot = links.filter((l) => !sitemapPfade.includes(l));
+        if (tot.length) abw.push(`Ablauf-Links nicht in der Sitemap: ${tot.join(", ")}`);
+      }
+      abw.push(faqGleichSichtbar(r.text));
+    }
+    abw.push(ohneHowTo(r.text));
+    return abw.filter(Boolean).join(", ");
+  }),
+);
+
+await check(`Neue Anleitungen (${ANLEITUNGEN.length}): 200, H1 = Map, #antwort ≤ 300, Schrittliste, kein HowTo`, () =>
+  jedeSeite(ANLEITUNGEN, (route, r) => {
+    const abw = [antwortAnker(r.text)];
+    const { h1s } = headTags(r.text);
+    if (h1s.length !== 1 || h1s[0] !== target(route).h1) abw.push(`H1 „${h1s.join(" | ")}“`);
+    const i = r.text.indexOf('class="article-prose"');
+    const prosa = i === -1 ? "" : r.text.slice(i).split('data-abschnitt="')[0];
+    if (!/<ol\b[^>]*>\s*<li\b/.test(prosa)) abw.push("keine Schrittliste im Artikeltext");
+    abw.push(ohneHowTo(r.text));
+    return abw.filter(Boolean).join(", ");
+  }),
+);
+
+/** Führt der Artikel Quellen im Frontmatter? (`sources: []` ist bewusst möglich, z. B. Vorlagen ohne Rechtsfakten, 09-g.md) */
+function hatQuellen(route) {
+  const datei = path.join(root, "content", `${route.replace(/^\//, "")}.md`);
+  if (!fs.existsSync(datei)) throw new Error(`${datei} fehlt`);
+  const m = fs.readFileSync(datei, "utf8").match(/^sources:[ \t]*(.*)$/m);
+  return Boolean(m) && m[1].trim() !== "[]";
+}
+const WISSEN_MIT_QUELLEN = WISSENSSEITEN.filter(hatQuellen);
+
+await check(
+  `Wissensseiten (${WISSENSSEITEN.length}): #antwort ≤ 300, FAQPage = sichtbare Fragen, Quellenliste (${WISSEN_MIT_QUELLEN.length} mit Quellen), kein HowTo`,
+  () =>
+    jedeSeite(WISSENSSEITEN, (route, r) => {
+      const abw = [antwortAnker(r.text), faqGleichSichtbar(r.text), ohneHowTo(r.text)];
+      const liste = /<ol aria-label="Quellen">\s*<li\b/.test(r.text);
+      if (WISSEN_MIT_QUELLEN.includes(route) && !liste) abw.push("Quellenliste fehlt");
+      if (!WISSEN_MIT_QUELLEN.includes(route) && liste) abw.push("Quellenliste ohne Quellen im Artikel");
+      return abw.filter(Boolean).join(", ");
+    }),
+);
+
+// Detailseite → zugehörige Anleitung (09-14; die Anleitung muss als Phase-9-Pfad in der Map stehen).
+const DETAIL_ANLEITUNG = [
+  ["/funktionen/kundenportal", "/hilfe/kundenportal-kunden-einladen"],
+  ["/funktionen/mahnwesen", "/hilfe/mahnwesen-einrichten"],
+  ["/funktionen/bankabgleich", "/hilfe/bankumsaetze-abgleichen"],
+  ["/funktionen/datenuebernahme", "/hilfe/daten-importieren"],
+];
+await check(`Detailseiten verlinken Anleitungen (${DETAIL_ANLEITUNG.map(([d]) => d.split("/").pop()).join(", ")})`, () =>
+  jedeSeite(
+    DETAIL_ANLEITUNG.map(([d]) => d),
+    (route, r) => {
+      const ziel = DETAIL_ANLEITUNG.find(([d]) => d === route)[1];
+      if (!PHASE9_MAP.includes(ziel)) return `${ziel} ist kein Phase-9-Pfad der Map`;
+      return r.text.includes(`href="${ziel}"`) ? "" : `kein Link auf ${ziel}`;
+    },
+  ),
+);
+
+await check("Prompt-Anker live: jedes Phase-9-Ziel mit Anker und Antwort ≤ 300", async () => {
+  const eintraege = (promptMapping.prompts ?? []).filter((e) => e.phase === 9);
+  if (eintraege.length === 0) return "ai-prompts-targets.json ohne Phase-9-Ziele";
+  const html = new Map();
+  for (const e of eintraege) {
+    const pfad = e.target.split("#")[0] || "/";
+    if (!html.has(pfad)) {
+      const r = await get(pfad);
+      html.set(pfad, r.status === 200 ? r.text : null);
+    }
+  }
+  const verstoesse = promptVerstoesse(eintraege, (pfad) => html.get(pfad));
+  return verstoesse.length === 0 || verstoesse.map((v) => v.problem).join("; ");
 });
 
 console.log(fehler === 0 ? "Ergebnis: alle Prüfungen OK" : `Ergebnis: ${fehler} Prüfung(en) FEHLER`);
