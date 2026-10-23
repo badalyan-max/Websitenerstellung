@@ -55,8 +55,8 @@
 .measureFields b { display: block; background: white; border: 1px solid var(--color-ink-200); padding: 7px; margin-top: 4px; border-radius: 5px; color: var(--color-ink-900); font-size: 12px; }
 .wall { height: 92px; border: 2px solid var(--color-primary-600); background: var(--color-primary-50); display: grid; place-items: center; position: relative; }
 .wall > span { font-size: 21px; font-weight: 600; }
-.opening { position: absolute; right: 8px; bottom: -2px; width: 31px; height: 35px; border: 1px dashed var(--color-primary-600); background: var(--color-ink-50); font-size: 8px; display: grid; place-items: center; opacity: .35; transition: opacity .3s; }
-.opening[data-active=true] { opacity: 1; border-style: solid; }
+.opening { position: absolute; right: 8px; bottom: -2px; width: 31px; height: 35px; border: 1px dashed var(--color-primary-600); background: var(--color-ink-50); font-size: 8px; display: grid; place-items: center; color: #62626E; transition: color .3s, background-color .3s; }
+.opening[data-active=true] { color: #17171C; border-style: solid; }
 .measureSave { display: flex; flex-direction: column; gap: 9px; }
 .measureSave > span:first-child { display: flex; justify-content: space-between; font-size: 10px; align-items: center; }
 .measureSave strong { font-size: 16px; }
