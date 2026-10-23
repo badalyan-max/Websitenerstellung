@@ -270,6 +270,12 @@ async function measurePhase9(page) {
       steps: [...document.querySelectorAll('[data-abschnitt="ablauf"] ol > li')].slice(0, 2).map(rect),
       toc: { seite: shown(tocSeite), position: tocSeite ? getComputedStyle(tocSeite).position : null, mobil: shown(tocMobil) },
       knoten: knotenStil ? { width: parseFloat(knotenStil.width), height: parseFloat(knotenStil.height) } : null,
+      // Geräterahmen der Funktionskarten bleiben innerhalb der Kartenbühne (höchstens in deren Innenabstand).
+      kartenRahmen: [...document.querySelectorAll('[data-abschnitt="funktionen"] li figure')].map((fig) => {
+        const f = fig.getBoundingClientRect()
+        const s = fig.parentElement.getBoundingClientRect()
+        return { evidence: fig.getAttribute('data-evidence') || fig.querySelector('[data-evidence]')?.getAttribute('data-evidence') || fig.textContent.slice(0, 30), ueberstand: Math.max(s.left - f.left, f.right - s.right) }
+      }),
     }
   })
 }
@@ -305,6 +311,9 @@ test.describe('Phase 9: Vorlagen Gewerke, Übersichten und Artikel', () => {
             expect(b.top, `${at}: StepFlow senkrecht (zweiter Schritt darunter)`).toBeGreaterThanOrEqual(a.bottom - 1)
             expect(Math.abs(b.left - a.left), `${at}: StepFlow senkrecht (gleiche linke Kante)`).toBeLessThanOrEqual(1)
           }
+          expect(m.kartenRahmen.length, `${at}: Funktionskarten mit Rahmen`).toBeGreaterThan(0)
+          const ragend = m.kartenRahmen.filter((k) => k.ueberstand > 0.5).map((k) => `${k.evidence} ${k.ueberstand.toFixed(1)} px`)
+          expect(ragend, `${at}: Kartenrahmen ragen über die Bühne`).toEqual([])
         }
         if (route.art === 'artikel') {
           if (width >= 1024) {
