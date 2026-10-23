@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-stopped_at: Completed 09-16-PLAN.md
-last_updated: "2026-10-23T05:36:30.464Z"
-last_activity: "2026-10-23 – 09-16 Phasen-Gate lokal grün: E2E sechs Breiten, Kundenportal-Szene, Kartenrahmen"
+stopped_at: Completed 09-10-PLAN.md
+last_updated: "2026-10-23T07:45:01.630Z"
+last_activity: "2026-10-23 – 09-10 Phase 9 live (25bad34), live-check 69/69, IndexNow 156"
 progress:
   total_phases: 6
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 55
-  completed_plans: 54
-  percent: 67
+  completed_plans: 55
+  percent: 83
 ---
 
 # State
@@ -21,7 +21,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-10-20)
 
 **Core value:** Besucher verstehen den Produktablauf anhand lesbarer Beispiele und direkter App-Aufnahmen und können die richtige Funktion und Anleitung schnell finden.
-**Current focus:** Phase 8 — SEO und KI-Sichtbarkeit
+**Current focus:** Phase 10 — Abschlussaudit (Phase 9 live seit 23.10.2026)
 
 ## Vorheriger Milestone v1.0 (abgeschlossen)
 
@@ -30,14 +30,14 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 09
-Plan: 09-16 abgeschlossen (Phasen-Gate); offen 09-10 (Rollout)
-Status: In Progress
-Last activity: 2026-10-23 – 09-16 Phasen-Gate lokal grün: E2E sechs Breiten, Kundenportal-Szene, Kartenrahmen
+Plan: 09-10 abgeschlossen (Rollout); Phase 9 vollständig (18/18)
+Status: Phase complete – ready for Phase 10
+Last activity: 2026-10-23 – 09-10 Phase 9 live (25bad34, dpl_HxdXfEzGz7jUw8rcdQFFj2Pvvu7F READY), live-check 69/69, IndexNow 156, SE Ranking 0 Units
 
-Progress: [█████████░] 98% (54/55 Pläne des Milestones laut SUMMARY-Zählung; Phase 9: 17/18)
+Progress: [██████████] 100% (55/55 Pläne des Milestones laut SUMMARY-Zählung; Phase 9: 18/18; Phase 10 noch nicht geplant)
 
-Last session: 2026-10-23T05:36:30.454Z
-Stopped at: Completed 09-16-PLAN.md
+Last session: 2026-10-23T07:45:01.621Z
+Stopped at: Completed 09-10-PLAN.md
 Resume file: None
 
 ## Accumulated Context
@@ -127,6 +127,7 @@ Resume file: None
 - [Phase 09]: 09-09: Produktbasis Web v4.0.0-test.246 (a0e27c42); liveExtras Kassenbuch und § 13b nicht beworben bis Phase 10
 - [Phase 09]: 09-16: Kundenportal-Szene zeigt die Unterschriftsseite aus der Angebotsmail (QuoteSigning.tsx) statt der Portal-Rechnungsansicht
 - [Phase 09]: 09-16: Kartenbühne begrenzt die Rahmen-figure auf max(280px, 100%); die Plantafel-Wochenansicht ragt nicht mehr über die Karte
+- [Phase 09]: 09-10: Phase 9 live (25bad34, dpl_HxdXfEzGz7jUw8rcdQFFj2Pvvu7F READY); live-check 69/69 inkl. Gewerke, Anleitungen, Wissensseiten; IndexNow 156; SE Ranking 0 Units, sechs Hauptkeywords ergänzt; Produktbasis Web test.248; Offline positiv aus mobileOffline.erfassung; FEAT-04, CONTENT-03, CONTENT-04, SEO-09 erledigt, DESIGN-02 Rest Phase 10
 
 ### Pending Todos
 
@@ -174,3 +175,4 @@ None yet.
 | Phase 08 P14 | 28min | 2 tasks | 16 files |
 | Phase 09 P09 | 85 min | 2 tasks | 60 files |
 | Phase 09 P16 | 51 min | 2 tasks | 7 files |
+| Phase 09 P10 | 50 min | 2 tasks | 22 files |

@@ -1,0 +1,52 @@
+{
+  "datum": "2026-10-23",
+  "projekt": 13094375,
+  "status": "abgeschlossen",
+  "retarget": false,
+  "abgebrochen": null,
+  "hinzugefuegt": [
+    {
+      "keyword": "mahnstufen",
+      "url": "https://craftos.eu/hilfe/mahnwesen-einrichten",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "camt 053",
+      "url": "https://craftos.eu/hilfe/bankumsaetze-abgleichen",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "datenübernahme",
+      "url": "https://craftos.eu/hilfe/daten-importieren",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "datanorm",
+      "url": "https://craftos.eu/hilfe/datanorm-katalog-importieren",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "lager app",
+      "url": "https://craftos.eu/hilfe/lager-scan-app",
+      "status": "bestehend",
+      "phase": null
+    },
+    {
+      "keyword": "digitales kassenbuch",
+      "url": "https://craftos.eu/hilfe/kassenbuch-fuehren",
+      "status": "bestehend",
+      "phase": null
+    }
+  ],
+  "zielseiteAngeglichen": [],
+  "zielseiteNichtAngeglichen": [],
+  "schreibweiseGeaendert": [],
+  "limits": [],
+  "fehlgeschlagen": [],
+  "unbestaetigt": [],
+  "verifikation": "Projektstand neu gelesen: 157 Keywords, 0 Soll-Einträge offen"
+}

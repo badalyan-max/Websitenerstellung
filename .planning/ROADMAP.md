@@ -25,7 +25,7 @@ craftos.eu wird klar gegliedert und optisch ansprechend: weniger Fließtext, Kac
 - [x] **Phase 6: Startseite, Navigation und Funktionsübersicht** - Startseite klar gegliedert, Funktionsmenü und nach Ablauf gruppierte Übersicht (completed 2026-10-21)
 - [x] **Phase 7: Funktionsdetailseiten und Mobile-App-Seite** - Einheitliche, kurze Detailseiten mit visuellem Element für jede Live-Funktion (completed 2026-10-22)
 - [x] **Phase 8: SEO und KI-Sichtbarkeit** - Alternativen-Seiten, Preis-Antwortblock, Metadaten nach Keyword-Map, Breadcrumbs, OG-Grafiken (completed 2026-10-23)
-- [ ] **Phase 9: Gewerke und Wissensinhalte** - Gewerke-Seiten gegliedert, Ratgeber und Hilfe auf Produktstand, neue Hilfeartikel
+- [x] **Phase 9: Gewerke und Wissensinhalte** - Gewerke-Seiten gegliedert, Ratgeber und Hilfe auf Produktstand, neue Hilfeartikel (completed 2026-10-23)
 - [ ] **Phase 10: Abschlussaudit** - Barrierefreiheit, Performance und erneuter Audit ohne offene Fehler
 
 ## Phase Details
@@ -234,7 +234,7 @@ Plans:
 
 **Goal**: Gewerke-Seiten, Ratgeber und Hilfe sind klar gegliedert, entsprechen dem aktuellen Produktstand und erklären auch die neuen Funktionen Schritt für Schritt.
 **Depends on**: Phase 8
-**Requirements**: FEAT-04, CONTENT-03, CONTENT-04 (dazu Abschluss SEO-09, DESIGN-02 aus Phase 8)
+**Requirements**: FEAT-04, CONTENT-03, CONTENT-04 (dazu Abschluss SEO-09; DESIGN-02 für Gewerke-, Ratgeber- und Hilfe-Vorlagen, Rest Phase 10)
 **Success Criteria** (what must be TRUE):
 
   1. Die 12 Gewerke-Seiten zeigen gewerktypische Abläufe mit visuellen Elementen statt nur Text und verlinken auf die passenden Funktionsseiten.
@@ -242,7 +242,7 @@ Plans:
   3. Für jede seit 09.09.2026 neue Live-Funktion gibt es mindestens einen Hilfeartikel mit Schritt-für-Schritt-Anleitung, verlinkt von der Detailseite.
   4. Gewerke- und Wissensinhalte erfüllen die Metadaten- und Breadcrumb-Regeln aus Phase 8 und sind nach Ship-Gate live mit IndexNow-Meldung.
   5. Jede Content-Lücke mit KD < 20 aus der Keyword-Map hat eine zitierfähige Zielseite oder einen Abschnitt mit Antwort zuerst, belegten Fakten und FAQPage-Schema (Abschluss SEO-09).
-  6. Gewerke-, Ratgeber- und Hilfeseiten nutzen die v2-Bausteine einheitlich (Abschluss DESIGN-02).
+  6. Gewerke-, Ratgeber- und Hilfeseiten nutzen die v2-Bausteine einheitlich (DESIGN-02 für diese Vorlagen; Rest Phase 10).
 
 **Plans**: 18 plans (7 Wellen, parallele Spuren in Worktrees `C:/Projekte/wt-09<x>`, Ports 3101–3110; Integration, Gate und Rollout im Haupt-Arbeitsbaum)
 Plans:
@@ -283,7 +283,7 @@ Plans:
 
 **Wave 7** *(blocked on Wave 6 completion; Code-Review-Gate des Orchestrators vorher)*
 
-- [ ] 09-10-PLAN.md — Rollout: live-check-Erweiterung, Ship-Gate über Gesamtdiff, Push, IndexNow, SE-Ranking-Abgleich, Etappenbericht, Rollout-Nachweis (main, 3100)
+- [x] 09-10-PLAN.md — Rollout: live-check-Erweiterung, Ship-Gate über Gesamtdiff, Push, IndexNow, SE-Ranking-Abgleich, Etappenbericht, Rollout-Nachweis (main, 3100)
 
 **UI hint**: yes
 
@@ -291,7 +291,7 @@ Plans:
 
 **Goal**: Alle Seiten sind barrierefrei und schnell, und ein erneuter Audit von craftos.eu zeigt keine offenen technischen oder On-Page-Fehler.
 **Depends on**: Phase 9
-**Requirements**: DESIGN-05, QA-04, QA-05, QA-06 (dazu Messung SEO-08: ≥15 neue Refdomains)
+**Requirements**: DESIGN-05, QA-04, QA-05, QA-06, DESIGN-02 (Rest: Rechner, Support, Rechtsseiten, 404) (dazu Messung SEO-08: ≥15 neue Refdomains)
 **Success Criteria** (what must be TRUE):
 
   1. Jede Seite besteht bei 360, 390, 768, 1024 und 1440 px die Barrierefreiheitsprüfung (axe ohne ernsthafte Verstöße, Kontrast ≥ 4,5:1, vollständige Tastaturbedienung).
@@ -311,5 +311,5 @@ Plans:
 | 6. Startseite, Navigation und Funktionsübersicht | 6/6 | Complete    | 2026-10-21 |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 9/9 | Complete    | 2026-10-22 |
 | 8. SEO und KI-Sichtbarkeit | 14/14 | Complete    | 2026-10-22 |
-| 9. Gewerke und Wissensinhalte | 17/18 | In Progress|  |
+| 9. Gewerke und Wissensinhalte | 18/18 | Complete   | 2026-10-23 |
 | 10. Abschlussaudit | 0/TBD | Not started | - |

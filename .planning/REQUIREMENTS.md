@@ -29,7 +29,7 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 - [x] **FEAT-01**: Eine Funktionsübersicht zeigt alle Live-Funktionen nach Arbeitsablauf gruppiert (Angebot → Planung → Baustelle → Rechnung → Buchhaltung → Team), jeweils mit visuellem Element und einem Satz Nutzen.
 - [x] **FEAT-02**: Jede Live-Funktion hat eine Detailseite mit visuellem Element, Kurznutzen, Ablauf in Schritten, Plattformen (Web/Mobile), Rollen und FAQ; neue Seiten für die seit 09.09.2026 hinzugekommenen Funktionen.
 - [x] **FEAT-03**: Die Mobile-App-Seite zeigt alle Live-Funktionen der App (u. a. Zeiterfassung mit Standort, Einsätze mit Navigation, Aufmaß, Baudoku, Besichtigung, Bautagesbericht, Mängel, Abnahme mit Unterschrift, Arbeitsschritte, Urlaub, Lager-Scan, Belegscan, Chat, Offline, 21 Sprachen) mit Phone-Darstellungen.
-- [ ] **FEAT-04**: Die 12 Gewerke-Seiten zeigen gewerktypische Abläufe mit visuellen Elementen statt nur Text.
+- [x] **FEAT-04**: Die 12 Gewerke-Seiten zeigen gewerktypische Abläufe mit visuellen Elementen statt nur Text.
 
 ### SEO und KI-Sichtbarkeit (SEO)
 
@@ -40,12 +40,12 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 - [x] **SEO-06**: Zentrale Seiten haben unter jeder Frage-Überschrift eine Antwort in höchstens 300 Zeichen; `llms.txt`, Sitemap und IndexNow-Meldung werden mit jedem Release aktualisiert.
 - [x] **SEO-07**: SE Ranking misst den Fortschritt: Projekt craftos.eu mit allen Hauptkeywords der Keyword-Map und Zielseiten, 5 Wettbewerbern und AI Result Tracker (ChatGPT, Perplexity, Gemini, Google AI Overview/AI Mode); Ausgangswerte vom 20.10.2026 sind dokumentiert (`craftos/docs/seo/SE-RANKING-BEFUND-2026-10-20.md`), nach jeder Etappe werden Positionen, KI-Share-of-Voice und verweisende Domains verglichen.
 - [ ] **SEO-08**: CraftOS gewinnt echte Verweise und Portalpräsenz: priorisierte Linkliste aus der SE-Ranking-Backlink-Lücke (Bewertungsportale, Fachmedien, Verzeichnisse, Kammern, Großhandel), je Eintrag ein kopierfertiger Browser-Prompt für den Inhaber und ein Statusregister; Ziel bis Meilensteinende: mindestens 15 neue seriöse verweisende Domains, sichtbar in SE Ranking. Spam-Backlinks werden beobachtet, Disavow nur bei nachweisbarem Schaden.
-- [ ] **SEO-09**: Für jede getrackte KI-Frage und jede Content-Lücke mit KD < 20 gibt es eine zitierfähige Zielseite oder einen Abschnitt (Antwort zuerst, Fakten mit Quelle und Datum, FAQPage-Schema), u. a. „beste Handwerkersoftware für kleine Betriebe“, Aufmaß-App, Bautagebuch-App, Zeiterfassung Handwerk, Gewerke-Software, Schlussrechnung, Leistungszeitraum, Regiebericht.
+- [x] **SEO-09**: Für jede getrackte KI-Frage und jede Content-Lücke mit KD < 20 gibt es eine zitierfähige Zielseite oder einen Abschnitt (Antwort zuerst, Fakten mit Quelle und Datum, FAQPage-Schema), u. a. „beste Handwerkersoftware für kleine Betriebe“, Aufmaß-App, Bautagebuch-App, Zeiterfassung Handwerk, Gewerke-Software, Schlussrechnung, Leistungszeitraum, Regiebericht.
 
 ### Inhalte (CONTENT)
 
-- [ ] **CONTENT-03**: Die 24 Ratgeber und 40 Hilfeartikel sind gegen den aktuellen Produktstand geprüft, korrigiert und klar gegliedert (Antwort zuerst, Schritte, Zwischenüberschriften).
-- [ ] **CONTENT-04**: Für jede neue Live-Funktion gibt es mindestens einen Hilfeartikel mit Schritt-für-Schritt-Anleitung.
+- [x] **CONTENT-03**: Die 24 Ratgeber und 40 Hilfeartikel sind gegen den aktuellen Produktstand geprüft, korrigiert und klar gegliedert (Antwort zuerst, Schritte, Zwischenüberschriften).
+- [x] **CONTENT-04**: Für jede neue Live-Funktion gibt es mindestens einen Hilfeartikel mit Schritt-für-Schritt-Anleitung.
 
 ### Qualität und Rollout (QA)
 
@@ -75,7 +75,7 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 | PROD-03 | Phase 5 | Complete |
 | PROD-04 | Phase 5 | Complete |
 | DESIGN-01 | Phase 6 | Complete |
-| DESIGN-02 | Phase 5 (Grundlage), Phasen 6–9 (Umsetzung; Abschluss Phase 9) | In Progress |
+| DESIGN-02 | Phase 5 (Grundlage), Phasen 6–9 (Umsetzung), Rest Phase 10 (Rechner, Support, Rechtsseiten, 404) | In Progress |
 | DESIGN-03 | Phase 6 | Complete |
 | DESIGN-04 | Phase 5 | Complete |
 | DESIGN-05 | Phase 10 | Pending |
@@ -86,7 +86,7 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 | FEAT-01 | Phase 6 | Complete |
 | FEAT-02 | Phase 7 | Complete |
 | FEAT-03 | Phase 7 | Complete |
-| FEAT-04 | Phase 9 | Pending |
+| FEAT-04 | Phase 9 | Complete |
 | SEO-02 | Phase 5 (Keyword-Map), Phasen 6–8 (Titel/H1/Description) | Complete |
 | SEO-03 | Phase 8 | Complete |
 | SEO-04 | Phase 8 | Complete |
@@ -94,16 +94,16 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 | SEO-06 | Phase 8 | Complete |
 | SEO-07 | Phase 5 | Complete |
 | SEO-08 | Phase 5 (Linkplan), laufend bis Phase 10 (≥15 Refdomains) | In Progress |
-| SEO-09 | Phase 8 (kommerzielle KI-Prompts, erledigt), Phase 9 (Wissenslücken KD < 20, Abschluss) | In Progress |
-| CONTENT-03 | Phase 9 | Pending |
-| CONTENT-04 | Phase 9 | Pending |
+| SEO-09 | Phase 8 (kommerzielle KI-Prompts), Phase 9 (Wissenslücken, Abschluss) | Complete |
+| CONTENT-03 | Phase 9 | Complete |
+| CONTENT-04 | Phase 9 | Complete |
 | QA-04 | Phase 10 | Pending |
 | QA-05 | Phase 10 | Pending |
 | QA-06 | Phase 10 | Pending |
 
 **Coverage:** 28/28 aktive v2.0-Anforderungen zugeordnet (MEDIA-02 Out of Scope), keine doppelt.
 
-Hinweis: SEO-02, DESIGN-02 und SEO-08 haben in Phase 5 ihre Grundlage (Keyword-Map aus SE Ranking, Designbausteine, Linkplan) und werden in den Phasen 6–8 auf den Seiten umgesetzt bzw. bis Phase 10 gemessen; sie bleiben bis dahin offen. Stand nach Phase 8 (23.10.2026): SEO-02 erledigt; DESIGN-02 und SEO-09 werden in Phase 9 abgeschlossen, SEO-08 in Phase 10.
+Hinweis: SEO-02, DESIGN-02 und SEO-08 haben in Phase 5 ihre Grundlage (Keyword-Map aus SE Ranking, Designbausteine, Linkplan) und werden in den Phasen 6–8 auf den Seiten umgesetzt bzw. bis Phase 10 gemessen; sie bleiben bis dahin offen. Stand nach Phase 8 (23.10.2026): SEO-02 erledigt. Stand nach Phase 9 (23.10.2026): SEO-09 erledigt; DESIGN-02 für Gewerke-, Ratgeber- und Hilfe-Vorlagen umgesetzt, Rest (Rechner, Support, Rechtsseiten, 404) in Phase 10; SEO-08 in Phase 10.
 
 ## Validated (v1.0, Relaunch 09.09.2026)
 
