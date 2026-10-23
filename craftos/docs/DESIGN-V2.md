@@ -870,6 +870,13 @@ Eingetragen von 10-06 nach dem Merge (Nachweise 10-09, Commits `106a83b`, `79e51
 - **`inlineCss`:** verworfen, weil der LCP auf allen sechs Gate-Seiten schlechter wurde (+32 bis +755 ms, HTML von `/` rund 750 KB).
 - **Screenshot-Vergleich (§ 7.4):** `tests/e2e/logo-schriftzug.pw.cjs` vergleicht Text gegen SVG mit Graustufen-Glättung (`--disable-lcd-text`, `scale: 'device'`), weil Pfade nie LCD-geglättet werden; die Referenzen sind an `chromium-1243` und Windows gebunden (Suffix `-win32`).
 
+### 19.8 Mega-Menü: Zusatzfunktionen (D-21, D-40; 10-06)
+
+- **Ort:** `components/layout/MegaMenu.tsx`. Je Gruppe mit Zusatzfunktionen (`group.extras` aus `lib/funktionsgruppen.ts`) folgt nach den Detaillinks eine kurze Liste mit der Beschriftung „Weitere Funktionen“ (wie auf `/funktionen`). Die Beschriftung ist ein Absatz `p` (keine Überschrift, das Menü bleibt ohne `h*`), die Liste ist per `aria-labelledby` daran gebunden. Gruppen ohne Extras (heute: Planung) erhalten keine Liste.
+- **Links:** Name der Zusatzfunktion als Link auf `extra.target.href` (z. B. „Kassenbuch“ → `/funktionen/buchhaltung`, „Rechnung nach § 13b“ → `/funktionen/rechnungen`), gleiche Klasse `.link` wie die Detaillinks (Desktop 44 px, Drawer 48 px Zielhöhe, globaler Fokusring `#bb7609`), `prefetch={false}`, `tabIndex={0}` wie `ActiveLink`. Die Links tragen `data-menu-zusatz="<id>"` (nicht `data-zusatz`, das die Zielkachel kennzeichnet) und nie `aria-current`, weil sie auf die Detailseite der Funktion zeigen.
+- **Beschriftung:** `.extrasLabel` 14/600, Desktop `#62626E` auf Weiß (6,0 : 1), Drawer `#BCBCC6` auf `#101014`; Einzug bündig mit dem Linktext (48 bzw. 32 px).
+- **Unverändert:** Disclosure-Muster ohne Menü-Rollen, Enter/Leertaste, Esc mit Rückfokus, `aria-expanded`, `inert` von `main`/`footer` bei offenem Drawer, Button-Namen „Menü öffnen“/„Menü schließen“ (K-11). Tests: `tests/navigation.test.ts` (Links = Gruppen + Details + Extras + Fußleiste), `home-navigation.pw.cjs` (zehn Zusatzlinks), `a11y.pw.cjs` „Tastatur: Menü und Drawer“.
+
 ### 19.9 Aufräumen nach Inhaberfreigabe D-42 (10-06)
 
 Entfernt nach Nachweis per Suche (keine Importe, kein Rendern) und Build:

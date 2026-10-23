@@ -119,7 +119,8 @@ describe("navigation: MegaMenu (Server-Rendering)", () => {
   it("enthält jede der 22 Detailfunktionen genau einmal mit dem Funktionsnamen als Linktext", () => {
     expect(funktionen).toHaveLength(22);
     for (const f of funktionen) {
-      const treffer = alle.filter((l) => l.href === `/funktionen/${f.slug}`);
+      // Zusatzfunktionen (data-menu-zusatz) verlinken teils dieselbe Detailseite; gezählt werden nur die Detaillinks.
+      const treffer = alle.filter((l) => l.href === `/funktionen/${f.slug}` && !/data-menu-zusatz=/.test(l.tag));
       expect(treffer, f.slug).toHaveLength(1);
       expect(treffer[0].text).toBe(f.name);
     }
@@ -134,7 +135,8 @@ describe("navigation: MegaMenu (Server-Rendering)", () => {
     expect(icons).toHaveLength(6);
     for (const g of gruppen) expect(decode(html)).toContain(g.description);
     expect(html).toMatch(/^<div[^>]*><ul[^>]*><li[^>]*>/);
-    expect((html.match(/<ul\b/g) ?? []).length).toBe(1 + gruppen.length + 1);
+    const mitExtras = gruppen.filter((g) => g.extras.length > 0).length;
+    expect((html.match(/<ul\b/g) ?? []).length).toBe(1 + gruppen.length + mitExtras + 1);
     expect(html).not.toMatch(/<img\b/);
   });
 
@@ -142,6 +144,40 @@ describe("navigation: MegaMenu (Server-Rendering)", () => {
     const zeit = alle.find((l) => l.href === "/funktionen/zeiterfassung");
     expect(zeit?.tag).toContain('aria-current="page"');
     expect(alle.filter((l) => /aria-current="page"/.test(l.tag))).toHaveLength(1);
+  });
+
+  it("Zusatzfunktionen (D-21, D-40): § 13b in Rechnung, Kassenbuch in Buchhaltung, je mit Ziel der Funktion", () => {
+    const abschnitt = (id: string) => {
+      const start = html.indexOf(`href="/funktionen#${id}"`);
+      const ende = GRUPPEN_REIHENFOLGE.map((n) => html.indexOf(`href="/funktionen#${n}"`)).find((i) => i > start);
+      return html.slice(start, ende ?? html.length);
+    };
+    const zusatz = (id: string) => links(abschnitt(id)).filter((l) => /data-menu-zusatz=/.test(l.tag));
+    expect(zusatz("rechnung").map((l) => [l.text, l.href])).toContainEqual(["Rechnung nach § 13b", "/funktionen/rechnungen"]);
+    expect(zusatz("buchhaltung").map((l) => [l.text, l.href])).toContainEqual(["Kassenbuch", "/funktionen/buchhaltung"]);
+  });
+
+  it("Zahl der Menülinks = Gruppen + Details + Zusatzfunktionen + Fußleiste; „Weitere Funktionen“ nur bei Gruppen mit Extras", () => {
+    const details = gruppen.reduce((n, g) => n + g.details.length, 0);
+    const extras = gruppen.flatMap((g) => g.extras);
+    expect(extras.every((x) => x.target !== undefined)).toBe(true);
+    expect(alle).toHaveLength(gruppen.length + details + extras.length + menuFooterLinks.length);
+    expect(alle.filter((l) => /data-menu-zusatz=/.test(l.tag)).map((l) => l.href)).toEqual(extras.map((x) => x.target?.href));
+    const mitExtras = gruppen.filter((g) => g.extras.length > 0);
+    expect(mitExtras.length).toBeLessThan(gruppen.length);
+    expect(decode(html).match(/Weitere Funktionen/g) ?? []).toHaveLength(mitExtras.length);
+    for (const g of gruppen.filter((x) => x.extras.length === 0)) {
+      const start = html.indexOf(`href="${g.anchorHref}"`);
+      const naechste = gruppen.map((x) => html.indexOf(`href="${x.anchorHref}"`)).find((i) => i > start);
+      expect(html.slice(start, naechste ?? html.length), g.id).not.toContain("Weitere Funktionen");
+    }
+  });
+
+  it("Zusatzlinks sind nie „aktuell“, auch auf ihrer Zielseite", () => {
+    pfad.value = "/funktionen/rechnungen";
+    const aufZiel = links(renderToString(createElement(MegaMenu, { groups: gruppen, footerLinks: menuFooterLinks })));
+    pfad.value = "/funktionen/zeiterfassung";
+    expect(aufZiel.filter((l) => /aria-current="page"/.test(l.tag)).map((l) => l.text)).toEqual(["Rechnungen"]);
   });
 
   it("LinkPanel rendert eine Liste aus Links, zweispaltig markiert", () => {

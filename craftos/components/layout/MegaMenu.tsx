@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { TEXT_BUDGET, assertTextBudget } from "@/components/v2/budgets";
 import type { Funktionsgruppe } from "@/lib/funktionsgruppen";
 import { ActiveLink } from "./ActiveLink";
@@ -9,7 +10,9 @@ import s from "./MegaMenu.module.css";
  * Server Component: wird im Header gerendert und als Slot an die Client-Hülle `HeaderShell` übergeben,
  * damit lib/funktionsgruppen.ts nicht ins Client-Bundle gelangt. Keine Überschriften, kein Menü-Rollenmodell
  * (Disclosure-Muster), keine Vorschaubilder; Linktexte der Detailfunktionen sind die Funktionsnamen.
- * Zusatzfunktionen erscheinen nicht einzeln, sondern über den Gruppenlink auf /funktionen#<gruppe>.
+ * Zusatzfunktionen (Phase 10, D-21, D-40): je Gruppe mit Extras nach den Detailfunktionen eine kurze Liste
+ * „Weitere Funktionen“ (Beschriftung als Absatz, keine Überschrift) mit dem Namen als Link auf `extra.target.href`.
+ * Diese Links tragen `data-menu-zusatz` und nie `aria-current`, weil sie auf die Detailseite der Funktion zeigen.
  */
 export function MegaMenu({
   groups,
@@ -46,6 +49,27 @@ export function MegaMenu({
                   </li>
                 ))}
               </ul>
+              {group.extras.length > 0 ? (
+                <>
+                  <p className={s.extrasLabel} id={`menu-weitere-${group.id}`}>
+                    Weitere Funktionen
+                  </p>
+                  <ul className={s.details} aria-labelledby={`menu-weitere-${group.id}`}>
+                    {group.extras.flatMap((extra) =>
+                      extra.target
+                        ? [
+                            <li key={extra.id}>
+                              {/* tabIndex 0 wie ActiveLink: WebKit nimmt Links sonst nicht in die Tab-Reihenfolge auf. */}
+                              <Link href={extra.target.href} prefetch={false} tabIndex={0} className={s.link} data-menu-zusatz={extra.id}>
+                                {extra.name}
+                              </Link>
+                            </li>,
+                          ]
+                        : [],
+                    )}
+                  </ul>
+                </>
+              ) : null}
             </li>
           );
         })}
