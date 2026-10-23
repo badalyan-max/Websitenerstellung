@@ -218,10 +218,6 @@ describe("Ablauf, Funktionen und FAQ (09-UI-SPEC § 1.3, § 5)", () => {
     expect(g?.artikel).toEqual(ziele);
   });
 
-  it("der Entwurf /hilfe/kassenbuch-fuehren wird auf keiner Gewerke-Seite verlinkt (erst 09-09)", () => {
-    expect(gewerke.flatMap((g) => g.artikel)).not.toContain("/hilfe/kassenbuch-fuehren");
-  });
-
   it("Leitlinie L-1: kein Gewerke-Text trifft die zentrale Wortliste", () => {
     const texte = [
       GEWERKE_UEBERSICHT.answer,
