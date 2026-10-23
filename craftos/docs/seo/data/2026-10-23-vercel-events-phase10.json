@@ -1,0 +1,15 @@
+{
+  "quelle": "Vercel Web Analytics Custom Events via Vercel-MCP aggregate_events",
+  "projekt": "craftos (prj_Vk35IwxD0U3Qtoez5a0OaKhRdlN4)",
+  "abgerufen": "2026-10-23",
+  "zeitraum": {"since": "2026-10-15T00:00:00.000Z", "until": "2026-10-24T00:00:00.000Z"},
+  "umgebung": "production (Standardfilter)",
+  "events": [
+    {"eventName": "registration_click", "visitors": 8, "count": 11, "hinweis": "Altereignis vor der Aufteilung in trial_click/login_click"},
+    {"eventName": "login_click", "visitors": 4, "count": 6},
+    {"eventName": "store_click", "visitors": 4, "count": 4},
+    {"eventName": "trial_click", "visitors": 3, "count": 5},
+    {"eventName": "calculator_use", "visitors": 1, "count": 1}
+  ],
+  "befund": "trial_click und login_click werden erfasst. ai_visit ist im Zeitraum noch nicht aufgetreten (keine Besuche mit KI-Referrer bzw. utm_source); das Ereignis ist eingebaut, aber ohne Daten."
+}
