@@ -295,13 +295,11 @@ function gaebFachteilZeilen(zeilen) {
 
 function pruefeL1(dateien) {
   const l1 = leitlinie();
-  const listenwoerter = new Set(l1.woerter.map((w) => w.toLowerCase()));
   for (const { datei, inhalt } of dateien) {
     if (datei.endsWith(".ts")) {
-      // Prüfmechanik wie tests/content-produktwahrheit.test.ts: ein Literal, das genau ein Leitlinienwort ist,
-      // ist ein Eintrag einer Prüf-Wortliste und kein Seitentext.
+      // Jedes Literal ist möglicher Seitentext, auch ein einzelnes Leitlinienwort (09-REVIEW ME-04): Die einzige
+      // Wortliste ist lib/leitlinie-l1.json, wie in tests/content-produktwahrheit.test.ts.
       for (const lit of stringLiterale(inhalt)) {
-        if (listenwoerter.has(lit.trim().toLowerCase())) continue;
         for (const wort of l1.treffer(ohnePflichthinweise(lit, l1.pflicht))) {
           const pos = inhalt.indexOf(lit);
           const zeile = pos === -1 ? null : inhalt.slice(0, pos).split("\n").length;

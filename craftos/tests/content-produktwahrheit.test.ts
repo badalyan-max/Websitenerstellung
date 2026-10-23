@@ -9,8 +9,10 @@
 import fs from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { l1Treffer, l1Woerter } from "@/lib/leitlinie";
+import matter from "gray-matter";
+import { l1Treffer } from "@/lib/leitlinie";
 import leitlinie from "@/lib/leitlinie-l1.json";
+import { artikelAussagen, nurUnterstuetztVerstoesse } from "@/lib/nur-unterstuetzt";
 import { stringLiterale } from "../scripts/lib/ts-literale.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
@@ -51,21 +53,12 @@ function ohneGaebFachteil(markdown: string): string {
 }
 
 /**
- * Prüfmechanik, keine Inhaltsausnahme (Begründung laut 09-UI-SPEC § 5 „Weitere Ausnahmen nur mit eigener Begründung
- * im Test“): Ein String-Literal, das genau aus einem Wort der Leitlinie besteht, ist ein Eintrag einer Prüf-Wortliste
- * (z. B. die lokale L1_WOERTER-Liste in lib/gewerke.ts bis 09-11) und kein Text, den die Website zeigt. Literale mit
- * weiterem Text – auch ein einzelnes Wort mit Satzzeichen oder Zusatz – bleiben voll in der Prüfung.
+ * Treffer einer Datei als „datei: wort“ (eindeutig je Wort). Seit 09-REVIEW ME-04 ohne Listenwort-Ausnahme: Die
+ * einzige Wortliste ist lib/leitlinie-l1.json; ein Literal, das genau einem Leitlinienwort entspricht (z. B.
+ * `label: "Onlinezahlung"`), ist sichtbarer Text und wird gemeldet.
  */
-const LISTENWOERTER = new Set(l1Woerter.map((w) => w.toLowerCase()));
-const istListeneintrag = (literal: string) => LISTENWOERTER.has(literal.trim().toLowerCase());
-
-/** Treffer einer Datei als „datei: wort“ (eindeutig je Wort). */
 function trefferInDatei(rel: string, inhalt: string): { datei: string; wort: string }[] {
-  let text = rel.endsWith(".ts")
-    ? stringLiterale(inhalt)
-        .filter((l) => !istListeneintrag(l))
-        .join("\n")
-    : inhalt;
+  let text = rel.endsWith(".ts") ? stringLiterale(inhalt).join("\n") : inhalt;
   if (rel === GAEB.datei) text = ohneGaebFachteil(text);
   return l1Treffer(ohnePflichthinweise(text)).map((wort) => ({ datei: rel, wort }));
 }
@@ -100,6 +93,51 @@ describe("Leitlinie L-1 in Ratgebern, Hilfe, Gewerke- und Produktdaten", () => {
   });
 });
 
+/**
+ * Satzprüfung der Artikel (09-REVIEW ME-04): Dieselbe Prüfung wie für die TS-Inhaltsmodule (`NEGATIVSATZ`,
+ * Nein-Antworten) läuft über Antwort, Frontmatter-FAQ und die Prosa jedes Artikels. Die Prosa liefert
+ * `artikelAussagen` (Fragen, zitierte Oberflächentexte und „grenzen Sie … ein“ sind keine Aussagen über CraftOS).
+ * Ausnahme wie bei L-1: der neutrale Fachteil von /blog/gaeb-formate.
+ */
+function satzVerstoesse(rel: string, inhalt: string): string[] {
+  const { data, content } = matter(inhalt);
+  const prosa = artikelAussagen(rel === GAEB.datei ? ohneGaebFachteil(content) : content);
+  return nurUnterstuetztVerstoesse({ answer: data.answer, faq: data.faq ?? [], prosa });
+}
+
+describe("Satzprüfung der Artikel (ME-04)", () => {
+  it("keine Negativsätze und Nein-Antworten in Antwort, FAQ und Prosa der Ratgeber und Hilfeartikel", () => {
+    const treffer: string[] = [];
+    for (const rel of dateien().filter((d) => d.endsWith(".md")))
+      for (const v of satzVerstoesse(rel, fs.readFileSync(path.join(ROOT, rel), "utf8"))) treffer.push(`${rel}: ${v}`);
+    expect(treffer).toEqual([]);
+  });
+
+  it("meldet Negativsätze in Antwort, FAQ und Prosa", () => {
+    const md = [
+      "---",
+      'answer: "CraftOS kann keine Fahrzeuge orten."',
+      "faq:",
+      '  - q: "Gibt es eine Kasse?"',
+      '    a: "Nein, eine Kasse fehlt."',
+      "---",
+      "Die Ortung ist nicht möglich.",
+    ].join("\n");
+    expect(satzVerstoesse("content/hilfe/x.md", md)).toHaveLength(3);
+  });
+
+  it("Fragen, zitierte Meldungen und „grenzen Sie … ein“ sind keine Aussagen", () => {
+    const md = [
+      "### Warum wird ein Mangel nicht angezeigt?",
+      "Die App zeigt „Stornierung nicht möglich“, wenn die Rechnung bezahlt ist.",
+      "1. Grenzen Sie die Liste mit dem Filter ein.",
+      "Warum ist das nicht möglich? Weil die Rechnung festgeschrieben ist.",
+    ].join("\n");
+    expect(nurUnterstuetztVerstoesse({ prosa: artikelAussagen(md) })).toEqual([]);
+    expect(artikelAussagen(md)).toContain("Weil die Rechnung festgeschrieben ist.");
+  });
+});
+
 describe("Prüfmechanik (Fixtures)", () => {
   it("Markdown: Treffer je Wort mit Fehlertext", () => {
     const t = trefferInDatei("content/hilfe/x.md", "Im Portal ist keine Onlinezahlung möglich. DATANORM v5 ist nicht zugesagt.");
@@ -119,13 +157,12 @@ describe("Prüfmechanik (Fixtures)", () => {
     expect(trefferInDatei("lib/gewerke.ts", quelle).map((x) => x.wort)).toEqual(["Bald verfügbar"]);
   });
 
-  it("TypeScript: reine Wortlisten-Einträge zählen nicht, Text mit Listenwort schon", () => {
-    const quelle = [
-      'const L1_WOERTER = ["nicht unterstützt", "Onlinezahlung", "DATANORM v5"] as const;',
-      'export const faq = { a: "Onlinezahlung." };',
-      'export const t = "Bald verfügbar im Portal";',
-    ].join("\n");
-    expect(trefferInDatei("lib/gewerke.ts", quelle).map((x) => x.wort)).toEqual(["Onlinezahlung", "Bald verfügbar"]);
+  it("TypeScript: ein Literal, das genau ein Leitlinienwort ist, zählt als sichtbarer Text (ME-04)", () => {
+    const quelle = ['export const karte = { label: "Onlinezahlung" };', 'export const t = "DATANORM v5";'].join("\n");
+    expect(trefferInDatei("lib/funktionsdetails/rechnung.ts", quelle).map((x) => x.wort)).toEqual([
+      "Onlinezahlung",
+      "DATANORM v5",
+    ]);
   });
 
   it("gaeb-formate: neutraler Fachteil ausgenommen, CraftOS-Abschnitt und Einleitung geprüft", () => {

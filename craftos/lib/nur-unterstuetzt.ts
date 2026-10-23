@@ -96,6 +96,33 @@ export function nurUnterstuetztVerstoesse(inhalt: unknown, opts: NurUnterstuetzt
   return out;
 }
 
+/**
+ * Aussagesätze der Markdown-Prosa eines Artikels für die Satzprüfung (09-REVIEW ME-04). Prüfmechanik, keine
+ * Inhaltsausnahme: Fragen (Sätze und Überschriften mit „?“) beschreiben ein Nutzerproblem und sind keine Aussage über
+ * CraftOS; zitierte Oberflächentexte („Stornierung nicht möglich“) belegt die Zitatprüfung am Release; „grenzen Sie …
+ * ein“ ist die Bedienanweisung zum Filtern und nicht das Nomen „Grenzen“. Codeblöcke entfallen.
+ */
+export function artikelAussagen(markdown: string): string[] {
+  const out: string[] = [];
+  let imCode = false;
+  for (const zeile of markdown.split(/\r?\n/)) {
+    if (/^\s*(```|~~~)/.test(zeile)) {
+      imCode = !imCode;
+      continue;
+    }
+    if (imCode) continue;
+    const text = zeile
+      .replace(/^\s*(#{1,6}\s+|[-*+]\s+|\d+[.)]\s+|>\s?)/, "")
+      .replace(/„[^“\n]*“/g, "„…“")
+      .replace(/(?<![\p{L}])grenzen Sie(?![\p{L}])/giu, "…");
+    for (const satz of text.split(/(?<=[.!?])\s+/)) {
+      const s = satz.trim();
+      if (s && !s.endsWith("?")) out.push(s);
+    }
+  }
+  return out;
+}
+
 /** Wirft beim ersten Verstoß mit Kontext (Modul oder Seite) und Kennzeichnung der Inhabervorgabe. */
 export function pruefeNurUnterstuetzt(inhalt: unknown, opts: NurUnterstuetztOptionen & { kontext: string }): void {
   const [erster] = nurUnterstuetztVerstoesse(inhalt, opts);
