@@ -154,6 +154,26 @@ Das Ziel ist erreicht. Barrierefreiheit (Matrix 0, A11y 100 live), Ladezeit an d
 
 Nicht blockierend, aber nachzuziehen (ein Doku-Commit): ROADMAP-Absatz „Stand nach dem Rollout“, STATE.md, MEILENSTEIN-V2-ABSCHLUSS.md und audit-report.md auf QA-06 erledigt bringen (Hotfix `f9cd7f2`, Recheck 485185 mit 0 Fehlern). Die Rohdaten des zweiten Rechecks gehören zusätzlich unter `docs/seo/data/`.
 
+## Nachtrag 23.10.2026: Doku-Lücken behoben
+
+Die oben unter „Anti-Patterns“ gemeldeten Warnungen sind im Doku-Commit nach dieser Verifikation geschlossen. Historische Sätze bleiben stehen, jeweils mit dem datierten Nachtrag „Nachtrag 23.10.2026: QA-06 erledigt (f9cd7f2, Recheck 0 Fehler)“:
+
+| Datei | Behebung |
+|---|---|
+| `.planning/ROADMAP.md` | Nachtrag unter „Stand nach dem Rollout 10-07“: Kriterien 1–4 erfüllt, Felddaten 532 ms (n = 66), SEO-08 weiter „In Progress“ |
+| `.planning/STATE.md` | „Current focus“ und „Status“ (Z. 24, 34) auf QA-06 erledigt; Entscheidungszeile mit dem Nachtrag ergänzt, Z. 133 bleibt als historischer Stand |
+| `craftos/docs/releases/MEILENSTEIN-V2-ABSCHLUSS.md` | Nachtrag im Kopf, unter der QA-06-Tabelle (§ 6), bei den Felddaten (§ 7, n = 66) und in § 8; Status-Tabelle mit QA-06 unter „Complete“, Termin „Lückenschluss QA-06“ als erledigt markiert |
+| `craftos/audit-report.md` | Nachtrag im Abschnitt „QA-06: Anwendung im Bestätigungsaudit“: O2/O3 und T1 nach dem Hotfix, Wert der behebbaren Fehler 0 |
+| `craftos/docs/seo/data/2026-10-23-audit-485185-recheck-2.json` | Neue Rohdatei: `DATA_getAuditStatus` und `DATA_getAuditReport` für Audit 485185 (Stand 17:26:53 UTC: 97/100, 0 Fehler, 13 Warnungen, 164 Hinweise, 157 Seiten), nachträglich abgerufen; Kontostand vor und 60 s nach dem Abruf 17.331, Verbrauch 0 Units |
+
+Offen bleibt die Info zu `PHASE-10-ROLLOUT.md` § 11/§ 13 (nicht blockierend). `gsd-tools phase complete 10` ist ausgeführt; in `REQUIREMENTS.md` stehen DESIGN-02, DESIGN-05, QA-04, QA-05 und QA-06 auf „Complete“, SEO-08 auf „In Progress“ (0 von 15).
+
+**Status bleibt `human_needed`.** Offene Inhaberpunkte:
+
+1. Analytics-Fenster der Etappe 10 bis 24.10.2026, 16:29 UTC abwarten und in `ETAPPEN-NACHWEIS-V2.md` nachtragen.
+2. Rechtliche Freigabe der Datenschutz- und GoBD-Aussagen, insbesondere „europäische Rechenzentren“ (R2-Jurisdiktion, ROLLOUT § 13 Nr. 5).
+3. Sichtprüfung des Abschnitts „Mehr über CraftOS“ auf `/impressum`, `/datenschutz` und `/agb` bei 390 und 1440 px.
+
 ---
 
 _Geprüft: 2026-10-23T17:40:00Z_

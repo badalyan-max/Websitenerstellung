@@ -260,6 +260,16 @@ Gruppen 1, 3, 6, 9 und 10 der Stichprobe: 0 offene Fehler (gewaivt wie Vorab: Ti
 
 **QA-06 ist damit nicht erfüllt** (Wert der behebbaren Fehler 2 > 0). Nach Plan 10-07 wird in diesem Lauf nichts behoben; Lückenschluss mit Besitz in `docs/releases/PHASE-10-ROLLOUT.md` § 11.
 
+**Nachtrag 23.10.2026: QA-06 erledigt (f9cd7f2, Recheck 0 Fehler).** Der Hotfix `f9cd7f2` rendert unter dem Rechtstext von `/impressum`, `/datenschutz` und `/agb` den Abschnitt „Mehr über CraftOS“ mit Link-Karten auf `/funktionen`, `/preise` und `/support`; live seit `dpl_4mocbo1txgWCzCJJSAxXapNmEMnq` (READY 17:24:39 UTC). Live-HTML `<main>` je Rechtsseite: 4 interne Links (`/`, `/funktionen`, `/preise`, `/support`) statt 1.
+
+| Nr. | Bestätigung (oben) | Nach dem Hotfix (live) | Zahl |
+|---|---|---|---|
+| O2 | 1 interner Link im Hauptteil | 4 interne Links im `<main>` | 0 |
+| O3 | kein Link auf Funktionen/Preise | Links auf `/funktionen` und `/preise` | 0 |
+| T1 | SE-Ranking-Fehler 0 | Recheck 485185 (17:26 UTC): 97/100, 0 Fehler, 13 Warnungen (gewaivt), 164 Hinweise | 0 |
+
+**Rohwert: 0 · Inhaberpunkt offen: 0 · Wert der behebbaren Fehler: 0.** QA-06 ist damit erfüllt. Recheck-Kosten 314 Units (Phase 10: 1.266 von 5.000); Rohdatei `docs/seo/data/2026-10-23-audit-485185-recheck-2.json`, Nachweis `docs/releases/PHASE-10-ROLLOUT.md` § 11 „Nachtrag QA-06“. Einschränkung: Nach dem Hotfix lief kein vollständiger neuer `/audit`; geschlossen sind die beiden offenen Punkte durch Live-Prüfung, `rechtsseiten-links.test.ts` und den Recheck.
+
 ### Checkliste nach dem Rollout (Stand der Vorab-Punkte)
 
 ### [x] 1. Title ungleich H1 auf `/hilfe/mitarbeiter-einladen-lizenz-zuweisen`

@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: completed
-stopped_at: Completed 10-07-PLAN.md
-last_updated: "2026-10-23T17:08:25.428Z"
+stopped_at: Phase 10 complete (Nachtrag QA-06, 23.10.2026)
+last_updated: "2026-10-23T17:40:59.777Z"
 last_activity: 2026-10-23
 progress:
   total_phases: 6
@@ -21,7 +21,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-10-20)
 
 **Core value:** Besucher verstehen den Produktablauf anhand lesbarer Beispiele und direkter App-Aufnahmen und können die richtige Funktion und Anleitung schnell finden.
-**Current focus:** Meilenstein v2.0 ausgerollt (Phase 10 live seit 23.10.2026, 16:30 UTC); offen: Lückenschluss QA-06 (`/impressum` O2/O3), SEO-08 (Linkaufbau), Analytics-Nachtrag 24 h
+**Current focus:** Meilenstein v2.0 ausgerollt (Phase 10 live seit 23.10.2026, 16:30 UTC; abgeschlossen); QA-06 erledigt (Nachtrag 23.10.2026: Hotfix `f9cd7f2`, Recheck 485185 mit 0 Fehlern); offen: SEO-08 (Linkaufbau, 0 von 15), Analytics-Nachtrag 24 h bis 24.10.2026 16:29 UTC, Inhaberpunkte aus `10-VERIFICATION.md` (rechtliche Freigabe, Sichtprüfung „Mehr über CraftOS“)
 
 ## Vorheriger Milestone v1.0 (abgeschlossen)
 
@@ -30,8 +30,8 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 10
-Plan: 13 of 13 (10-07 Rollout abgeschlossen)
-Status: Phase 10 complete – live (e392762, dpl_TBDg23xnPvC9HmED3ArQA16Vida7); Meilenstein v2.0 mit QA-06 und SEO-08 „In Progress“
+Plan: 13 of 13 (Phase abgeschlossen, `gsd-tools phase complete 10` am 23.10.2026)
+Status: Phase 10 complete – live (e392762, dpl_TBDg23xnPvC9HmED3ArQA16Vida7; Hotfix QA-06 f9cd7f2, dpl_4mocbo1txgWCzCJJSAxXapNmEMnq); Meilenstein v2.0 mit SEO-08 „In Progress“, QA-06 Complete (Nachtrag 23.10.2026); Verifikation human_needed (drei Inhaberpunkte)
 Last activity: 2026-10-23
 
 Progress: [██████████] 100% (68/68 Pläne des Milestones laut SUMMARY-Zählung; Phase 10: 13/13)
@@ -131,6 +131,7 @@ Resume file: None
 - [Phase 10]: 10-07: Phase 10 live (e392762, dpl_TBDg23xnPvC9HmED3ArQA16Vida7 READY 16:30:41 UTC); live-check 77/77; IndexNow 156; SE Ranking 426 Units (Phase 952 von 5.000, Rest 17.645)
 - [Phase 10]: 10-07: QA-04 an Vercel-Speed-Insights-Felddaten markiert (p75 LCP 564 ms n=58, INP 40 ms n=47, CLS 0 n=31; D-44)
 - [Phase 10]: 10-07: QA-06 bleibt In Progress (Bestätigungsaudit Rohwert 2, Inhaberpunkt offen 0, behebbar 2: /impressum O2/O3); SEO-08 In Progress (0 von 15 seriösen Domains)
+- [Phase 10]: Nachtrag 23.10.2026: QA-06 erledigt (f9cd7f2, Recheck 0 Fehler) – Link-Karten „Mehr über CraftOS“ unter den Rechtsseiten, live seit dpl_4mocbo1txgWCzCJJSAxXapNmEMnq (READY 17:24:39 UTC); Recheck 485185 um 17:26 UTC 97/100, 0 Fehler, 13 gewaivte Warnungen, 164 Hinweise, 314 Units (Phase 1.266 von 5.000); Rohdatei docs/seo/data/2026-10-23-audit-485185-recheck-2.json; Felddaten Verifikation p75 LCP 532 ms (n = 66), INP 40 ms, CLS 0
 
 ### Pending Todos
 

@@ -2,6 +2,8 @@
 
 Stand: 23.10.2026, Endfassung nach dem Rollout der Phase 10 (Plan 10-07; Entwurf aus Plan 10-11). Vergleichsbasis ist der Ausgangsstand vom 20.10.2026 (`docs/seo/SE-RANKING-BEFUND-2026-10-20.md`, Projektstart SE Ranking) bzw. der erste Messbericht `docs/seo/reports/2026-10-21-messbericht-ausgangsstand.md`. Jede Zahl nennt Quelle und Datum. Der Bericht enthält keine Tarifempfehlung; die Entscheidung über das SE-Ranking-Konto trifft der Orchestrator bzw. Inhaber vor dem 03.11.2026.
 
+**Nachtrag 23.10.2026: QA-06 erledigt (f9cd7f2, Recheck 0 Fehler).** Die folgenden Abschnitte geben den Stand unmittelbar nach dem Rollout 10-07 wieder und bleiben unverändert. Der Hotfix `f9cd7f2` (Link-Karten „Mehr über CraftOS“ unter dem Rechtstext von `/impressum`, `/datenschutz` und `/agb`, live seit `dpl_4mocbo1txgWCzCJJSAxXapNmEMnq`, READY 17:24:39 UTC) schließt O2/O3; der SE-Ranking-Recheck 485185 um 17:26 UTC ergab 97/100, 0 Fehler, 13 gewaivte Warnungen und 164 Hinweise (314 Units, Phase 10 damit 1.266 von 5.000; Rest 17.331). Aktueller Status in § 8, Felddaten-Nachtrag in § 7.
+
 Quellen (alle im Repository, sofern nicht anders angegeben):
 
 | Kürzel | Datei | Datum |
@@ -19,6 +21,8 @@ Quellen (alle im Repository, sofern nicht anders angegeben):
 | LH | `docs/releases/PHASE-10-PRUEFUNGEN.md` § 5.3 (lokal); `docs/seo/data/2026-10-23-lighthouse-live-phase10.json` (live) | 23.10.2026 |
 | EN | `docs/releases/ETAPPEN-NACHWEIS-V2.md` | 23.10.2026 |
 | RO-10 | `docs/releases/PHASE-10-ROLLOUT.md` | 23.10.2026 |
+| Recheck 2 | `docs/seo/data/2026-10-23-audit-485185-recheck-2.json` (Bericht nach dem Hotfix, kostenlos nachträglich abgerufen) | 23.10.2026, 17:26 UTC |
+| VER | `.planning/phases/10-abschlussaudit/10-VERIFICATION.md` | 23.10.2026, 17:34–17:40 UTC |
 
 ## 1. Ergebnis in Kürze
 
@@ -132,6 +136,8 @@ Zum Vergleich am 20.10.2026 (Befund § 4): Wettbewerber mit 248 bis 1.052 verwei
 | Rohwert | 8 | 2 |
 | SE-Ranking-Audit Fehler / Warnungen | 0 / 13 | 0 / 13 |
 
+**Nachtrag 23.10.2026: QA-06 erledigt (f9cd7f2, Recheck 0 Fehler).** Nach dem Hotfix: behebbare Fehler **0** (O2/O3 live geschlossen, je 4 interne Links im `<main>` von `/impressum`, `/datenschutz` und `/agb`), Inhaberpunkte offen 0, Rohwert 0; SE-Ranking-Audit Fehler / Warnungen 0 / 13 (Recheck 2, 17:26 UTC, 97/100, 164 Hinweise). Ein vollständiger neuer `/audit` lief nach dem Hotfix nicht.
+
 ## 7. Lighthouse und Barrierefreiheit
 
 **Lighthouse mobil, Labordaten, Performance** (nach D-44 nur Regressionsinformation, kein Gate). Vorab: 10-RESEARCH „Messbefunde vom 23.10.2026“, live, Lighthouse 12.8.2, Median aus 3 Läufen. Endwert: live gegen https://craftos.eu nach dem Rollout, Lighthouse 13.5.0, Median aus 3 Läufen (LH):
@@ -151,6 +157,8 @@ Weitere Live-Werte (LH): Gate-Seiten `/funktionen/angebote` 97 / 2.432 ms, `/gew
 
 **Felddaten (D-44, Maßstab für QA-04; SI):** Vercel Speed Insights, Production, echte Besuche, `--since 30d` (Zeitraum 23.09.2026 16:00 UTC bis 23.10.2026 20:00 UTC, Messungen ab 20.10.2026), abgefragt am 23.10.2026 um 16:50 UTC: **p75 LCP 564 ms (n = 58), INP 40 ms (n = 47), CLS 0 (n = 31)**. Schwellen LCP < 2.500 ms, INP < 200 ms, CLS < 0,1: eingehalten. Grenze: Die Stichprobe liegt unter 100 Messungen und stammt überwiegend aus der Zeit vor dem Rollout (bis zur Abfrage höchstens 3 LCP-Messungen im Zeitfenster des Rollouts). Vorab (23.10.2026, n = 41): LCP p75 620 ms, INP p75 40 ms, CLS p75 0.
 
+**Nachtrag 23.10.2026 (Felddaten, VER):** Erneute Abfrage in der Verifikation (Production, 30 Tage, 17:34 UTC): **p75 LCP 532 ms (n = 66), INP 40 ms, CLS 0** – weiterhin unter allen drei Schwellen. Die Stichprobe liegt weiter unter 100 Messungen (genannte Grenze nach D-44, kein Blocker).
+
 **Barrierefreiheit (DESIGN-05):** Volle A11y-Matrix im Phasen-Gate 10-12 (PHASE-10-PRUEFUNGEN § 5.2): 158 Seiten (156 Sitemap-URLs, `/styleguide`, 404), 890 Aufrufe bei 360, 390, 768, 1024 und 1440 px (Chromium alle Seiten, WebKit 20 Vorlagen), Gate-Verstöße 0, Großtext unter 4,5 : 1 0, Tastaturfehler 0, Statusfehler 0. Vorab hatten `/impressum`, `/datenschutz` und `/agb` Kontrastverstöße; diese sind behoben.
 
 ## 8. Anforderungsstatus (Endstand nach dem Rollout)
@@ -159,11 +167,13 @@ Quelle: `.planning/REQUIREMENTS.md`, Traceability, Stand 23.10.2026 nach Plan 10
 
 | Status | Anforderungen |
 |---|---|
-| Complete | PROD-02, PROD-03, PROD-04, DESIGN-01, DESIGN-02, DESIGN-03, DESIGN-04, DESIGN-05, MEDIA-01, MEDIA-03, MEDIA-04, FEAT-01, FEAT-02, FEAT-03, FEAT-04, SEO-02, SEO-03, SEO-04, SEO-05, SEO-06, SEO-07, SEO-09, CONTENT-03, CONTENT-04, QA-04, QA-05 |
-| In Progress | QA-06 (Bestätigungsaudit: 2 behebbare On-Page-Fehler auf `/impressum`, Lückenschluss in RO-10 § 11), SEO-08 (≥ 15 seriöse verweisende Domains; Messstand 0, LINKPLAN § 7) |
+| Complete | PROD-02, PROD-03, PROD-04, DESIGN-01, DESIGN-02, DESIGN-03, DESIGN-04, DESIGN-05, MEDIA-01, MEDIA-03, MEDIA-04, FEAT-01, FEAT-02, FEAT-03, FEAT-04, SEO-02, SEO-03, SEO-04, SEO-05, SEO-06, SEO-07, SEO-09, CONTENT-03, CONTENT-04, QA-04 (Felddaten D-44, Stand Verifikation 17:34 UTC: p75 LCP 532 ms bei n = 66, INP 40 ms, CLS 0), QA-05, QA-06 (Nachtrag 23.10.2026: Hotfix `f9cd7f2`, O2/O3 live geschlossen, Recheck 485185 mit 0 Fehlern; RO-10 § 11 „Nachtrag QA-06“) |
+| In Progress | SEO-08 (≥ 15 seriöse verweisende Domains; Messstand 0, LINKPLAN § 7) |
 | Out of Scope | MEDIA-02 |
 
 QA-05 ist für die Etappen 05 bis 10 im Etappennachweis belegt (EN); das 24-Stunden-Analytics-Fenster der Etappe 10 folgt als Nachtrag des Orchestrators.
+
+**Nachtrag 23.10.2026: QA-06 erledigt (f9cd7f2, Recheck 0 Fehler).** Bis zum Hotfix stand QA-06 auf „In Progress“ (Bestätigungsaudit: 2 behebbare On-Page-Fehler auf `/impressum`). Die Tabelle oben gibt den Stand nach dem Hotfix wieder; die Verifikation (VER) steht auf `human_needed` mit drei Inhaberpunkten (24-Stunden-Analytics bis 24.10.2026 16:29 UTC, rechtliche Freigabe der Datenschutz- und GoBD-Aussagen, Sichtprüfung „Mehr über CraftOS“).
 
 ## 9. Unit-Tabelle Phasen 5 bis 10 (SE Ranking)
 
@@ -200,7 +210,7 @@ Summen: Verbrauch seit Testbeginn bis 23.10.2026 nach dem Rollout 82.355 Units (
 | 03.11.2026, 17:22 Uhr | Ende des SE-Ranking-Testzugangs; Tarifentscheidung vorher (Orchestrator/Inhaber), Promptlimit 20 | MS-10 § 6; D-28 |
 | 03.11.2026 | OMR-Nachfassen entfällt (Profil live seit 22.10.2026); Prüfung der Profilangaben gegen llms.txt laut LINKPLAN § 7, Punkt 3 | `docs/seo/LINKPLAN.md` § 7 |
 | frühestens eine Woche nach Versand | Prüfung, ob softwareabc24.de und betriebssoftware-kompass.de CraftOS aufgenommen haben | LINKPLAN § 7, Punkte 6 und 7 |
-| nach Entscheidung des Orchestrators | Lückenschluss QA-06: interne Links im Hauptteil von `/impressum` (O2, O3) | RO-10 § 11 |
+| nach Entscheidung des Orchestrators | Lückenschluss QA-06: interne Links im Hauptteil von `/impressum` (O2, O3) – **erledigt am 23.10.2026** (Nachtrag: `f9cd7f2`, Recheck 0 Fehler) | RO-10 § 11 |
 | 21.12.2026 | Wettbewerberangaben (Preise und Funktionen der Vergleichsseiten) nach 60 Tagen neu prüfen; Daueraufgabe nach Meilensteinende | D-31 Nr. 36, Rollout 08 § 14 |
 | 01.01.2027 | Lagerfoto-Credits 2 → 3; Mobile-App-Anzeige vorher nachziehen (Inhaber, Mobile-Repo) | 10-13, PHASE-10-PRUEFUNGEN § 4.2 |
 | laufend | Messung neuer seriöser verweisender Domains (SEO-08, Ziel ≥ 15) und KI-Tracker | LINKPLAN § 6 |

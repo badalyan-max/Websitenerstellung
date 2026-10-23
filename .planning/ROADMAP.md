@@ -301,6 +301,8 @@ Plans:
 
 **Stand nach dem Rollout 10-07 (23.10.2026):** Phase 10 ist live (`e392762`). Kriterium 1 erfüllt (A11y-Matrix 0, DESIGN-05). Kriterium 2 nach D-44 an Felddaten bewertet (p75 LCP 564 ms, INP 40 ms, CLS 0; QA-04), Prüfsuiten grün; Labordaten nur Regressionsinformation. Kriterium 3 erfüllt (Etappennachweis 05–10, QA-05; 24-Stunden-Fenster Phase 10 als Nachtrag). Kriterium 4 **teilweise**: SE-Ranking-Recheck 0 Fehler, Abschlussbericht liegt vor; der Bestätigungs-`/audit` zeigt noch 2 behebbare On-Page-Fehler auf `/impressum` (O2/O3) – Lückenschluss QA-06 in `craftos/docs/releases/PHASE-10-ROLLOUT.md` § 11. SEO-08 bei 0 von 15 neuen seriösen Domains.
 
+**Nachtrag 23.10.2026: QA-06 erledigt (f9cd7f2, Recheck 0 Fehler).** Hotfix `f9cd7f2` setzt unter den Rechtstext von `/impressum`, `/datenschutz` und `/agb` den Abschnitt „Mehr über CraftOS“ mit Link-Karten; live seit `dpl_4mocbo1txgWCzCJJSAxXapNmEMnq` (READY 17:24:39 UTC), je 4 interne Links im `<main>`, O2/O3 geschlossen. SE-Ranking-Recheck 485185 (17:26 UTC): 97/100, 0 Fehler, 13 gewaivte Warnungen, 164 Hinweise; 314 Units, Phasensumme 1.266 von 5.000; Rohdatei `craftos/docs/seo/data/2026-10-23-audit-485185-recheck-2.json`. Felddaten aus der Verifikation (17:34 UTC): p75 LCP 532 ms (n = 66), INP 40 ms, CLS 0. **Aktueller Stand:** Kriterien 1–4 erfüllt; Phase 10 abgeschlossen (`10-VERIFICATION.md` mit drei Inhaberpunkten, `human_needed`). SEO-08 bleibt „In Progress“ (0 von 15).
+
 **Plans**: 13 plans (5 Wellen, parallele Spuren in Worktrees `C:/Projekte/wt-10<x>`, Ports 3101–3105; Integration, Phasen-Gate und Rollout im Haupt-Arbeitsbaum, Port 3100; Merge der Spuren mit `--no-ff` in der Reihenfolge e → c → a → b → d; zwischen 10-06 und 10-12 Code-Review und Fixer des Orchestrators)
 Plans:
 **Wave 1** *(Startgate nach Phase 9; je Spur ein Worktree)*
@@ -344,4 +346,4 @@ Plans:
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 9/9 | Complete    | 2026-10-22 |
 | 8. SEO und KI-Sichtbarkeit | 14/14 | Complete    | 2026-10-22 |
 | 9. Gewerke und Wissensinhalte | 18/18 | Complete    | 2026-10-23 |
-| 10. Abschlussaudit | 13/13 | Complete   | 2026-10-23 |
+| 10. Abschlussaudit | 13/13 | Complete    | 2026-10-23 |
