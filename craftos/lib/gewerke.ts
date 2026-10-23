@@ -13,9 +13,12 @@
  * Prüfungen beim Laden (Muster lib/funktionsdetails): Mengen und Textbudgets aus TEXT_BUDGET.gewerk /
  * TEXT_BUDGET.count.gewerk* (F-A1), Ablauf-Funktionen ⊂ Funktionen, mindestens eine Phase-7-Detailseite, höchstens
  * eine gemeinsame FAQ-Frage, zentrale Wortliste der Leitlinie L-1 (lib/leitlinie.ts) plus die Produktbegriffe der
- * Gewerke-Texte. Die Existenz der Artikelziele prüft tests/gewerke.test.ts (Dateizugriff, dieses Modul wird auch
- * clientseitig geladen); den Vertrag als Ganzes hält tests/gewerke.test.ts fest (09-11).
+ * Gewerke-Texte. Die Existenz der Artikelziele prüft tests/gewerke.test.ts per Dateizugriff, damit das Modul beim
+ * Laden nicht das Dateisystem liest; den Vertrag als Ganzes hält tests/gewerke.test.ts fest (09-11).
+ * Nur serverseitig (09-REVIEW IN-03): Keine Client-Komponente importiert das Modul, und `pruefeGewerke` läuft beim
+ * Import; `server-only` macht einen versehentlichen Client-Import zum Build-Fehler.
  */
+import "server-only";
 import { TEXT_BUDGET, charCount, sentenceCount } from "@/components/v2/budgets";
 import { funktionen } from "@/lib/funktionen";
 import { l1Treffer } from "@/lib/leitlinie";
