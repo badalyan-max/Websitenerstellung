@@ -17,6 +17,22 @@ const BUDGET_ROUTES = ['/', '/funktionen', '/app', '/gewerke', '/preise', '/verg
 const LIMIT = 150 * 1024
 /** Begründete PNG-Ausnahmen, identisch mit EXCEPTIONS in tests/media-budget.test.ts. */
 const PNG_EXCEPTIONS = ['/icons/icon-192x192.png', '/icons/icon-512x512.png']
+/**
+ * Phase 9 (09-UI-SPEC § 8 „Darstellung“ und „A11y, Bewegung, CLS“; Plan 09-16): Vorlagen Gewerke, Übersichten
+ * und Artikel in sechs Breiten. art: gewerk (FunktionsKopf mit Ablauf-StepFlow und FeatureSnippet), gewerke
+ * (Übersicht mit FunktionsKopf), index (ContentKopf ohne Antwort), artikel (ContentKopf mit #antwort,
+ * Inhaltsverzeichnis); schritte: Artikel mit Schrittliste (Knoten 40 × 40).
+ */
+const PHASE9_WIDTHS = [360, 390, 768, 1024, 1280, 1440]
+const PHASE9_ROUTES = [
+  { path: '/gewerke', art: 'gewerke' },
+  { path: '/gewerke/elektriker', art: 'gewerk' },
+  { path: '/gewerke/allrounder', art: 'gewerk' },
+  { path: '/blog', art: 'index' },
+  { path: '/hilfe/kategorie/rechnungen', art: 'index' },
+  { path: '/blog/tiefenkalkulation-handwerk', art: 'artikel' },
+  { path: '/hilfe/material-entnehmen-zurueckbuchen', art: 'artikel', schritte: true },
+]
 
 test.beforeEach(async ({ page, baseURL }) => {
   const origin = new URL(baseURL).origin
@@ -219,4 +235,147 @@ test.describe('Budget', () => {
       else test.info().annotations.push({ type: 'CLS', description: `${browserName} meldet keine layout-shift-Einträge; CLS wird in Chromium geprüft.` })
     })
   }
+})
+
+async function severeAxe(page) {
+  const result = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze()
+  return result.violations
+    .filter((v) => v.impact === 'serious' || v.impact === 'critical')
+    .map((v) => `${v.impact} ${v.id}: ${v.nodes.slice(0, 3).map((n) => n.target.join(' ')).join(', ')}`)
+}
+
+/** Desktop-Projekte prüfen alle sechs Breiten per setViewportSize, Touch-Projekte ihre eigene Breite. */
+function phase9Widths(testInfo) {
+  return testInfo.project.use.hasTouch ? [testInfo.project.use.viewport.width] : PHASE9_WIDTHS
+}
+
+async function measurePhase9(page) {
+  return page.evaluate(() => {
+    const rect = (el) => {
+      const r = el.getBoundingClientRect()
+      return { top: r.top, bottom: r.bottom, left: r.left, width: r.width }
+    }
+    const shown = (el) => !!el && getComputedStyle(el).display !== 'none' && el.getBoundingClientRect().height > 0
+    const h1 = document.querySelector('h1')
+    const keyword = h1 ? h1.querySelector('[data-keyword]') : null
+    const tocSeite = document.querySelector('nav[data-toc="seite"]')
+    const tocMobil = document.querySelector('details[data-toc="mobil"]')
+    const knoten = document.querySelector('.article-prose > ol > li')
+    const knotenStil = knoten ? getComputedStyle(knoten, '::before') : null
+    return {
+      h1Count: document.querySelectorAll('h1').length,
+      h1: h1 ? { scrollWidth: h1.scrollWidth, clientWidth: h1.clientWidth, width: h1.getBoundingClientRect().width } : null,
+      keywordWidth: keyword ? keyword.getBoundingClientRect().width : null,
+      overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      steps: [...document.querySelectorAll('[data-abschnitt="ablauf"] ol > li')].slice(0, 2).map(rect),
+      toc: { seite: shown(tocSeite), position: tocSeite ? getComputedStyle(tocSeite).position : null, mobil: shown(tocMobil) },
+      knoten: knotenStil ? { width: parseFloat(knotenStil.width), height: parseFloat(knotenStil.height) } : null,
+    }
+  })
+}
+
+test.describe('Phase 9: Vorlagen Gewerke, Übersichten und Artikel', () => {
+  for (const route of PHASE9_ROUTES) {
+    test(`Phase 9 ${route.path}: Darstellung und axe in sechs Breiten`, async ({ page }, testInfo) => {
+      test.setTimeout(180_000)
+      await page.emulateMedia({ reducedMotion: 'reduce' })
+      const findings = []
+      for (const width of phase9Widths(testInfo)) {
+        if (!testInfo.project.use.hasTouch) await page.setViewportSize({ width, height: 900 })
+        // Je Breite frisch laden: WebKit behält nach dem Verkleinern sonst die alte Scrollbreite.
+        const response = await page.goto(route.path)
+        expect(response.status(), `${route.path} ${width}`).toBe(200)
+        await page.evaluate(() => document.fonts.ready)
+        const m = await measurePhase9(page)
+        const at = `${route.path} ${width} px`
+        expect(m.overflow, `${at}: kein horizontaler Seitenscroll`).toBeLessThanOrEqual(1)
+        expect(m.h1Count, `${at}: genau eine H1`).toBe(1)
+        expect(m.h1.scrollWidth, `${at}: H1 ohne Überlauf`).toBeLessThanOrEqual(m.h1.clientWidth)
+        if (route.art === 'gewerk' || route.art === 'gewerke') {
+          expect(m.keywordWidth, `${at}: Kopfwort-Span vorhanden`).not.toBeNull()
+          expect(m.keywordWidth, `${at}: Kopfwort-Span passt in die H1`).toBeLessThanOrEqual(m.h1.width + 0.5)
+        }
+        if (route.art === 'gewerk') {
+          expect(m.steps, `${at}: StepFlow mit mindestens zwei Schritten`).toHaveLength(2)
+          const [a, b] = m.steps
+          if (width >= 1024) {
+            expect(Math.abs(b.top - a.top), `${at}: StepFlow waagerecht (gleiche Oberkante)`).toBeLessThanOrEqual(1)
+            expect(b.left, `${at}: StepFlow waagerecht (zweiter Schritt rechts)`).toBeGreaterThan(a.left + a.width - 1)
+          } else {
+            expect(b.top, `${at}: StepFlow senkrecht (zweiter Schritt darunter)`).toBeGreaterThanOrEqual(a.bottom - 1)
+            expect(Math.abs(b.left - a.left), `${at}: StepFlow senkrecht (gleiche linke Kante)`).toBeLessThanOrEqual(1)
+          }
+        }
+        if (route.art === 'artikel') {
+          if (width >= 1024) {
+            expect(m.toc.seite, `${at}: Inhaltsverzeichnis in der Seitenspalte`).toBe(true)
+            expect(m.toc.position, `${at}: Inhaltsverzeichnis sticky`).toBe('sticky')
+            expect(m.toc.mobil, `${at}: eingeklapptes Inhaltsverzeichnis ausgeblendet`).toBe(false)
+          } else {
+            expect(m.toc.mobil, `${at}: Inhaltsverzeichnis als details`).toBe(true)
+            expect(m.toc.seite, `${at}: Seitenspalte ausgeblendet`).toBe(false)
+          }
+          if (route.schritte) expect(m.knoten, `${at}: Schrittknoten 40 × 40`).toEqual({ width: 40, height: 40 })
+        }
+        for (const v of await severeAxe(page)) findings.push(`${at}: ${v}`)
+      }
+      expect(findings, `axe ${route.path}`).toEqual([])
+    })
+
+    test(`Phase 9 ${route.path}: reduzierte Bewegung ohne laufende Animation und CLS 0 in sechs Breiten`, async ({ page, browserName }, testInfo) => {
+      test.setTimeout(180_000)
+      await page.emulateMedia({ reducedMotion: 'reduce' })
+      await page.addInitScript(() => {
+        window.__cls = { value: 0, supported: false }
+        try {
+          if (PerformanceObserver.supportedEntryTypes?.includes('layout-shift')) {
+            window.__cls.supported = true
+            new PerformanceObserver((list) => {
+              for (const entry of list.getEntries()) if (!entry.hadRecentInput) window.__cls.value += entry.value
+            }).observe({ type: 'layout-shift', buffered: true })
+          }
+        } catch { /* Browser ohne Layout-Shift-API */ }
+      })
+      let supported = true
+      for (const width of phase9Widths(testInfo)) {
+        if (!testInfo.project.use.hasTouch) await page.setViewportSize({ width, height: 900 })
+        await page.goto(route.path)
+        await page.waitForLoadState('networkidle')
+        await page.evaluate(() => document.fonts.ready)
+        const at = `${route.path} ${width} px`
+        if (route.art === 'gewerk') {
+          // FeatureSnippet im Endzustand: vollständiges statisches Ergebnis, kein Ablauf.
+          const snippet = page.locator('[data-feature-illustration="true"]').first()
+          await expect(snippet, `${at}: FeatureSnippet im Endzustand`).toHaveAttribute('data-stage', '3')
+          await expect(snippet, `${at}: FeatureSnippet läuft nicht`).toHaveAttribute('data-running', 'false')
+        }
+        expect(await page.evaluate(() => document.getAnimations().length), `${at}: keine Animation`).toBe(0)
+        await scrollThrough(page)
+        expect(await page.evaluate(() => document.getAnimations().length), `${at}: keine Animation nach dem Scrollen`).toBe(0)
+        const cls = await page.evaluate(() => window.__cls)
+        if (cls.supported) expect(cls.value, `${at}: CLS`).toBe(0)
+        else supported = false
+      }
+      if (!supported) testInfo.annotations.push({ type: 'CLS', description: `${browserName} meldet keine layout-shift-Einträge; CLS wird in Chromium geprüft.` })
+    })
+  }
+
+  test('Phase 9: Fold 360 × 640 – Gewerke-CTA und Artikel-Antwort vollständig sichtbar', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.use.hasTouch, 'Die Breite wird im Desktop-Projekt per setViewportSize geprüft.')
+    test.setTimeout(90_000)
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+    await page.setViewportSize({ width: 360, height: 640 })
+    const report = []
+    for (const route of PHASE9_ROUTES.filter((r) => r.art !== 'index')) {
+      await page.goto(route.path)
+      await page.evaluate(() => document.fonts.ready)
+      const selector = route.art === 'artikel' ? '#antwort' : '[data-funktions-kopf] a.v2-btn-cta[data-track="trial"]'
+      const box = await page.locator(selector).first().boundingBox()
+      expect(box, `${route.path}: ${selector} vorhanden`).not.toBeNull()
+      expect(box.y, `${route.path}: ${selector} oben im Fold`).toBeGreaterThanOrEqual(0)
+      expect(box.y + box.height, `${route.path}: ${selector} Unterkante ≤ 640`).toBeLessThanOrEqual(640)
+      report.push(`${route.path}: bis ${Math.round(box.y + box.height)}`)
+    }
+    testInfo.annotations.push({ type: 'Fold 360 × 640', description: report.join(' | ') })
+  })
 })
