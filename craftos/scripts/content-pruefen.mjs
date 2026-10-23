@@ -20,7 +20,9 @@
  *              von --zitate ausgenommen. Zeilen ohne Begründung gelten nicht. Fehlt Datei oder Abschnitt: keine Ausnahmen.
  * --l1         Wörter und Altbegriffe der Leitlinie L-1 aus lib/leitlinie-l1.json (ohne Übergangsliste), Ausnahmen
  *              laut JSON. Markdown zeilenweise; .ts-Dateien nur über String-Literale (scripts/lib/ts-literale.mjs).
- * --antwort    Frontmatter `answer` ≤ 300 Zeichen; unter jeder H2/H3 mit „?“ ist der erste Absatz ≤ 300 Zeichen.
+ * --antwort    Frontmatter `answer` Pflicht, ≤ 300 Zeichen, ein bis zwei Sätze (wie der Build); unter jeder H2/H3 mit
+ *              „?“ steht vor der nächsten Überschrift ein Absatz ≤ 300 Zeichen, gemessen wie das SEO-Audit
+ *              (scripts/lib/antwort-pruefung.mjs → answerFirstViolations; 09-REVIEW LO-05).
  * --belege     Zusatz zu --zitate: nennt je belegtem Begriff bis zu drei Release-Dateien (für die Spalte „Belegpfade“
  *              der Prüfdatei, D-11). Ein Treffer in einer fremden Ansicht ist kein Beleg für den beschriebenen Ablauf.
  *
@@ -31,7 +33,7 @@
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
-import matter from "gray-matter";
+import { antwortBefunde } from "./lib/antwort-pruefung.mjs";
 import { stringLiterale } from "./lib/ts-literale.mjs";
 import { FREISCHALTUNG, istUiQuelle, normalisiert, OHNE_NICHT_UI, uiTexte, zitatBelegt, zitateAus } from "./lib/zitat-belege.mjs";
 
@@ -42,7 +44,6 @@ const REPOS = {
   web: process.env.CRAFTOS_WEB_REPO || "C:/Projekte/craft-connect-buddy",
   mobile: process.env.CRAFTOS_MOBILE_REPO || "C:/Projekte/CraftOS - Mobile/craftos-mobile",
 };
-const ANTWORT_MAX = 300;
 const KURZ_UNTER = 4;
 
 const laenge = (s) => Array.from(s).length;
@@ -333,71 +334,13 @@ function pruefeL1(dateien) {
 
 // ---------------------------------------------------------------- Antwort zuerst
 
-/** Markdown-Absatz als reiner Text (wie die gerenderte Seite ihn zählt). */
-function klartext(md) {
-  return md
-    .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
-    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
-    .replace(/<[^>]+>/g, "")
-    .replace(/(\*\*|__|\*|_|`)/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-const LISTE_ODER_TABELLE = /^\s*([-*+]\s|\d+[.)]\s|\||```|~~~|<!--)/;
-
-/** Erster Absatz nach Zeile `ab` bis zur nächsten Überschrift; Listen, Tabellen und Codeblöcke zählen nicht. */
-function ersterAbsatz(zeilen, ab) {
-  let block = [];
-  let imCode = false;
-  for (let i = ab; i < zeilen.length; i++) {
-    const z = zeilen[i];
-    if (/^\s*(```|~~~)/.test(z)) {
-      imCode = !imCode;
-      block = [];
-      continue;
-    }
-    if (imCode) continue;
-    if (/^#{1,6}\s/.test(z)) return block.length ? block.join(" ") : "";
-    if (!z.trim()) {
-      if (block.length) return block.join(" ");
-      continue;
-    }
-    if (!block.length && LISTE_ODER_TABELLE.test(z)) {
-      // Block überspringen
-      while (i + 1 < zeilen.length && zeilen[i + 1].trim() && !/^#{1,6}\s/.test(zeilen[i + 1])) i++;
-      continue;
-    }
-    block.push(z.replace(/^\s*>\s?/, ""));
-  }
-  return block.join(" ");
-}
-
-function pruefeAntwort(dateien) {
+async function pruefeAntwort(dateien) {
   for (const { datei, inhalt } of dateien) {
     if (!datei.endsWith(".md")) {
       hinweis(datei, "--antwort prüft nur Markdown-Dateien");
       continue;
     }
-    const { data, content } = matter(inhalt);
-    if (typeof data.answer === "string") {
-      const n = laenge(data.answer.trim());
-      if (n > ANTWORT_MAX) befund(datei, `answer ${n} > ${ANTWORT_MAX}`);
-    } else hinweis(datei, "kein Frontmatter „answer“ (Pflicht ab 09-09)");
-    const zeilen = content.split(/\r?\n/);
-    let imCode = false;
-    zeilen.forEach((z, i) => {
-      if (/^\s*(```|~~~)/.test(z)) imCode = !imCode;
-      if (imCode) return;
-      const h = /^(#{2,3})\s+(.+?)\s*#*\s*$/.exec(z);
-      if (!h) return;
-      const frage = klartext(h[2]);
-      if (!frage.includes("?")) return;
-      const antwort = klartext(ersterAbsatz(zeilen, i + 1));
-      const n = laenge(antwort);
-      if (!n) befund(datei, `„${frage}“: keine Antwort direkt darunter`);
-      else if (n > ANTWORT_MAX) befund(datei, `„${frage}“: Antwort ${n} > ${ANTWORT_MAX}`);
-    });
+    for (const b of await antwortBefunde(inhalt)) befund(datei, b);
   }
 }
 
@@ -416,7 +359,7 @@ for (const d of opt.dateien) {
 try {
   if (opt.zitate) pruefeZitate(dateien, zitatAusnahmen(opt.ausnahmen), opt.belege);
   if (opt.l1) pruefeL1(dateien);
-  if (opt.antwort) pruefeAntwort(dateien);
+  if (opt.antwort) await pruefeAntwort(dateien);
 } catch (e) {
   console.error(`content-pruefen: ${e.message}`);
   process.exit(2);
