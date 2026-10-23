@@ -417,13 +417,14 @@ const ERWARTET: Record<string, Erwartung> = {
   rechnungen: {
     pflichtfrage: "Kann ich eine fertiggestellte Rechnung noch ändern?",
     verwandt: ["e-rechnung", "mahnwesen", "bankabgleich"],
-    anordnung: "md·sm·sm·wide·wide",
+    // 10-04 (D-21): Kachel „Rechnung nach § 13b“ zwischen „Zahlungen zuordnen“ und „Berichte abrechnen“.
+    anordnung: "md·sm·sm·wide·wide·wide",
     webRollen: BUERO,
     mobileRollen: null,
     sekundaer: { label: HILFE, href: "/hilfe/rechnung-fertigstellen" },
     snippet: "rechnung",
-    zusatz: [],
-    hrefs: { "Korrektur über Folgebelege": "/gobd" },
+    zusatz: ["rechnung-13b"],
+    hrefs: { "Rechnung nach § 13b": "/hilfe/rechnung-fertigstellen", "Korrektur über Folgebelege": "/gobd" },
   },
   "e-rechnung": {
     pflichtfrage: "Ist eine PDF-Rechnung eine E-Rechnung?",
@@ -479,13 +480,13 @@ const ERWARTET: Record<string, Erwartung> = {
     pflichtfrage: "Wer reicht die Steuererklärung bei ELSTER ein?",
     pflichtAntwort: "Sie oder Ihre Steuerberatung",
     verwandt: ["bankabgleich", "eingangsrechnungen", "rechnungen"],
-    // 09-09 (D-32): Kassenbuch-Kachel mit Ziel Hilfeartikel.
+    // 09-09 (D-32): Kassenbuch-Kachel mit Ziel Hilfeartikel; 10-04 (D-21): Kachel trägt das Extra „kassenbuch“.
     anordnung: "md·sm·sm·wide·wide",
     webRollen: ["Admin", "Büro-Leitung"],
     mobileRollen: null,
     sekundaer: { label: HILFE, href: "/hilfe/datev-export-erstellen" },
     snippet: null,
-    zusatz: [],
+    zusatz: ["kassenbuch"],
     hrefs: { "Steuererklärung über die Kanzlei": "/gobd", Kassenbuch: "/hilfe/kassenbuch-fuehren" },
   },
   eingangsrechnungen: {
@@ -1434,7 +1435,9 @@ describe("Vorlage gerendert", () => {
  * CONTENT-04 / ROADMAP SC 3 (Lückenschluss nach 09-VERIFICATION): Jede Anleitung aus der Abdeckungstabelle
  * „Neue Live-Funktionen (14) und D-32“ (docs/content-pruefung/09-integration.md § 7) ist von mindestens einer
  * Funktionsdetailseite verlinkt, als Sekundärlink im Kopf oder als Kachel-Link. Die genannten Detailseiten müssen
- * den Link tatsächlich rendern. § 13b (D-32) hat bewusst keine Detailseite und fehlt deshalb.
+ * den Link tatsächlich rendern. § 13b (D-32) hat keine eigene Detailseite; seit 10-04 (D-21) beschreibt ihn die Kachel
+ * „Rechnung nach § 13b“ auf /funktionen/rechnungen mit Link auf /hilfe/rechnung-fertigstellen (zugleich Sekundärlink
+ * der Seite), deshalb steht er nicht in dieser Tabelle der eigenen Anleitungen.
  */
 const CONTENT04_ANLEITUNGEN: Record<string, string[]> = {
   "/hilfe/projekt-phasen-anlegen": ["terminplanung"],

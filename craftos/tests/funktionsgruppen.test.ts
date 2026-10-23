@@ -1,6 +1,6 @@
 /**
  * Paritätstest Produktregister ↔ Funktionsgruppen ↔ Linkziele (Phase 6, FEAT-01, DESIGN-03, D-07, D-09, D-15;
- * Phase 7: 22 Detail- + 8 Zusatzfunktionen, D-07, D-21).
+ * Phase 7: 22 Detail- + 8 Zusatzfunktionen, D-07, D-21; Phase 10: + Kassenbuch und § 13b = 10 Zusatzfunktionen, D-21).
  * lib/funktionsgruppen.ts ist die einzige Quelle für Menü, Startseite und /funktionen.
  */
 import fs from "node:fs";
@@ -18,6 +18,7 @@ import {
   menuFooterLinks,
   type Funktionsgruppe,
 } from "@/lib/funktionsgruppen";
+import { l1Treffer } from "@/lib/leitlinie";
 import { getProductRegister, mobileLocales } from "@/lib/product-register";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
@@ -74,7 +75,7 @@ const ERWARTETE_GRUPPEN = [
     heading: "Rechnungen schreiben und offene Beträge verfolgen",
     lead: "Aus Angeboten und Berichten werden prüfbare Rechnungen, E-Rechnungen und bei Bedarf Zahlungserinnerungen.",
     details: ["rechnungen", "e-rechnung", "mahnwesen"],
-    extras: [],
+    extras: ["rechnung-13b"],
   },
   {
     id: "buchhaltung",
@@ -84,7 +85,7 @@ const ERWARTETE_GRUPPEN = [
     heading: "Belege, Zahlen und DATEV-Export an einem Ort",
     lead: "Belege prüfen, Bankumsätze zuordnen und Daten für die Steuerberatung vorbereiten.",
     details: ["buchhaltung", "eingangsrechnungen", "nachkalkulation", "dashboard", "bankabgleich"],
-    extras: [],
+    extras: ["kassenbuch"],
   },
   {
     id: "team",
@@ -103,6 +104,8 @@ const sprachenName = `${mobileLocales.length} Sprachen in der Mobile-App`;
 /**
  * Die 8 verbleibenden Zusatzfunktionen wörtlich aus 06-UI-SPEC „FeatureList“ (Anzeigename, Icon, Nutzensatz)
  * mit den Zielen aus 07-UI-SPEC „Zusatzliste“ (D-21): sieben Funktions-Detailseiten, „21 Sprachen“ → /app.
+ * Phase 10 (D-21, 10-UI-SPEC § 5): „Rechnung nach § 13b“ und „Kassenbuch“ mit Lizenz im Nutzensatz → 10 Einträge,
+ * neun Funktions-Detailseiten.
  */
 const ERWARTETE_ZUSATZ: Record<
   string,
@@ -143,6 +146,18 @@ const ERWARTETE_ZUSATZ: Record<
     icon: "ScanBarcode",
     benefit: "Artikel per Barcode scannen und Wareneingänge am Lager buchen.",
     target: { href: "/funktionen/lager", kind: "funktion" },
+  },
+  "rechnung-13b": {
+    name: "Rechnung nach § 13b",
+    icon: "ReceiptText",
+    benefit: "Bauleistungen ohne Umsatzsteuer mit Hinweis nach § 13b UStG abrechnen, mit Voll-Lizenz.",
+    target: { href: "/funktionen/rechnungen", kind: "funktion" },
+  },
+  kassenbuch: {
+    name: "Kassenbuch",
+    icon: "Wallet",
+    benefit: "Bargeld täglich mit laufendem Bestand buchen, für Admin und Büro-Zugänge mit Finanzberechtigung.",
+    target: { href: "/funktionen/buchhaltung", kind: "funktion" },
   },
   "projekt-chat": {
     name: "Projekt-Chat und Nachrichten",
@@ -326,18 +341,27 @@ describe("Funktionsgruppen: 22 Detailfunktionen", () => {
   });
 });
 
-describe("Funktionsgruppen: 8 beworbene Zusatzfunktionen", () => {
+describe("Funktionsgruppen: 10 beworbene Zusatzfunktionen", () => {
   it("ordnet jede beworbene Zusatzfunktion genau einer Gruppe in der festgelegten Reihenfolge zu", () => {
     for (const soll of ERWARTETE_GRUPPEN) {
       expect(gruppe(soll.id).extras.map((x) => x.id)).toEqual([...soll.extras]);
     }
     const alle = gruppen.flatMap((g) => g.extras);
-    expect(beworben).toHaveLength(8);
+    expect(beworben).toHaveLength(10);
     expect(alle).toHaveLength(beworben.length);
-    expect(new Set(alle.map((x) => x.id)).size).toBe(8);
-    expect(gruppen.filter((g) => g.extras.length > 0).map((g) => g.id)).toEqual(["angebot", "baustelle", "team"]);
-    // 22 Detail- + 8 Zusatzfunktionen = 30 Einstiege (D-07)
-    expect(gruppen.flatMap((g) => [...g.details, ...g.extras])).toHaveLength(30);
+    expect(new Set(alle.map((x) => x.id)).size).toBe(10);
+    // Gruppenreihenfolge (GRUPPEN_REIHENFOLGE); Rechnung und Buchhaltung je genau ein Extra (Phase 10, D-21)
+    expect(gruppen.filter((g) => g.extras.length > 0).map((g) => g.id)).toEqual([
+      "angebot",
+      "baustelle",
+      "rechnung",
+      "buchhaltung",
+      "team",
+    ]);
+    expect(gruppe("rechnung").extras.map((x) => x.id)).toEqual(["rechnung-13b"]);
+    expect(gruppe("buchhaltung").extras.map((x) => x.id)).toEqual(["kassenbuch"]);
+    // 22 Detail- + 10 Zusatzfunktionen = 32 Einstiege (D-07, D-21)
+    expect(gruppen.flatMap((g) => [...g.details, ...g.extras])).toHaveLength(32);
     expect(alle.map((x) => x.registerName).sort()).toEqual(beworben.map((x) => x.name).sort());
   });
 
@@ -393,7 +417,17 @@ describe("Funktionsgruppen: 8 beworbene Zusatzfunktionen", () => {
     expect(problems).toEqual([]);
   });
 
-  it("Ziele: alle 8 Zusatzfunktionen mit Ziel, Funktionsziele mit dem Namen der Zielseite, „21 Sprachen“ → /app (D-21)", () => {
+  it("Nutzensätze der Zusatzfunktionen positiv: ohne L-1-Treffer, ohne „nur“ und „nicht für“ (D-03, 10-UI-SPEC § 5)", () => {
+    const problems = gruppen
+      .flatMap((g) => g.extras)
+      .flatMap((x) => [
+        ...l1Treffer(x.benefit).map((wort) => `${x.id}: L-1 „${wort}“`),
+        ...(/\bnur\b|nicht für/i.test(x.benefit) ? [`${x.id}: Negativformulierung`] : []),
+      ]);
+    expect(problems).toEqual([]);
+  });
+
+  it("Ziele: alle 10 Zusatzfunktionen mit Ziel, Funktionsziele mit dem Namen der Zielseite, „21 Sprachen“ → /app (D-21)", () => {
     for (const x of gruppen.flatMap((g) => g.extras)) {
       const soll = ERWARTETE_ZUSATZ[x.id].target;
       expect(x.target?.href, x.id).toBe(soll.href);
@@ -407,7 +441,7 @@ describe("Funktionsgruppen: 8 beworbene Zusatzfunktionen", () => {
         expect(x.target).toEqual({ href: "/app", kind: "seite", label: "Mobile-App" });
       }
     }
-    expect(gruppen.flatMap((g) => g.extras).filter((x) => x.target)).toHaveLength(8);
+    expect(gruppen.flatMap((g) => g.extras).filter((x) => x.target)).toHaveLength(10);
     expect(gruppen.flatMap((g) => g.extras).filter((x) => !x.target)).toHaveLength(0);
   });
 
@@ -441,14 +475,16 @@ describe("Funktionsgruppen: 8 beworbene Zusatzfunktionen", () => {
 
   it("ignoriert nicht beworbene Registereinträge", () => {
     const liveExtras = [...register.liveExtras, { name: "Intern", platforms: ["web" as const], advertised: false }];
-    expect(buildFunktionsgruppen({ funktionen, liveExtras }).flatMap((g) => g.extras)).toHaveLength(8);
+    expect(buildFunktionsgruppen({ funktionen, liveExtras }).flatMap((g) => g.extras)).toHaveLength(10);
   });
 
   it("wirft für eine leere Gruppe den UI-SPEC-Fehlertext", () => {
     const ohneRechnung = funktionen.filter(
       (f) => f.slug !== "rechnungen" && f.slug !== "e-rechnung" && f.slug !== "mahnwesen",
     );
-    expect(() => buildFunktionsgruppen({ funktionen: ohneRechnung, liveExtras: register.liveExtras })).toThrow(
+    // Seit Phase 10 hat Rechnung das Extra „Rechnung nach § 13b“; für eine leere Gruppe fehlt es hier mit.
+    const ohne13b = register.liveExtras.filter((x) => x.name !== "Rechnung nach § 13b");
+    expect(() => buildFunktionsgruppen({ funktionen: ohneRechnung, liveExtras: ohne13b })).toThrow(
       "Funktionsgruppen: Gruppe rechnung enthält keine Funktion – Zuordnung in lib/funktionsgruppen.ts ergänzen.",
     );
   });
