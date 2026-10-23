@@ -299,7 +299,34 @@ Plans:
   3. Für jede Etappe (Phasen 5–10) ist dokumentiert, dass sie einzeln nach Ship-Gate live ging, IndexNow gemeldet, die Live-Seite geprüft und `trial_click`/`ai_visit` kontrolliert wurde.
   4. Ein erneuter `/audit craftos.eu` und ein SE-Ranking-Website-Audit nach der letzten Etappe zeigen keine offenen technischen oder On-Page-Fehler; ein Abschlussbericht vergleicht Positionen, KI-Share-of-Voice und verweisende Domains mit dem Ausgangsstand vom 20.10.2026.
 
-**Plans**: TBD
+**Plans**: 12 plans (5 Wellen, parallele Spuren in Worktrees `C:/Projekte/wt-10<x>`, Ports 3101–3105; Integration, Phasen-Gate und Rollout im Haupt-Arbeitsbaum, Port 3100; Merge-Reihenfolge der Spuren e → d → c → a → b)
+Plans:
+**Wave 1** *(Startgate nach Phase 9; je Spur ein Worktree)*
+
+- [ ] 10-01-PLAN.md — (a) Barrierefreiheit Teil 1: a11y-audit-Kern mit Tests, CLI mit Shards und Tastaturprüfung, visual-audit mit fünf Breiten (wt-10a, 3101)
+- [ ] 10-02-PLAN.md — (b) Performance Teil 1: Lighthouse 13.5.0, Modus --lighthouse mit Median und Gate, Snippet-CLS, deterministische Flakes, Release-Helfer, K-1 (wt-10b, 3102)
+- [ ] 10-03-PLAN.md — (c) DESIGN-02-Rest Teil 1: Wortlaut-Schutz zuerst, ContentKopf K1/K2, Rechtsseiten mit Kontrast, 404, /support (wt-10c, 3103)
+- [ ] 10-04-PLAN.md — (d) Funktionsergänzungen: Kassenbuch und § 13b, Lagerfoto-Credits mit Stichtag, Schutztests ProductDemo und doppelte Slugs (wt-10d, 3104)
+- [ ] 10-05-PLAN.md — (e) Audits Teil 1: seo-report ohne Leaderboard (D-37), KI-Tracker-Abgleich (D-39), Vorab-/audit mit Behebungsliste (wt-10e, 3105)
+
+**Wave 2** *(je Spur nach ihrem Teil 1 im selben Worktree)*
+
+- [ ] 10-08-PLAN.md — (a) Barrierefreiheit Teil 2: FeatureSnippet-Dimmstufe, a11y.pw.cjs mit Tastaturfällen, Baseline der vollen Matrix (wt-10a, 3101)
+- [ ] 10-09-PLAN.md — (b) Performance Teil 2: Gate-Seiten, Schriftlizenz, Logo-Schriftzug als SVG, drei Schnitte weniger, Messschleife (wt-10b, 3102)
+- [ ] 10-10-PLAN.md — (c) DESIGN-02-Rest Teil 2: Rechner auf v2, Bento-Bodenausrichtung, Tabellen-Caption, Darstellungstest, DESIGN-V2 § 19 (wt-10c, 3103)
+- [ ] 10-11-PLAN.md — (e) Audits Teil 2: Linkregister und Übergabe 2 (SEO-08), Etappennachweis 05–09, Entwurf Abschlussbericht (wt-10e, 3105)
+
+**Wave 3** *(blocked on Merge aller Spuren)*
+
+- [ ] 10-06-PLAN.md — Integration: Übergaben, Audit-Behebungen, testMatch, Sitemap-Daten, live-check Phase 10, Produktbasis, D-31-Endstand (main, 3100)
+
+**Wave 4** *(blocked on Wave 3)*
+
+- [ ] 10-12-PLAN.md — Phasen-Gate: alle Suiten aus D-14, volle A11y-Matrix, Lighthouse-Endmessung (main, 3100)
+
+**Wave 5** *(blocked on Wave 4; Code-Review-Gate des Orchestrators vorher)*
+
+- [ ] 10-07-PLAN.md — Rollout: ship-gate, Push, live-check, IndexNow, SE-Ranking ohne Leaderboard, Audit-Recheck, Bestätigungs-/audit, Berichte, Anforderungsstatus (main, 3100)
 
 ## Progress
 
@@ -312,4 +339,4 @@ Plans:
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 9/9 | Complete    | 2026-10-22 |
 | 8. SEO und KI-Sichtbarkeit | 14/14 | Complete    | 2026-10-22 |
 | 9. Gewerke und Wissensinhalte | 18/18 | Complete    | 2026-10-23 |
-| 10. Abschlussaudit | 0/TBD | Not started | - |
+| 10. Abschlussaudit | 0/12 | Not started | - |
