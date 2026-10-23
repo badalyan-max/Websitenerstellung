@@ -203,12 +203,14 @@ describe("Keyword-Map", () => {
     for (const k of keywordMap) {
       if (k.status === "geplant") {
         expect([6, 7, 8, 9], k.path).toContain(k.phase);
-        // Übergang bis 09-09 (K-3): Die Inhaltspakete der Phase 9 legen ihre Artikel an, bevor die Integration den
-        // Status auf „bestehend“ setzt; geplante Phase-9-Pfade dürfen deshalb schon in der Sitemap stehen.
-        // Für alle anderen Phasen gilt die Regel unverändert. 09-09 stellt die strenge Regel wieder her.
-        if (k.phase !== 9) expect(sitemapPaths.has(k.path), `${k.path} ist schon live`).toBe(false);
+        expect(sitemapPaths.has(k.path), `${k.path} ist schon live`).toBe(false);
       } else expect(sitemapPaths.has(k.path), `${k.path} fehlt in der Sitemap`).toBe(true);
     }
+    // 09-09: alle Phase-9-Einträge sind veröffentlicht (19 neue Pfade aus 09-07/09-08 plus Kassenbuch, D-32).
+    const phase9 = keywordMap.filter((k) => k.phase === 9);
+    expect(phase9.length).toBeGreaterThanOrEqual(20);
+    for (const k of phase9) expect(k.status, k.path).toBe("bestehend");
+    expect(keywordMap.find((k) => k.path === "/hilfe/kassenbuch-fuehren")?.status).toBe("bestehend");
   });
 
   it("Zielwerte für Titel, H1 und Description (D-14; 08 D-06: jeder Eintrag mit target)", () => {

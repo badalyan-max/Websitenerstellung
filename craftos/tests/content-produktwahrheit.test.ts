@@ -3,7 +3,7 @@
  * Die Website nennt nur, was unterstützt wird. Wortliste, Altbegriffe und Ausnahmen kommen ausschließlich aus
  * lib/leitlinie-l1.json (über lib/leitlinie.ts). Geltungsbereich ab Welle 2: content/blog, content/hilfe und die
  * String-Literale von lib/gewerke.ts; ab der Integration (09-09) zusätzlich lib/funktionen.ts,
- * lib/funktionsdetails/*.ts und lib/app-content.ts. TypeScript-Dateien werden nur über ihre String-Literale
+ * lib/funktionsdetails/*.ts und lib/app-content.ts (umgesetzt in 09-09, ohne Übergangsliste). TypeScript-Dateien werden nur über ihre String-Literale
  * geprüft (scripts/lib/ts-literale.mjs, K-10/W6) – Belegkommentare bleiben unberührt.
  */
 import fs from "node:fs";
@@ -15,7 +15,17 @@ import { stringLiterale } from "../scripts/lib/ts-literale.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
 const MD_ORDNER = ["content/blog", "content/hilfe"];
-const TS_DATEIEN = ["lib/gewerke.ts"];
+/** Seit 09-09 zusätzlich die Produktdaten der Funktionsseiten und der App-Seite (09-UI-SPEC § 5 „Geltungsbereich“). */
+const TS_DATEIEN = [
+  "lib/gewerke.ts",
+  "lib/funktionen.ts",
+  ...fs
+    .readdirSync(path.join(ROOT, "lib/funktionsdetails"))
+    .filter((n) => n.endsWith(".ts"))
+    .sort()
+    .map((n) => `lib/funktionsdetails/${n}`),
+  "lib/app-content.ts",
+];
 
 /** Fehlertext aus 09-UI-SPEC § 5 (wörtlich). */
 const fehlertext = (pfad: string, wort: string) =>
@@ -68,60 +78,20 @@ function dateien(): string[] {
   return [...out, ...TS_DATEIEN];
 }
 
-/**
- * Übergang bis 09-09 (W3, T-09-04): Bestandstreffer, eingefroren am 23.10.2026 auf dem Stand von main 0b84201.
- * Schlüssel „<datei>|<wort>“ ohne Zeilennummer. Die Liste wird nie erweitert; die Inhaltspakete und Paket (a)
- * beheben die Treffer, 09-09 entfernt die Liste. Einträge ohne Treffer sind bis dahin erlaubt.
- */
-const L1_UEBERGANG_PHASE9 = new Set<string>([
-  // Ratgeber
-  "content/blog/handwerkersoftware-einzelunternehmen.md|Admin-Lizenz",
-  "content/blog/zahlungserinnerung-mahnung-handwerk.md|verspricht keine",
-  "content/blog/zahlungserinnerung-mahnung-handwerk.md|Onlinezahlung",
-  "content/blog/ki-belegscan-pruefen.md|kein autonomes Verbuchen",
-  // Hilfe
-  "content/hilfe/abschlagsrechnung-erstellen.md|Büro-Lizenz",
-  "content/hilfe/anmelden-web-mobile.md|Büro-Lizenz",
-  "content/hilfe/kunden-ansprechpartner-anlegen.md|Büro-Lizenz",
-  "content/hilfe/gaeb-importieren.md|.x84 und .d83",
-  "content/hilfe/rollen-zugriffsrechte-einstellen.md|Finanzen sichtbar",
-  "content/hilfe/rollen-zugriffsrechte-einstellen.md|Teamleitung (Zeiten für andere)",
-  "content/hilfe/schlussrechnung-erstellen.md|nicht pauschal",
-  "content/hilfe/zahlungen-erfassen.md|ersetzt keinen",
-  "content/hilfe/artikel-stammdaten-anlegen.md|Büro-Lizenz",
-  "content/hilfe/craft-ai-betriebsdaten-fragen.md|Büro-Lizenz",
-  "content/hilfe/lagerorte-lagerplaetze-einrichten.md|Büro-Lizenz",
-  "content/hilfe/mobile-offline-synchronisierung.md|kein pauschales",
-  "content/hilfe/plantafel-einsatz-planen.md|Keine Koordinaten",
-  "content/hilfe/plantafel-einsatz-planen.md|Konflikt erkannt",
-  "content/hilfe/plantafel-einsatz-planen.md|Büro-Lizenz",
-  "content/hilfe/planung-mitarbeiter-ressourcen.md|Ressourcen verwalten",
-  "content/hilfe/projekt-phasen-anlegen.md|Neue Phase",
-  "content/hilfe/projekt-phasen-anlegen.md|Büro-Lizenz",
-  "content/hilfe/projektdateien-ordner.md|Asset hinzufügen",
-  // Gewerke-Daten (Paket a)
-  "lib/gewerke.ts|vorbereitete Leistungsvorlagen",
-]);
-
-describe("Leitlinie L-1 in Ratgebern, Hilfe und Gewerke-Texten", () => {
-  it("keine neuen Treffer außerhalb der Übergangsliste", () => {
-    const neu: string[] = [];
-    for (const rel of dateien()) {
-      const inhalt = fs.readFileSync(path.join(ROOT, rel), "utf8");
-      for (const t of trefferInDatei(rel, inhalt))
-        if (!L1_UEBERGANG_PHASE9.has(`${t.datei}|${t.wort}`)) neu.push(fehlertext(t.datei, t.wort));
-    }
-    expect(neu).toEqual([]);
+describe("Leitlinie L-1 in Ratgebern, Hilfe, Gewerke- und Produktdaten", () => {
+  it("Geltungsbereich umfasst funktionen.ts, alle Funktionsdetails und app-content.ts (09-09)", () => {
+    expect(TS_DATEIEN).toContain("lib/funktionen.ts");
+    expect(TS_DATEIEN).toContain("lib/app-content.ts");
+    expect(TS_DATEIEN.filter((d) => d.startsWith("lib/funktionsdetails/")).length).toBeGreaterThanOrEqual(5);
   });
 
-  it("Übergangsschlüssel: Datei + Wort aus der Liste, keine Zeilennummer", () => {
-    const woerter = new Set([...leitlinie.woerter, ...leitlinie.altbegriffe]);
-    for (const k of L1_UEBERGANG_PHASE9) {
-      const [datei, wort, rest] = k.split("|");
-      expect(rest, k).toBeUndefined();
-      expect(datei, k).toMatch(/^(content\/(blog|hilfe)\/[a-z0-9-]+\.md|lib\/[a-z0-9/-]+\.ts)$/);
-      expect(woerter.has(wort), k).toBe(true);
+  it("kein Treffer in content/, lib/gewerke.ts, lib/funktionen.ts, lib/funktionsdetails/*.ts und lib/app-content.ts", () => {
+    const treffer: string[] = [];
+    for (const rel of dateien()) {
+      const inhalt = fs.readFileSync(path.join(ROOT, rel), "utf8");
+      for (const t of trefferInDatei(rel, inhalt)) treffer.push(fehlertext(t.datei, t.wort));
     }
+    expect(treffer).toEqual([]);
   });
 
   it("Ausnahmen sind abschließend: genau drei mit Begründung", () => {

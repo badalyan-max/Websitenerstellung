@@ -99,7 +99,8 @@ async function fixture(o: FixtureOptions = {}): Promise<ContentArticle> {
     '    url: "https://www.gesetze-im-internet.de/ustg_1980/"',
     '    checkedAt: "2026-10-05"',
   ];
-  if (o.answer) zeilen.push(`answer: "${ANTWORT}"`);
+  // answer ist seit 09-09 Pflicht (D-18); answer: false entfernt sie nach dem Parsen nur für den Lead-Fallback-Test.
+  zeilen.push(`answer: "${ANTWORT}"`);
   if (o.scene) zeilen.push(`scene: "${o.scene}"`);
   if (o.faq) {
     zeilen.push("faq:");
@@ -107,7 +108,7 @@ async function fixture(o: FixtureOptions = {}): Promise<ContentArticle> {
   }
   zeilen.push("---", "", o.body ?? KOERPER);
   const s = parseContent(zeilen.join("\n"), kind, slug);
-  return { ...s, ...(await renderMarkdown(s.body)) };
+  return { ...s, ...(o.answer === false ? { answer: undefined } : {}), ...(await renderMarkdown(s.body)) };
 }
 const seite = async (o: FixtureOptions = {}) => renderToString(await ArticlePage({ article: await fixture(o) }));
 /** Bereich innerhalb von <article>…</article>. */
@@ -126,8 +127,8 @@ describe("Artikelvorlage v2: Kopf (09-UI-SPEC § 2.1)", () => {
     expect(html).not.toContain("PageHero");
   });
 
-  it("ohne answer: description als Lead ohne id (Übergang Welle 1–2)", async () => {
-    const html = await seite();
+  it("ContentKopf ohne answer: description als Lead ohne id (Artikel liefern answer seit 09-09 immer)", async () => {
+    const html = await seite({ answer: false });
     expect(html).not.toContain('id="antwort"');
     expect(html).not.toContain("data-answer");
     expect(text(html)).toContain(

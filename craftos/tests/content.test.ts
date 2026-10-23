@@ -15,8 +15,12 @@ import { allScenes, sceneById, sceneFrame } from "@/lib/scenes";
 import sitemap from "@/app/sitemap";
 import { GET } from "@/app/feed.xml/route";
 describe("published content", () => {
-  // Phase 9 (D-27, K-5; 09-RESEARCH Pattern 4): Map-Bezug statt fester Mengen – Pakete legen Artikel parallel an.
-  // Die Endmengen setzt die Integration (09-09).
+  // Phase 9 (D-27, K-5; 09-RESEARCH Pattern 4): Map-Bezug plus Endmengen der Integration (09-09):
+  // 30 Ratgeber, 54 Hilfeartikel (40 Bestand + 10 neue Anleitungen + 3 Wissensseiten + Kassenbuch, D-32).
+  it("Endmengen: 30 Ratgeber und 54 Hilfeartikel (09-09)", async () => {
+    expect(await getContentList("blog")).toHaveLength(30);
+    expect(await getContentList("hilfe")).toHaveLength(54);
+  });
   it("jede Inhaltsdatei hat einen Map-Eintrag, jeder bestehende Artikel-Eintrag eine Datei", async () => {
     const artikelEintraege = keywordMap.filter(
       (e) => /^\/(blog|hilfe)\/[^/]+$/.test(e.path) && !e.path.includes("/kategorie/"),
@@ -28,9 +32,24 @@ describe("published content", () => {
         dateien.add(pfad);
         expect(artikelEintraege.some((e) => e.path === pfad), `${pfad}: Map-Eintrag fehlt`).toBe(true);
       }
-    expect(dateien.size).toBeGreaterThanOrEqual(64);
-    for (const e of artikelEintraege.filter((x) => x.status === "bestehend"))
+    expect(dateien.size).toBe(84);
+    for (const e of artikelEintraege) {
+      expect(e.status, `${e.path}: Artikel-Eintrag ist veröffentlicht`).toBe("bestehend");
       expect(dateien.has(e.path), `${e.path}: bestehend, aber keine Datei`).toBe(true);
+    }
+  });
+  // D-18 (09-09): answer ist Pflicht; B2: Listenobergrenzen für alle veröffentlichten Artikel.
+  it("jeder Artikel hat eine Antwort (≤ 300, 1–2 Sätze) und höchstens 3 Funktionen und 4 Artikel", async () => {
+    let n = 0;
+    for (const kind of ["blog", "hilfe"] as const)
+      for (const a of await getContentList(kind)) {
+        n++;
+        expect(typeof a.answer, `${kind}/${a.slug}: answer fehlt`).toBe("string");
+        expect(Array.from(a.answer!.trim()).length, a.slug).toBeLessThanOrEqual(300);
+        expect(a.relatedFeatures.length, a.slug).toBeLessThanOrEqual(3);
+        expect(a.relatedArticles.length, a.slug).toBeLessThanOrEqual(4);
+      }
+    expect(n).toBe(84);
   });
   it("has valid categories, source metadata and feature links", async () => {
     for (const kind of ["blog", "hilfe"] as const) {
@@ -56,13 +75,18 @@ describe("published content", () => {
   it("uses published dates in sitemap and excludes unknown addresses", async () => {
     const list = await sitemap();
     expect(list.every((x) => !(x.lastModified instanceof Date))).toBe(true);
+    // K-11 (09-09): Übersichten /blog und /hilfe tragen das Datum der Phase-9-Überarbeitung statt des Standards.
+    for (const p of ["/blog", "/hilfe"]) {
+      const e = list.find((x) => new URL(x.url).pathname === p);
+      expect(e?.lastModified, p).toBe("2026-10-23");
+    }
     expect(await getContentArticle("blog", "../../package")).toBeNull();
     expect(await getContentArticle("hilfe", "does-not-exist")).toBeNull();
   });
   it("renders a populated RSS feed without draft entries", async () => {
     const xml = await (await GET()).text();
     const ratgeber = (await getContentList("blog")).length;
-    expect(ratgeber).toBeGreaterThan(0);
+    expect(ratgeber).toBe(30);
     expect(xml.match(/<item>/g)?.length, "RSS-Items = Zahl der Ratgeber").toBe(ratgeber);
   });
   it("renders safe HTML and unique heading anchors", async () => {
@@ -88,6 +112,7 @@ describe("published content", () => {
       'updatedAt: "2026-09-09"',
       "author: CraftOS",
       "draft: true",
+      'answer: "Ein Entwurf hat bereits eine Antwort."',
       "relatedFeatures: []",
       "relatedArticles: []",
       "sources: []",
@@ -230,19 +255,32 @@ const kopf = (extra: string[] = [], features = "[]", articles = "[]") =>
     `relatedFeatures: ${features}`,
     `relatedArticles: ${articles}`,
     "sources: []",
+    // answer ist seit 09-09 Pflicht; Fälle mit eigener answer bringen sie in extra mit.
+    ...(extra.some((z) => z.startsWith("answer:")) ? [] : ['answer: "Kurze Antwort."']),
     ...extra,
     "---",
     "Text.",
   ].join("\n");
+const ohneAnswer = () => kopf().replace('answer: "Kurze Antwort."\n', "");
 const faqYaml = (n: number, q = (i: number) => `Frage ${i}?`, a = () => "Antwort.") =>
   `faq: ${JSON.stringify(Array.from({ length: n }, (_, i) => ({ q: q(i + 1), a: a() })))}`;
 
 describe("Frontmatter answer, faq, scene und Listenobergrenzen (D-18, B2)", () => {
-  it("Artikel ohne answer, faq und scene bleibt gültig (Welle 1–2); faq ist dann leer", () => {
+  it("Artikel ohne faq und scene bleibt gültig; faq ist dann leer", () => {
     const a = parseContent(kopf(), "blog", "test");
-    expect(a.answer).toBeUndefined();
+    expect(a.answer).toBe("Kurze Antwort.");
     expect(a.faq).toEqual([]);
     expect(a.scene).toBeUndefined();
+  });
+
+  it("answer ist Pflicht (D-18, ab 09-09): fehlende oder leere answer wirft", () => {
+    expect(ohneAnswer()).not.toContain("answer:");
+    expect(() => parseContent(ohneAnswer(), "blog", "test")).toThrow(
+      "Artikel test: Antwort fehlt – Frontmatter answer mit ein bis zwei Sätzen (≤ 300 Zeichen) ergänzen.",
+    );
+    expect(() => parseContent(kopf(['answer: ""']), "hilfe", "test")).toThrow(
+      "Artikel test: Antwort fehlt – Frontmatter answer mit ein bis zwei Sätzen (≤ 300 Zeichen) ergänzen.",
+    );
   });
 
   it("answer, faq und scene werden übernommen", () => {
@@ -395,30 +433,18 @@ describe("Prosa-Regeln (09-UI-SPEC § 2.3–2.4, § 5)", () => {
   });
 });
 
-/**
- * Übergang bis 09-09 (W3, T-09-04): Bestandstreffer der Prosa-Regeln, eingefroren am 23.10.2026 auf dem Stand
- * von main 0b84201. Schlüssel „<datei>|<regel>“ ohne Zeilennummer. Die Liste wird nie erweitert; die
- * Inhaltspakete beheben die Treffer, 09-09 entfernt die Liste. Einträge ohne Treffer sind bis dahin erlaubt.
- * Messung am 23.10.2026: 0 Bestandstreffer in 64 Artikeln – die Liste ist leer, jeder neue Treffer ist rot.
- */
-const UEBERGANG_PHASE9 = new Set<string>([]);
-
+/** Prosa-Regeln ohne Ausnahme (09-09: Übergangsliste aus 09-01 entfernt, T-09-27). */
 describe("Prosa-Regeln über alle Artikel (Sammelprüfung)", () => {
-  it("keine neuen Verstöße außerhalb der Übergangsliste", async () => {
-    const neu: string[] = [];
+  it("kein Artikel verstößt gegen eine Prosa-Regel", async () => {
+    const verstoesse: string[] = [];
     for (const kind of ["blog", "hilfe"] as const)
       for (const s of await getContentList(kind)) {
         const a = (await getContentArticle(kind, s.slug))!;
         const datei = `content/${kind}/${s.slug}.md`;
-        for (const p of await prosaProbleme(s.slug, a.body, a.faq))
-          if (!UEBERGANG_PHASE9.has(`${datei}|${p.regel}`)) neu.push(`${datei}|${p.regel}: ${p.meldung}`);
+        for (const p of await prosaProbleme(s.slug, a.body, a.faq)) verstoesse.push(`${datei}|${p.regel}: ${p.meldung}`);
       }
-    expect(neu).toEqual([]);
+    expect(verstoesse).toEqual([]);
   }, 60_000);
-
-  it("Übergangsschlüssel: Datei + Regel, keine Zeilennummer", () => {
-    for (const k of UEBERGANG_PHASE9) expect(k, k).toMatch(/^content\/(blog|hilfe)\/[a-z0-9-]+\.md\|[a-z-]+$/);
-  });
 });
 
 describe("Szenen-Registry sceneById (D-15, 09-RESEARCH Pattern 3)", () => {
