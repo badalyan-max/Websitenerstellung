@@ -161,6 +161,15 @@ const readAll = cache(async (kind: ContentKind) => {
       ),
   );
 });
+/** Stand der Übersichtsvorlage /blog und /hilfe (K-11, Phase-9-Überarbeitung). */
+export const UEBERSICHT_STAND = "2026-10-23";
+/**
+ * lastModified einer Übersicht (09-REVIEW LO-08): jüngstes updatedAt der Artikel, mindestens der Vorlagenstand.
+ * ISO-Daten vergleichen sich als Text richtig.
+ */
+export function uebersichtStand(artikel: readonly { updatedAt: string }[], basis: string = UEBERSICHT_STAND): string {
+  return artikel.reduce((m, a) => (a.updatedAt > m ? a.updatedAt : m), basis);
+}
 export const getContentList = cache(
   async (kind: ContentKind): Promise<ContentSummary[]> => {
     const all = await readAll(kind);

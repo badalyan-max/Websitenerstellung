@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
 import { funktionen } from "@/lib/funktionen";
 import { GEWERKE_STAND, gewerke } from "@/lib/gewerke";
-import { getContentList } from "@/lib/content";
+import { getContentList, uebersichtStand } from "@/lib/content";
 import { categories } from "@/lib/content-types";
 /** Letzte inhaltliche Änderung je Kernseite; Standard ist der Relaunch-Stand. */
 const pageUpdated: Record<string, string> = {
@@ -13,16 +13,15 @@ const pageUpdated: Record<string, string> = {
   "/fakten-ueber-craftos": "2026-10-23",
   "/preise": "2026-10-23",
   "/app": "2026-10-22",
-  "/gewerke": "2026-10-23",
+  // 09-REVIEW LO-08: aus derselben Konstante wie die Gewerke-Seiten.
+  "/gewerke": GEWERKE_STAND,
   "/gobd": "2026-10-23",
   "/vergleich/plancraft-alternative": "2026-10-23",
   "/vergleich/craftnote-alternative": "2026-10-23",
   "/vergleich/hero-alternative": "2026-10-23",
   "/vergleich/tooltime-alternative": "2026-10-23",
   "/vergleich/handwerkersoftware-kleine-betriebe": "2026-10-23",
-  // K-11 (09-09): Übersichten nach der Phase-9-Überarbeitung der Ratgeber und Hilfeartikel.
-  "/blog": "2026-10-23",
-  "/hilfe": "2026-10-23",
+  // /blog und /hilfe: aus den Artikeln berechnet (uebersichtStand, K-11 und 09-REVIEW LO-08).
 };
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = [
@@ -51,10 +50,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/rechner/stundensatz",
     "/rechner/angebotskalkulation",
   ];
+  const stand: Record<string, string> = {
+    ...pageUpdated,
+    "/blog": uebersichtStand(articles.filter((a) => a.kind === "blog")),
+    "/hilfe": uebersichtStand(articles.filter((a) => a.kind === "hilfe")),
+  };
   return [
     ...pages.map((p) => ({
       url: site.url + p,
-      lastModified: pageUpdated[p] ?? "2026-09-09",
+      lastModified: stand[p] ?? "2026-09-09",
     })),
     ...["/agb", "/datenschutz", "/impressum"].map((p) => ({
       url: site.url + p,
@@ -71,12 +75,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...(["blog", "hilfe"] as const).flatMap((kind) =>
       Object.keys(categories[kind]).map((c) => ({
         url: site.url + "/" + kind + "/kategorie/" + c,
-        lastModified: articles
-          .filter((a) => a.kind === kind && a.category === c)
-          .reduce(
-            (latest, a) => (a.updatedAt > latest ? a.updatedAt : latest),
-            "2026-09-09",
-          ),
+        lastModified: uebersichtStand(
+          articles.filter((a) => a.kind === kind && a.category === c),
+          "2026-09-09",
+        ),
       })),
     ),
     ...articles.map((a) => ({

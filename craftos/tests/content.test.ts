@@ -79,10 +79,18 @@ describe("published content", () => {
     const list = await sitemap();
     expect(list.every((x) => !(x.lastModified instanceof Date))).toBe(true);
     // K-11 (09-09): Übersichten /blog und /hilfe tragen das Datum der Phase-9-Überarbeitung statt des Standards.
-    for (const p of ["/blog", "/hilfe"]) {
-      const e = list.find((x) => new URL(x.url).pathname === p);
-      expect(e?.lastModified, p).toBe("2026-10-23");
+    // 09-REVIEW LO-08: zusätzlich das jüngste updatedAt der Artikel, damit ein neuer Artikel die Übersicht mitzieht.
+    for (const kind of ["blog", "hilfe"] as const) {
+      const e = list.find((x) => new URL(x.url).pathname === `/${kind}`);
+      const juengstes = (await getContentList(kind)).reduce((m, a) => (a.updatedAt > m ? a.updatedAt : m), "2026-10-23");
+      expect(e?.lastModified, kind).toBe(juengstes);
     }
+    const { uebersichtStand } = await import("@/lib/content");
+    expect(uebersichtStand([{ updatedAt: "2026-11-02" }, { updatedAt: "2026-10-01" }])).toBe("2026-11-02");
+    expect(uebersichtStand([{ updatedAt: "2026-10-01" }])).toBe("2026-10-23");
+    // /gewerke aus derselben Konstante wie die Gewerke-Seiten (keine doppelte Pflege).
+    const { GEWERKE_STAND } = await import("@/lib/gewerke");
+    expect(list.find((x) => new URL(x.url).pathname === "/gewerke")?.lastModified).toBe(GEWERKE_STAND);
     expect(await getContentArticle("blog", "../../package")).toBeNull();
     expect(await getContentArticle("hilfe", "does-not-exist")).toBeNull();
   });
