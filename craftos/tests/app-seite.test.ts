@@ -233,9 +233,9 @@ describe("Inhalte", () => {
       expect(charCount(fact.value), fact.value).toBeLessThanOrEqual(TEXT_BUDGET.keyFact.value);
     }
     expect(note).toContain("netto");
-    expect(note).toContain("Einschränkungen");
+    expect(note).toContain("Offline teilweise nutzbar");
     expect(note).toBe(
-      `Preis netto zzgl. USt. Offline nur mit Einschränkungen, siehe unten. Stand: ${germanDate(productBasis.checkedAt)}.`,
+      `Preis netto zzgl. USt. Offline teilweise nutzbar, siehe unten. Stand: ${germanDate(productBasis.checkedAt)}.`,
     );
   });
 

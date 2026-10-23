@@ -209,7 +209,7 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
         {
           size: "wide",
           title: "Maße werden eingegeben",
-          text: "Sie geben Maße ein und prüfen sie, eine Laseranbindung oder Fotogrammetrie wird nicht vorausgesetzt.",
+          text: "Sie geben Maße ein und prüfen sie, Öffnungen ziehen Sie als Abzüge von den Flächen ab.",
           visual: { kind: "icon", icon: Info },
           grenze: true,
         },
@@ -221,8 +221,8 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
       items: [
         // Pflichtfrage 07-UI-SPEC Abschnitt 5; Beleg: funktionen.ts aufmass note.
         {
-          q: "Werden Maße automatisch gemessen?",
-          a: "Nein. Sie geben Maße ein und prüfen sie, eine Laseranbindung oder Fotogrammetrie wird nicht vorausgesetzt. Türen, Fenster und weitere Öffnungen ziehen Sie als Abzüge von den Flächen ab.",
+          q: "Wie kommen die Maße ins Aufmaß?",
+          a: "Sie geben die Maße ein und prüfen sie. Türen, Fenster und weitere Öffnungen ziehen Sie als Abzüge von den Flächen ab.",
         },
         // Frage: docs/seo/data/kwmap/questions--aufmass.json („wie erstellt man ein aufmaß“);
         // Antwort: funktionen.ts aufmass steps, content/hilfe/raumaufmass-angebot-uebernehmen.md.

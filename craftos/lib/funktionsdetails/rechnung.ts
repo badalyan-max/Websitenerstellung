@@ -92,8 +92,8 @@ export const rechnungInhalte: Record<string, FunktionsdetailInhalt> = {
         },
         {
           size: "wide",
-          title: "Korrektur nur über Folgebelege",
-          text: "Fertige Rechnungen korrigieren Sie über Folgebelege, und eine erfasste Zahlung ist keine Bankbestätigung.",
+          title: "Korrektur über Folgebelege",
+          text: "Fertige Rechnungen korrigieren Sie über Folgebelege wie Storno oder Korrektur.",
           visual: { kind: "icon", icon: Info },
           href: "/gobd",
           grenze: true,
@@ -107,7 +107,7 @@ export const rechnungInhalte: Record<string, FunktionsdetailInhalt> = {
         // Pflichtfrage 07-UI-SPEC Abschnitt 5; Beleg: funktionen.ts rechnungen note, content/hilfe/rechnung-fertigstellen.md.
         {
           q: "Kann ich eine fertiggestellte Rechnung noch ändern?",
-          a: "Nur über Folgebelege wie Storno oder Korrektur. Beim Fertigstellen vergibt CraftOS die endgültige Rechnungsnummer, hält den Dokumentstand fest und sperrt die normale Bearbeitung.",
+          a: "Ja, über Folgebelege wie Storno oder Korrektur. Beim Fertigstellen vergibt CraftOS die endgültige Rechnungsnummer, hält den Dokumentstand fest und sperrt die normale Bearbeitung.",
         },
         // Quelle: funktionen.ts rechnungen points „Passender Belegtyp“; content/hilfe/rechnung-fertigstellen.md
         // (Abschlags- und Schlussrechnungen: bisherige Rechnungen, Zahlungen und Projektstatus prüfen).
@@ -118,8 +118,8 @@ export const rechnungInhalte: Record<string, FunktionsdetailInhalt> = {
         // Quelle: funktionen.ts rechnungen note („Eine Zahlungserfassung ist keine Bankbestätigung.“) und points
         // „Zahlungen zuordnen“; bankabgleich intro (Bankdatei-Import).
         {
-          q: "Ist eine erfasste Zahlung eine Bankbestätigung?",
-          a: "Nein. Zahlungseingänge und Teilzahlungen erfassen Sie an der Rechnung, eine Bestätigung durch die Bank ist das nicht. Bankumsätze gleichen Sie im Zahlungsabgleich per Bankdatei ab.",
+          q: "Wie gleiche ich erfasste Zahlungen mit der Bank ab?",
+          a: "Im Zahlungsabgleich: Bankumsätze importieren Sie per Bankdatei und ordnen sie den Rechnungen zu. Zahlungseingänge und Teilzahlungen erfassen Sie an der Rechnung.",
         },
         // Quelle: funktionen.ts rechnungen points „Berichte abrechnen“, steps (Entwurf aus Angebot oder Bericht).
         {
@@ -181,8 +181,8 @@ export const rechnungInhalte: Record<string, FunktionsdetailInhalt> = {
         },
         {
           size: "wide",
-          title: "Eine PDF ist keine E-Rechnung",
-          text: "Eine gewöhnliche PDF enthält keine strukturierten Daten, und nötige Referenzen hängen vom Empfänger ab.",
+          title: "E-Rechnung mit strukturierten Daten",
+          text: "Eine E-Rechnung trägt strukturierte Daten, nötige Referenzen hängen vom Empfänger ab.",
           visual: { kind: "icon", icon: Info },
           href: "/gobd",
           grenze: true,
@@ -197,7 +197,7 @@ export const rechnungInhalte: Record<string, FunktionsdetailInhalt> = {
         // Beleg: funktionen.ts e-rechnung note, content/hilfe/e-rechnung-herunterladen.md („Ergebnis prüfen“).
         {
           q: "Ist eine PDF-Rechnung eine E-Rechnung?",
-          a: "Nein. Eine gewöhnliche PDF enthält keine strukturierten Rechnungsdaten und ist deshalb keine E-Rechnung. XRechnung liefert strukturierte XML-Daten, ZUGFeRD verbindet die lesbare PDF mit eingebetteten Rechnungsdaten.",
+          a: "Eine gewöhnliche PDF-Rechnung gilt als sonstige Rechnung; die E-Rechnung braucht strukturierte Rechnungsdaten. XRechnung liefert sie als XML, ZUGFeRD verbindet die lesbare PDF mit eingebetteten Rechnungsdaten.",
         },
         // Quelle: 07-UI-SPEC Kacheltabelle e-rechnung (UBL 2.1, PDF/A-3), content/hilfe/e-rechnung-herunterladen.md.
         {
@@ -207,8 +207,8 @@ export const rechnungInhalte: Record<string, FunktionsdetailInhalt> = {
         // Quelle: content/hilfe/e-rechnung-herunterladen.md (Leitweg-ID / Käuferreferenz; „Ein erfolgreicher Download
         // bestätigt noch nicht die Annahme durch den Rechnungsempfänger.“); keine Zusage zur Empfängerakzeptanz.
         {
-          q: "Nimmt jeder Empfänger meine E-Rechnung an?",
-          a: "Das hängt vom Empfänger ab, ein erfolgreicher Download bestätigt die Annahme noch nicht. Klären Sie Referenzen wie Leitweg-ID oder Käuferreferenz und den Übermittlungsweg vorher mit Ihrem Auftraggeber.",
+          q: "Was kläre ich vor dem Versand einer E-Rechnung?",
+          a: "Referenzen wie Leitweg-ID oder Käuferreferenz und den Übermittlungsweg. Die Anforderungen legt der Empfänger fest, deshalb stimmen Sie beides vorher mit Ihrem Auftraggeber ab.",
         },
         // Quelle: funktionen.ts e-rechnung points „Strukturierter Eingang“, eingangsrechnungen note (Credits).
         {

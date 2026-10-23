@@ -111,7 +111,7 @@ export const planungInhalte: Record<string, FunktionsdetailInhalt> = {
         },
         {
           size: "sm",
-          title: "Geplante Orte, keine Live-Standorte",
+          title: "Geplante Einsatzorte auf der Karte",
           text: "Die Karte zeigt geplante Einsatzorte, Karten und Routen in der App brauchen Verbindung.",
           visual: { kind: "icon", icon: Info },
           grenze: true,
@@ -125,8 +125,8 @@ export const planungInhalte: Record<string, FunktionsdetailInhalt> = {
         // Pflichtfrage 07-UI-SPEC Abschnitt 5; Beleg: funktionen.ts plantafel note,
         // content/hilfe/plantafel-einsatz-planen.md („Einsatzorte auf der Karte prüfen“).
         {
-          q: "Zeigt die Karte, wo meine Mitarbeitenden gerade sind?",
-          a: "Nein. Die Karte zeigt geplante Einsatzorte, keine laufend erfassten Mitarbeiterstandorte. Als Kartenpunkt erscheint ein Einsatz, wenn ein Zielstandort oder Projektkoordinaten hinterlegt sind.",
+          q: "Was zeigt die Karte der Plantafel?",
+          a: "Die geplanten Einsatzorte. Als Kartenpunkt erscheint ein Einsatz, wenn ein Zielstandort oder Projektkoordinaten hinterlegt sind.",
         },
         // Quelle: content/hilfe/plantafel-einsatz-planen.md („Benachrichtigungen bei Änderungen“).
         {
@@ -237,8 +237,8 @@ export const planungInhalte: Record<string, FunktionsdetailInhalt> = {
         // Pflichtfrage 07-UI-SPEC Abschnitt 5; Beleg: funktionen.ts projektverwaltung access und note,
         // Rollenmodell (07-RESEARCH), content/hilfe/projekt-phasen-anlegen.md („Häufige Probleme“).
         {
-          q: "Sehen Mitarbeitende in der App alle Projekte?",
-          a: "Nein. Mitarbeitende sehen in der App die Projekte und Bereiche, die ihnen zugewiesen oder freigegeben sind. Wer ein Projekt sieht, richtet sich nach Zuordnung und Rolle, und Finanzdaten bleiben durch die Rechte des Mitglieds begrenzt.",
+          q: "Welche Projekte sehen Mitarbeitende in der App?",
+          a: "Die Projekte und Bereiche, die ihnen zugewiesen oder freigegeben sind. Wer ein Projekt sieht, richtet sich nach Zuordnung und Rolle, und Finanzdaten richten sich nach den Rechten des Mitglieds.",
         },
         // Quelle: content/hilfe/projektdateien-ordner.md („Dateien“, „Neuer Ordner“, „Belege & Dateien“).
         {
@@ -328,7 +328,7 @@ export const planungInhalte: Record<string, FunktionsdetailInhalt> = {
         },
         {
           size: "wide",
-          title: "Materialliste bucht keine Entnahme",
+          title: "Entnahme im Lager buchen",
           text: "Die Materialliste plant den Bedarf, die Entnahme buchen Sie im Lager.",
           visual: { kind: "icon", icon: Info },
           grenze: true,
@@ -341,13 +341,13 @@ export const planungInhalte: Record<string, FunktionsdetailInhalt> = {
       items: [
         // Pflichtfrage 07-UI-SPEC Abschnitt 5; Beleg: funktionen.ts arbeitsanweisungen points „Preise schützen“.
         {
-          q: "Sieht das Team in der Arbeitsanweisung die Verkaufspreise?",
-          a: "Nein. Die für die Ausführung bestimmten Informationen werden ohne Verkaufspreise dargestellt. Das Team sieht Leistungen sowie Material und Werkzeug je Arbeitsschritt.",
+          q: "Welche Angaben sieht das Team in der Arbeitsanweisung?",
+          a: "Leistungen sowie Material und Werkzeug je Arbeitsschritt. Die für die Ausführung bestimmten Informationen erscheinen ohne Verkaufspreise.",
         },
         // Quelle: funktionen.ts arbeitsanweisungen note („Eine Materialliste allein bucht noch keine Lagerentnahme“).
         {
-          q: "Bucht die Materialliste das Material aus dem Lager?",
-          a: "Nein. Die Materialliste plant den Bedarf für den Einsatz, die Entnahme buchen Sie im Lager.",
+          q: "Wie kommt das Material der Materialliste aus dem Lager?",
+          a: "Über eine Entnahme im Lager. Die Materialliste plant den Bedarf für den Einsatz.",
         },
         // Quelle: funktionen.ts arbeitsanweisungen points „Leistungen weitergeben“ und steps.
         {
@@ -448,8 +448,8 @@ export const planungInhalte: Record<string, FunktionsdetailInhalt> = {
         // Quelle: Web-Release src/components/projects/PhaseDependencyEditor.tsx („Der Abstand zählt Arbeitstage von
         // Montag bis Freitag; Termine bleiben unverändert.“).
         {
-          q: "Verschieben Abhängigkeiten die Termine der Arbeitsabschnitte?",
-          a: "Nein. Eine Abhängigkeit legt fest, welcher Arbeitsabschnitt folgt und mit welchem Abstand in Arbeitstagen von Montag bis Freitag. Die Termine selbst bleiben dabei unverändert.",
+          q: "Was legt eine Abhängigkeit zwischen Arbeitsabschnitten fest?",
+          a: "Welcher Arbeitsabschnitt folgt und mit welchem Abstand in Arbeitstagen von Montag bis Freitag. Die Termine der Abschnitte bleiben dabei, wie Sie sie geplant haben.",
         },
         // Quelle: Web-Release PlantafelToolbar.tsx („Projektplan – Projekte über die Zeit“);
         // content/hilfe/plantafel-einsatz-planen.md (Einsatz aus „Projekte → Terminplanung“ planen).

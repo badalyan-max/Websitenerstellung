@@ -13,7 +13,7 @@ sources: []
 platforms: ["web"]
 ---
 
-Mit dem Kundenportal erhält Ihr Kunde einen eigenen Zugang zu CraftOS, den Sie im Kundenstamm verwalten. Die Einladung starten Sie beim Kunden in der Web-App.
+Mit dem Kundenportal erhält Ihr Kunde einen eigenen Portal-Zugang, den Sie im Kundenstamm verwalten. Die Einladung starten Sie beim Kunden in der Web-App.
 
 ## Voraussetzungen
 

@@ -132,7 +132,7 @@ const definitions: Definition[] = [
     platforms: ["web"],
     access:
       "Büro oder Admin mit den erforderlichen Dokument- und Finanzrechten.",
-    note: "Fertiggestellte Rechnungen werden über nachvollziehbare Folgebelege korrigiert. Eine Zahlungserfassung ist keine Bankbestätigung.",
+    note: "Fertiggestellte Rechnungen werden über nachvollziehbare Folgebelege korrigiert. Zahlungen gleichen Sie über die Bankumsätze ab.",
     help: "rechnung-fertigstellen",
     related: ["e-rechnung", "buchhaltung", "baudokumentation"],
     demo: "rechnung",
@@ -147,7 +147,7 @@ const definitions: Definition[] = [
       "XRechnung und ZUGFeRD verbinden strukturierte Rechnungsdaten mit Ihrem Dokumentablauf. Auch elektronische Eingangsrechnungen lassen sich einlesen.",
     platforms: ["web"],
     access: "Büro oder Admin mit Zugriff auf Rechnungen und deren Ausgabe.",
-    note: "Eine gewöhnliche PDF ist keine strukturierte E-Rechnung. Erforderliche Referenzen hängen vom Empfänger ab.",
+    note: "Eine E-Rechnung trägt strukturierte Daten als XRechnung oder ZUGFeRD. Erforderliche Referenzen hängen vom Empfänger ab.",
     help: "e-rechnung-herunterladen",
     related: ["rechnungen", "eingangsrechnungen", "buchhaltung"],
     demo: "rechnung",
@@ -163,7 +163,7 @@ const definitions: Definition[] = [
     platforms: ["web"],
     access:
       "Berechtigte Büro-/Admin-Zugänge; Finanz- und Exportrechte werden gesondert vergeben.",
-    note: "Der Export ersetzt keine fachliche Prüfung oder Steuererklärung. Eine automatische ELSTER-Einreichung erfolgt nicht.",
+    note: "Der Export bereitet Belege und Buchungsdaten für Ihre Steuerberatung vor; die Steuererklärung reichen Sie oder Ihre Steuerberatung ein.",
     help: "datev-export-erstellen",
     related: ["eingangsrechnungen", "rechnungen", "nachkalkulation"],
     demo: "beleg",
@@ -178,7 +178,7 @@ const definitions: Definition[] = [
       "Belege aufnehmen, erkannte Angaben kontrollieren und Ausgaben einem Projekt zuordnen. Sie korrigieren bei Bedarf und speichern nach der Prüfung.",
     platforms: ["web", "mobile"],
     access:
-      "Die jeweilige Finanzfreigabe ist erforderlich; eine App-Lizenz allein gibt keinen pauschalen Zugriff auf Belege.",
+      "Die jeweilige Finanzfreigabe ist erforderlich; den Zugriff auf Belege regeln Rolle und Finanzrechte des Zugangs.",
     note: "KI-Auslesen benötigt eine Verbindung und verbraucht Credits; strukturierte E-Rechnungsdaten werden ohne OCR gelesen.",
     help: "beleg-scannen-pruefen",
     related: ["buchhaltung", "projektverwaltung", "nachkalkulation"],
@@ -195,7 +195,7 @@ const definitions: Definition[] = [
     platforms: ["web", "mobile"],
     access:
       "Büro und Admin planen im Web; mobile Mitarbeiter sehen zugeordnete Einsätze.",
-    note: "Die Karte zeigt geplante Einsatzorte, keine laufend erfassten Mitarbeiterstandorte. Für Kartenpins sind Zielkoordinaten erforderlich; Karten und Routen in der App benötigen Verbindung.",
+    note: "Die Karte zeigt die geplanten Einsatzorte. Für Kartenpins sind Zielkoordinaten erforderlich; Karten und Routen in der App benötigen Verbindung.",
     help: "plantafel-einsatz-planen",
     related: ["zeiterfassung", "team", "projektverwaltung"],
     demo: "planung",
@@ -211,7 +211,7 @@ const definitions: Definition[] = [
     platforms: ["web", "mobile"],
     access:
       "Mobile Mitarbeiter erfassen eigene Zeiten; fremde Einträge sind nur mit passenden Rechten sichtbar und bearbeitbar.",
-    note: "Die App erfasst einzelne Standortpunkte beim Start und Stopp, keine Bewegungsverläufe. GPS-Freigabe und eine ermittelbare Position sind erforderlich. Die automatische Projektwahl setzt gespeicherte Projektkoordinaten im passenden Radius voraus; eine bewusst gewählte Zuordnung bleibt erhalten.",
+    note: "Die App erfasst je einen Standortpunkt beim Start und Stopp. GPS-Freigabe und eine ermittelbare Position sind erforderlich. Die automatische Projektwahl setzt gespeicherte Projektkoordinaten im passenden Radius voraus; eine bewusst gewählte Zuordnung bleibt erhalten.",
     help: "mobilen-timer-bedienen",
     related: ["plantafel", "nachkalkulation", "team"],
     demo: "planung",
@@ -258,7 +258,7 @@ const definitions: Definition[] = [
     platforms: ["web", "mobile"],
     access:
       "Projekt- und Aufmaßrechte sind erforderlich; die vollständige anschließende Angebotskalkulation erfolgt im Web.",
-    note: "Maße werden eingegeben und geprüft. Automatische Laseranbindung oder präzise Fotogrammetrie werden nicht vorausgesetzt.",
+    note: "Maße werden eingegeben und geprüft; Öffnungen ziehen Sie als Abzüge von den Flächen ab.",
     help: "raumaufmass-angebot-uebernehmen",
     related: ["angebote", "arbeitsanweisungen", "baudokumentation"],
     demo: "angebot",
@@ -274,7 +274,7 @@ const definitions: Definition[] = [
     platforms: ["web", "mobile"],
     access:
       "Berechtigte Büro- und Admin-Zugänge erstellen und verwalten die Arbeitsanweisungen in der Web-App. In der Mobile-App sieht das Team die Arbeitsschritte des Projekts mit Anleitung, Material und Werkzeug und hakt erledigte Schritte ab.",
-    note: "Arbeitsanweisungen erstellen und verwalten Sie in der Web-App; die Mobile-App zeigt die Arbeitsschritte auf der Baustelle. Eine Materialliste allein bucht noch keine Lagerentnahme.",
+    note: "Arbeitsanweisungen erstellen und verwalten Sie in der Web-App; die Mobile-App zeigt die Arbeitsschritte auf der Baustelle. Die Entnahme aus dem Lager buchen Sie im Lager.",
     help: "projektdateien-ordner",
     related: ["angebote", "projektverwaltung", "lager"],
   },
@@ -304,7 +304,7 @@ const definitions: Definition[] = [
     platforms: ["web"],
     access:
       "Büro oder Admin mit Zugriff auf die Finanz- und Controllingdaten des Projekts.",
-    note: "Prognosen sind berechnete Einschätzungen aus vorhandenen Daten, keine Zusage eines zukünftigen Ergebnisses.",
+    note: "Prognosen sind berechnete Einschätzungen aus den vorhandenen Projektdaten.",
     help: "zeiten-pruefen-exportieren",
     related: ["zeiterfassung", "lager", "eingangsrechnungen"],
     demo: "planung",

@@ -107,8 +107,8 @@ export const baustelleInhalte: Record<string, FunktionsdetailInhalt> = {
         },
         {
           size: "wide",
-          title: "Standort nur bei Start und Stopp",
-          text: "Die App erfasst einzelne Standortpunkte und keine Bewegungsverläufe, dafür ist eine GPS-Freigabe nötig.",
+          title: "Standort bei Start und Stopp",
+          text: "Die App erfasst je einen Standortpunkt beim Start und Stopp, dafür ist eine GPS-Freigabe nötig.",
           visual: { kind: "icon", icon: Info },
           grenze: true,
         },
@@ -121,8 +121,8 @@ export const baustelleInhalte: Record<string, FunktionsdetailInhalt> = {
         // Pflichtfrage 07-UI-SPEC Abschnitt 5; Beleg: funktionen.ts zeiterfassung note, Register limitations
         // „GPS erfasst einzelne Vorgänge, keine dauerhaften Mitarbeiterstandorte“.
         {
-          q: "Erfasst die App dauerhaft den Standort?",
-          a: "Nein. Die App erfasst einzelne Standortpunkte beim Starten und Stoppen des Timers, keine Bewegungsverläufe. Dafür sind die GPS-Freigabe und eine ermittelbare Position erforderlich.",
+          q: "Wann erfasst die App den Standort?",
+          a: "Beim Starten und Stoppen des Timers je einen Standortpunkt. Dafür sind die GPS-Freigabe und eine ermittelbare Position erforderlich.",
         },
         // Quelle: content/hilfe/mobilen-timer-bedienen.md („Automatische Projektzuordnung einrichten“), funktionen.ts
         // zeiterfassung note, Register limitations (Projektkoordinaten im passenden Radius).
@@ -352,8 +352,8 @@ export const baustelleInhalte: Record<string, FunktionsdetailInhalt> = {
         },
         // Quelle: content/hilfe/wareneingang-buchen.md („Ergebnis prüfen“).
         {
-          q: "Ersetzt der Wareneingang die Prüfung der Lieferantenrechnung?",
-          a: "Nein. Der Wareneingang erhöht den Bestand am gewählten Lagerort, die Lieferantenrechnung prüfen Sie getrennt unter „Eingangsrechnungen“.",
+          q: "Wo prüfe ich die Lieferantenrechnung zum Wareneingang?",
+          a: "Unter „Eingangsrechnungen“. Der Wareneingang erhöht den Bestand am gewählten Lagerort, die Lieferantenrechnung prüfen Sie dort als eigenen Schritt.",
         },
         // Quelle: funktionen.ts lager note und points „Bestände prüfen“.
         {
@@ -463,7 +463,7 @@ export const baustelleInhalte: Record<string, FunktionsdetailInhalt> = {
         // Quelle: content/hilfe/mangel-erfassen-bearbeiten.md („Geprüft“ erst nach der Kontrolle).
         {
           q: "Wann gilt ein Mangel als geprüft?",
-          a: "Einen behobenen Mangel setzen Sie erst nach der Kontrolle vor Ort auf „Geprüft“. Ein geänderter Status allein ersetzt keine Sichtprüfung, Nachher-Fotos ergänzen Sie bei Bedarf.",
+          a: "Nach der Kontrolle vor Ort. Einen behobenen Mangel setzen Sie nach dieser Sichtprüfung auf „Geprüft“ und ergänzen bei Bedarf Nachher-Fotos.",
         },
         // Quelle: funktionen.ts maengelmanagement points „Offene Mängel in der Abnahme“;
         // content/hilfe/abnahme-dokumentieren.md (offene Mängel vor dem Protokoll prüfen).

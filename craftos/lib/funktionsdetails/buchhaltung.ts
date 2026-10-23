@@ -93,8 +93,8 @@ export const buchhaltungInhalte: Record<string, FunktionsdetailInhalt> = {
         },
         {
           size: "wide",
-          title: "Keine ELSTER-Einreichung",
-          text: "Der Export ersetzt weder die fachliche Prüfung noch die Steuererklärung, eine ELSTER-Einreichung erfolgt nicht.",
+          title: "Steuererklärung über die Kanzlei",
+          text: "Der Export bereitet die Daten vor, Prüfung und Steuererklärung übernimmt Ihre Steuerberatung.",
           visual: { kind: "icon", icon: Info },
           href: "/gobd",
           grenze: true,
@@ -103,12 +103,12 @@ export const buchhaltungInhalte: Record<string, FunktionsdetailInhalt> = {
     },
     faq: {
       title: "Häufige Fragen zur Buchhaltung",
-      lead: "Kurze Antworten zu ELSTER, Steuerberater-Paket, Festschreibung und Zugriff.",
+      lead: "Kurze Antworten zu Steuererklärung, Steuerberater-Paket, Festschreibung und Zugriff.",
       items: [
         // Pflichtfrage 07-UI-SPEC Abschnitt 5; Beleg: funktionen.ts buchhaltung note.
         {
-          q: "Reicht CraftOS die Steuererklärung bei ELSTER ein?",
-          a: "Nein. CraftOS bereitet Belege und Buchungsdaten für Ihre Steuerberatung vor, eine Einreichung bei ELSTER erfolgt nicht. Der Export ersetzt weder die fachliche Prüfung noch die Steuererklärung.",
+          q: "Wer reicht die Steuererklärung bei ELSTER ein?",
+          a: "Sie oder Ihre Steuerberatung. CraftOS bereitet Belege und Buchungsdaten dafür vor und gibt sie als Steuerberater-Paket oder DATEV-Export aus.",
         },
         // Quelle: SteuerberaterExport.tsx (Steuerberater-Paket, „Nur Buchungsdaten (CSV)“);
         // content/hilfe/datev-export-erstellen.md (fehlende Bestandteile erscheinen als Warnung).
@@ -126,7 +126,7 @@ export const buchhaltungInhalte: Record<string, FunktionsdetailInhalt> = {
         // roles.ts Büro-Projektleitung „keine globalen Finanzbereiche“.
         {
           q: "Wer kann die Übergabe an die Steuerberatung erstellen?",
-          a: "Admin und Büro-Zugänge mit Finanzberechtigung, im Rollenmodell also die Büro-Leitung. Die Büro-Projektleitung hat keinen Zugriff auf globale Finanzbereiche.",
+          a: "Admin und Büro-Zugänge mit Finanzberechtigung, im Rollenmodell also die Büro-Leitung. Die globalen Finanzbereiche sind diesen Rollen vorbehalten.",
         },
       ],
     },
@@ -210,8 +210,8 @@ export const buchhaltungInhalte: Record<string, FunktionsdetailInhalt> = {
         // Quelle: content/hilfe/beleg-scannen-pruefen.md (Felder vergleichen, „Prüfung bestätigen“ als eigener Schritt);
         // Release-Feldnamen laut 07-UI-SPEC (locales/de/invoices.json).
         {
-          q: "Werden erkannte Angaben ohne Prüfung gespeichert?",
-          a: "Nein. Lieferant, Rechnungsnummer, Datum, Nettobetrag und Steuer vergleichen Sie mit dem Original und korrigieren sie bei Bedarf. Gespeichert wird erst nach Ihrer Kontrolle, und die Prüfung bestätigen Sie als eigenen Schritt.",
+          q: "Wie prüfe ich die erkannten Angaben?",
+          a: "Lieferant, Rechnungsnummer, Datum, Nettobetrag und Steuer vergleichen Sie mit dem Original und korrigieren sie bei Bedarf. Gespeichert wird nach Ihrer Kontrolle, und die Prüfung bestätigen Sie als eigenen Schritt.",
         },
         // Quelle: funktionen.ts eingangsrechnungen points „Doppelte Belege erkennen“; beleg-scannen-pruefen.md
         // (Dublettenwarnung anhand von Lieferant und Rechnungsnummer prüfen).
@@ -281,7 +281,7 @@ export const buchhaltungInhalte: Record<string, FunktionsdetailInhalt> = {
         {
           size: "wide",
           title: "Prognosen sind Einschätzungen",
-          text: "Prognosen werden aus vorhandenen Daten berechnet und sagen kein künftiges Ergebnis zu.",
+          text: "Prognosen werden aus den vorhandenen Projektdaten berechnet und helfen beim Einordnen.",
           visual: { kind: "icon", icon: Info },
           grenze: true,
         },
@@ -298,8 +298,8 @@ export const buchhaltungInhalte: Record<string, FunktionsdetailInhalt> = {
         },
         // Quelle: funktionen.ts nachkalkulation note.
         {
-          q: "Sagt die Prognose das Ergebnis des Auftrags voraus?",
-          a: "Nein. Prognosen werden aus vorhandenen Daten berechnet und sind Einschätzungen, keine Zusage eines künftigen Ergebnisses.",
+          q: "Wie entsteht die Prognose zum Auftrag?",
+          a: "Aus den vorhandenen Projektdaten. Prognosen sind berechnete Einschätzungen, die Sie mit dem Fortschritt des Auftrags einordnen.",
         },
         // Quelle: funktionen.ts nachkalkulation points „Kostenarten getrennt sehen“, „Fortschritt einordnen“.
         {
@@ -387,7 +387,7 @@ export const buchhaltungInhalte: Record<string, FunktionsdetailInhalt> = {
         // Quelle: funktionen.ts dashboard note und access (sichtbare Daten nach eingerichteten Rechten).
         {
           q: "Woher stammen die Zahlen im Dashboard?",
-          a: "Aus den Daten, die in Ihrem Betrieb tatsächlich erfasst sind. Was nicht erfasst ist, fließt nicht in die Auswertung ein, und welche Zahlen Sie sehen, richtet sich nach Ihren Rechten.",
+          a: "Aus den Daten, die in Ihrem Betrieb erfasst sind. Welche Zahlen Sie sehen, richtet sich nach Ihren Rechten.",
         },
         // Quelle: funktionen.ts dashboard points „Ihre Arbeitsfläche“; DashboardCustomizeSheet.tsx („Übersicht
         // anpassen“, „Verdeckte Werte werden erst auf Klick lesbar“).
@@ -471,8 +471,8 @@ export const buchhaltungInhalte: Record<string, FunktionsdetailInhalt> = {
         // Pflichtfrage 07-UI-SPEC Abschnitt 5; Beleg: Bankumsaetze.tsx („Bankdatei importieren“),
         // BankImportDialog.tsx (Formate; CSV und camt.053 ohne KI-Credits; PDF-Auslesung gegen Credits).
         {
-          q: "Brauche ich für den Zahlungsabgleich eine Bankverbindung?",
-          a: "Nein, Sie importieren Kontoauszüge als Datei im Format CSV, camt.053 oder PDF. CSV und camt.053 werden ohne Credits eingelesen, einen PDF-Kontoauszug liest die KI gegen Credits aus.",
+          q: "Wie kommen die Kontoauszüge in den Zahlungsabgleich?",
+          a: "Als Datei: Sie importieren Kontoauszüge im Format CSV, camt.053 oder PDF. CSV und camt.053 werden ohne Credits eingelesen, einen PDF-Kontoauszug liest die KI gegen Credits aus.",
         },
         // Quelle: BankImportDialog.tsx („CSV und camt.053 bis 2 MiB · PDF bis 10 MiB · höchstens 2.000 Umsätze ·
         // EUR-Konten.“, „Diese Datei wurde bereits importiert.“).

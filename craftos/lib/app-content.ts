@@ -263,7 +263,7 @@ export const appKeyFacts: { facts: KeyFact[]; note: string } = {
     { value: "Offline", label: "teilweise nutzbar, später synchronisiert", source: "register:mobileOffline" },
     { value: euro(app.monat), label: "App-Lizenz pro Monat", source: "site:tarif-app-monat" },
   ],
-  note: `Preis netto zzgl. USt. Offline nur mit Einschränkungen, siehe unten. Stand: ${germanDate(productBasis.checkedAt)}.`,
+  note: `Preis netto zzgl. USt. Offline teilweise nutzbar, siehe unten. Stand: ${germanDate(productBasis.checkedAt)}.`,
 };
 
 // ---------------------------------------------------------------------------

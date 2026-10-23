@@ -266,7 +266,7 @@ interface Erwartung {
   hrefs?: Record<string, string>;
   /** Text, den der Satz des jeweiligen Panels enthalten muss (D-20). */
   panelSatz?: { web?: string; mobile?: string };
-  /** Anfang der Antwort auf die Pflichtfrage (z. B. „Nein“). */
+  /** Anfang der Antwort auf die Pflichtfrage (positiv, 09-09: keine Antwort beginnt mit „Nein“). */
   pflichtAntwort?: string;
 }
 const HILFE = "Anleitung in der Hilfe";
@@ -291,7 +291,7 @@ const ERWARTET: Record<string, Erwartung> = {
     },
   },
   aufmass: {
-    pflichtfrage: "Werden Maße automatisch gemessen?",
+    pflichtfrage: "Wie kommen die Maße ins Aufmaß?",
     verwandt: ["angebote", "gaeb", "arbeitsanweisungen"],
     anordnung: "md·sm·sm·wide·wide",
     webRollen: BUERO,
@@ -326,7 +326,7 @@ const ERWARTET: Record<string, Erwartung> = {
   },
   // Gruppe Planung (07-05 Task 2)
   plantafel: {
-    pflichtfrage: "Zeigt die Karte, wo meine Mitarbeitenden gerade sind?",
+    pflichtfrage: "Was zeigt die Karte der Plantafel?",
     verwandt: ["terminplanung", "projektverwaltung", "zeiterfassung"],
     anordnung: "md·sm·sm·md·sm·sm",
     webRollen: BUERO,
@@ -336,7 +336,7 @@ const ERWARTET: Record<string, Erwartung> = {
     zusatz: [],
   },
   projektverwaltung: {
-    pflichtfrage: "Sehen Mitarbeitende in der App alle Projekte?",
+    pflichtfrage: "Welche Projekte sehen Mitarbeitende in der App?",
     verwandt: ["terminplanung", "arbeitsanweisungen", "baudokumentation"],
     anordnung: "md·sm·sm·wide·wide",
     webRollen: BUERO,
@@ -347,7 +347,7 @@ const ERWARTET: Record<string, Erwartung> = {
     hrefs: { "Projekt-Chat und Nachrichten": "/hilfe/projekt-chat-nachrichten" },
   },
   arbeitsanweisungen: {
-    pflichtfrage: "Sieht das Team in der Arbeitsanweisung die Verkaufspreise?",
+    pflichtfrage: "Welche Angaben sieht das Team in der Arbeitsanweisung?",
     verwandt: ["projektverwaltung", "angebote", "lager"],
     anordnung: "md·sm·sm·wide·wide",
     webRollen: BUERO,
@@ -369,8 +369,8 @@ const ERWARTET: Record<string, Erwartung> = {
   },
   // Gruppe Baustelle (07-05 Task 3)
   zeiterfassung: {
-    pflichtfrage: "Erfasst die App dauerhaft den Standort?",
-    pflichtAntwort: "Nein",
+    pflichtfrage: "Wann erfasst die App den Standort?",
+    pflichtAntwort: "Beim Starten und Stoppen",
     verwandt: ["plantafel", "baudokumentation"],
     anordnung: "md·sm·sm·wide·wide",
     webRollen: BUERO,
@@ -423,11 +423,11 @@ const ERWARTET: Record<string, Erwartung> = {
     sekundaer: { label: HILFE, href: "/hilfe/rechnung-fertigstellen" },
     snippet: "rechnung",
     zusatz: [],
-    hrefs: { "Korrektur nur über Folgebelege": "/gobd" },
+    hrefs: { "Korrektur über Folgebelege": "/gobd" },
   },
   "e-rechnung": {
     pflichtfrage: "Ist eine PDF-Rechnung eine E-Rechnung?",
-    pflichtAntwort: "Nein",
+    pflichtAntwort: "Eine gewöhnliche PDF-Rechnung gilt als sonstige Rechnung",
     verwandt: ["rechnungen", "eingangsrechnungen"],
     anordnung: "md·sm·sm·wide",
     webRollen: BUERO,
@@ -435,7 +435,7 @@ const ERWARTET: Record<string, Erwartung> = {
     sekundaer: { label: HILFE, href: "/hilfe/e-rechnung-herunterladen" },
     snippet: null,
     zusatz: [],
-    hrefs: { "Eine PDF ist keine E-Rechnung": "/gobd" },
+    hrefs: { "E-Rechnung mit strukturierten Daten": "/gobd" },
   },
   mahnwesen: {
     pflichtfrage: "Wann kommt die Mahnung nach der Zahlungserinnerung?",
@@ -476,8 +476,8 @@ const ERWARTET: Record<string, Erwartung> = {
   },
   // Gruppe Buchhaltung (07-06 Task 2)
   buchhaltung: {
-    pflichtfrage: "Reicht CraftOS die Steuererklärung bei ELSTER ein?",
-    pflichtAntwort: "Nein",
+    pflichtfrage: "Wer reicht die Steuererklärung bei ELSTER ein?",
+    pflichtAntwort: "Sie oder Ihre Steuerberatung",
     verwandt: ["bankabgleich", "eingangsrechnungen", "rechnungen"],
     anordnung: "md·sm·sm·wide",
     webRollen: ["Admin", "Büro-Leitung"],
@@ -485,7 +485,7 @@ const ERWARTET: Record<string, Erwartung> = {
     sekundaer: { label: HILFE, href: "/hilfe/datev-export-erstellen" },
     snippet: null,
     zusatz: [],
-    hrefs: { "Keine ELSTER-Einreichung": "/gobd" },
+    hrefs: { "Steuererklärung über die Kanzlei": "/gobd" },
   },
   eingangsrechnungen: {
     pflichtfrage: "Verbraucht das Auslesen von Belegen Credits?",
@@ -520,7 +520,7 @@ const ERWARTET: Record<string, Erwartung> = {
     zusatz: [],
   },
   bankabgleich: {
-    pflichtfrage: "Brauche ich für den Zahlungsabgleich eine Bankverbindung?",
+    pflichtfrage: "Wie kommen die Kontoauszüge in den Zahlungsabgleich?",
     verwandt: ["buchhaltung", "rechnungen", "mahnwesen"],
     anordnung: "md·sm·sm·wide·wide",
     webRollen: ["Admin", "Büro-Leitung"],
@@ -1006,6 +1006,17 @@ describe("getFunktionsdetail und Inhaltstabelle", () => {
     expect([f.benefit, f.heroIntro].join(" ")).not.toMatch(/Termin|Nachricht/);
   });
 
+  it("Inhabervorgabe L-1 (09-09): FAQ-Antworten, Grenze-Kacheln und Grenze-Sätze nennen nur Unterstütztes", () => {
+    const negativ = /(?<![\p{L}])(kein|keine|keinen|keiner|nicht)(?![\p{L}])/iu;
+    for (const [slug, inhalt] of Object.entries(INHALTE)) {
+      for (const item of inhalt.faq.items) expect(item.a.startsWith("Nein"), `${slug}: ${item.q}`).toBe(false);
+      for (const tile of inhalt.kernpunkte.tiles.filter((x) => x.grenze))
+        expect(`${tile.title} ${tile.text}`, slug).not.toMatch(negativ);
+    }
+    for (const f of funktionen) for (const n of f.notes) expect(n, f.slug).not.toMatch(negativ);
+    // Einzige Ausnahme laut Inhaber: FAQ „Ist CraftOS GoBD-zertifiziert?“ auf /gobd (lib/seiten/gobd.ts).
+  });
+
   it("planung und team (09-14): Release-Begriffe statt Altbegriffen", () => {
     const plantafel = JSON.stringify(INHALTE.plantafel);
     expect(plantafel).toContain("Hinweis zur Planung");
@@ -1045,7 +1056,7 @@ describe("getFunktionsdetail und Inhaltstabelle", () => {
     const inhalt = INHALTE.bankabgleich;
     const texte = JSON.stringify(inhalt);
     expect(texte).not.toMatch(/automatisch|Online-Banking|Bankverbindung herstellen/i);
-    const antwort = inhalt.faq.items.find((f) => f.q === "Brauche ich für den Zahlungsabgleich eine Bankverbindung?")!.a;
+    const antwort = inhalt.faq.items.find((f) => f.q === "Wie kommen die Kontoauszüge in den Zahlungsabgleich?")!.a;
     const ersterSatz = antwort.split(/(?<=[.!?])\s+/)[0];
     for (const format of ["CSV", "camt.053", "PDF"]) expect(ersterSatz, ersterSatz).toContain(format);
     expect(ersterSatz).toMatch(/Datei/);
