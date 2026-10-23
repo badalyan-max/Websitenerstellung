@@ -283,6 +283,11 @@ const ERWARTET: Record<string, Erwartung> = {
     sekundaer: { label: HILFE, href: "/hilfe/angebot-entwurf-anlegen" },
     snippet: "angebot",
     zusatz: ["angebotsunterschrift"],
+    // D-21 (09-14): Teilfunktionen ohne eigene Detailseite verlinken ihre Anleitung.
+    hrefs: {
+      "Angebotsunterschrift online": "/hilfe/angebot-online-unterschreiben-lassen",
+      "DATANORM 4 und 5": "/hilfe/datanorm-katalog-importieren",
+    },
   },
   aufmass: {
     pflichtfrage: "Werden Maße automatisch gemessen?",
@@ -293,6 +298,8 @@ const ERWARTET: Record<string, Erwartung> = {
     sekundaer: { label: HILFE, href: "/hilfe/raumaufmass-angebot-uebernehmen" },
     snippet: "aufmass",
     zusatz: ["besichtigung"],
+    // D-21-Abweichung (09-RESEARCH, Orchestrator): die Besichtigungs-Kachel sitzt auf aufmass, nicht auf baudokumentation.
+    hrefs: { Besichtigung: "/hilfe/besichtigung-durchfuehren" },
   },
   kundenportal: {
     pflichtfrage: "Können Kunden Rechnungen im Portal online bezahlen?",
@@ -300,7 +307,7 @@ const ERWARTET: Record<string, Erwartung> = {
     anordnung: "md·sm·sm·wide",
     webRollen: BUERO,
     mobileRollen: null,
-    sekundaer: ALLE,
+    sekundaer: { label: HILFE, href: "/hilfe/kundenportal-kunden-einladen" },
     snippet: null,
     zusatz: [],
   },
@@ -313,6 +320,7 @@ const ERWARTET: Record<string, Erwartung> = {
     sekundaer: { label: HILFE, href: "/hilfe/gaeb-importieren" },
     snippet: null,
     zusatz: [],
+    hrefs: { "DATANORM-Kataloge": "/hilfe/datanorm-katalog-importieren" },
   },
   // Gruppe Planung (07-05 Task 2)
   plantafel: {
@@ -334,6 +342,7 @@ const ERWARTET: Record<string, Erwartung> = {
     sekundaer: { label: HILFE, href: "/hilfe/projektdateien-ordner" },
     snippet: null,
     zusatz: ["kunden-app", "projekt-chat"],
+    hrefs: { "Projekt-Chat und Nachrichten": "/hilfe/projekt-chat-nachrichten" },
   },
   arbeitsanweisungen: {
     pflichtfrage: "Sieht das Team in der Arbeitsanweisung die Verkaufspreise?",
@@ -390,6 +399,7 @@ const ERWARTET: Record<string, Erwartung> = {
     snippet: "lager",
     zusatz: ["lager-scan"],
     phone: { title: "Lager-Scan und Wareneingang", scene: lagerAppScene, width: 194 },
+    hrefs: { "Lager-Scan und Wareneingang": "/hilfe/lager-scan-app" },
   },
   maengelmanagement: {
     pflichtfrage: "Wie erinnert CraftOS an fällige Mängel?",
@@ -431,7 +441,7 @@ const ERWARTET: Record<string, Erwartung> = {
     anordnung: "md·sm·sm·md·sm·sm",
     webRollen: ["Admin", "Büro-Leitung"],
     mobileRollen: null,
-    sekundaer: ALLE,
+    sekundaer: { label: HILFE, href: "/hilfe/mahnwesen-einrichten" },
     snippet: null,
     zusatz: [],
     panelSatz: { web: "Fristen, Gebühren und Stufen ändert nur der Inhaber des Betriebs" },
@@ -440,13 +450,17 @@ const ERWARTET: Record<string, Erwartung> = {
   team: {
     pflichtfrage: "Was ist der Unterschied zwischen Lizenz und Rolle?",
     verwandt: ["datenuebernahme", "dashboard"],
-    anordnung: "md·sm·sm·wide·wide",
+    anordnung: "md·sm·sm·md·sm·sm",
     webRollen: ["Admin"],
     mobileRollen: MOBIL,
     sekundaer: { label: HILFE, href: "/hilfe/rollen-zugriffsrechte-einstellen" },
     snippet: null,
     zusatz: ["sprachen"],
-    hrefs: { [`${mobileLocales.length} Sprachen in der Mobile-App`]: "/app" },
+    // D-21/W13 (09-14): Sprachen und Projekt-Chat verlinken ihre Anleitung.
+    hrefs: {
+      [`${mobileLocales.length} Sprachen in der Mobile-App`]: "/hilfe/app-sprache-einstellen",
+      "Projekt-Chat und Nachrichten": "/hilfe/projekt-chat-nachrichten",
+    },
   },
   datenuebernahme: {
     pflichtfrage: "Aus welcher Software kann ich Daten übernehmen?",
@@ -454,7 +468,7 @@ const ERWARTET: Record<string, Erwartung> = {
     anordnung: "md·sm·sm·wide",
     webRollen: ["Admin", "Büro-Leitung"],
     mobileRollen: null,
-    sekundaer: ALLE,
+    sekundaer: { label: HILFE, href: "/hilfe/daten-importieren" },
     snippet: null,
     zusatz: [],
   },
@@ -509,7 +523,7 @@ const ERWARTET: Record<string, Erwartung> = {
     anordnung: "md·sm·sm·wide·wide",
     webRollen: ["Admin", "Büro-Leitung"],
     mobileRollen: null,
-    sekundaer: ALLE,
+    sekundaer: { label: HILFE, href: "/hilfe/bankumsaetze-abgleichen" },
     snippet: null,
     zusatz: [],
   },
@@ -946,11 +960,11 @@ describe("getFunktionsdetail und Inhaltstabelle", () => {
     expect(grenze?.title).toBe("Nur Rechnungen");
   });
 
-  it("team: Sprachen-Kachel aus mobileLocales mit Ziel /app, Web-Panel nur Admin", () => {
+  it("team: Sprachen-Kachel aus mobileLocales mit Ziel Hilfeartikel, Web-Panel nur Admin", () => {
     expect(Object.hasOwn(INHALTE, "team")).toBe(true);
     const inhalt = INHALTE.team;
     const kachel = inhalt.kernpunkte.tiles.find((t) => t.zusatz === "sprachen");
-    expect(kachel?.href).toBe("/app");
+    expect(kachel?.href).toBe("/hilfe/app-sprache-einstellen");
     expect(kachel?.size).not.toBe("sm");
     expect(kachel?.title).toContain(String(mobileLocales.length));
     expect(kachel?.text).toContain(String(mobileLocales.length));
