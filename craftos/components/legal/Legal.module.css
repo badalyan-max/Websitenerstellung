@@ -1,0 +1,114 @@
+/* Rechtsprosa v2 (Phase 10, D-09, D-17; 10-UI-SPEC § 3.1, § 3.2).
+   Fläche Weiß, padding-block 48 / 64 / 96 (< 768 / 768–1023 / ≥ 1024), Textspalte max. 720 px linksbündig.
+   Nur Gewichte 400/600; Kontrast: Text #17171C (17,86 : 1), Hinweise #62626E (6,01 : 1), Links #784B10 (7,47 : 1).
+   Der Wortlaut wird hier nicht berührt – Schutztest tests/rechtstexte-wortlaut.test.ts. */
+
+.flaeche {
+  background: #fff;
+  padding-block: 48px;
+}
+
+.prosa {
+  max-width: 720px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #17171c;
+}
+/* Außenabstände kommen nur aus den Geschwisterregeln (Preflight setzt p-Ränder auf 0). */
+.prosa p {
+  max-width: 68ch;
+}
+.prosa > * + * {
+  margin-top: 16px;
+}
+
+/* Abschnitt: H2 oben 48 (erste H2 im Container 0), H2 → Inhalt 16, Absätze 16. */
+.prosa > .abschnitt {
+  margin-top: 48px;
+}
+.prosa > .abschnitt:first-child {
+  margin-top: 0;
+}
+.prosa > .abschnitt + :not(.abschnitt) {
+  margin-top: 48px;
+}
+
+.titel {
+  margin: 0;
+  font-family: var(--font-display, var(--font-clash, sans-serif));
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #17171c;
+  text-wrap: balance;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphenate-limit-chars: 10 4 4;
+  overflow-wrap: break-word;
+  scroll-margin-top: 100px;
+}
+
+.inhalt {
+  margin-top: 16px;
+}
+.inhalt > * + * {
+  margin-top: 16px;
+}
+
+/* Datenblock: warme Fläche, Linie #E7DCC9, Radius 16, Innenabstand 16 / 24; Zeilen ohne Abstand. */
+.daten {
+  max-width: 68ch;
+  padding: 16px 24px;
+  border: 1px solid #e7dcc9;
+  border-radius: 16px;
+  background: #f7f3eb;
+}
+.daten p {
+  margin: 0;
+  color: #17171c;
+}
+.daten .datenErste {
+  font-weight: 600;
+}
+
+/* Hinweisabsätze („Einzelunternehmer · CraftOS“, „Hinweis: … Vorlage …“): 14/400/1.4 #62626E. */
+.prosa .hinweis {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #62626e;
+}
+
+/* Links im Fließtext: 16/600 #784B10, Unterstrich 1 px mit Offset 4, Hover #17171C; Fokus global (globals.css). */
+.prosa a {
+  font-weight: 600;
+  color: #784b10;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+  transition: color 150ms ease;
+}
+@media (hover: hover) {
+  .prosa a:hover {
+    color: #17171c;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .prosa a {
+    transition: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .flaeche {
+    padding-block: 64px;
+  }
+}
+@media (min-width: 1024px) {
+  .flaeche {
+    padding-block: 96px;
+  }
+}

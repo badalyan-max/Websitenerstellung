@@ -1,4 +1,4 @@
-import { LegalShell, LegalSection, DataBlock } from '@/components/legal/Legal'
+import { LegalShell, LegalSection, DataBlock, LegalHinweis } from '@/components/legal/Legal'
 import { crumbsFor } from '@/lib/breadcrumbs'
 import { site } from '@/lib/site'
 import { metaFor, zielwerte } from '@/lib/seo-meta'
@@ -74,17 +74,17 @@ export default function DatenschutzPage() {
           Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der
           Verarbeitung, Datenübertragbarkeit und Widerspruch. Zudem steht Ihnen ein
           Beschwerderecht bei der zuständigen Aufsichtsbehörde zu. Wenden Sie sich hierzu an{' '}
-          <a href={`mailto:${site.email}`} className="font-semibold text-primary-600 hover:underline">
+          <a href={`mailto:${site.email}`}>
             {site.email}
           </a>
           .
         </p>
       </LegalSection>
 
-      <p className="text-sm text-ink-400">
+      <LegalHinweis>
         Hinweis: Diese Datenschutzerklärung ist eine Vorlage und vor der Veröffentlichung mit den
         konkreten Verarbeitungstätigkeiten und ggf. rechtlicher Beratung zu vervollständigen.
-      </p>
+      </LegalHinweis>
     </LegalShell>
   )
 }

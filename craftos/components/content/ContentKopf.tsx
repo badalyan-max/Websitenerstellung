@@ -1,13 +1,23 @@
+import type { LucideIcon } from "lucide-react";
 import { PlatformBadges } from "@/components/v2/Badges";
 import { Breadcrumbs } from "@/components/v2/Breadcrumbs";
-import { TEXT_BUDGET, assertTextBudget, sentenceCount } from "@/components/v2/budgets";
+import { TEXT_BUDGET, assertTextBudget, charCount, sentenceCount } from "@/components/v2/budgets";
 import type { Crumb } from "@/lib/breadcrumbs";
 import type { ProductPlatform } from "@/lib/funktionen";
 import s from "./ContentKopf.module.css";
 
+/**
+ * 10-UI-SPEC K2: Höchstlänge des Kopf-Hinweises. Lokal, weil components/v2/budgets.ts in Welle 1 Paket (a) gehört;
+ * die Übernahme nach budgets.ts ist ein Übergabepunkt an 10-06.
+ */
+const HINWEIS_MAX = 80;
+
 export interface ContentKopfProps {
-  /** crumbsFor(pfad, title) – erzeugt die einzige BreadcrumbList der Seite. */
-  crumbs: Crumb[];
+  /**
+   * crumbsFor(pfad, title) – erzeugt die einzige BreadcrumbList der Seite. `null` nur auf der 404-Seite
+   * (10-UI-SPEC K1, J1): kein Brotkrumen-Container, `data-crumbs="ohne"` an der section.
+   */
+  crumbs: Crumb[] | null;
   /** ≤ 24: Kategoriename (Artikel/Kategorie) bzw. „Ratgeber“/„Hilfe“ (Übersicht). */
   eyebrow: string;
   /** Exakt zielwerte(pfad).h1 aus keyword-map.json, ≤ 100 (09-UI-SPEC H5). */
@@ -16,6 +26,11 @@ export interface ContentKopfProps {
   answer?: string;
   /** Übergang Welle 1–2: Artikel ohne answer zeigen die description als Lead (ohne id); nie zusammen mit answer. */
   lead?: string;
+  /**
+   * 10-UI-SPEC K2: kurzer Hinweis (≤ 80 Zeichen) mit dekorativem Icon nach Antwort bzw. Lead und vor meta,
+   * z. B. das Rechnerversprechen. Ohne hinweis bleibt das Markup unverändert (K3).
+   */
+  hinweis?: { text: string; icon: LucideIcon };
   /** Artikel: Angaben der Metazeile in fester Reihenfolge (Stand, Veröffentlicht, Lesezeit, Autor), ohne Trennzeichen. */
   meta?: string[];
   /** Übersicht/Kategorie: Stand-Zeile, z. B. „40 Anleitungen, zuletzt aktualisiert am …“. */
@@ -43,6 +58,7 @@ export function ContentKopf({
   h1,
   answer,
   lead,
+  hinweis,
   meta,
   stand,
   platforms,
@@ -61,6 +77,13 @@ export function ContentKopf({
       throw new Error(`ContentKopf: Antwort hat ${saetze} Sätze – ein bis zwei Sätze schreiben.`);
     }
   }
+  if (hinweis !== undefined) {
+    const n = charCount(hinweis.text);
+    if (n > HINWEIS_MAX) {
+      throw new Error(`ContentKopf: hinweis hat ${n} von ${HINWEIS_MAX} Zeichen – Satz kürzen.`);
+    }
+  }
+  const HinweisIcon = hinweis?.icon;
 
   return (
     <section
@@ -68,10 +91,13 @@ export function ContentKopf({
       aria-labelledby={region ? id : undefined}
       data-abschnitt="kopf"
       data-tone="light"
+      data-crumbs={crumbs === null ? "ohne" : undefined}
     >
-      <div className={`site-container ${s.crumbs}`}>
-        <Breadcrumbs items={crumbs} tone="light" />
-      </div>
+      {crumbs !== null ? (
+        <div className={`site-container ${s.crumbs}`}>
+          <Breadcrumbs items={crumbs} tone="light" />
+        </div>
+      ) : null}
       <div className={`site-container ${s.inner}`}>
         <p className={`v2-eyebrow ${s.eyebrow}`}>{eyebrow}</p>
         <h1 id={id} className={s.title}>
@@ -83,6 +109,12 @@ export function ContentKopf({
           </p>
         ) : lead !== undefined ? (
           <p className={s.lead}>{lead}</p>
+        ) : null}
+        {hinweis !== undefined && HinweisIcon !== undefined ? (
+          <p data-hinweis="" className={s.hinweis}>
+            <HinweisIcon size={16} aria-hidden="true" className={s.hinweisIcon} />
+            <span>{hinweis.text}</span>
+          </p>
         ) : null}
         {meta && meta.length > 0 ? (
           <ul aria-label="Angaben zum Artikel" className={s.meta}>

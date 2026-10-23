@@ -1,9 +1,11 @@
-import { Breadcrumbs } from '@/components/v2/Breadcrumbs'
+import { ContentKopf } from '@/components/content/ContentKopf'
 import type { Crumb } from '@/lib/breadcrumbs'
+import s from './Legal.module.css'
 
 /**
- * Rahmen der Rechtsseiten. Brotkrumen (08-UI-SPEC § 1, D-20) stehen als erste Zeile des ersten
- * Inhaltscontainers im hellen Ton; der Rechtstext selbst bleibt unverändert.
+ * Rahmen der Rechtsseiten auf v2 (Phase 10, D-09, D-17; 10-UI-SPEC § 3.1): heller `ContentKopf` mit Brotkrumen aus
+ * crumbsFor (einzige BreadcrumbList), danach der Rechtstext auf Weiß in `data-rechtstext` (Schutztest
+ * tests/rechtstexte-wortlaut.test.ts). Am Wortlaut ändert sich nichts; die Darstellung kommt aus Legal.module.css.
  */
 export function LegalShell({
   title,
@@ -20,42 +22,48 @@ export function LegalShell({
   children: React.ReactNode
 }) {
   return (
-    <section className="bg-white">
-      <div className="border-b border-ink-200 bg-ink-50">
-        <div className="mx-auto max-w-3xl px-5 pt-2 pb-14 sm:px-8 md:pt-4 lg:pt-6">
-          <div className="mb-4 md:mb-6 lg:mb-8">
-            <Breadcrumbs items={crumbs} tone="light" />
+    <>
+      <ContentKopf
+        crumbs={crumbs}
+        eyebrow={eyebrow}
+        h1={title}
+        id="rechtstext-titel"
+        stand={updated ? `Stand: ${updated}` : undefined}
+      />
+      <section data-abschnitt="rechtstext" className={s.flaeche}>
+        <div className="site-container">
+          <div data-rechtstext="" className={s.prosa}>
+            {children}
           </div>
-          <p className="spec-label text-primary-600">{eyebrow}</p>
-          <h1 className="mt-3 font-display text-4xl font-extrabold text-ink-900">{title}</h1>
-          {updated && <p className="mt-2 font-mono text-xs text-ink-400">Stand: {updated}</p>}
         </div>
-      </div>
-      <div className="mx-auto max-w-3xl px-5 py-14 sm:px-8">
-        <div data-rechtstext="" className="legal space-y-8 text-[15px] leading-relaxed text-ink-700">{children}</div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }
 
 export function LegalSection({ heading, children }: { heading: string; children: React.ReactNode }) {
   return (
-    <section>
-      <h2 className="font-display text-xl font-bold text-ink-900">{heading}</h2>
-      <div className="mt-3 space-y-3">{children}</div>
+    <section className={s.abschnitt}>
+      <h2 className={s.titel}>{heading}</h2>
+      <div className={s.inhalt}>{children}</div>
     </section>
   )
 }
 
-/** Hervorgehobener Datenblock mit Platzhaltern, die der Betreiber ausfüllt */
+/** Hervorgehobener Datenblock (Anbieter, Kontakt): erste Zeile 600, weitere 400, warme Fläche. */
 export function DataBlock({ lines }: { lines: string[] }) {
   return (
-    <div className="rounded-xl border border-ink-200 bg-ink-50 p-5">
+    <div className={s.daten}>
       {lines.map((l, i) => (
-        <p key={i} className={i === 0 ? 'font-semibold text-ink-900' : 'text-ink-600'}>
+        <p key={i} className={i === 0 ? s.datenErste : undefined}>
           {l}
         </p>
       ))}
     </div>
   )
+}
+
+/** Hinweisabsatz der Rechtsseiten (14/400/1.4 #62626E, 6,01 : 1 auf Weiß; 10-UI-SPEC § 3.1/§ 3.2). */
+export function LegalHinweis({ children }: { children: React.ReactNode }) {
+  return <p className={s.hinweis}>{children}</p>
 }

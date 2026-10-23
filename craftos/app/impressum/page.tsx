@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { LegalShell, LegalSection, DataBlock } from '@/components/legal/Legal'
+import { LegalShell, LegalSection, DataBlock, LegalHinweis } from '@/components/legal/Legal'
 import { crumbsFor } from '@/lib/breadcrumbs'
 import { site } from '@/lib/site'
 import { metaFor, zielwerte } from '@/lib/seo-meta'
@@ -19,7 +19,7 @@ export default function ImpressumPage() {
         <DataBlock
           lines={['Edgar Badalyan', 'Paul-Keller-Ring 41', '96052 Bamberg', 'Deutschland']}
         />
-        <p className="text-sm text-ink-500">Einzelunternehmer · CraftOS</p>
+        <LegalHinweis>Einzelunternehmer · CraftOS</LegalHinweis>
       </LegalSection>
 
       <LegalSection heading="Kontakt">
@@ -73,7 +73,6 @@ export default function ImpressumPage() {
             href="https://ec.europa.eu/consumers/odr"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold text-primary-600 hover:underline"
           >
             https://ec.europa.eu/consumers/odr
           </a>

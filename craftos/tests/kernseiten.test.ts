@@ -6,9 +6,12 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import { LockKeyhole } from "lucide-react";
 import { createElement, type ReactElement } from "react";
 import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
+import { ContentKopf, type ContentKopfProps } from "@/components/content/ContentKopf";
+import { crumbsFor } from "@/lib/breadcrumbs";
 import { TEXT_BUDGET, charCount, sentenceCount } from "@/components/v2/budgets";
 import { KEY_FACT_SOURCE } from "@/components/v2/KeyFacts";
 import { euro, germanDate } from "@/lib/format";
@@ -587,5 +590,210 @@ describe("gerendert", () => {
     expect(standard.about).toEqual({ "@id": "https://craftos.eu/#software" });
     const org = webPageSchema({ path: "/x", name: "X", description: "Y", about: { "@id": "https://craftos.eu/#organization" } });
     expect(org.about).toEqual({ "@id": "https://craftos.eu/#organization" });
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Phase 10, Plan 10-03 (Paket c): ContentKopf K1/K2, Rechtsseiten, 404 (10-UI-SPEC K1–K3, § 3, § 4, § 11)
+// ---------------------------------------------------------------------------
+
+/** Überschriftenebenen in Dokumentreihenfolge. */
+const ueberschriften = (html: string) => [...html.matchAll(/<h([1-6])\b/g)].map((m) => Number(m[1]));
+
+/** Sprünge in der Überschriftenfolge (z. B. h1 → h3); leer, wenn keine. */
+function spruenge(html: string): string[] {
+  const ebenen = ueberschriften(html);
+  const out: string[] = [];
+  for (let i = 1; i < ebenen.length; i++) {
+    if (ebenen[i] > ebenen[i - 1] + 1) out.push(`h${ebenen[i - 1]} → h${ebenen[i]} (Position ${i})`);
+  }
+  return out;
+}
+
+/** Klassen-Token aller class-Attribute. */
+const klassen = (html: string) => [...html.matchAll(/\sclass="([^"]*)"/g)].flatMap((m) => m[1].split(/\s+/).filter(Boolean));
+
+const count = (html: string, re: RegExp) => (html.match(re) ?? []).length;
+
+const ALTKLASSEN_404 = ["section-space", "eyebrow", "section-intro", "btn-cta", "btn-secondary"] as const;
+const HELLER_KOPF = /<section\b[^>]*data-abschnitt="kopf"[^>]*data-tone="light"/;
+
+describe("ContentKopf K1/K2 (10-UI-SPEC Design System, K3)", () => {
+  const basis: ContentKopfProps = {
+    crumbs: crumbsFor("/blog"),
+    eyebrow: "Ratgeber",
+    h1: "Ratgeber für Handwerksbetriebe",
+    lead: "Kurzer Lead für den Test.",
+    meta: ["Stand 23.10.2026"],
+    stand: "12 Artikel",
+  };
+  const kopf = (props: Partial<ContentKopfProps> = {}) => renderToString(createElement(ContentKopf, { ...basis, ...props }));
+
+  it("crumbs={null}: keine Brotkrumen, keine BreadcrumbList, data-crumbs=\"ohne\" an der section", () => {
+    const html = kopf({ crumbs: null });
+    expect(html).not.toContain('aria-label="Brotkrumen"');
+    expect(html).not.toContain("BreadcrumbList");
+    expect(html).toMatch(/^<section\b[^>]*data-crumbs="ohne"/);
+  });
+
+  it("mit Brotkrumen kein data-crumbs und kein data-hinweis", () => {
+    const html = kopf();
+    expect(html).not.toContain("data-crumbs");
+    expect(html).not.toContain("data-hinweis");
+    expect(html).toContain('aria-label="Brotkrumen"');
+  });
+
+  it("hinweis steht nach Lead bzw. Antwort und vor meta, stand und platforms; Icon aria-hidden", () => {
+    const hinweis = { text: "Kostenlos. Ohne Anmeldung. Ihre Zahlen bleiben im Browser.", icon: LockKeyhole };
+    const html = kopf({ hinweis, platforms: ["web"] });
+    const p = html.match(/<p\b[^>]*data-hinweis=""[^>]*>([\s\S]*?)<\/p>/);
+    expect(p).not.toBeNull();
+    expect(p![1]).toMatch(/<svg\b[^>]*aria-hidden="true"/);
+    expect(decode(p![1])).toBe(hinweis.text);
+    const pos = (s: string) => html.indexOf(s);
+    expect(pos("Kurzer Lead für den Test.")).toBeLessThan(pos("data-hinweis"));
+    expect(pos("data-hinweis")).toBeLessThan(pos('aria-label="Angaben zum Artikel"'));
+    expect(pos('aria-label="Angaben zum Artikel"')).toBeLessThan(pos("data-stand"));
+    expect(pos("data-stand")).toBeLessThan(pos('aria-label="Plattformen"'));
+
+    const mitAntwort = kopf({
+      lead: undefined,
+      answer: "Eine Antwort in einem Satz.",
+      hinweis,
+    });
+    expect(mitAntwort.indexOf('id="antwort"')).toBeLessThan(mitAntwort.indexOf("data-hinweis"));
+  });
+
+  it("hinweis mit 81 Zeichen wirft den Fehlertext wörtlich, 80 Zeichen gehen", () => {
+    expect(() => kopf({ hinweis: { text: "x".repeat(81), icon: LockKeyhole } })).toThrow(
+      "ContentKopf: hinweis hat 81 von 80 Zeichen – Satz kürzen.",
+    );
+    expect(() => kopf({ hinweis: { text: "x".repeat(80), icon: LockKeyhole } })).not.toThrow();
+  });
+
+  it("CSS: K1/K2-Regeln hängen nur an [data-crumbs=\"ohne\"] bzw. .hinweis; HINWEIS_MAX lokal", () => {
+    const css = read("components/content/ContentKopf.module.css");
+    expect(css).toMatch(/\.kopf\[data-crumbs="ohne"\]\s*\{[^}]*padding-top:\s*48px/);
+    expect(css).toMatch(/@media \(min-width: 768px\)\s*\{\s*\.kopf\[data-crumbs="ohne"\]\s*\{[^}]*padding-top:\s*64px/);
+    expect(css).toMatch(/\.hinweis\s*\{[^}]*color:\s*#62626e/i);
+    expect(read("components/content/ContentKopf.tsx")).toContain("const HINWEIS_MAX = 80");
+  });
+
+  it("eine null-Kette gibt es nur in app/not-found.tsx (K1, K3)", () => {
+    const treffer: string[] = [];
+    const scan = (dir: string) => {
+      for (const e of fs.readdirSync(path.join(root, dir), { withFileTypes: true })) {
+        const rel = path.posix.join(dir, e.name);
+        if (e.isDirectory()) scan(rel);
+        else if (/\.(tsx?|mjs|js)$/.test(e.name)) {
+          const src = read(rel);
+          if (/crumbs=\{null\}|crumbs:\s*null\b/.test(src)) treffer.push(rel);
+          // Variablen, die null erhalten und als crumbs übergeben werden
+          for (const m of src.matchAll(/\b(?:const|let|var)\s+(\w+)\s*(?::[^=]+)?=\s*null\b/g)) {
+            if (new RegExp(`crumbs=\\{${m[1]}\\}|crumbs:\\s*${m[1]}\\b`).test(src)) treffer.push(`${rel} (${m[1]})`);
+          }
+        }
+      }
+    };
+    for (const dir of ["app", "components", "lib"]) scan(dir);
+    expect(treffer).toEqual(["app/not-found.tsx"]);
+  });
+});
+
+const RECHTSSEITEN_10 = [
+  { pfad: "/impressum", datei: "app/impressum/page.tsx", laden: () => import("@/app/impressum/page") },
+  { pfad: "/datenschutz", datei: "app/datenschutz/page.tsx", laden: () => import("@/app/datenschutz/page") },
+  { pfad: "/agb", datei: "app/agb/page.tsx", laden: () => import("@/app/agb/page") },
+] as const;
+
+describe("Rechtsseiten auf v2 (D-09, D-17; 10-UI-SPEC § 3)", () => {
+  for (const seite of RECHTSSEITEN_10) {
+    describe(seite.pfad, () => {
+      it("heller ContentKopf mit Eyebrow „Rechtliches“, H1 aus der Keyword-Map, id rechtstext-titel", async () => {
+        const html = await rendern(seite.laden);
+        expect(html).toMatch(HELLER_KOPF);
+        const h1 = [...html.matchAll(/<h1\b([^>]*)>([\s\S]*?)<\/h1>/g)];
+        expect(h1.map((m) => decode(m[2]))).toEqual([zielwerte(seite.pfad).h1]);
+        expect(h1[0][1]).toContain('id="rechtstext-titel"');
+        expect(html).toMatch(/<p class="v2-eyebrow[^"]*">Rechtliches<\/p>/);
+      });
+
+      it("genau eine BreadcrumbList und eine Brotkrumen-Navigation", async () => {
+        const html = await rendern(seite.laden);
+        expect(count(html, /"@type":"BreadcrumbList"/g)).toBe(1);
+        expect(count(html, /aria-label="Brotkrumen"/g)).toBe(1);
+      });
+
+      it("Kontrast: kein text-primary-600, kein text-ink-400, keine Gewichte 500/700/800 im Markup und in der Quelle", async () => {
+        const html = await rendern(seite.laden);
+        const quellen = [read(seite.datei), read("components/legal/Legal.tsx"), read("components/legal/Legal.module.css")];
+        for (const text of [html, ...quellen]) {
+          expect(text).not.toMatch(/text-primary-600|text-ink-400/);
+          expect(text).not.toMatch(/font-(medium|bold|extrabold)\b|font-weight:\s*(500|700|800)\b/);
+        }
+      });
+
+      it("Überschriftenfolge ohne Sprung", async () => {
+        expect(spruenge(await rendern(seite.laden))).toEqual([]);
+      });
+    });
+  }
+
+  it("Legal.module.css: Links #784B10 mit Unterstrich, Hinweisabsätze #62626E, Prosa max. 720 px", () => {
+    const css = read("components/legal/Legal.module.css").toLowerCase();
+    expect(css).toContain("#784b10");
+    expect(css).toContain("#62626e");
+    expect(css).toMatch(/text-underline-offset:\s*4px/);
+    expect(css).toMatch(/max-width:\s*720px/);
+    expect(css).toMatch(/scroll-margin-top:\s*100px/);
+  });
+});
+
+describe("404-Seite auf v2 (D-18; 10-UI-SPEC § 4)", () => {
+  const notFound = async () => renderToString(createElement((await import("@/app/not-found")).default));
+
+  it("ContentKopf ohne Brotkrumen, Eyebrow, H1 und Lead wörtlich", async () => {
+    const html = await notFound();
+    expect(html).toMatch(HELLER_KOPF);
+    expect(html).toMatch(/<section\b[^>]*data-crumbs="ohne"/);
+    expect(html).not.toContain('aria-label="Brotkrumen"');
+    expect(html).not.toContain("BreadcrumbList");
+    expect(html).not.toContain("<br");
+    const h1 = [...html.matchAll(/<h1\b([^>]*)>([\s\S]*?)<\/h1>/g)];
+    expect(h1.map((m) => decode(m[2]))).toEqual(["Hier geht es nicht weiter. An anderer Stelle schon."]);
+    expect(h1[0][1]).toContain('id="fehler-titel"');
+    expect(html).toMatch(/<p class="v2-eyebrow[^"]*">Seite nicht gefunden<\/p>/);
+    expect(decode(html)).toContain(
+      "Diese Adresse ist nicht verfügbar. Über die Startseite oder das Hilfezentrum finden Sie den passenden Einstieg.",
+    );
+  });
+
+  it("Abschnitt einstiege: H2 „So geht es weiter“ und drei Karten zu /, /hilfe, /funktionen", async () => {
+    const html = await notFound();
+    expect(html).toMatch(/<section\b[^>]*data-abschnitt="einstiege"[^>]*aria-labelledby="einstiege"/);
+    expect(html).toMatch(/<h2 id="einstiege"[^>]*>So geht es weiter<\/h2>/);
+    const liste = html.match(/<ul\b[^>]*aria-label="Einstiege"[^>]*>[\s\S]*?<\/ul>/)?.[0] ?? "";
+    expect(liste).toMatch(/data-surface="warm"/);
+    expect(liste).toMatch(/data-columns="3"/);
+    expect([...liste.matchAll(/<h3\b[^>]*><a\b[^>]*href="([^"]+)"/g)].map((m) => m[1])).toEqual(["/", "/hilfe", "/funktionen"]);
+    expect([...liste.matchAll(/<h3\b[^>]*>([\s\S]*?)<\/h3>/g)].map((m) => decode(m[1]))).toEqual([
+      "Startseite",
+      "Hilfezentrum",
+      "Funktionen",
+    ]);
+    expect(decode(liste)).toContain("CraftOS im Überblick: Angebot, Planung, Baustelle und Rechnung in einer Software.");
+    expect(decode(liste)).toContain("Anleitungen Schritt für Schritt, von der Einrichtung bis zur Rechnung.");
+    expect(decode(liste)).toContain(
+      "Alle Funktionen von Angebot bis Buchhaltung mit Plattformen und Lizenzen im Überblick.",
+    );
+  });
+
+  it("keine Altklassen, kein CtaBand, Überschriftenfolge ohne Sprung", async () => {
+    const html = await notFound();
+    const k = klassen(html);
+    for (const alt of ALTKLASSEN_404) expect(k, alt).not.toContain(alt);
+    expect(html).not.toContain('data-abschnitt="cta"');
+    expect(spruenge(html)).toEqual([]);
+    expect(ueberschriften(html)).toEqual([1, 2, 3, 3, 3]);
   });
 });
