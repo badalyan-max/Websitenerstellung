@@ -896,5 +896,60 @@ await check("Einrichtungsservice und Datenstandort (D-41): Texte aus lib/einrich
   return abw.length === 0 || abw.join("; ");
 });
 
+/**
+ * Werte aus lib/gobd-konform.ts (D-43): `aussage`, `kern` (Template `${aussage}: …`), `zertifizierung` und `faq` (Frage).
+ * Die Quelle wird als Text gelesen wie bei textFeld().
+ */
+function gobdFeld(feld) {
+  const rel = "lib/gobd-konform.ts";
+  const src = quelle(rel);
+  const aussage = src.match(/const aussage = "([^"]+)"/)?.[1];
+  if (!aussage) throw new Error(`${rel} ohne aussage`);
+  if (feld === "aussage") return aussage;
+  if (feld === "kern") {
+    const rest = src.match(/const kern = `\$\{aussage\}([^`]+)`/)?.[1];
+    if (!rest) throw new Error(`${rel} ohne kern`);
+    return aussage + rest;
+  }
+  return textFeld(rel, feld);
+}
+const G = gobdFeld;
+
+await check("Kernaussagen Phase 10 (D-41, D-42, D-43): GoBD auf /gobd, /, /fakten-ueber-craftos und in /llms.txt; Impressum ohne OS-Plattform; Einrichtung kostenlos auf /preise; Datenstandort auf /fakten-ueber-craftos", async () => {
+  const abw = [];
+  const gobd = await get("/gobd");
+  if (gobd.status !== 200) abw.push(`/gobd HTTP ${gobd.status}`);
+  else {
+    const fehlt = missing(textVon(gobd.text), [`${G("aussage")}:`, G("zertifizierung")]);
+    if (fehlt.length) abw.push(`/gobd fehlt: ${fehlt.join(" | ")}`);
+    if (/>\s*Nein\./.test(gobd.text)) abw.push("/gobd enthält die alte Antwort „Nein.“");
+  }
+  // Startseiten-FAQ und Faktenseite: Frage im FAQPage-JSON-LD und sichtbar, Antwort (Kernsatz) im Text.
+  const faqSeiten = await jedeSeite(["/", "/fakten-ueber-craftos"], (route, r) => {
+    const fehler = [];
+    const { fragen, fehlend } = faqFragenSichtbar(r.text);
+    if (!fragen.includes(G("faq"))) fehler.push(`„${G("faq")}“ nicht im FAQPage-JSON-LD`);
+    else if (fehlend.includes(G("faq"))) fehler.push(`„${G("faq")}“ nicht sichtbar`);
+    if (!textVon(r.text).includes(G("kern"))) fehler.push("GoBD-Kernsatz fehlt");
+    if (route === "/fakten-ueber-craftos" && !textVon(r.text).includes(D("kern"))) fehler.push("Datenstandort-Kernsatz fehlt");
+    return fehler.join(", ");
+  });
+  if (faqSeiten !== true) abw.push(faqSeiten);
+  const llms = await get("/llms.txt");
+  if (llms.status !== 200) abw.push(`/llms.txt HTTP ${llms.status}`);
+  else if (!llms.text.includes(`- GoBD: ${G("kern")}`)) abw.push("/llms.txt ohne „- GoBD: …“ mit dem Kernsatz");
+  const impressum = await get("/impressum");
+  if (impressum.status !== 200) abw.push(`/impressum HTTP ${impressum.status}`);
+  else if (/consumers\/odr|ec\.europa\.eu\/consumers|OS-Plattform|Online-Streitbeilegung/i.test(impressum.text))
+    abw.push("/impressum verweist noch auf die OS-Plattform (D-42)");
+  const preise = await get("/preise");
+  if (preise.status !== 200) abw.push(`/preise HTTP ${preise.status}`);
+  else {
+    const fehlt = missing(textVon(preise.text), [E("kern"), E("tarifHinweis")]);
+    if (fehlt.length) abw.push(`/preise fehlt (Einrichtung kostenlos): ${fehlt.join(" | ")}`);
+  }
+  return abw.length === 0 || abw.join("; ");
+});
+
 console.log(fehler === 0 ? "Ergebnis: alle Prüfungen OK" : `Ergebnis: ${fehler} Prüfung(en) FEHLER`);
 process.exitCode = fehler === 0 ? 0 : 1;
