@@ -17,7 +17,7 @@ Im Kassenbuch erfassen Sie jede Bareinnahme und -ausgabe mit laufendem Bestand. 
 
 ## Voraussetzungen
 
-- Sie arbeiten in der Web-App mit Finanzrechten (Admin oder Büro-Leitung).
+- Sie arbeiten in der Web-App als Admin oder mit einer Voll-Lizenz (Büro), für die „Globale Finanzbereiche“ eingeschaltet ist; die Rolle Büro-Leitung bringt diesen Schalter mit. Mehr dazu in [Rollen und Zugriffsrechte](/hilfe/rollen-zugriffsrechte-einstellen).
 - Für den DATEV-Export sind die DATEV-Einstellungen unter Einstellungen → „DATEV-Export“ hinterlegt; diese pflegt der Inhaber.
 - Sie haben das Bargeld der Kasse gezählt.
 

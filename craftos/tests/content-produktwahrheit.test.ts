@@ -219,6 +219,19 @@ describe("Kundenportal nur mit erreichbaren Leistungen (ME-03)", () => {
   });
 });
 
+/**
+ * Kassenbuch (09-REVIEW LO-09, Web-Release src/hooks/useLicense.ts `canSeeFinance = isAdmin || (isBuero &&
+ * toggles.finanzen_sichtbar)`, src/hooks/useCashBook.ts): Zugang hängt an der Finanzfreigabe „Globale Finanzbereiche“,
+ * nicht an der Rolle Büro-Leitung.
+ */
+describe("Kassenbuch-Voraussetzung nennt die Finanzfreigabe (LO-09)", () => {
+  it("Admin oder Büro mit „Globale Finanzbereiche“", () => {
+    const md = fs.readFileSync(path.join(ROOT, "content/hilfe/kassenbuch-fuehren.md"), "utf8");
+    expect(md).not.toContain("(Admin oder Büro-Leitung)");
+    expect(md).toMatch(/Admin oder mit einer Voll-Lizenz \(Büro\), für die „Globale Finanzbereiche“ eingeschaltet ist/);
+  });
+});
+
 describe("Prüfmechanik (Fixtures)", () => {
   it("Markdown: Treffer je Wort mit Fehlertext", () => {
     const t = trefferInDatei("content/hilfe/x.md", "Im Portal ist keine Onlinezahlung möglich. DATANORM v5 ist nicht zugesagt.");
