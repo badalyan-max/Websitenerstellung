@@ -197,7 +197,7 @@ Quelle der Zeilen: `docs/content-pruefung/09-integration.md` § 7. Audit-Kürzel
 | Funktion | Anleitung (Anker) | Verlinkende Detailseite bzw. /app | Audit | Live-Ergebnis (craftos.eu, 23.10.2026) |
 |---|---|---|---|---|
 | Terminplanung / Arbeitsabschnitte | `/hilfe/projekt-phasen-anlegen#antwort` | `/funktionen/terminplanung` | SA; FD; RA | live OK: HTTP 200, Anker, Antwort 244 |
-| Abnahme und Teilabnahme | `/hilfe/abnahme-dokumentieren#antwort` | `/funktionen/baudokumentation` | SA; FD; RA | live OK: HTTP 200, Anker, Antwort 251 |
+| Abnahme und Teilabnahme | `/hilfe/abnahme-dokumentieren#antwort` | `/funktionen/baudokumentation` (Kachel „Abnahme und Teilabnahme“, seit Korrektur `6921340`) | SA; FD CONTENT-04; LC; RA | Anleitung live OK: HTTP 200, Anker, Antwort 251. Korrigiert 23.10.2026: Der Link von der Detailseite fehlte bis `6921340` (09-VERIFICATION); Live-Nachweis nach dem Push siehe unten |
 | Bautagesbericht | `/hilfe/bautagesbericht-erstellen#antwort` | `/funktionen/baudokumentation` | SA; FD; RA | live OK: HTTP 200, Anker, Antwort 269 |
 | Mängel | `/hilfe/mangel-erfassen-bearbeiten#antwort` | `/funktionen/maengelmanagement` | SA; FD; RA | live OK: HTTP 200, Anker, Antwort 241 |
 | Mahnwesen | `/hilfe/mahnwesen-einrichten#antwort` | `/funktionen/mahnwesen` (Sekundärlink) | SA; FD Sekundärlink; RA | live OK: HTTP 200, Anker, Antwort 286 |
@@ -212,6 +212,8 @@ Quelle der Zeilen: `docs/content-pruefung/09-integration.md` § 7. Audit-Kürzel
 | 21 Sprachen der Mobile-App | `/hilfe/app-sprache-einstellen#antwort` | `/funktionen/team` (Kachel), `/app` (Textlink) | SA; FD; APP; RA | live OK: HTTP 200, Anker, Antwort 233 |
 | Kassenbuch (D-32) | `/hilfe/kassenbuch-fuehren#antwort` | `/funktionen/buchhaltung` (Kachel „Kassenbuch“) | SA; FD hrefs; CT; RA | live OK: HTTP 200, Anker, Antwort 280 |
 | Rechnung nach § 13b (D-32) | `/hilfe/rechnung-fertigstellen#antwort`, `/blog/reverse-charge-bauleistungen#antwort` | – (Hilfe- und Ratgeberartikel) | SA; CT | live OK: HTTP 200, Anker, Antwort 234; HTTP 200, Anker, Antwort 269, FAQPage = sichtbar |
+
+**Korrektur 23.10.2026 (Lückenschluss nach `09-VERIFICATION.md`):** Die Live-Prüfung um 09:35 MESZ prüfte nur Status, Anker und Antwort der Anleitungen, nicht den Link von der Detailseite. Die Zeile „Abnahme und Teilabnahme“ war deshalb fälschlich grün: Keine Funktionsdetailseite verlinkte `/hilfe/abnahme-dokumentieren`. Behoben mit Commit `6921340` (href an der Kachel „Abnahme und Teilabnahme“). Neue Prüfungen: **FD CONTENT-04** in `tests/funktionsdetails.test.ts` (alle 15 Anleitungen, Commit `f6144bb`) und **LC** = `scripts/live-check.mjs` „Detailseiten verlinken Anleitungen“ für alle 14 Detailseiten mit 17 Links (Commit `937fa13`).
 
 ## 11. Anforderungsstatus
 

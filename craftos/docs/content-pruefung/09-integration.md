@@ -109,7 +109,7 @@ Audit-Kürzel: **SA** = `scripts/seo-audit.mjs` (Regeln `antwort`, `h1`, `map`, 
 | Funktion | Anleitung (Anker) | Verlinkende Detailseite bzw. /app | Audit | Ergebnis (09-16) |
 |---|---|---|---|---|
 | Terminplanung / Arbeitsabschnitte | `/hilfe/projekt-phasen-anlegen#antwort` | `/funktionen/terminplanung` | SA; FD; RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
-| Abnahme und Teilabnahme | `/hilfe/abnahme-dokumentieren#antwort` | `/funktionen/baudokumentation` | SA; FD; RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Abnahme und Teilabnahme | `/hilfe/abnahme-dokumentieren#antwort` | `/funktionen/baudokumentation` (Kachel „Abnahme und Teilabnahme“, seit Korrektur `6921340`) | SA; FD CONTENT-04; LC; RA || korrigiert 23.10.2026: Der Link fehlte bis `6921340` (Lücke aus 09-VERIFICATION, die frühere Angabe „grün“ war falsch). Jetzt FD CONTENT-04 grün, LC grün |
 | Bautagesbericht | `/hilfe/bautagesbericht-erstellen#antwort` | `/funktionen/baudokumentation` | SA; FD; RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
 | Mängel | `/hilfe/mangel-erfassen-bearbeiten#antwort` | `/funktionen/maengelmanagement` | SA; FD; RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
 | Mahnwesen | `/hilfe/mahnwesen-einrichten#antwort` | `/funktionen/mahnwesen` (Sekundärlink) | SA; FD Sekundärlink; RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
@@ -124,6 +124,8 @@ Audit-Kürzel: **SA** = `scripts/seo-audit.mjs` (Regeln `antwort`, `h1`, `map`, 
 | 21 Sprachen der Mobile-App | `/hilfe/app-sprache-einstellen#antwort` | `/funktionen/team` (Kachel), `/app` (Textlink) | SA; FD; APP; RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
 | Kassenbuch (D-32) | `/hilfe/kassenbuch-fuehren#antwort` | `/funktionen/buchhaltung` (Kachel „Kassenbuch“) | SA; FD hrefs; CT; RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
 | Rechnung nach § 13b (D-32) | `/hilfe/rechnung-fertigstellen#antwort`, `/blog/reverse-charge-bauleistungen#antwort` | – (Hilfe- und Ratgeberartikel) | SA; CT || grün: SA 0, Anker im Build, RA 200, Tests grün |
+
+**Korrektur 23.10.2026 (Lückenschluss nach `09-VERIFICATION.md`):** Die Zeile „Abnahme und Teilabnahme“ war als grün gemeldet, obwohl keine Funktionsdetailseite `/hilfe/abnahme-dokumentieren` verlinkte; weder FD noch der live-check prüften diese Verbindung. Seit Commit `6921340` verlinkt die Kachel „Abnahme und Teilabnahme“ auf `/funktionen/baudokumentation` die Anleitung. Neue Prüfungen: **FD CONTENT-04** = Block „CONTENT-04: jede Anleitung zu einer neuen Live-Funktion ist von einer Detailseite verlinkt“ in `tests/funktionsdetails.test.ts` (alle 15 Anleitungen dieser Tabelle; Sekundärlink oder Kachel, gerenderter `href`; Commit `f6144bb`, rot vor dem Fix). **LC** = `scripts/live-check.mjs`, Prüfung „Detailseiten verlinken Anleitungen“, jetzt für alle 14 Detailseiten mit 17 Links statt 4 (Commit `937fa13`).
 
 ## 8. Offene Punkte
 
