@@ -116,7 +116,8 @@ node scripts/content-pruefen.mjs --ausnahmen docs/content-pruefung/09-<x>.md --z
 - `--ausnahmen`: nimmt die Begriffe aus dem Abschnitt „Zitat-Ausnahmen“ der Prüfdatei aus (nur Zeilen mit Begründung).
 - `--l1`: Wörter und Altbegriffe aus `lib/leitlinie-l1.json` ohne Übergangsliste; Markdown zeilenweise, `.ts` nur über String-Literale (`scripts/lib/ts-literale.mjs`); Ausnahmen laut JSON.
 - `--antwort`: Frontmatter `answer` ≤ 300 Zeichen und unter jeder H2/H3 mit „?“ der erste Absatz ≤ 300 Zeichen.
-- Ausgabe `datei: befund`, Exitcode 1 bei mindestens einem Befund.
+- `--belege` (Zusatz zu `--zitate`): nennt je belegtem Begriff bis zu drei Release-Dateien für die Spalte „Belegpfade“. Ein Treffer in einer fremden Ansicht belegt den beschriebenen Ablauf nicht (Beispiel: „Preise übernehmen“ steht im DATANORM-Import, nicht im GAEB-Importdialog).
+- Ohne Prüfschalter laufen `--zitate`, `--l1` und `--antwort`. Ausgabe `datei: befund`, Hinweise mit „Hinweis:“, Exitcode 1 bei mindestens einem Befund, 2 bei Bedienfehlern.
 
 ## Format der Paket-Prüfdateien
 
