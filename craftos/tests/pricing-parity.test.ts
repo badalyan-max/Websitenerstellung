@@ -234,6 +234,15 @@ describe("Testphase entspricht dem Snapshot", () => {
     expect(testphasenFehler([{ rel: "components/x.tsx", text: "<a>14 Tage kostenlos testen</a>" }], 10).fehler).toHaveLength(1);
   });
 
+  it("Testkontext-Muster: „test“ nur am Wortanfang, Komposita wie „Testtage“ zählen weiter (09-09, D-14)", () => {
+    for (const ohne of ["Spätestens nach 5 Tagen", "Der Bestandstest läuft 7 Tage"])
+      expect(testKontext.test(ohne), ohne).toBe(false);
+    for (const mit of ["Testtage", "10 Tage kostenlos testen", "ohne Zahlungsdaten starten", "Test 14 Tage"])
+      expect(testKontext.test(mit), mit).toBe(true);
+    // Satz mit „Spätestens“ und anderer Tageszahl ist keine Testphasen-Angabe.
+    expect(testphasenFehler([{ rel: "lib/x.ts", text: "Spätestens 30 Tage nach Rechnungsdatum." }], 10).treffer).toEqual([]);
+  });
+
   it("Wettbewerber-Datenmodule: Tageszahlen nur im Feld testphaseTage", () => {
     expect(tageAusserhalbFeld('export const x = { hinweis: "Die Testphase dauert 7 Tage." };')).toHaveLength(1);
     expect(
