@@ -279,7 +279,7 @@ Plans:
 
 **Wave 6** *(blocked on Wave 5 completion)*
 
-- [ ] 09-16-PLAN.md — Phasen-Gate: Browserprüfungen in sechs Breiten, Vollsuite, sitewide Audit, Linkcheck (main, 3100)
+- [x] 09-16-PLAN.md — Phasen-Gate: Browserprüfungen in sechs Breiten, Vollsuite, sitewide Audit, Linkcheck (main, 3100)
 
 **Wave 7** *(blocked on Wave 6 completion; Code-Review-Gate des Orchestrators vorher)*
 
@@ -311,5 +311,5 @@ Plans:
 | 6. Startseite, Navigation und Funktionsübersicht | 6/6 | Complete    | 2026-10-21 |
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 9/9 | Complete    | 2026-10-22 |
 | 8. SEO und KI-Sichtbarkeit | 14/14 | Complete    | 2026-10-22 |
-| 9. Gewerke und Wissensinhalte | 16/18 | In Progress|  |
+| 9. Gewerke und Wissensinhalte | 17/18 | In Progress|  |
 | 10. Abschlussaudit | 0/TBD | Not started | - |

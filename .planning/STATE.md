@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: executing
-stopped_at: Completed 09-09-PLAN.md
-last_updated: "2026-10-23T04:44:13.868Z"
-last_activity: "2026-10-23 – 09-09 Integration: Strenge, Kassenbuch, Kundenportal, L-1, Querverweise, Basis test.246"
+stopped_at: Completed 09-16-PLAN.md
+last_updated: "2026-10-23T05:36:30.464Z"
+last_activity: "2026-10-23 – 09-16 Phasen-Gate lokal grün: E2E sechs Breiten, Kundenportal-Szene, Kartenrahmen"
 progress:
   total_phases: 6
   completed_phases: 4
   total_plans: 55
-  completed_plans: 53
+  completed_plans: 54
   percent: 67
 ---
 
@@ -30,14 +30,14 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 09
-Plan: 09-09 abgeschlossen (Integration); offen 09-16 (Phasen-Gate), 09-10 (Rollout)
+Plan: 09-16 abgeschlossen (Phasen-Gate); offen 09-10 (Rollout)
 Status: In Progress
-Last activity: 2026-10-23 – 09-09 Integration: Strenge, Kassenbuch, Kundenportal, L-1, Querverweise, Basis test.246
+Last activity: 2026-10-23 – 09-16 Phasen-Gate lokal grün: E2E sechs Breiten, Kundenportal-Szene, Kartenrahmen
 
-Progress: [█████████░] 96% (53/55 Pläne des Milestones laut SUMMARY-Zählung; Phase 9: 16/18)
+Progress: [█████████░] 98% (54/55 Pläne des Milestones laut SUMMARY-Zählung; Phase 9: 17/18)
 
-Last session: 2026-10-23T04:43:58.524Z
-Stopped at: Completed 09-09-PLAN.md
+Last session: 2026-10-23T05:36:30.454Z
+Stopped at: Completed 09-16-PLAN.md
 Resume file: None
 
 ## Accumulated Context
@@ -125,6 +125,8 @@ Resume file: None
 - [Phase 09]: 09-09: Kundenportal nach Release a0e27c42 – Angebotsmail mit Unterschriftslink, Rechnung als PDF, ohne Termine/Nachrichten
 - [Phase 09]: 09-09: Produktdaten ohne Negativsätze, einzige Ausnahme FAQ GoBD-zertifiziert
 - [Phase 09]: 09-09: Produktbasis Web v4.0.0-test.246 (a0e27c42); liveExtras Kassenbuch und § 13b nicht beworben bis Phase 10
+- [Phase 09]: 09-16: Kundenportal-Szene zeigt die Unterschriftsseite aus der Angebotsmail (QuoteSigning.tsx) statt der Portal-Rechnungsansicht
+- [Phase 09]: 09-16: Kartenbühne begrenzt die Rahmen-figure auf max(280px, 100%); die Plantafel-Wochenansicht ragt nicht mehr über die Karte
 
 ### Pending Todos
 
@@ -171,3 +173,4 @@ None yet.
 | Phase 08 P13 | 59min | 2 tasks | 22 files |
 | Phase 08 P14 | 28min | 2 tasks | 16 files |
 | Phase 09 P09 | 85 min | 2 tasks | 60 files |
+| Phase 09 P16 | 51 min | 2 tasks | 7 files |
