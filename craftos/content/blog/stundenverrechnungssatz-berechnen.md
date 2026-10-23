@@ -1,36 +1,35 @@
 ---
 title: "Stundenverrechnungssatz berechnen: von Jahreskosten zum tragfähigen Preis"
 description: "Berechnen Sie internen Kostensatz und Verkaufssatz anhand realistischer Jahreskosten, verrechenbarer Stunden und einer klar definierten Zielmarge."
+answer: "Teilen Sie Ihre Jahreskosten durch die verrechenbaren Jahresstunden; das ergibt den internen Kostensatz. Den Nettoverkaufssatz erhalten Sie, wenn Sie diesen Kostensatz durch eins minus Zielmarge teilen, bei 60 € und 20 % Marge also 75 € je Stunde."
 category: "kalkulation"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["angebote", "nachkalkulation"]
 relatedArticles: ["/blog/tiefenkalkulation-handwerk", "/blog/nachkalkulation-handwerk"]
-sources: [{"url": "https://www.hwk-cottbus.de/downloads/kalkulation-svs-7,1375.pdf", "label": "Handwerkskammer Cottbus: Kalkulation des Stundenverrechnungssatzes", "checkedAt": "2026-09-09"}]
+sources: [{"url": "https://www.hwk-cottbus.de/downloads/kalkulation-svs-7,1375.pdf", "label": "Handwerkskammer Cottbus: Ermittlung Stundenverrechnungssatz (Beispielrechnung)", "checkedAt": "2026-10-23"}]
 platforms: ["web"]
 ---
 
-Der Stundenverrechnungssatz muss mehr tragen als den unmittelbar ausgezahlten Lohn. Er soll die Kosten Ihres Betriebs auf die Stunden verteilen, die Sie tatsächlich abrechnen können. Erst danach kommt der geplante Gewinn hinzu. Wer bezahlte Arbeitszeit mit verrechenbarer Zeit gleichsetzt, kalkuliert häufig mit einem zu niedrigen Satz.
-
 ## Welche Kosten gehören in die Rechnung?
 
-Für eine vereinfachte betriebliche Gesamtrechnung erfassen Sie jährliche Personalkosten, eine noch nicht enthaltene Unternehmervergütung und weitere Betriebskosten. Entscheidend ist, dass Sie jeden Kostenbestandteil genau einmal berücksichtigen.
+In die Rechnung gehören die jährlichen Personalkosten, eine noch nicht enthaltene Unternehmervergütung und alle weiteren Betriebskosten. Entscheidend ist, dass Sie jeden Kostenbestandteil genau einmal berücksichtigen.
 
-Zu den betrieblichen Kosten können beispielsweise Miete, Versicherungen, Verwaltung und Fahrzeugkosten gehören. Wenn Fahrzeugkosten bereits als gesonderte Auftragskosten verrechnet werden, müssen Sie die Abgrenzung beachten. Die Verteilung darf weder denselben Aufwand doppelt ansetzen noch einen wesentlichen Kostenblock auslassen.
+Zu den Betriebskosten zählen zum Beispiel Miete, Versicherungen, Verwaltung und Fahrzeuge. Rechnen Sie Fahrzeugkosten schon gesondert je Auftrag ab, grenzen Sie sie hier ab, damit derselbe Aufwand nicht doppelt erscheint und kein großer Kostenblock fehlt.
 
-Die [Handwerkskammer Cottbus](https://www.hwk-cottbus.de/downloads/kalkulation-svs-7,1375.pdf) stellt ebenfalls den Zusammenhang von betrieblichen Kosten, produktiver Zeit und Kalkulation dar. Unser Rechner verwendet dafür eine bewusst einfache Gesamtkostenmethode; differenzierte Lohngruppen oder Maschinenkalkulationen können ergänzend erforderlich sein.
+Die [Handwerkskammer Cottbus](https://www.hwk-cottbus.de/downloads/kalkulation-svs-7,1375.pdf) zeigt den Zusammenhang von Kosten, verrechenbaren Stunden und Stundensatz an einem Einzelunternehmen und einer GmbH. Unser Rechner nutzt bewusst die einfache Gesamtkostenmethode; Lohngruppen und Maschinenkosten kalkulieren Sie bei Bedarf zusätzlich.
 
 ## Was sind verrechenbare Jahresstunden?
 
-Das sind die Stunden, die Sie Kundenaufträgen als abrechenbare Leistung zurechnen können. Urlaub, Feiertage, Krankheit, Schulungen, interne Organisation und nicht verrechnete Wege verringern die verfügbare Menge.
+Verrechenbare Jahresstunden sind die Stunden, die Sie Kundenaufträgen als abrechenbare Leistung zurechnen können. Urlaub, Feiertage, Krankheit, Schulungen, interne Organisation und nicht berechnete Wege verringern diese Menge.
 
-Schätzen Sie diese Stunden aus Ihren tatsächlichen Zeitdaten. Eine perfekte Auslastung über das ganze Jahr ist kein verlässlicher Ausgangspunkt. Beginnen Sie mit einem realistischen Normalfall und rechnen Sie anschließend eine vorsichtigere Variante.
+Schätzen Sie die Stunden aus Ihren tatsächlichen Zeitdaten. Beginnen Sie mit einem realistischen Normalfall statt mit voller Auslastung und rechnen Sie anschließend eine vorsichtigere Variante.
 
 ## Wie sieht das vollständige Beispiel aus?
 
-Der fiktive Musterbetrieb plant 144.000 € Jahreskosten und 2.400 verrechenbare Stunden.
+Der fiktive Musterbetrieb plant 144.000 € Jahreskosten und 2.400 verrechenbare Stunden. Daraus ergeben sich 60 € interner Kostensatz und bei 20 % Zielmarge 75 € Nettoverkaufssatz je Stunde.
 
 | Rechenschritt | Ergebnis |
 |---|---:|
@@ -40,30 +39,37 @@ Der fiktive Musterbetrieb plant 144.000 € Jahreskosten und 2.400 verrechenbare
 | Zielmarge | 20 % |
 | Nettoverkaufssatz: 60 € ÷ 0,8 | 75,00 €/Stunde |
 
-Der Unterschied von 15 € je verkaufter Stunde ist im Beispiel der geplante Gewinnanteil nach den erfassten Kosten. Umsatzsteuer wird gegebenenfalls zusätzlich ausgewiesen und gehört nicht zum betrieblichen Gewinn.
+Die 15 € Unterschied je verkaufter Stunde sind im Beispiel der geplante Gewinnanteil nach den erfassten Kosten. Die Umsatzsteuer kommt gegebenenfalls hinzu und gehört nicht zum Gewinn.
 
-Mit dem [kostenlosen Stundensatzrechner](/rechner/stundensatz) können Sie die Beispielwerte durch Ihre eigenen Zahlen ersetzen. Der Rechenweg bleibt sichtbar; die Eingaben werden nicht gespeichert.
+1. Summieren Sie die geplanten Jahreskosten.
+2. Ermitteln Sie die verrechenbaren Jahresstunden aus Ihren Zeitdaten.
+3. Teilen Sie die Kosten durch die Stunden.
+4. Teilen Sie den Kostensatz durch eins minus Zielmarge.
+
+Mit dem [kostenlosen Stundensatzrechner](/rechner/stundensatz) ersetzen Sie die Beispielwerte durch Ihre eigenen Zahlen. Der Rechenweg bleibt sichtbar; die Eingaben werden nicht gespeichert.
 
 ## Wie empfindlich reagiert der Satz auf weniger Auslastung?
 
-Sinken die verrechenbaren Stunden bei gleichen Kosten auf 2.000, beträgt der interne Kostensatz 72 €. Bei derselben Zielmarge wären 90 € netto je Stunde erforderlich. Ein scheinbar kleiner Auslastungsrückgang verändert die Preisgrundlage also deutlich.
+Deutlich: Sinken die verrechenbaren Stunden bei gleichen Kosten von 2.400 auf 2.000, steigt der interne Kostensatz von 60 € auf 72 €. Bei derselben Zielmarge wären dann 90 € netto je Stunde nötig.
 
-Das bedeutet nicht, dass Sie Ihren Verkaufspreis täglich wechseln sollten. Es zeigt vielmehr, welche Auslastung Ihre Planung voraussetzt. Wenn dieser Wert über längere Zeit nicht erreichbar ist, müssen Preis, Kosten oder Organisation überprüft werden.
+Sie müssen den Verkaufspreis deshalb nicht laufend ändern. Die Rechnung zeigt aber, welche Auslastung Ihre Planung voraussetzt; ist sie über längere Zeit nicht erreichbar, prüfen Sie Preis, Kosten oder Organisation.
 
 ## Welchen Satz übernehmen Sie in eine Angebotskalkulation?
 
-Übernehmen Sie den internen Kostensatz, wenn die Angebotskalkulation anschließend eine Marge auf den gesamten Auftrag berechnet. Im Beispiel sind das 60 € und nicht 75 €. Andernfalls wird der Gewinnanteil der Arbeitsstunde als Kosten behandelt und danach erneut mit Gewinn versehen.
+Übernehmen Sie den internen Kostensatz, wenn die Angebotskalkulation anschließend eine Marge auf den ganzen Auftrag rechnet, im Beispiel also 60 € statt 75 €. Sonst wird der Gewinnanteil der Stunde als Kosten behandelt und ein zweites Mal mit Gewinn versehen.
 
-Der Rechner kann diesen internen Wert an die [Angebotskalkulation](/rechner/angebotskalkulation) übergeben. Prüfen Sie dort zusätzlich Material und auftragsbezogene Kosten. Der Stundenpreis allein bildet einen materialintensiven Auftrag nicht vollständig ab.
+Der Rechner übergibt diesen internen Wert an die [Angebotskalkulation](/rechner/angebotskalkulation). Ergänzen Sie dort Material und auftragsbezogene Kosten, denn bei materialintensiven Aufträgen trägt der Stundenpreis allein nicht.
 
 ## Wie halten Sie die Kalkulation aktuell?
 
-Vergleichen Sie die Annahmen regelmäßig mit Ihren tatsächlichen Zahlen. Veränderte Personalkosten, neue Fahrzeuge oder längere unproduktive Zeiten können den Kostensatz verschieben. Ein sinnvoller Anlass ist die Jahresplanung; größere betriebliche Änderungen rechtfertigen eine frühere Neubewertung.
+Vergleichen Sie Ihre Annahmen mindestens zur Jahresplanung mit den tatsächlichen Zahlen und bei größeren Änderungen im Betrieb früher. Neue Personalkosten, Fahrzeuge oder mehr unproduktive Zeit verschieben den Kostensatz.
 
-Nutzen Sie die [Zeiterfassung](/funktionen/zeiterfassung), um die Stundenbasis besser zu verstehen, und die [Nachkalkulation](/funktionen/nachkalkulation), um Abweichungen pro Auftrag zu erkennen. Dokumentieren Sie dabei den Stand Ihrer Kostensätze, damit ein alter Auftrag nicht versehentlich mit neuen Annahmen beurteilt wird.
+Sammeln Sie für den nächsten Planungsstand die tatsächlichen Jahreskosten je Kostenblock, die erfassten verrechenbaren Stunden und die wichtigsten Gründe für nicht verrechenbare Zeit. Trennen Sie einmalige Ereignisse wie einen Fahrzeugschaden von dauerhaft unterschätztem Aufwand.
 
-## Welche Zahlen können Sie für den nächsten Planungsstand sammeln?
+Rechnen Sie danach Normalfall und vorsichtigen Fall neu durch. Beide Ergebnisse helfen, Preisgespräche und Auslastungsziele mit konkreten Annahmen zu führen.
 
-Halten Sie die tatsächlichen Jahreskosten nach den verwendeten Kostenblöcken bereit und vergleichen Sie sie mit der bisherigen Planung. Ergänzen Sie die erfassten verrechenbaren Stunden sowie die wichtigsten Gründe für nicht verrechenbare Zeit.
+## So unterstützt CraftOS
 
-Trennen Sie dabei einmalige Sonderereignisse von regelmäßig wiederkehrendem Aufwand. Ein ungewöhnlicher Fahrzeugschaden muss anders beurteilt werden als dauerhaft unterschätzte Verwaltungszeit. Rechnen Sie danach Normalfall und vorsichtigen Fall neu durch. Beide Ergebnisse helfen, Preisgespräche und Auslastungsziele mit konkreten Annahmen zu führen. Der Rechner zeigt den Zusammenhang; die Qualität Ihrer Ausgangsdaten entscheidet über seinen praktischen Nutzen.
+Die [Zeiterfassung](/funktionen/zeiterfassung) liefert die Datenbasis für Ihre verrechenbaren Stunden, die [Nachkalkulation](/funktionen/nachkalkulation) zeigt Abweichungen je Auftrag. Halten Sie dabei fest, mit welchem Kostensatz ein Auftrag kalkuliert wurde, damit Sie alte Aufträge nicht mit neuen Annahmen beurteilen.
+
+In der Web-App hinterlegen Sie unter „Einstellungen → Lohngruppen“ je Lohngruppe, etwa Geselle oder Helfer, die Lohnkosten und den Verrechnungssatz pro Stunde. Wie Sie damit einzelne Positionen kalkulieren, zeigt der Ratgeber [Tiefenkalkulation](/blog/tiefenkalkulation-handwerk).
