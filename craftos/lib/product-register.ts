@@ -227,17 +227,32 @@ const mobile = (...paths: string[]): Evidence[] =>
 
 /**
  * Offline-Erfassung der Mobile-App (07 D-09, D-23): Offline-Warteschlange, Sync-Status und
- * Offline-Anzeige am Mobile-Release. Auf der Website nur mit Einschränkung darstellen
- * (Kennzahl „teilweise nutzbar, später synchronisiert“, FAQ „Teilweise: …“); die Limitation
- * steht wortgleich in `limitations`.
+ * Offline-Anzeige am Mobile-Release. Die Website zählt positiv auf, was die App ohne Empfang
+ * erfasst und danach überträgt (`erfassung`, je Vorgang ein Hook mit `useOfflineMutation` am
+ * Release, 09-10, Inhaberregel „nur nennen, was unterstützt wird“); die interne Limitation
+ * steht wortgleich in `limitations` und wird nicht gerendert.
  */
-export const mobileOffline: { name: string; evidence: Evidence[]; limitation: string } = {
+export const mobileOffline: {
+  name: string;
+  evidence: Evidence[];
+  erfassung: string;
+  erfassungEvidence: Evidence[];
+  limitation: string;
+} = {
   name: "Offline-Erfassung in der Mobile-App",
   evidence: mobile(
     "src/shared/hooks/useOfflineQueueSync.ts",
     "src/shared/hooks/useOfflineMutation.ts",
     "src/shared/components/SyncStatusBadge.tsx",
     "src/shared/components/OfflineIndicator.tsx",
+  ),
+  erfassung: "Zeiten, Bautagesberichte, Mängel, Aufmaße und Urlaubsanträge",
+  erfassungEvidence: mobile(
+    "src/features/time-tracking/hooks/useTimeEntries.ts",
+    "src/features/construction-reports/hooks/useConstructionReports.ts",
+    "src/features/defects/hooks/useDefects.ts",
+    "src/features/room-measurements/hooks/useRoomMeasurements.ts",
+    "src/features/vacation/hooks/useVacationRequests.ts",
   ),
   limitation: "Keine vollständige Offline-Zusage",
 };

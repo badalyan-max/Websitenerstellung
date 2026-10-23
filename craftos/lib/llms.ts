@@ -2,6 +2,7 @@
 import { funktionen } from "./funktionen";
 import { gewerke } from "./gewerke";
 import { keywordMap } from "./keyword-map";
+import { mobileOffline } from "./product-register";
 import { zahlwort } from "./seiten/vergleich";
 import { wettbewerber } from "./wettbewerber";
 import {
@@ -93,11 +94,11 @@ export function buildLlmsTxt(): string {
     "",
     "## Mobile-App",
     "",
-    // Phase-7-Seite /app (Code-Review 07 WR-04); Offline nur mit Einschränkung (D-23, Registereintrag mobileOffline).
+    // Phase-7-Seite /app (Code-Review 07 WR-04); Offline positiv aufgezählt (09-10, Registereintrag mobileOffline.erfassung).
     link(
       "Handwerker-App für die Baustelle",
       "/app",
-      "Zeiten, Einsätze, Fotos, Mängel und Unterschriften in der Mobile-App erfassen; ohne Empfang nur teilweise nutzbar",
+      `Zeiten, Einsätze, Fotos, Mängel und Unterschriften in der Mobile-App erfassen; ohne Empfang ${mobileOffline.erfassung} erfassen und später übertragen`,
     ),
     "",
     "## Gewerke",

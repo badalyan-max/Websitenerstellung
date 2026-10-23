@@ -11,7 +11,7 @@ import type { KeyFact } from "@/components/v2/KeyFacts";
 import type { Step } from "@/components/v2/StepFlow";
 import { euro, germanDate } from "@/lib/format";
 import { getFunktionsgruppen, type GruppenId } from "@/lib/funktionsgruppen";
-import { mobileLocales, productBasis } from "@/lib/product-register";
+import { mobileLocales, mobileOffline, productBasis } from "@/lib/product-register";
 import {
   aufmassScene,
   einsaetzeScene,
@@ -212,6 +212,7 @@ export const faqContent: { q: string; a: string }[] = [
   },
   {
     q: "Kann ich auf der Baustelle ohne Internet arbeiten?",
-    a: "Teilweise: Bereits geladene Daten, ausgewählte Texteingaben und Zeiteinträge können mobil offline nutzbar sein. Fotos, KI und noch nicht geladene Inhalte benötigen eine Verbindung.",
+    // 09-10: positiv aufgezählt (Inhaberregel „nur nennen, was unterstützt wird“; Register mobileOffline.erfassung).
+    a: `In der Mobile-App erfassen Sie ${mobileOffline.erfassung} auch ohne Empfang; die App überträgt sie, sobald wieder eine Verbindung besteht. Projekte, die Sie am Einsatztag einmal mit Verbindung öffnen, hält sie bis zu 24 Stunden offline bereit.`,
   },
 ];

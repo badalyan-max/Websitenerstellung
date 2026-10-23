@@ -17,7 +17,7 @@ import { euro, germanDate } from "@/lib/format";
 import { funktionen } from "@/lib/funktionen";
 import { getFunktionsgruppen } from "@/lib/funktionsgruppen";
 import { pruefeNurUnterstuetzt } from "@/lib/nur-unterstuetzt";
-import { mobileLocales } from "@/lib/product-register";
+import { mobileLocales, mobileOffline } from "@/lib/product-register";
 import { site, tarife } from "@/lib/site";
 
 function tarif(id: "voll" | "app") {
@@ -30,7 +30,7 @@ const voll = tarif("voll");
 const app = tarif("app");
 const NBSP = " ";
 /** Offline erfassbare Vorgänge der Mobile-App (Beleg: Produktregister `mobileOffline`, Mobile-Release origin/release). */
-const OFFLINE_ERFASSUNG = "Zeiten, Bautagesberichte, Mängel, Aufmaße und Urlaubsanträge";
+const OFFLINE_ERFASSUNG = mobileOffline.erfassung;
 /** Standortgrenze positiv (Produktregister: „GPS erfasst einzelne Vorgänge“). */
 const GPS_VORGAENGE = "GPS erfasst nur einzelne Vorgänge wie das Ein- und Ausstempeln";
 const ZAHLWORT: Record<number, string> = { 4: "vier", 5: "fünf", 6: "sechs", 7: "sieben", 8: "acht" };

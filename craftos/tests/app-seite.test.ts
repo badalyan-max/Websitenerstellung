@@ -272,7 +272,7 @@ describe("Inhalte", () => {
     expect(faq[0].a).toContain(euro(tarif("voll").monat));
     expect(faq[1].a).toContain(euro(tarif("app").monat));
     // Inhaberregel „nur nennen, was unterstützt wird“: Aufzählung des offline Erfassbaren statt „Teilweise:“.
-    expect(faq[2].a).not.toMatch(/^(Nein|Teilweise)/);
+    expect(faq[2].a).not.toMatch(/^(Nein|Teilweise)\b/);
     expect(faq[2].a).not.toMatch(/teilweise/i);
     expect(faq[2].a).toContain(mobileOffline.erfassung);
     expect(faq[2].a).toContain("bis zu 24 Stunden");

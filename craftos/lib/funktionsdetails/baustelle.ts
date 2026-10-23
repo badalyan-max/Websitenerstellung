@@ -137,10 +137,10 @@ export const baustelleInhalte: Record<string, FunktionsdetailInhalt> = {
           a: "Ja. Manuelle Einträge ergänzen die Erfassung im Rahmen der Rechte, eine vergessene Endzeit korrigieren Sie im bestehenden Eintrag. Zeiten anderer Personen erfasst und korrigiert die Mobil-Teamleitung.",
         },
         // Quelle: content/hilfe/mobilen-timer-bedienen.md (Synchronisierungsstatus, Standort für Start und Stopp);
-        // 07-UI-SPEC /app Offline-Schritte; Register limitations „Keine vollständige Offline-Zusage“ (D-23).
+        // 07-UI-SPEC /app Offline-Schritte; 09-10 positiv nach /hilfe/mobile-offline-synchronisierung (GPS-Punkt ohne Netz).
         {
           q: "Funktioniert die Zeiterfassung bei schwachem Empfang?",
-          a: "Teilweise: Zeiten werden ohne Empfang vorgemerkt und später übertragen, den Stand zeigt der Synchronisierungsstatus. Für Start und Stopp braucht die App weiterhin eine ermittelbare Position.",
+          a: "Ja. Die App merkt Zeiten ohne Empfang vor und überträgt sie, sobald wieder eine Verbindung besteht; den Stand zeigt der Synchronisierungsstatus. Beim Starten und Stoppen des Timers erfasst sie auch ohne Netz einen GPS-Punkt, wenn Sie den Standort freigegeben haben.",
         },
       ],
     },

@@ -133,7 +133,7 @@ describe("Startseiteninhalte", () => {
     expect(faq[3].q).toContain("GoBD");
     // 09-10 (Inhaberregel „nur nennen, was unterstützt wird“): Offline-Antwort zählt auf, was ohne Empfang erfasst wird.
     expect(faq[4].q).toBe("Kann ich auf der Baustelle ohne Internet arbeiten?");
-    expect(faq[4].a).not.toMatch(/^(Nein|Teilweise)/);
+    expect(faq[4].a).not.toMatch(/^(Nein|Teilweise)\b/);
     expect(faq[4].a).toContain(mobileOffline.erfassung);
     expect(faq[4].a).toContain("bis zu 24 Stunden");
     for (const item of faq) expect(item.a, item.q).not.toMatch(/teilweise/i);

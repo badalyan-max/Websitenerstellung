@@ -3,9 +3,9 @@
  * Alle Zahlen stammen aus lib/site.ts (site, tarife), dem Produktregister (mobileLocales, mobileOffline,
  * productBasis) und lib/format.ts; Preise, Sprachenzahl und Testtage werden nie als Literal geschrieben.
  * Die Kacheln decken alle Live-Funktionen der App am Mobile-Release ab (07-RESEARCH „Mobile-App-Umfang“),
- * Phone-Szenen kommen aus lib/scenes.ts. Offline erscheint nur mit Einschränkung (Kennzahl, Hinweis,
- * Ablauf und FAQ „Teilweise: …“; Belege und Limitation im Registereintrag mobileOffline).
- * Ausführliche Fassung der Offline-Grenzen: /hilfe/mobile-offline-synchronisierung.
+ * Phone-Szenen kommen aus lib/scenes.ts. Offline zählt positiv auf, was die App ohne Empfang erfasst und
+ * danach überträgt (Kennzahl, Hinweis, Ablauf und FAQ; 09-10, Registereintrag mobileOffline.erfassung).
+ * Ausführliche Fassung: /hilfe/mobile-offline-synchronisierung.
  * Budget- und Herkunftstests: tests/app-seite.test.ts.
  */
 import { Camera, Contact, FolderOpen, ListChecks, MessagesSquare, Navigation } from "lucide-react";
@@ -14,7 +14,7 @@ import type { Step } from "@/components/v2/StepFlow";
 import { euro, germanDate } from "@/lib/format";
 import type { KernpunktVisual } from "@/lib/funktionsdetails/types";
 import { KUNDEN_APP_TEXT } from "@/lib/funktionsgruppen";
-import { mobileLocales, productBasis } from "@/lib/product-register";
+import { mobileLocales, mobileOffline, productBasis } from "@/lib/product-register";
 import {
   abnahmeScene,
   aufmassScene,
@@ -254,16 +254,16 @@ export const appTiles: Readonly<Record<"zeit" | "dokumentieren" | "material", Ap
 };
 
 // ---------------------------------------------------------------------------
-// Kennzahlen (Kurzform-Quellen nach D-13; Offline nur mit Einschränkung, D-23)
+// Kennzahlen (Kurzform-Quellen nach D-13; Offline positiv mit Verweis auf die Aufzählung unten, 09-10)
 // ---------------------------------------------------------------------------
 
 export const appKeyFacts: { facts: KeyFact[]; note: string } = {
   facts: [
     { value: String(mobileLocales.length), label: "Sprachen in der Mobile-App", source: "register:mobileLocales" },
-    { value: "Offline", label: "teilweise nutzbar, später synchronisiert", source: "register:mobileOffline" },
+    { value: "Offline", label: "erfassen und später übertragen", source: "register:mobileOffline" },
     { value: euro(app.monat), label: "App-Lizenz pro Monat", source: "site:tarif-app-monat" },
   ],
-  note: `Preis netto zzgl. USt. Offline teilweise nutzbar, siehe unten. Stand: ${germanDate(productBasis.checkedAt)}.`,
+  note: `Preis netto zzgl. USt. Was die App offline erfasst, steht unten. Stand: ${germanDate(productBasis.checkedAt)}.`,
 };
 
 // ---------------------------------------------------------------------------
@@ -278,7 +278,7 @@ export const offlineSteps: Step[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// FAQ (Werte aus tarife und mobileLocales; Offline-Antwort beginnt mit „Teilweise:“)
+// FAQ (Werte aus tarife und mobileLocales; Offline-Antwort zählt mobileOffline.erfassung auf, 09-10)
 // ---------------------------------------------------------------------------
 
 export const appFaq: { q: string; a: string }[] = [
@@ -292,7 +292,7 @@ export const appFaq: { q: string; a: string }[] = [
   },
   {
     q: "Funktioniert die App ohne Internet?",
-    a: "Teilweise: Bereits geladene Daten, ausgewählte Texteingaben und Zeiteinträge können ohne Empfang nutzbar sein und werden später synchronisiert. Karten, Routen, Fotos, KI und noch nicht geladene Inhalte benötigen eine Verbindung; der Sync-Status zeigt ausstehende Einträge.",
+    a: `Ohne Empfang erfassen Sie ${mobileOffline.erfassung}; die App überträgt sie, sobald wieder eine Verbindung besteht, und der Sync-Status zeigt ausstehende Einträge. Projekte, die Sie am Einsatztag einmal mit Verbindung öffnen, hält sie bis zu 24 Stunden offline bereit; Fotos, Karten, Routen und KI nutzen Sie mit Verbindung.`,
   },
   {
     q: "In welchen Sprachen gibt es die App?",

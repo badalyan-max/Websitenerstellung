@@ -1025,7 +1025,8 @@ describe("getFunktionsdetail und Inhaltstabelle", () => {
   it("Inhabervorgabe L-1 (09-09): FAQ-Antworten, Grenze-Kacheln und Grenze-Sätze nennen nur Unterstütztes", () => {
     const negativ = /(?<![\p{L}])(kein|keine|keinen|keiner|nicht)(?![\p{L}])/iu;
     for (const [slug, inhalt] of Object.entries(INHALTE)) {
-      for (const item of inhalt.faq.items) expect(item.a.startsWith("Nein"), `${slug}: ${item.q}`).toBe(false);
+      // 09-10: auch keine Antwort „Teilweise: …“ (Offline auf /funktionen/zeiterfassung positiv aufgezählt).
+      for (const item of inhalt.faq.items) expect(item.a, `${slug}: ${item.q}`).not.toMatch(/^(Nein|Teilweise)\b/);
       for (const tile of inhalt.kernpunkte.tiles.filter((x) => x.grenze))
         expect(`${tile.title} ${tile.text}`, slug).not.toMatch(negativ);
     }
