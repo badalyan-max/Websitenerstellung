@@ -5,21 +5,22 @@
 .scene p { margin: 0; color: var(--color-ink-600); }
 .scene dl, .scene dd { margin: 0; }
 .scene svg { flex-shrink: 0; }
-.scene [data-cursor-target] { outline: 1px solid transparent; outline-offset: -1px; transition: outline-color .18s, background-color .3s, border-color .3s, opacity .3s; }
+.scene [data-cursor-target] { outline: 1px solid transparent; outline-offset: -1px; transition: outline-color .18s, background-color .3s, border-color .3s, color .3s; }
 .scene [data-cursor-target]:hover { outline-color: var(--color-primary-300); }
 .stock { display: flex; gap: 15px; align-items: center; padding: 10px 8px; }
 .stock > svg { color: var(--color-primary-800); }
 .stock small { display: block; }
 .stock strong { display: flex; align-items: baseline; gap: 8px; font-size: 44px; font-family: var(--font-display); line-height: 1.1; margin-top: 4px; }
 .stock strong > span { font-family: var(--font-sans); color: var(--color-ink-600); font-size: 11px; font-weight: 400; }
-.stockMovement { display: flex; gap: 9px; align-items: center; padding: 11px 10px; border-radius: 7px; background: var(--color-ink-100); opacity: .5; }
+.stockMovement { display: flex; gap: 9px; align-items: center; padding: 11px 10px; border-radius: 7px; background: var(--color-ink-100); color: #62626E; }
 .stockMovement > svg { color: var(--color-primary-800); }
 .stockMovement > span { flex: 1; }
 .stockMovement strong, .stockMovement small { display: block; }
 .stockMovement strong { font-size: 12px; }
-.stockMovement small { font-size: 10px; margin-top: 2px; }
+.stockMovement small { font-size: 10px; margin-top: 2px; color: #62626E; transition: color .3s; }
 .stockMovement > b { font-size: 20px; font-family: var(--font-display); }
-.stockMovement[data-active=true] { opacity: 1; background: var(--color-primary-50); }
+.stockMovement[data-active=true] { color: #17171C; background: var(--color-primary-50); }
+.stockMovement[data-active=true] small { color: var(--color-ink-600); }
 .result { margin-top: auto; display: flex; align-items: center; gap: 8px; min-height: 38px; padding: 8px 10px; border-radius: 7px; background: var(--color-ink-100); color: var(--color-ink-600); font-size: 11px; }
 .result[data-ready=true] { background: var(--color-primary-50); color: var(--color-primary-900); }
 
