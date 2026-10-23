@@ -10,6 +10,7 @@ import * as siteModule from "@/lib/site";
 import { buildLlmsTxt } from "@/lib/llms";
 import { softwareApplicationSchema } from "@/lib/schema";
 import { productBasis } from "@/lib/product-register";
+import { pruefeReleaseStand, releaseSuite, WEB_REPO } from "./release-repos";
 
 const { tarife, creditPakete, site } = siteModule;
 const root = path.resolve(import.meta.dirname, "..");
@@ -147,7 +148,8 @@ const zahlwoerter: Record<string, number> = { sieben: 7, zehn: 10, vierzehn: 14,
 // Komposita wie „Testtage“ zählen mit (LO-01).
 const tagesLiteral = /(?<![\p{L}\d.,])(\d+|sieben|zehn|vierzehn|dreißig)(?:\s*-\s*|\s*)(?:(?:Test)?Tagen?|tägig)(?![\p{L}])/giu;
 const tagesTemplate = /\$?\{[^{}]*trialDays\}\s*(?:-\s*)?(?:(?:Test)?[Tt]agen?|tägig)(?![\p{L}])/gu;
-const testKontext = /test|kostenlos|ohne zahlungs/i;
+// „test“ nur am Wortanfang (nach Nicht-Buchstabe): „Testtage“ zählt, „Spätestens“ und „Bestandstest“ nicht (09-09).
+const testKontext = /(?<!\p{L})test|kostenlos|ohne zahlungs/iu;
 
 function satzFenster(text: string, start: number, end: number): string {
   let before = text.slice(Math.max(0, start - 60), start);
@@ -234,6 +236,15 @@ describe("Testphase entspricht dem Snapshot", () => {
     expect(testphasenFehler([{ rel: "components/x.tsx", text: "<a>14 Tage kostenlos testen</a>" }], 10).fehler).toHaveLength(1);
   });
 
+  it("Testkontext-Muster: „test“ nur am Wortanfang, Komposita wie „Testtage“ zählen weiter (09-09, D-14)", () => {
+    for (const ohne of ["Spätestens nach 5 Tagen", "Der Bestandstest läuft 7 Tage"])
+      expect(testKontext.test(ohne), ohne).toBe(false);
+    for (const mit of ["Testtage", "10 Tage kostenlos testen", "ohne Zahlungsdaten starten", "Test 14 Tage"])
+      expect(testKontext.test(mit), mit).toBe(true);
+    // Satz mit „Spätestens“ und anderer Tageszahl ist keine Testphasen-Angabe.
+    expect(testphasenFehler([{ rel: "lib/x.ts", text: "Spätestens 30 Tage nach Rechnungsdatum." }], 10).treffer).toEqual([]);
+  });
+
   it("Wettbewerber-Datenmodule: Tageszahlen nur im Feld testphaseTage", () => {
     expect(tageAusserhalbFeld('export const x = { hinweis: "Die Testphase dauert 7 Tage." };')).toHaveLength(1);
     expect(
@@ -261,10 +272,12 @@ describe("Netto-Hinweis", () => {
   });
 });
 
-const WEB = process.env.CRAFTOS_WEB_REPO || "C:/Projekte/craft-connect-buddy";
-describe.skipIf(!fs.existsSync(WEB))("Snapshot ist aktuell (nur lokal)", () => {
+// Sichtbarer Skip mit Grund bzw. Pflichtmodus (CRAFTOS_REQUIRE_RELEASE=1, CI) aus tests/release-repos.ts (D-14).
+const snapshotSuite = releaseSuite("Snapshot ist aktuell (nur lokal)", ["web"]);
+describe.skipIf(snapshotSuite.skip)(snapshotSuite.titel, () => {
   it("Snapshot ist aktuell: Commit entspricht origin/release", () => {
-    const head = execFileSync("git", ["-C", WEB, "rev-parse", "origin/release"], {
+    pruefeReleaseStand("web");
+    const head = execFileSync("git", ["-C", WEB_REPO, "rev-parse", "origin/release"], {
       encoding: "utf8",
     }).trim();
     expect(snapshot.source.ref).toBe("origin/release");

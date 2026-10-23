@@ -290,6 +290,9 @@ test('Funktionsillustration: emulierter Tab-Sichtbarkeitswechsel hält den Ablau
     document.dispatchEvent(new Event('visibilitychange'))
   })
   await expect(illustration).toHaveAttribute('data-running', 'false')
+  // Wie beim Viewport-Fall: erst nach der Effekt-Bereinigung ist kein alter Timer mehr aktiv; sonst kann runFor
+  // den Phasenwechsel zwischen Auslesen und Pause noch auslösen (08 deferred-items, WebKit-Flake, D-14).
+  await expect(illustration).toHaveAttribute('data-timer', 'cleared')
   const phase = await illustration.getAttribute('data-phase')
   await page.clock.runFor(25_000)
   await expect(illustration).toHaveAttribute('data-phase', phase)
@@ -477,28 +480,62 @@ test('Funktionsillustration: Pause friert auch gleitenden Cursor und Einsatzkart
   const illustration = await openIllustration(page, 'planung')
   const toggle = illustration.getByRole('button', { name: 'Animation pausieren', exact: true })
   await toggle.focus()
-  await expect.poll(() => illustration.getAttribute('data-phase'), { intervals: [20], timeout: 20_000 }).toBe('3')
   const transforms = () => illustration.evaluate((element) => ({
     cursor: getComputedStyle(element.querySelector('[data-illustration-cursor="true"]')).transform,
     assignment: getComputedStyle(element.querySelector('[data-illustration-platform="web"] [data-moved]')).transform,
   }))
-  const movingBefore = await transforms()
-  await page.waitForTimeout(120)
-  const movingAfter = await transforms()
-  expect(movingAfter.cursor).not.toBe(movingBefore.cursor)
-  expect(movingAfter.assignment).not.toBe(movingBefore.assignment)
+  // „Wert ändert sich“: Eintritt in Phase 3 und die gleitende Bewegung werden im Browser selbst beobachtet
+  // (MutationObserver und Animationsframes), damit Round-Trip-Latenz unter Last den Übergang nicht verpasst (D-14).
+  const movement = await illustration.evaluate((element) => new Promise((resolve, reject) => {
+    const read = () => ({
+      cursor: getComputedStyle(element.querySelector('[data-illustration-cursor="true"]')).transform,
+      assignment: getComputedStyle(element.querySelector('[data-illustration-platform="web"] [data-moved]')).transform,
+    })
+    const deadline = setTimeout(() => reject(new Error('Phase 3 nicht erreicht')), 20_000)
+    const observe = () => {
+      const start = read()
+      let frames = 0
+      const tick = () => {
+        const now = read()
+        const moved = { cursor: now.cursor !== start.cursor, assignment: now.assignment !== start.assignment }
+        if ((moved.cursor && moved.assignment) || ++frames > 120) {
+          clearTimeout(deadline)
+          resolve(moved)
+        } else requestAnimationFrame(tick)
+      }
+      requestAnimationFrame(tick)
+    }
+    const observer = new MutationObserver(() => {
+      if (element.getAttribute('data-phase') !== '3') return
+      observer.disconnect()
+      observe()
+    })
+    observer.observe(element, { attributes: true, attributeFilter: ['data-phase'] })
+  }))
+  expect(movement).toEqual({ cursor: true, assignment: true })
   await toggle.press('Space')
+  // Pause belegt: Attribut committet und Effekt-Bereinigung gelaufen; im selben Effektdurchlauf hält
+  // FeatureSnippet alle CSS-Animationen an.
   await expect(illustration).toHaveAttribute('data-running', 'false')
-  await expect(illustration).toHaveAttribute('data-phase', '3')
-  await page.waitForTimeout(200)
+  await expect(illustration).toHaveAttribute('data-timer', 'cleared')
+  const pausedPhase = await illustration.getAttribute('data-phase')
   const pausedBefore = await transforms()
-  await page.waitForTimeout(500)
+  // „Wert bleibt“: zehn aufeinanderfolgende Abfragen gleich; eine Abweichung bleibt bis zum Ablauf sichtbar stehen.
+  let stable = 0
+  let changed = null
+  await expect.poll(async () => {
+    const now = await transforms()
+    if (!changed && JSON.stringify(now) !== JSON.stringify(pausedBefore)) changed = `verändert: ${JSON.stringify(now)}`
+    if (changed) return changed
+    stable++
+    return stable >= 10 ? 'stabil' : `stabil seit ${stable} Abfragen`
+  }, { intervals: [60], timeout: 8_000 }).toBe('stabil')
+  await expect(illustration).toHaveAttribute('data-phase', pausedPhase)
   const pausedAfter = await transforms()
-  expect(pausedAfter).toEqual(pausedBefore)
   await illustration.getByRole('button', { name: 'Animation fortsetzen', exact: true }).press('Space')
   await expect(illustration).toHaveAttribute('data-running', 'true')
-  await page.waitForTimeout(250)
-  const resumed = await transforms()
-  expect(resumed.cursor).not.toBe(pausedAfter.cursor)
-  expect(resumed.assignment).not.toBe(pausedAfter.assignment)
+  // Nach dem Fortsetzen bewegen sich Cursor und Einsatzkarte wieder (angehaltener Übergang läuft weiter, spätestens
+  // mit dem nächsten Ziel in Phase 5 bzw. dem Rücksprung in Phase 0).
+  await expect.poll(async () => (await transforms()).cursor, { timeout: 15_000 }).not.toBe(pausedAfter.cursor)
+  await expect.poll(async () => (await transforms()).assignment, { timeout: 15_000 }).not.toBe(pausedAfter.assignment)
 })

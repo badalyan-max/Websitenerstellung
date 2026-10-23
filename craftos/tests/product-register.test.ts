@@ -1,5 +1,4 @@
 import { describe, it, expect } from "vitest";
-import fs from "node:fs";
 import { execFileSync } from "node:child_process";
 import {
   getProductRegister,
@@ -8,11 +7,12 @@ import {
   mobileOffline,
 } from "@/lib/product-register";
 import { pageMetadata } from "@/lib/metadata";
+import { ZUSATZ_IDS } from "@/lib/funktionsgruppen";
+import { MOBILE_REPO as MOBILE, WEB_REPO as WEB, pruefeReleaseStand, releaseDatei, releaseSuite } from "./release-repos";
 
-const WEB = process.env.CRAFTOS_WEB_REPO || "C:/Projekte/craft-connect-buddy";
-const MOBILE =
-  process.env.CRAFTOS_MOBILE_REPO ||
-  "C:/Projekte/CraftOS - Mobile/craftos-mobile";
+// Sichtbarer Skip mit Grund bzw. Pflichtmodus (CRAFTOS_REQUIRE_RELEASE=1, CI) aus tests/release-repos.ts (D-14).
+const tagSuite = releaseSuite("Tags lösen lokal genau auf den eingetragenen Commit auf (IN-04)", ["web", "mobile"]);
+const repoSuite = releaseSuite("lokale Produkt-Repositories", ["web", "mobile"]);
 
 describe("publication basis", () => {
   it("bezieht beide Produkte auf origin/release mit Tag und Commit", () => {
@@ -27,7 +27,9 @@ describe("publication basis", () => {
     for (const repo of [register.basis.web, register.basis.mobile]) expect(repo.tag).not.toMatch(/-\d+-g[0-9a-f]+$/);
     expect(register.basis.checkedAt).toBe("2026-10-23");
   });
-  it.skipIf(!fs.existsSync(WEB) || !fs.existsSync(MOBILE))("Tags lösen lokal genau auf den eingetragenen Commit auf (IN-04)", () => {
+  it.skipIf(tagSuite.skip)(tagSuite.titel, () => {
+    pruefeReleaseStand("web");
+    pruefeReleaseStand("mobile");
     const register = getProductRegister();
     for (const [repo, basis] of [
       [WEB, register.basis.web],
@@ -100,7 +102,8 @@ describe("publication basis", () => {
     expect(pfade("mahnwesen", "web")).toContain("src/pages/settings/MahnwesenSettings.tsx");
     expect(pfade("bankabgleich", "web")).toContain("src/pages/Bankumsaetze.tsx");
     expect(pfade("datenuebernahme", "web")).toContain("src/pages/Datenimport.tsx");
-    expect(register.liveExtras.filter((x) => x.advertised)).toHaveLength(8);
+    // Parität mit lib/funktionsgruppen.ts – die feste Zahl prüft tests/funktionsgruppen.test.ts (Paket d).
+    expect(register.liveExtras.filter((x) => x.advertised)).toHaveLength(ZUSATZ_IDS.length);
   });
   it("führt 21 App-Sprachen, Zusatzfunktionen und nicht-live Funktionen getrennt", () => {
     const register = getProductRegister();
@@ -160,9 +163,13 @@ describe("publication basis", () => {
   });
 });
 
-describe.skipIf(!fs.existsSync(WEB) || !fs.existsSync(MOBILE))(
-  "lokale Produkt-Repositories",
+describe.skipIf(repoSuite.skip)(
+  repoSuite.titel,
   () => {
+    it("beide Repos vorhanden, Release-Commits aus productBasis lokal und in origin/release enthalten", () => {
+      pruefeReleaseStand("web");
+      pruefeReleaseStand("mobile");
+    });
     function exists(repository: "web" | "mobile", path: string): boolean {
       const repo = repository === "web" ? WEB : MOBILE;
       const commit =
@@ -198,7 +205,7 @@ describe.skipIf(!fs.existsSync(WEB) || !fs.existsSync(MOBILE))(
     }, 30_000);
     it("jeder offline aufgezählte Vorgang nutzt useOfflineMutation am Mobile-Release (09-10)", () => {
       for (const item of mobileOffline.erfassungEvidence) {
-        const src = execFileSync("git", ["-C", MOBILE, "show", `${productBasis.mobile.commit}:${item.path}`], { encoding: "utf8" });
+        const src = releaseDatei("mobile", item.path);
         expect(src, item.path).toContain("useOfflineMutation");
       }
     }, 30_000);
