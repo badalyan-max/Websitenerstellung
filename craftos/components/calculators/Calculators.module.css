@@ -1,152 +1,100 @@
+/*
+ * Rechner v2 (Phase 10, D-15; 10-UI-SPEC § 1.3–§ 1.5, J12). Raster und Verhalten wie im Bestand (Formular/Ergebnis
+ * 1,15fr/0,85fr, Sticky-Ergebnis, Feldpaare, Rechenwahl); Umbrüche 1024/768 px statt 960/640 px. Nur Flächen,
+ * Linien, Radien, Abstände (4er-Skala), Größen (14/16/20/Display), Gewichte (400/600) und Farben sind neu.
+ * Fokus: globale Regel (3px solid #BB7609, Offset 4) bzw. an der Hülle per :focus-within (§ 9.1).
+ * Linien: #DEDEE3 auf Weiß, #E7DCC9 auf Warm. Fehler #B32F28 (J12).
+ */
 .page {
-  --calc-paper: #ffffff;
-  --calc-background: #f7f8f5;
-  --calc-ink: #1d2924;
-  --calc-muted: #58625b;
-  --calc-line: #dce1d9;
-  --calc-amber: #f2af38;
-  --calc-amber-light: #fff4db;
-  --calc-error: #a12525;
-  color: var(--calc-ink);
-  background: var(--calc-background);
-  font-family: var(--font-sans, var(--font-general, sans-serif));
-  padding-bottom: clamp(3rem, 7vw, 7rem);
+  color: #17171c;
 }
 
-.container {
-  width: min(100% - 3rem, 76rem);
-  margin-inline: auto;
-}
-
-/* Kopf mit Brotkrumen (08-UI-SPEC „Spacing Scale“): oben 8/16/24 → Zeile 44 → H1 16/24/32. */
-.hero {
-  padding-block: 8px clamp(2rem, 4vw, 3.5rem);
-}
-
-.crumbs {
-  margin-bottom: 16px;
-}
-
-@media (min-width: 768px) {
-  .hero {
-    padding-top: 16px;
-  }
-  .crumbs {
-    margin-bottom: 24px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .hero {
-    padding-top: 24px;
-  }
-  .crumbs {
-    margin-bottom: 32px;
-  }
-}
-
-.hero h1 {
-  max-width: 19ch;
-  font-family: var(--font-display, var(--font-clash, sans-serif));
-  font-size: clamp(2.2rem, 5vw, 4.4rem);
-  font-weight: 600;
-  line-height: 1.08;
-  letter-spacing: -0.035em;
-  text-wrap: balance;
-  margin: 0;
-}
-
-.intro {
-  max-width: 46rem;
-  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
-  line-height: 1.65;
-  color: var(--calc-muted);
-  margin: 1.4rem 0 0;
-}
-
-.localPromise {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-top: 1.5rem;
-  font-size: 0.875rem;
-  line-height: 1.6;
-  color: var(--calc-muted);
-}
-
-.localPromise svg {
-  flex: 0 0 auto;
-}
-
+/* ---------- Rechnernavigation (§ 1.5) ---------- */
 .calculatorNav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.25rem;
+  gap: 8px;
+  margin-bottom: 24px;
 }
 
 .calculatorNav a {
   display: inline-flex;
   align-items: center;
-  min-height: 2.75rem;
-  padding: 0.75rem 1rem;
-  border-radius: 0.65rem;
+  min-height: 44px;
+  padding: 0 16px;
   border: 1px solid transparent;
-  font-size: 0.95rem;
+  border-radius: 6px;
+  color: #17171c;
+  font-size: 16px;
   font-weight: 600;
-  transition: background 150ms ease;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: background-color 150ms ease;
 }
 
 .calculatorNav a[aria-current="page"] {
-  background: var(--calc-paper);
-  border-color: var(--calc-line);
+  background: #f7f3eb;
+  border-color: #e7dcc9;
 }
 
-.calculatorNav a:hover {
-  background: var(--calc-amber-light);
+@media (hover: hover) {
+  .calculatorNav a:hover {
+    background: #f7f3eb;
+  }
 }
 
+/* ---------- Raster Formular/Ergebnis ---------- */
 .calculatorGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: start;
-  gap: clamp(1rem, 2.5vw, 2rem);
+  gap: 16px;
 }
 
 .formPanel,
 .resultsPanel {
   min-width: 0;
-  border: 1px solid var(--calc-line);
-  border-radius: 1.2rem;
-  padding: clamp(1.25rem, 3vw, 2.4rem);
+  border-radius: 16px;
+  padding: 16px;
 }
 
 .formPanel {
-  background: var(--calc-paper);
+  background: #ffffff;
+  border: 1px solid #dedee3;
+}
+
+.resultsPanel {
+  position: static;
+  background: #f7f3eb;
+  border: 1px solid #e7dcc9;
 }
 
 .panelHeader h2,
 .resultsPanel > h2 {
+  margin: 0;
   font-family: var(--font-display, var(--font-clash, sans-serif));
-  font-size: 1.45rem;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1.25;
-  margin: 0;
+  letter-spacing: -0.025em;
+  color: #17171c;
 }
 
 .panelHeader p {
-  color: var(--calc-muted);
-  font-size: 0.925rem;
-  line-height: 1.6;
-  margin-top: 0.65rem;
+  margin: 8px 0 0;
+  color: #62626e;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
+/* ---------- Felder ---------- */
 .fieldset,
 .modeFieldset,
 .vatFields {
   min-width: 0;
   padding: 0;
-  margin: 2rem 0 0;
+  margin: 24px 0 0;
   border: 0;
 }
 
@@ -155,21 +103,21 @@
 .vatFields legend {
   display: block;
   width: 100%;
-  margin-bottom: 1.15rem;
+  margin-bottom: 16px;
+  font-size: 16px;
   font-weight: 600;
-  font-size: 1.05rem;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .fieldset + .fieldset,
 .vatFields {
-  border-top: 1px solid var(--calc-line);
-  padding-top: 1.6rem;
+  border-top: 1px solid #dedee3;
+  padding-top: 24px;
 }
 
 .field + .field,
 .fieldPair + .field {
-  margin-top: 1.5rem;
+  margin-top: 16px;
 }
 
 .field {
@@ -178,10 +126,11 @@
 
 .label {
   display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  font-size: 0.95rem;
-  line-height: 1.5;
+  margin-bottom: 8px;
+  color: #17171c;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 .inputWrap {
@@ -190,74 +139,78 @@
   align-items: center;
   overflow: hidden;
   width: 100%;
-  border: 1px solid #a9b3a9;
-  border-radius: 0.55rem;
-  background: var(--calc-paper);
+  border: 1px solid #777782;
+  border-radius: 6px;
+  background: #ffffff;
 }
 
+/* Fokusring an der Hülle (§ 9.1); das Eingabefeld selbst hat outline: 0. */
 .inputWrap:focus-within {
-  outline: 3px solid var(--calc-ink);
-  outline-offset: 2px;
-  border-color: var(--calc-ink);
+  outline: 3px solid #bb7609;
+  outline-offset: 4px;
 }
 
 .inputWrap input {
   display: block;
   min-width: 0;
   width: 100%;
-  min-height: 3.1rem;
-  padding: 0.7rem 0.85rem;
+  min-height: 48px;
+  padding: 0 16px;
   border: 0;
   outline: 0;
-  color: var(--calc-ink);
+  color: #17171c;
   background: transparent;
   font: inherit;
-  font-size: 1.125rem;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 400;
   font-variant-numeric: tabular-nums;
   box-shadow: none;
 }
 
 .inputWrap input::placeholder {
-  color: #6a746d;
+  color: #62626e;
+  font-size: 16px;
   font-weight: 400;
-  font-size: 1rem;
 }
 
 .unit {
   flex: 0 0 auto;
-  padding-inline: 0.5rem 1rem;
-  color: var(--calc-muted);
-  font-size: 0.9rem;
+  padding-inline: 8px 16px;
+  color: #62626e;
+  font-size: 14px;
+  font-weight: 400;
 }
 
+/* Ungültiges Feld (K11): Rahmen bleibt 1 px, der zweite Pixel kommt als innerer Schatten; keine Höhenänderung. */
 .inputInvalid {
-  border-color: var(--calc-error);
-  background: #fffafa;
+  border-color: #b32f28;
+  box-shadow: inset 0 0 0 1px #b32f28;
+  background: #ffffff;
 }
 
 .hint,
 .error {
-  font-size: 0.825rem;
-  line-height: 1.6;
-  margin: 0.45rem 0 0;
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.4;
 }
 
 .hint {
-  color: var(--calc-muted);
+  color: #62626e;
+  font-weight: 400;
 }
 
 .error {
-  color: var(--calc-error);
-  font-weight: 500;
+  color: #b32f28;
+  font-weight: 600;
 }
 
 .fieldPair {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: start;
-  gap: 1rem;
-  margin-top: 1.5rem;
+  gap: 16px;
+  margin-top: 16px;
 }
 
 .fieldPair > .field {
@@ -265,155 +218,169 @@
 }
 
 .fieldLink {
-  font-size: 0.875rem;
-  margin: 0.7rem 0 1.5rem;
+  margin: 8px 0 24px;
+  font-size: 14px;
+  line-height: 1.4;
 }
 
 .fieldLink a {
-  font-weight: 500;
+  color: #784b10;
+  font-weight: 600;
   text-decoration: underline;
-  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
 }
 
 .checkboxLabel {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
-  min-height: 2.75rem;
+  gap: 8px;
+  min-height: 44px;
   cursor: pointer;
-  font-size: 0.95rem;
+  font-size: 16px;
   line-height: 1.5;
 }
 
 .checkboxLabel input,
 .modeOptions input {
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 16px;
+  height: 16px;
   flex: 0 0 auto;
-  accent-color: var(--calc-ink);
+  accent-color: #17171c;
 }
 
 .vatFields .field {
-  margin-top: 1rem;
+  margin-top: 16px;
 }
 
+/* Rechenwahl (Radio-Karten) */
 .modeOptions {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.55rem;
+  gap: 8px;
 }
 
 .modeOptions label {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  min-height: 3rem;
-  padding: 0.8rem 1rem;
-  border: 1px solid var(--calc-line);
-  border-radius: 0.55rem;
-  background: var(--calc-background);
-  font-size: 0.925rem;
+  gap: 12px;
+  min-height: 48px;
+  padding: 8px 16px;
+  border: 1px solid #dedee3;
+  border-radius: 6px;
+  background: #ffffff;
+  font-size: 16px;
   line-height: 1.5;
   cursor: pointer;
 }
 
+/* Gewählt: Rahmen 2 px ohne Größenänderung (1 px Rahmen + 1 px innerer Schatten). */
 .modeOptions label.selectedMode {
-  border-color: var(--calc-ink);
-  background: var(--calc-amber-light);
+  border-color: #17171c;
+  box-shadow: inset 0 0 0 1px #17171c;
+  background: #f7f3eb;
   font-weight: 600;
 }
 
-.resetButton {
+/* Sekundärbutton (§ 1.3): Reset, Übernahme-Link, Werkzeugkarten */
+.resetButton,
+.transferLink,
+.toolLink,
+.primaryLink {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  min-height: 2.75rem;
-  margin-top: 1.8rem;
-  padding: 0.7rem 0.9rem;
-  border: 1px solid var(--calc-line);
-  border-radius: 0.6rem;
-  color: var(--calc-ink);
-  background: var(--calc-paper);
-  cursor: pointer;
+  gap: 8px;
+  padding: 0 16px;
+  border: 1px solid #777782;
+  border-radius: 6px;
+  color: #17171c;
+  background: transparent;
   font: inherit;
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 600;
   line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 150ms ease;
 }
 
-.resetButton svg {
+.resetButton {
+  min-height: 44px;
+  margin-top: 24px;
+}
+
+.resetButton svg,
+.transferLink svg {
   flex: 0 0 auto;
-}
-
-.resetButton:hover {
-  background: var(--calc-background);
+  width: 16px;
+  height: 16px;
 }
 
 .privacyNote {
-  margin-top: 1rem;
-  color: var(--calc-muted);
-  font-size: 0.825rem;
-  line-height: 1.6;
+  margin-top: 16px;
+  color: #62626e;
+  font-size: 14px;
+  line-height: 1.4;
 }
 
-.resultsPanel {
-  position: sticky;
-  top: 6.5rem;
-  background: var(--calc-amber-light);
-  border-color: #e9d5a7;
-}
-
+/* ---------- Ergebnis ---------- */
 .primaryResult {
-  padding-block: 1.6rem;
-  border-bottom: 1px solid #dccba7;
+  padding-block: 24px;
+  border-bottom: 1px solid #e7dcc9;
 }
 
 .primaryResult > p:first-child {
-  margin: 0 0 0.65rem;
-  font-size: 0.925rem;
+  margin: 0 0 8px;
+  color: #62626e;
+  font-size: 16px;
   line-height: 1.5;
-  color: var(--calc-muted);
 }
 
 .primaryResult .resultAmount {
   margin: 0;
   font-family: var(--font-display, var(--font-clash, sans-serif));
-  font-size: clamp(2.3rem, 3.7vw, 3.6rem);
+  font-size: 32px;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.035em;
-  line-height: 1.15;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
   overflow-wrap: anywhere;
 }
 
 .resultUnit {
-  margin: 0.4rem 0 0;
-  font-size: 0.875rem;
-  color: var(--calc-muted);
+  margin: 8px 0 0;
+  color: #62626e;
+  font-size: 14px;
+  line-height: 1.4;
 }
 
 .breakdown {
-  padding: 0.8rem 0;
+  padding: 8px 0;
   margin: 0;
 }
 
 .moneyRow {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: baseline;
-  gap: 0.7rem;
-  padding-block: 0.6rem;
-  font-size: 0.875rem;
+  gap: 4px 12px;
+  padding-block: 8px;
+  border-bottom: 1px solid #e7dcc9;
+  font-size: 16px;
   line-height: 1.5;
 }
 
 .moneyRow dt {
-  color: var(--calc-muted);
+  color: #62626e;
+  font-weight: 400;
 }
 
 .moneyRow dd {
-  margin: 0;
+  margin: 0 0 0 auto;
+  color: #17171c;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   text-align: right;
@@ -421,342 +388,112 @@
 }
 
 .moneyRowEmphasis {
-  border-block: 1px solid #dccba7;
-  padding-block: 0.85rem;
-  margin-block: 0.4rem;
+  padding-block: 12px;
 }
 
 .moneyRowEmphasis dt {
+  color: #17171c;
   font-weight: 600;
-  color: var(--calc-ink);
 }
 
 .calculationPath {
-  margin-top: 0.5rem;
-  border-top: 1px solid #dccba7;
-  padding-top: 0.7rem;
-  font-size: 0.875rem;
-  line-height: 1.65;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #e7dcc9;
+  font-size: 14px;
+  line-height: 1.4;
 }
 
 .calculationPath summary {
-  padding-block: 0.6rem;
-  min-height: 2.75rem;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
   cursor: pointer;
+  font-size: 16px;
   font-weight: 600;
+  line-height: 1.5;
 }
 
 .calculationPath ol {
   list-style: decimal;
-  padding-left: 1.1rem;
-  margin: 0.6rem 0 0;
+  padding-left: 24px;
+  margin: 8px 0 0;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .calculationPath li {
-  margin-top: 0.75rem;
+  margin-top: 8px;
   overflow-wrap: anywhere;
 }
 
 .transferLink {
   display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  padding: 0.9rem 1rem;
-  margin-top: 1.1rem;
-  border-radius: 0.6rem;
-  background: var(--calc-ink);
-  color: white;
-  font-size: 0.875rem;
-  font-weight: 600;
-  line-height: 1.5;
+  justify-content: flex-start;
+  min-height: 48px;
+  margin-top: 16px;
+  padding-block: 8px;
+  text-align: left;
   overflow-wrap: anywhere;
 }
 
-.transferLink svg {
-  flex: 0 0 auto;
-}
-
-.transferLink:hover {
-  background: #34483c;
-}
-
 .calculationNote {
-  border-top: 1px solid #dccba7;
-  padding-top: 1rem;
-  margin-top: 1.25rem;
-  color: var(--calc-muted);
-  font-size: 0.8rem;
-  line-height: 1.65;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #e7dcc9;
+  color: #62626e;
+  font-size: 14px;
+  line-height: 1.4;
 }
 
 .invalidResult {
-  padding-block: 2rem;
-  min-height: 13rem;
+  padding-block: 32px;
+  min-height: 208px;
 }
 
 .invalidResult h3 {
   margin: 0;
-  font-size: 1.15rem;
+  font-family: var(--font-display, var(--font-clash, sans-serif));
+  font-size: 20px;
   font-weight: 600;
-  line-height: 1.5;
+  line-height: 1.25;
 }
 
 .invalidResult p {
-  margin-top: 0.8rem;
-  font-size: 0.925rem;
-  color: var(--calc-muted);
-  line-height: 1.7;
+  margin-top: 8px;
+  color: #62626e;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
+/* Hinweisboxen: Verlust, Übernahme, noscript */
 .lossNotice,
 .transferNotice,
 .noScript {
-  padding: 0.85rem 1rem;
-  margin-top: 1.25rem;
-  border-radius: 0.55rem;
-  font-size: 0.875rem;
-  line-height: 1.6;
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
 }
 
 .lossNotice {
-  background: #fffafa;
-  color: var(--calc-error);
-  border: 1px solid #e0aaaa;
+  background: #ffffff;
+  color: #b32f28;
+  border: 1px solid #b32f28;
+  font-weight: 600;
 }
 
-.transferNotice {
-  background: #edf3ee;
-  border: 1px solid var(--calc-line);
+.transferNotice,
+.noScript {
+  background: #f7f3eb;
+  border: 1px solid #e7dcc9;
+  color: #17171c;
 }
 
 .noScript {
-  margin-bottom: 1rem;
-  background: var(--calc-amber-light);
-}
-
-.toolGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 1.5rem;
-}
-
-.toolCard {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: clamp(1.5rem, 3.5vw, 3rem);
-  border: 1px solid var(--calc-line);
-  border-radius: 1.2rem;
-  background: var(--calc-paper);
-}
-
-.toolIcon {
-  display: grid;
-  place-items: center;
-  width: 3.4rem;
-  height: 3.4rem;
-  border-radius: 0.8rem;
-  background: var(--calc-amber-light);
-  margin-bottom: 1.6rem;
-}
-
-.toolCard h2 {
-  font-family: var(--font-display, var(--font-clash, sans-serif));
-  font-size: clamp(1.5rem, 2vw, 2rem);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  margin: 0;
-}
-
-.toolCard > p {
-  color: var(--calc-muted);
-  margin-top: 1rem;
-  line-height: 1.7;
-}
-
-.toolCard ul {
-  list-style: disc;
-  padding-left: 1.1rem;
-  margin: 1.3rem 0 2rem;
-  color: var(--calc-muted);
-  font-size: 0.925rem;
-  line-height: 1.8;
-}
-
-.primaryLink {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 3rem;
-  padding: 0.85rem 1.2rem;
-  border-radius: 0.65rem;
-  background: var(--calc-amber);
-  color: var(--calc-ink);
-  font-size: 0.95rem;
-  line-height: 1.5;
-  text-align: center;
-  font-weight: 600;
-  transition: background 150ms ease;
-}
-
-.toolCard .primaryLink {
-  margin-top: auto;
-}
-
-.primaryLink:hover {
-  background: #e8a22a;
-}
-
-.helpSection {
-  display: grid;
-  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
-  gap: clamp(1.5rem, 4vw, 5rem);
-  border-top: 1px solid var(--calc-line);
-  margin-top: clamp(3rem, 6vw, 5rem);
-  padding-top: clamp(2rem, 4vw, 3.25rem);
-}
-
-.helpSection > h2 {
-  font-family: var(--font-display, var(--font-clash, sans-serif));
-  font-size: clamp(1.6rem, 2.6vw, 2.25rem);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.025em;
-  margin: 0;
-  text-wrap: balance;
-}
-
-.helpContent {
-  min-width: 0;
-  color: var(--calc-muted);
-  font-size: 1rem;
-  line-height: 1.8;
-}
-
-.helpContent > p {
-  margin: 0;
-}
-
-.helpContent > p + p {
-  margin-top: 1rem;
-}
-
-.formulaBox {
-  margin-block: 1.5rem;
-  padding: 1.25rem 1.4rem;
-  border-left: 3px solid var(--calc-amber);
-  background: var(--calc-paper);
-  color: var(--calc-ink);
-  overflow-wrap: anywhere;
-}
-
-.formulaBox p {
-  margin: 0;
-}
-
-.formulaBox p + p {
-  margin-top: 0.8rem;
-}
-
-.sourceNote {
-  font-size: 0.825rem;
-  line-height: 1.75;
-}
-
-.sourceNote a {
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
-}
-
-.faqList details {
-  border-bottom: 1px solid var(--calc-line);
-  padding-bottom: 1rem;
-  margin-bottom: 1rem;
-}
-
-.faqList summary {
-  min-height: 2.75rem;
-  padding-block: 0.5rem;
-  font-weight: 600;
-  color: var(--calc-ink);
-  cursor: pointer;
-  line-height: 1.5;
-}
-
-.faqList p {
-  margin: 0.5rem 0 0;
-  font-size: 0.925rem;
-}
-
-.comparison {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem;
-  padding-block: 1.5rem;
-}
-
-.comparison > div {
-  padding-left: 1rem;
-  border-left: 3px solid var(--calc-amber);
-}
-
-.comparison h3 {
-  color: var(--calc-ink);
-  font-weight: 600;
-  font-size: 1rem;
-  margin: 0;
-}
-
-.comparison p {
-  margin: 0.35rem 0 0;
-  font-size: 0.85rem;
-}
-
-.comparison strong {
-  color: var(--calc-ink);
-  font-family: var(--font-display, var(--font-clash, sans-serif));
-  font-size: 2rem;
-}
-
-.ctaSection {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  padding: clamp(1.5rem, 3vw, 2.5rem);
-  border-radius: 1rem;
-  background: var(--calc-paper);
-  border: 1px solid var(--calc-line);
-  margin-top: clamp(3rem, 6vw, 5rem);
-}
-
-.ctaSection h2 {
-  font-family: var(--font-display, var(--font-clash, sans-serif));
-  font-size: clamp(1.5rem, 2.3vw, 2rem);
-  font-weight: 600;
-  line-height: 1.25;
-  margin: 0;
-}
-
-.ctaSection p {
-  color: var(--calc-muted);
-  margin: 0.75rem 0 0;
-  line-height: 1.7;
-  max-width: 39rem;
-}
-
-.ctaSection .primaryLink {
-  flex-shrink: 0;
-}
-
-.page a:focus-visible,
-.page button:focus-visible,
-.page summary:focus-visible,
-.page input[type="radio"]:focus-visible,
-.page input[type="checkbox"]:focus-visible {
-  outline: 3px solid var(--calc-ink);
-  outline-offset: 4px;
+  margin: 0 0 16px;
 }
 
 .srOnly {
@@ -771,76 +508,338 @@
   border: 0;
 }
 
-@media (max-width: 960px) {
-  .calculatorGrid {
-    grid-template-columns: minmax(0, 1fr);
-  }
+/* ---------- Werkzeugkarten /rechner (§ 1.4) ---------- */
+.toolGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
 
-  .resultsPanel {
-    position: static;
-  }
+.toolCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #e7dcc9;
+  border-radius: 16px;
+  background: #f7f3eb;
+  transition: border-color 150ms ease;
+}
 
-  .helpSection {
-    grid-template-columns: minmax(0, 1fr);
-  }
+/* Ein Tabstopp je Karte: der gestreckte Link; den Ring trägt die Karte (§ 9.1). */
+.toolCard:focus-within {
+  outline: 3px solid #bb7609;
+  outline-offset: 4px;
+}
 
-  .ctaSection {
-    align-items: flex-start;
-    flex-direction: column;
+.toolIcon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  background: #ffefcc;
+  color: #784b10;
+}
+
+.toolCard h3 {
+  margin: 0;
+  font-family: var(--font-display, var(--font-clash, sans-serif));
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: #17171c;
+}
+
+.toolCard > p {
+  margin: 8px 0 0;
+  max-width: 45ch;
+  color: #62626e;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.toolCard ul {
+  margin: 16px 0 24px;
+  padding-left: 24px;
+  list-style: disc;
+  color: #62626e;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.toolCard li + li {
+  margin-top: 8px;
+}
+
+.toolCard li::marker {
+  color: #777782;
+}
+
+.toolCard .toolLink {
+  min-height: 48px;
+  margin-top: auto;
+}
+
+.toolLink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.toolLink:focus-visible {
+  outline: none;
+}
+
+@media (hover: hover) {
+  .toolCard:hover {
+    border-color: #99600b;
+  }
+  /* Sekundärbutton: Fläche Weiß auf Warm, Warm auf Weiß */
+  .toolCard:hover .toolLink,
+  .transferLink:hover {
+    background: #ffffff;
+  }
+  .resetButton:hover {
+    background: #f7f3eb;
   }
 }
 
-@media (max-width: 640px) {
-  .container {
-    width: calc(100% - 2rem);
-  }
+.einstiegNotiz {
+  margin: 32px 0 0;
+  max-width: 68ch;
+  color: #62626e;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
 
-  .localPromise {
-    align-items: flex-start;
-    font-size: 0.8rem;
-  }
+/* ---------- Hilfeabschnitte (§ 1.2, J6) ---------- */
+.helpTitle {
+  margin: 0;
+  max-width: 800px;
+  font-family: var(--font-display, var(--font-clash, sans-serif));
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #17171c;
+  hyphens: auto;
+  hyphenate-limit-chars: 10 4 4;
+  overflow-wrap: break-word;
+  scroll-margin-top: 100px;
+}
 
-  .localPromise svg {
-    margin-top: 0.2rem;
-  }
+.helpContent {
+  min-width: 0;
+  max-width: 720px;
+  margin-top: 32px;
+  color: #17171c;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
 
-  .fieldPair,
-  .toolGrid,
-  .comparison {
-    grid-template-columns: minmax(0, 1fr);
-  }
+.helpContent > p {
+  margin: 0;
+}
 
-  .fieldPair {
-    gap: 1.5rem;
+.helpContent > * + * {
+  margin-top: 16px;
+}
+
+/* Formelkasten: Gegenfläche zur Abschnittsfläche, keine Amber-Kante. */
+.formulaBox {
+  padding: 16px;
+  border: 1px solid #e7dcc9;
+  border-radius: 16px;
+  background: #f7f3eb;
+  color: #17171c;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.helpContent[data-surface="warm"] .formulaBox,
+.helpContent[data-surface="warm"] .comparison > div {
+  background: #ffffff;
+}
+
+.formulaBox p {
+  margin: 0;
+}
+
+.formulaBox p + p {
+  margin-top: 8px;
+}
+
+.formulaBox strong {
+  font-weight: 600;
+}
+
+.sourceNote {
+  color: #62626e;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.sourceNote a {
+  color: #784b10;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+/* Vergleich Marge/Aufschlag */
+.comparison {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+}
+
+.comparison > div {
+  padding: 24px;
+  border: 1px solid #e7dcc9;
+  border-radius: 16px;
+  background: #f7f3eb;
+}
+
+.comparison h3 {
+  margin: 0;
+  font-family: var(--font-display, var(--font-clash, sans-serif));
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: #17171c;
+}
+
+.comparison p {
+  margin: 8px 0 0;
+  color: #62626e;
+  font-size: 16px;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+
+.comparison strong {
+  display: block;
+  margin-top: 8px;
+  color: #17171c;
+  font-family: var(--font-display, var(--font-clash, sans-serif));
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Notiz über dem CTA-Band (K6, J8) */
+.notiz {
+  margin: 32px 0 0;
+  max-width: 68ch;
+  color: #62626e;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Frühere CTA-Aside (CalculatorCta, nicht mehr gerendert, Inhaberliste) in v2-Werten */
+.ctaSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 24px;
+  border: 1px solid #dedee3;
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.ctaSection h2 {
+  margin: 0;
+  font-family: var(--font-display, var(--font-clash, sans-serif));
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.ctaSection p {
+  margin: 8px 0 0;
+  color: #62626e;
+}
+
+.primaryLink {
+  min-height: 48px;
+}
+
+/* ---------- ab 768 px ---------- */
+@media (min-width: 768px) {
+  .calculatorGrid {
+    gap: 24px;
   }
 
   .formPanel,
   .resultsPanel {
-    padding: 1.2rem;
-    border-radius: 0.85rem;
+    padding: 24px;
   }
 
+  .fieldPair,
+  .comparison,
+  .toolGrid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .toolGrid {
+    gap: 24px;
+  }
+
+  .toolCard {
+    padding: 24px;
+  }
+
+  .formulaBox {
+    padding: 16px 24px;
+  }
+
+  .helpTitle,
   .primaryResult .resultAmount {
-    font-size: clamp(2.15rem, 9vw, 3.1rem);
+    font-size: clamp(32px, 4vw, 48px);
   }
 
-  .moneyRow {
-    flex-wrap: wrap;
-    gap: 0.15rem 0.8rem;
+  .helpContent {
+    margin-top: 48px;
   }
 
-  .moneyRow dd {
-    margin-left: auto;
+  .notiz {
+    margin-top: 48px;
+  }
+}
+
+/* ---------- ab 1024 px: Formular und Ergebnis nebeneinander ---------- */
+@media (min-width: 1024px) {
+  .calculatorNav {
+    margin-bottom: 32px;
   }
 
-  .calculatorNav a {
-    font-size: 0.875rem;
-    padding-inline: 0.75rem;
+  .calculatorGrid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 32px;
   }
 
-  .toolCard .primaryLink,
-  .ctaSection .primaryLink {
-    width: 100%;
+  .formPanel,
+  .resultsPanel {
+    padding: 32px;
+  }
+
+  .resultsPanel {
+    position: sticky;
+    top: 104px;
   }
 }
 

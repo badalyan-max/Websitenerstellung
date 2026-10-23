@@ -1,10 +1,10 @@
 import {
-  CalculatorCta,
   CalculatorHelp,
   CalculatorPage,
 } from "@/components/calculators/CalculatorPage";
 import { OfferCalculator } from "@/components/calculators/OfferCalculator";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { FaqList } from "@/components/v2/FaqList";
 import { site } from "@/lib/site";
 import { metaFor, zielwerte } from "@/lib/seo-meta";
 import styles from "@/components/calculators/Calculators.module.css";
@@ -21,6 +21,17 @@ export default function OfferCalculatorPage() {
     <CalculatorPage
       current="angebotskalkulation"
       title={z.h1}
+      werkzeug={
+        <>
+          <noscript>
+            <p className={styles.noScript}>
+              Aktivieren Sie JavaScript, um mit Ihren eigenen Werten zu rechnen; die
+              Formel und das Beispiel finden Sie weiter unten.
+            </p>
+          </noscript>
+          <OfferCalculator />
+        </>
+      }
       intro="Kalkulieren Sie einen Auftrag aus Material, Arbeitszeit und zusätzlichen Kosten. Oder prüfen Sie, welche Gewinnmarge Ihr vorhandener Preis ergibt."
     >
       <JsonLd
@@ -41,14 +52,11 @@ export default function OfferCalculatorPage() {
           ],
         }}
       />
-      <noscript>
-        <p className={styles.noScript}>
-          Aktivieren Sie JavaScript, um mit Ihren eigenen Werten zu rechnen; die
-          Formel und das Beispiel finden Sie weiter unten.
-        </p>
-      </noscript>
-      <OfferCalculator />
-      <CalculatorHelp title="Wie kalkuliere ich einen Angebotspreis?">
+      <CalculatorHelp
+        id="angebotspreis"
+        surface="warm"
+        title="Wie kalkuliere ich einen Angebotspreis?"
+      >
         <p>
           Addieren Sie Material, Arbeitsstunden mal internem Kostensatz und
           zusätzliche Auftragskosten. Teilen Sie diese Gesamtkosten durch 1
@@ -72,7 +80,11 @@ export default function OfferCalculatorPage() {
           kalkulierter Gewinn beträgt 300 €.
         </p>
       </CalculatorHelp>
-      <CalculatorHelp title="Was unterscheidet Marge und Kostenaufschlag?">
+      <CalculatorHelp
+        id="marge-und-aufschlag"
+        surface="white"
+        title="Was unterscheidet Marge und Kostenaufschlag?"
+      >
         <p>
           Die Gewinnmarge setzt den Gewinn ins Verhältnis zum
           Nettoverkaufspreis. Der Kostenaufschlag setzt denselben Gewinn ins
@@ -101,50 +113,33 @@ export default function OfferCalculatorPage() {
           Marge.
         </p>
       </CalculatorHelp>
-      <CalculatorHelp title="Was muss ich bei meinen Eingaben beachten?">
-        <div className={styles.faqList}>
-          <details>
-            <summary>Welchen Stundensatz trage ich ein?</summary>
-            <p>
-              Verwenden Sie Ihren internen Kostensatz einschließlich Personal-
-              und anteiliger Betriebskosten, ohne Gewinn. Ein Verkaufssatz
-              enthält bereits Gewinn; würden Sie ihn hier als Kosten einsetzen,
-              wäre dieser Anteil doppelt kalkuliert.
-            </p>
-          </details>
-          <details>
-            <summary>
-              Was passiert bei einem zu niedrigen Angebotspreis?
-            </summary>
-            <p>
-              Im Modus „Vorhandenen Preis prüfen“ bleibt ein Verlust sichtbar.
-              Bei 1.200 € erfassten Kosten und 1.000 € Nettoangebotspreis fehlen
-              200 €; die Marge beträgt −20 %.
-            </p>
-          </details>
-          <details>
-            <summary>
-              Wie werden Nachlässe und Umsatzsteuer berücksichtigt?
-            </summary>
-            <p>
-              Tragen Sie bei einer Preisprüfung den Nettoangebotspreis nach
-              vereinbarten Nachlässen ein. Die optionale Umsatzsteuer wird
-              anschließend zum Nettopreis addiert und verändert die Gewinnmarge
-              nicht. Der Umsatzsteuersatz wird nicht automatisch bestimmt.
-            </p>
-          </details>
-          <details>
-            <summary>Werden meine Zahlen gespeichert?</summary>
-            <p>
-              Die Berechnung läuft in Ihrem Browser. Ihre Eingaben werden nicht
-              gespeichert oder an einen Berechnungsdienst gesendet. Ein bewusst
-              aus dem Stundensatzrechner übernommener Kostensatz wird nur für
-              die geöffnete Berechnung verwendet.
-            </p>
-          </details>
-        </div>
+      <CalculatorHelp
+        id="eingaben"
+        surface="warm"
+        title="Was muss ich bei meinen Eingaben beachten?"
+        notiz
+      >
+        <FaqList
+          items={[
+            {
+              q: "Welchen Stundensatz trage ich ein?",
+              a: "Verwenden Sie Ihren internen Kostensatz einschließlich Personal- und anteiliger Betriebskosten, ohne Gewinn. Ein Verkaufssatz enthält bereits Gewinn; würden Sie ihn hier als Kosten einsetzen, wäre dieser Anteil doppelt kalkuliert.",
+            },
+            {
+              q: "Was passiert bei einem zu niedrigen Angebotspreis?",
+              a: "Im Modus „Vorhandenen Preis prüfen“ bleibt ein Verlust sichtbar. Bei 1.200 € erfassten Kosten und 1.000 € Nettoangebotspreis fehlen 200 €; die Marge beträgt −20 %.",
+            },
+            {
+              q: "Wie werden Nachlässe und Umsatzsteuer berücksichtigt?",
+              a: "Tragen Sie bei einer Preisprüfung den Nettoangebotspreis nach vereinbarten Nachlässen ein. Die optionale Umsatzsteuer wird anschließend zum Nettopreis addiert und verändert die Gewinnmarge nicht. Der Umsatzsteuersatz wird nicht automatisch bestimmt.",
+            },
+            {
+              q: "Werden meine Zahlen gespeichert?",
+              a: "Die Berechnung läuft in Ihrem Browser. Ihre Eingaben werden nicht gespeichert oder an einen Berechnungsdienst gesendet. Ein bewusst aus dem Stundensatzrechner übernommener Kostensatz wird nur für die geöffnete Berechnung verwendet.",
+            },
+          ]}
+        />
       </CalculatorHelp>
-      <CalculatorCta />
     </CalculatorPage>
   );
 }
