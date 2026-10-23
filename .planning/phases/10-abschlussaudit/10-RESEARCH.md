@@ -597,7 +597,7 @@ await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /no
 | A8 | Lighthouse nimmt keine Playwright-`Page` als 4. Parameter | Alternatives | ohne Folgen (chrome-launcher-Weg ist belegt) |
 | A9 | `wcag22aa` seit axe 4.7 | State of the Art | ohne Folgen für die Phase |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Gilt QA-04 mit dem heutigen Stand als erreichbar ohne Gestaltungsänderung?**
    - What we know: LCP-Gate heute überall knapp verfehlt; designneutrale Hebel (Clash 500 raus, Logo-SVG) bringen live ≈ 2,28–2,44 s.
