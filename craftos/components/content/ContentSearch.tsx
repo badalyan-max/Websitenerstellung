@@ -25,6 +25,10 @@ const LEER = {
   },
 } as const;
 
+/** Statuszeile (09-REVIEW IN-04): Die Hilfe spricht durchgehend von Anleitungen, der Ratgeber von Artikeln. */
+const statusText = (kind: ContentKind, n: number) =>
+  kind === "hilfe" ? `${n} ${n === 1 ? "Anleitung" : "Anleitungen"} gefunden` : `${n} Artikel gefunden`;
+
 const KARTE = {
   white: "border-[#e7dcc9] bg-white",
   warm: "border-[#e7dcc9] bg-[#f7f3eb]",
@@ -80,6 +84,8 @@ export function ContentSearch({
             />
             <input
               id="artikel-suche"
+              type="search"
+              autoComplete="off"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder={
@@ -122,7 +128,7 @@ export function ContentSearch({
         </div>
       </div>
       <p role="status" className="my-6 text-sm leading-[1.4] text-[#62626e]">
-        {filtered.length} Artikel gefunden
+        {statusText(kind, filtered.length)}
       </p>
       {filtered.length > 0 ? (
         <LinkKarten

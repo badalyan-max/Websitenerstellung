@@ -497,6 +497,15 @@ describe("ContentSearch v2 (09-UI-SPEC § 3, § 5)", () => {
     expect(html).not.toContain("Anleitung öffnen");
   });
 
+  it("Statuszeile nennt Anleitungen bzw. Artikel; Suchfeld type=search ohne Autovervollständigung (IN-04)", async () => {
+    const hilfe = await suche({ kind: "hilfe", items: [EINTRAG, { ...EINTRAG, slug: "zweite" }] });
+    expect(text(block(hilfe, '<p role="status"', "p"))).toBe("2 Anleitungen gefunden");
+    expect(text(block(await suche({ kind: "hilfe", items: [EINTRAG] }), '<p role="status"', "p"))).toBe("1 Anleitung gefunden");
+    expect(text(block(await suche({ kind: "blog", items: [EINTRAG] }), '<p role="status"', "p"))).toBe("1 Artikel gefunden");
+    expect(hilfe).toMatch(/<input[^>]*type="search"[^>]*id="artikel-suche"|<input[^>]*id="artikel-suche"[^>]*type="search"/);
+    expect(hilfe).toMatch(/<input[^>]*autoComplete="off"|<input[^>]*autocomplete="off"/);
+  });
+
   it("Suchergebnisse ohne festes Maximum: 70 Anleitungen rendern, andere Raster bleiben bei 60 (LO-04)", async () => {
     const viele = Array.from({ length: 70 }, (_, i) => ({ ...EINTRAG, slug: `anleitung-${i + 1}` }));
     const html = await suche({ kind: "hilfe", items: viele });
