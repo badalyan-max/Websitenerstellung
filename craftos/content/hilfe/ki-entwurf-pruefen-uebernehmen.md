@@ -1,46 +1,62 @@
 ---
 title: "Einen KI-Entwurf prüfen und bewusst übernehmen"
-description: "So kontrollieren Sie vorgeschlagene Daten, bestätigen einen geeigneten Entwurf und öffnen das Ergebnis im richtigen Modul."
+description: "So lassen Sie im Angebotschat einen Angebotsentwurf vorbereiten, prüfen jede Position und übernehmen den Entwurf ins Angebot, um im Editor weiterzuarbeiten."
 category: "craft-ai"
 publishedAt: "2026-09-09"
-updatedAt: "2026-10-20"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
 relatedFeatures: ["angebote", "plantafel", "zeiterfassung"]
 relatedArticles: ["/hilfe/craft-ai-betriebsdaten-fragen", "/hilfe/rechnung-fertigstellen"]
 sources: []
 platforms: ["web"]
+answer: "Einen KI-Entwurf lassen Sie in der Web-App im Angebotseditor über den Reiter „KI“ mit „Angebotschat öffnen“ vorbereiten. Craft AI macht Vorschläge; Sie prüfen den Angebotsentwurf und übernehmen ihn mit „Ins Angebot übernehmen“ selbst."
 ---
 
-Ein Vorschlag des KI-Assistenten legt zunächst nichts an; erst Ihre Bestätigung führt den vorgesehenen unterstützten Schritt aus.
+Im Angebotschat beschreiben Sie die Arbeiten oder hängen Pläne und Fotos an. Craft AI stellt daraus einen Angebotsentwurf zusammen; ins Angebot gelangt er erst, wenn Sie ihn übernehmen.
 
-Sie benötigen Web-Zugriff auf den KI-Assistenten und die Berechtigung für das betroffene Modul.
+## Voraussetzungen
 
-## Schritt für Schritt
+- Sie arbeiten in der Web-App mit Voll-Lizenz und dürfen Angebote bearbeiten.
+- Das Angebot ist einem Projekt zugeordnet; Dateien aus dem Projekt stehen dem Chat als Quellen zur Verfügung.
+- Ein Admin hat die KI unter „Einstellungen“ → „KI-Funktionen“ für den Betrieb aktiviert, und Ihr Betrieb hat Credits.
 
-1. Öffnen Sie „KI-Assistent“.
-2. Beschreiben Sie den gewünschten unterstützten Vorgang mit eindeutigem Projekt und konkreten Daten.
-3. Warten Sie auf die Karte „Entwurf: …“.
-4. Prüfen Sie sämtliche angezeigten Angaben, insbesondere Projekt, Kunde, Datum, Menge und beteiligte Person.
-5. Passt der Vorschlag nicht, wählen Sie „Verwerfen“ und formulieren Sie die Anfrage genauer.
-6. Passt er, wählen Sie „Bestätigen“.
-7. Warten Sie auf die Bestätigung des Ergebnisses.
-8. Öffnen Sie den Vorgang über „Im Editor öffnen“, „Zeiten öffnen“, „Projekt öffnen“ oder „Zur Plantafel“.
+## Schritt für Schritt in der Web-App
 
-Ein Beispiel ist ein vorgeschlagener Einsatz für das Projekt Lindenstraße an einem bestimmten Tag. Prüfen Sie vor der Bestätigung die tatsächliche Verfügbarkeit der Person.
+1. Öffnen Sie das Angebot im Editor.
+2. Wählen Sie in der Seitenleiste des Editors den Reiter „KI“.
+3. Klicken Sie unter „KI-Angebot“ auf „Angebotschat öffnen“.
+4. Beschreiben Sie die Arbeiten im Feld „Nachricht an die KI“ oder wählen Sie „Projektdaten auswerten“.
+5. Hängen Sie bei Bedarf mit „Datei anhängen“ Pläne oder Fotos an und klicken Sie auf „Senden“.
+6. Beantworten Sie Rückfragen der KI per Auswahl oder unter „Eigene Antwort eingeben …“.
+7. Prüfen Sie in der Ansicht „Entwurf“ jede Position, besonders solche mit dem Hinweis „Preis prüfen“.
+8. Klicken Sie auf „Ins Angebot übernehmen“.
+9. Bestätigen Sie bei einem Angebot mit Positionen „Aktuelle Positionen ersetzen“.
+10. Klicken Sie im Hinweis auf „Im Angebot ansehen“ und speichern Sie das Angebot.
 
-## Welcher Stand entsteht?
+Unter dem Eingabefeld zeigt der Chat vor dem Senden, wie viele Credits eine Anfrage voraussichtlich kostet. Änderungswünsche schreiben Sie einfach in den Chat; mit „Rückgängig“ nehmen Sie die letzte KI-Änderung am Entwurf zurück.
 
-Die vorhandenen Vorschläge umfassen Zeiteinträge, Angebote, Bautagesberichte und Plantafel-Einsätze. Angebot und Bericht werden als Entwurf angelegt. Bei einem bestätigten Einsatz zeigt die Karte ausdrücklich „Einsatz angelegt“; der Einsatz ist danach in der Plantafel vorhanden.
+## Ergebnis prüfen
 
-Prüfen Sie den endgültigen Modulstand und behandeln Sie nicht jede bestätigte Karte pauschal als bereits versandtes oder fertiggestelltes Dokument.
+- CraftOS meldet, wie viele Positionen ins Angebot übernommen wurden, und bittet Sie, das Angebot zu speichern.
+- Die übernommenen Positionen sind im Editor hervorgehoben; Preise, Mengen und Texte bearbeiten Sie dort wie gewohnt.
+- Im Chat steht „Übernommen“ mit dem Hinweis „Steht im Angebot. Neue KI-Änderungen lassen sich erneut übernehmen.“
+- Beispiel: Für die *Wohnung Lindenstraße* entsteht aus Raumaufmaß und Fotos ein Entwurf mit Positionen für Wände und Decken, den Sie Position für Position prüfen.
 
 ## Häufige Probleme
 
-Bei unklarer Projektzuordnung bestätigen Sie nicht vorsorglich den ersten Treffer. Präzisieren Sie die Anfrage.
+### Warum öffnet sich der Angebotschat nicht?
 
-Bleibt die Rückmeldung nach „Bestätigen“ aus, prüfen Sie zunächst das Zielmodul, bevor Sie einen zweiten Vorschlag erzeugen. So vermeiden Sie Doppelanlagen.
+Der Chat braucht ein Projekt am Angebot: CraftOS zeigt dann „Ordne dem Angebot ein Projekt zu, um den KI-Chat zu nutzen.“ Ordnen Sie das Projekt zu; ist die KI noch nicht freigeschaltet, aktiviert ein Admin sie unter „KI-Funktionen“.
 
-Rechnungen werden nicht durch eine bloße Chatnachricht autonom festgeschrieben oder verbucht. Nutzen Sie dafür den regulären geprüften Modulablauf.
+### Was passiert mit meinen bisherigen Positionen?
 
-Die [Anleitung zur Datenabfrage](/hilfe/craft-ai-betriebsdaten-fragen) erklärt den Einstieg; [Rechnung fertigstellen](/hilfe/rechnung-fertigstellen) zeigt einen getrennten verbindlichen Abschluss.
+Die Übernahme ersetzt alle aktuellen Positionen des Angebots. Deshalb fragt CraftOS vorher nach; prüfen Sie den Entwurf und bestätigen Sie mit „Aktuelle Positionen ersetzen“.
+
+### Wo finde ich frühere Chats zu einem Projekt?
+
+Klicken Sie im Angebotschat auf „Chatverläufe anzeigen“. Unter „Angebotschats“ öffnen Sie bisherige Verläufe des Projekts oder beginnen mit „Neuer Chat“.
+
+### Wie mache ich nach der Übernahme weiter?
+
+Sie arbeiten im Angebotseditor weiter: Positionen anpassen, Angebot speichern und versenden. Aus dem angenommenen Angebot erstellen Sie später die Rechnung, siehe [Rechnung fertigstellen](/hilfe/rechnung-fertigstellen).
