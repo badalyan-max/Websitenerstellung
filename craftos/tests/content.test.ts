@@ -422,6 +422,30 @@ describe("Prosa-Regeln (09-UI-SPEC § 2.3–2.4, § 5)", () => {
     ]);
   });
 
+  it("reservierte ids stehen wirklich in Layout, Kopf und Vorlagen (LO-01)", async () => {
+    const { RESERVIERTE_IDS, RESERVIERTES_ID_PRAEFIX } = await import("@/lib/content");
+    const lies = (rel: string) => fs.readFile(new URL(`../${rel}`, import.meta.url), "utf8");
+    const dateien = [
+      "app/layout.tsx",
+      "components/layout/HeaderShell.tsx",
+      "components/content/ArticlePage.tsx",
+      "components/content/ContentIndex.tsx",
+      "components/content/ContentKopf.tsx",
+    ];
+    const quellen = (await Promise.all(dateien.map(lies))).join("\n");
+    for (const id of RESERVIERTE_IDS) expect(quellen, id).toMatch(new RegExp(`["'\`]${id}["'\`]`));
+    expect(await lies("components/layout/HeaderShell.tsx")).toContain(`\`${RESERVIERTES_ID_PRAEFIX}\${`);
+  });
+
+  it("reservierte ids der Seitenvorlage: Skip-Ziel, Titel, Hauptnavigation und Navigations-Präfix (LO-01)", async () => {
+    const md = ["## Inhalt", "## Artikel-Titel", "## Seiten-Titel", "## Hauptnavigation", "### Navigation Hilfe"].join("\n\nText.\n\n");
+    expect(await regeln(md)).toEqual(
+      ["inhalt", "artikel-titel", "seiten-titel", "hauptnavigation", "navigation-hilfe"].map(
+        (id) => `Artikel test: Überschrift erzeugt die reservierte id ‚${id}‘ – Überschrift umbenennen.`,
+      ),
+    );
+  });
+
   it("FAQ-Frage zugleich Überschrift", async () => {
     expect(await regeln("## Was kostet das?\n\nText.", [{ q: "Was kostet das?", a: "Nichts." }])).toEqual([
       "Artikel test: FAQ-Frage ‚Was kostet das?‘ steht auch als Überschrift im Text – nur an einer Stelle beantworten.",

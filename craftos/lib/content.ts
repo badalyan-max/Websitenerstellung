@@ -252,8 +252,25 @@ export async function renderMarkdown(body: string) {
   return { html, toc };
 }
 
-/** Reservierte Anker der Artikelvorlage (09-UI-SPEC § 2.2) – keine Prosa-Überschrift darf sie erzeugen. */
-export const RESERVIERTE_IDS = ["antwort", "faq", "quellen", "funktionen", "weiterlesen"] as const;
+/**
+ * Reservierte Anker (09-UI-SPEC § 2.2; 09-REVIEW LO-01) – keine Prosa-Überschrift darf sie erzeugen: Abschnitte der
+ * Artikelvorlage, H1-ids von Artikel (`artikel-titel`) und Übersicht (`seiten-titel`), Skip-Ziel `<main id="inhalt">`
+ * (app/layout.tsx) und `hauptnavigation` (components/layout/HeaderShell.tsx). tests/content.test.ts prüft, dass die
+ * ids dort wirklich vergeben werden.
+ */
+export const RESERVIERTE_IDS = [
+  "antwort",
+  "faq",
+  "quellen",
+  "funktionen",
+  "weiterlesen",
+  "inhalt",
+  "artikel-titel",
+  "seiten-titel",
+  "hauptnavigation",
+] as const;
+/** Präfix der Menü-ids im Kopf (`navigation-<eintrag>`, HeaderShell.tsx). */
+export const RESERVIERTES_ID_PRAEFIX = "navigation-";
 
 export interface ProsaProblem {
   /** Regel-Schlüssel für Übergangslisten („<datei>|<regel>“). */
@@ -315,7 +332,7 @@ export async function prosaProbleme(
   }
   for (const h of ueberschriften) {
     const id = String(h.properties?.id ?? "");
-    if ((RESERVIERTE_IDS as readonly string[]).includes(id))
+    if ((RESERVIERTE_IDS as readonly string[]).includes(id) || id.startsWith(RESERVIERTES_ID_PRAEFIX))
       add("reservierte-id", `Artikel ${slug}: Überschrift erzeugt die reservierte id ‚${id}‘ – Überschrift umbenennen.`);
   }
   const titel = new Set(ueberschriften.map((h) => kurz(textOf(h))));
