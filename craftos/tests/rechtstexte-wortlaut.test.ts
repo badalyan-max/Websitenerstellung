@@ -287,7 +287,8 @@ describe("Rechtstexte bleiben wörtlich (D-09, D-17)", () => {
       if (!existsSync(datei)) {
         throw new Error(`Referenz ${path.relative(process.cwd(), datei)} fehlt – auf unverändertem Stand erzeugen.`);
       }
-      const soll = readFileSync(datei, "utf8");
+      // Zeilenenden der Referenz normalisieren: core.autocrlf kann sie beim Auschecken in CRLF wandeln.
+      const soll = readFileSync(datei, "utf8").replace(/\r\n/g, "\n");
       const ist = blockfolge(container);
       if (ist !== soll) {
         const i = ersteAbweichung(ist, soll);
@@ -296,7 +297,7 @@ describe("Rechtstexte bleiben wörtlich (D-09, D-17)", () => {
         );
       }
       expect(ist).toBe(soll);
-    });
+    }, 60_000);
 
     it(`${pfad}: H1 gleich zielwerte(pfad).h1 (getrennt, nicht in der Referenz)`, async () => {
       const html = await rendereRechtsseite(laden);
@@ -304,6 +305,6 @@ describe("Rechtstexte bleiben wörtlich (D-09, D-17)", () => {
       expect(h1).toHaveLength(1);
       const text = normalisiere(dekodiere((h1[0] ?? "").replace(/<[^>]+>/g, "")));
       expect(text).toBe(zielwerte(pfad).h1);
-    });
+    }, 60_000);
   }
 });

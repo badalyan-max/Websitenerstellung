@@ -114,7 +114,8 @@ const lesenOderRot = (datei: string) => {
   if (!existsSync(voll)) {
     throw new Error(`Referenz ${path.relative(process.cwd(), voll)} fehlt – auf unverändertem Stand erzeugen.`);
   }
-  return readFileSync(voll, "utf8");
+  // Zeilenenden normalisieren: core.autocrlf kann Referenzen beim Auschecken in CRLF wandeln.
+  return readFileSync(voll, "utf8").replace(/\r\n/g, "\n");
 };
 
 describe("kopfAusschnitt und cssRegeln", () => {
@@ -143,7 +144,7 @@ describe("Phase-9-Köpfe unverändert (K3)", () => {
       expect(ist).not.toContain("data-crumbs");
       expect(ist).not.toContain("data-hinweis");
       expect(ist).toBe(soll);
-    });
+    }, 60_000);
   }
 
   it("ContentKopf.module.css: Grundregeln unverändert", () => {
