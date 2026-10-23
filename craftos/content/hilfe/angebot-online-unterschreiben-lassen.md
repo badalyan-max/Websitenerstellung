@@ -70,4 +70,4 @@ Klicken Sie unter „Online-Unterschrift“ „Link kopieren“ und geben Sie de
 
 ### Wo sieht mein Kunde das Angebot noch einmal?
 
-Über den persönlichen Link in Ihrer Angebotsmail, solange der Link gilt. Einen eigenen Zugang zum [Kundenportal](/hilfe/kundenportal-kunden-einladen) richten Sie mit einer Einladung ein.
+Über den persönlichen Link in Ihrer Angebotsmail, solange der Link gilt. Das Angebot liegt der E-Mail außerdem als PDF bei.

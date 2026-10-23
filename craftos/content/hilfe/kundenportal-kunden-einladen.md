@@ -1,7 +1,7 @@
 ---
 title: "Kunden ins Kundenportal einladen"
 description: "So laden Sie einen Kunden ins Kundenportal ein, prüfen den Stand der Einladung und verwalten seinen Zugang."
-answer: "Kunden laden Sie in der Web-App über die Karte „Kundenportal“ beim Kunden ein; die Einladung geht an die hinterlegte E-Mail-Adresse und gilt 14 Tage. Danach meldet sich Ihr Kunde mit eigenem Zugang und einem Code aus der E-Mail an."
+answer: "Kunden laden Sie in der Web-App über die Karte „Kundenportal“ beim Kunden ein; die Einladung geht an die hinterlegte E-Mail-Adresse und gilt 14 Tage. Angebote unterschreibt Ihr Kunde online über den Link in Ihrer Angebotsmail, Rechnungen erhält er als PDF per E-Mail."
 category: "angebote"
 publishedAt: "2026-10-23"
 updatedAt: "2026-10-23"
@@ -13,7 +13,7 @@ sources: []
 platforms: ["web"]
 ---
 
-Mit dem Kundenportal erhält Ihr Kunde einen eigenen Portal-Zugang, den Sie im Kundenstamm verwalten. Die Einladung starten Sie beim Kunden in der Web-App.
+Die Einladung ins Kundenportal und den Portal-Zugang Ihres Kunden verwalten Sie beim Kunden in der Web-App. Angebote und Rechnungen erhält Ihr Kunde per E-Mail.
 
 ## Voraussetzungen
 
@@ -28,11 +28,10 @@ Mit dem Kundenportal erhält Ihr Kunde einen eigenen Portal-Zugang, den Sie im K
 3. Klicken Sie „Zum Kundenportal einladen“.
 4. Prüfen Sie im Dialog die „Empfänger-E-Mail“.
 5. Klicken Sie „Einladung senden“.
-6. Klicken Sie bei Bedarf „Portal-Vorschau öffnen“, um die Ansicht Ihres Kunden zu prüfen.
 
 ### So meldet sich Ihr Kunde an
 
-Ihr Kunde öffnet den Link aus der Einladungs-E-Mail, gibt seine E-Mail-Adresse ein und fordert mit „Anmeldecode senden“ einen Code an. Den Code trägt er unter „Code aus der E-Mail“ ein und klickt „Bestätigen“. Danach öffnet sich das Portal mit der Seite „Ihre Unterlagen“.
+Ihr Kunde öffnet den Link aus der Einladungs-E-Mail, gibt seine E-Mail-Adresse ein und fordert mit „Anmeldecode senden“ einen Code an. Den Code trägt er unter „Code aus der E-Mail“ ein und klickt „Bestätigen“. Danach öffnet sich das Portal mit der Seite „Ihre Unterlagen“. Angebote und Rechnungen öffnet Ihr Kunde über Ihre E-Mails: das Angebot über den persönlichen Link, die Rechnung als PDF-Anhang.
 
 ## Ergebnis prüfen
 
@@ -60,6 +59,6 @@ Eine neue Einladung löst die ältere ab. Ihr Kunde nutzt den Link aus der neues
 
 Klicken Sie auf der Karte „Kundenportal“ „Zugang entziehen“ und bestätigen Sie mit „Zugang jetzt entziehen“. Bereits erteilte Freigaben bleiben als Nachweis erhalten; eine neue Einladung gibt den Zugang wieder frei.
 
-### Wie bezahlen Kunden Rechnungen aus dem Portal?
+### Wie bezahlen Kunden Ihre Rechnungen?
 
 Per Überweisung auf das Konto, das auf dem Rechnungs-PDF steht. Den Zahlungseingang erfassen Sie wie gewohnt in der Web-App, zum Beispiel über den [Abgleich der Bankumsätze](/hilfe/bankumsaetze-abgleichen).

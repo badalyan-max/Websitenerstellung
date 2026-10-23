@@ -257,12 +257,12 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
     lead: "Ihre Kunden unterschreiben Angebote online und erhalten Rechnungen als PDF per E-Mail.",
     secondary: { label: "Anleitung in der Hilfe", href: "/hilfe/kundenportal-kunden-einladen" },
     ablauf: {
-      title: "Kundenportal und Online-Unterschrift in vier Schritten",
-      lead: "Von der Einladung bis zur Antwort auf ein Angebot arbeitet Ihr Kunde im Browser.",
+      title: "Kundenportal: Online-Unterschrift in vier Schritten",
+      lead: "Vom Versand bis zur Antwort auf ein Angebot arbeitet Ihr Kunde im Browser.",
       steps: [
-        { title: "Kunden einladen", text: "E-Mail-Adresse im Kundenstamm hinterlegen und den Kunden einladen." },
-        // Beleg: src/pages/portal/CustomerInviteAccept.tsx („Anmeldecode senden“, „Code aus der E-Mail“).
-        { title: "Kunde meldet sich an", text: "Der Kunde öffnet die Einladung und meldet sich mit einem Code aus der E-Mail an." },
+        { title: "E-Mail hinterlegen", text: "Die E-Mail-Adresse Ihres Kunden im Kundenstamm hinterlegen." },
+        // Beleg: Angebotsversand mit „Senden“ und „E-Mail senden“ (Hilfeartikel angebot-online-unterschreiben-lassen, 09-f).
+        { title: "Angebot senden", text: "Das fertige Angebot aus der Web-App per E-Mail an Ihren Kunden senden." },
         // Beleg: supabase/functions/_shared/quoteSigning.ts (SIGNING_PAGE_PATH „/angebot-unterschreiben“).
         { title: "Angebot öffnen", text: "Der Kunde öffnet das Angebot über den persönlichen Link in Ihrer Angebotsmail." },
         // Beleg: src/pages/QuoteSigning.tsx („Angebot annehmen und unterschreiben“, „Ablehnung senden“).
@@ -285,19 +285,19 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
           lizenzen: ["voll"],
           // WR-03/B13: Kunden sind keine Betriebsrolle; funktionen.ts access „Separater Kundenbereich mit eigenem
           // Login“, Web-Release LicenseType admin | buero | app (keine Kundenlizenz), src/pages/portal/CustomerLogin.tsx.
-          kundenHinweis: "Ihre Kunden nutzen einen eigenen Portal-Zugang im Browser und brauchen keine Lizenz.",
+          kundenHinweis: "Ihre Kunden unterschreiben Angebote im Browser und brauchen keine Lizenz.",
         },
       ],
     },
     kernpunkte: {
       title: "Was das Kundenportal bietet",
-      lead: "Eigener Zugang, Online-Unterschrift und Rechnungen als PDF für Ihre Kunden.",
+      lead: "Online-Unterschrift, Rechnungen als PDF und Zahlung per Überweisung für Ihre Kunden.",
       tiles: [
         {
-          // Beleg: supabase/functions/_shared/customerInvite.ts (INVITE_VALID_DAYS = 14), CustomerInviteAccept.tsx.
+          // Beleg: src/App.tsx Route /angebot-unterschreiben in PublicRouteBoundary (ohne Anmeldung), QuoteSigning.tsx.
           size: "md",
-          title: "Einladung mit Anmeldecode",
-          text: "Die Einladung gilt 14 Tage, Ihr Kunde meldet sich mit einem Code aus der E-Mail an.",
+          title: "Ohne eigenes Konto",
+          text: "Zum Unterschreiben braucht Ihr Kunde nur den Link aus Ihrer E-Mail und einen Browser.",
           visual: { kind: "icon", icon: Mail },
         },
         {
@@ -327,13 +327,14 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
       title: "Häufige Fragen zum Kundenportal",
       lead: "Kurze Antworten zu Funktionen, Zugang, Zahlung und Vorschau des Portals.",
       items: [
-        // Pflichtfrage nach Orchestrator-Entscheidung 2 (09-RESEARCH) positiv: was das Portal am Release kann.
-        // Belege (Release a0e27c42): CustomerInviteAccept.tsx, CustomerLogin.tsx, CustomerPortalHome.tsx („Ihre Unterlagen“),
+        // Pflichtfrage nach Orchestrator-Entscheidung 2 (09-RESEARCH) positiv: was Kunden am Release erreichen.
+        // 09-REVIEW ME-03 (Web-Release c5b5135): Nach der Anmeldung zeigt das Portal nur „Ihre Unterlagen“ mit dem Hinweis
+        // auf die E-Mail (CustomerPortalHome.tsx); keine Mail verlinkt Portal-Belegseiten. Belege der Antwort:
         // _shared/quoteSigning.ts + QuoteSigning.tsx (Unterschriftsseite aus der Angebotsmail), send-document-email (PDF),
         // PortalPaymentNotice.tsx (Überweisung).
         {
           q: "Was können Kunden im Kundenportal erledigen?",
-          a: "Ihre Kunden melden sich mit eigenem Zugang und einem Code aus der E-Mail an. Angebote und Rechnungen senden Sie per E-Mail: Angebote unterschreibt Ihr Kunde online über den persönlichen Link, Rechnungen erhält er als PDF und begleicht sie per Überweisung.",
+          a: "Angebote und Rechnungen senden Sie Ihrem Kunden per E-Mail: Angebote unterschreibt er online über den persönlichen Link oder sendet eine Ablehnung, Rechnungen erhält er als PDF und begleicht sie per Überweisung.",
         },
         // Quelle: CustomerPortalAccessCard.tsx, CustomerPortalInviteDialog.tsx (14 Tage), CustomerInviteAccept.tsx,
         // CustomerPortalHome.tsx („Ihre Unterlagen öffnen Sie über den Link in der E-Mail Ihres Handwerksbetriebs.“).
@@ -346,10 +347,12 @@ export const angebotInhalte: Record<string, FunktionsdetailInhalt> = {
           q: "Wie bezahlen Kunden Ihre Rechnungen?",
           a: "Per Überweisung auf das Konto, das auf dem Rechnungs-PDF steht. Den Zahlungseingang erfassen Sie wie gewohnt in der Web-App, zum Beispiel über den Abgleich der Bankumsätze.",
         },
-        // Quelle: src/components/customers/PortalPreviewEntry.tsx („Portal-Vorschau öffnen“), CustomerPortalPreview.tsx.
+        // Quelle: Angebotsansicht „Online-Unterschrift“ mit „vom Kunden geöffnet“ und „Digital unterschrieben“
+        // (Hilfeartikel angebot-online-unterschreiben-lassen, 09-f). Die Portal-Vorschau zeigt Belege, die der Kunde im
+        // Portal nicht erreicht (ME-03), und wird deshalb nicht beworben.
         {
-          q: "Kann ich prüfen, was mein Kunde im Portal sieht?",
-          a: "Ja. Mit „Portal-Vorschau öffnen“ auf der Kundenseite sehen Sie das Portal so, wie Ihr Kunde es sieht.",
+          q: "Wie sehe ich, ob mein Kunde ein Angebot unterschrieben hat?",
+          a: "In der Angebotsansicht unter „Online-Unterschrift“: Dort steht zum Beispiel „vom Kunden geöffnet“ oder „Digital unterschrieben“ mit Name und Zeitpunkt.",
         },
       ],
     },

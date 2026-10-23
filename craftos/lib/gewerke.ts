@@ -472,7 +472,7 @@ const definitions: Gewerk[] = [
     kurz: "Bau",
     kopfwort: "Bauunternehmen:",
     answer:
-      "CraftOS verbindet für Bauunternehmen Leistungsverzeichnisse per GAEB, die Terminplanung mit Arbeitsabschnitten, Bautagesberichte, Mängelmanagement, Abschlags- und Schlussrechnungen und das Kundenportal für Bauherren.",
+      "CraftOS verbindet für Bauunternehmen Leistungsverzeichnisse per GAEB, die Terminplanung mit Arbeitsabschnitten, Bautagesberichte, Mängelmanagement, Abschlags- und Schlussrechnungen und die Online-Unterschrift von Angeboten für Bauherren.",
     teaser: "Leistungsverzeichnisse per GAEB übernehmen, Arbeitsabschnitte terminieren und Abschläge abrechnen.",
     ablauf: [
       { title: "LV übernehmen", text: "Importieren Sie das Leistungsverzeichnis als X83 und bepreisen Sie es.", funktion: "gaeb" },
@@ -484,7 +484,7 @@ const definitions: Gewerk[] = [
     exampleTitle: "Gewerbeumbau für die Muster GmbH",
     example:
       "Sie planen Gewerke sowie Geräte & Fahrzeuge in Arbeitsabschnitten, dokumentieren Fortschritt und Mängel und ordnen Berichte und Rechnungen der gemeinsamen Projektakte zu.",
-    funktionen: ["gaeb", "terminplanung", "baudokumentation", "maengelmanagement", "rechnungen", "kundenportal"],
+    funktionen: ["gaeb", "terminplanung", "baudokumentation", "maengelmanagement", "rechnungen", "angebote"],
     faq: [
       {
         q: "Wie erstelle ich einen Bauzeitenplan?",
@@ -496,7 +496,7 @@ const definitions: Gewerk[] = [
       },
       {
         q: "Wie erhält der Bauherr Angebote und Rechnungen?",
-        a: "Per E-Mail. Angebote öffnet er über einen persönlichen Link, nimmt sie online an und unterschreibt sie oder lehnt sie ab; Rechnungen erhält er als PDF. Im Kundenportal meldet er sich mit eigenem Zugang an.",
+        a: "Per E-Mail. Angebote öffnet er über einen persönlichen Link, nimmt sie online an und unterschreibt sie oder lehnt sie ab; Rechnungen erhält er als PDF-Anhang.",
       },
       FAQ_APP,
     ],

@@ -186,6 +186,39 @@ describe("Offline-Lesen nennt die 24-Stunden-Frist (ME-02)", () => {
   });
 });
 
+/**
+ * Kundenportal (09-REVIEW ME-03, Web-Release c5b5135): Nach der Anmeldung zeigt das Portal nur „Ihre Unterlagen“ mit
+ * dem Hinweis auf den Link in der E-Mail (src/pages/portal/CustomerPortalHome.tsx, /portal/* in src/App.tsx); keine
+ * Mail verlinkt /portal/quotes/:id oder /portal/invoices/:id, und die Portal-Vorschau zeigt Belege, die der Kunde so
+ * nicht erreicht. Die Website nennt deshalb nur die Online-Unterschrift aus der Angebotsmail und die Rechnung als PDF.
+ */
+const PORTAL_VERSPRECHEN =
+  /aus dem Portal|im (Kunden)?portal (sehen|öffnen|finden|abrufen)|Kundenportal für Bauherren|Im Kundenportal meldet|so, wie Ihr Kunde es sieht|Portal-Vorschau öffnen|eigene[nm]? (Portal-)?Zugang (zum|im|ins) Kundenportal|nutzen einen eigenen Portal-Zugang/i;
+
+describe("Kundenportal nur mit erreichbaren Leistungen (ME-03)", () => {
+  it("Gewerke, Funktionsdaten und Artikel stellen das Portal nicht als Ort für Unterlagen dar", () => {
+    const treffer: string[] = [];
+    for (const rel of websiteDateien()) {
+      const inhalt = fs.readFileSync(path.join(ROOT, rel), "utf8");
+      const texte = rel.endsWith(".ts") ? stringLiterale(inhalt) : [inhalt];
+      for (const t of texte) {
+        const m = PORTAL_VERSPRECHEN.exec(t);
+        if (m) treffer.push(`${rel}: ${m[0]}`);
+      }
+    }
+    expect(treffer).toEqual([]);
+  });
+
+  it("Bauunternehmen nennt die Online-Unterschrift statt des Kundenportals", async () => {
+    const { gewerke } = await import("@/lib/gewerke");
+    const bau = gewerke.find((g) => g.slug === "bauunternehmen")!;
+    expect(bau.answer).toContain("Online-Unterschrift");
+    expect(bau.answer).not.toMatch(/Kundenportal/);
+    expect(bau.funktionen).not.toContain("kundenportal");
+    expect(bau.funktionen).toContain("angebote");
+  });
+});
+
 describe("Prüfmechanik (Fixtures)", () => {
   it("Markdown: Treffer je Wort mit Fehlertext", () => {
     const t = trefferInDatei("content/hilfe/x.md", "Im Portal ist keine Onlinezahlung möglich. DATANORM v5 ist nicht zugesagt.");
