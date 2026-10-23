@@ -692,7 +692,8 @@ await check("Prompt-Anker live: jedes Phase-9-Ziel mit Anker und Antwort ≤ 300
 // scripts/lib/lighthouse-core.mjs (GATE_ROUTEN); die TS-Quellen werden als Text gelesen (kein Build nötig).
 // ---------------------------------------------------------------------------------------------
 const quelle = (rel) => fs.readFileSync(path.join(root, rel), "utf8");
-const textVon = (html) => plain(html).replace(/\s+/g, " ");
+// LO-03: sichtbarer Text ohne JSON-LD, RSC-Payload (self.__next_f.push) und <template>-Inhalte.
+const textVon = (html) => plain(html.replace(/<(script|template)\b[\s\S]*?<\/\1>/gi, " ")).replace(/\s+/g, " ");
 const HELLER_KOPF = /<section\b[^>]*data-abschnitt="kopf"[^>]*data-tone="light"/;
 const RECHNER = ["/rechner", "/rechner/stundensatz", "/rechner/angebotskalkulation"];
 const RECHTSSEITEN = ["/impressum", "/datenschutz", "/agb"];
