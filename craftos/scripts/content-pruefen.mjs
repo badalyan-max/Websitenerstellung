@@ -4,10 +4,18 @@
  *
  *   node scripts/content-pruefen.mjs [--ausnahmen <prüfdatei>] [--zitate] [--l1] [--antwort] <dateien…>
  *
- * --zitate     Jeder Begriff in „…“ (an „→“ geteilt) muss wörtlich im eingefrorenen Release vorkommen:
- *              Web-Commit in `src` und `supabase/functions`, Mobile-Commit in `src` (Sprachdateien nur `de`),
- *              jeweils ohne Testdateien. Die Commits stehen in docs/product-source-snapshot.json (`basis`).
+ * --zitate     Jedes Zitat in „…“ muss in einem Nutzer-Oberflächentext des eingefrorenen Release stehen (09-REVIEW
+ *              HI-01, scripts/lib/zitat-belege.mjs): JSX-Text, String-Literal einer Quelldatei oder Wert einer
+ *              deutschen Sprachdatei; Web-Commit in `src` und `supabase/functions`, Mobile-Commit in `src`.
+ *              Kommentare, JSDoc, Modulpfade, Tests, Mocks, Fixtures und Stories zählen nicht. Ein Menüpfad
+ *              „A → B“ ist belegt, wenn jedes Segment innerhalb einer App ein ganzes Label ist (oder der Pfad als
+ *              Ganzes in einem Text steht). Die Commits stehen in docs/product-source-snapshot.json (`basis`).
  *              Begriffe unter 4 Zeichen sind nur ein Hinweis (09-RESEARCH Pitfall 2: Substring-Treffer belegen nichts).
+ *              GRENZE: Grün heißt „der Text steht in der Oberfläche“, nicht „der Kunde erreicht die Stelle“. Rolle,
+ *              Lizenz, Entwickler-Freischaltung und Feature-Flags prüft das Skript nicht. Es meldet nur per
+ *              Datei-Heuristik einen Hinweis, wenn alle Belegdateien isDeveloper/usePlatformDeveloper/Feature-Abfragen
+ *              enthalten (Sprachdateien und Rollen-Sperren erkennt die Heuristik nicht). Die Erreichbarkeit bleibt
+ *              Teil der manuellen Prüfdatei (docs/content-pruefung/09-*.md, Spalte „Belegpfade“).
  * --ausnahmen  Begriffe aus dem Abschnitt „Zitat-Ausnahmen“ der Paket-Prüfdatei (`- „Begriff“ – Begründung`) sind
  *              von --zitate ausgenommen. Zeilen ohne Begründung gelten nicht. Fehlt Datei oder Abschnitt: keine Ausnahmen.
  * --l1         Wörter und Altbegriffe der Leitlinie L-1 aus lib/leitlinie-l1.json (ohne Übergangsliste), Ausnahmen
@@ -25,6 +33,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { stringLiterale } from "./lib/ts-literale.mjs";
+import { FREISCHALTUNG, istUiQuelle, normalisiert, OHNE_NICHT_UI, uiTexte, zitatBelegt, zitateAus } from "./lib/zitat-belege.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
 const SNAPSHOT = path.join(ROOT, "docs/product-source-snapshot.json");
@@ -35,8 +44,6 @@ const REPOS = {
 };
 const ANTWORT_MAX = 300;
 const KURZ_UNTER = 4;
-const OHNE_TESTS = [":(exclude,glob)**/*.test.*", ":(exclude,glob)**/*.spec.*", ":(exclude,glob)**/__tests__/**"];
-const MOBILE_LOCALES = "src/shared/i18n/locales";
 
 const laenge = (s) => Array.from(s).length;
 const rel = (datei) => path.relative(process.cwd(), path.resolve(datei)).split(path.sep).join("/");
@@ -103,8 +110,13 @@ function zitatAusnahmen(pruefdatei) {
 
 // ---------------------------------------------------------------- Release-Suche
 
-function git(repo, args) {
-  return execFileSync("git", ["-C", repo, ...args], { encoding: "utf8", maxBuffer: 1 << 28, stdio: ["ignore", "pipe", "pipe"] });
+function git(repo, args, input) {
+  return execFileSync("git", ["-C", repo, ...args], {
+    ...(input === undefined ? { encoding: "utf8" } : {}),
+    input,
+    maxBuffer: 1 << 28,
+    stdio: ["pipe", "pipe", "pipe"],
+  });
 }
 
 function releaseQuellen() {
@@ -119,54 +131,71 @@ function releaseQuellen() {
     } catch {
       throw new Error(`${k}: Commit ${commit.slice(0, 8)} in ${REPOS[k]} nicht vorhanden`);
     }
-    let pfade;
-    if (k === "web") pfade = ["src", "supabase/functions", ...OHNE_TESTS];
-    else {
-      const locales = git(REPOS[k], ["ls-tree", "--name-only", `${commit}:${MOBILE_LOCALES}`]).split(/\r?\n/).filter(Boolean);
-      pfade = ["src", ...OHNE_TESTS, ...locales.filter((l) => l !== "de").map((l) => `:(exclude)${MOBILE_LOCALES}/${l}`)];
-    }
-    quellen.push({ name: k, repo: REPOS[k], commit, pfade });
+    const pfade = k === "web" ? ["src", "supabase/functions", ...OHNE_NICHT_UI] : ["src", ...OHNE_NICHT_UI];
+    quellen.push({ name: k, repo: REPOS[k], commit, pfade, cache: new Map() });
   }
   return quellen;
 }
 
-/** Menge der Begriffe, die in der Quelle wörtlich vorkommen (Sammelsuche, Fehlende einzeln nachgeprüft). */
-function gefunden(quelle, begriffe) {
-  const treffer = new Set();
+/** Release-Dateien (Nutzer-Oberfläche), deren Rohtext mindestens einen der Begriffe enthält. */
+function kandidaten(quelle, begriffe) {
+  const dateien = new Set();
   const liste = [...begriffe];
   for (let i = 0; i < liste.length; i += 150) {
     const teil = liste.slice(i, i + 150);
     try {
-      const out = git(quelle.repo, ["grep", "-F", "-o", "-h", "-I", ...teil.flatMap((b) => ["-e", b]), quelle.commit, "--", ...quelle.pfade]);
-      for (const z of out.split(/\r?\n/)) if (z) treffer.add(z);
+      const out = git(quelle.repo, ["grep", "-F", "-l", "-I", ...teil.flatMap((b) => ["-e", b]), quelle.commit, "--", ...quelle.pfade]);
+      for (const z of out.split(/\r?\n/)) {
+        const pfad = z.slice(quelle.commit.length + 1);
+        if (z && istUiQuelle(pfad)) dateien.add(pfad);
+      }
     } catch (e) {
       if (e.status !== 1) throw e;
     }
   }
-  for (const b of liste) {
-    if (treffer.has(b)) continue;
-    try {
-      git(quelle.repo, ["grep", "-F", "-q", "-I", "-e", b, quelle.commit, "--", ...quelle.pfade]);
-      treffer.add(b);
-    } catch (e) {
-      if (e.status !== 1) throw e;
-    }
-  }
-  return new Set(liste.filter((b) => treffer.has(b)));
+  return [...dateien];
 }
 
-/** Bis zu drei Release-Dateien mit dem Begriff, als `web:<pfad>` bzw. `mobile:<pfad>`. */
-function belegDateien(quellen, begriff) {
+/** Lädt Dateien eines Commits über `git cat-file --batch` und legt Oberflächentexte und Freischaltung im Cache ab. */
+function laden(quelle, pfade) {
+  const fehlend = pfade.filter((p) => !quelle.cache.has(p));
+  if (!fehlend.length) return;
+  const out = git(quelle.repo, ["cat-file", "--batch"], fehlend.map((p) => `${quelle.commit}:${p}`).join("\n") + "\n");
+  let pos = 0;
+  for (const pfad of fehlend) {
+    const nl = out.indexOf(10, pos);
+    const kopf = out.subarray(pos, nl).toString("utf8");
+    pos = nl + 1;
+    const m = /^\S+ blob (\d+)$/.exec(kopf);
+    if (!m) {
+      quelle.cache.set(pfad, { texte: [], gesperrt: false });
+      continue;
+    }
+    const groesse = Number(m[1]);
+    const inhalt = out.subarray(pos, pos + groesse).toString("utf8");
+    pos += groesse + 1;
+    quelle.cache.set(pfad, { texte: uiTexte(pfad, inhalt), gesperrt: FREISCHALTUNG.test(inhalt) });
+  }
+}
+
+/**
+ * Release-Dateien, deren Oberflächentexte das Zitat belegen (`web:<pfad>` bzw. `mobile:<pfad>`). Ein Menüpfad muss
+ * innerhalb einer App (Web oder Mobile) belegt sein; seine Segmente dürfen in verschiedenen Dateien stehen.
+ */
+function belegeFuer(quellen, kandidatenJeQuelle, zitat) {
   const out = [];
   for (const q of quellen) {
-    try {
-      const liste = git(q.repo, ["grep", "-F", "-l", "-I", "-e", begriff, q.commit, "--", ...q.pfade]);
-      for (const z of liste.split(/\r?\n/)) if (z) out.push(`${q.name}:${z.slice(q.commit.length + 1)}`);
-    } catch (e) {
-      if (e.status !== 1) throw e;
+    const pfade = kandidatenJeQuelle.get(q.name);
+    const alle = pfade.flatMap((p) => q.cache.get(p).texte);
+    if (!zitatBelegt(zitat, alle)) continue;
+    const label = (t, texte) => texte.some((x) => normalisiert(x) === normalisiert(t));
+    const traegt = (texte) => zitatBelegt(zitat, texte) || (zitat.teile.length > 1 && zitat.teile.some((t) => label(t, texte)));
+    for (const pfad of pfade) {
+      const eintrag = q.cache.get(pfad);
+      if (traegt(eintrag.texte)) out.push({ beleg: `${q.name}:${pfad}`, gesperrt: eintrag.gesperrt });
     }
   }
-  return out.length > 3 ? [...out.slice(0, 3), `… (${out.length} Dateien)`] : out;
+  return out;
 }
 
 // ---------------------------------------------------------------- Texte je Datei
@@ -175,43 +204,53 @@ function textFuerZitate(datei, inhalt) {
   return datei.endsWith(".ts") ? stringLiterale(inhalt).join("\n") : inhalt;
 }
 
-function zitateAus(text) {
-  const out = [];
-  for (const m of text.matchAll(/„([^“„\n]{1,160})“/g)) {
-    const ganz = m[1].trim();
-    const teile = ganz.split(/\s*→\s*/).map((t) => t.trim()).filter(Boolean);
-    out.push({ ganz, teile });
-  }
-  return out;
-}
-
 function pruefeZitate(dateien, ausnahmen, mitBelegen) {
   const jeDatei = new Map();
-  const alle = new Set();
+  const begriffe = new Set();
   for (const { datei, inhalt } of dateien) {
-    const zitate = zitateAus(textFuerZitate(datei, inhalt));
+    const zitate = zitateAus(textFuerZitate(datei, inhalt)).filter((z) => !ausnahmen.has(z.ganz));
     jeDatei.set(datei, zitate);
     for (const z of zitate) {
-      if (ausnahmen.has(z.ganz)) continue;
-      for (const t of z.teile) if (!ausnahmen.has(t)) alle.add(t);
+      begriffe.add(z.ganz);
+      for (const t of z.teile) begriffe.add(t);
     }
   }
-  if (!alle.size) return;
+  if (!begriffe.size) return;
   const quellen = releaseQuellen();
-  const belegt = new Set();
-  for (const q of quellen) for (const b of gefunden(q, alle)) belegt.add(b);
+  const kandidatenJeQuelle = new Map();
+  for (const q of quellen) {
+    const k = kandidaten(q, begriffe);
+    laden(q, k);
+    kandidatenJeQuelle.set(q.name, k);
+  }
   const stand = quellen.map((q) => `${q.name === "web" ? "Web" : "Mobile"} ${q.commit.slice(0, 8)}`).join(", ");
   for (const [datei, zitate] of jeDatei) {
     const gemeldet = new Set();
     for (const z of zitate) {
-      if (ausnahmen.has(z.ganz)) continue;
-      for (const t of z.teile) {
-        if (ausnahmen.has(t) || gemeldet.has(t)) continue;
-        gemeldet.add(t);
-        if (laenge(t) < KURZ_UNTER)
-          hinweis(datei, `kurzer Begriff „${t}“ (unter ${KURZ_UNTER} Zeichen) ${belegt.has(t) ? "kommt vor, belegt aber nichts" : "nicht gefunden"} – Navigationsquelle lesen`);
-        else if (!belegt.has(t)) befund(datei, `Zitat „${t}“ nicht im Release (${stand})`);
-        else if (mitBelegen) belegZeilen.push(`${datei}: Beleg „${t}“ → ${belegDateien(quellen, t).join(", ")}`);
+      if (gemeldet.has(z.ganz)) continue;
+      gemeldet.add(z.ganz);
+      // Menüpfad: Segmente, die selbst als Ausnahme geführt sind, gelten als Label
+      const pruef = { ganz: z.ganz, teile: z.teile.filter((t) => !ausnahmen.has(t)) };
+      if (z.teile.length > 1 && !pruef.teile.length) continue;
+      if (z.teile.length <= 1 && laenge(z.ganz) < KURZ_UNTER) {
+        const da = belegeFuer(quellen, kandidatenJeQuelle, z).length > 0;
+        hinweis(datei, `kurzer Begriff „${z.ganz}“ (unter ${KURZ_UNTER} Zeichen) ${da ? "kommt vor, belegt aber nichts" : "nicht gefunden"} – Navigationsquelle lesen`);
+        continue;
+      }
+      const belege = belegeFuer(quellen, kandidatenJeQuelle, z.teile.length > 1 ? pruef : z);
+      if (!belege.length) {
+        const art = z.teile.length > 1 ? "Menüpfad (jedes Segment als ganzes Label)" : "Zitat";
+        befund(datei, `${art} „${z.ganz}“ nicht in einem Oberflächentext des Release (${stand})`);
+        continue;
+      }
+      // Heuristik: Alle Fundstellen der App-Oberfläche (src/, ohne Edge Functions) lesen eine Freischaltung
+      const oberflaeche = belege.filter((b) => /^(web|mobile):src\//.test(b.beleg));
+      if (oberflaeche.length && oberflaeche.every((b) => b.gesperrt))
+        hinweis(datei, `„${z.ganz}“ nur in Dateien mit Entwickler- oder Feature-Abfrage belegt (${belege.map((b) => b.beleg).slice(0, 3).join(", ")}) – Erreichbarkeit prüfen`);
+      if (mitBelegen) {
+        const liste = belege.map((b) => b.beleg);
+        const kurz = liste.length > 3 ? [...liste.slice(0, 3), `… (${liste.length} Dateien)`] : liste;
+        belegZeilen.push(`${datei}: Beleg „${z.ganz}“ → ${kurz.join(", ")}`);
       }
     }
   }
