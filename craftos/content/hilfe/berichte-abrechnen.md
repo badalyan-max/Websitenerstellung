@@ -3,44 +3,59 @@ title: "Leistungen aus Bautagesberichten abrechnen"
 description: "So wählen Sie Berichte, prüfen Material und Stunden und erstellen einen kontrollierten Rechnungsentwurf."
 category: "rechnungen"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
+answer: "Abgeschlossene Bautagesberichte und Regieberichte rechnen Sie in der Web-App im Projekt unter „Baudokumentation“ ab: einzeln mit „Rechnung aus Bericht erstellen“ oder mehrere zusammen über „Sammelabrechnung“. CraftOS legt daraus einen Rechnungsentwurf an, in dem Sie die Preise ergänzen."
 relatedFeatures: ["baudokumentation", "rechnungen"]
-relatedArticles: ["/hilfe/bautagesbericht-erstellen", "/hilfe/rechnung-fertigstellen"]
+relatedArticles: ["/hilfe/bautagesbericht-erstellen", "/hilfe/rechnung-fertigstellen", "/hilfe/zeiten-pruefen-exportieren"]
 sources: []
 platforms: ["web"]
 ---
 
-Aus geeigneten Bautagesberichten können Sie einen Rechnungsentwurf vorbereiten; prüfen Sie dabei sorgfältig, welche Leistungen tatsächlich zusätzlich oder erstmals abzurechnen sind.
+## Voraussetzungen
 
-Sie benötigen Zugriff auf das Projekt, seine Berichte und die Rechnungsverwaltung in der Web-App.
+- Voll-Lizenz (Admin oder Büro) mit Zugriff auf Projekt und Rechnungen in der Web-App.
+- Dem Projekt ist ein Kunde zugeordnet.
+- Die Berichte sind abgeschlossen und enthalten Material- oder Leistungstabellen. Typische Quelle ist der [Regiebericht](/hilfe/regiebericht) für Zusatzarbeiten.
+- Für Arbeitszeiten ist in „Einstellungen → Lohngruppen“ ein Verrechnungssatz hinterlegt.
 
-## Schritt für Schritt
+## Schritt für Schritt für einen Bericht
 
-1. Öffnen Sie „Projekte“ und das betreffende Projekt.
-2. Wechseln Sie zu „Baudokumentation → Berichte“.
-3. Wählen Sie abgeschlossene Berichte mit übernehmbaren Positionen und öffnen Sie „Rechnung aus Bericht erstellen“ beziehungsweise den Sammelrechnungsablauf.
-4. Prüfen Sie im Dialog die vorgeschlagenen Material- und Leistungszeilen.
-5. Kontrollieren Sie Arbeitszeit, Lohngruppe und gegebenenfalls die Auswahl offener Projektstunden.
-6. Entfernen oder korrigieren Sie unzutreffende Übernahmen.
-7. Wählen Sie „Rechnungsentwurf erstellen“ beziehungsweise bei entsprechender Auswahl „Sammelrechnung erstellen“.
-8. Prüfen Sie den entstandenen Entwurf im Dokumenteditor.
+1. Öffnen Sie das Projekt und wechseln Sie zum Reiter „Baudokumentation“.
+2. Klicken Sie im Bereich „Berichte“ beim gewünschten Bericht auf „Rechnung aus Bericht erstellen“.
+3. Wählen Sie die übernehmbaren Positionen aus dem Bericht.
+4. Prüfen Sie unter „Arbeitszeit (Zeiterfassung)“ die Stunden des Berichtstags und die Lohngruppe.
+5. Entfernen Sie Zeilen, die bereits im Angebotspreis oder in einer früheren Rechnung enthalten sind.
+6. Klicken Sie auf „Rechnungsentwurf erstellen“.
+7. Ergänzen Sie im Rechnungs-Editor die Preise und prüfen Sie die Vorschau.
 
-Der Entwurf ist eine Vorbereitung und noch keine endgültig ausgegebene Rechnung.
+## Schritt für Schritt für mehrere Berichte
 
-## Worauf müssen Sie besonders achten?
+1. Klicken Sie im Bereich „Berichte“ auf „Sammelabrechnung“.
+2. Wählen Sie die abgeschlossenen Berichte aus, die auf eine Rechnung sollen.
+3. Prüfen Sie die Positionen aus den Berichten und entfernen Sie unzutreffende Zeilen.
+4. Schalten Sie „Alle offenen Projektstunden“ nur ein, wenn diese Stunden noch nicht abgerechnet sind.
+5. Klicken Sie auf „Sammelrechnung erstellen“ und ergänzen Sie im Editor die Preise.
 
-Ein Bericht kann Arbeitszeit erwähnen, während dieselbe Zeit bereits als Projekteinsatz erfasst wurde. Wählen Sie nicht zusätzlich alle offenen Projektstunden, wenn dadurch dieselbe Arbeit doppelt berechnet wird.
+## Ergebnis prüfen
 
-Prüfen Sie außerdem, ob eine Leistung bereits im Angebotspreis oder einer früheren Rechnung enthalten ist. Dokumentierte Arbeit ist nicht automatisch eine zusätzlich beauftragte Nachtragsleistung.
+Der Entwurf enthält die ausgewählten Zeilen mit Projektbezug und steht unter „Dokumente“ des Projekts. Kontrollieren Sie Mengen, Preise, Steuer und Leistungsbeschreibung, bevor Sie die Rechnung [fertigstellen](/hilfe/rechnung-fertigstellen).
 
-## Ergebnis und Fehlerhilfe
+Übernommene Stunden verknüpft CraftOS mit der Rechnung als abgerechnet.
 
-Der Entwurf enthält die ausgewählten abrechenbaren Zeilen mit Projektbezug. Kontrollieren Sie Mengen, Preise, Steuerbehandlung und Leistungsbeschreibung vor der Fertigstellung.
+## Häufige Probleme
 
-Ist die Erstellung nicht möglich, prüfen Sie Berichtsstatus, verwertbare Positionen, Kunde und Projektvoraussetzungen; ein Bericht im Entwurfsstatus ist nicht für diese Übernahme freigegeben. Bei fehlenden Lohnwerten kontrollieren Sie die passende Lohngruppe, statt einen beliebigen Verkaufspreis einzusetzen.
+### Warum ist „Rechnung aus Bericht erstellen“ nicht wählbar?
 
-Vergleichen Sie nach einer Fehlermeldung zuerst die Dokumentliste, bevor Sie einen zweiten Entwurf erzeugen.
+Der Hinweis an der Schaltfläche nennt den Grund, zum Beispiel „Nur für abgeschlossene Berichte (nicht Entwurf)“, „Keine übernehmbaren Positionen im Bericht“ oder „Dem Projekt ist kein Kunde zugeordnet“.
 
-Die [Berichtsanleitung](/hilfe/bautagesbericht-erstellen) verbessert die Ausgangsdaten; [Rechnung fertigstellen](/hilfe/rechnung-fertigstellen) beschreibt den geprüften Abschluss.
+### Warum fehlen Stunden im Entwurf?
+
+Für diese Personen ist am Standort kein Verrechnungssatz hinterlegt. Tragen Sie im Dialog einen Satz für diese Stunden ein oder hinterlegen Sie ihn unter „Einstellungen → Lohngruppen“; ohne Satz bleiben die Stunden offen.
+
+### Wie vermeide ich doppelt berechnete Arbeitszeit?
+
+Wählen Sie entweder die Stunden des Berichtstags oder „Alle offenen Projektstunden“, nicht beides für dieselbe Arbeit. Bereits abgerechnete Berichte kennzeichnet die Sammelabrechnung.
+
+Die [Berichtsanleitung](/hilfe/bautagesbericht-erstellen) verbessert die Ausgangsdaten; die [Baudokumentation](/funktionen/baudokumentation) zeigt den Ablauf vom Bericht bis zur Rechnung.

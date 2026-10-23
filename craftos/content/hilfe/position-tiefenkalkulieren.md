@@ -3,42 +3,50 @@ title: "Eine Angebotsposition detailliert kalkulieren"
 description: "So prüfen Sie Material, Lohn und Zuschläge einer Position und vermeiden doppelte Gewinn- oder Kostenansätze."
 category: "angebote"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
+answer: "Schalten Sie an der Angebotsposition die „Detaillierte Kalkulation“ ein und erfassen Sie Kostenzeilen für Lohn, Material und weitere Kostenarten. CraftOS berechnet daraus mit Ihren Lohngruppen und Zuschlägen den Einzelpreis „EP“ und den Positionspreis „VK gesamt“."
 relatedFeatures: ["angebote", "nachkalkulation"]
-relatedArticles: ["/blog/tiefenkalkulation-handwerk", "/blog/stundenverrechnungssatz-berechnen"]
+relatedArticles: ["/blog/tiefenkalkulation-handwerk", "/blog/stundenverrechnungssatz-berechnen", "/hilfe/angebotspositionen-leistungsvorlagen"]
 sources: []
 platforms: ["web"]
 ---
 
-Die detaillierte Kalkulation zeigt die internen Kosten einer Position und deren Wirkung auf den Verkaufspreis.
+## Voraussetzungen
 
-Sie benötigen einen bearbeitbaren Angebotsentwurf in der Web-App und die für Ihre Rolle freigegebenen Kalkulationsdaten.
+- Voll-Lizenz (Admin oder Büro) und ein bearbeitbarer Angebotsentwurf in der Web-App.
+- Lohngruppen und Zuschläge sind hinterlegt: unter „Einstellungen → Lohngruppen“ und „Einstellungen → Zuschläge & Margen“. Diese Vorgaben pflegt, wer Zugriff auf die Einstellungen und Finanzen hat.
 
 ## Schritt für Schritt
 
-1. Öffnen Sie das Angebot im Dokumenteditor.
-2. Wählen Sie die zu kalkulierende Position.
-3. Öffnen Sie den Kalkulationsbereich und aktivieren Sie bei Bedarf „Detaillierte Kalkulation“.
-4. Prüfen oder ergänzen Sie die Kostenzeilen für Material, Lohn und weitere benötigte Kostenarten.
-5. Wählen Sie bei Lohnpositionen die passende Lohngruppe und prüfen Sie Zeitansatz sowie Kostenbasis.
-6. Kontrollieren Sie die verwendeten Zuschläge und die berechneten Verkaufswerte.
+1. Öffnen Sie das Angebot im Editor.
+2. Wählen Sie die Position, die Sie kalkulieren möchten.
+3. Schalten Sie die „Detaillierte Kalkulation“ ein.
+4. Erfassen Sie unter „Kostenzeilen (EK)“ die Zeilen für Lohn, Material und weitere Kostenarten.
+5. Wählen Sie für Lohnzeilen die passende Lohngruppe und tragen Sie die Stunden ein.
+6. Kontrollieren Sie die Zuschläge und die berechneten Verkaufswerte.
 7. Vergleichen Sie „EP“ und „VK gesamt“ mit Menge und erwartetem Positionspreis.
-8. Speichern Sie und kontrollieren Sie die Gesamtsumme des Angebots.
+8. Speichern Sie und prüfen Sie die Gesamtsumme des Angebots.
 
-Die Unternehmensvorgaben werden unter „Einstellungen → Lohngruppen“ und „Zuschläge & Margen“ gepflegt. Änderungen daran benötigen den passenden administrativen Zugriff.
+## Ergebnis prüfen
 
-## Rechenbeispiel
+Die Position zeigt einen Preis, der sich aus den erfassten Kostenzeilen und Zuschlägen ergibt. Bei Abweichungen prüfen Sie Einheit, Bezugsmenge und Zuschläge.
 
-Zwölf Stunden zu 60 € internem Kostensatz ergeben 720 € Arbeitskosten. Mit 350 € Material und 130 € weiteren Auftragskosten beträgt die Basis 1.200 €. Bei einer gewünschten Umsatzmarge von 20 % ergibt sich rechnerisch ein Nettoverkaufspreis von 1.500 €.
+Rechenbeispiel: 12 Stunden zu 60 € internem Kostensatz ergeben 720 € Lohnkosten. Mit 350 € Material und 130 € weiteren Kosten beträgt die Basis 1.200 €; bei 20 % Umsatzmarge ergibt sich ein Nettoverkaufspreis von 1.500 €.
 
-Prüfen Sie, ob ein Eingabefeld eine Marge oder einen Kostenaufschlag meint; dieselbe Prozentzahl liefert unterschiedliche Ergebnisse.
+## Häufige Probleme
 
-## Ergebnis und Fehlerhilfe
+### Warum ist der Verkaufspreis höher als erwartet?
 
-Die Position zeigt einen nachvollziehbaren Preis aus den erfassten Bestandteilen. Bei Abweichungen prüfen Sie Einheit, Bezugsmenge und vorhandene Zuschläge.
+Prüfen Sie, ob der Kostensatz der Lohngruppe bereits Gewinn oder Gemeinkosten enthält. Ein Verkaufssatz als Kostenbasis führt mit einem weiteren Zuschlag zu einem doppelten Ansatz.
 
-Verwenden Sie keinen Verkaufssatz inklusive Gewinn als internen Kostensatz, wenn anschließend erneut eine Marge aufgeschlagen wird. Kontrollieren Sie außerdem, ob Gemeinkosten bereits im Kostensatz enthalten sind.
+### Was ist der Unterschied zwischen Aufschlag und Marge?
 
-Der [Tiefenkalkulationsratgeber](/blog/tiefenkalkulation-handwerk) erklärt den Unterschied zwischen Aufschlag und Marge; der [Stundensatzrechner](/rechner/stundensatz) hilft bei der Ausgangsbasis.
+Ein Aufschlag rechnet auf die Kosten, eine Marge auf den Verkaufspreis. Dieselbe Prozentzahl liefert deshalb unterschiedliche Preise; der [Ratgeber zur Tiefenkalkulation](/blog/tiefenkalkulation-handwerk) zeigt beide Rechnungen.
+
+### Warum ändert sich der Lohnpreis nach einer Änderung der Lohngruppe?
+
+Lohnzeilen rechnen Stunden mal Satz der gewählten Lohngruppe. Prüfen Sie nach einer Satzänderung die betroffenen Positionen, bevor Sie das Angebot versenden.
+
+Der [Stundensatzrechner](/rechner/stundensatz) hilft bei der Ausgangsbasis; die [Nachkalkulation](/funktionen/nachkalkulation) vergleicht später Plan und Ist.

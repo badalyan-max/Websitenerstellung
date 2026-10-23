@@ -1,44 +1,62 @@
 ---
 title: "Ein GAEB-Leistungsverzeichnis in ein Angebot importieren"
-description: "So prüfen Sie GAEB-Datei, Positionsauswahl und Preisübernahme vor dem Import in den Dokumenteditor."
+description: "So prüfen Sie GAEB-Datei, Positionsauswahl und Mengen vor dem Import in den Dokumenteditor und geben Angebote als X84 ab."
 category: "angebote"
 publishedAt: "2026-09-09"
-updatedAt: "2026-09-09"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
+answer: "CraftOS importiert Leistungsverzeichnisse als X83 im Format GAEB DA XML 3.2 (2013-10) oder 3.3 (2021-05) über „GAEB importieren“ im Angebotseditor. Nach dem Bepreisen geben Sie das Angebot mit „GAEB exportieren“ als X84 ab."
 relatedFeatures: ["gaeb", "angebote"]
-relatedArticles: ["/hilfe/angebotspositionen-leistungsvorlagen"]
+relatedArticles: ["/hilfe/angebotspositionen-leistungsvorlagen", "/hilfe/position-tiefenkalkulieren", "/hilfe/angebot-entwurf-anlegen"]
 sources: []
 platforms: ["web"]
 ---
 
-Der GAEB-Import übernimmt unterstützte Leistungsverzeichnisdaten in den Dokumenteditor; prüfen Sie die Vorschau, bevor Sie Positionen hinzufügen.
+## Voraussetzungen
 
-Sie benötigen einen Admin- oder Büro-Zugang, einen bearbeitbaren Dokumententwurf und die Originaldatei. Der aktuelle Importdialog nennt die Formate .x83, .x84 und .d83.
+- Voll-Lizenz (Admin oder Büro) und ein bearbeitbarer Angebotsentwurf in der Web-App.
+- Die Original-Ausschreibung als X83 im Format GAEB DA XML 3.2 (2013-10) oder 3.3 (2021-05), UTF-8-codiert und bis 5 MiB groß.
+- Die Dateiauswahl nimmt Dateien mit der Endung `.x83` oder `.gaeb` an. Die Formate erklärt der Ratgeber [GAEB-Formate](/blog/gaeb-formate).
 
-## Schritt für Schritt
+## Schritt für Schritt: X83 importieren
 
 1. Öffnen Sie das Angebot im Dokumenteditor.
-2. Wählen Sie im Dokumentmenü „GAEB importieren“.
-3. Wählen Sie die gewünschte Datei aus.
-4. Prüfen Sie nach dem Einlesen die angezeigten Projekt- beziehungsweise Leistungsverzeichnisangaben.
-5. Lesen Sie die „Hinweise“ zur importierten Datei.
-6. Öffnen Sie die „Positionsvorschau“ und kontrollieren Sie Positionen, Mengen und Einheiten.
-7. Wählen Sie gezielt die zu übernehmenden Positionen oder verwenden Sie „Alle auswählen“.
-8. Entscheiden Sie, ob „Preise übernehmen“ aktiviert werden soll, und bestätigen Sie den Import.
+2. Öffnen Sie das Menü „Weitere Aktionen“ und wählen Sie „GAEB importieren“.
+3. Klicken Sie auf „Datei auswählen“ oder ziehen Sie die X83-Datei in das Feld.
+4. Prüfen Sie Projekt, Auftraggeber und LV-Nummer aus der Datei.
+5. Lesen Sie die „Hinweise“ zur eingelesenen Datei.
+6. Öffnen Sie die „Positionsvorschau“ und kontrollieren Sie Titel, Positionen, Mengen und Einheiten.
+7. Wählen Sie Positionen einzeln oder mit „Alle auswählen“ bzw. „Alle abwählen“.
+8. Klicken Sie auf die Schaltfläche zum Importieren der gewählten Positionen.
 
-Eine Datei ohne passende Preise braucht anschließend Ihre eigene Kalkulation. Eine erfolgreiche Erkennung ersetzt nicht die Prüfung des Leistungsumfangs.
+## Schritt für Schritt: Angebot als X84 abgeben
+
+1. Kalkulieren Sie die Preise der importierten Positionen im Editor.
+2. Öffnen Sie das Menü „Weitere Aktionen“ und wählen Sie „GAEB exportieren“.
+3. Wählen Sie die Austauschphase „X84 — Angebotsabgabe“.
+4. Prüfen Sie unter „Bieteradresse prüfen“ Firmenname und Anschrift.
+5. Bestätigen Sie, dass Sie alle Preise einschließlich der Nullpreise geprüft haben.
+6. Erstellen Sie die X84-Datei und übermitteln Sie sie auf dem Weg, den der Auftraggeber vorgibt.
 
 ## Ergebnis prüfen
 
-Die ausgewählten Positionen werden dem Dokument hinzugefügt. Vergleichen Sie Anzahl, Reihenfolge und Mengen mit dem Original. Prüfen Sie anschließend die Dokumentvorschau und die Gesamtsumme.
+Die gewählten Positionen stehen im Angebot. Vergleichen Sie Anzahl, Reihenfolge und Mengen mit dem Original sowie die Gesamtsumme in der Vorschau.
 
-Wenn bereits Positionen vorhanden waren, kontrollieren Sie besonders, ob gleiche Leistungen doppelt vorkommen. Wiederholen Sie den Import nicht unbesehen, nachdem bereits eine Erfolgsmeldung erschienen ist.
+Für die X84-Abgabe übernehmen Sie das Original-LV vollständig einschließlich aller Titel; der Dialog weist darauf hin, solange nicht alle Positionen gewählt sind. Als X83 exportieren Sie Mengen, Einheiten und Leistungstexte ohne Angebotspreise.
 
 ## Häufige Probleme
 
-Kann die Datei nicht gelesen werden, prüfen Sie Format und Vollständigkeit. Eine umbenannte PDF-Datei ist keine GAEB-Datei. Nutzen Sie die originale Exportdatei des Absenders.
+### Was tun, wenn „Datei kann nicht übernommen werden“ erscheint?
 
-Beachten Sie Warnungen zu nicht vollständig unterstützten Inhalten und vergleichen Sie die betroffenen Positionen manuell. Leiten Sie aus einem erfolgreichen Import keine pauschale Unterstützung jeder GAEB-Variante ab.
+Die Meldung nennt den Grund, etwa Dateigröße, Zeichencodierung oder fehlendes GAEB-XML. Fordern Sie beim Absender die originale X83-Datei als GAEB DA XML 3.2 oder 3.3 in UTF-8 an.
 
-Die [Angebotsfunktion](/funktionen/angebote) bietet die anschließende Bearbeitung; [Positionen und Leistungsvorlagen](/hilfe/angebotspositionen-leistungsvorlagen) erklärt die weitere Kalkulationsgrundlage.
+### Warum lässt sich X84 nicht auswählen?
+
+Für X84 braucht CraftOS die vollständig übernommene X83-Originalausschreibung. Importieren Sie das Original-LV mit allen Titeln und Positionen in das Angebot und öffnen Sie danach den Export erneut.
+
+### Wie vermeide ich doppelte Positionen?
+
+Prüfen Sie vor dem Import, ob das Angebot schon Positionen enthält. Nach der Erfolgsmeldung importieren Sie dieselbe Datei nicht erneut, sondern vergleichen die Liste mit dem Original.
+
+Die [GAEB-Funktion](/funktionen/gaeb) zeigt den Ablauf von der Ausschreibung bis zur Angebotsabgabe; [Positionen und Leistungsvorlagen](/hilfe/angebotspositionen-leistungsvorlagen) erklärt die weitere Kalkulation.
