@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: – Überblick
 status: completed
-stopped_at: Completed 09-10-PLAN.md
-last_updated: "2026-10-23T08:20:03.962Z"
+stopped_at: Completed 10-07-PLAN.md
+last_updated: "2026-10-23T17:08:25.428Z"
 last_activity: 2026-10-23
 progress:
   total_phases: 6
-  completed_phases: 5
-  total_plans: 55
-  completed_plans: 55
-  percent: 83
+  completed_phases: 6
+  total_plans: 68
+  completed_plans: 68
+  percent: 100
 ---
 
 # State
@@ -21,7 +21,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-10-20)
 
 **Core value:** Besucher verstehen den Produktablauf anhand lesbarer Beispiele und direkter App-Aufnahmen und können die richtige Funktion und Anleitung schnell finden.
-**Current focus:** Phase 10 — Abschlussaudit (Phase 9 live seit 23.10.2026)
+**Current focus:** Meilenstein v2.0 ausgerollt (Phase 10 live seit 23.10.2026, 16:30 UTC); offen: Lückenschluss QA-06 (`/impressum` O2/O3), SEO-08 (Linkaufbau), Analytics-Nachtrag 24 h
 
 ## Vorheriger Milestone v1.0 (abgeschlossen)
 
@@ -30,14 +30,14 @@ Lokale Umsetzung, Abnahme und Übernahme in C:/Projekte/Websitenerstellung abges
 ## Current Position
 
 Phase: 10
-Plan: Not started
-Status: Phase complete – ready for Phase 10
+Plan: 13 of 13 (10-07 Rollout abgeschlossen)
+Status: Phase 10 complete – live (e392762, dpl_TBDg23xnPvC9HmED3ArQA16Vida7); Meilenstein v2.0 mit QA-06 und SEO-08 „In Progress“
 Last activity: 2026-10-23
 
-Progress: [██████████] 100% (55/55 Pläne des Milestones laut SUMMARY-Zählung; Phase 9: 18/18; Phase 10 noch nicht geplant)
+Progress: [██████████] 100% (68/68 Pläne des Milestones laut SUMMARY-Zählung; Phase 10: 13/13)
 
-Last session: 2026-10-23T07:45:01.621Z
-Stopped at: Completed 09-10-PLAN.md
+Last session: 2026-10-23T17:08:05.233Z
+Stopped at: Completed 10-07-PLAN.md
 Resume file: None
 
 ## Accumulated Context
@@ -128,6 +128,9 @@ Resume file: None
 - [Phase 09]: 09-16: Kundenportal-Szene zeigt die Unterschriftsseite aus der Angebotsmail (QuoteSigning.tsx) statt der Portal-Rechnungsansicht
 - [Phase 09]: 09-16: Kartenbühne begrenzt die Rahmen-figure auf max(280px, 100%); die Plantafel-Wochenansicht ragt nicht mehr über die Karte
 - [Phase 09]: 09-10: Phase 9 live (25bad34, dpl_HxdXfEzGz7jUw8rcdQFFj2Pvvu7F READY); live-check 69/69 inkl. Gewerke, Anleitungen, Wissensseiten; IndexNow 156; SE Ranking 0 Units, sechs Hauptkeywords ergänzt; Produktbasis Web test.248; Offline positiv aus mobileOffline.erfassung; FEAT-04, CONTENT-03, CONTENT-04, SEO-09 erledigt, DESIGN-02 Rest Phase 10
+- [Phase 10]: 10-07: Phase 10 live (e392762, dpl_TBDg23xnPvC9HmED3ArQA16Vida7 READY 16:30:41 UTC); live-check 77/77; IndexNow 156; SE Ranking 426 Units (Phase 952 von 5.000, Rest 17.645)
+- [Phase 10]: 10-07: QA-04 an Vercel-Speed-Insights-Felddaten markiert (p75 LCP 564 ms n=58, INP 40 ms n=47, CLS 0 n=31; D-44)
+- [Phase 10]: 10-07: QA-06 bleibt In Progress (Bestätigungsaudit Rohwert 2, Inhaberpunkt offen 0, behebbar 2: /impressum O2/O3); SEO-08 In Progress (0 von 15 seriösen Domains)
 
 ### Pending Todos
 
@@ -176,3 +179,4 @@ None yet.
 | Phase 09 P09 | 85 min | 2 tasks | 60 files |
 | Phase 09 P16 | 51 min | 2 tasks | 7 files |
 | Phase 09 P10 | 50 min | 2 tasks | 22 files |
+| Phase 10 P07 | 62min | 3 tasks | 30 files |

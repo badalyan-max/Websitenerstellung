@@ -13,10 +13,10 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 ### Design (DESIGN)
 
 - [x] **DESIGN-01**: Besucher erfassen auf der Startseite ohne Scrollen, was CraftOS ist, sehen eine Produktdarstellung und finden „10 Tage testen“; jeder Abschnitt hat höchstens eine Überschrift, einen Satz Einleitung und visuelle Elemente statt Fließtextblöcke.
-- [ ] **DESIGN-02**: Ein Designsystem v2 (Tokens, Bildrahmen für Desktop und Phone mit vereinfachter UI, Kachel-/Bento-Raster, Schrittfolge, Kennzahlen, Funktionskarte mit visuellem Element, Vergleichstabelle) wird auf allen Seiten einheitlich genutzt; Marke (Amber, Clash Display, General Sans, Logo) bleibt.
+- [x] **DESIGN-02**: Ein Designsystem v2 (Tokens, Bildrahmen für Desktop und Phone mit vereinfachter UI, Kachel-/Bento-Raster, Schrittfolge, Kennzahlen, Funktionskarte mit visuellem Element, Vergleichstabelle) wird auf allen Seiten einheitlich genutzt; Marke (Amber, Clash Display, General Sans, Logo) bleibt.
 - [x] **DESIGN-03**: Besucher finden über ein Menü mit Funktionsgruppen, Kurzbeschreibungen und Vorschaubildern jede Funktion in höchstens zwei Klicks, auf Desktop und Mobil.
 - [x] **DESIGN-04**: Bewegung ist dezent (Hover, Einblenden einzelner Elemente, Videos), es gibt keine globale Scroll-Animation, und bei „reduzierte Bewegung“ bleiben alle Inhalte statisch sichtbar.
-- [ ] **DESIGN-05**: Jede Seite besteht die Barrierefreiheitsprüfung (axe ohne ernsthafte Verstöße, Kontrast ≥ 4,5:1, Tastaturbedienung) bei 360, 390, 768, 1024 und 1440 px.
+- [x] **DESIGN-05**: Jede Seite besteht die Barrierefreiheitsprüfung (axe ohne ernsthafte Verstöße, Kontrast ≥ 4,5:1, Tastaturbedienung) bei 360, 390, 768, 1024 und 1440 px.
 
 ### Medien (MEDIA)
 
@@ -49,8 +49,8 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 
 ### Qualität und Rollout (QA)
 
-- [ ] **QA-04**: Echte Besucherdaten in Produktion (Vercel Speed Insights, p75 über alle Seiten, Stichprobengröße angegeben) erreichen LCP < 2,5 s, INP < 200 ms und CLS < 0,1 (Inhaberentscheidung 23.10.2026, D-44; Lighthouse-Labordaten nur noch als nicht blockierende Regressionswarnung); Unit-, Browser-, Routen- und visuelle Prüfungen sind an den neuen Stand angepasst und grün.
-- [ ] **QA-05**: Jede Etappe geht einzeln nach Ship-Gate live; danach werden IndexNow gemeldet, die Live-Seite geprüft und `trial_click`/`ai_visit` in Vercel Analytics kontrolliert.
+- [x] **QA-04**: Echte Besucherdaten in Produktion (Vercel Speed Insights, p75 über alle Seiten, Stichprobengröße angegeben) erreichen LCP < 2,5 s, INP < 200 ms und CLS < 0,1 (Inhaberentscheidung 23.10.2026, D-44; Lighthouse-Labordaten nur noch als nicht blockierende Regressionswarnung); Unit-, Browser-, Routen- und visuelle Prüfungen sind an den neuen Stand angepasst und grün.
+- [x] **QA-05**: Jede Etappe geht einzeln nach Ship-Gate live; danach werden IndexNow gemeldet, die Live-Seite geprüft und `trial_click`/`ai_visit` in Vercel Analytics kontrolliert.
 - [ ] **QA-06**: Nach der letzten Etappe zeigt ein erneuter `/audit craftos.eu` keine offenen technischen oder On-Page-Fehler.
 
 ## Future Requirements
@@ -75,10 +75,10 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 | PROD-03 | Phase 5 | Complete |
 | PROD-04 | Phase 5 | Complete |
 | DESIGN-01 | Phase 6 | Complete |
-| DESIGN-02 | Phase 5 (Grundlage), Phasen 6–9 (Umsetzung), Rest Phase 10 (Rechner, Support, Rechtsseiten, 404) | In Progress |
+| DESIGN-02 | Phase 5 (Grundlage), Phasen 6–9 (Umsetzung), Phase 10 (Rechner, Support, Rechtsseiten, 404; live-check und Phasen-Gate 10-12 grün) | Complete |
 | DESIGN-03 | Phase 6 | Complete |
 | DESIGN-04 | Phase 5 | Complete |
-| DESIGN-05 | Phase 10 | Pending |
+| DESIGN-05 | Phase 10 | Complete |
 | MEDIA-01 | Phase 7 | Complete |
 | MEDIA-02 | – | Out of Scope |
 | MEDIA-03 | Phase 5 | Complete |
@@ -93,17 +93,17 @@ Stand: 20.10.2026, Umfang am selben Tag vom Inhaber reduziert: keine detailgetre
 | SEO-05 | Phase 8 | Complete |
 | SEO-06 | Phase 8 | Complete |
 | SEO-07 | Phase 5 | Complete |
-| SEO-08 | Phase 5 (Linkplan), laufend bis Phase 10 (≥15 Refdomains) | In Progress |
+| SEO-08 | Phase 5 (Linkplan), laufend bis Phase 10 (≥15 Refdomains); Messstand 23.10.2026 nach dem Rollout: 12 verweisende Domains, alle Spam, 0 neue seriöse (omr.com live, noch nicht erfasst) – offen, Weg LINKPLAN § 7 (Übergabe 2) | In Progress |
 | SEO-09 | Phase 8 (kommerzielle KI-Prompts), Phase 9 (Wissenslücken, Abschluss) | Complete |
 | CONTENT-03 | Phase 9 | Complete |
 | CONTENT-04 | Phase 9 | Complete |
-| QA-04 | Phase 10 | Pending |
-| QA-05 | Phase 10 | Pending |
-| QA-06 | Phase 10 | Pending |
+| QA-04 | Phase 10 | Complete |
+| QA-05 | Phase 10 | Complete |
+| QA-06 | Phase 10; Bestätigungsaudit 23.10.2026: Rohwert 2, Inhaberpunkt offen 0, behebbar 2 (`/impressum` ohne 3 interne Links bzw. Link auf Funktionen/Preise im Hauptteil, O2/O3) – Lückenschluss in PHASE-10-ROLLOUT.md § 11 | In Progress |
 
 **Coverage:** 28/28 aktive v2.0-Anforderungen zugeordnet (MEDIA-02 Out of Scope), keine doppelt.
 
-Hinweis: SEO-02, DESIGN-02 und SEO-08 haben in Phase 5 ihre Grundlage (Keyword-Map aus SE Ranking, Designbausteine, Linkplan) und werden in den Phasen 6–8 auf den Seiten umgesetzt bzw. bis Phase 10 gemessen; sie bleiben bis dahin offen. Stand nach Phase 8 (23.10.2026): SEO-02 erledigt. Stand nach Phase 9 (23.10.2026): SEO-09 erledigt; DESIGN-02 für Gewerke-, Ratgeber- und Hilfe-Vorlagen umgesetzt, Rest (Rechner, Support, Rechtsseiten, 404) in Phase 10; SEO-08 in Phase 10.
+Hinweis: SEO-02, DESIGN-02 und SEO-08 haben in Phase 5 ihre Grundlage (Keyword-Map aus SE Ranking, Designbausteine, Linkplan) und werden in den Phasen 6–8 auf den Seiten umgesetzt bzw. bis Phase 10 gemessen; sie bleiben bis dahin offen. Stand nach Phase 8 (23.10.2026): SEO-02 erledigt. Stand nach Phase 9 (23.10.2026): SEO-09 erledigt; DESIGN-02 für Gewerke-, Ratgeber- und Hilfe-Vorlagen umgesetzt, Rest (Rechner, Support, Rechtsseiten, 404) in Phase 10; SEO-08 in Phase 10. Stand nach Phase 10 (23.10.2026, Rollout 10-07): DESIGN-02, DESIGN-05, QA-04 (Felddaten D-44: p75 LCP 564 ms, INP 40 ms, CLS 0, n = 58/47/31) und QA-05 erledigt; QA-06 (2 behebbare On-Page-Fehler auf `/impressum`) und SEO-08 (0 von 15 seriösen verweisenden Domains) bleiben „In Progress“.
 
 ## Validated (v1.0, Relaunch 09.09.2026)
 

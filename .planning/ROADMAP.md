@@ -26,7 +26,7 @@ craftos.eu wird klar gegliedert und optisch ansprechend: weniger Fließtext, Kac
 - [x] **Phase 7: Funktionsdetailseiten und Mobile-App-Seite** - Einheitliche, kurze Detailseiten mit visuellem Element für jede Live-Funktion (completed 2026-10-22)
 - [x] **Phase 8: SEO und KI-Sichtbarkeit** - Alternativen-Seiten, Preis-Antwortblock, Metadaten nach Keyword-Map, Breadcrumbs, OG-Grafiken (completed 2026-10-23)
 - [x] **Phase 9: Gewerke und Wissensinhalte** - Gewerke-Seiten gegliedert, Ratgeber und Hilfe auf Produktstand, neue Hilfeartikel (completed 2026-10-23)
-- [ ] **Phase 10: Abschlussaudit** - Barrierefreiheit, Performance und erneuter Audit ohne offene Fehler
+- [x] **Phase 10: Abschlussaudit** - Barrierefreiheit, Performance und erneuter Audit ohne offene Fehler (completed 2026-10-23)
 
 ## Phase Details
 
@@ -299,35 +299,37 @@ Plans:
   3. Für jede Etappe (Phasen 5–10) ist dokumentiert, dass sie einzeln nach Ship-Gate live ging, IndexNow gemeldet, die Live-Seite geprüft und `trial_click`/`ai_visit` kontrolliert wurde.
   4. Ein erneuter `/audit craftos.eu` und ein SE-Ranking-Website-Audit nach der letzten Etappe zeigen keine offenen technischen oder On-Page-Fehler; ein Abschlussbericht vergleicht Positionen, KI-Share-of-Voice und verweisende Domains mit dem Ausgangsstand vom 20.10.2026.
 
+**Stand nach dem Rollout 10-07 (23.10.2026):** Phase 10 ist live (`e392762`). Kriterium 1 erfüllt (A11y-Matrix 0, DESIGN-05). Kriterium 2 nach D-44 an Felddaten bewertet (p75 LCP 564 ms, INP 40 ms, CLS 0; QA-04), Prüfsuiten grün; Labordaten nur Regressionsinformation. Kriterium 3 erfüllt (Etappennachweis 05–10, QA-05; 24-Stunden-Fenster Phase 10 als Nachtrag). Kriterium 4 **teilweise**: SE-Ranking-Recheck 0 Fehler, Abschlussbericht liegt vor; der Bestätigungs-`/audit` zeigt noch 2 behebbare On-Page-Fehler auf `/impressum` (O2/O3) – Lückenschluss QA-06 in `craftos/docs/releases/PHASE-10-ROLLOUT.md` § 11. SEO-08 bei 0 von 15 neuen seriösen Domains.
+
 **Plans**: 13 plans (5 Wellen, parallele Spuren in Worktrees `C:/Projekte/wt-10<x>`, Ports 3101–3105; Integration, Phasen-Gate und Rollout im Haupt-Arbeitsbaum, Port 3100; Merge der Spuren mit `--no-ff` in der Reihenfolge e → c → a → b → d; zwischen 10-06 und 10-12 Code-Review und Fixer des Orchestrators)
 Plans:
 **Wave 1** *(Startgate nach Phase 9; je Spur ein Worktree)*
 
-- [ ] 10-01-PLAN.md — (a) Barrierefreiheit Teil 1: a11y-audit-Kern mit Tests, CLI mit Shards und Tastaturprüfung, visual-audit mit fünf Breiten (wt-10a, 3101)
-- [ ] 10-02-PLAN.md — (b) Performance Teil 1: Lighthouse 13.5.0, Modus --lighthouse mit Median und Gate, Snippet-CLS, deterministische Flakes, Release-Helfer, K-1 (wt-10b, 3102)
-- [ ] 10-03-PLAN.md — (c) DESIGN-02-Rest Teil 1: Wortlaut-Schutz als erster Commit, ContentKopf K1/K2, Rechtsseiten mit Kontrast, 404, /support (wt-10c, 3103)
-- [ ] 10-04-PLAN.md — (d) Funktionsergänzungen Teil 1: Kassenbuch und § 13b, Schutztests ProductDemo und doppelte Slugs; Menü-Präsenz an 10-06 (wt-10d, 3104)
-- [ ] 10-05-PLAN.md — (e) Audits Teil 1: seo-report ohne Leaderboard (D-37), KI-Tracker-Abgleich (D-39), Vorab-/audit mit Behebungsliste (wt-10e, 3105)
+- [x] 10-01-PLAN.md — (a) Barrierefreiheit Teil 1: a11y-audit-Kern mit Tests, CLI mit Shards und Tastaturprüfung, visual-audit mit fünf Breiten (wt-10a, 3101)
+- [x] 10-02-PLAN.md — (b) Performance Teil 1: Lighthouse 13.5.0, Modus --lighthouse mit Median und Gate, Snippet-CLS, deterministische Flakes, Release-Helfer, K-1 (wt-10b, 3102)
+- [x] 10-03-PLAN.md — (c) DESIGN-02-Rest Teil 1: Wortlaut-Schutz als erster Commit, ContentKopf K1/K2, Rechtsseiten mit Kontrast, 404, /support (wt-10c, 3103)
+- [x] 10-04-PLAN.md — (d) Funktionsergänzungen Teil 1: Kassenbuch und § 13b, Schutztests ProductDemo und doppelte Slugs; Menü-Präsenz an 10-06 (wt-10d, 3104)
+- [x] 10-05-PLAN.md — (e) Audits Teil 1: seo-report ohne Leaderboard (D-37), KI-Tracker-Abgleich (D-39), Vorab-/audit mit Behebungsliste (wt-10e, 3105)
 
 **Wave 2** *(je Spur nach ihrem Teil 1 im selben Worktree)*
 
-- [ ] 10-08-PLAN.md — (a) Barrierefreiheit Teil 2: FeatureSnippet-Dimmstufe, a11y.pw.cjs mit Tastaturfällen, Baseline der vollen Matrix (wt-10a, 3101)
-- [ ] 10-09-PLAN.md — (b) Performance Teil 2: Gate-Seiten, Schriftlizenz, Logo-Schriftzug als SVG, drei Schnitte weniger, Messschleife (wt-10b, 3102)
-- [ ] 10-10-PLAN.md — (c) DESIGN-02-Rest Teil 2: Rechner auf v2, Bento-Bodenausrichtung, Tabellen-Caption, Darstellungstest, DESIGN-V2 § 19 (wt-10c, 3103)
-- [ ] 10-11-PLAN.md — (e) Audits Teil 2: Linkregister und Übergabe 2 (SEO-08), Etappennachweis 05–09, Entwurf Abschlussbericht (wt-10e, 3105)
-- [ ] 10-13-PLAN.md — (d) Funktionsergänzungen Teil 2: Lagerfoto-Credits mit Stichtag, Paritätstest, Anzeige auf /craft-ai und im Hilfeartikel (wt-10d, 3104)
+- [x] 10-08-PLAN.md — (a) Barrierefreiheit Teil 2: FeatureSnippet-Dimmstufe, a11y.pw.cjs mit Tastaturfällen, Baseline der vollen Matrix (wt-10a, 3101)
+- [x] 10-09-PLAN.md — (b) Performance Teil 2: Gate-Seiten, Schriftlizenz, Logo-Schriftzug als SVG, drei Schnitte weniger, Messschleife (wt-10b, 3102)
+- [x] 10-10-PLAN.md — (c) DESIGN-02-Rest Teil 2: Rechner auf v2, Bento-Bodenausrichtung, Tabellen-Caption, Darstellungstest, DESIGN-V2 § 19 (wt-10c, 3103)
+- [x] 10-11-PLAN.md — (e) Audits Teil 2: Linkregister und Übergabe 2 (SEO-08), Etappennachweis 05–09, Entwurf Abschlussbericht (wt-10e, 3105)
+- [x] 10-13-PLAN.md — (d) Funktionsergänzungen Teil 2: Lagerfoto-Credits mit Stichtag, Paritätstest, Anzeige auf /craft-ai und im Hilfeartikel (wt-10d, 3104)
 
 **Wave 3** *(blocked on Merge aller Spuren in der Reihenfolge e → c → a → b → d)*
 
-- [ ] 10-06-PLAN.md — Integration: Übergaben (höchstens 12), Audit-Behebungen, testMatch, Zusatzfunktionen im Mega-Menü (D-40), Sitemap-Daten, live-check Phase 10, Produktbasis, D-31-Endstand (main, 3100)
+- [x] 10-06-PLAN.md — Integration: Übergaben (höchstens 12), Audit-Behebungen, testMatch, Zusatzfunktionen im Mega-Menü (D-40), Sitemap-Daten, live-check Phase 10, Produktbasis, D-31-Endstand (main, 3100)
 
 **Wave 4** *(blocked on 10-06 sowie Code-Review `10-REVIEW.md` und Fixer `10-REVIEW-FIX.md` des Orchestrators)*
 
-- [ ] 10-12-PLAN.md — Phasen-Gate: Suiten aus D-14 in drei Blöcken, volle A11y-Matrix, Lighthouse-Endmessung mit Exit-Regeln (main, 3100)
+- [x] 10-12-PLAN.md — Phasen-Gate: Suiten aus D-14 in drei Blöcken, volle A11y-Matrix, Lighthouse-Endmessung mit Exit-Regeln (main, 3100)
 
 **Wave 5** *(blocked on Wave 4)*
 
-- [ ] 10-07-PLAN.md — Rollout: Review-Prüfung, ship-gate, Push, live-check, IndexNow, SE-Ranking ohne Leaderboard, Audit-Recheck, Bestätigungs-/audit, Berichte, Anforderungsstatus, Doku-Push (main, 3100)
+- [x] 10-07-PLAN.md — Rollout: Review-Prüfung, ship-gate, Push, live-check, IndexNow, SE-Ranking ohne Leaderboard, Audit-Recheck, Bestätigungs-/audit, Berichte, Anforderungsstatus, Doku-Push (main, 3100)
 
 **UI hint**: yes
 
@@ -342,4 +344,4 @@ Plans:
 | 7. Funktionsdetailseiten und Mobile-App-Seite | 9/9 | Complete    | 2026-10-22 |
 | 8. SEO und KI-Sichtbarkeit | 14/14 | Complete    | 2026-10-22 |
 | 9. Gewerke und Wissensinhalte | 18/18 | Complete    | 2026-10-23 |
-| 10. Abschlussaudit | 0/13 | Not started | - |
+| 10. Abschlussaudit | 13/13 | Complete   | 2026-10-23 |
