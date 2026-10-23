@@ -170,7 +170,17 @@ describe('letzter Leaderboard-Stand', () => {
       markennennungen: 1,
       linkzitate: 1,
     })
-    expect(leaderboardStand({ leaderboard: [] }, { datum: '2026-10-23', datei: 'x.json' }, 'craftos.eu')).toBeNull()
+    expect(leaderboardStand({}, { datum: '2026-10-23', datei: 'x.json' }, 'craftos.eu')).toBeNull()
+  })
+
+  it('leaderboardStand liefert Datum und Quelle auch ohne Eintrag der Hauptdomain (LO-07)', () => {
+    const json = { leaderboard: [{ rank: 1, domain: 'streit-software.de' }, { rank: 2, domain: 'hero-software.de' }] }
+    const stand = leaderboardStand(json, { datum: '2026-10-23', datei: 'reports/x.json' }, 'craftos.eu')
+    expect(stand).toEqual({ datum: '2026-10-23', datei: 'reports/x.json', rang: null, anzahl: 2, shareOfVoice: null, markennennungen: null, linkzitate: null })
+    const zeile = berichtszeileOhneLeaderboard(stand)
+    expect(zeile).toContain('nicht unter 2 Einträgen')
+    expect(zeile).toContain('23.10.2026')
+    expect(zeile).not.toContain('keine Rohdatei')
   })
 })
 

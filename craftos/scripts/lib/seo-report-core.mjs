@@ -122,15 +122,18 @@ export function letzteLeaderboardDatei(pfade) {
 }
 
 /**
- * Eintrag der Hauptdomain aus einer Leaderboard-Antwort.
+ * Eintrag der Hauptdomain aus einer Leaderboard-Antwort; ohne Leaderboard-Liste `null`, ohne Eintrag der Hauptdomain
+ * ein Stand mit `rang: null` (LO-07).
  * @param {any} json
  * @param {{ datum: string, datei: string }} quelle
  * @param {string} primary
  */
 export function leaderboardStand(json, quelle, primary) {
-  const lb = Array.isArray(json?.leaderboard) ? json.leaderboard : [];
+  if (!Array.isArray(json?.leaderboard)) return null;
+  const lb = json.leaderboard;
   const e = lb.find((l) => l.domain === primary);
-  if (!e) return null;
+  // LO-07: Hauptdomain nicht in der Liste – Datum und Quelle bleiben, Rang und Werte sind leer.
+  if (!e) return { datum: quelle.datum, datei: quelle.datei, rang: null, anzahl: lb.length, shareOfVoice: null, markennennungen: null, linkzitate: null };
   return {
     datum: quelle.datum,
     datei: quelle.datei,
