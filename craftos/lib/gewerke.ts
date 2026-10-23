@@ -140,7 +140,7 @@ const definitions: Gewerk[] = [
       },
       FAQ_APP,
     ],
-    artikel: ["/hilfe/plantafel-einsatz-planen", "/hilfe/material-entnehmen-zurueckbuchen", "/blog/projektbezogene-zeiterfassung"],
+    artikel: ["/hilfe/datanorm-katalog-importieren", "/hilfe/plantafel-einsatz-planen", "/hilfe/lager-scan-app"],
   },
   {
     slug: "shk",
@@ -176,7 +176,7 @@ const definitions: Gewerk[] = [
       },
       FAQ_APP,
     ],
-    artikel: ["/hilfe/abnahme-dokumentieren", "/hilfe/abschlagsrechnung-erstellen", "/hilfe/projekt-phasen-anlegen"],
+    artikel: ["/hilfe/angebot-online-unterschreiben-lassen", "/hilfe/abnahme-dokumentieren", "/hilfe/abschlagsrechnung-erstellen"],
   },
   {
     slug: "maler",
@@ -284,7 +284,7 @@ const definitions: Gewerk[] = [
       },
       FAQ_APP,
     ],
-    artikel: ["/hilfe/gaeb-importieren", "/hilfe/bautagesbericht-erstellen", "/hilfe/schlussrechnung-erstellen"],
+    artikel: ["/hilfe/gaeb-importieren", "/hilfe/regiebericht", "/hilfe/schlussrechnung-erstellen"],
   },
   {
     slug: "fliesenleger",
@@ -464,7 +464,7 @@ const definitions: Gewerk[] = [
       },
       FAQ_APP,
     ],
-    artikel: ["/hilfe/projektdateien-ordner", "/hilfe/material-entnehmen-zurueckbuchen", "/blog/projektbezogene-zeiterfassung"],
+    artikel: ["/hilfe/projektdateien-ordner", "/hilfe/lager-scan-app", "/blog/projektbezogene-zeiterfassung"],
   },
   {
     slug: "bauunternehmen",
@@ -500,7 +500,7 @@ const definitions: Gewerk[] = [
       },
       FAQ_APP,
     ],
-    artikel: ["/hilfe/projekt-phasen-anlegen", "/hilfe/abnahme-dokumentieren", "/blog/digitale-bautagesberichte"],
+    artikel: ["/hilfe/projekt-phasen-anlegen", "/blog/bauablaufplan", "/hilfe/abnahme-dokumentieren"],
   },
   {
     slug: "allrounder",
@@ -536,7 +536,7 @@ const definitions: Gewerk[] = [
       },
       FAQ_APP,
     ],
-    artikel: ["/hilfe/plantafel-einsatz-planen", "/hilfe/berichte-abrechnen", "/blog/zahlungserinnerung-mahnung-handwerk"],
+    artikel: ["/hilfe/plantafel-einsatz-planen", "/hilfe/berichte-abrechnen", "/hilfe/mahnwesen-einrichten"],
   },
 ];
 
