@@ -1,16 +1,17 @@
 // Reine Auswertung für den Lighthouse-Modus von scripts/performance-audit.mjs (`--lighthouse`).
 // Kein Dateizugriff, kein Netz, kein Browser: Eingabe sind Lighthouse-Ergebnisse (lhr) bzw. daraus
-// gelesene Kennzahlen. Regeln: 10-CONTEXT D-11 (Gate Score ≥ 95 und LCP < 2.500 ms, Median aus drei
-// Läufen), D-12 (Werkzeug) und 10-UI-SPEC § 11 K13 (Accessibility 100 auf den A11y-Gate-Seiten,
-// Best Practices und SEO nur Bericht). Getestet in tests/lighthouse-core.test.ts.
+// gelesene Kennzahlen. Regeln: 10-CONTEXT D-11 (Score ≥ 95 und LCP < 2.500 ms, Median aus drei Läufen),
+// D-44 (Score und Lab-LCP nur noch nicht blockierende Warnung), D-12 (Werkzeug) und 10-UI-SPEC § 11 K13
+// (Accessibility 100 auf den A11y-Gate-Seiten ist Pflicht, Best Practices und SEO nur Bericht).
+// Getestet in tests/lighthouse-core.test.ts.
 
 /**
  * @typedef {{ bestanden: boolean, gruende: string[] }} Urteil
  * @typedef {{ score: number|null, lcp: number|null, fcp: number|null, si: number|null, tbt: number|null,
  *   cls: number|null, lcpElement: string|null, laeufe: number, ungueltig: number,
- *   kategorien: Record<string, number|null>, gate: Urteil|null, info: boolean,
+ *   kategorien: Record<string, number|null>, gate: Urteil|null, warnung: Urteil|null, info: boolean,
  *   befunde?: Array<{ id: string, titel: string, lcp: number, fcp: number, anzeige: string|null }> }} UrlErgebnis
- * @typedef {{ herkunft: string, kennzeichnung: string, urls: Record<string, UrlErgebnis>, gateVerletzt: boolean }} Zusammenfassung
+ * @typedef {{ herkunft: string, kennzeichnung: string, urls: Record<string, UrlErgebnis>, gateVerletzt: boolean, warnungen: string[] }} Zusammenfassung
  */
 
 /**
@@ -129,7 +130,7 @@ export function hauptbefunde(lhr, anzahl = 6) {
     .slice(0, anzahl);
 }
 
-/** Gate D-11 auf Medianwerte: Score ≥ 95 und LCP < 2.500 ms; fehlende Werte sind ein Verstoß. */
+/** Schwellen D-11 auf Medianwerte: Score ≥ 95 und LCP < 2.500 ms; fehlende Werte sind eine Abweichung. Seit D-44 nur Warnung. */
 export function bewerte({ score, lcp }) {
   const gruende = [];
   if (score == null) gruende.push("Score fehlt");
@@ -152,13 +153,17 @@ export function bewerteKategorie(name, wert) {
 
 /**
  * Sammelergebnis. `ergebnisse`: `[{ pfad, laeufe: kennzahlen[], ungueltig, kategorien?, lcpElement?, befunde? }]`.
- * `gate` gilt für Performance (D-11), `a11yGate` für Accessibility, sofern die Kategorie gemessen wurde (K13);
+ * `gate` je URL ist das Accessibility-Urteil (K13, blockierend): Auf A11y-Gate-Seiten muss Accessibility 100 sein;
+ * fehlt die Messung, gilt das als Verstoß. `warnung` ist das Performance-Urteil nach D-11 für Gate-Routen; seit D-44
+ * nur eine nicht blockierende Regressionswarnung (Liste `warnungen`). `gateVerletzt` betrifft nur Accessibility.
  * `info`-Pfade werden nur berichtet. Kennzahlen sind Mediane je Kennzahl über die gültigen Läufe.
  * @returns {Zusammenfassung}
  */
 export function zusammenfassung(ergebnisse, { gate = GATE_ROUTEN, info = INFO_ROUTEN, a11yGate = A11Y_GATE, herkunft = "", laeufe = 3 } = {}) {
   /** @type {Record<string, UrlErgebnis>} */
   const urls = {};
+  /** @type {string[]} */
+  const warnungen = [];
   let gateVerletzt = false;
   for (const e of ergebnisse) {
     const gueltig = e.laeufe.filter((k) => !k.runtimeError);
@@ -167,12 +172,20 @@ export function zusammenfassung(ergebnisse, { gate = GATE_ROUTEN, info = INFO_RO
     const naechster = [...gueltig].sort((a, b) => Math.abs((a.lcp ?? 0) - (m.lcp ?? 0)) - Math.abs((b.lcp ?? 0) - (m.lcp ?? 0)))[0];
     const kategorien = { ...(e.kategorien ?? {}) };
 
+    /** @type {Urteil|null} */
+    let warnung = null;
+    if (gate.includes(e.pfad)) {
+      warnung = bewerte(m);
+      for (const g of warnung.gruende) warnungen.push(`${e.pfad}: ${g}`);
+    }
+    /** @type {Urteil|null} */
     let urteil = null;
-    if (gate.includes(e.pfad)) urteil = bewerte(m);
-    if (a11yGate.includes(e.pfad) && kategorien.accessibility !== undefined) {
-      const k = bewerteKategorie("accessibility", kategorien.accessibility);
-      urteil = urteil ?? { bestanden: true, gruende: [] };
-      if (!k.bestanden) urteil = { bestanden: false, gruende: [...urteil.gruende, k.grund] };
+    if (a11yGate.includes(e.pfad)) {
+      if (kategorien.accessibility === undefined) urteil = { bestanden: false, gruende: ["Accessibility nicht gemessen"] };
+      else {
+        const k = bewerteKategorie("accessibility", kategorien.accessibility);
+        urteil = k.bestanden ? { bestanden: true, gruende: [] } : { bestanden: false, gruende: [k.grund] };
+      }
     }
     if (urteil && !urteil.bestanden) gateVerletzt = true;
 
@@ -183,16 +196,18 @@ export function zusammenfassung(ergebnisse, { gate = GATE_ROUTEN, info = INFO_RO
       ungueltig: e.ungueltig ?? 0,
       kategorien,
       gate: urteil,
+      warnung,
       info: info.includes(e.pfad),
       ...(e.befunde ? { befunde: e.befunde } : {}),
     };
   }
-  return { herkunft, kennzeichnung: kennzeichnung(herkunft, laeufe), urls, gateVerletzt };
+  return { herkunft, kennzeichnung: kennzeichnung(herkunft, laeufe), urls, gateVerletzt, warnungen };
 }
 
 /** CLI-Optionen des Modus `--lighthouse`; `fehler` nicht leer → Exit 2. */
 export function optionen(argv) {
-  const o = { fehler: [], paths: [...GATE_ROUTEN, ...INFO_ROUTEN], runs: 3, kategorien: [], block: null };
+  // ME-01: /impressum gehört zum A11y-Gate und steht deshalb in den Standardpfaden; Accessibility wird immer gemessen.
+  const o = { fehler: [], paths: [...new Set([...GATE_ROUTEN, ...INFO_ROUTEN, ...A11Y_GATE])], runs: 3, kategorien: ["accessibility"], block: null };
   for (const arg of argv) {
     if (arg === "--lighthouse") continue;
     const [name, ...rest] = arg.split("=");
@@ -210,9 +225,10 @@ export function optionen(argv) {
       if (!Number.isInteger(n) || n < 1 || n > 9) o.fehler.push(`--runs=${wert} ist keine ganze Zahl von 1 bis 9.`);
       else o.runs = n;
     } else if (name === "--kategorien") {
-      o.kategorien = wert.split(",").map((k) => k.trim()).filter(Boolean);
-      for (const k of o.kategorien.filter((x) => !KATEGORIEN.includes(x)))
+      const genannt = wert.split(",").map((k) => k.trim()).filter(Boolean);
+      for (const k of genannt.filter((x) => !KATEGORIEN.includes(x)))
         o.fehler.push(`Kategorie ‚${k}‘ ist unbekannt – bekannt: ${KATEGORIEN.join(", ")}.`);
+      o.kategorien = [...new Set(["accessibility", ...genannt])];
     } else if (name === "--block") {
       if (!/^[A-Za-z0-9_-]+$/.test(wert)) o.fehler.push(`--block=${wert}: nur Buchstaben, Ziffern, „-“ und „_“.`);
       else o.block = wert;

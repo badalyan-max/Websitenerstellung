@@ -172,10 +172,11 @@ describe("zusammenfassung", () => {
   const optionenBasis = { gate: GATE_ROUTEN, info: INFO_ROUTEN, a11yGate: A11Y_GATE, herkunft: "http://localhost:3102" };
 
   it("bildet Mediane je Kennzahl und kennzeichnet lokale Labordaten", () => {
-    const s = zusammenfassung([{ pfad: "/", laeufe: gute.map(kennzahlen), ungueltig: 0 }], optionenBasis);
+    const s = zusammenfassung([{ pfad: "/", laeufe: gute.map(kennzahlen), ungueltig: 0, kategorien: { accessibility: 100 } }], optionenBasis);
     expect(s.herkunft).toBe("http://localhost:3102");
     expect(s.kennzeichnung).toBe("Labordaten, mobil, lokal, Median aus 3 Läufen, URL");
-    expect(s.urls["/"]).toMatchObject({ score: 97, lcp: 2290, laeufe: 3, ungueltig: 0, gate: { bestanden: true } });
+    expect(s.urls["/"]).toMatchObject({ score: 97, lcp: 2290, laeufe: 3, ungueltig: 0, gate: { bestanden: true }, warnung: { bestanden: true } });
+    expect(s.warnungen).toEqual([]);
     expect(s.gateVerletzt).toBe(false);
   });
 
@@ -185,10 +186,21 @@ describe("zusammenfassung", () => {
     expect(s.gateVerletzt).toBe(false);
   });
 
-  it("setzt gateVerletzt für Gate-Routen und für A11y-Gate-Routen unter 100", () => {
-    const perf = zusammenfassung([{ pfad: "/funktionen", laeufe: schlechte.map(kennzahlen), ungueltig: 0 }], optionenBasis);
-    expect(perf.gateVerletzt).toBe(true);
-    expect(perf.urls["/funktionen"].gate?.gruende).toEqual(["Score 90 < 95", "LCP 3100 ms ≥ 2500 ms"]);
+  it("führt Performance-Abweichungen nur als Warnung, nicht als Gate-Verstoß (D-44, ME-01)", () => {
+    const perf = zusammenfassung([{ pfad: "/funktionen", laeufe: schlechte.map(kennzahlen), ungueltig: 0, kategorien: { accessibility: 100 } }], optionenBasis);
+    expect(perf.gateVerletzt).toBe(false);
+    expect(perf.urls["/funktionen"].gate).toEqual({ bestanden: true, gruende: [] });
+    expect(perf.urls["/funktionen"].warnung?.gruende).toEqual(["Score 90 < 95", "LCP 3100 ms ≥ 2500 ms"]);
+    expect(perf.warnungen).toEqual(["/funktionen: Score 90 < 95", "/funktionen: LCP 3100 ms ≥ 2500 ms"]);
+  });
+
+  it("wertet fehlende Accessibility-Messung auf einer A11y-Gate-Seite als Verstoß (ME-01)", () => {
+    const s = zusammenfassung([{ pfad: "/", laeufe: gute.map(kennzahlen), ungueltig: 0 }], optionenBasis);
+    expect(s.gateVerletzt).toBe(true);
+    expect(s.urls["/"].gate).toEqual({ bestanden: false, gruende: ["Accessibility nicht gemessen"] });
+  });
+
+  it("setzt gateVerletzt für A11y-Gate-Routen unter 100, auch wenn Performance nur warnt", () => {
 
     const a11y = zusammenfassung(
       [{ pfad: "/impressum", laeufe: schlechte.map(kennzahlen), ungueltig: 0, kategorien: { accessibility: 96, seo: 92 } }],
@@ -212,14 +224,15 @@ describe("zusammenfassung", () => {
 });
 
 describe("optionen (CLI --lighthouse)", () => {
-  it("setzt Standardwerte", () => {
+  it("setzt Standardwerte: Gate-, Info-Routen und /impressum, Accessibility immer gemessen (ME-01)", () => {
     expect(optionen(["--lighthouse"])).toEqual({
       fehler: [],
-      paths: [...GATE_ROUTEN, ...INFO_ROUTEN],
+      paths: [...GATE_ROUTEN, ...INFO_ROUTEN, "/impressum"],
       runs: 3,
-      kategorien: [],
+      kategorien: ["accessibility"],
       block: null,
     });
+    expect(optionen(["--lighthouse", "--kategorien=seo"]).kategorien).toEqual(["accessibility", "seo"]);
   });
   it("liest Pfade, Läufe, Kategorien und Block", () => {
     const o = optionen(["--lighthouse", "--paths=/,/impressum", "--runs=1", "--kategorien=accessibility,seo", "--block=a"]);

@@ -13,13 +13,14 @@
 //   Lighthouse 13.5.0 über die Node-API, mobile Standardvoreinstellung (simulierte Drosselung,
 //   mobileSlow4G, 412 × 823), Kategorie Performance; je Lauf ein frischer Chrome aus Playwright
 //   (chromium.executablePath()). Gewertet wird der Median je Kennzahl; ungültige Läufe (runtimeError,
-//   fehlende FCP/TTI) werden gezählt und je URL bis zu zweimal nachgeholt. `--kategorien=` misst je URL
-//   einen zusätzlichen Lauf für die genannten Kategorien. Standardpfade: GATE_ROUTEN + INFO_ROUTEN aus
-//   scripts/lib/lighthouse-core.mjs.
+//   fehlende FCP/TTI) werden gezählt und je URL bis zu zweimal nachgeholt. Je URL misst ein zusätzlicher
+//   Lauf die Kategorie Accessibility (immer) und die mit `--kategorien=` genannten weiteren Kategorien.
+//   Standardpfade: GATE_ROUTEN + INFO_ROUTEN + /impressum (A11Y_GATE) aus scripts/lib/lighthouse-core.mjs.
 //   Ergebnisse: test-results/lighthouse/<slug>-<lauf>.json (Rohdaten je Lauf), <slug>-kategorien.json,
 //   test-results/lighthouse/summary.json bzw. summary-<name>.json mit --block=<name>.
-//   Exitcodes: 0 Gate eingehalten, 1 Gate-Verstoß (Gate-URL Score < 95 oder LCP ≥ 2.500 ms; A11y-Gate-URL
-//   Accessibility < 100), 2 Optionsfehler.
+//   Exitcodes (ME-01, D-44): 0 Accessibility-Gate eingehalten – Performance-Abweichungen (Gate-URL Score < 95
+//   oder LCP ≥ 2.500 ms) stehen nur als WARNUNG in der Ausgabe und unter `warnungen` in der Zusammenfassung;
+//   1 Accessibility-Verstoß (A11y-Gate-URL Accessibility < 100 oder nicht gemessen); 2 Optionsfehler.
 import { chromium } from "@playwright/test";
 import fs from "node:fs/promises";
 import {
@@ -146,14 +147,23 @@ async function lighthouseModus() {
     JSON.stringify({ erstellt: new Date().toISOString(), ...umgebung, ...summe }, null, 2),
   );
   for (const [pfad, u] of Object.entries(summe.urls)) {
-    const urteil = u.gate ? (u.gate.bestanden ? "Gate bestanden" : `Gate verfehlt: ${u.gate.gruende.join("; ")}`) : "Bericht";
+    const a11y = u.gate ? (u.gate.bestanden ? "Accessibility-Gate bestanden" : `Accessibility-Gate verfehlt: ${u.gate.gruende.join("; ")}`) : "Bericht";
+    const perf = u.warnung && !u.warnung.bestanden ? ` – Performance-Warnung: ${u.warnung.gruende.join("; ")}` : "";
+    const urteil = a11y + perf;
     console.log(
       `${pfad}: Score ${u.score}, LCP ${u.lcp == null ? "–" : Math.round(u.lcp)} ms, CLS ${u.cls}, TBT ${u.tbt == null ? "–" : Math.round(u.tbt)} ms, ` +
         `Läufe ${u.laeufe}, ungültig ${u.ungueltig}${Object.keys(u.kategorien).length ? `, ${JSON.stringify(u.kategorien)}` : ""} – ${urteil}`,
     );
   }
   console.log(`${summe.kennzeichnung} (${herkunft}) → ${datei}`);
-  if (summe.gateVerletzt) process.exitCode = 1;
+  // D-44: Performance-Abweichungen sind nur eine Regressionswarnung (Exit 0); Exit 1 bedeutet immer Accessibility.
+  for (const w of summe.warnungen) console.warn(`WARNUNG Performance (D-44, nicht blockierend): ${w}`);
+  if (summe.gateVerletzt) {
+    console.error("Ergebnis: Accessibility-Gate verletzt (Exit 1).");
+    process.exitCode = 1;
+  } else {
+    console.log(`Ergebnis: Accessibility-Gate eingehalten${summe.warnungen.length ? `, ${summe.warnungen.length} Performance-Warnung(en)` : ""}.`);
+  }
 }
 
 async function bestandsmodus() {
