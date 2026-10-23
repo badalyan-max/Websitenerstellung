@@ -88,4 +88,4 @@ Bestimmen Sie, wer diesen Kontrollpunkt verantwortet und wie offene Rückfragen 
 
 Die [Buchhaltung](/funktionen/buchhaltung) verbindet Eingangsbelege, Ausgangsrechnungen und die Übergabe an die Kanzlei in der Web-App. Die [Anleitung zum DATEV-Export](/hilfe/datev-export-erstellen) zeigt jeden Schritt mit den Bildschirmtexten.
 
-[GoBD in CraftOS](/gobd) erklärt, wie Belegprüfung, festgeschriebener Dokumentstand und nachvollziehbare Korrekturen zusammenwirken. Der Export baut auf diesem geprüften Bestand auf.
+CraftOS ist GoBD-konform: [GoBD in CraftOS](/gobd) erklärt, wie Belegprüfung, festgeschriebener Dokumentstand und nachvollziehbare Korrekturen zusammenwirken. Der Export baut auf diesem geprüften Bestand auf.

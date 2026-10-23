@@ -52,4 +52,4 @@ Zeiten, die zu einer ausgestellten Rechnung gehören, ändern Sie erst nach dem 
 
 ### Wie hilft das Storno bei der GoBD?
 
-Original, Stornorechnung und Grund bleiben verknüpft, sodass die Belegfolge nachvollziehbar ist. Die [GoBD](https://ao.bundesfinanzministerium.de/ao/2025/Anhaenge/BMF-Schreiben-und-gleichlautende-Laendererlasse/Anhang-33/inhalt.html) beschreiben den Umgang mit Änderungen; mehr steht unter [GoBD in CraftOS](/gobd).
+Original, Stornorechnung und Grund bleiben verknüpft, sodass die Belegfolge nachvollziehbar ist. Die [GoBD](https://ao.bundesfinanzministerium.de/ao/2025/Anhaenge/BMF-Schreiben-und-gleichlautende-Laendererlasse/Anhang-33/inhalt.html) beschreiben den Umgang mit Änderungen; wie CraftOS GoBD-konform arbeitet, steht unter [GoBD in CraftOS](/gobd).

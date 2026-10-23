@@ -84,4 +84,4 @@ Prüfen Sie deshalb Betrag, Zuweisung und Kontierung, bevor Sie die Prüfung bes
 
 Die [Eingangsrechnungsverwaltung](/funktionen/eingangsrechnungen) erfasst den Beleg mit Original und Zuordnung, der [Bankabgleich](/funktionen/bankabgleich) verbindet ihn mit der Zahlung, und die [Buchhaltung](/funktionen/buchhaltung) übergibt den geprüften Bestand an die Kanzlei.
 
-Die Erklärung unter [GoBD in CraftOS](/gobd) zeigt, wie Prüfung, Festschreibung und Korrekturen zusammenwirken und welche betrieblichen Zuständigkeiten Sie zusätzlich festlegen.
+CraftOS ist GoBD-konform: Die Erklärung unter [GoBD in CraftOS](/gobd) zeigt, wie Prüfung, Sperre, Festschreibung und Korrekturen zusammenwirken.

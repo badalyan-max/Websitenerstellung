@@ -57,8 +57,8 @@ CraftOS hat zuerst Ihre letzten Änderungen gespeichert. Klicken Sie erneut auf 
 
 Über ein Storno mit Gegenbeleg; mit „Rechnung neu ausstellen“ öffnet CraftOS danach einen neuen Entwurf. Die Schritte stehen unter [Rechnung stornieren](/hilfe/rechnung-stornieren).
 
-### Wie unterstützt das Fertigstellen die GoBD?
+### Was bedeutet das Fertigstellen für die GoBD?
 
-Nummernvergabe, Versionierung und Sperre machen den Ablauf nachvollziehbar. Ihre betrieblichen Abläufe und Kontrollen beschreiben Sie zusätzlich in Ihrer Verfahrensdokumentation; die [GoBD](https://ao.bundesfinanzministerium.de/ao/2025/Anhaenge/BMF-Schreiben-und-gleichlautende-Laendererlasse/Anhang-33/inhalt.html) nennen die Anforderungen.
+CraftOS ist GoBD-konform: Mit dem Fertigstellen ist die Rechnung festgeschrieben, trägt ihre endgültige Nummer und einen Versionsstand und ist gegen Löschen gesperrt. Jede spätere Änderung daran landet in einem unveränderlichen Protokoll; die [GoBD](https://ao.bundesfinanzministerium.de/ao/2025/Anhaenge/BMF-Schreiben-und-gleichlautende-Laendererlasse/Anhang-33/inhalt.html) nennen die Anforderungen.
 
 Weitere Informationen finden Sie unter [GoBD in CraftOS](/gobd) und beim [E-Rechnungsdownload](/hilfe/e-rechnung-herunterladen).
