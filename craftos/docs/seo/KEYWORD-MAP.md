@@ -208,7 +208,7 @@ Kontingent laut `/v1/account/subscription`: vor dem Lauf 78.093 Units, danach 65
 | `/hilfe/zeiteintrag-erfassen-korrigieren` | bestehend | – (keine Daten) | – | – | – | – | – |
 | `/hilfe/zeiten-pruefen-exportieren` | bestehend | stundenzettel excel | 320 | 9 | I | – | `export--candidates-1.json` |
 
-### Geplante Seiten (9)
+### Geplante Seiten (19)
 
 | Pfad | Zielphase | Hauptkeyword | Volumen | KD | Intent | Wettbewerber (Position) | Quelle |
 |---|---|---|---|---|---|---|---|
@@ -221,6 +221,18 @@ Kontingent laut `/v1/account/subscription`: vor dem Lauf 78.093 Units, danach 65
 | `/blog/gaeb-formate` | 9 | gaeb formate | 590 | 12 | I | streit-software.de (6), hero-software.de (10), das-programm.io (48) | `export--candidates-1.json` |
 | `/blog/bauablaufplan` | 9 | bauablaufplan | 390 | 10 | I | craftnote.de (50) | `export--candidates-1.json` |
 | `/blog/arbeitszeitnachweis-vorlage` | 9 | arbeitszeitnachweis vorlagen | 480 | 8 | I | streit-software.de (19) | `export--candidates-1.json` |
+| `/hilfe/kundenportal-kunden-einladen` | 9 | – | – | – | – | – | `2026-10-22-keyword-metrics-phase09.json` |
+| `/hilfe/angebot-online-unterschreiben-lassen` | 9 | – | – | – | – | – | `2026-10-22-keyword-metrics-phase09.json` |
+| `/hilfe/mahnwesen-einrichten` | 9 | mahnstufen | 170 | 8 | I | – | `2026-10-22-keyword-metrics-phase09.json` |
+| `/hilfe/bankumsaetze-abgleichen` | 9 | camt 053 | 390 | 13 | I | – | `2026-10-22-keyword-metrics-phase09.json` |
+| `/hilfe/daten-importieren` | 9 | datenübernahme | 110 | 9 | I | – | `2026-10-22-keyword-metrics-phase09.json` |
+| `/hilfe/datanorm-katalog-importieren` | 9 | datanorm | 390 | 18 | I | – | `2026-10-22-keyword-metrics-phase09.json` |
+| `/hilfe/lager-scan-app` | 9 | lager app | 90 | 14 | I | – | `2026-10-22-keyword-metrics-phase09.json` |
+| `/hilfe/besichtigung-durchfuehren` | 9 | – | – | – | – | – | `2026-10-22-keyword-metrics-phase09.json` |
+| `/hilfe/projekt-chat-nachrichten` | 9 | – | – | – | – | – | `2026-10-22-keyword-metrics-phase09.json` |
+| `/hilfe/app-sprache-einstellen` | 9 | – | – | – | – | – | `2026-10-22-keyword-metrics-phase09.json` |
+
+Die zehn neuen Hilfe-Pfade (09-01, CONTENT-04) sind Anleitungen zu Funktionen, die seit dem 09.09.2026 live sind (09-CONTEXT D-19). Fünf haben ein Hauptkeyword mit Daten aus `2026-10-22-keyword-metrics-phase09.json`; die übrigen fünf (Kandidaten ohne Daten, `dataFound: false`) tragen beschreibende Zielwerte ohne Hauptkeyword (Regel 05-01) und stehen mit ihren Kandidaten in `docs/seo/keyword-seeds.json`.
 
 ### Seiten ohne belegtes Hauptkeyword (15)
 
@@ -295,6 +307,11 @@ Weitere geplante Einträge unterhalb der Lückenschwelle, aber als Seite vorgeme
 | 8 | `/vergleich/craftnote-alternative` | craftnote alternative | 30 | 6 | Alternativen-Seite (Markenbegriff, D-06) |
 | 8 | `/vergleich/hero-alternative` | hero software alternative | 10 | 15 | Alternativen-Seite (Markenbegriff, D-06) |
 | 8 | `/vergleich/tooltime-alternative` | tooltime | 4.400 | 78 | Alternativen-Seite (Markenbegriff, D-06) |
+| 9 | `/hilfe/mahnwesen-einrichten` | mahnstufen | 170 | 8 | Anleitung zu einer neuen Live-Funktion (CONTENT-04); Nebenbegriff mahnlauf (140/7) |
+| 9 | `/hilfe/bankumsaetze-abgleichen` | camt 053 | 390 | 13 | Anleitung zu einer neuen Live-Funktion (CONTENT-04); „zahlungsabgleich“ bleibt bei /funktionen/bankabgleich |
+| 9 | `/hilfe/daten-importieren` | datenübernahme | 110 | 9 | Anleitung zu einer neuen Live-Funktion (CONTENT-04); „datenimport“ bleibt bei /funktionen/datenuebernahme |
+| 9 | `/hilfe/datanorm-katalog-importieren` | datanorm | 390 | 18 | Anleitung zu einer neuen Live-Funktion (CONTENT-04); Nebenbegriffe datanorm datei (140/11), datanorm importieren |
+| 9 | `/hilfe/lager-scan-app` | lager app | 90 | 14 | Anleitung zu einer neuen Live-Funktion (CONTENT-04); „lagerverwaltung app“ bleibt bei /funktionen/lager |
 | 7 | `/funktionen/mahnwesen` | mahnwesen software | 40 | 8 | live, aber noch ohne Seite (RESEARCH Tabelle B) |
 | 7 | `/funktionen/bankabgleich` | zahlungsabgleich | 20 | 8 | live, aber noch ohne Seite (RESEARCH Tabelle B) |
 
@@ -576,3 +593,15 @@ Die Gewerke-Köpfe nutzen den `FunktionsKopf` mit Kopfwort-Span; dessen H1-Budge
 | `/gewerke/allrounder` | Hausmeister-Software: vom kleinen Einsatz bis zum größeren Auftrag (66) | Hausmeister-Software: vom kleinen Einsatz bis zur Rechnung (58) | „Hausmeister-“ |
 
 Bearbeitet per Node-Skript mit Regelprüfung vor dem Schreiben (H1 ≤ 60, Kopfwort des Hauptkeywords im H1, Überclaim-Wörter, H1 sitewide eindeutig, Titel und Description unverändert). Die Zahl „zwölf“ entspricht `gewerke.length` (Test in Paket (a), `tests/gewerke.test.ts`). Absicherung: `tests/keyword-map.test.ts` („Phase 9 – Zielwerte“: Gewerke-H1 ≤ 60, die drei Werte wörtlich).
+
+### 23.10.2026 – Phase 9: zehn neue Hilfe-Pfade, Teilabnahme als Nebenbegriff (09-01 Aufgabe 3, D-24, K-3, K-4)
+
+Neue Einträge mit Status `geplant`, Zielphase 9 und vollständigem `target` (Titel, H1, Description) für die Anleitungen zu den seit dem 09.09.2026 neuen Live-Funktionen (CONTENT-04, 09-CONTEXT D-19): `/hilfe/kundenportal-kunden-einladen`, `/hilfe/angebot-online-unterschreiben-lassen`, `/hilfe/mahnwesen-einrichten` (endgültiger Slug statt des Arbeitsslugs `mahnwesen-zahlungserinnerungen`), `/hilfe/bankumsaetze-abgleichen`, `/hilfe/daten-importieren`, `/hilfe/datanorm-katalog-importieren`, `/hilfe/lager-scan-app`, `/hilfe/besichtigung-durchfuehren`, `/hilfe/projekt-chat-nachrichten` und `/hilfe/app-sprache-einstellen`.
+
+- **Hauptkeywords (5)** nur mit Daten aus `docs/seo/data/2026-10-22-keyword-metrics-phase09.json` (SE Ranking über MCP, 22.10.2026): mahnstufen (170/8), camt 053 (390/13), datenübernahme (110/9), datanorm (390/18), lager app (90/14). Alle fünf waren in keinem anderen Eintrag belegt; verwandte Begriffe bleiben bei ihren Funktionsseiten (zahlungsabgleich, datenimport, lagerverwaltung app, kundenportal software).
+- **Ohne Hauptkeyword (5)**: Kundenportal-Einladung, Online-Unterschrift, Besichtigung, Projekt-Chat und App-Sprache – alle Kandidaten ohne Daten (`dataFound: false`); beschreibende Zielwerte nach Regel 05-01, `reason` mit Rohdatei, Kandidaten in `docs/seo/keyword-seeds.json`.
+- **Nebenbegriff** „teilabnahme vob“ (110/9, gleiche Rohdatei) an `/hilfe/abnahme-dokumentieren` (Erweiterung Teilabnahme, D-19).
+- **Herkunft (K-4):** Die Phase-9-Rohdaten liegen im MCP-Format (`{ keyword, cells: { volume, difficulty, … }, dataFound }`) außerhalb von `kwmap/` und haben einen eigenen Herkunftskopf (`source`, `fetchedAt`). `tests/keyword-map.test.ts` liest die Zahlen aus `cells` desselben Objekts und erkennt Dateien mit Herkunftskopf neben dem Manifest als Herkunft (`source.endpoint` = Kopf `source`, `source.fetchedAt` = Kopf `fetchedAt`); `dataFound: false` belegt `primary: null`. Die Belegpflicht bleibt unverändert; das kwmap-Manifest ist unverändert.
+- **Übergang bis 09-09 (K-3):** Geplante Phase-9-Pfade dürfen schon in der Sitemap stehen, weil die Inhaltspakete die Artikel vor dem Statuswechsel anlegen. Die Integration (09-09) setzt alle Phase-9-Einträge auf `bestehend` und stellt die strenge Regel wieder her.
+
+Bearbeitet per Node-Skript mit Regelprüfung vor dem Schreiben – dieselben sitewide Regeln wie 08-04: Titel ≤ 60 mit „ | CraftOS“, Description 120–155, H1 ≤ 70, Hauptkeyword im Titel, Kopfwort in Titel und H1, Überclaim-Wörter (inkl. „automatisch“), L-1-Wortliste (`lib/leitlinie-l1.json`), Kategorie-Präfix, Eindeutigkeit von Titel, H1 und Description über alle Einträge, Kannibalisierung (Haupt- gegen Nebenbegriffe) und Herkunft. Ergebnis für alle zehn Einträge: 0 Fehler. Kein neuer API-Abruf (0 Units). Absicherung: `tests/keyword-map.test.ts` („Phase 9 – Zielwerte“), `tests/keyword-seeds.test.ts`.

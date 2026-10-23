@@ -12,6 +12,7 @@ import {
   istAlteTestphase,
   istZentral,
   jsonLd,
+  mitAntwortRegel,
   norm,
   optionsFehler,
   promptVerstoesse,
@@ -245,7 +246,8 @@ describe("pruefeSeite", () => {
     expect(v).toEqual([]);
   });
 
-  it("Antwort > 300 auf zentraler Seite → antwort, auf nicht zentraler Seite ignoriert", () => {
+  // Phase 9 (D-24): /blog/* fällt jetzt unter die Antwortregel (mitAntwortRegel); ignoriert wird z. B. /support.
+  it("Antwort > 300 auf zentraler Seite und Ratgeber → antwort, auf /support ignoriert", () => {
     const body = `<h2>Was kostet CraftOS?</h2><p>${x(301)}</p>`;
     const v = seite("/preise", { body });
     expect(regeln(v)).toEqual(["antwort"]);
@@ -259,7 +261,16 @@ describe("pruefeSeite", () => {
       mapEntry: null,
       og: OG_OK,
     });
-    expect(blog).toEqual([]);
+    expect(regeln(blog)).toEqual(["antwort"]);
+    expect(blog[0].problem).toContain("auf /blog/x hat keine Antwort ≤ 300 Zeichen");
+    const supportCrumbs = [PREISE_CRUMBS[0], { name: "Support", path: "/support" }];
+    const support = pruefeSeite({
+      path: "/support",
+      html: html({ nav: crumbNav(supportCrumbs), ldBlocks: [crumbSchema(supportCrumbs)], og: `${ORIGIN}/support/opengraph-image`, body }),
+      mapEntry: null,
+      og: OG_OK,
+    });
+    expect(support).toEqual([]);
   });
 
   it("Regelauswahl beschränkt die Prüfung", () => {
@@ -373,6 +384,31 @@ describe("istZentral", () => {
   });
 });
 
+// Phase 9 (D-24, 09-UI-SPEC § 8): Die Antwort-zuerst-Regel gilt zusätzlich für /gewerke, /gewerke/*, /blog/* und
+// /hilfe/*. Kategorieseiten haben keine Frage-Überschriften (09-UI-SPEC A7) und bleiben außen vor.
+describe("mitAntwortRegel", () => {
+  it("zentrale Seiten, Gewerke, Ratgeber und Hilfeartikel", () => {
+    for (const p of ["/gewerke", "/gewerke/maler", "/gewerke/elektriker", "/blog/x", "/hilfe/x", "/hilfe/regiebericht"])
+      expect(mitAntwortRegel(p), p).toBe(true);
+    for (const p of ["/", "/preise", "/vergleich", "/vergleich/hero-alternative", "/funktionen/aufmass", "/fakten-ueber-craftos", "/app", "/craft-ai", "/gobd"])
+      expect(mitAntwortRegel(p), p).toBe(istZentral(p));
+  });
+
+  it("nicht für Rechner, Support und Kategorieseiten", () => {
+    for (const p of ["/rechner", "/rechner/stundensatz", "/support", "/blog/kategorie/x", "/hilfe/kategorie/x", "/gewerkeliste", "/blog/x/y"])
+      expect(mitAntwortRegel(p), p).toBe(false);
+  });
+
+  it("pruefeSeite wendet die Regel auf /hilfe/* an, auf /support nicht", () => {
+    const html = `<h1>T</h1><h2>Wie geht das?</h2><ul><li>Liste statt Antwort</li></ul>`;
+    const nurAntwort = (p: string) => pruefeSeite({ path: p, html }, ["antwort"]).map((v: { regel: string }) => v.regel);
+    expect(nurAntwort("/hilfe/x")).toEqual(["antwort"]);
+    expect(nurAntwort("/gewerke")).toEqual(["antwort"]);
+    expect(nurAntwort("/support")).toEqual([]);
+    expect(nurAntwort("/hilfe/kategorie/x")).toEqual([]);
+  });
+});
+
 describe("norm", () => {
   it("identisch zur bisherigen Normalisierung aus keyword-map.test.ts", () => {
     const fixtures: [string, string][] = [
@@ -472,6 +508,27 @@ describe("promptVerstoesse", () => {
     );
     expect(lang).toHaveLength(1);
     expect(lang[0].problem).toContain("Antwort 301 > 300");
+  });
+
+  // K-2 (09-PATTERNS): Phase-9-Ziele mit Anker werden voll geprüft, ohne Anker nur auf Existenz.
+  it("Phase-9-Ziel mit Anker: Anker und Antwort werden geprüft", () => {
+    const phase9 = [
+      { target: "/gewerke/elektriker#antwort", phase: 9 },
+      { target: "/gewerke/maler", phase: 9 },
+    ];
+    const ohneAnker = promptVerstoesse(phase9, (p: string) => (p.startsWith("/gewerke/") ? "<h1>Gewerk</h1>" : null));
+    expect(ohneAnker.map((e: { problem: string }) => e.problem)).toEqual([
+      "Prompt-Ziel /gewerke/elektriker#antwort: Anker #antwort fehlt – id laut DESIGN-V2.md § 17 ergänzen.",
+    ]);
+    const lang = promptVerstoesse(phase9, (p: string) =>
+      p.startsWith("/gewerke/") ? `<h1>Gewerk</h1><p id="antwort" data-answer="">${x(301)}</p>` : null,
+    );
+    expect(lang).toHaveLength(1);
+    expect(lang[0].problem).toContain("Antwort 301 > 300");
+    const gut = promptVerstoesse(phase9, (p: string) =>
+      p.startsWith("/gewerke/") ? `<h1>Gewerk</h1><p id="antwort" data-answer="">${x(200)}</p>` : null,
+    );
+    expect(gut).toEqual([]);
   });
 });
 
