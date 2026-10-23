@@ -603,7 +603,7 @@ await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /no
    - What we know: LCP-Gate heute überall knapp verfehlt; designneutrale Hebel (Clash 500 raus, Logo-SVG) bringen live ≈ 2,28–2,44 s.
    - What's unclear: lokaler Wert nach Optimierung; ob ein dritter Hebel nötig ist.
    - Recommendation: (b) misst lokal vor/nach jedem Hebel; reicht es nicht, `inlineCss`-A/B und JS-Prüfung; bleibt ein Rest, Bericht als offene Abweichung (D-13). `components/CraftOSLogo.tsx` hat laut D-33 keinen Besitzer → **RESOLVED (Empfehlung): (b) als Besitzer zuordnen**, weil der Grund Performance ist und `app/layout.tsx` (Schriften) ebenfalls bei (b) liegt.
-2. **Liefert Vercel Web Analytics Custom Events?**
+2. **Liefert Vercel Web Analytics Custom Events?** – **RESOLVED (23.10.2026):** Ja. Die Abfrage des Orchestrators per Vercel-MCP `aggregate_events` (`craftos/docs/seo/data/2026-10-23-vercel-events-phase10.json`, Projekt `craftos`, Zeitraum 15.–24.10.2026) liefert `trial_click` (5 Ereignisse, 3 Besucher), `login_click`, `store_click`, `calculator_use` und das Altereignis `registration_click`; `ai_visit` ist eingebaut, im Zeitraum aber nicht aufgetreten (Befund, Verdrahtungsprüfung in 10-11). Custom Events sind damit verfügbar; QA-05 hängt nicht an einer Inhaberkontrolle.
    - What we know: `trial_click`/`ai_visit` werden per `track()` gesendet (`components/Analytics.tsx` Z. 28, `lib/tracking.ts`); Custom Events nur in Pro/Enterprise.
    - What's unclear: Tarif des Teams `craft-os`.
    - Recommendation: Orchestrator prüft vor 10-05 per Vercel-MCP; bei Hobby bleibt QA-05-Analytics ein Inhaberpunkt (D-30) – Folge für D-36: QA-05 nur markierbar, wenn Inhaber die Kontrolle bestätigt.
@@ -611,7 +611,7 @@ await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /no
 4. **D-22 Credit-Wert** – **RESOLVED:** Code-Beleg vorhanden (`aiPricing.ts`, fixed `maxCredits: 2`, ab 01.01.2027 `3`). Umsetzung in (d) mit Stichtag; nicht „nicht in diesem Meilenstein“.
 5. **D-19 (3) Silbentrennung `/preise`** – **RESOLVED:** erledigt in 09-09 (`7b1ed70`); in 10-03 nur Sichtnachweis.
 6. **Neue Kontrastfehler `/datenschutz`/`/agb` (4,42 : 1)** – **RESOLVED:** gehören zu D-09 in Paket (c), Behebung `text-ink-500`.
-7. **404-Kopf ohne Brotkrumen mit 2-Satz-Intro**
+7. **404-Kopf ohne Brotkrumen mit 2-Satz-Intro** – **RESOLVED (10-UI-SPEC K1, J1, A2, approved 23.10.2026):** `ContentKopf` erhält `crumbs: Crumb[] | null`; `null` nur auf der 404-Seite (`data-crumbs="ohne"`, Grep-Test), die zwei Sätze stehen unverändert als `lead`; kein neuer Baustein, keine Wortänderung. Umsetzung in 10-03.
    - What we know: kein v2-Kopf passt ohne Strukturänderung.
    - Recommendation: Im 10-UI-SPEC entscheiden: Intro in zwei Absätze teilen (keine Wortänderung) oder neue Kopfvariante in `components/v2/` durch (c).
 8. **Wer misst Lighthouse fürs Vorab-Audit in Welle 1?** – **RESOLVED (Empfehlung):** Vorab-Audit übernimmt die Live-Werte dieser Recherche (Lighthouse 12.8.2, 23.10.2026, gekennzeichnet); keine zusätzliche Lighthouse-Messung in (e), damit (b) die Sperre für Lighthouse allein nutzen kann.

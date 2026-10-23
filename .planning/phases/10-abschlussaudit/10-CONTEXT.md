@@ -257,3 +257,8 @@ Nicht in dieser Phase: Änderungen an Rechtstexten (Wortlaut), Datenschutzabschn
   - Die 13 Warnungen „Alt-Text fehlt“ betreffen nur das dekorative Gewerk-Symbol mit `alt=""`, das ist barrierefrei korrekt. Sie werden als begründete Ausnahme dokumentiert (Waiver-Typ „Crawler artifact“ nach dem /audit-Skill), es kommt kein Alt-Text dazu.
   - Impressum: Den ODR-Link (Plattform 2025 eingestellt) und den kurzen Title gibt nur der Inhaber frei. Bis dahin steht das als Inhaberpunkt, der Rechtstext bleibt unverändert.
 - **D-39:** Perplexity-Prompts werden nie geprüft, Gemini und AI Mode haben keine Prompts. Paket (e) prüft das per Project API, ohne Unit-Kosten, und gleicht es an. Neue Prompts kommen nur aus der vorhandenen Prompt-Liste.
+
+## Nachtrag Orchestrator (23.10.2026, nach Plan-Checker)
+
+- **D-40:** D-21 Menü-Präsenz wird in 10-06 umgesetzt (Dateieigentum Spur a). Die Zusatzfunktionen erscheinen auf `/funktionen`, am Ziel als Kachel und im Mega-Menü; Paket (d) lässt `components/layout/MegaMenu.tsx` unverändert und übergibt den Punkt; 10-06 ergänzt Menüeintrag und Test auf dem zusammengeführten Stand.
+- Weitere Checker-Entscheidungen (B1–B4, W1–W11) sind in den Plänen umgesetzt: Merge-Reihenfolge e → c → a → b → d; `MSYS_NO_PATHCONV=1` vor jedem `--paths=/…`; Credit-Wert als eigener Plan 10-13; Ablauf 10-06 → Code-Review → Fixer → 10-12 → 10-07.
