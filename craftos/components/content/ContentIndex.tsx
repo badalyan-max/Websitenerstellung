@@ -1,10 +1,11 @@
-import type { ReactNode } from "react";
 import { ContentSearch } from "./ContentSearch";
 import { ContentKopf } from "./ContentKopf";
-import { CONTENT_CTA } from "./ArticlePage";
 import { getContentList } from "@/lib/content";
+import { CONTENT_CTA } from "@/lib/content-cta";
+import { germanDate } from "@/lib/format";
 import { categories, type ContentKind, type ContentSummary } from "@/lib/content-types";
 import { categoryIcons } from "@/lib/content-icons";
+import { Abschnitt as AbschnittV2 } from "@/components/v2/Abschnitt";
 import { CtaBand } from "@/components/v2/CtaBand";
 import { LinkKarten, type LinkKarte } from "@/components/v2/LinkKarten";
 import { SectionHeader } from "@/components/v2/SectionHeader";
@@ -35,20 +36,13 @@ const COPY = {
 const LEAD_ALLE = "Suchen Sie nach einem Begriff oder filtern Sie nach Thema.";
 const LEAD_ALLE_KATEGORIE = "Suchen Sie nach einem Begriff oder wechseln Sie das Thema.";
 
-const SURFACE = { white: "bg-white", warm: "bg-[#f7f3eb]" } as const;
+/** Gemeinsamer Abschnitt (components/v2/Abschnitt.tsx, 09-REVIEW IN-01), auf die ids der Übersicht beschränkt. */
+const Abschnitt = AbschnittV2<"themen" | "alle">;
 
-function Abschnitt({ id, surface, children }: { id: "themen" | "alle"; surface: keyof typeof SURFACE; children: ReactNode }) {
-  return (
-    <section data-abschnitt={id} aria-labelledby={id} className={`${SURFACE[surface]} py-12 md:py-16 lg:py-24`}>
-      <div className="site-container">{children}</div>
-    </section>
-  );
-}
-
-/** Neuestes updatedAt als TT.MM.JJJJ. */
+/** Neuestes updatedAt als TT.MM.JJJJ (lib/format.ts). */
 function zuletzt(liste: ContentSummary[]) {
   const iso = liste.map((a) => a.updatedAt).sort().at(-1);
-  return iso ? iso.split("-").reverse().join(".") : undefined;
+  return iso ? germanDate(iso) : undefined;
 }
 
 /** Themen-Karten je Kategorie mit Lucide-Icon im Icon-Feld und Mengenangabe (09-UI-SPEC § 3). */

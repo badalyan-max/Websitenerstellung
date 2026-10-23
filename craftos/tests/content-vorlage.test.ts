@@ -116,6 +116,24 @@ const seite = async (o: FixtureOptions = {}) => renderToString(await ArticlePage
 const artikel = (html: string) => html.slice(html.indexOf("<article"), html.indexOf("</article>") + 10);
 const ausserhalb = (html: string) => html.slice(html.indexOf("</article>"));
 
+describe("Gemeinsame Vorlagenbausteine (09-REVIEW IN-01)", () => {
+  const lies = (rel: string) => fs.readFileSync(path.resolve(import.meta.dirname, "..", rel), "utf8");
+  const VORLAGEN = ["components/content/ArticlePage.tsx", "components/content/ContentIndex.tsx", "app/gewerke/[slug]/page.tsx"];
+
+  it("Abschnitt, Flächen und Funktionskarten gibt es nur einmal", () => {
+    for (const rel of VORLAGEN) {
+      const quelle = lies(rel);
+      expect(quelle, rel).not.toMatch(/function Abschnitt\(|const SURFACE =/);
+      expect(quelle, rel).not.toMatch(/getFunktionsgruppen\(\)\.flatMap/);
+      expect(quelle, rel).not.toMatch(/split\("-"\)\.reverse\(\)/);
+    }
+  });
+
+  it("Übersichten importieren das CTA aus lib/content-cta.ts, nicht aus dem Artikelmodul", () => {
+    expect(lies("components/content/ContentIndex.tsx")).not.toContain('from "./ArticlePage"');
+  });
+});
+
 describe("Artikelvorlage v2: Kopf (09-UI-SPEC § 2.1)", () => {
   it("mit answer: genau eine H1 aus der Map, #antwort mit data-answer, kein Lead", async () => {
     const html = await seite({ answer: true });

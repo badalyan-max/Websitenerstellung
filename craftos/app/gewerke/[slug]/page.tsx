@@ -1,13 +1,12 @@
-import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import { gewerke, getGewerk, CTA_GEWERK, GEWERK_ABSCHNITTE, type Gewerk } from "@/lib/gewerke";
 import { tradeSnippetExamples } from "@/lib/trade-snippet-examples";
-import { getFunktionsgruppen } from "@/lib/funktionsgruppen";
-import { cardScenes } from "@/lib/scenes";
+import { funktionsKarten as karten } from "@/lib/funktionskarten";
 import { GewerkIcon } from "@/components/ui/GewerkIcon";
 import { crumbsFor } from "@/lib/breadcrumbs";
 import { FeatureSnippet } from "@/components/feature-snippet/FeatureSnippet";
 import { FunktionsKopf } from "@/components/funktionen/FunktionsKopf";
+import { Abschnitt as AbschnittV2 } from "@/components/v2/Abschnitt";
 import { CtaBand } from "@/components/v2/CtaBand";
 import { FaqList } from "@/components/v2/FaqList";
 import { FeatureCard } from "@/components/v2/FeatureCard";
@@ -32,29 +31,16 @@ import { faqSchema, webPageSchema } from "@/lib/schema";
  */
 type AbschnittId = "ablauf" | "funktionen" | "faq" | "weiterlesen";
 
-const SURFACE = { white: "bg-white", warm: "bg-[#f7f3eb]" } as const;
+/** Gemeinsamer Abschnitt (components/v2/Abschnitt.tsx, 09-REVIEW IN-01), auf die ids der Gewerke-Vorlage beschränkt. */
+const Abschnitt = AbschnittV2<AbschnittId>;
 
-function Abschnitt({ id, surface, children }: { id: AbschnittId; surface: keyof typeof SURFACE; children: ReactNode }) {
-  return (
-    <section data-abschnitt={id} aria-labelledby={id} className={`${SURFACE[surface]} py-12 md:py-16 lg:py-24`}>
-      <div className="site-container">{children}</div>
-    </section>
-  );
-}
-
-/** Funktionskarten aus den Funktionsgruppen (Name, Icon, Nutzen, Plattformen) mit Karten-Szene aus lib/scenes.ts. */
+/** Funktionskarten des Gewerks (lib/funktionskarten.ts) mit dem Fehlertext der Gewerke-Vorlage. */
 function funktionsKarten(g: Gewerk) {
-  const details = getFunktionsgruppen().flatMap((gruppe) => gruppe.details);
-  return g.funktionen.map((slug) => {
-    const eintrag = details.find((d) => d.slug === slug);
-    const karte = cardScenes[slug];
-    if (!eintrag || !karte) {
-      throw new Error(
-        `Gewerk ${g.slug}: Funktion ${slug} hat keine Detailseite oder Karten-Szene – lib/funktionen.ts bzw. kopfVisuals in lib/scenes.ts prüfen.`,
-      );
-    }
-    return { ...eintrag, karte };
-  });
+  return karten(
+    g.funktionen,
+    (slug) =>
+      `Gewerk ${g.slug}: Funktion ${slug} hat keine Detailseite oder Karten-Szene – lib/funktionen.ts bzw. kopfVisuals in lib/scenes.ts prüfen.`,
+  );
 }
 
 /**

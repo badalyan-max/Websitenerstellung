@@ -1,10 +1,12 @@
-import type { ReactNode } from "react";
 import { Plus } from "lucide-react";
 import { getContentList } from "@/lib/content";
-import { categories, type ContentArticle, type ContentKind } from "@/lib/content-types";
-import { getFunktionsgruppen } from "@/lib/funktionsgruppen";
-import { cardScenes, sceneById, sceneFrame } from "@/lib/scenes";
+import { CONTENT_CTA } from "@/lib/content-cta";
+import { categories, type ContentArticle } from "@/lib/content-types";
+import { germanDate } from "@/lib/format";
+import { funktionsKarten as karten } from "@/lib/funktionskarten";
+import { sceneById, sceneFrame } from "@/lib/scenes";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { Abschnitt } from "@/components/v2/Abschnitt";
 import { CtaBand } from "@/components/v2/CtaBand";
 import { FaqList } from "@/components/v2/FaqList";
 import { FeatureCard } from "@/components/v2/FeatureCard";
@@ -17,49 +19,14 @@ import { segmentBild, zielwerte } from "@/lib/seo-meta";
 import { site } from "@/lib/site";
 import { ContentKopf } from "./ContentKopf";
 
-/**
- * CTA-Bänder der Wissensinhalte (09-UI-SPEC § 5, H9): Ratgeber mit „Stundensatz berechnen“, Hilfe mit
- * „Support kontaktieren“. Gilt für Artikel, Übersichten und Kategorien (ContentIndex nutzt dieselbe Quelle).
- */
-export const CONTENT_CTA: Record<ContentKind, { title: string; text: string; secondary: { label: string; href: string } }> = {
-  blog: {
-    title: "Machen Sie Platz für Ihr Handwerk.",
-    text: "Ohne Zahlungsdaten – Sie entscheiden nach dem Test.",
-    secondary: { label: "Stundensatz berechnen", href: "/rechner/stundensatz" },
-  },
-  hilfe: {
-    title: "Machen Sie Platz für Ihr Handwerk.",
-    text: "Ohne Zahlungsdaten – Sie entscheiden nach dem Test.",
-    secondary: { label: "Support kontaktieren", href: "/support" },
-  },
-};
-
 /** Abschnittsköpfe nach dem Artikel (09-UI-SPEC § 2.2). */
 const NACH_ARTIKEL = {
   funktionen: { title: "Passende Funktionen", lead: "Diese Funktionen setzen das Thema des Artikels in CraftOS um." },
   weiterlesen: { title: "Weiterlesen", lead: "Diese Artikel führen das Thema weiter." },
 } as const;
 
-/** ISO-Datum → TT.MM.JJJJ mit führenden Nullen (Metazeile, Quellen). */
-const datum = (iso: string) => iso.split("-").reverse().join(".");
-
-const SURFACE = { white: "bg-white", warm: "bg-[#f7f3eb]" } as const;
-
-function Abschnitt({
-  id,
-  surface,
-  children,
-}: {
-  id: "funktionen" | "weiterlesen";
-  surface: keyof typeof SURFACE;
-  children: ReactNode;
-}) {
-  return (
-    <section data-abschnitt={id} aria-labelledby={id} className={`${SURFACE[surface]} py-12 md:py-16 lg:py-24`}>
-      <div className="site-container">{children}</div>
-    </section>
-  );
-}
+/** ISO-Datum → TT.MM.JJJJ mit führenden Nullen (Metazeile, Quellen; lib/format.ts). */
+const datum = germanDate;
 
 type TocEintrag = ContentArticle["toc"][number];
 
@@ -100,19 +67,12 @@ function TocListe({ toc }: { toc: ContentArticle["toc"] }) {
   );
 }
 
-/** Funktionskarten (Name, Icon, Nutzen, Plattformen aus den Funktionsgruppen) mit Karten-Szene aus lib/scenes.ts. */
+/** Funktionskarten des Artikels (lib/funktionskarten.ts) mit dem Fehlertext der Artikelvorlage. */
 function funktionsKarten(a: ContentArticle) {
-  const details = getFunktionsgruppen().flatMap((gruppe) => gruppe.details);
-  return a.relatedFeatures.map((slug) => {
-    const eintrag = details.find((d) => d.slug === slug);
-    const karte = cardScenes[slug];
-    if (!eintrag || !karte) {
-      throw new Error(
-        `Artikel ${a.slug}: Funktion ${slug} hat keine Detailseite oder Karten-Szene – relatedFeatures prüfen.`,
-      );
-    }
-    return { ...eintrag, karte };
-  });
+  return karten(
+    a.relatedFeatures,
+    (slug) => `Artikel ${a.slug}: Funktion ${slug} hat keine Detailseite oder Karten-Szene – relatedFeatures prüfen.`,
+  );
 }
 
 /**
