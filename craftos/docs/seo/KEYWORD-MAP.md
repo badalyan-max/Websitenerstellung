@@ -635,3 +635,13 @@ Bearbeitet per Node-Skript mit Regelprüfung vor dem Schreiben – dieselben sit
 Nicht umgesetzt mit Begründung: `/hilfe/berichte-abrechnen` bleibt ohne Hauptkeyword – die Kandidaten „regiebericht abrechnen“, „stundenlohnarbeiten abrechnen“ und „leistungen abrechnen“ haben laut Rohdaten keine Daten (09-d2 schlug nur eine Recherche vor). `/hilfe/projekt-phasen-anlegen` behält „Bauphasen“ als Suchbegriff in Titel und H1 (09-e: zulässig, Angleichung optional). `/hilfe/craft-ai-betriebsdaten-fragen`, `/hilfe/ki-entwurf-pruefen-uebernehmen`, `/hilfe/kategorie/craft-ai` und `/craft-ai` sind bereits mit dem Craft-AI-Hotfix (d778c31) angeglichen.
 
 Bearbeitet per Node-Skript mit Regelprüfung vor dem Schreiben (Titel ≤ 60, Description 120–155, H1 ≤ 70 für Phase 9, Hauptkeyword und Kopfwort, Überclaim-Wörter inkl. „automatisch“, L-1-Wortliste, Eindeutigkeit, Kannibalisierung): 0 Fehler. Absicherung: `tests/keyword-map.test.ts` („Phase 9 – Zielwerte“, „Kassenbuch-Eintrag und Map-Korrekturen der Integration“), `tests/keyword-seeds.test.ts`, `tests/content.test.ts` (Endmengen 30/54).
+
+### 23.10.2026 – Phase 10: Titel ungleich H1 auf einer Hilfeseite (10-05 Aufgabe 3, Vorab-Audit, D-25, D-38)
+
+Das SE-Ranking-Audit 485185 vom 23.10.2026 meldet „Title und H1 identisch“ (`same_title_h1`) nur für `/hilfe/mitarbeiter-einladen-lizenz-zuweisen` (`docs/seo/data/2026-10-23-audit-issues-phase10.json`). Grund: Der Eintrag war der einzige ohne Markenzusatz (Entwurfsregel Hilfe, siehe Phase-8-Hinweis oben), sein Titel war damit wörtlich die H1. Mechanische Korrektur im Titel; H1, Description und Artikeltext bleiben unverändert (Kopierregel des Audit-Skills, geänderte Fließtextsätze: 0).
+
+| Pfad | Feld | Alt | Neu |
+|---|---|---|---|
+| `/hilfe/mitarbeiter-einladen-lizenz-zuweisen` | Titel | Mitarbeiter einladen und eine passende Lizenz zuweisen (54, gerendert als `title.absolute`) | Mitarbeiter einladen und Lizenz zuweisen \| CraftOS (50) |
+
+Der neue Titel nutzt nur Wörter des bisherigen Titels und wieder das Layout-Template mit Markenzusatz; damit rendert kein Eintrag mehr `title.absolute`. Die OG-Grafik ist unverändert, weil sie aus der H1 entsteht. Bearbeitet per Node-Skript mit Regelprüfung vor dem Schreiben (Titel ≤ 60, Titel ≠ H1, Titel sitewide eindeutig, kein Hauptkeyword betroffen, Überclaim-Wörter, nur vorhandene Wörter): 0 Fehler. Absicherung: `tests/keyword-map.test.ts`, `seo-audit.mjs --paths=/hilfe/mitarbeiter-einladen-lizenz-zuweisen`. Kein API-Abruf (0 Units).

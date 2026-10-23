@@ -38,6 +38,13 @@
         "abstand_letzter_abruf_s": 82
       },
       "verbrauch": 0
+    },
+    {
+      "block": "A3",
+      "inhalt": "Aufgabe 3: Vorab-Audit nur mit vorhandenen SE-Ranking-Rohdaten (Audit 485185, Messstand 23.10.) und Live-Abrufen von craftos.eu – kein SE-Ranking-Abruf",
+      "vorher": null,
+      "nachher": null,
+      "verbrauch": 0
     }
   ],
   "summe_plan": 0,
