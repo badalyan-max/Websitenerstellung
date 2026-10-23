@@ -102,11 +102,20 @@
 .modeFieldset legend,
 .vatFields legend {
   display: block;
+  /* float: Das Legend sitzt nicht in der Rahmenlinie, damit die 1-px-Linie zwischen den Fieldsets sichtbar bleibt. */
+  float: left;
   width: 100%;
+  padding: 0;
   margin-bottom: 16px;
   font-size: 16px;
   font-weight: 600;
   line-height: 1.5;
+}
+
+.fieldset legend + *,
+.modeFieldset legend + *,
+.vatFields legend + * {
+  clear: both;
 }
 
 .fieldset + .fieldset,
