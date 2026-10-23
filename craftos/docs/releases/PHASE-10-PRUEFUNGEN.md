@@ -221,3 +221,98 @@ Plan 10-12, 23.10.2026, Haupt-Arbeitsbaum `main`, lokal unter `.heavy-lock`, Por
 Port 3100 war nach jedem Block frei; die Sperre wurde zwischen den Blöcken freigegeben.
 
 **Sichtprüfung (visual-audit, selbst angesehen):** Rechner-Übersicht, Support, Impressum, AGB (Ende mit „Stand: 23. Oktober 2026“), 404, Gewerke-Detail `/gewerke/elektriker` (WebKit 360), Hilfekategorie `/hilfe/kategorie/einrichtung`, `/preise` bei 360 px (Tabellen scrollen seitlich wie vorgesehen) – ohne Befund. Ablage: `C:/Users/badal/AppData/Local/Temp/claude/c--Projekte-Websitenerstellung/8faeabcc-263d-4f29-8287-1406748c2152/scratchpad/10-12/visual/` (Ausschnitte eine Ebene höher). Mega-Menü siehe § 5.2.
+
+### 5.2 A11y-Matrix (D-05 bis D-08, HI-01)
+
+Ein Build (15:33 UTC, Laufkennung `build-ud54z7zXV3Fj0XPptQaFd`), danach fünf Teile `a11y-audit.mjs --shard=k/5` ohne `--engines`, je Teil eigene Sperre und eigener Serverstart auf 3100, anschließend `--merge`.
+
+| Teil | Aufrufe | Laufzeit | Gate | Großtext | Tastatur | Status |
+|---|---|---|---|---|---|---|
+| 1/5 | 178 | 224 s | 0 | 0 | 0 | 0 |
+| 2/5 | 178 | 224 s | 0 | 0 | 0 | 0 |
+| 3/5 | 178 | 228 s | 0 | 0 | 0 | 0 |
+| 4/5 | 178 | 247 s | 0 | 0 | 0 | 0 |
+| 5/5 | 178 | 229 s | 0 | 0 | 0 | 0 |
+
+**Merge (Exit 0, „Gate bestanden“):** 158 Seiten (156 Sitemap-URLs, `/styleguide`, 404), **890 Aufrufe** – Chromium 790 (158 × 5 Breiten), WebKit 100 (20 Vorlagen × 5 Breiten); je Breite 360/390/768/1024/1440 jeweils 178 Aufrufe. Animationszustand: 110 Prüfungen auf 22 Snippet-Seiten.
+
+| Zähler | Ergebnis |
+|---|---|
+| Gate-Verstöße (`serious`/`critical`, `color-contrast`, `target-size`) | **0** (je Engine und je Breite 0) |
+| Verstöße je Regel (`jeRegel`) | keine Regel mit Befund – auch keine `moderate`/`minor` |
+| Großtext-Knoten < 4,5 : 1 | **0** |
+| Tastaturfehler (inkl. 2.4.11) | **0** |
+| Statusfehler | **0** |
+| Unvollständige Kontrastknoten (axe `incomplete`, nur Bericht) | 4594 (Baseline 10-08: 4661) |
+
+Gegenüber der Baseline 10-08 (25 `color-contrast` auf den Rechtsseiten) ist die Matrix jetzt auch auf `/impressum`, `/datenschutz` und `/agb` bei 0.
+
+**Unvollständige Kontrastknoten – Sichtprüfung:** Es sind dieselben Bausteine wie in der Baseline 10-08 (axe kann den Hintergrund wegen gestreckter Kartenlinks, Verläufen, Überlagerungen oder Sticky-Spalten nicht bestimmen): `StepFlow`-Ziffernknoten (`aria-hidden`, 910) und -Titel (226), Plattform-Badges in `FeatureCard` (652), `small`-Texte in `DeviceFrame` (545), `MediaFigure`-Kennzeichnung (508), Tabellenzellen der Vergleichs-/Preistabellen (242), `FeatureCard`-Titel und -Nutzen (351), `DeviceFrame`-Caption (125), `ConnectedScene`-Pills (55) und Einzelknoten. Stichproben in den visual-audit-Aufnahmen (`/funktionen` Karten mit Badges und Kennzeichnung, `/gewerke/elektriker` StepFlow bei 360 px, `/preise`-Tabellen bei 360 px, Hilfekategorie-Karten): dunkler Text auf hellen, vollflächigen Flächen bzw. dunkle Ziffern auf Bernstein, kein sichtbar schwacher Kontrast.
+
+**Mega-Menü und Drawer** (gemessen während Teil 1 mit `scratchpad/10-06/screens.cjs`, Aufnahmen in `…/scratchpad/10-12/menue/`): 1440 px Chromium – zehn Zusatzlinks, fünf Beschriftungen, kleinste Zielhöhe 44 px, Fokusring 3 px auf „Kassenbuch“ sichtbar, kein Querüberlauf; das Panel scrollt bei 900 px Viewport intern (986 px Inhalt bei 795 px, Bestand, Inhaberpunkt § 4.2). 390 px (beide Engines) – Drawer ohne Querüberlauf, Zielhöhe 48 px, `main` inert. WebKit setzt per Tab keinen Fokus auf Links (Standardverhalten von Safari ohne „Tab hebt alle Steuerelemente hervor“); die Tastaturprüfung der Matrix ist davon unberührt.
+
+**Korrektur während des Gates:** Der erste `--merge` brach mit Exit 3 ab („Teilbericht aus einem gezielten Lauf“), obwohl alle Teile ohne `--paths/--widths/--engines` liefen. Ursache: `pruefeGesamtlauf()` (aus HI-01) wertete `optionen.pfade > 0` als gezielt, der reguläre Lauf trägt dort aber die Zahl aller 158 Sitemap-Pfade. Maßgeblich ist jetzt nur das Kennzeichen `gezielt === false` (`5670097`, zwei neue Vitest-Fälle). Die Teilberichte blieben unverändert; der Merge über dieselben fünf Teile ergab danach Exit 0.
+
+### 5.3 Lighthouse-Endmessung (D-11, D-13, D-44, ME-01)
+
+Lighthouse 13.5.0, `next start` lokal (gzip), Port 3100, jeder Block allein unter Sperre. Kennzeichnung je Wert: **Labordaten, mobil, lokal, Median aus 3 Läufen (B3: 1 Lauf), URL.** Benchmark-Index 2978 (B1), 3471 (B2), 3396 (B3). 0 ungültige Läufe.
+
+| Block | Aufruf | Exit | Ergebnis |
+|---|---|---|---|
+| B1 Gate | `--block=gate --paths=<GATE_ROUTEN> --runs=3` | **0** | Accessibility-Gate eingehalten, 11 Performance-Warnungen (nicht blockierend) |
+| B2 Info | `--block=info --paths=<INFO_ROUTEN> --runs=3` | **0** | Accessibility-Gate eingehalten, 0 Warnungen |
+| B3 A11y | `--block=a11y --paths=/impressum,/datenschutz,/agb,/support,/rechner,/rechner/angebotskalkulation --runs=1` | **0** | Accessibility-Gate eingehalten |
+| Bestandsmodus | `performance-audit.mjs` | **0** | 21 Routen × 3 Läufe, CLS max. 0 |
+
+**Gate-Seiten (B1)** – Score, LCP/FCP/SI in ms, TBT in ms, CLS, LCP-Element, Accessibility / Best Practices / SEO:
+
+| URL | Score | LCP | FCP | SI | TBT | CLS | LCP-Element | A11y / BP / SEO |
+|---|---|---|---|---|---|---|---|---|
+| `/` | 93 | 3.014 | 1.506 | 1.506 | 93 | 0 | `h1#startseite-titel` | 100 / 100 / 100 |
+| `/funktionen` | 94 | 2.983 | 1.356 | 1.356 | 71 | 0 | `h1#funktionen-titel` | 100 / 100 / 100 |
+| `/funktionen/angebote` | 90 | 3.467 | 1.808 | 1.808 | 62 | 0 | `h1#funktion-titel` | 100 / 100 / 100 |
+| `/gewerke/shk` | 93 | 3.152 | 1.358 | 1.358 | 38 | 0 | `p#antwort` | 100 / 100 / 100 |
+| `/vergleich/handwerkersoftware-kleine-betriebe` | 95 | 2.830 | 1.206 | 1.206 | 35 | 0 | `p#antwort` | 100 / 100 / 100 |
+| `/blog/handwerkerrechnung-schreiben` | 94 | 2.997 | 1.355 | 1.355 | 86 | 0 | `h1#artikel-titel` | 100 / 100 / 100 |
+
+**Info-Seiten (B2):**
+
+| URL | Score | LCP | FCP | SI | TBT | CLS | LCP-Element | A11y / BP / SEO |
+|---|---|---|---|---|---|---|---|---|
+| `/preise` | 95 | 2.833 | 1.208 | 1.208 | 60 | 0 | `p#antwort` | 100 / 100 / 100 |
+| `/app` | 94 | 2.986 | 1.356 | 1.356 | 65 | 0 | `h1#app-titel` | 100 / 100 / 100 |
+| `/hilfe/rechnung-fertigstellen` | 95 | 2.826 | 1.204 | 1.204 | 68 | 0 | `p#antwort` | 100 / 100 / 100 |
+| `/rechner/stundensatz` | 95 | 2.837 | 1.208 | 1.208 | 37 | 0 | `h1#rechner-titel` | 100 / 100 / 100 |
+
+**A11y-Gate-Seiten (B3, 1 Lauf):**
+
+| URL | Score | LCP | FCP | SI | TBT | CLS | LCP-Element | A11y / BP / SEO |
+|---|---|---|---|---|---|---|---|---|
+| `/impressum` | 96 | 2.722 | 1.214 | 1.214 | 94 | 0 | `h1#rechtstext-titel` | **100** / 100 / 100 |
+| `/datenschutz` | 95 | 2.748 | 1.213 | 1.213 | 122 | 0 | `p` | 100 / 100 / 100 |
+| `/agb` | 95 | 2.738 | 1.207 | 1.207 | 136 | 0 | `p` | 100 / 100 / 100 |
+| `/support` | 96 | 2.677 | 1.205 | 1.205 | 66 | 0 | `p.lead` | 100 / 100 / 100 |
+| `/rechner` | 96 | 2.668 | 1.205 | 1.205 | 59 | 0 | `p.lead` | 100 / 100 / 100 |
+| `/rechner/angebotskalkulation` | 95 | 2.835 | 1.206 | 1.206 | 37 | 0 | `h1#rechner-titel` | 100 / 100 / 100 |
+
+**Accessibility:** 100 auf allen 16 gemessenen Seiten, darunter alle sechs Gate-Seiten und `/impressum` (10-09: 96). DESIGN-05 ist damit auch in Lighthouse belegt.
+
+**Snippet-CLS (Bestandsmodus, ohne reduzierte Bewegung, 3 Läufe je Route):** CLS 0 / 0 / 0 auf allen acht Snippet-Seiten (`/funktionen/dashboard`, `/angebote`, `/plantafel`, `/rechnungen`, `/eingangsrechnungen`, `/zeiterfassung`, `/lager`, `/aufmass`) und auf allen 21 Routen; Playwright-LCP der Snippet-Seiten 1.164–1.412 ms.
+
+**Performance-Warnungen (D-44, nicht blockierend; `warnungen` in `summary-gate.json`):**
+
+| Gate-Seite | Score | LCP (ms) | Warnung | 10-09 Endstand (Score / LCP) |
+|---|---|---|---|---|
+| `/` | 93 | 3.014 | Score < 95, LCP ≥ 2.500 | 94 / 2.972 |
+| `/funktionen` | 94 | 2.983 | Score < 95, LCP ≥ 2.500 | 94 / 2.999 |
+| `/funktionen/angebote` | 90 | 3.467 | Score < 95, LCP ≥ 2.500 | 94 / 3.033 |
+| `/gewerke/shk` | 93 | 3.152 | Score < 95, LCP ≥ 2.500 | 93 / 3.205 |
+| `/vergleich/handwerkersoftware-kleine-betriebe` | 95 | 2.830 | LCP ≥ 2.500 | 95 / 2.823 |
+| `/blog/handwerkerrechnung-schreiben` | 94 | 2.997 | Score < 95, LCP ≥ 2.500 | 95 / 2.855 |
+
+#### Offene Abweichung (Labordaten, D-13/W3, nach D-44 nicht blockierend)
+
+- **Befund:** Alle sechs Gate-Seiten verfehlen lokal LCP < 2.500 ms (2.830–3.467 ms), fünf davon Score ≥ 95 (90–94). Das LCP-Element ist immer Text (H1 in Clash 600 oder `p#antwort`), kein Bild. Gegenüber 10-09 liegen fünf Seiten innerhalb von ±150 ms; `/funktionen/angebote` liegt 434 ms höher (FCP 1.808 ms gegenüber rund 1.350 ms auf den übrigen Seiten; Ursache nicht weiter untersucht, weil nach D-44 nicht blockierend – Kandidat für eine Regressionsprüfung in 10-07 an den Felddaten).
+- **Geprüfte unsichtbare Hebel (10-09):** Schrifthebel übernommen; `inlineCss` verworfen (schlechter); JavaScript ohne dokumentierten, funktionsneutralen Hebel. Lighthouse nennt weiterhin `render-blocking-insight` (bis 550 ms) und `legacy-javascript-insight` (Next.js-Polyfill-Chunk).
+- **Felddaten (D-44, Maßstab für QA-04):** Vercel Speed Insights, Produktion, Stand 23.10.2026: n = 41, LCP p75 620 ms, INP p75 40 ms, CLS p75 0. 10-07 fragt nach dem Rollout erneut ab und bewertet QA-04 daran; in 10-12 wurden keine Vercel-Abrufe gemacht.
+- **Inhaberfrage (nur falls die Laborwerte selbst Ziel werden sollen, jeweils sichtbare Änderung, UI-SPEC § 7.2):** (a) `font-display: optional` für die verbliebenen Schnitte, (b) General 600 nicht mehr laden, (c) Systemschrift statt Clash 600 für die H1 im ersten Bildschirm, (d) Funktionen oder Skripte entfernen bzw. verzögern. Nichts davon ist umgesetzt.
