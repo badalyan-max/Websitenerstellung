@@ -14,7 +14,7 @@ const content: Record<SnippetVariant, { title: string; summary: string }> = {
   planung: { title: "Vom Büro auf die Baustelle", summary: "Der Einsatz wandert auf einen anderen Tag und erscheint in der App. Mitarbeiter und geplante Dauer bleiben erhalten." },
   rechnung: { title: "Vom Entwurf zur Rechnung", summary: "Auf dem Handy Leistungen unterschreiben lassen, im Büro in einen Rechnungsentwurf übernehmen und nach Prüfung fertigstellen." },
   beleg: { title: "Ein Beleg findet seinen Platz", summary: "Den Beleg mobil scannen, Angaben prüfen und beim Projekt speichern. Im Büro folgt die weitere Bearbeitung unter Eingangsrechnungen." },
-  ki: { title: "Eine Frage. Mehr Überblick.", summary: "Mobile Arbeitszeiten stehen auch Craft AI im Web zur Verfügung. Eine Frage zeigt die erfassten Zeiten mit Projekt und Zeitraum." },
+  ki: { title: "Vom Bericht zum Angebotsentwurf", summary: "Der Bericht wird auf der Baustelle diktiert. Im Büro bereitet der Angebotschat einen Angebotsentwurf vor, den Sie prüfen und übernehmen." },
   zeit: { title: "Arbeitszeit bleibt beim Auftrag", summary: "GPS erfasst den Standort beim Starten und Stoppen. Beim Start wird ein passendes Projekt im Umkreis zugeordnet. Die Zeitanzeige läuft im Zeitraffer." },
   lager: { title: "Material mit Überblick", summary: "Sechs Eimer gehen auf die Baustelle, zwei kommen zurück. Der Bestand verändert sich von 24 auf 18 und anschließend 20." },
   aufmass: { title: "Aus Maßen wird eine Menge", summary: "Das mobile Aufmaß liefert 33 m² für die Angebotsposition im Web. Der Preis wird anschließend ergänzt; er wird nicht aus den Maßen ermittelt." },

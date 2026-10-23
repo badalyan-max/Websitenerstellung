@@ -1,43 +1,32 @@
 ---
-title: "Craft AI zu Ihren Betriebsdaten befragen"
-description: "So stellen Sie dem KI-Assistenten eine konkrete Frage und prüfen die Antwort anhand der zugehörigen Daten."
+title: "KI-Funktionen in CraftOS auf Anforderung nutzen"
+description: "So starten Sie die KI-Funktionen in Angebot, Beleg, Bericht und Lager und prüfen jedes Ergebnis vor der Übernahme."
 category: "craft-ai"
 publishedAt: "2026-09-09"
-updatedAt: "2026-10-20"
+updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
-relatedFeatures: ["dashboard", "projektverwaltung", "team"]
-relatedArticles: ["/hilfe/ki-entwurf-pruefen-uebernehmen"]
+relatedFeatures: ["angebote", "eingangsrechnungen", "baudokumentation", "lager"]
+relatedArticles: ["/hilfe/ki-entwurf-pruefen-uebernehmen", "/hilfe/beleg-scannen-pruefen", "/hilfe/bautagesbericht-erstellen"]
 sources: []
-platforms: ["web"]
+platforms: ["web", "mobile"]
 ---
 
-Der KI-Assistent beantwortet Fragen zu den freigegebenen Betriebsdaten; eine konkrete Frage mit Zeitraum und Projekt liefert eine bessere Grundlage als eine allgemeine Aufforderung.
+Craft AI arbeitet dort, wo Sie es anfordern: im Angebotschat, beim Belegscan, beim Diktieren in Berichten und bei der Foto-Erkennung im Lager. Sie prüfen und bestätigen jede Übernahme.
 
-Sie benötigen eine Admin- oder Büro-Lizenz, freigegebenen Chat-Zugang und ein verfügbares KI-Kontingent. Rolle und Datenberechtigungen bleiben wirksam.
+Ihr Betrieb gibt die KI-Funktionen zentral und je Person frei. Die KI-Funktionen verbrauchen Credits aus dem Guthaben Ihres Betriebs.
 
-## Schritt für Schritt
+## Wo starten Sie eine KI-Funktion?
 
-1. Öffnen Sie in der Web-App „KI-Assistent“ in der Seitenleiste.
-2. Geben Sie eine konkrete Frage in „Frag zu deinen Betriebsdaten …“ ein.
-3. Nennen Sie bei Bedarf Projekt, Kunde und Zeitraum.
-4. Senden Sie die Nachricht und warten Sie auf die Antwort.
-5. Prüfen Sie angezeigte Arbeitsschritte und Verweise.
-6. Öffnen Sie die zugehörige Projekt-, Dokument- oder Zeitansicht zur Kontrolle wichtiger Angaben.
-7. Präzisieren Sie die Frage, wenn die Antwort einen anderen Zeitraum oder Vorgang betrifft.
-
-Ein eigenes Beispiel lautet: „Welche Zeiten wurden diese Woche für Wohnung Lindenstraße erfasst?“ Verwenden Sie dafür einen tatsächlich vorhandenen eindeutigen Projektnamen.
+- **Angebot (Web-App):** Im Angebotseditor öffnen Sie den Reiter „KI“ und wählen „Angebotschat öffnen“. Dort beschreiben Sie die Arbeiten, stellen Fragen zum Angebot und erhalten einen Angebotsentwurf.
+- **Beleg (Mobile-App):** Mit „Beleg scannen“ fotografieren oder wählen Sie eine Eingangsrechnung; die KI liest die Angaben aus.
+- **Bericht (Mobile-App):** Im Textfeld des Berichts tippen Sie auf „Diktieren“; der Text erscheint im Feld.
+- **Lager (Mobile-App):** Beim Erfassen eines Lagerbestands wählen Sie „Foto mit KI erkennen“; die App schlägt Angaben zum Artikel vor.
 
 ## Ergebnis prüfen
 
-Der Assistent kann Informationen aus Projekten, Kunden, Zeiten, Dokumenten und Übersichten heranziehen. Eine nicht gefundene Information kann auf fehlende Daten, unklare Bezeichnung oder begrenzte Berechtigung zurückgehen.
+1. Prüfen Sie den Vorschlag vollständig: Positionen, Mengen und Preise im Angebot, Betrag und Projekt beim Beleg, den Text im Bericht und die Artikelangaben im Lager.
+2. Korrigieren Sie Angaben direkt im Entwurf oder im Feld.
+3. Übernehmen, bestätigen oder speichern Sie erst danach.
 
-Eine Antwort über offene Rechnungen beweist nicht, dass Zahlungseingänge vollständig erfasst sind. Prüfen Sie die zugrunde liegenden Vorgänge, bevor Sie eine kaufmännische Entscheidung treffen.
-
-## Häufige Probleme
-
-Fehlt „KI-Assistent“, lassen Sie Lizenz, zentrale KI-Einstellung und persönlichen KI-Zugang prüfen. Ein neues Browserfenster schafft keine zusätzliche Berechtigung.
-
-Bei einem Kontingent- oder Verbindungsfehler lesen Sie die Meldung und verwenden Sie den angebotenen Wiederholungsweg erst nach Klärung.
-
-Die [Projektverwaltung](/funktionen/projektverwaltung) liefert den Datenzusammenhang; [KI-Entwürfe prüfen](/hilfe/ki-entwurf-pruefen-uebernehmen) erklärt bestätigungspflichtige Vorschläge.
+Weiterführend: [Angebotsentwurf im Angebotschat prüfen](/hilfe/ki-entwurf-pruefen-uebernehmen), [Beleg scannen und prüfen](/hilfe/beleg-scannen-pruefen) und [Bautagesbericht erstellen](/hilfe/bautagesbericht-erstellen).

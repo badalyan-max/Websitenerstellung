@@ -82,6 +82,77 @@ describe("alle Inhaltsmodule unter lib/seiten", () => {
   });
 });
 
+/**
+ * Hotfix 23.10.2026: Ein Chat bzw. KI-Assistent zu Betriebsdaten ist am Web-Release nur für Plattform-Entwickler
+ * sichtbar (MainLayout.tsx: AiAgentPanel nur bei isDeveloper; Register notLive „KI-Agent“). Für Kunden live sind
+ * KI-Funktionen auf Anforderung (Angebotschat, Belegscan, Diktieren in Berichten, Foto-Erkennung im Lager). Kein
+ * Website-Text darf den Betriebsdaten-Chat als CraftOS-Funktion darstellen; der Slug des Hilfeartikels bleibt.
+ */
+describe("kein Betriebsdaten-Chat als Kundenfunktion (Hotfix 23.10.2026)", () => {
+  const SLUG = /craft-ai-betriebsdaten-fragen/g;
+  const CHAT_WORT = /frag|chat|abfrag|befrag|assistent|antwort/i;
+
+  /** Fundstellen: KI-Assistent oder ein Satz, der Betriebsdaten mit Frage, Chat oder Antwort verbindet. */
+  function betriebsdatenChat(text: string): string[] {
+    const ohneSlug = text.replace(SLUG, "");
+    const treffer = ohneSlug.match(/KI-Assistent\w*|Frag zu deinen Betriebsdaten/gi) ?? [];
+    const saetze = ohneSlug.split(/(?<=[.!?:;])\s+|\n+/);
+    return [...treffer, ...saetze.filter((s) => /betriebsdaten/i.test(s) && CHAT_WORT.test(s)).map((s) => s.trim())];
+  }
+
+  it("Helfer erkennt die bisherigen Formulierungen und lässt belegte KI-Funktionen durch", () => {
+    for (const fall of [
+      "Craft AI antwortet aus den Betriebsdaten, auf die Ihre Rolle Zugriff hat.",
+      "Betriebsdaten per Text oder Sprache abfragen.",
+      "KI Fragen stellen zu Betriebsdaten | CraftOS",
+      "Öffnen Sie „KI-Assistent“ in der Seitenleiste.",
+    ])
+      expect(betriebsdatenChat(fall), fall).not.toEqual([]);
+    expect(betriebsdatenChat("Im Angebotschat bereitet Craft AI einen Angebotsentwurf vor.")).toEqual([]);
+    expect(betriebsdatenChat("Die Auswertung berücksichtigt die tatsächlich erfassten Betriebsdaten.")).toEqual([]);
+    expect(betriebsdatenChat("[Anleitung](/hilfe/craft-ai-betriebsdaten-fragen)")).toEqual([]);
+  });
+
+  /** Quelltexte der Website: Inhalte, Komponenten, Routen, Markdown und die Keyword-Map. */
+  function dateien(dir: string): string[] {
+    return fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true }).flatMap((e) => {
+      const rel = path.posix.join(dir, e.name);
+      if (e.isDirectory()) return dateien(rel);
+      return /\.(ts|tsx|md|mdx)$/.test(e.name) ? [rel] : [];
+    });
+  }
+  const QUELLEN = [...["app", "components", "lib", "content"].flatMap(dateien), "docs/seo/keyword-map.json"];
+
+  it("umfasst Inhalte, Komponenten, Routen, Markdown und die Keyword-Map", () => {
+    expect(QUELLEN).toContain("lib/seiten/craft-ai.ts");
+    expect(QUELLEN).toContain("components/feature-snippet/SupplementalScene.tsx");
+    expect(QUELLEN).toContain("content/hilfe/craft-ai-betriebsdaten-fragen.md");
+  });
+
+  for (const datei of QUELLEN)
+    it(`${datei} stellt keinen Betriebsdaten-Chat dar`, () => {
+      expect(betriebsdatenChat(fs.readFileSync(path.join(ROOT, datei), "utf8"))).toEqual([]);
+    });
+
+  it("llms.txt stellt keinen Betriebsdaten-Chat dar und verlinkt /craft-ai mit den belegten Funktionen", async () => {
+    const { buildLlmsTxt } = await import("@/lib/llms");
+    const text = buildLlmsTxt();
+    expect(betriebsdatenChat(text)).toEqual([]);
+    const zeile = text.split("\n").find((z) => z.includes("/craft-ai)"));
+    expect(zeile).toBeDefined();
+    for (const wort of ["Angebotschat", "Belegscan", "Diktat", "Foto-Erkennung"]) expect(zeile, wort).toContain(wort);
+  });
+
+  it("/craft-ai nennt die belegten KI-Funktionen und den Prüfgrundsatz", async () => {
+    const mod = (await import("@/app/craft-ai/page")) as { default: () => React.ReactElement };
+    const html = renderToString(createElement(mod.default));
+    expect(betriebsdatenChat(html)).toEqual([]);
+    for (const wort of ["Angebotschat", "Angebotsentwurf", "Belegscan", "Diktieren", "Foto-Erkennung", "Ins Angebot übernehmen"])
+      expect(html, wort).toContain(wort);
+    expect(html).toContain("Sie prüfen und bestätigen jede Übernahme.");
+  });
+});
+
 /** Text der Absätze, Definitionen und Listenpunkte einer gerenderten Seite. */
 function bloecke(html: string): string[] {
   return [...html.matchAll(/<(p|dd|li)\b[^>]*>([\s\S]*?)<\/\1>/g)]

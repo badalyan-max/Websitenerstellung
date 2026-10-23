@@ -396,7 +396,8 @@ describe("Phase 8 – Zielwerte sitewide", () => {
         h1: "Handwerkersoftware für kleine Betriebe im Vergleich",
       },
       "/preise": { h1: "Preise der Handwerkersoftware CraftOS" },
-      "/craft-ai": { h1: "KI im Handwerk: Craft AI beantwortet Fragen zu Ihrem Betrieb" },
+      // Hotfix 23.10.2026: KI-Funktionen auf Anforderung statt Fragen zu Betriebsdaten.
+      "/craft-ai": { h1: "KI im Handwerk: Craft AI für Angebot, Beleg und Bericht" },
       "/gobd": { h1: "GoBD-konforme Software: wie CraftOS Ihre Abläufe unterstützt" },
     };
     for (const [p, werte] of Object.entries(soll)) {

@@ -211,9 +211,9 @@
       }
     ],
     "target": {
-      "title": "KI im Handwerk: Craft AI für Ihre Betriebsdaten | CraftOS",
-      "h1": "KI im Handwerk: Craft AI beantwortet Fragen zu Ihrem Betrieb",
-      "description": "Craft AI bringt KI ins Handwerk: Fragen zu Projekten, Rechnungen und Zeiten stellen und Entwürfe vorbereiten lassen. Sie prüfen und übernehmen selbst."
+      "title": "KI im Handwerk: Craft AI auf Anforderung | CraftOS",
+      "h1": "KI im Handwerk: Craft AI für Angebot, Beleg und Bericht",
+      "description": "KI im Handwerk mit Craft AI: Angebotsentwurf im Angebotschat, Belegscan, Diktat in Berichten und Foto-Erkennung im Lager. Sie prüfen jede Übernahme."
     }
   },
   {
@@ -2047,7 +2047,7 @@
     "target": {
       "title": "Craft AI: Anleitungen zur KI-Hilfe | CraftOS",
       "h1": "Hilfe: Craft AI",
-      "description": "Anleitungen zu Craft AI in CraftOS: Fragen zu Ihren Betriebsdaten stellen, vorgeschlagene Entwürfe prüfen und erst nach Ihrer Bestätigung übernehmen."
+      "description": "Anleitungen zu Craft AI in CraftOS: KI-Funktionen auf Anforderung nutzen und den Angebotsentwurf im Angebotschat prüfen und bewusst übernehmen."
     }
   },
   {
@@ -3156,15 +3156,15 @@
         "fetchedAt": "2026-10-20T20:48:23.838Z"
       }
     },
-    "reason": "Einziger Kandidat mit Daten; hohe Schwierigkeit, aber passend zur Anleitung, Craft AI Fragen zu Betriebsdaten zu stellen.",
+    "reason": "Einziger Kandidat mit Daten; hohe Schwierigkeit, aber passend zur Anleitung, im Angebotschat der KI Fragen zum Angebot zu stellen und KI-Funktionen auf Anforderung zu nutzen.",
     "secondary": [
       "ki auswertung"
     ],
     "competitors": [],
     "target": {
-      "title": "KI Fragen stellen zu Betriebsdaten | CraftOS",
-      "h1": "Die KI Craft AI zu Ihren Betriebsdaten befragen",
-      "description": "KI Fragen stellen zu Ihren Betriebsdaten: wie Sie Craft AI zu Projekten, Rechnungen und Zeiten befragen und Antworten mit den Quelldaten abgleichen."
+      "title": "KI Fragen stellen im Angebotschat | CraftOS",
+      "h1": "KI-Funktionen in CraftOS auf Anforderung nutzen",
+      "description": "KI Fragen stellen im Angebotschat und weitere KI-Funktionen nutzen: Angebotsentwurf, Belegscan, Diktat in Berichten und Foto-Erkennung im Lager."
     }
   },
   {
@@ -3337,9 +3337,9 @@
     "secondary": [],
     "competitors": [],
     "target": {
-      "title": "Einen KI-Entwurf prüfen und bewusst übernehmen | CraftOS",
-      "h1": "Einen KI-Entwurf prüfen und bewusst übernehmen",
-      "description": "So prüfen Sie einen KI-Entwurf von Craft AI: vorgeschlagene Daten kontrollieren, einen passenden Entwurf bestätigen und im richtigen Modul öffnen."
+      "title": "Angebotsentwurf im Angebotschat prüfen | CraftOS",
+      "h1": "Einen Angebotsentwurf im Angebotschat prüfen und übernehmen",
+      "description": "So prüfen Sie den Angebotsentwurf aus dem Angebotschat: Positionen, Mengen und Preise kontrollieren und den Entwurf bewusst ins Angebot übernehmen."
     }
   },
   {

@@ -48,6 +48,12 @@ export function buildLlmsTxt(): string {
     ...funktionen
       .filter((f) => f.tier === "heute")
       .map((f) => link(f.name, `/funktionen/${f.slug}`, f.kurz)),
+    // Hotfix 23.10.2026: Craft AI als KI-Funktionen auf Anforderung (Belege: lib/seiten/craft-ai.ts, Kopfkommentar).
+    link(
+      "Craft AI",
+      "/craft-ai",
+      "KI-Funktionen auf Anforderung: Angebotsentwurf im Angebotschat, Belegscan, Diktat in Berichten und Foto-Erkennung im Lager; Sie prüfen und bestätigen jede Übernahme",
+    ),
     "",
     "## Mobile-App",
     "",

@@ -44,7 +44,7 @@ Ein zweiter möglicher Fehler ist die Zuordnung zur „Lindenstraße“, obwohl 
 
 Die KI kann Angaben aus dem Beleg vorschlagen. Ob eine Lieferung sachlich richtig ist, eine Rechnung bereits vorliegt oder ein Kostenkonto zum betrieblichen Vorgang passt, erfordert zusätzliche Informationen.
 
-In CraftOS ist daher kein autonomes Verbuchen durch den Chat oder den Belegscan zu erwarten. Prüfen Sie Vorschläge, ergänzen Sie fehlende Angaben und bestätigen Sie den vorgesehenen Schritt selbst. Eine erfolgreich erkannte Datei ist weder ein Nachweis der Zahlung noch automatisch ein vollständig geprüfter Buchungsvorgang.
+In CraftOS liefert der Belegscan daher Vorschläge, und Sie entscheiden über die Buchung. Prüfen Sie Vorschläge, ergänzen Sie fehlende Angaben und bestätigen Sie den vorgesehenen Schritt selbst. Eine erfolgreich erkannte Datei ist weder ein Nachweis der Zahlung noch automatisch ein vollständig geprüfter Buchungsvorgang.
 
 ## Wie gehen Sie in der Web-App vor?
 

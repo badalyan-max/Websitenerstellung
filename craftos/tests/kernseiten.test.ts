@@ -252,7 +252,8 @@ describe("Craft AI (§ 5.3)", () => {
   });
 
   it("Ablauf: drei Schritte bis zur Bestätigung", () => {
-    expect(craftAi.craftAiSteps.map((st) => st.title)).toEqual(["Frage stellen", "Entwurf erhalten", "Prüfen und bestätigen"]);
+    // Hotfix 23.10.2026: KI-Funktionen auf Anforderung statt Fragen zu Betriebsdaten.
+    expect(craftAi.craftAiSteps.map((st) => st.title)).toEqual(["KI anfordern", "Vorschlag erhalten", "Prüfen und bestätigen"]);
     for (const st of craftAi.craftAiSteps) {
       expect(charCount(st.title)).toBeLessThanOrEqual(TEXT_BUDGET.step.title);
       expect(charCount(st.text)).toBeLessThanOrEqual(TEXT_BUDGET.step.text);
@@ -277,7 +278,7 @@ describe("Craft AI (§ 5.3)", () => {
     expect(craftAi.craftAiGrenzen.map((k) => k.title)).toEqual([
       "Mengen und Preise prüfen",
       "Sie bestätigen jede Buchung",
-      "Zugriff nach Rolle",
+      "Freigabe im Betrieb",
     ]);
     expect(craftAi.craftAiGrenzen[1].text).toBe("Craft AI macht Vorschläge; Sie prüfen und bestätigen jede Buchung.");
     expect(new Set(craftAi.craftAiGrenzen.map((k) => k.size)).size).toBeGreaterThanOrEqual(2);
@@ -286,7 +287,7 @@ describe("Craft AI (§ 5.3)", () => {
   it("FAQ: drei Antworten ≤ 300", () => {
     expect(craftAi.craftAiFaq.map((f) => f.q)).toEqual([
       "Kann Craft AI Angebote erstellen?",
-      "Welche Daten nutzt Craft AI?",
+      "Welche KI-Funktionen umfasst Craft AI?",
       "Kann ich Craft AI per Sprache nutzen?",
     ]);
     expect(faqProbleme(craftAi.craftAiFaq)).toEqual([]);
@@ -407,7 +408,10 @@ describe("Wortregeln und Literale (T-08-32)", () => {
   // bleibt als gebotener Überclaim-Schutz bewusst verneint.
   it("nur Unterstütztes: Craft AI und KI-Faktum positiv, ohne Verneinung und ohne „autonom“", () => {
     const ki = fakten.produktfakten.find((i) => i.term === "KI")!.definition;
-    expect(ki).toBe("Craft AI macht Vorschläge und bereitet unterstützte Entwürfe vor; Sie prüfen und bestätigen jede Übernahme.");
+    // Hotfix 23.10.2026: belegte KI-Funktionen auf Anforderung.
+    expect(ki).toBe(
+      "Craft AI umfasst KI-Funktionen auf Anforderung: Angebotsentwurf im Angebotschat, Belegscan, Diktat in Berichten und Foto-Erkennung im Lager. Sie prüfen und bestätigen jede Übernahme.",
+    );
     const craftAiTexte = texte(craftAi as Record<string, unknown>).filter((t) => /\s/.test(t));
     expect([...craftAiTexte, ki].filter((t) => /\b(nicht|kein\w*|Nein)\b/i.test(t))).toEqual([]);
     expect(alle.filter((t) => /autonom/i.test(t))).toEqual([]);
