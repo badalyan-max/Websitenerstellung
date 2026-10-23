@@ -144,6 +144,48 @@ describe("Satzprüfung der Artikel (ME-04)", () => {
   });
 });
 
+/**
+ * Offline-Lesen (09-REVIEW ME-02): Die Mobile-App verwirft den gespeicherten Abfrage-Cache nach 24 Stunden
+ * (Mobile-Release src/AppRoot.tsx `maxAge: 1000 * 60 * 60 * 24`, src/shared/lib/query-client.ts `gcTime` 24 h).
+ * Jeder Satz der Website, der geladene Inhalte offline bereitstellt, nennt deshalb die Frist „24 Stunden“.
+ */
+const OFFLINE_BEREIT =
+  /(offline|ohne Netz)[^.]*(?<![\p{L}])(bereit|zur Verfügung)(?![\p{L}])|(?<![\p{L}])(bereit|zur Verfügung)(?![\p{L}])[^.]*(offline|ohne Netz)/iu;
+
+function offlineSaetzeOhneFrist(rel: string, inhalt: string): string[] {
+  const texte = rel.endsWith(".ts") ? stringLiterale(inhalt) : [inhalt];
+  return texte
+    .flatMap((t) => t.split(/(?<=[.!?])\s+|\n/))
+    .filter((s) => OFFLINE_BEREIT.test(s) && !/24 Stunden/.test(s))
+    .map((s) => `${rel}: ${s.trim()}`);
+}
+
+function websiteDateien(): string[] {
+  const out: string[] = [];
+  for (const ordner of MD_ORDNER)
+    for (const name of fs.readdirSync(path.join(ROOT, ordner)).sort()) if (name.endsWith(".md")) out.push(`${ordner}/${name}`);
+  const lib = (ordner: string): string[] =>
+    fs.readdirSync(path.join(ROOT, ordner), { withFileTypes: true }).flatMap((e) => {
+      const rel = `${ordner}/${e.name}`;
+      if (e.isDirectory()) return lib(rel);
+      return e.name.endsWith(".ts") ? [rel] : [];
+    });
+  return [...out, ...lib("lib")];
+}
+
+describe("Offline-Lesen nennt die 24-Stunden-Frist (ME-02)", () => {
+  it("kein Satz in Inhalten und lib/ verspricht Offline-Bereitschaft ohne Frist", () => {
+    const treffer = websiteDateien().flatMap((rel) => offlineSaetzeOhneFrist(rel, fs.readFileSync(path.join(ROOT, rel), "utf8")));
+    expect(treffer).toEqual([]);
+  });
+
+  it("erkennt Bereitschaftssätze und lässt Sätze mit Frist durch", () => {
+    expect(offlineSaetzeOhneFrist("x.md", "Jede Ansicht steht danach auch offline zur Verfügung.")).toHaveLength(1);
+    expect(offlineSaetzeOhneFrist("x.md", "Die App hält sie bis zu 24 Stunden offline bereit.")).toEqual([]);
+    expect(offlineSaetzeOhneFrist("x.md", "Was offline bereitsteht, beschreibt der Ratgeber.")).toEqual([]);
+  });
+});
+
 describe("Prüfmechanik (Fixtures)", () => {
   it("Markdown: Treffer je Wort mit Fehlertext", () => {
     const t = trefferInDatei("content/hilfe/x.md", "Im Portal ist keine Onlinezahlung möglich. DATANORM v5 ist nicht zugesagt.");

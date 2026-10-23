@@ -19,14 +19,14 @@ Die Statusanzeige der Mobile-App unterscheidet drei Zustände: keine Verbindung,
 
 - Mobile-App mit App-Lizenz oder Voll-Lizenz.
 - Eine Anmeldung mit Internetverbindung vor dem Einsatz.
-- Projekte und Ansichten, die Sie unterwegs brauchen, haben Sie einmal mit Verbindung geöffnet.
+- Projekte und Ansichten, die Sie unterwegs brauchen, haben Sie am Tag des Einsatzes einmal mit Verbindung geöffnet.
 
 ## Schritt für Schritt in der Mobile-App
 
 ### Vor dem Einsatz vorbereiten
 
 1. Melden Sie sich mit Internetverbindung an.
-2. Öffnen Sie die benötigten Projekte und Arbeitsansichten einmal.
+2. Öffnen Sie die benötigten Projekte und Arbeitsansichten am Tag des Einsatzes einmal; die App hält sie bis zu 24 Stunden offline bereit.
 3. Prüfen Sie, ob die Inhalte sichtbar sind.
 4. Lassen Sie ausstehende Änderungen vor der Abfahrt übertragen.
 
@@ -55,7 +55,7 @@ Karten, Routen und Unterschriften an Kundendokumenten nutzen Sie mit Internetver
 
 ### Was bedeutet „Offline, noch nicht geladen“?
 
-Die Ansicht wurde auf diesem Gerät noch nie mit Verbindung geöffnet. Öffnen Sie sie einmal mit Internet; danach steht sie auch offline mit dem gespeicherten Stand bereit.
+Für diese Ansicht liegt auf dem Gerät kein gespeicherter Stand aus den letzten 24 Stunden vor. Öffnen Sie sie einmal mit Internet; danach hält die App sie bis zu 24 Stunden auch offline bereit.
 
 ### Was bedeutet „Vom Server abgelehnt“?
 

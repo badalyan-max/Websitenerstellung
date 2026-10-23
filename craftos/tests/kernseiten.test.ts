@@ -166,7 +166,7 @@ describe("Fakten über CraftOS (§ 5.2, D-25)", () => {
     expect(def("Testphase")).toContain(`${site.trialDays} Tage`);
     // HI-03 (Inhaber 22.10.2026): positiv – was offline funktioniert und danach synchronisiert wird; GPS nur je Vorgang.
     expect(def("Offline-Nutzung")).toBe(
-      "Zeiten, Bautagesberichte, Mängel, Aufmaße und Urlaubsanträge erfasst die Mobile-App auch ohne Empfang und überträgt sie danach. Bereits geladene Projekte stehen offline bereit.",
+      "Zeiten, Bautagesberichte, Mängel, Aufmaße und Urlaubsanträge erfasst die Mobile-App auch ohne Empfang und überträgt sie danach. Geladene Projekte hält die App bis zu 24 Stunden offline bereit.",
     );
     expect(mobileOffline.evidence.length).toBeGreaterThan(0);
     expect(def("Standort bei der Zeiterfassung")).toBe(
@@ -204,7 +204,7 @@ describe("Fakten über CraftOS (§ 5.2, D-25)", () => {
     ]);
     expect(faqProbleme(fakten.faktenFaq)).toEqual([]);
     expect(fakten.faktenFaq[1].a).toBe(
-      "In der Mobile-App erfassen Sie Zeiten, Bautagesberichte, Mängel, Aufmaße und Urlaubsanträge auch ohne Empfang; die App überträgt sie, sobald wieder eine Verbindung besteht, und bereits geladene Projekte stehen offline bereit.",
+      "In der Mobile-App erfassen Sie Zeiten, Bautagesberichte, Mängel, Aufmaße und Urlaubsanträge auch ohne Empfang; die App überträgt sie, sobald wieder eine Verbindung besteht, und geladene Projekte hält sie bis zu 24 Stunden offline bereit.",
     );
     expect(fakten.faktenFaq[2].a).toBe(
       "CraftOS unterstützt GoBD-konforme Abläufe mit Festschreibung, Dokumentversionen und Protokollen; die GoBD-Konformität des gesamten Verfahrens organisiert Ihr Betrieb.",

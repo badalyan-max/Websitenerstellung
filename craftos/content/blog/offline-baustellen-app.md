@@ -6,7 +6,7 @@ publishedAt: "2026-09-09"
 updatedAt: "2026-10-23"
 author: "CraftOS Redaktion"
 draft: false
-answer: "Offline arbeiten Sie mit der CraftOS-Mobile-App in Ansichten, die Sie vorher einmal mit Verbindung geöffnet haben. Zeiten, Berichte, Mängel, Nachrichten und Lagerbuchungen werden ohne Netz auf dem Gerät vorgemerkt und später übertragen; Fotos laden Sie mit Internetverbindung hoch."
+answer: "Offline arbeiten Sie mit der CraftOS-Mobile-App in Ansichten, die Sie am Tag des Einsatzes einmal mit Verbindung geöffnet haben. Zeiten, Berichte, Mängel, Nachrichten und Lagerbuchungen werden ohne Netz auf dem Gerät vorgemerkt und später übertragen; Fotos laden Sie mit Internetverbindung hoch."
 relatedFeatures: ["zeiterfassung", "baudokumentation", "aufmass"]
 relatedArticles: ["/hilfe/mobile-offline-synchronisierung", "/hilfe/mobilen-timer-bedienen", "/hilfe/besichtigung-durchfuehren"]
 sources: []
@@ -15,7 +15,7 @@ platforms: ["web", "mobile"]
 
 ## Was sollten Sie vor dem Einsatz vorbereiten?
 
-Melden Sie sich mit Verbindung an und öffnen Sie die Projekte und Ansichten, die Sie auf der Baustelle brauchen. Jede einmal geöffnete Ansicht steht danach auch offline zur Verfügung.
+Melden Sie sich mit Verbindung an und öffnen Sie am Tag des Einsatzes die Projekte und Ansichten, die Sie auf der Baustelle brauchen. Die App hält jede geladene Ansicht danach bis zu 24 Stunden auch offline bereit.
 
 Prüfen Sie, ob Auftrag, Projektdaten und Hinweise sichtbar sind, und öffnen Sie wichtige Unterlagen gezielt. Eine noch nicht geladene Ansicht zeigt offline „Offline, noch nicht geladen“ mit dem Hinweis, sie einmal mit Verbindung zu öffnen.
 

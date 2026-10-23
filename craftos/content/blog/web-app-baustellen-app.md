@@ -59,7 +59,7 @@ Die [Hilfe zu Rollen und Zugriffsrechten](/hilfe/rollen-zugriffsrechte-einstelle
 
 ## Wie arbeitet die Mobile-App ohne Netz?
 
-Zeiten und Berichte werden ohne Netz auf dem Gerät vorgemerkt und später übertragen; Fotos laden Sie mit Internetverbindung hoch. Öffnen Sie die benötigten Ansichten vor dem Einsatz einmal mit Verbindung.
+Zeiten und Berichte werden ohne Netz auf dem Gerät vorgemerkt und später übertragen; Fotos laden Sie mit Internetverbindung hoch. Öffnen Sie die benötigten Ansichten am Tag des Einsatzes einmal mit Verbindung; die App hält sie bis zu 24 Stunden offline bereit.
 
 Kontrollieren Sie nach der Rückkehr ins Netz den Synchronisierungsstatus. Erst dann ist die Rückmeldung im Büro angekommen. Was offline bereitsteht, beschreibt der Ratgeber zur [Offline-Nutzung](/blog/offline-baustellen-app).
 

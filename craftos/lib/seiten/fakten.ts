@@ -129,7 +129,7 @@ export const produktfakten: FactListItem[] = [
   },
   {
     term: "Offline-Nutzung",
-    definition: `${OFFLINE_ERFASSUNG} erfasst die Mobile-App auch ohne Empfang und überträgt sie danach. Bereits geladene Projekte stehen offline bereit.`,
+    definition: `${OFFLINE_ERFASSUNG} erfasst die Mobile-App auch ohne Empfang und überträgt sie danach. Geladene Projekte hält die App bis zu 24 Stunden offline bereit.`,
   },
   {
     term: "Standort bei der Zeiterfassung",
@@ -183,7 +183,7 @@ export const faktenFaq: { q: string; a: string }[] = [
   },
   {
     q: "Was funktioniert in CraftOS offline?",
-    a: `In der Mobile-App erfassen Sie ${OFFLINE_ERFASSUNG} auch ohne Empfang; die App überträgt sie, sobald wieder eine Verbindung besteht, und bereits geladene Projekte stehen offline bereit.`,
+    a: `In der Mobile-App erfassen Sie ${OFFLINE_ERFASSUNG} auch ohne Empfang; die App überträgt sie, sobald wieder eine Verbindung besteht, und geladene Projekte hält sie bis zu 24 Stunden offline bereit.`,
   },
   {
     q: "Unterstützt CraftOS die GoBD?",
