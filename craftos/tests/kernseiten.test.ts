@@ -12,6 +12,7 @@ import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { ContentKopf, type ContentKopfProps } from "@/components/content/ContentKopf";
 import { crumbsFor } from "@/lib/breadcrumbs";
+import { getContentList } from "@/lib/content";
 import { TEXT_BUDGET, charCount, sentenceCount } from "@/components/v2/budgets";
 import { KEY_FACT_SOURCE } from "@/components/v2/KeyFacts";
 import { euro, germanDate } from "@/lib/format";
@@ -696,6 +697,12 @@ describe("ContentKopf K1/K2 (10-UI-SPEC Design System, K3)", () => {
       }
     };
     for (const dir of ["app", "components", "lib"]) scan(dir);
+    const fremd = treffer.filter((t) => t !== "app/not-found.tsx");
+    if (fremd.length > 0) {
+      throw new Error(
+        `ContentKopf: crumbs={null} ist nur auf der 404-Seite erlaubt – crumbsFor(pfad) verwenden. (${fremd.join(", ")})`,
+      );
+    }
     expect(treffer).toEqual(["app/not-found.tsx"]);
   });
 });
@@ -795,5 +802,122 @@ describe("404-Seite auf v2 (D-18; 10-UI-SPEC § 4)", () => {
     expect(html).not.toContain('data-abschnitt="cta"');
     expect(spruenge(html)).toEqual([]);
     expect(ueberschriften(html)).toEqual([1, 2, 3, 3, 3]);
+  });
+});
+
+describe("/support auf v2 (D-16, K-2; 10-UI-SPEC § 2)", () => {
+  const support = async () => renderToString(await (await import("@/app/support/page")).default());
+  const ALTKLASSEN_SUPPORT = ["section-space", "split-section", "soft-panel", "btn-cta", "text-link"] as const;
+
+  it("heller ContentKopf mit Brotkrumen, Eyebrow „Kontakt & Support“, H1 aus der Keyword-Map, Bestands-Intro als Lead", async () => {
+    const html = await support();
+    expect(html).toMatch(HELLER_KOPF);
+    expect(count(html, /"@type":"BreadcrumbList"/g)).toBe(1);
+    expect(count(html, /aria-label="Brotkrumen"/g)).toBe(1);
+    const h1 = [...html.matchAll(/<h1\b([^>]*)>([\s\S]*?)<\/h1>/g)];
+    expect(h1.map((m) => decode(m[2]))).toEqual([zielwerte("/support").h1]);
+    expect(h1[0][1]).toContain('id="support-titel"');
+    expect(html).toMatch(/<p class="v2-eyebrow[^"]*">Kontakt &amp; Support<\/p>/);
+    expect(decode(html)).toContain(
+      "Ob Einrichtung, Rechnung oder eine Frage zur Mobile-App: Beschreiben Sie uns kurz, wobei Sie Unterstützung benötigen.",
+    );
+  });
+
+  it("Abschnittsfolge kopf → kontakt (Weiß) → hilfe (Warm) → cta, H2-ids = Abschnitts-ids", async () => {
+    const html = await support();
+    expect([...html.matchAll(/data-abschnitt="([^"]+)"/g)].map((m) => m[1])).toEqual(["kopf", "kontakt", "hilfe", "cta"]);
+    expect(html).toMatch(/<section data-abschnitt="kontakt" aria-labelledby="kontakt" class="bg-white /);
+    expect(html).toMatch(/<section data-abschnitt="hilfe" aria-labelledby="hilfe" class="bg-\[#f7f3eb\] /);
+    expect(html).toMatch(/<h2 id="kontakt"[^>]*>Direkt zum CraftOS Support\.<\/h2>/);
+    expect(html).toMatch(/<h2 id="hilfe"[^>]*>Die Antwort ist vielleicht schon da\.<\/h2>/);
+  });
+
+  it("Kontaktweg: eine Karte mailto:site.email mit Label „E-Mail“ und dem Bestandstext", async () => {
+    const html = await support();
+    const liste = html.match(/<ul\b[^>]*aria-label="Kontaktweg"[^>]*>[\s\S]*?<\/ul>/)?.[0] ?? "";
+    expect(liste).toMatch(/data-surface="warm"/);
+    expect(liste).toMatch(/data-columns="2"/);
+    expect([...liste.matchAll(/<h3\b[^>]*><a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)].map((m) => [m[1], decode(m[2])])).toEqual([
+      [`mailto:${site.email}`, site.email],
+    ]);
+    expect(decode(liste)).toContain("E-Mail");
+    expect(decode(liste)).toContain(
+      "Eine genaue Fehlermeldung hilft uns bei der Einordnung. Bitte senden Sie keine Passwörter oder vollständigen Zahlungsdaten.",
+    );
+    expect(decode(html)).toContain(
+      "Nennen Sie die betroffene Ansicht, Ihr Gerät und die Schritte, bei denen die Frage auftritt.",
+    );
+  });
+
+  it("Hilfe und Ratgeber: Karten /hilfe und /blog mit Mengen aus lib/content", async () => {
+    const html = await support();
+    const liste = html.match(/<ul\b[^>]*aria-label="Hilfe und Ratgeber"[^>]*>[\s\S]*?<\/ul>/)?.[0] ?? "";
+    expect(liste).toMatch(/data-surface="white"/);
+    expect(liste).toMatch(/data-columns="2"/);
+    expect([...liste.matchAll(/<h3\b[^>]*><a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)].map((m) => [m[1], decode(m[2])])).toEqual([
+      ["/hilfe", "Hilfezentrum öffnen"],
+      ["/blog", "Ratgeber für Ihren Betriebsalltag"],
+    ]);
+    const nHilfe = (await getContentList("hilfe")).length;
+    const nBlog = (await getContentList("blog")).length;
+    expect(nHilfe).toBeGreaterThan(1);
+    expect(nBlog).toBeGreaterThan(0);
+    expect(decode(liste)).toContain(`${nHilfe} Anleitungen`);
+    expect(decode(liste)).toContain(`${nBlog} Artikel`);
+    expect(decode(html)).toContain(
+      "Im Hilfezentrum finden Sie Anleitungen zu Einrichtung, Angeboten, Rechnungen, Zeiten, Lager und Craft AI.",
+    );
+  });
+
+  it("CtaBand „Machen Sie Platz für Ihr Handwerk.“ mit Sekundärlink „Preise ansehen“ → /preise", async () => {
+    const html = await support();
+    const cta = html.slice(html.indexOf('data-abschnitt="cta"'));
+    expect(decode(cta)).toContain("Machen Sie Platz für Ihr Handwerk.");
+    expect(decode(cta)).toContain("Ohne Zahlungsdaten – Sie entscheiden nach dem Test.");
+    expect(cta).toMatch(/<a href="\/preise"[^>]*>Preise ansehen<\/a>/);
+    expect(cta).toContain(`href="${site.ctaUrl}"`);
+  });
+
+  it("keine Altklassen außerhalb des CtaBand, kein PageHero, Überschriftenfolge ohne Sprung", async () => {
+    const html = await support();
+    const ohneCta = html.slice(0, html.indexOf('data-abschnitt="cta"'));
+    const k = klassen(ohneCta);
+    for (const alt of ALTKLASSEN_SUPPORT) expect(k, alt).not.toContain(alt);
+    const quelle = read("app/support/page.tsx");
+    expect(quelle).not.toMatch(/PageHero|section-space|split-section|soft-panel|btn-cta|text-link/);
+    expect(spruenge(html)).toEqual([]);
+    expect(ueberschriften(html)).toEqual([1, 2, 3, 2, 3, 3, 2]);
+  });
+});
+
+describe("Gewichte und Farben der Paket-(c)-Dateien aus 10-03 (10-UI-SPEC § 11, Typography, Color)", () => {
+  // Rechner (app/rechner/**, components/calculators/**) ergänzt 10-10; components/CraftOSLogo.tsx prüft Paket (b) (K2).
+  const DATEIEN = [
+    "app/support/page.tsx",
+    "app/impressum/page.tsx",
+    "app/datenschutz/page.tsx",
+    "app/agb/page.tsx",
+    "app/not-found.tsx",
+    "components/legal/Legal.tsx",
+    "components/legal/Legal.module.css",
+    "components/content/ContentKopf.tsx",
+    "components/content/ContentKopf.module.css",
+  ] as const;
+
+  it("nur Gewichte 400/600, kein text-primary-600 und kein text-ink-400", () => {
+    const probleme: string[] = [];
+    for (const datei of DATEIEN) {
+      const src = read(datei);
+      for (const m of src.matchAll(/font-weight:\s*(\d{3})\b/g)) {
+        if (m[1] !== "400" && m[1] !== "600") probleme.push(`${datei}: font-weight ${m[1]} gefunden – nur 400 und 600 verwenden.`);
+      }
+      for (const m of src.matchAll(/\bfont-(medium|bold|extrabold)\b/g)) {
+        probleme.push(`${datei}: font-weight ${m[1]} gefunden – nur 400 und 600 verwenden.`);
+      }
+      if (/text-primary-600|text-ink-400/.test(src)) {
+        probleme.push(`${datei}: text-primary-600/text-ink-400 als Textfarbe – #784B10 bzw. #62626E verwenden.`);
+      }
+    }
+    expect(probleme).toEqual([]);
   });
 });
