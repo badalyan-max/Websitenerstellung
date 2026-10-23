@@ -151,8 +151,20 @@ describe("bewerteAxe (D-06)", () => {
 });
 
 /** Signatur einer Ebene; Standard = Ruhezustand ohne Indikator. */
-function ebene(teile: Partial<Record<"outlineStyle" | "outlineWidth" | "boxShadow" | "borderTopColor" | "backgroundColor" | "textDecorationLine", string>> = {}) {
-  return { outlineStyle: "none", outlineWidth: "0px", boxShadow: "none", borderTopColor: "rgb(0, 0, 0)", backgroundColor: "rgba(0, 0, 0, 0)", textDecorationLine: "none", ...teile };
+function ebene(
+  teile: Partial<Record<"outlineStyle" | "outlineWidth" | "outlineColor" | "outlineOffset" | "boxShadow" | "borderTopColor" | "backgroundColor" | "textDecorationLine", string>> = {},
+) {
+  return {
+    outlineStyle: "none",
+    outlineWidth: "0px",
+    outlineColor: "rgb(0, 0, 0)",
+    outlineOffset: "0px",
+    boxShadow: "none",
+    borderTopColor: "rgb(0, 0, 0)",
+    backgroundColor: "rgba(0, 0, 0, 0)",
+    textDecorationLine: "none",
+    ...teile,
+  };
 }
 /** Element + 4 Vorfahren, je ohne Pseudo, ::before, ::after = 15 Ebenen. */
 function signatur(aenderung: Record<number, ReturnType<typeof ebene>> = {}) {
@@ -178,6 +190,23 @@ describe("fokusSichtbar (10-UI-SPEC § 9.1)", () => {
 
   it("wertet eine Outline mit Breite 0 nicht als Indikator", () => {
     expect(fokusSichtbar(signatur(), signatur({ 0: ebene({ outlineStyle: "solid", outlineWidth: "0px" }) }))).toBe(false);
+  });
+
+  it("wertet eine transparente Outline nicht als Indikator (ME-02)", () => {
+    const transparent = ebene({ outlineStyle: "solid", outlineWidth: "2px", outlineColor: "rgba(0, 0, 0, 0)" });
+    expect(fokusSichtbar(signatur(), signatur({ 0: transparent }))).toBe(false);
+    expect(fokusSichtbar(signatur(), signatur({ 0: ebene({ outlineStyle: "solid", outlineWidth: "2px", outlineColor: "transparent" }) }))).toBe(false);
+  });
+
+  it("erkennt den Farbwechsel einer gleich geformten Outline von transparent auf sichtbar (ME-02)", () => {
+    const ruhe = signatur({ 0: ebene({ outlineStyle: "solid", outlineWidth: "2px", outlineColor: "rgba(0, 0, 0, 0)" }) });
+    const aktiv = signatur({ 0: ebene({ outlineStyle: "solid", outlineWidth: "2px", outlineColor: "rgb(245, 158, 11)" }) });
+    expect(fokusSichtbar(ruhe, aktiv)).toBe(true);
+  });
+
+  it("wertet einen Schatten mit Alpha 0 nicht als Indikator (ME-02)", () => {
+    expect(fokusSichtbar(signatur(), signatur({ 0: ebene({ boxShadow: "rgba(0, 0, 0, 0) 0px 0px 0px 0px" }) }))).toBe(false);
+    expect(fokusSichtbar(signatur(), signatur({ 0: ebene({ boxShadow: "rgb(245, 158, 11) 0px 0px 0px 3px" }) }))).toBe(true);
   });
 });
 

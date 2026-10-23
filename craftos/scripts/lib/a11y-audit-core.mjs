@@ -39,7 +39,7 @@ export const WEBKIT_VORLAGEN = [
 /** Bekannte Schalter des CLI. */
 export const OPTIONEN = ["paths", "widths", "engines", "shard", "concurrency", "animation", "merge"];
 /** Stil-Eigenschaften der Fokus-Signatur (10-UI-SPEC § 9.1). */
-export const FOKUS_STIL = ["outlineStyle", "outlineWidth", "boxShadow", "borderTopColor", "backgroundColor", "textDecorationLine"];
+export const FOKUS_STIL = ["outlineStyle", "outlineWidth", "outlineColor", "outlineOffset", "boxShadow", "borderTopColor", "backgroundColor", "textDecorationLine"];
 
 const MSYS = /^\/?[A-Za-z]:[\\/]/;
 const MSYS_HINWEIS = " Der Pfad wurde offenbar von Git Bash umgeschrieben – Aufruf mit MSYS_NO_PATHCONV=1 wiederholen.";
@@ -229,10 +229,37 @@ export function bewerteAxe(result) {
 const breitePx = (w) => Number.parseFloat(w ?? "0") || 0;
 
 /**
+ * Unsichtbare Farbe (ME-02): `transparent` oder Alpha 0 in `rgba(…, 0)` bzw. `rgb(… / 0)`. Fehlt der Wert (ältere
+ * Signaturen ohne `outlineColor`), gilt die Farbe als sichtbar.
+ * @param {string | undefined} c
+ */
+const transparent = (c) => {
+  const w = (c ?? "").trim();
+  return w === "transparent" || /^rgba\((?:[^,)]*,){3}\s*0(?:\.0+)?%?\s*\)$/.test(w) || /^rgba?\([^)/]*\/\s*0(?:\.0+)?%?\s*\)$/.test(w);
+};
+
+/**
+ * Sichtbarer Schatten (ME-02): mindestens eine Ebene mit nicht transparenter Farbe und einer Länge ungleich 0
+ * (Tailwind-Ring-Standard `rgba(0, 0, 0, 0) 0px 0px 0px 0px` zählt nicht).
+ * @param {string | undefined} bs
+ */
+const schattenSichtbar = (bs) => {
+  if (!bs || bs === "none") return false;
+  const ebenen = bs.split(/,(?![^(]*\))/);
+  return ebenen.some((e) => {
+    const farbe = /(rgba?\([^)]*\)|transparent)/.exec(e)?.[1];
+    if (farbe && transparent(farbe)) return false;
+    const laengen = e.replace(/(rgba?\([^)]*\)|transparent)/g, "").match(/-?[\d.]+px/g) ?? [];
+    return laengen.some((l) => breitePx(l) !== 0);
+  });
+};
+
+/**
  * Fokusindikator gegen den Ruhezustand (10-UI-SPEC § 9.1, 10-RESEARCH Pattern 3). Beide Listen enthalten je Ebene
  * (Element und bis zu vier Vorfahren, je ohne Pseudo, `::before`, `::after`) die Werte aus `FOKUS_STIL` oder null.
  * Sichtbar heißt: Die Signatur unterscheidet sich, und mindestens eine geänderte Ebene hat im Fokus eine Outline
- * ungleich `none` mit Breite > 0, einen `box-shadow` ungleich `none` oder einen Wechsel von Rahmen- bzw. Hintergrundfarbe.
+ * ungleich `none` mit Breite > 0 und nicht transparenter Farbe, einen sichtbaren `box-shadow` (Farbe nicht transparent,
+ * eine Länge ungleich 0) oder einen Wechsel von Rahmen- bzw. Hintergrundfarbe (ME-02).
  * @param {StilEbene[]} ruhe
  * @param {StilEbene[]} aktiv
  * @returns {boolean}
@@ -245,8 +272,8 @@ export function fokusSichtbar(ruhe, aktiv) {
     if (!a) continue;
     const geaendert = !r || FOKUS_STIL.some((k) => r[k] !== a[k]);
     if (!geaendert) continue;
-    const outline = a.outlineStyle !== "none" && breitePx(a.outlineWidth) > 0;
-    const schatten = a.boxShadow !== "none" && (!r || r.boxShadow !== a.boxShadow);
+    const outline = a.outlineStyle !== "none" && breitePx(a.outlineWidth) > 0 && !transparent(a.outlineColor);
+    const schatten = schattenSichtbar(a.boxShadow) && (!r || r.boxShadow !== a.boxShadow);
     const farbe = !!r && (r.borderTopColor !== a.borderTopColor || r.backgroundColor !== a.backgroundColor);
     if (outline || schatten || farbe) return true;
   }
