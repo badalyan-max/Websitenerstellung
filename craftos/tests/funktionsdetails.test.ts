@@ -389,7 +389,7 @@ const ERWARTET: Record<string, Erwartung> = {
     snippet: null,
     zusatz: ["abnahme", "bautagesbericht"],
     phone: { title: "Abnahme und Teilabnahme", scene: abnahmeScene, width: 194 },
-    hrefs: { Mängel: "/funktionen/maengelmanagement" },
+    hrefs: { Mängel: "/funktionen/maengelmanagement", "Abnahme und Teilabnahme": "/hilfe/abnahme-dokumentieren" },
   },
   lager: {
     pflichtfrage: "Kann mein Team Artikel in der App per Barcode buchen?",
@@ -1428,4 +1428,56 @@ describe("Vorlage gerendert", () => {
     expect(quelltext).not.toContain("product-demo");
     expect(html).not.toContain("produktdemo");
   });
+});
+
+/**
+ * CONTENT-04 / ROADMAP SC 3 (Lückenschluss nach 09-VERIFICATION): Jede Anleitung aus der Abdeckungstabelle
+ * „Neue Live-Funktionen (14) und D-32“ (docs/content-pruefung/09-integration.md § 7) ist von mindestens einer
+ * Funktionsdetailseite verlinkt, als Sekundärlink im Kopf oder als Kachel-Link. Die genannten Detailseiten müssen
+ * den Link tatsächlich rendern. § 13b (D-32) hat bewusst keine Detailseite und fehlt deshalb.
+ */
+const CONTENT04_ANLEITUNGEN: Record<string, string[]> = {
+  "/hilfe/projekt-phasen-anlegen": ["terminplanung"],
+  "/hilfe/abnahme-dokumentieren": ["baudokumentation"],
+  "/hilfe/bautagesbericht-erstellen": ["baudokumentation"],
+  "/hilfe/mangel-erfassen-bearbeiten": ["maengelmanagement"],
+  "/hilfe/mahnwesen-einrichten": ["mahnwesen"],
+  "/hilfe/bankumsaetze-abgleichen": ["bankabgleich"],
+  "/hilfe/datanorm-katalog-importieren": ["gaeb", "angebote"],
+  "/hilfe/daten-importieren": ["datenuebernahme"],
+  "/hilfe/angebot-online-unterschreiben-lassen": ["angebote"],
+  "/hilfe/kundenportal-kunden-einladen": ["kundenportal"],
+  "/hilfe/lager-scan-app": ["lager"],
+  "/hilfe/besichtigung-durchfuehren": ["aufmass"],
+  "/hilfe/projekt-chat-nachrichten": ["team", "projektverwaltung"],
+  "/hilfe/app-sprache-einstellen": ["team"],
+  "/hilfe/kassenbuch-fuehren": ["buchhaltung"],
+};
+
+describe("CONTENT-04: jede Anleitung zu einer neuen Live-Funktion ist von einer Detailseite verlinkt", () => {
+  /** Hilfe-Links einer Detailseite aus Sekundärlink und Kacheln. */
+  const hilfeLinks = (slug: string): string[] => {
+    const detail = getFunktionsdetail(slug);
+    return [detail.kopf.secondary.href, ...detail.kernpunkte.tiles.flatMap((t) => (t.href ? [t.href] : []))].filter(
+      (href) => href.startsWith("/hilfe/"),
+    );
+  };
+
+  it("die Tabelle umfasst 14 Funktionen plus Kassenbuch auf 14 Detailseiten", () => {
+    expect(Object.keys(CONTENT04_ANLEITUNGEN)).toHaveLength(15);
+    expect(new Set(Object.values(CONTENT04_ANLEITUNGEN).flat()).size).toBe(14);
+  });
+
+  for (const [anleitung, detailseiten] of Object.entries(CONTENT04_ANLEITUNGEN)) {
+    it(`${anleitung} existiert und wird von ${detailseiten.join(", ")} verlinkt`, () => {
+      expect(fs.existsSync(path.join(ROOT, "content", `${anleitung}.md`)), anleitung).toBe(true);
+      const verlinkend = Object.keys(INHALTE).filter((slug) => hilfeLinks(slug).includes(anleitung));
+      expect(verlinkend.length, `${anleitung}: keine Detailseite verlinkt`).toBeGreaterThanOrEqual(1);
+      for (const slug of detailseiten) {
+        expect(verlinkend, `${slug} → ${anleitung}`).toContain(slug);
+        const html = renderToString(createElement(FunktionsDetail, { detail: getFunktionsdetail(slug) }));
+        expect(html, `${slug} rendert href="${anleitung}"`).toContain(`href="${anleitung}"`);
+      }
+    });
+  }
 });
