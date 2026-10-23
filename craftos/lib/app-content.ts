@@ -292,7 +292,7 @@ export const appFaq: { q: string; a: string }[] = [
   },
   {
     q: "Funktioniert die App ohne Internet?",
-    a: `Ohne Empfang erfassen Sie ${mobileOffline.erfassung}; die App überträgt sie, sobald wieder eine Verbindung besteht, und der Sync-Status zeigt ausstehende Einträge. Projekte, die Sie am Einsatztag einmal mit Verbindung öffnen, hält sie bis zu 24 Stunden offline bereit; Fotos, Karten, Routen und KI nutzen Sie mit Verbindung.`,
+    a: `Ohne Empfang erfassen Sie ${mobileOffline.erfassung}; die App überträgt sie, sobald wieder eine Verbindung besteht. Am Einsatztag geöffnete Projekte hält sie bis zu 24 Stunden offline bereit; Fotos, Karten, Routen und KI nutzen Sie mit Verbindung.`,
   },
   {
     q: "In welchen Sprachen gibt es die App?",
