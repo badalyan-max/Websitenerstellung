@@ -11,7 +11,7 @@ import { metaFor, zielwerte } from "@/lib/seo-meta";
 
 /**
  * /support auf v2 (Phase 10, D-16; 10-UI-SPEC § 2, K5): heller ContentKopf statt des früheren dunklen Seitenkopfs aus
- * components/ui (PageHero, mit D-42 entfernt), danach Kontaktweg (Weiß, Karte Warm), Hilfe und Ratgeber (Warm, Karten Weiß) und das CTA-Band. Alle
+ * components/ui (mit D-42 entfernt), danach Kontaktweg (Weiß, Karte Warm), Hilfe und Ratgeber (Warm, Karten Weiß) und das CTA-Band. Alle
  * Bestandssätze bleiben wörtlich und verteilen sich nur auf Bausteine; die E-Mail kommt aus site.email.
  * Async, weil die Mengen der Hilfe- und Ratgeberkarten aus lib/content kommen (K-2: tests/breadcrumbs.test.ts
  * rendert die Seite per await). Title, Description und H1 aus der Keyword-Map (08-04, D-06).
