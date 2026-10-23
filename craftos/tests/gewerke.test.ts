@@ -189,6 +189,39 @@ describe("Ablauf, Funktionen und FAQ (09-UI-SPEC § 1.3, § 5)", () => {
     expect(fehlend).toEqual([]);
   });
 
+  it("kein Artikelziel ist ein Entwurf (draft: true), damit „Weiterlesen“ nur veröffentlichte Artikel zeigt", () => {
+    const entwuerfe: string[] = [];
+    for (const g of gewerke) {
+      for (const pfad of g.artikel) {
+        const [, art, slug] = pfad.split("/");
+        const datei = path.join(ROOT, "content", art, `${slug}.md`);
+        if (!fs.existsSync(datei)) continue;
+        const kopf = fs.readFileSync(datei, "utf8").split(/^---\s*$/m)[1] ?? "";
+        if (!/^draft:\s*false\s*$/m.test(kopf)) entwuerfe.push(`Gewerk ${g.slug}: Artikel ${pfad} ist kein veröffentlichter Artikel.`);
+      }
+    }
+    expect(entwuerfe).toEqual([]);
+  });
+
+  /** 09-13 (09-RESEARCH „Ablauf je Gewerk“, Spalte „Artikel-Links“; Übergabeliste docs/content-pruefung/09-a.md). */
+  const NEUE_ZIELE: Record<string, string[]> = {
+    elektriker: ["/hilfe/datanorm-katalog-importieren", "/hilfe/plantafel-einsatz-planen", "/hilfe/lager-scan-app"],
+    shk: ["/hilfe/angebot-online-unterschreiben-lassen", "/hilfe/abnahme-dokumentieren", "/hilfe/abschlagsrechnung-erstellen"],
+    dachdecker: ["/hilfe/gaeb-importieren", "/hilfe/regiebericht", "/hilfe/schlussrechnung-erstellen"],
+    metallbau: ["/hilfe/projektdateien-ordner", "/hilfe/lager-scan-app", "/blog/projektbezogene-zeiterfassung"],
+    bauunternehmen: ["/hilfe/projekt-phasen-anlegen", "/blog/bauablaufplan", "/hilfe/abnahme-dokumentieren"],
+    allrounder: ["/hilfe/plantafel-einsatz-planen", "/hilfe/berichte-abrechnen", "/hilfe/mahnwesen-einrichten"],
+  };
+
+  it.each(Object.entries(NEUE_ZIELE))("%s: „Weiterlesen“ verlinkt die neuen Anleitungen und Wissensseiten (09-13)", (slug, ziele) => {
+    const g = gewerke.find((x) => x.slug === slug);
+    expect(g?.artikel).toEqual(ziele);
+  });
+
+  it("der Entwurf /hilfe/kassenbuch-fuehren wird auf keiner Gewerke-Seite verlinkt (erst 09-09)", () => {
+    expect(gewerke.flatMap((g) => g.artikel)).not.toContain("/hilfe/kassenbuch-fuehren");
+  });
+
   it("Leitlinie L-1: kein Gewerke-Text trifft die zentrale Wortliste", () => {
     const texte = [
       GEWERKE_UEBERSICHT.answer,
