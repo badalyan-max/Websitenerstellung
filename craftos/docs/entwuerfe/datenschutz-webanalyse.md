@@ -1,6 +1,6 @@
 # Entwurf: Abschnitt „Webanalyse“ der Datenschutzerklärung
 
-> Status: Entwurf zur Freigabe durch den Inhaber, vor Veröffentlichung rechtlich prüfen lassen. Ersetzt den heutigen Abschnitt „Webanalyse“ in `app/datenschutz/page.tsx`.
+> Status: Am 23.10.2026 auf Inhaberanweisung in `app/datenschutz/page.tsx` umgesetzt (Abschnitt „Webanalyse und Ladezeitmessung“, Fakten aus Vercel-Doku und Privacy Notice vom 01.06.2026 geprüft). Ersetzt den heutigen Abschnitt „Webanalyse“ in `app/datenschutz/page.tsx`.
 > Anlass: Web Analytics ist auf craftos.eu bereits aktiv; mit Paket 1 kommen Speed Insights (kostenlose Stufe) und die Ereignisse `trial_click`, `login_click` und `ai_visit` hinzu. Der heutige Text nennt weder den Dienst noch den Anbieter.
 > Mit [PRÜFEN] markierte Stellen konnte ich nicht selbst belegen.
 

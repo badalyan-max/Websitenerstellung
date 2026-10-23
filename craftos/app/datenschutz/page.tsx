@@ -1,9 +1,10 @@
-import { LegalShell, LegalSection, DataBlock, LegalHinweis } from '@/components/legal/Legal'
+import { LegalShell, LegalSection, DataBlock } from '@/components/legal/Legal'
 import { crumbsFor } from '@/lib/breadcrumbs'
 import { site } from '@/lib/site'
 import { metaFor, zielwerte } from '@/lib/seo-meta'
 
-// Nur Metadaten und H1 aus der Keyword-Map (08-04, D-20); der Rechtstext bleibt unverändert.
+// Metadaten und H1 aus der Keyword-Map (08-04, D-20). Rechtstext am 23.10.2026 auf Inhaberanweisung
+// überarbeitet (Hosting bei Vercel mit DPF, Datenstandort der Software, Webanalyse und Speed Insights).
 export const metadata = metaFor('/datenschutz')
 
 export default function DatenschutzPage() {
@@ -29,19 +30,25 @@ export default function DatenschutzPage() {
 
       <LegalSection heading="Hosting & Server-Standort">
         <p>
-          Unsere Website und Anwendung werden bei Dienstleistern innerhalb der Europäischen Union
-          gehostet. Personenbezogene Daten werden auf Servern in der EU gespeichert. Mit den
-          eingesetzten Auftragsverarbeitern bestehen Verträge zur Auftragsverarbeitung (AVV)
-          gemäß Art. 28 DSGVO.
+          Diese Website wird von der Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723,
+          USA, gehostet und über deren weltweites Servernetz ausgeliefert. Vercel ist nach dem
+          EU-U.S. Data Privacy Framework zertifiziert; auf dieser Grundlage dürfen personenbezogene
+          Daten in die USA übermittelt werden (Art. 45 DSGVO). Mit Vercel besteht ein Vertrag zur
+          Auftragsverarbeitung gemäß Art. 28 DSGVO.
+        </p>
+        <p>
+          Für die CraftOS-Software gilt: Die Datenbank liegt in Frankfurt am Main, Dateien
+          speichern wir in europäischen Rechenzentren.
         </p>
       </LegalSection>
 
       <LegalSection heading="Server-Logfiles">
         <p>
           Beim Besuch unserer Website werden automatisch Informationen erfasst, die Ihr Browser
-          übermittelt (z. B. IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, Browsertyp). Die
-          Verarbeitung erfolgt auf Grundlage unseres berechtigten Interesses (Art. 6 Abs. 1 lit. f
-          DSGVO) am sicheren und stabilen Betrieb der Website.
+          übermittelt (z. B. IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, Browsertyp). Diese
+          Daten verarbeitet Vercel als Hoster in unserem Auftrag. Die Verarbeitung erfolgt auf
+          Grundlage unseres berechtigten Interesses (Art. 6 Abs. 1 lit. f DSGVO) am sicheren und
+          stabilen Betrieb der Website.
         </p>
       </LegalSection>
 
@@ -56,16 +63,39 @@ export default function DatenschutzPage() {
         <p>
           Im Rahmen der Nutzung von CraftOS verarbeiten wir die von Ihnen eingegebenen Daten
           (z. B. Projekte, Kunden, Dokumente, Zeiten) als Auftragsverarbeiter im Auftrag des
-          jeweiligen Betriebs. Details regelt der Auftragsverarbeitungsvertrag (AVV), den wir auf
-          Anfrage bereitstellen.
+          jeweiligen Betriebs. Details regelt der Auftragsverarbeitungsvertrag (AVV) mit der Liste
+          der Unterauftragnehmer unter{' '}
+          <a href={`${site.appUrl}/avv`}>{`${site.appUrl.replace('https://', '')}/avv`}</a>. Für die
+          Nutzung der Web-App und der Mobile-App gilt ergänzend die Datenschutzerklärung unter{' '}
+          <a href={`${site.appUrl}/datenschutz`}>{`${site.appUrl.replace('https://', '')}/datenschutz`}</a>.
         </p>
       </LegalSection>
 
-      <LegalSection heading="Webanalyse">
+      <LegalSection heading="Webanalyse und Ladezeitmessung">
         <p>
-          Zur Verbesserung unseres Angebots setzen wir datenschutzfreundliche Reichweitenmessung
-          ein. Sofern hierfür eine Einwilligung erforderlich ist, holen wir diese gemäß Art. 6
-          Abs. 1 lit. a DSGVO ein.
+          Um zu verstehen, wie unsere Website genutzt wird und wie schnell sie lädt, setzen wir
+          Vercel Web Analytics und Vercel Speed Insights der Vercel Inc. (Anschrift siehe oben) ein.
+        </p>
+        <p>
+          Beide Dienste setzen keine Cookies. Erfasst werden je Seitenaufruf die aufgerufene Seite
+          ohne Suchparameter, die verweisende Website, Gerätetyp, Betriebssystem, Browser und der aus
+          der IP-Adresse abgeleitete ungefähre Standort (Land, Region, Stadt). Eine Zuordnung zu
+          einzelnen Personen oder IP-Adressen findet nicht statt: Vercel bildet aus der Anfrage einen
+          Hashwert, der nach 24 Stunden verworfen wird. Speed Insights misst zusätzlich
+          Ladezeit-Kennzahlen der Seite und die Verbindungsart.
+        </p>
+        <p>
+          Außerdem zählen wir ohne weitere Angaben, ob Besucher auf einen Link zum Testen, auf
+          „Anmelden“ oder auf einen App-Store-Link klicken, ob ein Rechner oder eine Beispieldemo
+          benutzt wird und ob ein Besuch über einen KI-Dienst wie ChatGPT oder Perplexity kam.
+          Eingaben in Rechnern werden nicht übertragen.
+        </p>
+        <p>
+          Rechtsgrundlage ist unser berechtigtes Interesse an einer bedarfsgerechten und technisch
+          funktionsfähigen Website (Art. 6 Abs. 1 lit. f DSGVO). Die Übermittlung in die USA stützt
+          sich auf das EU-U.S. Data Privacy Framework. Sie können der Verarbeitung jederzeit
+          widersprechen; schreiben Sie uns dazu an{' '}
+          <a href={`mailto:${site.email}`}>{site.email}</a>.
         </p>
       </LegalSection>
 
@@ -81,10 +111,7 @@ export default function DatenschutzPage() {
         </p>
       </LegalSection>
 
-      <LegalHinweis>
-        Hinweis: Diese Datenschutzerklärung ist eine Vorlage und vor der Veröffentlichung mit den
-        konkreten Verarbeitungstätigkeiten und ggf. rechtlicher Beratung zu vervollständigen.
-      </LegalHinweis>
+      <p>Stand: 23. Oktober 2026</p>
     </LegalShell>
   )
 }

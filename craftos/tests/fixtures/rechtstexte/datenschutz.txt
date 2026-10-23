@@ -5,15 +5,19 @@
 [p] 96052 Bamberg
 [p] E-Mail: support@craftos.eu
 [h2] Hosting & Server-Standort
-[p] Unsere Website und Anwendung werden bei Dienstleistern innerhalb der Europäischen Union gehostet. Personenbezogene Daten werden auf Servern in der EU gespeichert. Mit den eingesetzten Auftragsverarbeitern bestehen Verträge zur Auftragsverarbeitung (AVV) gemäß Art. 28 DSGVO.
+[p] Diese Website wird von der Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, USA, gehostet und über deren weltweites Servernetz ausgeliefert. Vercel ist nach dem EU-U.S. Data Privacy Framework zertifiziert; auf dieser Grundlage dürfen personenbezogene Daten in die USA übermittelt werden (Art. 45 DSGVO). Mit Vercel besteht ein Vertrag zur Auftragsverarbeitung gemäß Art. 28 DSGVO.
+[p] Für die CraftOS-Software gilt: Die Datenbank liegt in Frankfurt am Main, Dateien speichern wir in europäischen Rechenzentren.
 [h2] Server-Logfiles
-[p] Beim Besuch unserer Website werden automatisch Informationen erfasst, die Ihr Browser übermittelt (z. B. IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, Browsertyp). Die Verarbeitung erfolgt auf Grundlage unseres berechtigten Interesses (Art. 6 Abs. 1 lit. f DSGVO) am sicheren und stabilen Betrieb der Website.
+[p] Beim Besuch unserer Website werden automatisch Informationen erfasst, die Ihr Browser übermittelt (z. B. IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, Browsertyp). Diese Daten verarbeitet Vercel als Hoster in unserem Auftrag. Die Verarbeitung erfolgt auf Grundlage unseres berechtigten Interesses (Art. 6 Abs. 1 lit. f DSGVO) am sicheren und stabilen Betrieb der Website.
 [h2] Kontaktaufnahme
 [p] Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben zur Bearbeitung der Anfrage gespeichert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b bzw. lit. f DSGVO.
 [h2] Nutzung der Software (CraftOS)
-[p] Im Rahmen der Nutzung von CraftOS verarbeiten wir die von Ihnen eingegebenen Daten (z. B. Projekte, Kunden, Dokumente, Zeiten) als Auftragsverarbeiter im Auftrag des jeweiligen Betriebs. Details regelt der Auftragsverarbeitungsvertrag (AVV), den wir auf Anfrage bereitstellen.
-[h2] Webanalyse
-[p] Zur Verbesserung unseres Angebots setzen wir datenschutzfreundliche Reichweitenmessung ein. Sofern hierfür eine Einwilligung erforderlich ist, holen wir diese gemäß Art. 6 Abs. 1 lit. a DSGVO ein.
+[p] Im Rahmen der Nutzung von CraftOS verarbeiten wir die von Ihnen eingegebenen Daten (z. B. Projekte, Kunden, Dokumente, Zeiten) als Auftragsverarbeiter im Auftrag des jeweiligen Betriebs. Details regelt der Auftragsverarbeitungsvertrag (AVV) mit der Liste der Unterauftragnehmer unter [a href="https://app.craftos.eu/avv"]app.craftos.eu/avv[/a]. Für die Nutzung der Web-App und der Mobile-App gilt ergänzend die Datenschutzerklärung unter [a href="https://app.craftos.eu/datenschutz"]app.craftos.eu/datenschutz[/a].
+[h2] Webanalyse und Ladezeitmessung
+[p] Um zu verstehen, wie unsere Website genutzt wird und wie schnell sie lädt, setzen wir Vercel Web Analytics und Vercel Speed Insights der Vercel Inc. (Anschrift siehe oben) ein.
+[p] Beide Dienste setzen keine Cookies. Erfasst werden je Seitenaufruf die aufgerufene Seite ohne Suchparameter, die verweisende Website, Gerätetyp, Betriebssystem, Browser und der aus der IP-Adresse abgeleitete ungefähre Standort (Land, Region, Stadt). Eine Zuordnung zu einzelnen Personen oder IP-Adressen findet nicht statt: Vercel bildet aus der Anfrage einen Hashwert, der nach 24 Stunden verworfen wird. Speed Insights misst zusätzlich Ladezeit-Kennzahlen der Seite und die Verbindungsart.
+[p] Außerdem zählen wir ohne weitere Angaben, ob Besucher auf einen Link zum Testen, auf „Anmelden“ oder auf einen App-Store-Link klicken, ob ein Rechner oder eine Beispieldemo benutzt wird und ob ein Besuch über einen KI-Dienst wie ChatGPT oder Perplexity kam. Eingaben in Rechnern werden nicht übertragen.
+[p] Rechtsgrundlage ist unser berechtigtes Interesse an einer bedarfsgerechten und technisch funktionsfähigen Website (Art. 6 Abs. 1 lit. f DSGVO). Die Übermittlung in die USA stützt sich auf das EU-U.S. Data Privacy Framework. Sie können der Verarbeitung jederzeit widersprechen; schreiben Sie uns dazu an [a href="mailto:support@craftos.eu"]support@craftos.eu[/a].
 [h2] Ihre Rechte
 [p] Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Zudem steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu. Wenden Sie sich hierzu an [a href="mailto:support@craftos.eu"]support@craftos.eu[/a].
-[p] Hinweis: Diese Datenschutzerklärung ist eine Vorlage und vor der Veröffentlichung mit den konkreten Verarbeitungstätigkeiten und ggf. rechtlicher Beratung zu vervollständigen.
+[p] Stand: 23. Oktober 2026
