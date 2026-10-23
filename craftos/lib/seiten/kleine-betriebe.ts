@@ -17,6 +17,7 @@ import type { LucideIcon } from "lucide-react";
 import type { Cell, ComparisonSource } from "@/components/v2/ComparisonTable";
 import type { Step } from "@/components/v2/StepFlow";
 import { TEXT_BUDGET, charCount, sentenceCount } from "@/components/v2/budgets";
+import { einrichtung } from "@/lib/einrichtung";
 import { euro } from "@/lib/format";
 import { ERLAUBTE_ANORDNUNGEN } from "@/lib/funktionsdetails";
 import { pruefeNurUnterstuetzt } from "@/lib/nur-unterstuetzt";
@@ -395,6 +396,8 @@ export function baueKleineBetriebe(anbieter: readonly Wettbewerber[] = alleWettb
           paketPersonen ? `, bei ${paketPersonen.name} sind Mitarbeitende bis zur Paketgröße im Paketpreis enthalten (${paketGroessen(paketPersonen)})` : ""
         }.`,
       },
+      // D-41 (Inhaber 23.10.2026): Wechsel mit kostenloser Einrichtung, Wortlaut aus lib/einrichtung.ts.
+      { ...einrichtung.faqWechsel },
     ],
     cta: VERGLEICHS_CTA,
   };

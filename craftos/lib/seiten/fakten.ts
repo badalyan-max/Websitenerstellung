@@ -13,6 +13,8 @@
 import type { LucideIcon } from "lucide-react";
 import type { FactListItem } from "@/components/v2/FactList";
 import type { KeyFact } from "@/components/v2/KeyFacts";
+import { datenstandort } from "@/lib/datenstandort";
+import { einrichtung } from "@/lib/einrichtung";
 import { euro, germanDate } from "@/lib/format";
 import { funktionen } from "@/lib/funktionen";
 import { getFunktionsgruppen } from "@/lib/funktionsgruppen";
@@ -193,6 +195,11 @@ export const faktenFaq: { q: string; a: string }[] = [
     q: "Welche Standortdaten speichert die Mobile-App?",
     a: `${GPS_VORGAENGE}: Die Mobile-App speichert beim Start und Stopp der Zeiterfassung je einen Standortpunkt, bei mobilen Unterschriften Ort und Zeitpunkt.`,
   },
+  // D-41 (Inhaber 23.10.2026): Einrichtungsservice als Faktenpunkt; FactList ist mit 12 Einträgen am Budget (G5),
+  // daher als FAQ (auch im FAQPage-JSON-LD). Wortlaut aus lib/einrichtung.ts.
+  { ...einrichtung.faqFakten },
+  // Zusatzauftrag 10-f (Inhaber 23.10.2026): Datenstandort, Wortlaut und Belege in lib/datenstandort.ts.
+  { ...datenstandort.faqFakten },
 ];
 
 // Inhabervorgabe 22.10.2026 (08-REVIEW HI-03, ME-06): nur Unterstütztes, positiv formuliert; Prüfung beim Laden.

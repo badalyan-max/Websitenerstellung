@@ -5,6 +5,7 @@
  * Jahresabo je Monat über monatAusJahr aus den Modulwerten. Tabelle nur mit Funktionen, die CraftOS hat
  * (Inhaber 22.10.2026); den KI-Empfang nennt das Panel „Wann plancraft passt“. Prüfung: lib/seiten/alternativen/index.ts.
  */
+import { einrichtung } from "@/lib/einrichtung";
 import { monatAusJahr } from "@/lib/wettbewerber";
 import type { Preis } from "@/lib/wettbewerber/types";
 import type { Seitenmodul } from "./types";
@@ -78,7 +79,7 @@ export const plancraftSeite: Seitenmodul = (k) => {
       },
       {
         q: "Kann ich von plancraft zu CraftOS wechseln?",
-        a: `Ja. Prüfen Sie die Frist Ihres plancraft-Abos, laut plancraft ${w.kuendigung!.wert}, und übernehmen Sie Kunden, Projekte und Stammdaten per Datei in CraftOS.`,
+        a: `Ja. Prüfen Sie die Frist Ihres plancraft-Abos, laut plancraft ${w.kuendigung!.wert}, und übernehmen Sie Kunden, Projekte und Stammdaten per Datei in CraftOS. ${einrichtung.wechsel}`,
       },
       {
         q: "Unterstützen plancraft und CraftOS E-Rechnungen?",

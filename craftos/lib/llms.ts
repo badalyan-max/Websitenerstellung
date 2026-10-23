@@ -1,4 +1,6 @@
 // Erzeugt /llms.txt aus denselben Daten wie die Website, damit Preise und Seiten nie auseinanderlaufen.
+import { datenstandort } from "./datenstandort";
+import { einrichtung } from "./einrichtung";
 import { funktionen } from "./funktionen";
 import { gewerke } from "./gewerke";
 import { keywordMap } from "./keyword-map";
@@ -72,6 +74,9 @@ export function buildLlmsTxt(): string {
     ...lizenzen,
     "- Die Voll-Lizenz enthält Web-App und Mobile-App für dieselbe Person. Mindestens eine Voll-Lizenz pro Betrieb.",
     `- Testphase: ${zahlung.trial}`,
+    // D-41 und Zusatzauftrag 10-f (Inhaber 23.10.2026): Wortlaut aus lib/einrichtung.ts bzw. lib/datenstandort.ts.
+    `- Einrichtung: ${einrichtung.kern}`,
+    `- Datenstandort: ${datenstandort.kern}`,
     `- Zahlung: ${zahlung.sepa} oder ${zahlung.karte}. ${zahlung.jahresrabatt}.`,
     `- Speicher: ${speicherPool}`,
     `- Extra-Speicher: ${euro(extraSpeicher.monat)} netto pro Monat je ${extraSpeicher.gb} GB oder ${euro(extraSpeicher.jahr)} netto im Jahr`,

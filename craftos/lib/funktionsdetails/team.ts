@@ -9,6 +9,7 @@ import {
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
+import { einrichtung } from "@/lib/einrichtung";
 import { mobileLocales } from "@/lib/product-register";
 import type { FunktionsdetailInhalt } from "./types";
 
@@ -220,7 +221,9 @@ export const teamInhalte: Record<string, FunktionsdetailInhalt> = {
         // Import-KI musst du keine Zahlungsdaten hinterlegen.“).
         {
           q: "Was kostet die Import-KI?",
-          a: "Nichts. Die KI-Kosten für den Import übernimmt CraftOS, und Sie hinterlegen dafür keine Zahlungsdaten.",
+          // D-41 (Inhaber 23.10.2026): Import durch das CraftOS-Team auf Wunsch, Wortlaut aus lib/einrichtung.ts
+          // (Antwortbudget 300; die Herkunftsfrage oben ist mit dem Satz zu lang).
+          a: `Nichts. Die KI-Kosten für den Import übernimmt CraftOS, und Sie hinterlegen dafür keine Zahlungsdaten. ${einrichtung.importSatz}`,
         },
         // Quelle: Datenimport.tsx (Bereiche „Kunden importieren“, „Projekte importieren“, „Stammdaten importieren“,
         // „Dateien prüfen, Daten zuordnen und kontrolliert übernehmen.“).

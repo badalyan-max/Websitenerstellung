@@ -13,6 +13,8 @@ import { Navigation, Ruler } from "lucide-react";
 import type { ComparisonColumn, ComparisonRow, ComparisonSource } from "@/components/v2/ComparisonTable";
 import type { KeyFact } from "@/components/v2/KeyFacts";
 import { appTiles, type AppTile } from "@/lib/app-content";
+import { datenstandort } from "@/lib/datenstandort";
+import { einrichtung } from "@/lib/einrichtung";
 import { euro, germanDate } from "@/lib/format";
 import type { KernpunktVisual } from "@/lib/funktionsdetails/types";
 import { pruefeNurUnterstuetzt } from "@/lib/nur-unterstuetzt";
@@ -311,7 +313,7 @@ export const lizenzTabelle: {
   })),
   // „Alle Preise netto zzgl. Umsatzsteuer“ statt „Preise netto zzgl. USt.“, damit die Paritätsprüfung greift;
   // Jahresrabatt ohne „günstiger als“ (UWG-Wortliste, U7), Wert aus annualSavingPercent.
-  note: `Alle Preise netto zzgl. Umsatzsteuer, pro Person. Jährliches Abo: rund ${rabatt} % weniger als 12 Monatszahlungen. Quelle: Preisliste CraftOS, Stand ${stand}.`,
+  note: `Alle Preise netto zzgl. Umsatzsteuer, pro Person. Jährliches Abo: rund ${rabatt} % weniger als 12 Monatszahlungen. Quelle: Preisliste CraftOS, Stand ${stand}. ${einrichtung.tarifHinweis}`,
 };
 
 // ---------------------------------------------------------------------------
@@ -369,7 +371,7 @@ export const zusatzkostenFakten: { facts: KeyFact[]; note: string } = {
 };
 
 // ---------------------------------------------------------------------------
-// FAQ (6, je ≤ 300; Quelle des FAQPage-JSON-LD)
+// FAQ (8, je ≤ 300; Quelle des FAQPage-JSON-LD)
 // ---------------------------------------------------------------------------
 
 const paketPreise = oderListe(creditPakete.map((p) => betrag(cents(p.preis))));
@@ -400,6 +402,10 @@ export const preiseFaq: { q: string; a: string }[] = [
     q: "Was kosten Credit-Pakete?",
     a: `Credit-Pakete kosten ${paketPreise} netto und enthalten ${paketGuthaben} Guthaben; zum Start erhält jeder Betrieb einmalig ${startCredits} Credits (${creditUmrechnung}).`,
   },
+  // D-41 (Inhaber 23.10.2026): Einrichtungsservice, Wortlaut aus lib/einrichtung.ts.
+  { ...einrichtung.faqPreise },
+  // Zusatzauftrag 10-f (Inhaber 23.10.2026): Datenstandort, Wortlaut und Belege in lib/datenstandort.ts.
+  { ...datenstandort.faqPreise },
 ];
 
 // ---------------------------------------------------------------------------

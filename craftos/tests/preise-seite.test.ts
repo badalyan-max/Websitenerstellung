@@ -317,7 +317,7 @@ describe("Inhalte", () => {
     expect(m.disclaimer).toBe("Die Nennung der Anbieter dient der Zuordnung; es besteht keine Geschäftsbeziehung.");
   });
 
-  it("FAQ: 6 eindeutige Fragen nach UI-SPEC § 4, Antworten ≤ 300 aus site.ts, ohne Wettbewerber", () => {
+  it("FAQ: 8 eindeutige Fragen nach UI-SPEC § 4 plus 10-f (Einrichtung, Datenstandort), Antworten ≤ 300, ohne Wettbewerber", () => {
     const f = preise.preiseFaq;
     expect(f.map((x) => x.q)).toEqual([
       "Brauche ich für den Test eine Zahlungsmethode?",
@@ -326,8 +326,10 @@ describe("Inhalte", () => {
       "Welche Lizenz braucht mein Betrieb mindestens?",
       "Wie wird CraftOS abgerechnet?",
       "Was kosten Credit-Pakete?",
+      "Was kostet die Einrichtung?",
+      "Wo liegen meine Daten?",
     ]);
-    expect(new Set(f.map((x) => x.q)).size).toBe(6);
+    expect(new Set(f.map((x) => x.q)).size).toBe(8);
     const a = (i: number) => f[i].a;
     expect(a(0)).toBe(
       `Für den Test genügt ein Konto: Sie testen CraftOS ${site.trialDays} Tage kostenlos und hinterlegen eine Zahlungsmethode erst, wenn Sie ein Abo wählen.`,

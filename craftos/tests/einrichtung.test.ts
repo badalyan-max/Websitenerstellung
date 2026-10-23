@@ -126,9 +126,10 @@ describe("Zielorte beziehen den Fakt aus der zentralen Quelle", () => {
     const detail = getFunktionsdetail("datenuebernahme");
     expect(detail).toBeDefined();
     const fragen = detail!.faq.items;
-    const herkunft = fragen.find((f) => f.q === "Aus welcher Software kann ich Daten übernehmen?")!;
-    expect(herkunft.a.endsWith(einrichtung.importSatz)).toBe(true);
-    expect(fragen.find((f) => f.q === "Was kostet die Import-KI?")).toBeDefined();
+    const kosten = fragen.find((f) => f.q === "Was kostet die Import-KI?")!;
+    expect(kosten.a.startsWith("Nichts. Die KI-Kosten für den Import übernimmt CraftOS")).toBe(true);
+    expect(kosten.a.endsWith(einrichtung.importSatz)).toBe(true);
+    expect(charCount(kosten.a)).toBeLessThanOrEqual(TEXT_BUDGET.faq.answerCentral);
     const artikel = read("content/hilfe/daten-importieren.md");
     expect(artikel).toContain(einrichtung.importSatz);
     expect(artikel).toContain("Kostenlos mit KI zuordnen");

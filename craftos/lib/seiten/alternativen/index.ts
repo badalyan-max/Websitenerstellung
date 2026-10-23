@@ -14,6 +14,7 @@
 import "server-only";
 import type { Cell } from "@/components/v2/ComparisonTable";
 import { TEXT_BUDGET, charCount } from "@/components/v2/budgets";
+import { einrichtung } from "@/lib/einrichtung";
 import { euro, germanDate } from "@/lib/format";
 import { NUR_UNTERSTUETZT, nurUnterstuetztVerstoesse } from "@/lib/nur-unterstuetzt";
 import { zielwerte } from "@/lib/seo-meta";
@@ -280,7 +281,7 @@ export function alternativeAusModul(w: Wettbewerber, seite: Seitenmodul, path: s
     },
     umstieg: {
       title: `Wie wechseln Sie von ${name} zu CraftOS?`,
-      answer: `Prüfen Sie die Kündigungsfrist Ihres ${t.vertragsname}, testen Sie CraftOS ${site.trialDays} Tage mit einem laufenden Auftrag und übernehmen Sie Kunden, Projekte und Stammdaten per Datei.`,
+      answer: `Prüfen Sie die Kündigungsfrist Ihres ${t.vertragsname}, testen Sie CraftOS ${site.trialDays} Tage mit einem laufenden Auftrag und übernehmen Sie Kunden, Projekte und Stammdaten per Datei. ${einrichtung.wechsel}`,
       steps: schritte(t.umstieg.laufzeit),
     },
     faq: { title: `Häufige Fragen zur ${name}-Alternative`, lead: GEMEINSAM.faqLead, items: t.faq },

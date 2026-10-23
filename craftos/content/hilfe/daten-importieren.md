@@ -14,7 +14,7 @@ sources: []
 platforms: ["web"]
 ---
 
-Mit der Datenübernahme bringen Sie Kunden, Projekte, Artikel und Leistungen aus Ihrer bisherigen Software in CraftOS. Sie prüfen jede Zuordnung, bevor Daten übernommen werden.
+Mit der Datenübernahme bringen Sie Kunden, Projekte, Artikel und Leistungen aus Ihrer bisherigen Software in CraftOS. Sie prüfen jede Zuordnung, bevor Daten übernommen werden. Auf Wunsch übernimmt das CraftOS-Team den Import kostenlos für Sie: Sie senden uns die Exportdateien, wir übernehmen Ihre Daten und richten Ihr Konto ein.
 
 ## Voraussetzungen
 
