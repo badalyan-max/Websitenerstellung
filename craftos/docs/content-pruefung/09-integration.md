@@ -79,56 +79,93 @@ Positiv gefasst: sechs Grenze-Kacheln (u. a. „Steuererklärung über die Kanzl
 
 ## 7. Abdeckungstabelle (W11): Thema → Zielseite/Anker → Audit
 
-Audit-Kürzel: **SA** = `scripts/seo-audit.mjs` (Regeln `antwort`, `h1`, `map`, `faq-schema`, `prompts`), **RA** = `scripts/route-audit.mjs` (Status und Links), **CT** = `tests/content.test.ts`, **FD** = `tests/funktionsdetails.test.ts`, **AP** = `tests/ai-prompts.test.ts`, **GW** = `tests/gewerke.test.ts`, **APP** = `tests/app-seite.test.ts`. Ergebnis: 09-16 trägt das Gate-Ergebnis ein; Vorlauf 09-09: SA sitewide 0 Verstöße (156 URLs), RA 0 Fehler, 0 defekte Links.
+Audit-Kürzel: **SA** = `scripts/seo-audit.mjs` (Regeln `antwort`, `h1`, `map`, `faq-schema`, `prompts`), **RA** = `scripts/route-audit.mjs` (Status und Links), **CT** = `tests/content.test.ts`, **FD** = `tests/funktionsdetails.test.ts`, **AP** = `tests/ai-prompts.test.ts`, **GW** = `tests/gewerke.test.ts`, **APP** = `tests/app-seite.test.ts`. Ergebnis: Vorlauf 09-09: SA sitewide 0 Verstöße (156 URLs), RA 0 Fehler, 0 defekte Links. Phasen-Gate 09-16 (23.10.2026, lokaler Produktionsbuild): SA sitewide 0 Verstöße über 156 von 156 URLs und alle 12 Regeln, RA 0 Fehler und 0 defekte Links (156 Routen, 159 Links), alle 34 Anker der Tabelle im Build vorhanden, volle Vitest-Suite 1304 von 1304; Details in § 9.
 
 ### SEO-09-Themen
 
 | Thema | Zielseite/Anker | Audit | Ergebnis (09-16) |
 |---|---|---|---|
-| Leistungszeitraum auf der Rechnung | `/hilfe/leistungszeitraum-rechnung#antwort` | SA antwort, faq-schema; CT | |
-| Regiebericht | `/hilfe/regiebericht#antwort` | SA antwort, faq-schema; CT | |
-| Bedenkenanzeige | `/hilfe/bedenkenanzeige#antwort` | SA antwort, faq-schema; CT | |
-| Mängelanzeige | `/blog/maengelanzeige#antwort` | SA antwort, faq-schema; CT | |
-| Reverse Charge bei Bauleistungen | `/blog/reverse-charge-bauleistungen#antwort` | SA antwort, faq-schema; CT | |
-| GAEB-Formate | `/blog/gaeb-formate#antwort` | SA antwort, faq-schema; L-1 Fachteil-Ausnahme (`content-produktwahrheit`) | |
-| Materialliste-Vorlage | `/blog/materialliste-vorlage#antwort` | SA antwort; CT | |
-| Bauablaufplan | `/blog/bauablaufplan#antwort` | SA antwort, faq-schema; CT | |
-| Arbeitszeitnachweis-Vorlage | `/blog/arbeitszeitnachweis-vorlage#antwort` | SA antwort; CT | |
-| Gewerke-Software | `/gewerke#antwort` | SA antwort, h1, map; GW | |
-| Prompt Elektro | `/gewerke/elektriker#antwort` | SA prompts (Anker voll geprüft, K-2); AP | |
-| Prompt Maler | `/gewerke/maler#antwort` | SA prompts; AP | |
-| Schlussrechnung (Hilfe) | `/hilfe/schlussrechnung-erstellen#faq` | SA antwort, faq-schema; CT | |
-| Schlussrechnung (Ratgeber) | `/blog/abschlagsrechnung-schlussrechnung#faq` | SA antwort, faq-schema; CT | |
-| Aufmaß-App | `/funktionen/aufmass#faq-titel` | SA prompts, faq-schema; FD | |
-| Bautagebuch-App | `/funktionen/baudokumentation#faq-titel` | SA prompts, faq-schema; FD | |
-| Zeiterfassung Handwerk | `/funktionen/zeiterfassung#faq-titel` | SA prompts, faq-schema; FD | |
-| Handwerkersoftware für kleine Betriebe (Phase 8) | `/vergleich/handwerkersoftware-kleine-betriebe#antwort` | SA prompts, antwort | |
+| Leistungszeitraum auf der Rechnung | `/hilfe/leistungszeitraum-rechnung#antwort` | SA antwort, faq-schema; CT || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Regiebericht | `/hilfe/regiebericht#antwort` | SA antwort, faq-schema; CT || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Bedenkenanzeige | `/hilfe/bedenkenanzeige#antwort` | SA antwort, faq-schema; CT || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Mängelanzeige | `/blog/maengelanzeige#antwort` | SA antwort, faq-schema; CT || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Reverse Charge bei Bauleistungen | `/blog/reverse-charge-bauleistungen#antwort` | SA antwort, faq-schema; CT || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| GAEB-Formate | `/blog/gaeb-formate#antwort` | SA antwort, faq-schema; L-1 Fachteil-Ausnahme (`content-produktwahrheit`) || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Materialliste-Vorlage | `/blog/materialliste-vorlage#antwort` | SA antwort; CT || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Bauablaufplan | `/blog/bauablaufplan#antwort` | SA antwort, faq-schema; CT || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Arbeitszeitnachweis-Vorlage | `/blog/arbeitszeitnachweis-vorlage#antwort` | SA antwort; CT || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Gewerke-Software | `/gewerke#antwort` | SA antwort, h1, map; GW || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Prompt Elektro | `/gewerke/elektriker#antwort` | SA prompts (Anker voll geprüft, K-2); AP || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Prompt Maler | `/gewerke/maler#antwort` | SA prompts; AP || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Schlussrechnung (Hilfe) | `/hilfe/schlussrechnung-erstellen#faq` | SA antwort, faq-schema; CT || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Schlussrechnung (Ratgeber) | `/blog/abschlagsrechnung-schlussrechnung#faq` | SA antwort, faq-schema; CT || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Aufmaß-App | `/funktionen/aufmass#faq-titel` | SA prompts, faq-schema; FD || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Bautagebuch-App | `/funktionen/baudokumentation#faq-titel` | SA prompts, faq-schema; FD || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Zeiterfassung Handwerk | `/funktionen/zeiterfassung#faq-titel` | SA prompts, faq-schema; FD || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Handwerkersoftware für kleine Betriebe (Phase 8) | `/vergleich/handwerkersoftware-kleine-betriebe#antwort` | SA prompts, antwort || grün: SA 0, Anker im Build, RA 200, Tests grün |
 
 ### Neue Live-Funktionen (14) und D-32
 
 | Funktion | Anleitung (Anker) | Verlinkende Detailseite bzw. /app | Audit | Ergebnis (09-16) |
 |---|---|---|---|---|
-| Terminplanung / Arbeitsabschnitte | `/hilfe/projekt-phasen-anlegen#antwort` | `/funktionen/terminplanung` | SA; FD; RA | |
-| Abnahme und Teilabnahme | `/hilfe/abnahme-dokumentieren#antwort` | `/funktionen/baudokumentation` | SA; FD; RA | |
-| Bautagesbericht | `/hilfe/bautagesbericht-erstellen#antwort` | `/funktionen/baudokumentation` | SA; FD; RA | |
-| Mängel | `/hilfe/mangel-erfassen-bearbeiten#antwort` | `/funktionen/maengelmanagement` | SA; FD; RA | |
-| Mahnwesen | `/hilfe/mahnwesen-einrichten#antwort` | `/funktionen/mahnwesen` (Sekundärlink) | SA; FD Sekundärlink; RA | |
-| Bankabgleich | `/hilfe/bankumsaetze-abgleichen#antwort` | `/funktionen/bankabgleich` (Sekundärlink) | SA; FD Sekundärlink; RA | |
-| DATANORM | `/hilfe/datanorm-katalog-importieren#antwort` | `/funktionen/gaeb`, `/funktionen/angebote` (Kacheln) | SA; FD hrefs; RA | |
-| Datenübernahme | `/hilfe/daten-importieren#antwort` | `/funktionen/datenuebernahme` (Sekundärlink) | SA; FD Sekundärlink; RA | |
-| Angebotsunterschrift online | `/hilfe/angebot-online-unterschreiben-lassen#antwort` | `/funktionen/angebote` (Kachel) | SA; FD hrefs; RA | |
-| Kundenportal | `/hilfe/kundenportal-kunden-einladen#antwort` | `/funktionen/kundenportal` (Sekundärlink) | SA; FD (Portal nach Release); RA | |
-| Lager-Scan | `/hilfe/lager-scan-app#antwort` | `/funktionen/lager` (Kachel) | SA; FD hrefs; RA | |
-| Besichtigung | `/hilfe/besichtigung-durchfuehren#antwort` | `/funktionen/aufmass` (Kachel) | SA; FD hrefs; RA | |
-| Projekt-Chat und Nachrichten | `/hilfe/projekt-chat-nachrichten#antwort` | `/funktionen/team`, `/funktionen/projektverwaltung`, `/app` | SA; FD; APP; RA | |
-| 21 Sprachen der Mobile-App | `/hilfe/app-sprache-einstellen#antwort` | `/funktionen/team` (Kachel), `/app` (Textlink) | SA; FD; APP; RA | |
-| Kassenbuch (D-32) | `/hilfe/kassenbuch-fuehren#antwort` | `/funktionen/buchhaltung` (Kachel „Kassenbuch“) | SA; FD hrefs; CT; RA | |
-| Rechnung nach § 13b (D-32) | `/hilfe/rechnung-fertigstellen#antwort`, `/blog/reverse-charge-bauleistungen#antwort` | – (Hilfe- und Ratgeberartikel) | SA; CT | |
+| Terminplanung / Arbeitsabschnitte | `/hilfe/projekt-phasen-anlegen#antwort` | `/funktionen/terminplanung` | SA; FD; RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Abnahme und Teilabnahme | `/hilfe/abnahme-dokumentieren#antwort` | `/funktionen/baudokumentation` | SA; FD; RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Bautagesbericht | `/hilfe/bautagesbericht-erstellen#antwort` | `/funktionen/baudokumentation` | SA; FD; RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Mängel | `/hilfe/mangel-erfassen-bearbeiten#antwort` | `/funktionen/maengelmanagement` | SA; FD; RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Mahnwesen | `/hilfe/mahnwesen-einrichten#antwort` | `/funktionen/mahnwesen` (Sekundärlink) | SA; FD Sekundärlink; RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Bankabgleich | `/hilfe/bankumsaetze-abgleichen#antwort` | `/funktionen/bankabgleich` (Sekundärlink) | SA; FD Sekundärlink; RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| DATANORM | `/hilfe/datanorm-katalog-importieren#antwort` | `/funktionen/gaeb`, `/funktionen/angebote` (Kacheln) | SA; FD hrefs; RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Datenübernahme | `/hilfe/daten-importieren#antwort` | `/funktionen/datenuebernahme` (Sekundärlink) | SA; FD Sekundärlink; RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Angebotsunterschrift online | `/hilfe/angebot-online-unterschreiben-lassen#antwort` | `/funktionen/angebote` (Kachel) | SA; FD hrefs; RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Kundenportal | `/hilfe/kundenportal-kunden-einladen#antwort` | `/funktionen/kundenportal` (Sekundärlink) | SA; FD (Portal nach Release); RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Lager-Scan | `/hilfe/lager-scan-app#antwort` | `/funktionen/lager` (Kachel) | SA; FD hrefs; RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Besichtigung | `/hilfe/besichtigung-durchfuehren#antwort` | `/funktionen/aufmass` (Kachel) | SA; FD hrefs; RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Projekt-Chat und Nachrichten | `/hilfe/projekt-chat-nachrichten#antwort` | `/funktionen/team`, `/funktionen/projektverwaltung`, `/app` | SA; FD; APP; RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| 21 Sprachen der Mobile-App | `/hilfe/app-sprache-einstellen#antwort` | `/funktionen/team` (Kachel), `/app` (Textlink) | SA; FD; APP; RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Kassenbuch (D-32) | `/hilfe/kassenbuch-fuehren#antwort` | `/funktionen/buchhaltung` (Kachel „Kassenbuch“) | SA; FD hrefs; CT; RA || grün: SA 0, Anker im Build, RA 200, Tests grün |
+| Rechnung nach § 13b (D-32) | `/hilfe/rechnung-fertigstellen#antwort`, `/blog/reverse-charge-bauleistungen#antwort` | – (Hilfe- und Ratgeberartikel) | SA; CT || grün: SA 0, Anker im Build, RA 200, Tests grün |
 
 ## 8. Offene Punkte
 
-- Kopf-Szene `/funktionen/kundenportal` und Karten-Szene „portal“ (`lib/scenes.ts`, Rechnungsansicht `CustomerInvoice.tsx`): Die Seite ist geroutet, aber keine Mail verlinkt sie. Szene in Phase 10 auf die Unterschriftsseite umstellen oder bestätigen (Besitz `lib/scenes.ts`).
+- ~~Kopf-Szene `/funktionen/kundenportal` und Karten-Szene „portal“ zeigen die Portal-Rechnungsansicht~~ – erledigt in 09-16: Die Szene zeigt die Unterschriftsseite aus der Angebotsmail (`QuoteSigning.tsx`, Titel „Angebot AN-2026-018“, Felder „Vor- und Nachname“, „Unterschrift“, „Kommentar (optional)“), abgesichert in `tests/funktionsdetails.test.ts` (Szene und Feldnamen wörtlich gegen den Web-Release).
 - Zusatzkarten „Kassenbuch“ und „Rechnung nach § 13b“ auf `/funktionen` und im Mega-Menü: Entscheidung Phase 10.
 - Web-Produkt (kein Website-Auftrag): Kartentext „Angebote, Rechnungen, Termine, Nachrichten“ in `CustomerPortalAccessCard.tsx` nennt nicht geroutete Portalbereiche.
 - Credit-Wert der Lager-Foto-KI erst nach Aufnahme in `lib/site.ts` nennen.
 - `components/product-demo` und `lib/demo/machine.ts` unverändert (nicht gerendert); Entscheidung Phase 10 (deferred-items).
+- Echte Silbentrennung in Safari: Playwright-WebKit unter Windows bringt kein deutsches Trennwörterbuch mit und bricht lange H1-Wörter ohne Trennstrich um (z. B. „Materialentnahmeschei|n“ auf `/hilfe/material-entnehmen-zurueckbuchen` bei 360 px, Rückfall `overflow-wrap: break-word`, kein Querscroll). Chromium trennt richtig („Materialentnahme-schein“). Stichprobe in einem echten Safari (iPhone, 360/390) steht beim Inhaber aus.
+
+## 9. Phasen-Gate 09-16 (lokal, 23.10.2026)
+
+Alle Prüfungen strikt nacheinander unter `.heavy-lock` gegen den lokalen Produktionsbuild, Server `next start` auf Port 3100; keine CI, kein Push. Stand nach den 09-16-Korrekturen (Kundenportal-Szene, Kartenrahmen), zweiter vollständiger Lauf.
+
+| Prüfung | Ergebnis |
+|---|---|
+| `npm test` (volle Vitest-Suite) | 43 von 43 Dateien, **1304 von 1304** Tests grün |
+| `npm run lint`, `npm run typecheck` | Exitcode 0 |
+| `npm run sync:product:check` | „Snapshot ist aktuell: v4.0.0-test.246 (a0e27c42).“ |
+| `check-no-secrets.mjs app components lib tests scripts docs ../.planning` | „OK: Schlüssel in keiner Datei“ |
+| `npm run build` | Exitcode 0 |
+| `seo-audit.mjs` ohne Optionen (`MSYS_NO_PATHCONV=1`) | 156 von 156 Sitemap-URLs, alle 12 Regeln **0 Verstöße**, Exitcode 0 |
+| E2E-Auswahl `design-v2`, `function-illustrations`, `navigation` (inkl. `home-navigation`), `browser-functional` in Chromium und WebKit (1440 und 390 Touch) | **348 bestanden, 0 fehlgeschlagen, 0 flaky**, 56 übersprungen (Fälle, die nur in einem Projekt laufen) |
+| davon neue Phase-9-Fälle in `design-v2.pw.cjs` (7 Routen × 2 Fälle + Fold-Fall, je Projekt) | 58 bestanden, 2 übersprungen (Fold nur im Desktop-Projekt) |
+| `route-audit.mjs` (Port 3100) | 156 Routen, **0 Fehler, 0 defekte Links** (159 Links, 14 Assets) |
+| `live-check.mjs` mit `LIVE_ORIGIN=http://localhost:3100` | 62 Prüfungen OK, 0 FEHLER |
+| `visual-audit.mjs` (7 Phase-9-Routen plus `/funktionen/kundenportal`, 360/390/768/1024/1280/1440, Chromium und WebKit) | 96 Seiten: 0 Status-, 0 Seitenüberlauf-, 0 Bild-, 0 JS-, 0 axe-Befunde; einzige Elementmeldung ist die Kostentabelle auf `/blog/tiefenkalkulation-handwerk` bei 360/390 im vorgesehenen Tabellen-Scrollbereich |
+| Anker der Abdeckungstabelle (§ 7) im Build | 34 von 34 vorhanden |
+
+**Neue Browserprüfungen (`tests/e2e/design-v2.pw.cjs`, 09-UI-SPEC § 8):** `/gewerke`, `/gewerke/elektriker`, `/gewerke/allrounder`, `/blog`, `/hilfe/kategorie/rechnungen`, `/blog/tiefenkalkulation-handwerk`, `/hilfe/material-entnehmen-zurueckbuchen` in 360, 390, 768, 1024, 1280 und 1440: kein horizontaler Seitenscroll, genau eine H1 ohne Überlauf, Kopfwort-Span in der H1, StepFlow waagerecht ab 1024 und darunter senkrecht, Funktionskarten-Rahmen innerhalb der Kartenbühne, Inhaltsverzeichnis als `details` unter 1024 und sticky ab 1024, Schrittknoten 40 × 40, axe (`wcag2a`, `wcag2aa`, `wcag21aa`) ohne serious/critical, reduzierte Bewegung ohne laufende Animation (FeatureSnippet im Endzustand), CLS 0 (Chromium; WebKit meldet keine Layout-Shift-Einträge). Fold 360 × 640: Unterkante CTA bzw. Antwort `/gewerke` 519, `/gewerke/elektriker` 519, `/gewerke/allrounder` 495, `/blog/tiefenkalkulation-handwerk` 556, `/hilfe/material-entnehmen-zurueckbuchen` 532 (WebKit 501) px.
+
+**Befunde und Korrekturen:**
+
+1. Kundenportal-Szene (Orchestrator-Auftrag): Kopf `/funktionen/kundenportal` und Karte „Kundenportal“ zeigten die Portal-Rechnungsansicht, die keine Mail verlinkt. Umgestellt auf die Unterschriftsseite (`lib/scenes.ts`), Test rot → grün (`tests/funktionsdetails.test.ts`).
+2. Kartenrahmen: Die Plantafel-Wochenansicht in den Funktionskarten nahm ihre max-content-Breite (375 px) an und ragte bei 360 und 1024 px beidseitig 26 px über die Karte (`/funktionen`, Gewerke-Seiten). Ursache in `components/v2/FeatureCard.module.css` behoben (`max-width: max(280px, 100%)`), neuer E2E-Fall rot → grün; Rahmen jetzt 280 px in 322 bzw. 302 px breiter Bühne.
+
+**Manuelle Prüfungen aus 09-VALIDATION, soweit ohne Inhaber möglich:**
+
+| Prüfung | Ergebnis 09-16 |
+|---|---|
+| Gesamteindruck der drei Vorlagen | Screenshots aus visual-audit und Ausschnitte gesichtet (Gewerke 360, Artikel 360 WebKit und 1280 Chromium, Kundenportal-Kopf 360–1440, Karten 360/1024/1440): ruhige Abschnittsfolge, Kopf mit Antwort, Inhaltsverzeichnis rechts ab 1024; einziger Befund war der Kartenrahmen (behoben) |
+| Echte Silbentrennung in H1 und Prosa-H2 | Chromium 360 trennt mit Trennstrich; Playwright-WebKit unter Windows ohne Wörterbuch (siehe § 8); echter Safari offen beim Inhaber |
+| Gewerke-Ablauf, Beispielkachel und Snippet, erster Antwortsatz, Schritte, L-1, Bedienbegriffe | in den Paketen 09-a bis 09-g und 09-09 durchgesehen; im Gate keine neuen Befunde (seo-audit `antwort` 0, `content-produktwahrheit` grün) |
+| Rechts- und Steuerfakten aktuell | nicht erneut geöffnet; Stand der Pakete (`checkedAt`) |
+| Analytics und SE-Ranking nach dem Rollout | folgt in 09-10 |

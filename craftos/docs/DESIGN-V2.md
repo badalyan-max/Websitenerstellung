@@ -789,3 +789,11 @@ Verbindlicher Vertrag ist `.planning/phases/09-gewerke-und-wissensinhalte/09-UI-
 3. **21st.dev:** `21st_magic_component_inspiration` stand in dieser Sitzung nicht als Werkzeug zur Verfügung; keine Referenzen abgerufen oder behauptet.
 4. **Context7:** in dieser Sitzung nicht verfügbar; keine offenen API-Fragen (nur `next/link`, natives `details`/`summary`, CSS). Ersatz bei Bedarf `craftos/node_modules/next/dist/docs`.
 5. **Prüfung:** `tests/content-vorlage.test.ts` (Vorlage, Übersichten, Kategorien, Suche, CSS-Vertrag), `tests/content.test.ts`, `tests/breadcrumbs.test.ts`; `scripts/seo-audit.mjs` für sechs Pfade; Sichtprüfung 360/1440 (Chromium) und 390 (WebKit) mit `scripts/visual-audit.mjs`.
+
+### 18.4 Phasen-Gate 09-16 (23.10.2026)
+
+1. **frontend-design** (Leitlinie read-only gelesen, nichts kopiert): Zurückhaltung – die Kundenportal-Szene bleibt im bestehenden Browserrahmen und Mini-UI, nur Inhalt und Beleg wechseln (Unterschriftsseite statt Rechnungsansicht); keine neue Gestaltung.
+2. **Kundenportal-Szene** (`lib/scenes.ts`): Titel „Angebot AN-2026-018“ (Release-Muster `Angebot ${number}`), Zeilen „Vor- und Nachname“, „Unterschrift“, „Kommentar (optional)“ wörtlich aus `QuoteSigning.tsx` (Release a0e27c42), Kurzform `web:Angebotsunterschrift`.
+3. **Kartenbühne** (`components/v2/FeatureCard.module.css`): Die figure in der Szenenbühne ist höchstens `max(280px, 100%)` breit. Vorher nahm die Plantafel-Wochenansicht ihre max-content-Breite (375 px) an und ragte bei 360 und 1024 px über die Karte; jetzt ragt ein 280-px-Rahmen höchstens gleichmäßig in den Innenabstand, wie in 07-04 vorgesehen.
+4. **21st.dev, Context7:** nicht benötigt (keine neue Komponente, keine API-Frage).
+5. **Prüfung:** neue Phase-9-Fälle in `tests/e2e/design-v2.pw.cjs` (sieben Routen in sechs Breiten, inklusive Kartenrahmen-Fall), `tests/funktionsdetails.test.ts` (Kundenportal-Szene), visual-audit über acht Routen in sechs Breiten (Chromium, WebKit); Ergebnisse in `docs/content-pruefung/09-integration.md` § 9.

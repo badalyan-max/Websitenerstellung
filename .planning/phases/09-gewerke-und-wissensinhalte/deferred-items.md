@@ -20,7 +20,7 @@
 | Befund | Ursache | Zuständig | Hinweis |
 |---|---|---|---|
 | `components/product-demo` (ProductDemo) und `lib/demo/machine.ts` unverändert | Komponente wird nicht gerendert; Auftrag 09-09: nicht anfassen | Phase 10 | Entscheidung Wiederverwendung oder Archiv (09-CONTEXT „Deferred“). |
-| Kopf- und Karten-Szene „portal“ zeigt die Portal-Rechnungsansicht | `CustomerInvoice.tsx` ist geroutet, aber keine Mail verlinkt sie (Release a0e27c42) | Phase 10 (`lib/scenes.ts`) | Szene auf die Unterschriftsseite umstellen oder bestätigen; Hilfeartikel Kundenportal ohne Szene. |
+| ~~Kopf- und Karten-Szene „portal“ zeigt die Portal-Rechnungsansicht~~ | `CustomerInvoice.tsx` ist geroutet, aber keine Mail verlinkt sie (Release a0e27c42) | erledigt in 09-16 | Szene zeigt die Unterschriftsseite (`QuoteSigning.tsx`), Test in `tests/funktionsdetails.test.ts`. |
 | Zusatzkarten „Kassenbuch“ und „Rechnung nach § 13b“ | Register `liveExtras` mit `advertised: false`; Zusatzkarte ändert `/funktionen`, Mega-Menü und deren Tests | Phase 10 | Inhalte und Kachel auf `/funktionen/buchhaltung` sind live. |
 | Lager-Foto-KI ohne Credit-Wert | Wert nur in der Mobile-Sprachdatei, nicht in `lib/site.ts` | bei Bedarf | – |
 | Testkontext-Muster in `tests/pricing-parity.test.ts` trifft Teilwörter („Spätestens“) | Regex `test` ohne Wortanfang | optional | 09-09 hat den Satz umformuliert; Test unverändert gelassen. |
