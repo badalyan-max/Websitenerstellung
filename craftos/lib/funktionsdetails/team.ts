@@ -82,7 +82,8 @@ export const teamInhalte: Record<string, FunktionsdetailInhalt> = {
         {
           size: "sm",
           title: "Passende Zugänge",
-          text: "Admin- und Büro-Lizenz arbeiten im Web, die App-Lizenz auf der Baustelle.",
+          // L-1-Altbegriff (09-14): Lizenzname aus lib/site.ts („Voll-Lizenz“), Typen laut roles.ts LICENSE_TYPES.
+          text: "Die Voll-Lizenz (Admin oder Büro) öffnet Web und App, die App-Lizenz nur die App.",
           visual: { kind: "icon", icon: KeyRound },
         },
         {

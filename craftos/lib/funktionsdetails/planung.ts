@@ -139,10 +139,11 @@ export const planungInhalte: Record<string, FunktionsdetailInhalt> = {
           q: "Kann mein Team die Navigation zum Einsatz starten?",
           a: "Ja. In der Mobile-App sieht Ihr Team im Einsatz Projekt, Zeitraum, Status und Zielort und startet von dort die Navigation. Karten und Routen benötigen eine Internetverbindung.",
         },
-        // Quelle: content/hilfe/plantafel-einsatz-planen.md („Konflikt erkannt“, Fahrzeuge und Geräte).
+        // Quelle: content/hilfe/plantafel-einsatz-planen.md (09-06); Release-Begriffe „Hinweis zur Planung“ und
+        // „Trotzdem einplanen“ aus Web src/components/plantafel/AssignmentPlanHintsDialog.tsx (09-14, L-1-Altbegriff).
         {
           q: "Was passiert bei Überschneidungen in der Planung?",
-          a: "CraftOS zeigt bei Überschneidungen den Hinweis „Konflikt erkannt“. Prüfen Sie dann die konkrete Überschneidung und berücksichtigen Sie dabei auch Abwesenheiten, Fahrzeuge und Geräte.",
+          a: "Bei einer Doppelbelegung zeigt CraftOS den „Hinweis zur Planung“. Sie prüfen die Überschneidung, auch mit Blick auf Abwesenheiten, Fahrzeuge und Geräte, und wählen „Trotzdem einplanen“ oder „Abbrechen“.",
         },
       ],
     },

@@ -283,8 +283,10 @@ export const rechnungInhalte: Record<string, FunktionsdetailInhalt> = {
         },
         {
           size: "sm",
-          title: "Nur Rechnungen",
-          text: "Abschlags- und Schlussrechnungen mahnt die Automatik nicht.",
+          // L-1 (09-14, Hinweis aus 09-03): Umfang positiv; Beleg MahnwesenSettings.tsx Z. 313 („Gemahnt werden nur
+          // Rechnungen.“), identisch mit funktionen.ts mahnwesen note (WR-06).
+          title: "Für normale Rechnungen",
+          text: "Auf Wunsch mahnt die Automatik normale Rechnungen nach Ihren Fristen.",
           visual: { kind: "icon", icon: Info },
           grenze: true,
         },
@@ -316,7 +318,7 @@ export const rechnungInhalte: Record<string, FunktionsdetailInhalt> = {
         // Automatik nicht.“).
         {
           q: "Welche Rechnungen mahnt CraftOS?",
-          a: "Gemahnt werden nur Rechnungen. Abschlags- und Schlussrechnungen mahnt die Automatik nicht.",
+          a: "Auf Wunsch eingeschaltete automatische Mahnungen gelten für normale Rechnungen. Sie mahnen nach Ihren Fristen, immer eine Stufe nach der anderen.",
         },
       ],
     },
